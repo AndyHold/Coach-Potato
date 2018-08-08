@@ -1,0 +1,13 @@
+junit:
+  stage: test
+  script:
+    - cd SENG202_Project
+    - mvn -B clean test
+generate_artifacts:
+  stage: deploy
+  script:
+    - cd SENG202_Project
+    - mvn -B clean site package
+  artifacts:
+    paths:
+    - target/s202*.jar
