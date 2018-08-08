@@ -10,4 +10,6 @@ generate_artifacts:
     - mvn -B clean site package
   artifacts:
     paths:
-    - target/s202*.jar
+      - cd SENG202_Project
+      - target/s202*.jar
+
