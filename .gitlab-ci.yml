@@ -1,4 +1,5 @@
 junit:
+<<<<<<< HEAD
   stage: test
   script:
     - mvn -B clean test
@@ -9,3 +10,15 @@ generate_artifacts:
   artifacts:
     paths:
     - target/s202*.jar
+=======
+stage: test
+script:
+- mvn -B clean test
+generate_artifacts:
+stage: deploy
+script:
+- mvn -B clean site package
+artifacts:
+paths:
+- target/s202*.jar
+>>>>>>> bc19b880... Added CI file
