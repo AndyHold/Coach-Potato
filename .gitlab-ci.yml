@@ -12,6 +12,7 @@ generate_artifacts:
     - mvn -B clean site package
   artifacts:
     paths:
+<<<<<<< HEAD
     - target/s202*.jar
 =======
 stage: test
@@ -37,3 +38,8 @@ generate_artifacts:
     paths:
     - target/s202*.jar
 >>>>>>> c42efb5... Added CI file
+=======
+      - cd SENG202_Project
+      - target/s202*.jar
+
+>>>>>>> e7bc168... Update .gitlab-ci.yml
