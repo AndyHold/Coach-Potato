@@ -1,5 +1,8 @@
 junit:
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ac38c077... Revert "IU-2017.3 <tkl34@cs18260kq.canterbury.ac.nz Overwrite remote…"
   stage: test
   script:
     - cd SENG202_Project
@@ -8,6 +11,7 @@ generate_artifacts:
   stage: deploy
   script:
     - cd SENG202_Project
+<<<<<<< HEAD
     - mvn -B clean package
   artifacts:
     paths:
@@ -30,3 +34,9 @@ paths:
       - target/s202*.jar
 
 >>>>>>> cb3afef6... Update .gitlab-ci.yml
+=======
+    - mvn -B clean site package
+  artifacts:
+    paths:
+    - target/s202*.jar
+>>>>>>> ac38c077... Revert "IU-2017.3 <tkl34@cs18260kq.canterbury.ac.nz Overwrite remote…"
