@@ -3,10 +3,16 @@ junit:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 04fc561... Revert "IU-2017.3 <tkl34@cs18260kq.canterbury.ac.nz Overwrite remote…"
 =======
 >>>>>>> ac38c07... Revert "IU-2017.3 <tkl34@cs18260kq.canterbury.ac.nz Overwrite remote…"
+=======
+>>>>>>> 3f209ca... fixed what Torben did
+=======
+>>>>>>> bf8a459... fixed what Torben did
   stage: test
   script:
     - cd SENG202_Project
@@ -15,6 +21,8 @@ generate_artifacts:
   stage: deploy
   script:
     - cd SENG202_Project
+<<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     - mvn -B clean package
@@ -70,3 +78,15 @@ generate_artifacts:
 >>>>>>> 04fc561... Revert "IU-2017.3 <tkl34@cs18260kq.canterbury.ac.nz Overwrite remote…"
 =======
 >>>>>>> ac38c07... Revert "IU-2017.3 <tkl34@cs18260kq.canterbury.ac.nz Overwrite remote…"
+=======
+=======
+>>>>>>> bf8a459... fixed what Torben did
+    - mvn -B clean site package
+  artifacts:
+    paths:
+      - cd SENG202_Project
+      - target/s202*.jar
+<<<<<<< HEAD
+>>>>>>> 3f209ca... fixed what Torben did
+=======
+>>>>>>> bf8a459... fixed what Torben did
