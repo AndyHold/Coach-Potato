@@ -8,7 +8,7 @@ generate_artifacts:
   stage: deploy
   script:
     - cd SENG202_Project
-    - mvn -B clean site package
+    - mvn -B clean package
   artifacts:
     paths:
 <<<<<<< HEAD
