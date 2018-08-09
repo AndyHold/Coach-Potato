@@ -9,7 +9,7 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
-
+.git
 metadata
 bin/
 tmp/
@@ -21,7 +21,7 @@ local.properties
 .settings/
 .loadpath
 .recommenders
-
+.idea
 # External tool builders
 .externalToolBuilders/
 
