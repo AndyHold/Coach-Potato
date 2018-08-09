@@ -34,6 +34,6 @@ public class PaddysTestTest
     public void testApp()
     {
         PaddysTest paddysTest = new PaddysTest();
-        assertEquals( andysTest.getName(), "Hi my name is Paddy" );
+        assertEquals( paddysTest.getName(), "Hi my name is Paddy" );
     }
 }
