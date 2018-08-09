@@ -26,7 +26,7 @@ public class CamTestTest
     }
 
     /**
-     * Rigourous Test :-)
+     * Very Thorough Test :-)
      */
     public void testApp()
     {
