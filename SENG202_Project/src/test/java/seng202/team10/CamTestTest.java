@@ -26,7 +26,15 @@ public class CamTestTest
     }
 
     /**
+<<<<<<< HEAD
+<<<<<<< HEAD
+     * Very Thorough Test :-)
+=======
      * Rigourous Test :-)
+>>>>>>> f818a58... an example test
+=======
+     * Very Thorough Test :-)
+>>>>>>> 606e5f7... an example test
      */
     public void testApp()
     {
