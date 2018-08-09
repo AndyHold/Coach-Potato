@@ -8,11 +8,11 @@ junit:
 >>>>>>> bf8a4591... fixed what Torben did
   stage: test
   script:
-    - cd SENG202_Project
     - mvn -B clean test
 generate_artifacts:
   stage: deploy
   script:
+<<<<<<< HEAD
     - cd SENG202_Project
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -35,6 +35,11 @@ paths:
 >>>>>>> bc19b880... Added CI file
 =======
       - cd SENG202_Project
+=======
+    - mvn -B clean package
+  artifacts:
+    paths:
+>>>>>>> 1d5a3365... Fixed Pipeline
       - target/s202*.jar
 
 >>>>>>> cb3afef6... Update .gitlab-ci.yml
