@@ -9,5 +9,8 @@
         <module name="SENG202_Project" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="SENG202_Project" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>
