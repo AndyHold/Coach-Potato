@@ -321,6 +321,42 @@ public class UserProfile implements java.io.Serializable{
 
 
     /**
+     * Setter method for the birthdate of the user
+     * @param newDate
+     */
+
+    public void setBirthdate(Date newDate) {
+        this.birthdate = newDate;
+    }
+
+    /**
+     * Setter method for the birthdate of the user
+     * @param newDate
+     */
+
+    public void setBirthdate(Date newDate) {
+        this.birthdate = newDate;
+    }
+
+    /**
+     * Setter method for the birthdate of the user
+     * @param newDate
+     */
+
+    public void setBirthdate(Date newDate) {
+        this.birthdate = newDate;
+    }
+
+    /**
+     * Setter method for the birthdate of the user
+     * @param newDate
+     */
+
+    public void setBirthdate(Date newDate) {
+        this.birthdate = newDate;
+    }
+
+    /**
      * Getter method for the birthdate of the user
      * @return Date
      */
