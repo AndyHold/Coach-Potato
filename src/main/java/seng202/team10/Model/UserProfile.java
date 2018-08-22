@@ -87,6 +87,15 @@ public class UserProfile {
 
 
     /**
+     * Setter method for the birthdate of the user
+     * @param newDate
+     */
+
+    public void setBirthdate(Date newDate) {
+        this.birthdate = newDate;
+    }
+
+    /**
      * Getter method for the birthdate of the user
      * @return Date
      */
