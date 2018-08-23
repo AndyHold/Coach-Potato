@@ -37,7 +37,7 @@ public class Parser {
      * @return activites  Every activity in the file should now be stored here.
      */
     public Activities processFile() {
-        Activities activities = new Activities;
+        Activities activities = new Activities();
         while (linePosition < fileContents.size()) {
             activities.add(processActivity());
         }
