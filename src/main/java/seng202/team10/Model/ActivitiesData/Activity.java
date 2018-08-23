@@ -123,17 +123,13 @@ public class Activity {
 //    /**
 //     * Setter method for the start time of the activity
 //     */
-//    public void setStartTime() {
-//        this.startTime = this.entries.get(0).getTime();
-//    }
+//    public void setStartTime() { this.startTime = this.entries.get(0).getTime(); }
 //
 //
 //    /**
 //     * Method to calculate and set the total time taken during the activity
 //     */
-//    public void calculateTotalTime() {
-//        this.totalTime = this.entries.get(-1).getTime() - this.startTime;
-//    }
+//    public void calculateTotalTime() { this.totalTime = this.entries.get(-1).getTime() - this.startTime; }
 
 
     /**
