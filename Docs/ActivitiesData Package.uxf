@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>350</x>
+      <y>50</y>
+      <w>210</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Java Class&gt;&gt;
+Activities
+Package::ActivitiesData
+--
+-activities: ArrayList&lt;Activity&gt;
+--
++getSize(): int
++getActivity(int): Activity</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>40</x>
+      <y>210</y>
+      <w>250</w>
+      <h>450</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Java Class&gt;&gt;
+Activity
+Package::ActivitiesData
+--
+-date: Date
+-averageVelocity: double
+-averageHeartRate: double
+-totalDistance: double
+-name: String
+-entries: ArrayList&lt;Entry&gt;
+-startTime: Time
+-totalTime: double
+-intensity: ActivityIntensity
+--
++setDate(Date): void
++getDate(): Date
+-findAverageVelocity(): double
+-findAverageHeartRate(): double
+-findTotalDistance(): double
++setName(String): void
++getName(): String
++getTotalDistance(): double
++getAverageHeartRate(): double
++getAverageVelocity(): double
++setTotalDistance(double): void
++setTotalTime(double): void
++setStartTime(Time): void
++getStartTime(): Time
++checkForHealthWarnings(): boolean
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>330</x>
+      <y>210</y>
+      <w>280</w>
+      <h>360</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Java Class&gt;&gt;
+Entry
+Package::ActivitiesData
+--
+-firstEntry: boolean
+-time: double
+-heartRate: double
+-position: Position
+-distance: double
+-velocity: double
+-activity: Activity
+--
++setTime(Time): void 
++getTime(): double
++setHeartRate(double): void
++getHeartRate(): double
++setPosition(double, double, double): void
++getPosition(): Position
++calculateDistance(): void
++getDistance(): double
++calculateVelocity(int): void
++getVelocity(): double
++getActivity(): Activity</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>680</x>
+      <y>290</y>
+      <w>250</w>
+      <h>230</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Java Class&gt;&gt;
+Position
+Package::ActivitiesData
+--
+-latitude: double
+-longitude: double
+-elevation: double
+--
++setLatitude(double): void
++getLatitude(): double
++setLongitude(double): void
++getLongitude(): double
++setElevation(double): void
++getElevation(): double
++subtract(Position): double</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>600</x>
+      <y>310</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>80.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>280</x>
+      <y>290</y>
+      <w>70</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>280</x>
+      <y>230</y>
+      <w>70</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>50.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>260</x>
+      <y>140</y>
+      <w>110</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0;90.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>420</x>
+      <y>610</y>
+      <w>370</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Java Enum&gt;&gt;
+HealthWarningType
+Package::ActivitiesData
+--
++TACHYCARDIA: HealthWarningType
++BRADYCHARDIA: HealthWarningType
++CARDIOVASCULAR_MORTALITY: HealthWarningType
++MAXWORKINGHEARTRATE: Double
++MINWORKINGHEARTRATE: Double
++MAXRESTINGHEARRATE: Double
+--
++setHeartRateConstants(int): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>40</x>
+      <y>50</y>
+      <w>210</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Java Enum&gt;&gt;
+ActivityIntensity
+Package::ActivitiesData
+--
+-LOW: ActivityIntensity
+-MEDIUM: ActivityIntensity
+-HIGH: ActivityIntensity</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>110</x>
+      <y>150</y>
+      <w>30</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>280</x>
+      <y>620</y>
+      <w>160</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>140.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>
