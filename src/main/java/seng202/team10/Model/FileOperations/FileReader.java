@@ -34,34 +34,37 @@ public class FileReader {
         return localProfile;
     }
 
-//    /** opens a csv file and returns its contents as an arraylist of strings of each line*/
-//    public ArrayList openNewFile(String filename) {
-//
-//        Scanner localScanner = new Scanner(new File(filename));
-//        ArrayList<String> fileContents = new ArrayList<String>();
-//        while (localScanner.hasNextLine()){
-//            fileContents.add(localScanner.nextLine());
-//        }
-//        localScanner.close();
-//
-//        //List<String> lines = FileUtils.readLines(new File("/path/to/file.txt"), "utf-8"); //alternate option
-//
-//        return fileContents;
-//    }
+    /** opens a csv file and returns its contents as an arraylist of strings of each line
+     * @param filename : the string of the filename/path being opened
+     * @return fileContents : ArrayList of strings, each is a line of the file*/
+    public ArrayList openNewFile(String filename) throws FileNotFoundException{
 
-    /** checks whether the specified file exists. returns true if file is found, false if not*/
+        Scanner localScanner = new Scanner(new File(filename));
+        ArrayList<String> fileContents = new ArrayList<String>();
+        while (localScanner.hasNextLine()){
+            fileContents.add(localScanner.nextLine());
+        }
+        localScanner.close();
+
+        //List<String> lines = FileUtils.readLines(new File("/path/to/file.txt"), "utf-8"); //alternate option
+
+        return fileContents;
+    }
+
+    /** checks whether the specified file exists. returns true if file is found, false if not
+     * @param filename : the string of the filename/path being checked*/
     public boolean checkFileExists(String filename){
         File tmpDir = new File(filename);
         boolean exists = tmpDir.exists();
         return exists;
     }
 
-    /** sets the local profile for the filereader to use */
+    /** sets the local profile for the filereader to use. likely useless */
     public void setLocalProfile(UserProfile activeProfile) {
         localProfile = activeProfile;
     }
 
-    /** returns the current profile the filereader is using */
+    /** returns the  profile the filereader last loaded */
     public UserProfile getLocalProfile(){
         return localProfile;
     }
