@@ -1,8 +1,9 @@
 package seng202.team10.Model;
 
 
-import seng202.team10.Model.ActivitiesData.Activities;
+import seng202.team10.Model.ActivitiesData.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -14,7 +15,7 @@ public class UserProfile implements java.io.Serializable{
 
 
     private String name;
-    private Activities activities;
+    private ArrayList<Activity> activities;
     private double weight;
     private double height;
     private Date birthdate;
@@ -111,6 +112,10 @@ public class UserProfile implements java.io.Serializable{
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
     public Activities getActivities() {
         return this.activities;
     }
@@ -127,6 +132,18 @@ public class UserProfile implements java.io.Serializable{
 >>>>>>> 90c2806... Implementation of UserProfile class getter and setter methods
 =======
     public Activities getActivities() {
+=======
+    public ArrayList<Activity> getActivities() {
+>>>>>>> d922119... Fixed DateTimeTest and commented out code that was throwing pipeline off
+=======
+    public ArrayList<Activity> getActivities() {
+>>>>>>> dbb4e11... Fixed DateTimeTest and commented out code that was throwing pipeline off
+=======
+    public ArrayList<Activity> getActivities() {
+>>>>>>> 811edab... Fixed DateTimeTest and commented out code that was throwing pipeline off
+=======
+    public ArrayList<Activity> getActivities() {
+>>>>>>> f805a82... Fixed DateTimeTest and commented out code that was throwing pipeline off
         return this.activities;
     }
 >>>>>>> a85d43e... Implementation of UserProfile class getter and setter methods
@@ -220,7 +237,7 @@ public class UserProfile implements java.io.Serializable{
 
     /**
      * Setter method for the weight of the user
-     * @param newWeight
+     * @param newWeight double
      */
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -259,7 +276,7 @@ public class UserProfile implements java.io.Serializable{
 
     /**
      * Setter method for the height of the user
-     * @param newHeight
+     * @param newHeight double
      */
 <<<<<<< HEAD
 <<<<<<< HEAD
