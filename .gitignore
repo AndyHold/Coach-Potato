@@ -11,6 +11,9 @@ buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
 .git
+/.idea/*
+/.codestyles/*
+/.codestyles/
 /.idea/
 metadata
 bin/
@@ -23,7 +26,15 @@ local.properties
 .settings/
 .loadpath
 .recommenders
-
+vcs.xml
+usageView.xml
+find.xml
+filetypes.xml
+debugger.xml
+databaseSettings.xml
+baseRefactoring.xml
+/._linux/*
+/._linux/
 # External tool builders
 .externalToolBuilders/
 
