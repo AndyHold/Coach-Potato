@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>570</x>
+      <y>0</y>
+      <w>240</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Java Class&gt;&gt;
+LoginScreen
+Package::Visual
+--
+-guiController: GUIController
+-frameLoginScreen: JFrame
+--
+-initialize(): void
++closeScreen(): void
++finishedLoginScreen(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>300</x>
+      <y>180</y>
+      <w>240</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Java Class&gt;&gt;
+MainScreen
+Package::Visual
+--
+-guiController: GUIController
+-frameMainScreen: JFrame
+-panelViewData: JPanel
+-panelDataAnalysis: JPanel
+-panelProfileView: JPanel
+-panelUploadData: JPanel
+--
+-initialize(): void
++closeScreen(): void
++finishedMainScreen(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>570</x>
+      <y>180</y>
+      <w>240</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Java Class&gt;&gt;
+CreateUserScreen
+Package::Visual
+--
+-guiController: GUIController
+-frameCreateUserScreen: JFrame
+--
+-initialize(): void
++closeScreen(): void
++finishedCreateUserScreen(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>300</x>
+      <y>0</y>
+      <w>240</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Java Class&gt;&gt;
+CalendarScreen
+Package::Visual
+--
+-guiController: GUIController
+-frameCalendarScreen: JFrame
+--
+-initialize(): void
++closeScreen(): void
++finishedCalendarScreen(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>30</x>
+      <y>180</y>
+      <w>240</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Java Class&gt;&gt;
+GoalsScreen
+Package::Visual
+--
+-guiController: GUIController
+-frameGoalsScreen: JFrame
+--
+-initialize(): void
++closeScreen(): void
++finishedGoalsScreen(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>30</x>
+      <y>0</y>
+      <w>240</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Java Class&gt;&gt;
+ViewActivityScreen
+Package::Visual
+--
+-guiController: GUIController
+-frameViewActivityScreen: JFrame
+--
+-initialize(): void
++closeScreen(): void
++finishedViewActivityScreen(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
