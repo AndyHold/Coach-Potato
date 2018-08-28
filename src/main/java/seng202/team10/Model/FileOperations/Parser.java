@@ -1,8 +1,8 @@
 package seng202.team10.Model.FileOperations;
 
-import seng202.team10.Model.ActivitiesData.*;
-import seng202.team10.Model.UserProfile;
-
+import seng202.team10.Model.ActivitiesData.Activity;
+import seng202.team10.Model.ActivitiesData.Entry;
+import seng202.team10.Model.ActivitiesData.Position;
 
 import java.util.ArrayList;
 
@@ -14,8 +14,8 @@ public class Parser {
     private ArrayList<Activity> activities;
     private Activity currentActivity;
     private Entry currentEntry;
-    private FileReader fileReader;
-    private FileWriter fileWriter;
+//    private Reader fileReader;
+    //private FileWriter fileWriter;
 
 
     /**
@@ -25,14 +25,14 @@ public class Parser {
      *
      * @return fileContents  An ArrayList containing an ArrayList containing string values.
      */
-    public ArrayList<String> getFileContents() {
-        fileReader = new FileReader();
-        if (fileReader.checkFileExists() == true) {
-            fileReader.openFile();
-            fileReader.readFileContents();
-            fileContents = fileReader.getFileContents();
+    public ArrayList<String> getFileContents(String filePath) {
+        ArrayList<String> fileContents = new ArrayList<String>();
+        FileReader reader = new FileReader();
+        if(reader.checkFileExists(filePath)){
+            fileContents = reader.openNewFile(filePath);
         }
         return fileContents;
+
     }
 
     /**
@@ -62,13 +62,19 @@ public class Parser {
         linePosition += 1;
 
         String[] dateArray = (formattedFile.get(linePosition).get(0)).split("/");
+        String[] timeArray = (formattedFile.get(linePosition).get(1)).split(":");
         int day = Integer.valueOf(dateArray[0]);
         int month = Integer.valueOf(dateArray[1]);
         int year = Integer.valueOf(dateArray[2]);
-        activity.setDate(day, month, year);
+        int hour = Integer.valueOf(timeArray[0]);
+        int minute = Integer.valueOf(timeArray[1]);
+        int second = Integer.valueOf(timeArray[2]);
+
+//        DateTime dateTime = new DateTime(year, month, day, hour, minute, second);
+//        activity.setDate(dateTime);
 
         while ((formattedFile.get(linePosition)).size() == 6) {
-            activity.addEntry(processLine(formattedFile));
+            //activity.addEntry(processLine(formattedFile));
             linePosition += 1;
         }
         return activity;
@@ -84,12 +90,16 @@ public class Parser {
     public Entry processLine(ArrayList<ArrayList<String>> formattedFile){
         Entry entry = new Entry();
         ArrayList<String> currentLine = formattedFile.get(linePosition);
-
-        String[] timeArray = (currentLine.get(1)).split(":");
+        String[] timeArray = (currentLine.get(0)).split(":");
+        String[] dateArray = (currentLine.get(1)).split(":");
+        int day = Integer.valueOf(dateArray[0]);
+        int month = Integer.valueOf(dateArray[1]);
+        int year = Integer.valueOf(dateArray[2]);
         int hour = Integer.valueOf(timeArray[0]);
         int minute = Integer.valueOf(timeArray[1]);
         int second = Integer.valueOf(timeArray[2]);
-        entry.setTime(hour, minute, second);
+//        DateTime dateTime = new DateTime(year, month, day, hour, minute, second);
+//        entry.setTime(dateTime);
 
         int heartRate = Integer.valueOf(currentLine.get(2));
         entry.setHeartRate(heartRate);
@@ -112,8 +122,7 @@ public class Parser {
         double longitude = Double.valueOf(currentLine.get(4));
         double elevation = Double.valueOf(currentLine.get(5));
 
-        Position position = new Position(latitude, longitude, elevation);
-        return position;
+        return new Position(latitude, longitude, elevation);
     }
 
     /**
@@ -131,8 +140,8 @@ public class Parser {
 
         for (int i = 0; i < fileContents.size(); i++) {
             splitLine = fileContents.get(i).split(",");
-            for (int j = 0; j < splitLine.length; j++){
-                formattedFile.get(i).add(splitLine[j]);
+            for (String aSplitLine : splitLine) {
+                formattedFile.get(i).add(aSplitLine);
             }
         }
         return formattedFile;
