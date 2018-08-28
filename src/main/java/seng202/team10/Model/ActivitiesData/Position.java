@@ -14,6 +14,17 @@ public class Position {
     private double elevation;
 
 
+    /** Constructor method for Position Class
+     * @param latitude double: Latitude forthis position
+     * @param longitude double: Longitude for this position
+     * @param elevation double: Elevation for this position
+     */
+    public Position(double latitude, double longitude, double elevation) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.elevation = elevation;
+    }
+
     /**
      * Getter method to get user's latitude.
      * @return double
