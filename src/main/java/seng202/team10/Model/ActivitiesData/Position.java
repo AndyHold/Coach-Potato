@@ -29,7 +29,7 @@ public class Position {
 
     /**
      * Getter method to get user's latitude.
-     * @return double
+     * @return latitude: double
      */
     public double getLatitude() {
         return latitude;
@@ -45,7 +45,7 @@ public class Position {
 
     /**
      * Getter method to get user's longitude.
-     * @return double
+     * @return longitude: double
      */
     public double getLongitude() {
         return longitude;
@@ -61,7 +61,7 @@ public class Position {
 
     /**
      * Getter method to get user's elevation.
-     * @return double
+     * @return elevation: double
      */
     public double getElevation() {
         return elevation;
@@ -78,7 +78,7 @@ public class Position {
     /**
      * Subtract method calculates the distance between two positions.
      * @param position: double
-     * @return double
+     * @return distance: double
      */
     public double subtract(Position position) {
         double latitudeDifference = position.getLatitude() - this.latitude;
