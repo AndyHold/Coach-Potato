@@ -1,11 +1,13 @@
 package FileOperations;
 
+import seng202.team10.Model.FileOperations.FileReader;
+
 import java.util.ArrayList;
 
 public class Parser {
 
 
-    private String fileContents;
+    private ArrayList fileContents;
     private int linePosition = 0;
     private Activities activities;
     private Activity currentActivity;
@@ -23,9 +25,8 @@ public class Parser {
      */
     public String getFileContents() {
         fileReader = new FileReader();
-        if (fileReader.checkFileExists() == true) {
-            fileReader.openFile();
-            fileReader.readFileContents();
+        if (fileReader.checkFileExists(filename) == true) {
+            fileReader.openFile(filename);
             fileContents = fileReader.getFileContents();
         }
         return fileContents;
@@ -36,7 +37,7 @@ public class Parser {
      * @return activites  Every activity in the file should now be stored here.
      */
     public Activities processFile() {
-        Activities activities = new Activities;
+        Activities activities = new Activities();
         while (linePosition < fileContents.size()) {
             activities.add(processActivity());
         }

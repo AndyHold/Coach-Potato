@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>330</x>
+      <y>20</y>
+      <w>260</w>
+      <h>310</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Java Class&gt;&gt;
+Parser
+Package::FileOperations
+--
+-fileContents: String
+-linePosition: int
+-activities: Activities
+-currentActivity: Activity
+-currentEntry: Entry
+-fileReader: FileReader
+-fileWriter: FileWriter
+--
++getFileContents(): void
++processFile(): Activities
+-processActivity(): Activity
++processLine(): Entry
++getLineIndex(): int
++activitiesToString(Activities): String
++userProfileToString(UserProfile): String
++WriteDataToFile(String): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>690</x>
+      <y>20</y>
+      <w>210</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Java Cass&gt;&gt;
+FileWriter
+Package::FileOperations
+--
+-parser: Parser
+-fileName: String
+-contents: String
+--
+-checkFileExists(): boolean
++createFile(): boolean
++openFile(): boolean
++writeFileContents(): boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>20</x>
+      <y>20</y>
+      <w>210</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Java Cass&gt;&gt;
+FileReader
+Package::FileOperations
+--
+-parser: Parser
+-fileName: String
+-file: File
+--
+-checkFileExists(): boolean
++openFile(): boolean
++readFileContents(): boolean
++getFileContents(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>220</x>
+      <y>40</y>
+      <w>130</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>580</x>
+      <y>40</y>
+      <w>130</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>110.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>

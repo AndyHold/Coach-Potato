@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>570</x>
+      <y>20</y>
+      <w>210</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Java Class&gt;&gt;
+MainController
+Package::Control
+--
+-users: ArrayList&lt;UserProfile&gt;
+-currentUser: UserProfile
+-parser: Parser
+-guiController: GUIController
+--
++openLoginScreen(): void
++saveData(): void
++loadData(): void
++main(String[]): void
++getCurrentUser(): User
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>20</x>
+      <y>20</y>
+      <w>390</w>
+      <h>310</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Java Class&gt;&gt;
+GUIController
+Package::Control
+--
+-loginScreen: LoginScreen
+-mainScreen: MainScreen
+-systemController: SystemController
+--
++openLoginScreen(guiController: GUIController): void
++closeLoginScreen(): void
++openMainScreen(guiController: GUIController): void
++closeMainScreen(): void
++openViewActivityScreen(guiController: GUIController): void
++closeViewActivityScreen(): void
++openGoalsScreen(guiController: GUIController): void
++closeGoalsScreen(): void
++openCreateUserScreen(guiController: GUIController): void
++closeCreateUserScreen(): void
++openCalendarScreen(guiController: GUIController): void
++closeCalendarScreen(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>400</x>
+      <y>40</y>
+      <w>190</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;170.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>400</x>
+      <y>100</y>
+      <w>190</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>170.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>450</x>
+      <y>270</y>
+      <w>330</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Java Class&gt;&gt;
+DataAnalysis
+Package::ActivitiesData
+--
+-activities: Activities
+--
++arrangeByDate(): ArrayList&lt;Activity&gt;
++arrangeByIntensity(): ArrayList&lt;Activity&gt;
++showDateRange(Date, Date): ArrayList&lt;Activity&gt;
++getTimeFromActivity(Activity): Array&lt;double&gt;
++getDistanceFromActivity(Activity): Array&lt;double&gt;
++getHeartRateFromActivity(Activity): Array&lt;int&gt;
++getCaloriesFromActivity(Activity): Array&lt;double&gt;
++getPositionsFromActivity(Activity): Array&lt;Position&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
