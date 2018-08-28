@@ -1,23 +1,48 @@
 package seng202.team10.Model.FileOperations;
 
+import seng202.team10.Model.UserProfile;
+
 import java.util.ArrayList;
 
 public class FileReader {
 
-    /* opens the specified file for local reading */
-    public void openFile(String filename) {
+    private UserProfile localProfile;
 
+    /* loads an already established profile from file */
+    public UserProfile loadExistingProfile{
+
+        //
+
+        return localProfile;
     }
 
-    /* checks whether the specified file exists */
-    public boolean checkFileExists(String filename){
+
+
+    /* opens a csv file for reading */
+    public void openNewFile(String filename) {
+
+    }
+    /* returns an arraylist of the lines of the csv file, used after openNewFile */
+    public ArrayList getFileContents() {
+
+        return fileContents;
+    }
+
+
+
+    /* checks whether the specified file exists, used as part of the file opening functions */
+    private boolean checkFileExists(String filename){
 
         return exists;
     }
 
-    /* returns an arraylist of the lines of the file */
-    public ArrayList getFileContents() {
+    /* sets the local profile for the filereader to use */
+    public void setLocalProfile(UserProfile activeProfile) {
+        localProfile = activeProfile;
+    }
 
-        return fileContents;
+    /* returns the current profile the filereader is using */
+    public UserProfile getLocalProfile(){
+        return localProfile;
     }
 }
