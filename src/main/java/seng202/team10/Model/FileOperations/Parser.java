@@ -26,9 +26,13 @@ public class Parser {
      * @return fileContents  An ArrayList containing an ArrayList containing string values.
      */
     public ArrayList<String> getFileContents(String filePath) {
+        ArrayList<String> fileContents = new ArrayList<String>();
+        FileReader reader = new FileReader();
+        if(reader.checkFileExists(filePath)){
+            fileContents = reader.openNewFile(filePath);
+        }
+        return fileContents;
 
-        MyFileReader reader = new MyFileReader();
-        return reader.openNewFile(filePath);
     }
 
     /**
