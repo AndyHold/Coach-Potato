@@ -37,6 +37,10 @@ public class Entry {
 
     /**
      * Constructor for the Entry.
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> e576ec5... No changes made
 =======
 =======
@@ -61,10 +65,22 @@ public class Entry {
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> d6a4db3... Minor changes for Javadoc for Entry and Position classes. Had to push before I pull.
+=======
+>>>>>>> da734e9... Minor changes for Javadoc for Entry and Position classes. Had to push before I pull.
+=======
+>>>>>>> 5810ac0... Minor changes for Javadoc for Entry and Position classes. Had to push before I pull.
+=======
+>>>>>>> 939a15b... Minor changes for Javadoc for Entry and Position classes. Had to push before I pull.
      * @param firstEntry: boolean True if first entry.
      * @param time: double Time field of the entry.
      * @param heartRate: double Heart rate field of the entry.
      * @param position: Position Position of the entry.
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
      * //@param activity: Activity Activity field of the entry.
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -81,6 +97,18 @@ public class Entry {
     public Entry(boolean firstEntry, DateTime time, double heartRate, Position position) {
 >>>>>>> 79c9f1d... No changes made
 =======
+=======
+     * @param activity: Activity Activity field of the entry.
+>>>>>>> d6a4db3... Minor changes for Javadoc for Entry and Position classes. Had to push before I pull.
+=======
+     * @param activity: Activity Activity field of the entry.
+>>>>>>> da734e9... Minor changes for Javadoc for Entry and Position classes. Had to push before I pull.
+=======
+     * @param activity: Activity Activity field of the entry.
+>>>>>>> 5810ac0... Minor changes for Javadoc for Entry and Position classes. Had to push before I pull.
+=======
+     * @param activity: Activity Activity field of the entry.
+>>>>>>> 939a15b... Minor changes for Javadoc for Entry and Position classes. Had to push before I pull.
      */
     public Entry(boolean firstEntry, double time, double heartRate, Position position, Activity activity) {
 >>>>>>> 5a3c8cd... No changes made
@@ -129,7 +157,7 @@ public class Entry {
 
     /**
      * Getter method to check if it is user's first entry.
-     * @return boolean
+     * @return firstEntry: boolean
      */
     public boolean isFirstEntry() {
         return firstEntry;
@@ -145,7 +173,7 @@ public class Entry {
 
     /**
      * Getter method to get user's entry time.
-     * @return double
+     * @return time: double
      */
     public DateTime getTime() {
         return time;
@@ -161,7 +189,7 @@ public class Entry {
 
     /**
      * Getter method to get user's heart rate.
-     * @return double
+     * @return heartRate: double
      */
     public double getHeartRate() {
         return heartRate;
@@ -177,7 +205,7 @@ public class Entry {
 
     /**
      * Getter method to get user's position.
-     * @return Position
+     * @return position: Position
      */
     public Position getPosition() {
         return position;
@@ -193,7 +221,7 @@ public class Entry {
 
     /**
      * Getter method to get user's distance.
-     * @return double
+     * @return distance: double
      */
     public double getDistance() {
         return distance;
@@ -210,9 +238,9 @@ public class Entry {
 
     /**
      * Getter method to get user's velocity.
-     * @return double
+     * @return velocity: double
      */
-    public double getVelocity(Entry prevEntry) {
+    public double getVelocity() {
         return velocity;
     }
 
@@ -258,7 +286,7 @@ public class Entry {
 
     /**
      * Getter method to get user's activities.
-     * @return  activities: Activities
+     * @return  activity: Activity
      */
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -290,6 +318,10 @@ public class Entry {
 >>>>>>> e576ec5... No changes made
 
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 
 
 =======
@@ -300,4 +332,12 @@ public class Entry {
 >>>>>>> f5029c7... No changes made
 
 
+=======
+>>>>>>> d6a4db3... Minor changes for Javadoc for Entry and Position classes. Had to push before I pull.
+=======
+>>>>>>> da734e9... Minor changes for Javadoc for Entry and Position classes. Had to push before I pull.
+=======
+>>>>>>> 5810ac0... Minor changes for Javadoc for Entry and Position classes. Had to push before I pull.
+=======
+>>>>>>> 939a15b... Minor changes for Javadoc for Entry and Position classes. Had to push before I pull.
 }
