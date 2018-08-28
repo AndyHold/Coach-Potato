@@ -1,8 +1,9 @@
 package seng202.team10.Model;
 
 
-import seng202.team10.Model.ActivitiesData.Activities;
+import seng202.team10.Model.ActivitiesData.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -10,11 +11,11 @@ import java.util.Date;
  * SENG202 2018S2
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
-public class UserProfile {
+public class UserProfile implements java.io.Serializable{
 
 
     private String name;
-    private Activities activities;
+    private ArrayList<Activity> activities;
     private double weight;
     private double height;
     private Date birthdate;
@@ -45,7 +46,7 @@ public class UserProfile {
      * Getter method for the activities of the user
      * @return Activities
      */
-    public Activities getActivities() {
+    public ArrayList<Activity> getActivities() {
         return this.activities;
     }
 
@@ -70,7 +71,7 @@ public class UserProfile {
 
     /**
      * Setter method for the weight of the user
-     * @param newWeight
+     * @param newWeight double
      */
     public void setWeight(double newWeight) {
         this.weight = newWeight;
@@ -79,7 +80,7 @@ public class UserProfile {
 
     /**
      * Setter method for the height of the user
-     * @param newHeight
+     * @param newHeight double
      */
     public void setHeight(double newHeight) {
         this.height = newHeight;

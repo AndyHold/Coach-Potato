@@ -17,7 +17,7 @@ public class Position {
 
 
     /** Constructor method for Position Class
-     * @param latitude double: Latitude forthis position
+     * @param latitude double: Latitude for this position
      * @param longitude double: Longitude for this position
      * @param elevation double: Elevation for this position
      */
