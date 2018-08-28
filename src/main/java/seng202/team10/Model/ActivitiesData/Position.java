@@ -19,7 +19,7 @@ public class Position {
      * @param longitude double: Longitude for this position
      * @param elevation double: Elevation for this position
      */
-    Position(double latitude, double longitude, double elevation) {
+    public Position(double latitude, double longitude, double elevation) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.elevation = elevation;
