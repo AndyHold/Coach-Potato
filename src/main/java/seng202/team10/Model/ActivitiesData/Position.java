@@ -1,6 +1,8 @@
 package seng202.team10.Model.ActivitiesData;
 
 
+import static java.lang.Math.pow;
+import static java.lang.Math.sqrt;
 
 /**
  * Position Class for Coach Potato
@@ -74,11 +76,15 @@ public class Position {
     }
 
     /**
-     * Setter method to set user's elevation.
+     * Subtract method calculates the distance between two positions.
      * @param position: double
      * @return double
      */
     public double subtract(Position position) {
-        return latitude; // Check with the team about this
+        double latitudeDifference = position.getLatitude() - this.latitude;
+        double longitudeDifference = position.getLongitude() - this.longitude;
+        double elevationDifference = position.getElevation() - this.elevation;
+        double distance = sqrt(pow(latitudeDifference, 2) + pow(longitudeDifference, 2) + pow(elevationDifference, 2));
+        return distance;
     }
 }
