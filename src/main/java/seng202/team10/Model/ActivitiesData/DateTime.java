@@ -27,14 +27,14 @@ public class DateTime {
      * @param year: year between 2000 and 2100
      */
     DateTime(int day, int month, int year, int hour, int minute, int second) {
+        fillMonths();
+        fillDaysInMonth();
         setYear(year);
         setMonth(month);
         setDay(day);
         setHour(hour);
         setMinute(minute);
         setSecond(second);
-        fillMonths();
-        fillDaysInMonth();
     }
 
 
@@ -43,7 +43,7 @@ public class DateTime {
      * @param newYear int: year parameter for the date
      */
     private void setYear(int newYear) {
-        if ((day <= 2100) && (day >= 2000)) {
+        if ((2000 <= newYear) && (newYear <= 2100)) {
             this.year = newYear;
         } else {
             throw new IllegalArgumentException("Year parameter not valid!");
@@ -56,7 +56,7 @@ public class DateTime {
      * @param newMonth int: month parameter for the date
      */
     private void setMonth(int newMonth) {
-        if ((day <= 12) && (day >= 1)) {
+        if ((1 <= newMonth) && (newMonth <= 12)) {
             this.month = newMonth;
         } else {
             throw new IllegalArgumentException("Month parameter not valid!");
@@ -70,10 +70,10 @@ public class DateTime {
      */
     private void setDay(int newDay) {
         if ((this.month == 2) && ((this.year % 4) == 0)) {
-            if ((newDay <= 29) && (newDay >= 1)) {
+            if ((1 <= newDay) && (newDay <= 29)) {
                 this.day = newDay;
             }
-        } else if ((newDay <= this.daysInMonth.get(this.month)) && (newDay >= 1)) {
+        } else if ((1 <= newDay) && (newDay <= this.daysInMonth.get(this.month))) {
             this.day = newDay;
         } else {
             throw new IllegalArgumentException("Day parameter not valid!");
@@ -267,7 +267,7 @@ public class DateTime {
             dayPostfix = "rd";
         }
         return String.valueOf(this.day) + dayPostfix + ", " + this.months.get(this.month) +
-                ", " + String.valueOf(this.year) + " - " + String.valueOf(this.hour) + ":" +
-                String.valueOf(this.minute) + ":" + String.valueOf(this.second);
+                ", " + String.valueOf(this.year) + " - " + String.format("%02d", this.hour) + ":" +
+                String.format("%02d", this.minute) + ":" + String.format("%02d", this.second);
     }
 }
