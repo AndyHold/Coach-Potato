@@ -4,6 +4,7 @@ import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.Entry;
 import seng202.team10.Model.ActivitiesData.Position;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class Parser {
@@ -18,22 +19,22 @@ public class Parser {
     //private FileWriter fileWriter;
 
 
-//    /**
-//     * Constructs and uses the methods of a FileReader object to
-//     * open and read the contents of a file. Must be a csv file.
-//     *
-//     *
-//     * @return fileContents  An ArrayList containing an ArrayList containing string values.
-//     */
-//    public ArrayList<String> getFileContents(String filePath) {
-//        ArrayList<String> fileContents = new ArrayList<String>();
-//        FileReader reader = new FileReader();
-//        if(reader.checkFileExists(filePath)){
-//            fileContents = reader.openNewFile(filePath);
-//        }
-//        return fileContents;
-//
-//    }
+    /**
+     * Constructs and uses the methods of a FileReader object to
+     * open and read the contents of a file. Must be a csv file.
+     *
+     *
+     * @return fileContents  An ArrayList containing an ArrayList containing string values.
+     */
+    public ArrayList<String> getFileContents(String filePath) throws FileNotFoundException { //handle this with gui message in what calls this
+        ArrayList<String> fileContents = new ArrayList<String>();
+        FileReader reader = new FileReader();
+        if(reader.checkFileExists(filePath)){
+            fileContents = reader.openNewFile(filePath);
+        }
+        return fileContents;
+
+    }
 
     /**
      *Processes a list of activities from the contents of a file.
