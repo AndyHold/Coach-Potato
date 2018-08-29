@@ -35,19 +35,17 @@ public class FileReader {
     }
 
     /** opens a csv file and returns its contents as an arraylist of strings of each line
-     * @param filename : the string of the filename/path being opened
+     * @param filename : the string of the filename being opened, eg. blablabla.csv (path is appended in function)
      * @return fileContents : ArrayList of strings, each is a line of the file*/
     public ArrayList openNewFile(String filename) throws FileNotFoundException{
-
+        filename = "./FilesToLoad/" + filename;
         Scanner localScanner = new Scanner(new File(filename));
         ArrayList<String> fileContents = new ArrayList<String>();
         while (localScanner.hasNextLine()){
             fileContents.add(localScanner.nextLine());
         }
         localScanner.close();
-
         //List<String> lines = FileUtils.readLines(new File("/path/to/file.txt"), "utf-8"); //alternate option
-
         return fileContents;
     }
 
@@ -70,8 +68,9 @@ public class FileReader {
         File[] listOfFiles = folder.listFiles();
         for (int i = 0; i < listOfFiles.length; i++) {
             if (listOfFiles[i].isFile()) {
-                if(getFileExtension(listOfFiles[i]) == ".ser"){
-                foundUsers.add(listOfFiles[i].getName());}
+                if (getFileExtension(listOfFiles[i]).equals(".ser")) {
+                    foundUsers.add(listOfFiles[i].getName().substring(0, listOfFiles[i].getName().length() - 4));
+                }
             }
         }
         return foundUsers;
@@ -89,6 +88,7 @@ public class FileReader {
         if (lastIndexOf == -1) {
             return ""; // empty extension
         }
+        //System.out.println(name.substring(lastIndexOf));
         return name.substring(lastIndexOf);
     }
 

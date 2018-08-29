@@ -33,8 +33,19 @@ public class FileWriter
 
     }
 
+    /** creates the folder for profiles if there isn't one (does nothing if there is already one
+     * run at the start of the program*/
     public void createProfileFolder(){
         new File("./profiles").mkdirs();
+    }
+
+    /** deletes a specified profile by name
+     * @param profileName the name (string) of the profile to be deleted
+     * @return true if deletion succeeds, false if deletion fails*/
+    public boolean deleteProfile(String profileName){
+        File profileToDelete = new File("./profiles/" + profileName + ".ser");
+        boolean success = profileToDelete.delete();
+        return success;
     }
 
     /** returns the last profile that was saved */
