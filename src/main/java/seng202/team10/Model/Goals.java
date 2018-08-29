@@ -21,24 +21,24 @@ public class Goals {
 
     public Goal createGoal() {
         //prompt user for the type of goal they wish to create
-        String userAns = "Weight"; //default for now
+        String userAns = "Velocity"; //default for now. Will end up being a button or drop down box
 
         //prompt user for starting day, month, year, hour, minute, second
-        int startDay = 1;
-        int startMonth = 1;
-        int startYear = 1;
-        int startHour = 1;
-        int startMinute = 1;
-        int startSecond = 1;
+        int startDay = 1; //default for now
+        int startMonth = 1; //default for now
+        int startYear = 1; //default for now
+        int startHour = 1; //default for now
+        int startMinute = 1; //default for now
+        int startSecond = 1; //default for now
         DateTime startDate = new DateTime(startDay, startMonth, startYear, startHour, startMinute, startSecond);
 
         //prompt user for target day, month, year, hour, minute, second
-        int targetDay = 1; //default for now
-        int targetMonth = 1; //default for now
-        int targetYear = 1; //default for now
-        int targetHour = 1; //default for now
-        int targetMinute = 1; //default for now
-        int targetSecond = 1; //default for now
+        int targetDay = 2; //default for now
+        int targetMonth = 2; //default for now
+        int targetYear = 2; //default for now
+        int targetHour = 2; //default for now
+        int targetMinute = 2; //default for now
+        int targetSecond = 2; //default for now
         DateTime targetDate = new DateTime(targetDay, targetMonth, targetYear, targetHour, targetMinute, targetSecond);
 
 
@@ -56,7 +56,7 @@ public class Goals {
             return newGoal;
         } else if (userAns == "Distance") {
             //prompt user for target distance
-            double distance = 45.6; //default for now
+            double distance = 45.6; //default for nowc
             DistanceGoal newGoal = new DistanceGoal(startDate, targetDate, distance);
             availableGoals.add(newGoal);
             return newGoal;
@@ -76,20 +76,35 @@ public class Goals {
     }
 
     public void addGoal(Goal goal) {
-        currentGoals.add(goal);
+        if (availableGoals.contains(goal)) {
+            currentGoals.add(goal);
+        }
+        else {
+            System.out.println("This goal is not available.");
+        }
     }
 
     public void removeGoal(Goal goal) {
-        currentGoals.remove(goal);
+        if (currentGoals.contains(goal)) {
+            currentGoals.remove(goal);
+        }
+        else {
+            System.out.println("This goal is not one of your current goals");
+        }
 
     }
 
-    public void checkGoals() {
+    public void printGoals() {
         String toPrint = "";
         for (Goal goal : currentGoals) {
             toPrint += goal.getGoalType();
         }
         System.out.println("The current goal types you are working towards are: " + toPrint);
+    }
+
+    //TODO function to review the progress of the user towards a certain goal.
+    public void checkGoal(String goalName) {
+        System.out.println("");
     }
 }
 
