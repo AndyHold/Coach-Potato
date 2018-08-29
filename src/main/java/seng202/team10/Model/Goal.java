@@ -1,10 +1,12 @@
 package seng202.team10.Model;
 
 
+import seng202.team10.Model.ActivitiesData.DateTime;
+
 public class Goal {
 
-    private int goalStartDate;
-    private int goalTargetDate;
+    private DateTime goalStartDate;
+    private DateTime goalTargetDate;
     private String goalType;
     private Boolean goalAchievedStatus;
     private double goalVelocity;
@@ -14,7 +16,7 @@ public class Goal {
     private double goalDistance;
 
 
-    public Goal(int startDate, int targetDate, String type, Boolean achieved, double velocity, int frequency, double time, double weight, double distance) {
+    public Goal(DateTime startDate, DateTime targetDate, String type, Boolean achieved, double velocity, int frequency, double time, double weight, double distance) {
         goalStartDate = startDate;
         goalTargetDate = targetDate;
         goalType = type;
@@ -27,40 +29,40 @@ public class Goal {
 
     }
 
-    public int getGoalStartDate() {
+    public DateTime getGoalStartDate() {
         return this.goalStartDate;
     }
 
-    public int getGoalTargetDate() {
+    public DateTime getGoalTargetDate() {
         return this.goalTargetDate;
     }
 
     public String getGoalType() {
-        return goalType;
+        return this.goalType;
     }
 
     public Boolean getGoalAchieved() {
-        return goalAchievedStatus;
+        return this.goalAchievedStatus;
     }
 
     public double getGoalVelocity() {
-        return goalVelocity;
+        return this.goalVelocity;
     }
 
     public double getGoalDistance() {
-        return goalDistance;
+        return this.goalDistance;
     }
 
     public double getGoalTime() {
-        return goalTime;
+        return this.goalTime;
     }
 
     public double getGoalWeight() {
-        return goalWeight;
+        return this.goalWeight;
     }
 
     public int getGoalFrequency() {
-        return goalFrequency;
+        return this.goalFrequency;
     }
 
 }

@@ -1,6 +1,8 @@
 package seng202.team10.Model;
 
 
+import seng202.team10.Model.ActivitiesData.DateTime;
+
 import java.util.ArrayList;
 
 /**
@@ -18,27 +20,56 @@ public class Goals {
 
 
     public Goal createGoal() {
-        //prompt user for the goal type they wish to create
-        String userAns = "Weight";
-        //WeightGoal newGoal = new WeightGoal();
+        //prompt user for the type of goal they wish to create
+        String userAns = "Weight"; //default for now
+
+        //prompt user for starting day, month, year, hour, minute, second
+        int startDay = 1;
+        int startMonth = 1;
+        int startYear = 1;
+        int startHour = 1;
+        int startMinute = 1;
+        int startSecond = 1;
+        DateTime startDate = new DateTime(startDay, startMonth, startYear, startHour, startMinute, startSecond);
+
+        //prompt user for target day, month, year, hour, minute, second
+        int targetDay = 1; //default for now
+        int targetMonth = 1; //default for now
+        int targetYear = 1; //default for now
+        int targetHour = 1; //default for now
+        int targetMinute = 1; //default for now
+        int targetSecond = 1; //default for now
+        DateTime targetDate = new DateTime(targetDay, targetMonth, targetYear, targetHour, targetMinute, targetSecond);
+
+
         if (userAns == "Weight") {
-            WeightGoal newGoal = new WeightGoal();
+            //prompt user for target weight
+            double weight = 75.8;
+            WeightGoal newGoal = new WeightGoal(startDate, targetDate, weight);
             availableGoals.add(newGoal);
             return newGoal;
         } else if (userAns == "Frequency") {
-            FrequencyGoal newGoal = new FrequencyGoal();
+            //prompt user for target frequency
+            int frequency = 7;
+            FrequencyGoal newGoal = new FrequencyGoal(startDate, targetDate, frequency);
             availableGoals.add(newGoal);
             return newGoal;
         } else if (userAns == "Distance") {
-            DistanceGoal newGoal = new DistanceGoal();
+            //prompt user for target distance
+            double distance = 45.6; //default for now
+            DistanceGoal newGoal = new DistanceGoal(startDate, targetDate, distance);
             availableGoals.add(newGoal);
             return newGoal;
         } else if (userAns == "Velocity") {
-            VelocityGoal newGoal = new VelocityGoal();
+            //prompt user for target velocity
+            double velocity = 14.9; //default for now
+            VelocityGoal newGoal = new VelocityGoal(startDate, targetDate, velocity);
             availableGoals.add(newGoal);
             return newGoal;
         } else {
-            TimeGoal newGoal = new TimeGoal();
+            //prompt user for target time
+            double time = 347.6; //default for now
+            TimeGoal newGoal = new TimeGoal(startDate, targetDate, time);
             availableGoals.add(newGoal);
             return newGoal;
         }
@@ -59,6 +90,6 @@ public class Goals {
             toPrint += goal.getGoalType();
         }
         System.out.println("The current goal types you are working towards are: " + toPrint);
-
     }
 }
+
