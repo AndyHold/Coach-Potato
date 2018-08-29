@@ -19,11 +19,11 @@ public class Entry {
 
     /**
      * Constructor for the Entry.
-     * @param firstEntry True if first entry.
-     * @param time Time field of the entry.
-     * @param heartRate Heart rate field of the entry.
-     * @param position Position of the entry.
-     * @param activity Activity field of the entry.
+     * @param firstEntry: boolean True if first entry.
+     * @param time: double Time field of the entry.
+     * @param heartRate: double Heart rate field of the entry.
+     * @param position: Position Position of the entry.
+     * @param activity: Activity Activity field of the entry.
      */
     public Entry(boolean firstEntry, double time, double heartRate, Position position, Activity activity) {
         this.firstEntry = firstEntry;
@@ -35,7 +35,7 @@ public class Entry {
 
     /**
      * Getter method to check if it is user's first entry.
-     * @return boolean
+     * @return firstEntry: boolean
      */
     public boolean isFirstEntry() {
         return firstEntry;
@@ -51,7 +51,7 @@ public class Entry {
 
     /**
      * Getter method to get user's entry time.
-     * @return double
+     * @return time: double
      */
     public double getTime() {
         return time;
@@ -67,7 +67,7 @@ public class Entry {
 
     /**
      * Getter method to get user's heart rate.
-     * @return double
+     * @return heartRate: double
      */
     public double getHeartRate() {
         return heartRate;
@@ -83,7 +83,7 @@ public class Entry {
 
     /**
      * Getter method to get user's position.
-     * @return Position
+     * @return position: Position
      */
     public Position getPosition() {
         return position;
@@ -99,7 +99,7 @@ public class Entry {
 
     /**
      * Getter method to get user's distance.
-     * @return double
+     * @return distance: double
      */
     public double getDistance() {
         return distance;
@@ -116,9 +116,9 @@ public class Entry {
 
     /**
      * Getter method to get user's velocity.
-     * @return double
+     * @return velocity: double
      */
-    public double getVelocity(Entry prevEntry) {
+    public double getVelocity() {
         return velocity;
     }
 
@@ -134,15 +134,11 @@ public class Entry {
 
     /**
      * Getter method to get user's activities.
-     * @return  activities: Activities
+     * @return  activity: Activity
      */
     public Activity getActivity() {
         return activity;
     }
-
-
-
-
 
 
 }
