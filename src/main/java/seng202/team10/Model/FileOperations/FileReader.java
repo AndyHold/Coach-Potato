@@ -70,8 +70,9 @@ public class FileReader {
         File[] listOfFiles = folder.listFiles();
         for (int i = 0; i < listOfFiles.length; i++) {
             if (listOfFiles[i].isFile()) {
-                if(getFileExtension(listOfFiles[i]) == ".ser"){
-                foundUsers.add(listOfFiles[i].getName());}
+                if (getFileExtension(listOfFiles[i]).equals(".ser")) {
+                    foundUsers.add(listOfFiles[i].getName().substring(0, listOfFiles[i].getName().length() - 4));
+                }
             }
         }
         return foundUsers;
@@ -89,6 +90,7 @@ public class FileReader {
         if (lastIndexOf == -1) {
             return ""; // empty extension
         }
+        //System.out.println(name.substring(lastIndexOf));
         return name.substring(lastIndexOf);
     }
 
