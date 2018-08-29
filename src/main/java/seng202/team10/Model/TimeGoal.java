@@ -1,8 +1,12 @@
 package seng202.team10.Model;
 
+import seng202.team10.Model.ActivitiesData.DateTime;
+
 public class TimeGoal extends Goal {
 
-    public TimeGoal() {
-        super(9, 30, "Time", false, 0.0, 0, 44.8, 0.0, 0.0);
+    public TimeGoal(DateTime start, DateTime target, double time) {
+
+
+        super(start, target, "Time", false, 0.0, 0, time, 0.0, 0.0);
     }
 }

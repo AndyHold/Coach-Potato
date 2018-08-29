@@ -1,12 +1,13 @@
 package seng202.team10.Model;
 
+import seng202.team10.Model.ActivitiesData.*;
+
 public class VelocityGoal extends Goal {
 
-    public VelocityGoal() {
+    public VelocityGoal(DateTime start, DateTime target, double velocity) {
 
-        //prompt user for the appropriate parameters of their goal
 
-        super(24, 26, "Velocity", false, 12.3, 0, 0.0, 0.0, 0.0);
+        super(start, target, "Velocity", false, velocity, 0, 0.0, 0.0, 0.0);
     }
 
 
