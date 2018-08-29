@@ -40,9 +40,12 @@ public class FileWriter
     }
 
     /** deletes a specified profile by name
-     * @param profileName the name (string) of the profile to be deleted*/
-    public void deleteProfile(String profileName){
-        //TODO
+     * @param profileName the name (string) of the profile to be deleted
+     * @return true if deletion succeeds, false if deletion fails*/
+    public boolean deleteProfile(String profileName){
+        File profileToDelete = new File("./profiles/" + profileName + ".ser");
+        boolean success = profileToDelete.delete();
+        return success;
     }
 
     /** returns the last profile that was saved */
