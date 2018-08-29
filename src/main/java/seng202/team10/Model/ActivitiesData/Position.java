@@ -1,6 +1,8 @@
 package seng202.team10.Model.ActivitiesData;
 
 
+import static java.lang.Math.pow;
+import static java.lang.Math.sqrt;
 
 /**
  * Position Class for Coach Potato
@@ -14,9 +16,20 @@ public class Position {
     private double elevation;
 
 
+    /** Constructor method for Position Class
+     * @param latitude double: Latitude for this position
+     * @param longitude double: Longitude for this position
+     * @param elevation double: Elevation for this position
+     */
+    public Position(double latitude, double longitude, double elevation) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.elevation = elevation;
+    }
+
     /**
      * Getter method to get user's latitude.
-     * @return double
+     * @return latitude: double
      */
     public double getLatitude() {
         return latitude;
@@ -32,7 +45,7 @@ public class Position {
 
     /**
      * Getter method to get user's longitude.
-     * @return double
+     * @return longitude: double
      */
     public double getLongitude() {
         return longitude;
@@ -48,7 +61,7 @@ public class Position {
 
     /**
      * Getter method to get user's elevation.
-     * @return double
+     * @return elevation: double
      */
     public double getElevation() {
         return elevation;
@@ -63,11 +76,15 @@ public class Position {
     }
 
     /**
-     * Setter method to set user's elevation.
+     * Subtract method calculates the distance between two positions.
      * @param position: double
-     * @return double
+     * @return distance: double
      */
     public double subtract(Position position) {
-        return latitude; // Check with the team about this
+        double latitudeDifference = position.getLatitude() - this.latitude;
+        double longitudeDifference = position.getLongitude() - this.longitude;
+        double elevationDifference = position.getElevation() - this.elevation;
+        double distance = sqrt(pow(latitudeDifference, 2) + pow(longitudeDifference, 2) + pow(elevationDifference, 2));
+        return distance;
     }
 }

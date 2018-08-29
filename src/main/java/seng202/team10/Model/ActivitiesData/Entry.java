@@ -13,13 +13,29 @@ public class Entry {
     private double time;
     private double heartRate;
     private Position position;
-    private double distance;
-    private double velocity;
-    private Activities activities;
+    private double distance = 0;
+    private double velocity = 0;
+    private Activity activity;
+
+    /**
+     * Constructor for the Entry.
+     * @param firstEntry: boolean True if first entry.
+     * @param time: double Time field of the entry.
+     * @param heartRate: double Heart rate field of the entry.
+     * @param position: Position Position of the entry.
+     * @param activity: Activity Activity field of the entry.
+     */
+    public Entry(boolean firstEntry, double time, double heartRate, Position position, Activity activity) {
+        this.firstEntry = firstEntry;
+        this.time = time;
+        this.heartRate = heartRate;
+        this.position = position;
+        this.activity = activity;
+    }
 
     /**
      * Getter method to check if it is user's first entry.
-     * @return boolean
+     * @return firstEntry: boolean
      */
     public boolean isFirstEntry() {
         return firstEntry;
@@ -35,7 +51,7 @@ public class Entry {
 
     /**
      * Getter method to get user's entry time.
-     * @return double
+     * @return time: double
      */
     public double getTime() {
         return time;
@@ -51,7 +67,7 @@ public class Entry {
 
     /**
      * Getter method to get user's heart rate.
-     * @return double
+     * @return heartRate: double
      */
     public double getHeartRate() {
         return heartRate;
@@ -67,7 +83,7 @@ public class Entry {
 
     /**
      * Getter method to get user's position.
-     * @return Position
+     * @return position: Position
      */
     public Position getPosition() {
         return position;
@@ -83,7 +99,7 @@ public class Entry {
 
     /**
      * Getter method to get user's distance.
-     * @return double
+     * @return distance: double
      */
     public double getDistance() {
         return distance;
@@ -91,15 +107,16 @@ public class Entry {
 
     /**
      * Method to calculate user's distance.
-     * @param distance: double
+     * @param prevEntry: Entry
      */
-    public void calculateDistance(double distance) {
-        this.distance += distance;
+    public void calculateDistance(Entry prevEntry) {
+        Position prevPosition = prevEntry.getPosition();
+        this.distance = prevPosition.subtract(this.position);
     }
 
     /**
      * Getter method to get user's velocity.
-     * @return double
+     * @return velocity: double
      */
     public double getVelocity() {
         return velocity;
@@ -107,23 +124,21 @@ public class Entry {
 
     /**
      * Method to calculate user's velocity.
-     * @param velocity: double
+     * @param prevEntry: Entry
      */
-    public void calculateVelocity(double velocity) {
-        this.velocity += velocity;
+    public void calculateVelocity(Entry prevEntry) {
+        double prevDistance = prevEntry.getDistance();
+        double prevTime = prevEntry.getTime();
+        this.velocity = (this.distance - prevDistance)/(this.time-prevTime);
     }
 
     /**
      * Getter method to get user's activities.
-     * @return  activities: Activities
+     * @return  activity: Activity
      */
-    public Activities getActivities() {
-        return activities;
+    public Activity getActivity() {
+        return activity;
     }
-
-
-
-
 
 
 }
