@@ -156,6 +156,13 @@ public class UserProfile implements java.io.Serializable{
     }
 >>>>>>> a40329b... Implementation of UserProfile class getter and setter methods
 
+    /**
+     * Method for adding an activity to the list of user's Activities.
+     * @param activity Activity
+     */
+    public void addActivity(Activity activity) {
+        activities.add(activity);
+    }
 
     /**
      * Getter method for the weight of the user
