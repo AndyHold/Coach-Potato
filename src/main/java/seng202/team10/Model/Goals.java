@@ -1,8 +1,6 @@
 package seng202.team10.Model;
 
 
-import seng202.team10.Model.ActivitiesData.Activities;
-
 import java.util.ArrayList;
 
 /**
