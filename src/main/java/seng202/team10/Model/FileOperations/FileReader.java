@@ -35,19 +35,17 @@ public class FileReader {
     }
 
     /** opens a csv file and returns its contents as an arraylist of strings of each line
-     * @param filename : the string of the filename/path being opened
+     * @param filename : the string of the filename being opened, eg. blablabla.csv (path is appended in function)
      * @return fileContents : ArrayList of strings, each is a line of the file*/
     public ArrayList openNewFile(String filename) throws FileNotFoundException{
-
+        filename = "./FilesToLoad/" + filename;
         Scanner localScanner = new Scanner(new File(filename));
         ArrayList<String> fileContents = new ArrayList<String>();
         while (localScanner.hasNextLine()){
             fileContents.add(localScanner.nextLine());
         }
         localScanner.close();
-
         //List<String> lines = FileUtils.readLines(new File("/path/to/file.txt"), "utf-8"); //alternate option
-
         return fileContents;
     }
 
