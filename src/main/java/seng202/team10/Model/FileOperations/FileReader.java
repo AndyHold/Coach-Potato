@@ -59,6 +59,33 @@ public class FileReader {
         return exists;
     }
 
+    public ArrayList getExistingUsers() {
+        ArrayList<String> foundUsers = new ArrayList<String>();
+        File folder = new File("./profiles");
+
+        File[] listOfFiles = folder.listFiles();
+        for (int i = 0; i < listOfFiles.length; i++) {
+            if (listOfFiles[i].isFile()) {
+                if(getFileExtension(listOfFiles[i]) == ".ser"){
+                foundUsers.add(listOfFiles[i].getName());}
+            }
+        }
+        return foundUsers;
+    }
+
+
+
+    private String getFileExtension(File file) {
+        String name = file.getName();
+        int lastIndexOf = name.lastIndexOf(".");
+        if (lastIndexOf == -1) {
+            return ""; // empty extension
+        }
+        return name.substring(lastIndexOf);
+    }
+
+
+
     /** sets the local profile for the filereader to use. likely useless */
     public void setLocalProfile(UserProfile activeProfile) {
         localProfile = activeProfile;
