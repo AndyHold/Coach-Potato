@@ -26,7 +26,7 @@ public class DateTime {
      * @param month int: month of the year
      * @param year: year between 2000 and 2100
      */
-    DateTime(int day, int month, int year, int hour, int minute, int second) {
+    public DateTime(int day, int month, int year, int hour, int minute, int second) {
         fillMonths();
         fillDaysInMonth();
         setYear(year);
@@ -72,6 +72,8 @@ public class DateTime {
         if ((this.month == 2) && ((this.year % 4) == 0)) {
             if ((1 <= newDay) && (newDay <= 29)) {
                 this.day = newDay;
+            } else {
+                throw new IllegalArgumentException("Day parameter not valid!");
             }
         } else if ((1 <= newDay) && (newDay <= this.daysInMonth.get(this.month))) {
             this.day = newDay;
@@ -190,7 +192,7 @@ public class DateTime {
             return true;
         } else if ((this.hour == otherDateTime.getHour()) && (this.minute < otherDateTime.getMinute())) {
             return true;
-        } else return (this.minute == otherDateTime.getMinute()) && (this.second < getSecond());
+        } else return (this.minute == otherDateTime.getMinute()) && (this.second < otherDateTime.getSecond());
     }
 
 
@@ -210,8 +212,36 @@ public class DateTime {
             return true;
         } else if ((this.hour == otherDateTime.getHour()) && (this.minute > otherDateTime.getMinute())) {
             return true;
-        } else return (this.minute == otherDateTime.getMinute()) && (this.second > getSecond());
+        } else return (this.minute == otherDateTime.getMinute()) && (this.second > otherDateTime.getSecond());
     }
+
+
+    /**
+     * Method to compare two DateTime objects for equality
+     * @param otherDateTime DateTime: DateTime to be compared
+     * @return boolean
+     */
+    public boolean isEqual(DateTime otherDateTime) {
+        return ((this.year == otherDateTime.getYear()) && (this.month == otherDateTime.getMonth()) &&
+                (this.day == otherDateTime.getDay()) && (this.hour == otherDateTime.getHour()) &&
+                (this.minute == otherDateTime.getMinute()) && (this.second == otherDateTime.getSecond()));
+    }
+
+
+//    /**
+//     * Method to subtract another DateTime object from this DateTime object
+//     * @param otherDateTime DateTime: DateTime object to subtract
+//     * @return int: the difference between the two objects in seconds
+//     */
+//    public int subtract(DateTime otherDateTime) {
+//        int seconds = this.second - otherDateTime.getSecond();
+//        seconds += ((this.minute - otherDateTime.getMinute()) * 60);
+//        seconds += ((this.hour - otherDateTime.getHour()) * 36000);
+//
+//        int years = this.year - otherDateTime.getYear();
+//        int months = this.month - otherDateTime.getMonth();
+//        int days = this.day - otherDateTime.getDay();
+//        }
 
 
     /**
