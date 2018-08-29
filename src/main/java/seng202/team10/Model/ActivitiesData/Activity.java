@@ -3,7 +3,6 @@ package seng202.team10.Model.ActivitiesData;
 
 import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Date;
 
 
 /**
@@ -14,7 +13,7 @@ import java.util.Date;
 public class Activity {
 
 
-    private Date date;
+//    private Date date;
     private Double averageVelocity;
     private Double averageHeartRate;
     private Double totalDistance;
@@ -25,22 +24,37 @@ public class Activity {
     private ActivityIntensity intensity;
 
 
-    /**
-     * Setter method for the date the activity was started on
-     * @param newDate: Date
-     */
-    public void setDate(Date newDate) {
-        this.date = newDate;
-    }
+//    /**
+//     * Setter method for the date the activity was started on
+//     * @param day: Day
+//     * @param month: Month
+//     * @param year: Year
+//     */
+//    public void setDate(int day, int month, int year) {
+//        try {
+//            this.date = new Date(day, month, year);
+//        } catch (IllegalArgumentException ex) {
+//            System.out.print(ex);
+//        }
+//    }
 
 
     /**
-     * Getter method for the date the activity was started on
-     * @return Date
+     * addEntry Method to add an Entry to the arrayList entries
+     * @param newEntry: Entry to be added.
      */
-    public Date getDate() {
-        return this.date;
+    public void addEntry(Entry newEntry) {
+        entries.add(newEntry);
     }
+
+
+//    /**
+//     * Getter method for the date the activity was started on
+//     * @return Date
+//     */
+//    public Date getDate() {
+//        return this.date;
+//    }
 
 
     /**

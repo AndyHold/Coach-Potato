@@ -4,6 +4,7 @@ import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.Entry;
 import seng202.team10.Model.ActivitiesData.Position;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class Parser {
@@ -14,8 +15,8 @@ public class Parser {
     private ArrayList<Activity> activities;
     private Activity currentActivity;
     private Entry currentEntry;
-//    private Reader fileReader;
-    //private FileWriter fileWriter;
+    private FileReader fileReader;
+    private FileWriter fileWriter;
 
 
     /**
@@ -25,10 +26,14 @@ public class Parser {
      *
      * @return fileContents  An ArrayList containing an ArrayList containing string values.
      */
-    public ArrayList<String> getFileContents(String filePath) {
+    public ArrayList<String> getFileContents(String filePath) throws FileNotFoundException { //handle this with gui message in what calls this
+        ArrayList<String> fileContents = new ArrayList<String>();
+        FileReader reader = new FileReader();
+        if(reader.checkFileExists(filePath)){
+            fileContents = reader.openNewFile(filePath);
+        }
+        return fileContents;
 
-        MyFileReader reader = new MyFileReader();
-        return reader.openNewFile(filePath);
     }
 
     /**
@@ -76,35 +81,35 @@ public class Parser {
         return activity;
     }
 
-    /**
-     * Processes an entry in the file contents, called by the processActivity() function.
-     * Sets the time, heart rate and position of the entry, converting to int for time and
-     * heart rate, and to a Position object for position.
-     *
-     * @return entry  An entry which details a moment in time in an activity.
-     */
-    public Entry processLine(ArrayList<ArrayList<String>> formattedFile){
-        Entry entry = new Entry();
-        ArrayList<String> currentLine = formattedFile.get(linePosition);
-        String[] timeArray = (currentLine.get(0)).split(":");
-        String[] dateArray = (currentLine.get(1)).split(":");
-        int day = Integer.valueOf(dateArray[0]);
-        int month = Integer.valueOf(dateArray[1]);
-        int year = Integer.valueOf(dateArray[2]);
-        int hour = Integer.valueOf(timeArray[0]);
-        int minute = Integer.valueOf(timeArray[1]);
-        int second = Integer.valueOf(timeArray[2]);
-//        DateTime dateTime = new DateTime(year, month, day, hour, minute, second);
-//        entry.setTime(dateTime);
-
-        int heartRate = Integer.valueOf(currentLine.get(2));
-        entry.setHeartRate(heartRate);
-
-        Position position = processPosition(currentLine);
-        entry.setPosition(position);
-
-        return entry;
-    }
+//    /**
+//     * Processes an entry in the file contents, called by the processActivity() function.
+//     * Sets the time, heart rate and position of the entry, converting to int for time and
+//     * heart rate, and to a Position object for position.
+//     *
+//     * @return entry  An entry which details a moment in time in an activity.
+//     */
+//    public Entry processLine(ArrayList<ArrayList<String>> formattedFile){
+//        Entry entry = new Entry();
+//        ArrayList<String> currentLine = formattedFile.get(linePosition);
+//        String[] timeArray = (currentLine.get(0)).split(":");
+//        String[] dateArray = (currentLine.get(1)).split(":");
+//        int day = Integer.valueOf(dateArray[0]);
+//        int month = Integer.valueOf(dateArray[1]);
+//        int year = Integer.valueOf(dateArray[2]);
+//        int hour = Integer.valueOf(timeArray[0]);
+//        int minute = Integer.valueOf(timeArray[1]);
+//        int second = Integer.valueOf(timeArray[2]);
+////        DateTime dateTime = new DateTime(year, month, day, hour, minute, second);
+////        entry.setTime(dateTime);
+//
+//        int heartRate = Integer.valueOf(currentLine.get(2));
+//        entry.setHeartRate(heartRate);
+//
+//        Position position = processPosition(currentLine);
+//        entry.setPosition(position);
+//
+//        return entry;
+//    }
 
     /**
      * Processes the position from the file by converting it to a position object from strings.
