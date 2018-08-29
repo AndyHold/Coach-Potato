@@ -26,7 +26,7 @@ public class DateTime {
      * @param month int: month of the year
      * @param year: year between 2000 and 2100
      */
-    DateTime(int day, int month, int year, int hour, int minute, int second) {
+    public DateTime(int day, int month, int year, int hour, int minute, int second) {
         fillMonths();
         fillDaysInMonth();
         setYear(year);
