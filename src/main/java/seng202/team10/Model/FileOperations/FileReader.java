@@ -16,7 +16,7 @@ public class FileReader {
      * @profileName should match what would be returned from UserProfile.getName()
      * */
     public UserProfile loadExistingProfile(String profileName){
-        String filename = "/profiles/" + profileName + ".ser";
+        String filename = "./profiles/" + profileName + ".ser";
         if(checkFileExists(filename)) {
             try {
                 FileInputStream fileIn = new FileInputStream(filename);
@@ -68,4 +68,6 @@ public class FileReader {
     public UserProfile getLocalProfile(){
         return localProfile;
     }
+
+
 }
