@@ -15,8 +15,8 @@ public class Parser {
     private ArrayList<Activity> activities;
     private Activity currentActivity;
     private Entry currentEntry;
-//    private Reader fileReader;
-    //private FileWriter fileWriter;
+    private FileReader fileReader;
+    private FileWriter fileWriter;
 
 
     /**
