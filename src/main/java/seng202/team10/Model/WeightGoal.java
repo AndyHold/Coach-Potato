@@ -1,9 +1,13 @@
 package seng202.team10.Model;
 
+import seng202.team10.Model.ActivitiesData.DateTime;
+
 public class WeightGoal extends Goal {
 
-    public WeightGoal() {
-        super(3, 6, "Weight", false, 0.0, 0, 0.0, 98.2, 0.0);
+    public WeightGoal(DateTime start, DateTime target, double weight) {
+
+
+        super(start, target, "Weight", false, 0.0, 0, 0.0, weight, 0.0);
     }
 
 }
