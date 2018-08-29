@@ -59,6 +59,10 @@ public class FileReader {
         return exists;
     }
 
+    /**
+     * checks which users are saved in the profiles folder, returning their names
+     * @return foundUsers: arraylist of filenames of existing profiles (no extensions
+     */
     public ArrayList getExistingUsers() {
         ArrayList<String> foundUsers = new ArrayList<String>();
         File folder = new File("./profiles");
@@ -74,7 +78,11 @@ public class FileReader {
     }
 
 
-
+    /**
+     * helper method for getExistingUsers that checks and returns the extension of a file object
+     * @param file the file being checked
+     * @return string of the . + the extension
+     */
     private String getFileExtension(File file) {
         String name = file.getName();
         int lastIndexOf = name.lastIndexOf(".");
