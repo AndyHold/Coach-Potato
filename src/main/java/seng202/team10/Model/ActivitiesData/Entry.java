@@ -10,32 +10,32 @@ package seng202.team10.Model.ActivitiesData;
 public class Entry {
 
     private boolean firstEntry;
-    private double time;
+    private DateTime time;
     private double heartRate;
     private Position position;
     private double distance = 0;
     private double velocity = 0;
-    private Activity activity;
+    //private Activity activity;
 
     /**
      * Constructor for the Entry.
-     * @param firstEntry True if first entry.
-     * @param time Time field of the entry.
-     * @param heartRate Heart rate field of the entry.
-     * @param position Position of the entry.
-     * @param activity Activity field of the entry.
+     * @param firstEntry: boolean True if first entry.
+     * @param time: double Time field of the entry.
+     * @param heartRate: double Heart rate field of the entry.
+     * @param position: Position Position of the entry.
+     * //@param activity: Activity Activity field of the entry.
      */
-    public Entry(boolean firstEntry, double time, double heartRate, Position position, Activity activity) {
+    public Entry(boolean firstEntry, DateTime time, double heartRate, Position position) {
         this.firstEntry = firstEntry;
         this.time = time;
         this.heartRate = heartRate;
         this.position = position;
-        this.activity = activity;
+        //this.activity = activity;
     }
 
     /**
      * Getter method to check if it is user's first entry.
-     * @return boolean
+     * @return firstEntry: boolean
      */
     public boolean isFirstEntry() {
         return firstEntry;
@@ -51,9 +51,9 @@ public class Entry {
 
     /**
      * Getter method to get user's entry time.
-     * @return double
+     * @return time: double
      */
-    public double getTime() {
+    public DateTime getTime() {
         return time;
     }
 
@@ -61,13 +61,13 @@ public class Entry {
      * Setter method to set user's entry time.
      * @param time: double
      */
-    public void setTime(double time) {
+    public void setTime(DateTime time) {
         this.time = time;
     }
 
     /**
      * Getter method to get user's heart rate.
-     * @return double
+     * @return heartRate: double
      */
     public double getHeartRate() {
         return heartRate;
@@ -83,7 +83,7 @@ public class Entry {
 
     /**
      * Getter method to get user's position.
-     * @return Position
+     * @return position: Position
      */
     public Position getPosition() {
         return position;
@@ -99,7 +99,7 @@ public class Entry {
 
     /**
      * Getter method to get user's distance.
-     * @return double
+     * @return distance: double
      */
     public double getDistance() {
         return distance;
@@ -116,9 +116,9 @@ public class Entry {
 
     /**
      * Getter method to get user's velocity.
-     * @return double
+     * @return velocity: double
      */
-    public double getVelocity(Entry prevEntry) {
+    public double getVelocity() {
         return velocity;
     }
 
@@ -128,21 +128,18 @@ public class Entry {
      */
     public void calculateVelocity(Entry prevEntry) {
         double prevDistance = prevEntry.getDistance();
-        double prevTime = prevEntry.getTime();
-        this.velocity = (this.distance - prevDistance)/(this.time-prevTime);
+        DateTime prevTime = prevEntry.getTime();
+        this.velocity = (this.distance - prevDistance)/((time.getMinute()-prevTime.getMinute())*60);
     }
 
     /**
      * Getter method to get user's activities.
-     * @return  activities: Activities
+     * @return  activity: Activity
      */
-    public Activity getActivity() {
-        return activity;
-    }
-
-
-
-
+    // Commented out as we don't need it for now but might need it later.
+    //public Activity getActivity() {
+    //    return activity;
+    //}
 
 
 }

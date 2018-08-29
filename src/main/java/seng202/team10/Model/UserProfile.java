@@ -2,6 +2,7 @@ package seng202.team10.Model;
 
 
 import seng202.team10.Model.ActivitiesData.*;
+import seng202.team10.Model.FileOperations.FileWriter;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -50,6 +51,13 @@ public class UserProfile implements java.io.Serializable{
         return this.activities;
     }
 
+    /**
+     * Method for adding an activity to the list of user's Activities.
+     * @param activity Activity
+     */
+    public void addActivity(Activity activity) {
+        activities.add(activity);
+    }
 
     /**
      * Getter method for the weight of the user
@@ -86,6 +94,15 @@ public class UserProfile implements java.io.Serializable{
         this.height = newHeight;
     }
 
+
+    /**
+     * Setter method for the birthdate of the user
+     * @param newDate
+     */
+
+    public void setBirthdate(Date newDate) {
+        this.birthdate = newDate;
+    }
 
     /**
      * Getter method for the birthdate of the user
