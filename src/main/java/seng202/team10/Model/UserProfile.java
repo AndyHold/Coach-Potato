@@ -2,6 +2,7 @@ package seng202.team10.Model;
 
 
 import seng202.team10.Model.ActivitiesData.*;
+import seng202.team10.Model.FileOperations.FileWriter;
 
 import java.util.ArrayList;
 import java.util.Date;
