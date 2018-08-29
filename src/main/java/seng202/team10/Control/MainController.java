@@ -29,10 +29,10 @@ public class MainController {
     }
 
     public static void main(String[] args) {
-        //check if profiles folder exist, if not create a new profile
-        //Check which profiles exists, update users list
-        //users = dataReader.getExistingUsers();
-
+        if(!dataReader.checkFileExists("./profiles")){
+            dataWriter.createProfileFolder();
+        }
+        users = dataReader.getExistingUsers();
     }
 
     public UserProfile getCurrentUser() {
