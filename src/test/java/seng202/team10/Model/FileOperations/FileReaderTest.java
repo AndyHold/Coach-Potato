@@ -6,6 +6,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import seng202.team10.Model.UserProfile;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -39,7 +40,10 @@ public class FileReaderTest {
     }
 
     @Test
-    public void openNewFile() {
+    public void openNewFile() throws FileNotFoundException {
+        assertTrue(testReader.checkFileExists("./FilesToLoad/testdata.csv"));
+        ArrayList<String> dataLines = testReader.openNewFile("testdata.csv");
+        assertEquals(1147, dataLines.size(), 1);
     }
 
     @Test
