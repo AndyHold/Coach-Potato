@@ -27,10 +27,6 @@ public class FileReaderTest {
         testWriter.saveProfile(testProfile);
     }
 
-/*    @AfterClass
-    public static void tearDown() {
-
-    }*/
 
     @Test
     public void loadExistingProfile() {
@@ -59,6 +55,11 @@ public class FileReaderTest {
     @Test
     public void checkFileExists() {
         assertTrue(testReader.checkFileExists("./profiles/" + testProfile.getName() + ".ser"));
+    }
+
+    @AfterClass
+    public static void tearDown(){
+        testWriter.deleteProfile("jeff");
     }
 
 }
