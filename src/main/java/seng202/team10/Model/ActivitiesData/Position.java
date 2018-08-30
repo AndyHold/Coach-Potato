@@ -87,4 +87,8 @@ public class Position {
         double distance = sqrt(pow(latitudeDifference, 2) + pow(longitudeDifference, 2) + pow(elevationDifference, 2));
         return distance;
     }
+
+    public String toString(){
+        return ("Latitude: " + this.latitude + ". Longitude: " + this.longitude + ". Elevation: " + this.elevation);
+    }
 }

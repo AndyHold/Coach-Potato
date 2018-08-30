@@ -34,7 +34,7 @@ public class MainController {
         }
         users = dataReader.getExistingUsers();
 
-        /** not sure, but should save active profile upon closing? */
+        // not sure, but should save active profile upon closing?
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             public void run() {
                 dataWriter.saveProfile(currentUser);

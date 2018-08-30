@@ -21,6 +21,7 @@ public class Entry {
      * Constructor for the Entry.
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
      * @param firstEntry True if first entry.
      * @param time Time field of the entry.
      * @param heartRate Heart rate field of the entry.
@@ -30,6 +31,9 @@ public class Entry {
 =======
 >>>>>>> 939a15b8... Minor changes for Javadoc for Entry and Position classes. Had to push before I pull.
      * @param firstEntry: boolean True if first entry.
+=======
+//     * @param firstEntry: boolean True if first entry.
+>>>>>>> 4efdce81... Big ol fixing of parser and related things
      * @param time: double Time field of the entry.
      * @param heartRate: double Heart rate field of the entry.
      * @param position: Position Position of the entry.
@@ -147,6 +151,9 @@ public class Entry {
         this.velocity = (this.distance - prevDistance)/((time.getMinute()-prevTime.getMinute())*60);
     }
 
+    public String toString(){
+        return ("First Entry? : " + this.firstEntry + " , " + position.toString());
+    }
     /**
      * Getter method to get user's activities.
      * @return  activity: Activity
