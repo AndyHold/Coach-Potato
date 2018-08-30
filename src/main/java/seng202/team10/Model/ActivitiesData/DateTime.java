@@ -28,7 +28,7 @@ public class DateTime {
      * @param month int: month of the year
      * @param year: year between 2000 and 2100
      */
-    public DateTime(int day, int month, int year, int hour, int minute, int second) {
+    public DateTime(int year, int month, int day, int hour, int minute, int second) {
         fillMonths();
         fillDaysInMonth();
         setYear(year);
@@ -48,7 +48,7 @@ public class DateTime {
         if ((2000 <= newYear) && (newYear <= 2100)) {
             this.year = newYear;
         } else {
-            throw new IllegalArgumentException("Year parameter not valid!");
+            throw new IllegalArgumentException("Year parameter not valid!\n");
         }
     }
 
