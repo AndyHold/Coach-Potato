@@ -117,6 +117,10 @@ public class UserProfile implements java.io.Serializable{
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
     public Activities getActivities() {
         return this.activities;
     }
@@ -137,12 +141,24 @@ public class UserProfile implements java.io.Serializable{
     public ArrayList<Activity> getActivities() {
 >>>>>>> d922119... Fixed DateTimeTest and commented out code that was throwing pipeline off
 =======
+=======
+
+>>>>>>> 345f4af... Added names to goals and getter. Began implementing the checkGoal function that analyses user progress towards a goal. Added a BMI goal class and wrote calcBmi function in userProfile
+=======
+
+>>>>>>> 1f6db76... Added names to goals and getter. Began implementing the checkGoal function that analyses user progress towards a goal. Added a BMI goal class and wrote calcBmi function in userProfile
     public ArrayList<Activity> getActivities() {
 >>>>>>> dbb4e11... Fixed DateTimeTest and commented out code that was throwing pipeline off
 =======
     public ArrayList<Activity> getActivities() {
 >>>>>>> 811edab... Fixed DateTimeTest and commented out code that was throwing pipeline off
 =======
+=======
+
+>>>>>>> 06cb652... Added names to goals and getter. Began implementing the checkGoal function that analyses user progress towards a goal. Added a BMI goal class and wrote calcBmi function in userProfile
+=======
+
+>>>>>>> 0d0d13c... Added names to goals and getter. Began implementing the checkGoal function that analyses user progress towards a goal. Added a BMI goal class and wrote calcBmi function in userProfile
     public ArrayList<Activity> getActivities() {
 >>>>>>> f805a82... Fixed DateTimeTest and commented out code that was throwing pipeline off
         return this.activities;
@@ -363,6 +379,12 @@ public class UserProfile implements java.io.Serializable{
      */
     public Date getBirthDate() {
         return this.birthdate;
+    }
+
+
+    public double calcBmi() {
+        this.bmi = getWeight() / (Math.pow(getHeight(), 2));
+        return this.bmi;
     }
 
 

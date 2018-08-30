@@ -3,8 +3,10 @@ package seng202.team10.Model;
 
 import seng202.team10.Model.ActivitiesData.DateTime;
 
+
 public class Goal {
 
+    private String goalName;
     private DateTime goalStartDate;
     private DateTime goalTargetDate;
     private String goalType;
@@ -14,9 +16,11 @@ public class Goal {
     private double goalTime;
     private double goalWeight;
     private double goalDistance;
+    private double goalBmi;
 
 
-    public Goal(DateTime startDate, DateTime targetDate, String type, Boolean achieved, double velocity, int frequency, double time, double weight, double distance) {
+    public Goal(String name, DateTime startDate, DateTime targetDate, String type, Boolean achieved, double velocity, int frequency, double time, double weight, double distance, double bmi) {
+        goalName = name;
         goalStartDate = startDate;
         goalTargetDate = targetDate;
         goalType = type;
@@ -26,6 +30,7 @@ public class Goal {
         goalTime = time;
         goalWeight = weight;
         goalDistance = distance;
+        goalBmi = bmi;
 
     }
 
@@ -64,5 +69,19 @@ public class Goal {
     public int getGoalFrequency() {
         return this.goalFrequency;
     }
+
+    public String getGoalName() {
+        return this.goalName;
+    }
+
+    public double getGoalBmi() {
+        return this.goalBmi;
+    }
+
+
+//    public void reviewWeightGoal(Goal goal, double currentWeight) {
+//        System.out.println("Your target for this goal is to weigh " + goal.getGoalWeight() + " by " + goal.getGoalTargetDate());
+//        if ()
+//    }
 
 }
