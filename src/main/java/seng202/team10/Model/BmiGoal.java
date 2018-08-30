@@ -6,7 +6,7 @@ public class BmiGoal extends Goal {
 
     public BmiGoal(String name, DateTime start, DateTime target, double targetBmi) {
 
-        super(name, start, target, "BMI", false, 0.0, 0, 0.0, 0.0, 0.0, targetBmi);
+        super(name, start, target, "BMI", false, 0, 0.0, 0.0, 0.0, targetBmi);
     }
 
 

@@ -11,7 +11,6 @@ public class Goal {
     private DateTime goalTargetDate;
     private String goalType;
     private Boolean goalAchievedStatus;
-    private double goalVelocity;
     private int goalFrequency;
     private double goalTime;
     private double goalWeight;
@@ -19,13 +18,12 @@ public class Goal {
     private double goalBmi;
 
 
-    public Goal(String name, DateTime startDate, DateTime targetDate, String type, Boolean achieved, double velocity, int frequency, double time, double weight, double distance, double bmi) {
+    public Goal(String name, DateTime startDate, DateTime targetDate, String type, Boolean achieved, int frequency, double time, double weight, double distance, double bmi) {
         goalName = name;
         goalStartDate = startDate;
         goalTargetDate = targetDate;
         goalType = type;
         goalAchievedStatus = achieved;
-        goalVelocity = velocity;
         goalFrequency = frequency;
         goalTime = time;
         goalWeight = weight;
@@ -48,10 +46,6 @@ public class Goal {
 
     public Boolean getGoalAchieved() {
         return this.goalAchievedStatus;
-    }
-
-    public double getGoalVelocity() {
-        return this.goalVelocity;
     }
 
     public double getGoalDistance() {
@@ -79,9 +73,44 @@ public class Goal {
     }
 
 
-//    public void reviewWeightGoal(Goal goal, double currentWeight) {
-//        System.out.println("Your target for this goal is to weigh " + goal.getGoalWeight() + " by " + goal.getGoalTargetDate());
-//        if ()
-//    }
+    public void reviewWeightGoal(Goal goal, double currentWeight) {
+        System.out.println("Your target for this goal is to weigh " + goal.getGoalWeight() + " by " + goal.getGoalTargetDate());
+        if (currentWeight <= goal.getGoalWeight()) {
+            System.out.println("Congratulations you have completed this goal! It has been removed from your current goals.");
+        } else {
+            double difference = goal.getGoalWeight() - currentWeight;
+            System.out.println("You need to lose " + difference + " more kgs to meet your goal.");
+        }
+    }
+
+    public void reviewBmiGoal(Goal goal, double currentBmi) {
+        System.out.println("Your target for this goal is to have a BMI of " + goal.getGoalBmi() + " by " + goal.getGoalTargetDate());
+        if (currentBmi <= goal.getGoalBmi()) {
+            System.out.println("Congratulations you have completed this goal! It has been removed from your current goals.");
+        } else {
+            double difference = goal.getGoalBmi() - currentBmi;
+            System.out.println("You need to decrease your BMI by " + difference + " more to meet your goal.");
+        }
+    }
+
+    public void reviewDistanceGoal(Goal goal, double dist) {
+        System.out.println("Your target for this goal is to have covered a distance of " + goal.getGoalDistance() + " by " + goal.getGoalTargetDate());
+        //TODO calculate here whether or not the user has completed the goal
+        //for-loop over data entries within the goal period (start time - present) and sum up total distance covered. Then compare this to the target distance
+    }
+
+    public void reviewFrequencyGoal(Goal goal, double freq) {
+        System.out.println("Your target for this goal is to have completed " + goal.getGoalFrequency() + " activities by " + goal.getGoalTargetDate());
+        //TODO calculate here whether or not the user has completed the goal
+        //Determine the number of activities entered from the goal start to present. Then compare this to the target frequency / quantity
+    }
+
+    public void reviewTimeGoal(Goal goal, double time) {
+        System.out.println("Your target for this goal is to have completed " + goal.getGoalTime() + " mins of activities by " + goal.getGoalTargetDate());
+        //TODO calculate here whether or not the user has completed the goal
+        //for-loop over data entries within the goal period (start time - present) and sum up total time across the activities. Then compare this to the target time
+
+    }
+
 
 }
