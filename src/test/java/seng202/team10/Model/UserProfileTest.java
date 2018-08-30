@@ -31,18 +31,20 @@ public class UserProfileTest {
 
     @After
     public void tearDown() throws Exception {
+        writer.deleteProfile("dave");
     }
 
     @Test
     public void serializeTest(){
         writer.saveProfile(testProfile);
         UserProfile loadedProfile = reader.loadExistingProfile("dave");
-        assertEquals(testProfile.getActivities(), loadedProfile.getActivities());
+        for(int i = 0; i < testProfile.getActivities().size(); i++) {
+            assertEquals(testProfile.getActivities().get(i).getName(), loadedProfile.getActivities().get(i).getName());
+        }
     }
 
     @Test
     public void addActivities() {
-
 
     }
 }
