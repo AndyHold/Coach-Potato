@@ -2,6 +2,11 @@ package seng202.team10.Model;
 
 
 import seng202.team10.Model.ActivitiesData.*;
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> f5a854f6... Fixing Calculation of total distance and total duration
 import java.util.ArrayList;
 
 /**
