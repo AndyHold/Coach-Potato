@@ -4,9 +4,9 @@ import seng202.team10.Model.ActivitiesData.DateTime;
 
 public class TimeGoal extends Goal {
 
-    public TimeGoal(DateTime start, DateTime target, double time) {
+    public TimeGoal(String name, DateTime start, DateTime target, double time) {
 
 
-        super(start, target, "Time", false, 0.0, 0, time, 0.0, 0.0);
+        super(name, start, target, "Time", false, 0.0, 0, time, 0.0, 0.0, 0.0);
     }
 }
