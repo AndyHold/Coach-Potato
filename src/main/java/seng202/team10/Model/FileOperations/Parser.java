@@ -26,7 +26,7 @@ public class Parser {
         if(reader.checkFileExists("./FilesToLoad/" + filePath)) {
             fileContents = reader.openNewFile(filePath);
         } else {
-            System.out.println("File does not exist");
+            throw new FileNotFoundException();
         }
         return fileContents;
 
