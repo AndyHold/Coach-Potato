@@ -4,7 +4,6 @@ package seng202.team10.Model.ActivitiesData;
 import java.io.Serializable;
 import java.util.HashMap;
 
-import static java.lang.Math.abs;
 
 /**
  * Date Class for Coach Potato
@@ -13,12 +12,12 @@ import static java.lang.Math.abs;
  */
 public class DateTime implements Serializable {
 
-    private int day;
-    private int month;
-    private int year;
-    private int hour;
-    private int minute;
-    private int second;
+    private int day = 1;
+    private int month = 1;
+    private int year = 1900;
+    private int hour = 0;
+    private int minute = 0;
+    private int second = 0;
     private HashMap<Integer, Integer> daysInMonth;
     private HashMap<Integer, String> months;
 
@@ -46,10 +45,10 @@ public class DateTime implements Serializable {
      * @param newYear int: year parameter for the date
      */
     private void setYear(int newYear) {
-        if ((2000 <= newYear) && (newYear <= 2100)) {
+        if ((1900 <= newYear) && (newYear <= 2100)) {
             this.year = newYear;
         } else {
-            throw new IllegalArgumentException("Year parameter not valid!\nvalue: " + String.valueOf(newYear) + " is not in range 2000 - 2100");
+            throw new IllegalArgumentException("Year parameter not valid!\nvalue: " + String.valueOf(newYear) + " is not in range 1900 - 2100");
         }
     }
 
@@ -252,10 +251,10 @@ public class DateTime implements Serializable {
      * @param dateTime DateTime: the date to be calculated minus 2000 years
      * @return int: The amount of days since the beginning of the year 2000
      */
-    private int calculateDaysFrom2000(DateTime dateTime) {
+    private int calculateDaysFrom1900(DateTime dateTime) {
         int days = 0;
         int index = 0;
-        int years = dateTime.getYear() - 2000;
+        int years = dateTime.getYear() - 1900;
         for (; index < years; index++) {
             if ((index % 4) == 0) {
                 days += 366;
@@ -282,8 +281,8 @@ public class DateTime implements Serializable {
      * @return int: number of days difference
      */
     public int subtractDaysFromDateTime(DateTime otherDateTime) {
-        int daysThis = calculateDaysFrom2000(this);
-        int daysOther = calculateDaysFrom2000(otherDateTime);
+        int daysThis = calculateDaysFrom1900(this);
+        int daysOther = calculateDaysFrom1900(otherDateTime);
         return daysThis - daysOther;
     }
 
