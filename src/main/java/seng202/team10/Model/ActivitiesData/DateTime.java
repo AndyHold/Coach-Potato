@@ -1,6 +1,7 @@
 package seng202.team10.Model.ActivitiesData;
 
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 import static java.lang.Math.abs;
@@ -10,7 +11,7 @@ import static java.lang.Math.abs;
  * SENG202 2018S2
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
-public class DateTime {
+public class DateTime implements Serializable {
 
     private int day;
     private int month;
