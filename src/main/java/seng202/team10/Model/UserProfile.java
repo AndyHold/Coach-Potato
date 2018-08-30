@@ -47,6 +47,7 @@ public class UserProfile implements java.io.Serializable{
      * Getter method for the activities of the user
      * @return Activities
      */
+
     public ArrayList<Activity> getActivities() {
         return this.activities;
     }
@@ -110,6 +111,12 @@ public class UserProfile implements java.io.Serializable{
      */
     public Date getBirthDate() {
         return this.birthdate;
+    }
+
+
+    public double calcBmi() {
+        this.bmi = getWeight() / (Math.pow(getHeight(), 2));
+        return this.bmi;
     }
 
 
