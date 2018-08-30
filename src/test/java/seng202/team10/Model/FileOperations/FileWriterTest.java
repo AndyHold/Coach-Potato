@@ -13,7 +13,7 @@ public class FileWriterTest {
 
 
     @BeforeClass
-    public static void setUp() throws Exception {
+    public static void setUp(){
         testWriter.createProfileFolder();
         testProfile.setName("jeff");
         testProfile.setWeight(75);
@@ -38,9 +38,9 @@ public class FileWriterTest {
         UserProfile secondTestProfile = new UserProfile();
         secondTestProfile.setName("bill");
         testWriter.saveProfile(secondTestProfile);
-        assertEquals(2, testReader.getExistingUsers().size(), 0);
+        int initialSize = testReader.getExistingUsers().size();
         testWriter.deleteProfile(secondTestProfile.getName());
-        assertEquals(1, testReader.getExistingUsers().size(), 0);
+        assertEquals(initialSize -1, testReader.getExistingUsers().size(), 0);
     }
 
 
