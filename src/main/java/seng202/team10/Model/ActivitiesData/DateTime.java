@@ -1,23 +1,23 @@
 package seng202.team10.Model.ActivitiesData;
 
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-import static java.lang.Math.abs;
 
 /**
  * Date Class for Coach Potato
  * SENG202 2018S2
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
-public class DateTime {
+public class DateTime implements Serializable {
 
-    private int day;
-    private int month;
-    private int year;
-    private int hour;
-    private int minute;
-    private int second;
+    private int day = 1;
+    private int month = 1;
+    private int year = 1900;
+    private int hour = 0;
+    private int minute = 0;
+    private int second = 0;
     private HashMap<Integer, Integer> daysInMonth;
     private HashMap<Integer, String> months;
 
@@ -45,10 +45,10 @@ public class DateTime {
      * @param newYear int: year parameter for the date
      */
     private void setYear(int newYear) {
-        if ((2000 <= newYear) && (newYear <= 2100)) {
+        if ((1900 <= newYear) && (newYear <= 2100)) {
             this.year = newYear;
         } else {
-            throw new IllegalArgumentException("Year parameter not valid!\n");
+            throw new IllegalArgumentException("Year parameter not valid!\nvalue: " + String.valueOf(newYear) + " is not in range 1900 - 2100");
         }
     }
 
@@ -61,7 +61,7 @@ public class DateTime {
         if ((1 <= newMonth) && (newMonth <= 12)) {
             this.month = newMonth;
         } else {
-            throw new IllegalArgumentException("Month parameter not valid!");
+            throw new IllegalArgumentException("Month parameter not valid!\nvalue: " + String.valueOf(newMonth) + " is not in range 1 - 12");
         }
     }
 
@@ -75,12 +75,12 @@ public class DateTime {
             if ((1 <= newDay) && (newDay <= 29)) {
                 this.day = newDay;
             } else {
-                throw new IllegalArgumentException("Day parameter not valid!");
+                throw new IllegalArgumentException("Day parameter not valid!\nvalue: " + String.valueOf(newDay) + " is not in range 1 - 29");
             }
         } else if ((1 <= newDay) && (newDay <= this.daysInMonth.get(this.month))) {
             this.day = newDay;
         } else {
-            throw new IllegalArgumentException("Day parameter not valid!");
+            throw new IllegalArgumentException("Day parameter not valid!\nvalue: " + String.valueOf(newDay) + " is not in range 1 - " + String.valueOf(this.daysInMonth.get(this.month)));
         }
     }
 
@@ -93,7 +93,7 @@ public class DateTime {
         if ((0 <= newHour) && newHour <= 23) {
             this.hour = newHour;
         } else {
-            throw new IllegalArgumentException("Hour parameter not valid!");
+            throw new IllegalArgumentException("Hour parameter not valid!\nvalue: " + String.valueOf(newHour) + " is not in range 1 - 23");
         }
     }
 
@@ -106,7 +106,7 @@ public class DateTime {
         if ((0 <= newMinute) && (newMinute <= 59)) {
             this.minute = newMinute;
         } else {
-            throw new IllegalArgumentException("Minute parameter not valid!");
+            throw new IllegalArgumentException("Minute parameter not valid!\nvalue: " + String.valueOf(newMinute) + " is not in range 1 - 59");
         }
     }
 
@@ -119,7 +119,7 @@ public class DateTime {
         if ((0 <= newSecond) && (newSecond <= 59)) {
             this.second = newSecond;
         } else {
-            throw new IllegalArgumentException("Second parameter not valid!");
+            throw new IllegalArgumentException("Second parameter not valid!\nvalue: " + String.valueOf(newSecond) + " is not in range 1 - 59");
         }
     }
 
@@ -251,10 +251,10 @@ public class DateTime {
      * @param dateTime DateTime: the date to be calculated minus 2000 years
      * @return int: The amount of days since the beginning of the year 2000
      */
-    private int calculateDaysFrom2000(DateTime dateTime) {
+    private int calculateDaysFrom1900(DateTime dateTime) {
         int days = 0;
         int index = 0;
-        int years = dateTime.getYear() - 2000;
+        int years = dateTime.getYear() - 1900;
         for (; index < years; index++) {
             if ((index % 4) == 0) {
                 days += 366;
@@ -281,10 +281,9 @@ public class DateTime {
      * @return int: number of days difference
      */
     public int subtractDaysFromDateTime(DateTime otherDateTime) {
-        int daysThis = calculateDaysFrom2000(this);
-        int daysOther = calculateDaysFrom2000(otherDateTime);
-        int days = daysThis - daysOther;
-        return days;
+        int daysThis = calculateDaysFrom1900(this);
+        int daysOther = calculateDaysFrom1900(otherDateTime);
+        return daysThis - daysOther;
     }
 
 

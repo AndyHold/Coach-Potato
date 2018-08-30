@@ -1,61 +1,58 @@
 package seng202.team10.Model.ActivitiesData;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
-
 import static org.junit.Assert.*;
 
 public class DateTimeTest {
 
-    private DateTime janFirst = new DateTime(1, 1, 2018, 10, 30, 10);
-    private DateTime janThirtieth = new DateTime(30, 1, 2018, 0, 0, 0);
-    private DateTime janThirtyFirst = new DateTime(31, 1, 2018, 5, 15, 20);
-    private DateTime febSecond = new DateTime(2, 2, 2018, 23, 59, 59);
-    private DateTime febTwentySeventh = new DateTime(27, 2, 2018, 23, 59, 59);
-    private DateTime febTwentyEighth = new DateTime(28, 2, 2018, 23, 59, 59);
-    private DateTime febTwentyEighthLeap = new DateTime(28, 2, 2020, 23, 59, 59);
-    private DateTime febTwentyNinthLeap = new DateTime(29, 2, 2024, 23, 59, 59);
-    private DateTime marchThird = new DateTime(3, 3, 2020, 12, 30, 30);
-    private DateTime aprilEleventh = new DateTime(11, 4, 2018, 0, 0, 0);
-    private DateTime aprilTwentyNinth = new DateTime(29, 4, 2018, 0, 0, 0);
-    private DateTime aprilThirtieth = new DateTime(30, 4, 2018, 0, 0, 0);
-    private DateTime mayTwelfth = new DateTime(12, 5, 2018, 0, 0, 0);
-    private DateTime juneThirteenth = new DateTime(13, 6, 2018, 0, 0, 0);
-    private DateTime julyTwentyFirst = new DateTime(21, 7, 2018, 0, 0, 0);
-    private DateTime augustTwentySecond = new DateTime(22, 8, 2018, 0, 0, 0);
-    private DateTime septemberTwentyThird = new DateTime(23, 9, 2018, 0, 0, 0);
-    private DateTime octoberFourth = new DateTime(4, 10, 2018, 0, 0, 0);
-    private DateTime novemberTwentyFifth = new DateTime(25, 11, 2018, 0, 0, 0);
-    private DateTime decemberSixteenth = new DateTime(16, 12, 2017, 0, 0, 0);
-    private DateTime twoThousandYear = new DateTime(1,1,2000,0,0,0);
-    private DateTime twoThousandOneYear = new DateTime(1,1,2001,0,0,0);
-    private DateTime twoThousandNinetyNineYear = new DateTime(1,1,2099,0,0,0);
-    private DateTime twoThousandOneHundredYear = new DateTime(1,1,2100,0,0,0);
-    private DateTime zeroHour = new DateTime(1, 1, 2000, 0, 0, 0);
-    private DateTime oneHour = new DateTime(1, 1, 2000, 1, 0, 0);
-    private DateTime twentyTwoHour = new DateTime(1, 1, 2000, 22, 0, 0);
-    private DateTime twentyThreeHour = new DateTime(1, 1, 2000, 23, 0, 0);
-    private DateTime zeroMinute = new DateTime(1, 1, 2000, 0, 0, 0);
-    private DateTime oneMinute = new DateTime(1, 1, 2000, 0, 1, 0);
-    private DateTime fiftyEightMinute = new DateTime(1, 1, 2000, 0, 58, 0);
-    private DateTime fiftyNineMinute = new DateTime(1, 1, 2000, 0, 59, 0);
-    private DateTime zeroSecond = new DateTime(1, 1, 2000, 0, 0, 0);
-    private DateTime oneSecond = new DateTime(1, 1, 2000, 0, 0, 1);
-    private DateTime fiftyEightSecond = new DateTime(1, 1, 2000, 0, 0, 58);
-    private DateTime fiftyNineSecond = new DateTime(1, 1, 2000, 0, 0, 59);
-    private DateTime yearBefore = new DateTime(31, 12, 2000, 23, 59, 59);
-    private DateTime yearAfter = new DateTime(1, 1, 2100, 0, 0, 0);
-    private DateTime monthBefore = new DateTime(31, 1, 2000, 23, 59, 59);
-    private DateTime monthAfter = new DateTime(1, 12, 2000, 0, 0, 0);
-    private DateTime dayBefore = new DateTime(1, 1, 2000, 23, 59, 59);
-    private DateTime dayAfter = new DateTime(31, 1, 2000, 0, 0, 0);
-    private DateTime hourBefore = new DateTime(1, 1, 2000, 0, 59, 59);
-    private DateTime hourAfter = new DateTime(1, 1, 2000, 23, 0, 0);
-    private DateTime minuteBefore = new DateTime(1, 1, 2000, 0, 0, 59);
-    private DateTime minuteAfter = new DateTime(1, 1, 2000, 0, 59, 0);
-    private DateTime secondBefore = new DateTime(1, 1, 2000, 0, 0, 0);
-    private DateTime secondAfter = new DateTime(1, 1, 2000, 0, 0, 59);
+    private DateTime janFirst = new DateTime(2018, 1, 1, 10, 30, 10);
+    private DateTime janThirtieth = new DateTime(2018, 1, 30, 0, 0, 0);
+    private DateTime janThirtyFirst = new DateTime(2018, 1, 31, 5, 15, 20);
+    private DateTime febSecond = new DateTime(2018, 2, 2, 23, 59, 59);
+    private DateTime febTwentySeventh = new DateTime(2018, 2, 27, 23, 59, 59);
+    private DateTime febTwentyEighth = new DateTime(2018, 2, 28, 23, 59, 59);
+    private DateTime febTwentyEighthLeap = new DateTime(2020, 2, 28, 23, 59, 59);
+    private DateTime febTwentyNinthLeap = new DateTime(2024, 2, 29, 23, 59, 59);
+    private DateTime marchThird = new DateTime(2020, 3, 3, 12, 30, 30);
+    private DateTime aprilEleventh = new DateTime(2018, 4, 11, 0, 0, 0);
+    private DateTime aprilTwentyNinth = new DateTime(2018, 4, 29, 0, 0, 0);
+    private DateTime aprilThirtieth = new DateTime(2018, 4, 30, 0, 0, 0);
+    private DateTime mayTwelfth = new DateTime(2018, 5, 12, 0, 0, 0);
+    private DateTime juneThirteenth = new DateTime(2018, 6, 13, 0, 0, 0);
+    private DateTime julyTwentyFirst = new DateTime(2018, 7, 21, 0, 0, 0);
+    private DateTime augustTwentySecond = new DateTime(2018, 8, 22, 0, 0, 0);
+    private DateTime septemberTwentyThird = new DateTime(2018, 9, 23, 0, 0, 0);
+    private DateTime octoberFourth = new DateTime(2018, 10, 4, 0, 0, 0);
+    private DateTime novemberTwentyFifth = new DateTime(2018, 11, 25, 0, 0, 0);
+    private DateTime decemberSixteenth = new DateTime(2017, 12, 16, 0, 0, 0);
+    private DateTime nineteenHundredYear = new DateTime(1900,1,1,0,0,0);
+    private DateTime nineteenHundredOneYear = new DateTime(1901,1,1,0,0,0);
+    private DateTime twoThousandNinetyNineYear = new DateTime(2099,1,1,0,0,0);
+    private DateTime twoThousandOneHundredYear = new DateTime(2100,1,1,0,0,0);
+    private DateTime zeroHour = new DateTime(2000, 1, 1, 0, 0, 0);
+    private DateTime oneHour = new DateTime(2000, 1, 1, 1, 0, 0);
+    private DateTime twentyTwoHour = new DateTime(2000, 1, 1, 22, 0, 0);
+    private DateTime twentyThreeHour = new DateTime(2000, 1, 1, 23, 0, 0);
+    private DateTime zeroMinute = new DateTime(2000, 1, 1, 0, 0, 0);
+    private DateTime oneMinute = new DateTime(2000, 1, 1, 0, 1, 0);
+    private DateTime fiftyEightMinute = new DateTime(2000, 1, 1, 0, 58, 0);
+    private DateTime fiftyNineMinute = new DateTime(2000, 1, 1, 0, 59, 0);
+    private DateTime zeroSecond = new DateTime(2000, 1, 1, 0, 0, 0);
+    private DateTime oneSecond = new DateTime(2000, 1, 1, 0, 0, 1);
+    private DateTime fiftyEightSecond = new DateTime(2000, 1, 1, 0, 0, 58);
+    private DateTime fiftyNineSecond = new DateTime(2000, 1, 1, 0, 0, 59);
+    private DateTime yearBefore = new DateTime(2000, 12, 31, 23, 59, 59);
+    private DateTime yearAfter = new DateTime(2100, 1, 1, 0, 0, 0);
+    private DateTime monthBefore = new DateTime(2000, 1, 31, 23, 59, 59);
+    private DateTime monthAfter = new DateTime(2000, 12, 1, 0, 0, 0);
+    private DateTime dayBefore = new DateTime(2000, 1, 1, 23, 59, 59);
+    private DateTime dayAfter = new DateTime(2000, 1, 31, 0, 0, 0);
+    private DateTime hourBefore = new DateTime(2000, 1, 1, 0, 59, 59);
+    private DateTime hourAfter = new DateTime(2000, 1, 1, 23, 0, 0);
+    private DateTime minuteBefore = new DateTime(2000, 1, 1, 0, 0, 59);
+    private DateTime minuteAfter = new DateTime(2000, 1, 1, 0, 59, 0);
+    private DateTime secondBefore = new DateTime(2000, 1, 1, 0, 0, 0);
+    private DateTime secondAfter = new DateTime(2000, 1, 1, 0, 0, 59);
 
 
     @Test
@@ -131,26 +128,26 @@ public class DateTimeTest {
 
 
     @Test
-    public void nineteenNinetyNineYear() {
+    public void eighteenNinetyNineYear() {
         String message = "Test Failed";
         try {
-            new DateTime(1, 1, 1999, 0, 0, 0);
+            new DateTime(1899, 1, 1, 0, 0, 0);
         } catch (IllegalArgumentException ex) {
             message = ex.getMessage();
         }
-        assertEquals("Year parameter not valid!", message);
+        assertEquals("Year parameter not valid!\nvalue: 1899 is not in range 1900 - 2100", message);
     }
 
 
     @Test
-    public void twoThousandYear() {
-        assertEquals(2000, twoThousandYear.getYear());
+    public void nineteenHundredYear() {
+        assertEquals(1900, nineteenHundredYear.getYear());
     }
 
 
     @Test
-    public void twoThousandOneYear() {
-        assertEquals(2001, twoThousandOneYear.getYear());
+    public void nineteenHundredOneYear() {
+        assertEquals(1901, nineteenHundredOneYear.getYear());
     }
 
 
@@ -170,11 +167,11 @@ public class DateTimeTest {
     public void twoThousandOneHundredOneYear() {
         String message = "Test failed";
         try {
-            new DateTime(1, 1, 2101, 0, 0, 0);
+            new DateTime(2101, 1, 1, 0, 0, 0);
         } catch (IllegalArgumentException ex) {
             message = ex.getMessage();
         }
-        assertEquals("Year parameter not valid!", message);
+        assertEquals("Year parameter not valid!\nvalue: 2101 is not in range 1900 - 2100", message);
     }
 
 
@@ -182,11 +179,11 @@ public class DateTimeTest {
     public void zeroMonth() {
         String message = "Test failed";
         try {
-            new DateTime(1, 0, 2000, 0, 0, 0);
+            new DateTime(2000, 0, 1, 0, 0, 0);
         } catch (IllegalArgumentException ex) {
             message = ex.getMessage();
         }
-        assertEquals("Month parameter not valid!", message);
+        assertEquals("Month parameter not valid!\nvalue: 0 is not in range 1 - 12", message);
     }
 
 
@@ -194,11 +191,11 @@ public class DateTimeTest {
     public void thirteenthMonth() {
         String message = "Test failed";
         try {
-            new DateTime(1, 13, 2000, 0, 0, 0);
+            new DateTime(2000, 13, 1, 0, 0, 0);
         } catch (IllegalArgumentException ex) {
             message = ex.getMessage();
         }
-        assertEquals("Month parameter not valid!", message);
+        assertEquals("Month parameter not valid!\nvalue: 13 is not in range 1 - 12", message);
     }
 
 
@@ -206,11 +203,11 @@ public class DateTimeTest {
     public void negativeDay() {
         String message = "Test failed";
         try {
-            new DateTime(-1, 1, 2000, 0, 0, 0);
+            new DateTime(2000, 1, -1, 0, 0, 0);
         } catch (IllegalArgumentException ex) {
             message = ex.getMessage();
         }
-        assertEquals("Day parameter not valid!", message);
+        assertEquals("Day parameter not valid!\nvalue: -1 is not in range 1 - 31", message);
     }
 
 
@@ -218,11 +215,11 @@ public class DateTimeTest {
     public void zeroDay() {
         String message = "Test Failed";
         try {
-            new DateTime(0, 1, 2000, 0, 0, 0);
+            new DateTime(2000, 1, 0, 0, 0, 0);
         } catch (IllegalArgumentException ex) {
             message = ex.getMessage();
         }
-        assertEquals("Day parameter not valid!", message);
+        assertEquals("Day parameter not valid!\nvalue: 0 is not in range 1 - 31", message);
     }
 
 
@@ -254,11 +251,11 @@ public class DateTimeTest {
     public void janThirtySecondDay() {
         String message = "Test Failed";
         try {
-            new DateTime(32, 1, 2018, 0, 0, 0);
+            new DateTime(2018, 1, 32, 0, 0, 0);
         } catch (IllegalArgumentException ex) {
             message = ex.getMessage();
         }
-        assertEquals("Day parameter not valid!", message);
+        assertEquals("Day parameter not valid!\nvalue: 32 is not in range 1 - 31", message);
     }
 
 
@@ -278,11 +275,11 @@ public class DateTimeTest {
     public void febTwentyNinthDay() {
         String message = "Test Failed";
         try {
-            new DateTime(29, 2, 2018, 0, 0, 0);
+            new DateTime(2018, 2, 29, 0, 0, 0);
         } catch (IllegalArgumentException ex) {
             message = ex.getMessage();
         }
-        assertEquals("Day parameter not valid!", message);
+        assertEquals("Day parameter not valid!\nvalue: 29 is not in range 1 - 28", message);
     }
 
 
@@ -302,11 +299,11 @@ public class DateTimeTest {
     public void febThirtiethLeapDay() {
         String message = "Test Failed";
         try {
-            new DateTime(31, 2, 2020, 0, 0, 0);
+            new DateTime(2020, 2, 31, 0, 0, 0);
         } catch (IllegalArgumentException ex) {
             message = ex.getMessage();
         }
-        assertEquals("Day parameter not valid!", message);
+        assertEquals("Day parameter not valid!\nvalue: 31 is not in range 1 - 29", message);
     }
 
 
@@ -326,11 +323,11 @@ public class DateTimeTest {
     public void aprilThirtyFirstDay() {
         String message = "Test Failed";
         try {
-            new DateTime(31, 4, 2018, 0, 0, 0);
+            new DateTime(2018, 4, 31, 0, 0, 0);
         } catch (IllegalArgumentException ex) {
             message = ex.getMessage();
         }
-        assertEquals("Day parameter not valid!", message);
+        assertEquals("Day parameter not valid!\nvalue: 31 is not in range 1 - 30", message);
     }
 
 
@@ -338,11 +335,11 @@ public class DateTimeTest {
     public void negativeHour() {
         String message = "Test Failed";
         try {
-            new DateTime(1, 1, 2000, -1, 0, 0);
+            new DateTime(2000, 1, 1, -1, 0, 0);
         } catch (IllegalArgumentException ex) {
             message = ex.getMessage();
         }
-        assertEquals("Hour parameter not valid!", message);
+        assertEquals("Hour parameter not valid!\nvalue: -1 is not in range 1 - 23", message);
     }
 
 
@@ -374,11 +371,11 @@ public class DateTimeTest {
     public void twentyFourthHour() {
         String message = "Test Failed";
         try {
-            new DateTime(1, 1, 2000, 24, 0, 0);
+            new DateTime(2000, 1, 1, 24, 0, 0);
         } catch (IllegalArgumentException ex) {
             message = ex.getMessage();
         }
-        assertEquals("Hour parameter not valid!", message);
+        assertEquals("Hour parameter not valid!\nvalue: 24 is not in range 1 - 23", message);
     }
 
 
@@ -386,11 +383,11 @@ public class DateTimeTest {
     public void negativeMinute() {
         String message = "Test Failed";
         try {
-            new DateTime(1, 1, 2000, 0, -1, 0);
+            new DateTime(2000, 1, 1, 0, -1, 0);
         } catch (IllegalArgumentException ex) {
             message = ex.getMessage();
         }
-        assertEquals("Minute parameter not valid!", message);
+        assertEquals("Minute parameter not valid!\nvalue: -1 is not in range 1 - 59", message);
     }
 
 
@@ -422,11 +419,11 @@ public class DateTimeTest {
     public void sixtyMinute() {
         String message = "Test Failed";
         try {
-            new DateTime(1, 1, 2000, 0, 60, 0);
+            new DateTime(2000, 1, 1, 0, 60, 0);
         } catch (IllegalArgumentException ex) {
             message = ex.getMessage();
         }
-        assertEquals("Minute parameter not valid!", message);
+        assertEquals("Minute parameter not valid!\nvalue: 60 is not in range 1 - 59", message);
     }
 
 
@@ -434,11 +431,11 @@ public class DateTimeTest {
     public void negativeSecond() {
         String message = "Test Failed";
         try {
-            new DateTime(1, 1, 2000, 0, 0, -1);
+            new DateTime(2000, 1, 1, 0, 0, -1);
         } catch (IllegalArgumentException ex) {
             message = ex.getMessage();
         }
-        assertEquals("Second parameter not valid!", message);
+        assertEquals("Second parameter not valid!\nvalue: -1 is not in range 1 - 59", message);
     }
 
 
@@ -470,11 +467,11 @@ public class DateTimeTest {
     public void sixtySecond() {
         String message = "Test Failed";
         try {
-            new DateTime(1, 1, 2000, 0, 0, 60);
+            new DateTime(2000, 1, 1, 0, 0, 60);
         } catch (IllegalArgumentException ex) {
             message = ex.getMessage();
         }
-        assertEquals("Second parameter not valid!", message);
+        assertEquals("Second parameter not valid!\nvalue: 60 is not in range 1 - 59", message);
     }
 
 
@@ -624,44 +621,44 @@ public class DateTimeTest {
 
     @Test
     public void isEqual() {
-        assertTrue(zeroHour.isEqual(new DateTime(1, 1, 2000, 0, 0, 0)));
+        assertTrue(zeroHour.isEqual(new DateTime(2000, 1, 1, 0, 0, 0)));
     }
 
 
     @Test
     public void isNotEqualYear() {
-        assertFalse(zeroHour.isEqual(new DateTime(1, 1, 2001, 0, 0, 0)));
+        assertFalse(zeroHour.isEqual(new DateTime(2001, 1, 1, 0, 0, 0)));
     }
 
 
 
     @Test
     public void isNotEqualMonth() {
-        assertFalse(zeroHour.isEqual(new DateTime(1, 2, 2000, 0, 0, 0)));
+        assertFalse(zeroHour.isEqual(new DateTime(2000, 2, 1, 0, 0, 0)));
     }
 
 
     @Test
     public void isNotEqualDay() {
-        assertFalse(zeroHour.isEqual(new DateTime(2, 1, 2000, 0, 0, 0)));
+        assertFalse(zeroHour.isEqual(new DateTime(2000, 1, 2, 0, 0, 0)));
     }
 
 
     @Test
     public void isNotEqualHour() {
-        assertFalse(zeroHour.isEqual(new DateTime(1, 1, 2000, 1, 0, 0)));
+        assertFalse(zeroHour.isEqual(new DateTime(2000, 1, 1, 1, 0, 0)));
     }
 
 
     @Test
     public void isNotEqualMinute() {
-        assertFalse(zeroHour.isEqual(new DateTime(1, 1, 2000, 0, 1, 0)));
+        assertFalse(zeroHour.isEqual(new DateTime(2000, 1, 1, 0, 1, 0)));
     }
 
 
     @Test
     public void isNotEqualSecond() {
-        assertFalse(zeroHour.isEqual(new DateTime(1, 1, 2000, 0, 0, 1)));
+        assertFalse(zeroHour.isEqual(new DateTime(2000, 1, 1, 0, 0, 1)));
     }
 
 
@@ -726,82 +723,82 @@ public class DateTimeTest {
 
     @Test
     public void subtractSameDiffSeconds() {
-        assertEquals(29, febTwentyEighth.subtract(new DateTime(28, 2, 2018, 23, 59, 30)));
+        assertEquals(29, febTwentyEighth.subtract(new DateTime(2018, 2, 28, 23, 59, 30)));
     }
 
 
     @Test
     public void subtractSameDiffMinutes() {
-        assertEquals(1740, febTwentyEighth.subtract(new DateTime(28, 2, 2018, 23, 30, 59)));
+        assertEquals(1740, febTwentyEighth.subtract(new DateTime(2018, 2, 28, 23, 30, 59)));
     }
 
 
     @Test
     public void subtractSameDiffHours() {
-        assertEquals(36000, febTwentyEighth.subtract(new DateTime(28, 2, 2018, 13, 59, 59)));
+        assertEquals(36000, febTwentyEighth.subtract(new DateTime(2018, 2, 28, 13, 59, 59)));
     }
 
 
     @Test
     public void subtractSameDiffDays() {
-        assertEquals(86400, febTwentyEighth.subtract(new DateTime(27, 2, 2018, 23, 59, 59)));
+        assertEquals(86400, febTwentyEighth.subtract(new DateTime(2018, 2, 27, 23, 59, 59)));
     }
 
     @Test
     public void subtractSameDiffMonths() {
-        assertEquals(2678400, febTwentyEighth.subtract(new DateTime(28, 1, 2018, 23, 59, 59)));
+        assertEquals(2678400, febTwentyEighth.subtract(new DateTime(2018, 1, 28, 23, 59, 59)));
     }
 
 
     @Test
     public void subtractSameDiffYears() {
-        assertEquals(31536000, febTwentyEighth.subtract(new DateTime(28, 2, 2017, 23, 59, 59)));
+        assertEquals(31536000, febTwentyEighth.subtract(new DateTime(2017, 2, 28, 23, 59, 59)));
     }
 
 
     @Test
     public void subtractSameDiffYearsLeap() {
-        assertEquals(94694400, febTwentyEighth.subtract(new DateTime(28, 2, 2015, 23, 59, 59)));
+        assertEquals(94694400, febTwentyEighth.subtract(new DateTime(2015, 2, 28, 23, 59, 59)));
     }
 
 
     @Test
     public void subtractSameDiffSecondsNegative() {
-        assertEquals(-29, (new DateTime(28, 2, 2018, 23, 59, 30)).subtract(febTwentyEighth));
+        assertEquals(-29, (new DateTime(2018, 2, 28, 23, 59, 30)).subtract(febTwentyEighth));
     }
 
 
     @Test
     public void subtractSameDiffMinutesNegative() {
-        assertEquals(-1740, (new DateTime(28, 2, 2018, 23, 30, 59)).subtract(febTwentyEighth));
+        assertEquals(-1740, (new DateTime(2018, 2, 28, 23, 30, 59)).subtract(febTwentyEighth));
     }
 
 
     @Test
     public void subtractSameDiffHoursNegative() {
-        assertEquals(-36000, (new DateTime(28, 2, 2018, 13, 59, 59)).subtract(febTwentyEighth));
+        assertEquals(-36000, (new DateTime(2018, 2, 28, 13, 59, 59)).subtract(febTwentyEighth));
     }
 
 
     @Test
     public void subtractSameDiffDaysNegative() {
-        assertEquals(-86400, (new DateTime(27, 2, 2018, 23, 59, 59)).subtract(febTwentyEighth));
+        assertEquals(-86400, (new DateTime(2018, 2, 27, 23, 59, 59)).subtract(febTwentyEighth));
     }
 
     @Test
     public void subtractSameDiffMonthsNegative() {
-        assertEquals(-2678400, (new DateTime(28, 1, 2018, 23, 59, 59)).subtract(febTwentyEighth));
+        assertEquals(-2678400, (new DateTime(2018, 1, 28, 23, 59, 59)).subtract(febTwentyEighth));
     }
 
 
     @Test
     public void subtractSameDiffYearsNegative() {
-        assertEquals(-31536000, (new DateTime(28, 2, 2017, 23, 59, 59)).subtract(febTwentyEighth));
+        assertEquals(-31536000, (new DateTime(2017, 2, 28, 23, 59, 59)).subtract(febTwentyEighth));
     }
 
 
     @Test
     public void subtractSameDiffYearsLeapNegative() {
-        assertEquals(-94694400, (new DateTime(28, 2, 2015, 23, 59, 59)).subtract(febTwentyEighth));
+        assertEquals(-94694400, (new DateTime(2015, 2, 28, 23, 59, 59)).subtract(febTwentyEighth));
     }
 }

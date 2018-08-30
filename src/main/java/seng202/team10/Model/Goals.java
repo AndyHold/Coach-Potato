@@ -10,18 +10,25 @@ import java.util.ArrayList;
  * SENG202 2018S2
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
-public class Goals {
+public class Goals implements java.io.Serializable{
 
+    private UserProfile user;
     private ArrayList<Goal> currentGoals;
     private ArrayList<Goal> achievedGoals;
     private ArrayList<Goal> failedGoals;
     private ArrayList<Goal> availableGoals;
 
+    public Goals(UserProfile user) {
+        this.user = user;
+    }
 
 
     public Goal createGoal() {
         //prompt user for the type of goal they wish to create
-        String userAns = "Velocity"; //default for now. Will end up being a button or drop down box
+        String userAns = "Weight"; //default for now. Will end up being a button or drop down box
+
+        //prompt user for a name for the goal
+        String goalName = "FirstGoal"; //default for now. Will be a text input box
 
         //prompt user for starting day, month, year, hour, minute, second
         int startDay = 1; //default for now
@@ -45,31 +52,31 @@ public class Goals {
         if (userAns == "Weight") {
             //prompt user for target weight
             double weight = 75.8;
-            WeightGoal newGoal = new WeightGoal(startDate, targetDate, weight);
+            WeightGoal newGoal = new WeightGoal(goalName, startDate, targetDate, weight);
             availableGoals.add(newGoal);
             return newGoal;
         } else if (userAns == "Frequency") {
             //prompt user for target frequency
             int frequency = 7;
-            FrequencyGoal newGoal = new FrequencyGoal(startDate, targetDate, frequency);
+            FrequencyGoal newGoal = new FrequencyGoal(goalName, startDate, targetDate, frequency);
             availableGoals.add(newGoal);
             return newGoal;
         } else if (userAns == "Distance") {
             //prompt user for target distance
             double distance = 45.6; //default for nowc
-            DistanceGoal newGoal = new DistanceGoal(startDate, targetDate, distance);
+            DistanceGoal newGoal = new DistanceGoal(goalName, startDate, targetDate, distance);
             availableGoals.add(newGoal);
             return newGoal;
-        } else if (userAns == "Velocity") {
-            //prompt user for target velocity
-            double velocity = 14.9; //default for now
-            VelocityGoal newGoal = new VelocityGoal(startDate, targetDate, velocity);
+        } else if (userAns == "BMI") {
+            //prompt user for target BMI
+            double targetBmi = 25.8; //default for now
+            BmiGoal newGoal = new BmiGoal(goalName, startDate, targetDate, targetBmi);
             availableGoals.add(newGoal);
             return newGoal;
-        } else {
+        } else { //goal must be of type Time
             //prompt user for target time
             double time = 347.6; //default for now
-            TimeGoal newGoal = new TimeGoal(startDate, targetDate, time);
+            TimeGoal newGoal = new TimeGoal(goalName, startDate, targetDate, time);
             availableGoals.add(newGoal);
             return newGoal;
         }
@@ -102,9 +109,21 @@ public class Goals {
         System.out.println("The current goal types you are working towards are: " + toPrint);
     }
 
-    //TODO function to review the progress of the user towards a certain goal.
-    public void checkGoal(String goalName) {
-        System.out.println("");
-    }
-}
+    public void checkGoal(Goal goal) {
+        if (currentGoals.contains(goal)) {
+            System.out.println("" + goal.getGoalName() + "is of type " + goal.getGoalType());
 
+            String type = goal.getGoalType();
+            switch (type) {
+                case "Weight":
+                    goal.reviewWeightGoal(goal, user.getWeight());
+                    break;
+                case "BMI":
+                    goal.reviewBmiGoal(goal, user.calcBmi());
+                    break;
+                //TODO add in the Distance, frequency, and time cases (which need data input first)
+            }
+        }
+    }
+
+}
