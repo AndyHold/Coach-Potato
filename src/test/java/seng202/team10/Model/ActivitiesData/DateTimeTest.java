@@ -1,9 +1,6 @@
 package seng202.team10.Model.ActivitiesData;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
-
 import static org.junit.Assert.*;
 
 public class DateTimeTest {
@@ -28,8 +25,8 @@ public class DateTimeTest {
     private DateTime octoberFourth = new DateTime(2018, 10, 4, 0, 0, 0);
     private DateTime novemberTwentyFifth = new DateTime(2018, 11, 25, 0, 0, 0);
     private DateTime decemberSixteenth = new DateTime(2017, 12, 16, 0, 0, 0);
-    private DateTime twoThousandYear = new DateTime(2000,1,1,0,0,0);
-    private DateTime twoThousandOneYear = new DateTime(2001,1,1,0,0,0);
+    private DateTime nineteenHundredYear = new DateTime(1900,1,1,0,0,0);
+    private DateTime nineteenHundredOneYear = new DateTime(1901,1,1,0,0,0);
     private DateTime twoThousandNinetyNineYear = new DateTime(2099,1,1,0,0,0);
     private DateTime twoThousandOneHundredYear = new DateTime(2100,1,1,0,0,0);
     private DateTime zeroHour = new DateTime(2000, 1, 1, 0, 0, 0);
@@ -131,26 +128,26 @@ public class DateTimeTest {
 
 
     @Test
-    public void nineteenNinetyNineYear() {
+    public void eighteenNinetyNineYear() {
         String message = "Test Failed";
         try {
-            new DateTime(1999, 1, 1, 0, 0, 0);
+            new DateTime(1899, 1, 1, 0, 0, 0);
         } catch (IllegalArgumentException ex) {
             message = ex.getMessage();
         }
-        assertEquals("Year parameter not valid!\nvalue: 1999 is not in range 2000 - 2100", message);
+        assertEquals("Year parameter not valid!\nvalue: 1899 is not in range 1900 - 2100", message);
     }
 
 
     @Test
-    public void twoThousandYear() {
-        assertEquals(2000, twoThousandYear.getYear());
+    public void nineteenHundredYear() {
+        assertEquals(1900, nineteenHundredYear.getYear());
     }
 
 
     @Test
-    public void twoThousandOneYear() {
-        assertEquals(2001, twoThousandOneYear.getYear());
+    public void nineteenHundredOneYear() {
+        assertEquals(1901, nineteenHundredOneYear.getYear());
     }
 
 
@@ -174,7 +171,7 @@ public class DateTimeTest {
         } catch (IllegalArgumentException ex) {
             message = ex.getMessage();
         }
-        assertEquals("Year parameter not valid!\nvalue: 2101 is not in range 2000 - 2100", message);
+        assertEquals("Year parameter not valid!\nvalue: 2101 is not in range 1900 - 2100", message);
     }
 
 

@@ -2,10 +2,7 @@ package seng202.team10.Model;
 
 
 import seng202.team10.Model.ActivitiesData.*;
-import seng202.team10.Model.FileOperations.FileWriter;
-
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * UserProfile Class for Coach Potato
@@ -19,7 +16,7 @@ public class UserProfile implements java.io.Serializable{
     private ArrayList<Activity> activities = new ArrayList<>();
     private double weight;
     private double height;
-    private Date birthdate;
+    private DateTime birthdate;
     private Goals goals;
     private Calendar calendar;
     private double bmi;
@@ -121,6 +118,10 @@ public class UserProfile implements java.io.Serializable{
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
     public Activities getActivities() {
         return this.activities;
     }
@@ -147,6 +148,8 @@ public class UserProfile implements java.io.Serializable{
 =======
 
 >>>>>>> 1f6db76... Added names to goals and getter. Began implementing the checkGoal function that analyses user progress towards a goal. Added a BMI goal class and wrote calcBmi function in userProfile
+=======
+>>>>>>> 21248bb... Implemented Tests for Activity Class, tweaked a few things in user profile and Activity to make them more readable.
     public ArrayList<Activity> getActivities() {
 >>>>>>> dbb4e11... Fixed DateTimeTest and commented out code that was throwing pipeline off
 =======
@@ -159,6 +162,12 @@ public class UserProfile implements java.io.Serializable{
 =======
 
 >>>>>>> 0d0d13c... Added names to goals and getter. Began implementing the checkGoal function that analyses user progress towards a goal. Added a BMI goal class and wrote calcBmi function in userProfile
+=======
+>>>>>>> a33b861... Implemented Tests for Activity Class, tweaked a few things in user profile and Activity to make them more readable.
+=======
+>>>>>>> 8200c43... Implemented Tests for Activity Class, tweaked a few things in user profile and Activity to make them more readable.
+=======
+>>>>>>> 21caf39... Implemented Tests for Activity Class, tweaked a few things in user profile and Activity to make them more readable.
     public ArrayList<Activity> getActivities() {
 >>>>>>> f805a82... Fixed DateTimeTest and commented out code that was throwing pipeline off
         return this.activities;
@@ -173,6 +182,10 @@ public class UserProfile implements java.io.Serializable{
     }
 >>>>>>> a40329b... Implementation of UserProfile class getter and setter methods
 
+
+
+
+
     /**
      * Method for adding an activity to the list of user's Activities.
      * @param activity Activity
@@ -180,6 +193,7 @@ public class UserProfile implements java.io.Serializable{
     public void addActivity(Activity activity) {
         activities.add(activity);
     }
+
 
     /**
      * Method for adding a new list of activities (such as when a new CSV file is loaded)
@@ -191,6 +205,7 @@ public class UserProfile implements java.io.Serializable{
             addActivity(newActivity);
         }
     }
+
 
     /**
      * Getter method for the weight of the user
@@ -350,45 +365,45 @@ public class UserProfile implements java.io.Serializable{
 
     /**
      * Setter method for the birthdate of the user
-     * @param newDate
+     * @param newDate DateTime
      */
-
-    public void setBirthdate(Date newDate) {
+    public void setBirthdate(DateTime newDate) {
         this.birthdate = newDate;
     }
+
 
     /**
      * Setter method for the birthdate of the user
-     * @param newDate
+     * @param newDate DateTime
      */
-
-    public void setBirthdate(Date newDate) {
+    public void setBirthdate(DateTime newDate) {
         this.birthdate = newDate;
     }
+
 
     /**
      * Setter method for the birthdate of the user
-     * @param newDate
+     * @param newDate DateTime
      */
-
-    public void setBirthdate(Date newDate) {
+    public void setBirthdate(DateTime newDate) {
         this.birthdate = newDate;
     }
+
 
     /**
      * Setter method for the birthdate of the user
-     * @param newDate
+     * @param newDate DateTime
      */
-
-    public void setBirthdate(Date newDate) {
+    public void setBirthdate(DateTime newDate) {
         this.birthdate = newDate;
     }
+
 
     /**
      * Getter method for the birthdate of the user
      * @return Date
      */
-    public Date getBirthDate() {
+    public DateTime getBirthDate() {
         return this.birthdate;
     }
 

@@ -15,11 +15,11 @@ public class Activity implements Serializable {
 
     private String name;
     private DateTime startDateTime;
-    private Double averageVelocity;
-    private Double averageHeartRate;
-    private Double totalDistance;
+    private Double averageVelocity = 0.0;
+    private Double averageHeartRate = 0.0;
+    private Double totalDistance = 0.0;
     private ArrayList<Entry> entries = new ArrayList<>();
-    private int totalDuration;
+    private int totalDuration = 0;
     // private ActivityIntensity intensity;
 
 
@@ -29,9 +29,18 @@ public class Activity implements Serializable {
      * @param newStartDateTime DateTime: Start time and date of the activity
      */
     public Activity(String newName, DateTime newStartDateTime) {
-        this.name = newName;
-        this.startDateTime = newStartDateTime;
+        this.setName(newName);
+        this.setStartDateTime(newStartDateTime);
         // this.intensity = newIntensity;
+    }
+
+
+    /**
+     * Setter method for name of the activity
+     * @param newName: String
+     */
+    public void setName(String newName) {
+        this.name = newName;
     }
 
 
@@ -45,20 +54,20 @@ public class Activity implements Serializable {
 
 
     /**
-     * addEntry Method to add an Entry to the arrayList entries
-     * @param newEntry: Entry to be added.
+     * method to calculate and set the total distance of the activity
      */
-    public void addEntry(Entry newEntry) {
-        entries.add(newEntry);
+    public void calculateTotalDistance() {
+        for(int i = 1; i < this.entries.size(); i++) {
+            this.totalDistance += (this.entries.get(i).getPosition().subtract(this.entries.get(i - 1).getPosition()));
+        }
     }
 
 
     /**
-     * Getter method for the date the activity was started on
-     * @return DateTime
+     * Method to calculate and set the total time taken during the activity
      */
-    public DateTime getStartDateTime() {
-        return this.startDateTime;
+    public void calculateTotalDuration() {
+        this.totalDuration = this.entries.get(this.entries.size() - 1).getTime().subtract(this.startDateTime);
     }
 
 
@@ -85,22 +94,21 @@ public class Activity implements Serializable {
 
 
     /**
-     * method to calculate and set the total distance of the activity
+     * addEntry Method to add an Entry to the arrayList entries
+     * @param newEntry: Entry to be added.
      */
-    public void calculateTotalDistance() {
-        for(int i = 1; i < this.entries.size(); i++) {
-            this.totalDistance += (this.entries.get(i).getPosition().subtract(this.entries.get(i - 1).getPosition()));
-        }
+    public void addEntry(Entry newEntry) {
+        entries.add(newEntry);
     }
 
 
-    /**
-     * Setter method for name of the activity
-     * @param newName: String
-     */
-    public void setName(String newName) {
-        this.name = newName;
-    }
+//    /**
+//     * Setter method for the intensity of the activity
+//     * @param newIntensity: ActivityIntensity
+//     */
+//    public void setIntensity(ActivityIntensity newIntensity) {
+//        this.intensity = newIntensity;
+//    }
 
 
     /**
@@ -109,6 +117,15 @@ public class Activity implements Serializable {
      */
     public String getName() {
         return this.name;
+    }
+
+
+    /**
+     * Getter method for the date the activity was started on
+     * @return DateTime
+     */
+    public DateTime getStartDateTime() {
+        return this.startDateTime;
     }
 
 
@@ -122,11 +139,11 @@ public class Activity implements Serializable {
 
 
     /**
-     * Getter method for the average heart rate during the activity
+     * Getter method for the total time taken during the activity in seconds
      * @return Double
      */
-    public Double getAverageHeartRate() {
-        return this.averageHeartRate;
+    public int getTotalDuration() {
+        return this.totalDuration;
     }
 
 
@@ -140,6 +157,15 @@ public class Activity implements Serializable {
 
 
     /**
+     * Getter method for the average heart rate during the activity
+     * @return Double
+     */
+    public Double getAverageHeartRate() {
+        return this.averageHeartRate;
+    }
+
+
+    /**
      * Getter method for the ArrayList<Entry> entries
      * @return ArrayList<Entry>
      */
@@ -148,45 +174,11 @@ public class Activity implements Serializable {
     }
 
 
-    /**
-     * Setter method for the start time of the activity
-     */
-    public void setStartTime() {
-        this.startDateTime = this.entries.get(0).getTime();
-    }
-
-
-    /**
-     * Method to calculate and set the total time taken during the activity
-     */
-    public void calculateTotalDuration() {
-        this.totalDuration = this.entries.get(this.entries.size()).getTime().subtract(this.startDateTime);
-    }
-
-
-    /**
-     * Getter method for the total time taken during the activity in seconds
-     * @return Double
-     */
-    public int getTotalDuration() {
-        return this.totalDuration;
-    }
-
-
-    /**
-     * Getter method for the start time of the activity
-     * @return Time
-     */
-    public DateTime getStartTime() {
-        return this.startDateTime;
-    }
-
-
 //    /**
-//     * Setter method for the intensity of the activity
-//     * @param newIntensity: ActivityIntensity
+//     * Getter method for intensity of activity
+//     * @return ActivityIntensity
 //     */
-//    public void setIntensity(ActivityIntensity newIntensity) {
-//        this.intensity = newIntensity;
+//    public ActivityIntensity getIntensity() {
+//        return this.intensity;
 //    }
 }
