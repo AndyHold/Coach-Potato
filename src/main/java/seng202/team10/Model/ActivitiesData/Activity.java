@@ -17,7 +17,7 @@ public class Activity implements Serializable {
     private DateTime startDateTime;
     private Double averageVelocity;
     private Double averageHeartRate;
-    private Double totalDistance;
+    private Double totalDistance = 0.0;
     private ArrayList<Entry> entries = new ArrayList<>();
     private int totalDuration;
     // private ActivityIntensity intensity;
@@ -160,7 +160,7 @@ public class Activity implements Serializable {
      * Method to calculate and set the total time taken during the activity
      */
     public void calculateTotalDuration() {
-        this.totalDuration = this.entries.get(this.entries.size()).getTime().subtract(this.startDateTime);
+        this.totalDuration = this.entries.get(this.entries.size()-1).getTime().subtract(this.startDateTime);
     }
 
 
