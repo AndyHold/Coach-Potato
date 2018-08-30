@@ -15,8 +15,22 @@ public class Activity implements Serializable {
 
     private String name;
     private DateTime startDateTime;
+<<<<<<< HEAD
     private Double averageVelocity = 0.0;
     private Double averageHeartRate = 0.0;
+=======
+    private Double averageVelocity;
+    private Double averageHeartRate;
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> d8e4382... Fixing Calculation of total distance and total duration
+=======
+>>>>>>> 9b15fef... Fixing Calculation of total distance and total duration
+=======
+>>>>>>> dc93099... Fixing Calculation of total distance and total duration
+=======
+>>>>>>> f5a854f... Fixing Calculation of total distance and total duration
     private Double totalDistance = 0.0;
     private ArrayList<Entry> entries = new ArrayList<>();
     private int totalDuration = 0;
@@ -157,7 +171,36 @@ public class Activity implements Serializable {
 
 
     /**
+<<<<<<< HEAD
      * Getter method for the average heart rate during the activity
+=======
+     * Getter method for the ArrayList<Entry> entries
+     * @return ArrayList<Entry>
+     */
+    public ArrayList<Entry> getEntries() {
+        return this.entries;
+    }
+
+
+    /**
+     * Setter method for the start time of the activity
+     */
+    public void setStartTime() {
+        this.startDateTime = this.entries.get(0).getTime();
+    }
+
+
+    /**
+     * Method to calculate and set the total time taken during the activity
+     */
+    public void calculateTotalDuration() {
+        this.totalDuration = this.entries.get(this.entries.size()-1).getTime().subtract(this.startDateTime);
+    }
+
+
+    /**
+     * Getter method for the total time taken during the activity in seconds
+>>>>>>> d8e4382... Fixing Calculation of total distance and total duration
      * @return Double
      */
     public Double getAverageHeartRate() {

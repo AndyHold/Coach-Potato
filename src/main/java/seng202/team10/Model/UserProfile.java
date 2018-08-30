@@ -2,6 +2,23 @@ package seng202.team10.Model;
 
 
 import seng202.team10.Model.ActivitiesData.*;
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+=======
+=======
+
+>>>>>>> f5a854f... Fixing Calculation of total distance and total duration
+
+>>>>>>> dc93099... Fixing Calculation of total distance and total duration
+
+>>>>>>> 9b15fef... Fixing Calculation of total distance and total duration
+
+
+>>>>>>> d8e4382... Fixing Calculation of total distance and total duration
 import java.util.ArrayList;
 
 /**
