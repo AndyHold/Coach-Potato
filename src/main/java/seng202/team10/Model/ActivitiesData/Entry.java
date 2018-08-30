@@ -26,6 +26,10 @@ public class Entry {
     /**
      * Constructor for the Entry.
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 =======
     private Activity activity;
 =======
@@ -74,6 +78,18 @@ public class Entry {
 =======
 >>>>>>> 939a15b... Minor changes for Javadoc for Entry and Position classes. Had to push before I pull.
      * @param firstEntry: boolean True if first entry.
+=======
+//     * @param firstEntry: boolean True if first entry.
+>>>>>>> f4dbc9a... Big ol fixing of parser and related things
+=======
+//     * @param firstEntry: boolean True if first entry.
+>>>>>>> 7f65578... Big ol fixing of parser and related things
+=======
+//     * @param firstEntry: boolean True if first entry.
+>>>>>>> 382449a... Big ol fixing of parser and related things
+=======
+//     * @param firstEntry: boolean True if first entry.
+>>>>>>> 4efdce8... Big ol fixing of parser and related things
      * @param time: double Time field of the entry.
      * @param heartRate: double Heart rate field of the entry.
      * @param position: Position Position of the entry.
@@ -284,6 +300,9 @@ public class Entry {
 >>>>>>> f5029c7... No changes made
     }
 
+    public String toString(){
+        return ("First Entry? : " + this.firstEntry + " , " + position.toString());
+    }
     /**
      * Getter method to get user's activities.
      * @return  activity: Activity
