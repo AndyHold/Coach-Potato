@@ -18,7 +18,7 @@ public class Activity {
     private Double averageHeartRate;
     private Double totalDistance;
     private String name;
-    private ArrayList<Entry> entries;
+    private ArrayList<Entry> entries = new ArrayList<>();
     private Time startTime;
     private Double totalTime;
     private ActivityIntensity intensity;
@@ -65,23 +65,23 @@ public class Activity {
     }
 
 
-//    /**
-//     * Method to calculate and set the average heart rate during the activity
-//     */
-//    public void calculateAverageHeartRate() {
-//        Double totalHeartRate = 0.0;
-//        int count = 0;
-//        for(Entry entry: this.entries) {
-//            totalHeartRate += entry.getHeartRate();
-//            count++;
-//        }
-//        this.averageHeartRate = totalHeartRate / count;
-//    }
-//
-//
-//    /**
-//     * method to calculate and set the total distance of the activity
-//     */
+    /**
+     * Method to calculate and set the average heart rate during the activity
+     */
+    public void calculateAverageHeartRate() {
+        Double totalHeartRate = 0.0;
+        int count = 0;
+        for(Entry entry: this.entries) {
+            totalHeartRate += entry.getHeartRate();
+            count++;
+        }
+        this.averageHeartRate = totalHeartRate / count;
+    }
+
+
+    /**
+     * method to calculate and set the total distance of the activity
+     */
 //    public void calculateTotalDistance() {
 //        for(int i = 1; i < this.entries.size(); i++) {
 //            this.totalDistance += (this.entries.get(i).getPosition() - this.entries.get(i - 1).getPosition());
@@ -133,7 +133,7 @@ public class Activity {
         return this.averageVelocity;
     }
 
-
+    public ArrayList<Entry> getEntries() {return this.entries;}
 //    /**
 //     * Setter method for the start time of the activity
 //     */

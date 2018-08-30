@@ -19,7 +19,7 @@ public class Entry {
 
     /**
      * Constructor for the Entry.
-     * @param firstEntry: boolean True if first entry.
+//     * @param firstEntry: boolean True if first entry.
      * @param time: double Time field of the entry.
      * @param heartRate: double Heart rate field of the entry.
      * @param position: Position Position of the entry.
@@ -132,6 +132,9 @@ public class Entry {
         this.velocity = (this.distance - prevDistance)/((time.getMinute()-prevTime.getMinute())*60);
     }
 
+    public String toString(){
+        return ("First Entry? : " + this.firstEntry + " , " + position.toString());
+    }
     /**
      * Getter method to get user's activities.
      * @return  activity: Activity
