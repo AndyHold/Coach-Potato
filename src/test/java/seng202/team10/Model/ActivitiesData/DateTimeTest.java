@@ -8,15 +8,15 @@ import static org.junit.Assert.*;
 
 public class DateTimeTest {
 
-    private DateTime janFirst = new DateTime(1, 1, 2018, 0, 0, 0);
+    private DateTime janFirst = new DateTime(1, 1, 2018, 10, 30, 10);
     private DateTime janThirtieth = new DateTime(30, 1, 2018, 0, 0, 0);
-    private DateTime janThirtyFirst = new DateTime(31, 1, 2018, 0, 0, 0);
+    private DateTime janThirtyFirst = new DateTime(31, 1, 2018, 5, 15, 20);
     private DateTime febSecond = new DateTime(2, 2, 2018, 23, 59, 59);
     private DateTime febTwentySeventh = new DateTime(27, 2, 2018, 23, 59, 59);
     private DateTime febTwentyEighth = new DateTime(28, 2, 2018, 23, 59, 59);
     private DateTime febTwentyEighthLeap = new DateTime(28, 2, 2020, 23, 59, 59);
     private DateTime febTwentyNinthLeap = new DateTime(29, 2, 2024, 23, 59, 59);
-    private DateTime marchThird = new DateTime(3, 3, 2018, 12, 30, 30);
+    private DateTime marchThird = new DateTime(3, 3, 2020, 12, 30, 30);
     private DateTime aprilEleventh = new DateTime(11, 4, 2018, 0, 0, 0);
     private DateTime aprilTwentyNinth = new DateTime(29, 4, 2018, 0, 0, 0);
     private DateTime aprilThirtieth = new DateTime(30, 4, 2018, 0, 0, 0);
@@ -27,7 +27,7 @@ public class DateTimeTest {
     private DateTime septemberTwentyThird = new DateTime(23, 9, 2018, 0, 0, 0);
     private DateTime octoberFourth = new DateTime(4, 10, 2018, 0, 0, 0);
     private DateTime novemberTwentyFifth = new DateTime(25, 11, 2018, 0, 0, 0);
-    private DateTime decemberSixteenth = new DateTime(16, 12, 2018, 0, 0, 0);
+    private DateTime decemberSixteenth = new DateTime(16, 12, 2017, 0, 0, 0);
     private DateTime twoThousandYear = new DateTime(1,1,2000,0,0,0);
     private DateTime twoThousandOneYear = new DateTime(1,1,2001,0,0,0);
     private DateTime twoThousandNinetyNineYear = new DateTime(1,1,2099,0,0,0);
@@ -58,10 +58,9 @@ public class DateTimeTest {
     private DateTime secondAfter = new DateTime(1, 1, 2000, 0, 0, 59);
 
 
-
     @Test
     public void janFirstToString() {
-        assertEquals("1st, January, 2018 - 00:00:00", janFirst.toString());
+        assertEquals("1st, January, 2018 - 10:30:10", janFirst.toString());
     }
 
 
@@ -73,7 +72,7 @@ public class DateTimeTest {
 
     @Test
     public void marchThirdToString() {
-        assertEquals("3rd, March, 2018 - 12:30:30", marchThird.toString());
+        assertEquals("3rd, March, 2020 - 12:30:30", marchThird.toString());
     }
 
 
@@ -127,7 +126,7 @@ public class DateTimeTest {
 
     @Test
     public void decemberSixteenthToString() {
-        assertEquals("16th, December, 2018 - 00:00:00", decemberSixteenth.toString());
+        assertEquals("16th, December, 2017 - 00:00:00", decemberSixteenth.toString());
     }
 
 
@@ -663,5 +662,146 @@ public class DateTimeTest {
     @Test
     public void isNotEqualSecond() {
         assertFalse(zeroHour.isEqual(new DateTime(1, 1, 2000, 0, 0, 1)));
+    }
+
+
+    @Test
+    public void subtractSameMonthDays() {
+        assertEquals(26, febTwentyEighth.subtractDaysFromDateTime(febSecond));
+    }
+
+
+    @Test
+    public void subtractSameYearDays() {
+        assertEquals(2, febSecond.subtractDaysFromDateTime(janThirtyFirst));
+    }
+
+
+    @Test
+    public void subtractSameYearLeapDays() {
+        assertEquals(4, marchThird.subtractDaysFromDateTime(febTwentyEighthLeap));
+    }
+
+
+    @Test
+    public void subtractDifferentYearDays() {
+        assertEquals(16, janFirst.subtractDaysFromDateTime(decemberSixteenth));
+    }
+
+    @Test
+    public void subtractDifferentYearLeapDays() {
+        assertEquals(464, marchThird.subtractDaysFromDateTime(novemberTwentyFifth));
+    }
+
+
+    @Test
+    public void subtractSameMonthDaysNegative() {
+        assertEquals(-26, febSecond.subtractDaysFromDateTime(febTwentyEighth));
+    }
+
+
+    @Test
+    public void subtractSameYearDaysNegative() {
+        assertEquals(-2, janThirtyFirst.subtractDaysFromDateTime(febSecond));
+    }
+
+
+    @Test
+    public void subtractSameYearLeapDaysNegative() {
+        assertEquals(-4, febTwentyEighthLeap.subtractDaysFromDateTime(marchThird));
+    }
+
+
+    @Test
+    public void subtractDifferentYearDaysNegative() {
+        assertEquals(-16, decemberSixteenth.subtractDaysFromDateTime(janFirst));
+    }
+
+
+    @Test
+    public void subtractDifferentYearLeapDaysNegative() {
+        assertEquals(-464, novemberTwentyFifth.subtractDaysFromDateTime(marchThird));
+    }
+
+
+    @Test
+    public void subtractSameDiffSeconds() {
+        assertEquals(29, febTwentyEighth.subtract(new DateTime(28, 2, 2018, 23, 59, 30)));
+    }
+
+
+    @Test
+    public void subtractSameDiffMinutes() {
+        assertEquals(1740, febTwentyEighth.subtract(new DateTime(28, 2, 2018, 23, 30, 59)));
+    }
+
+
+    @Test
+    public void subtractSameDiffHours() {
+        assertEquals(36000, febTwentyEighth.subtract(new DateTime(28, 2, 2018, 13, 59, 59)));
+    }
+
+
+    @Test
+    public void subtractSameDiffDays() {
+        assertEquals(86400, febTwentyEighth.subtract(new DateTime(27, 2, 2018, 23, 59, 59)));
+    }
+
+    @Test
+    public void subtractSameDiffMonths() {
+        assertEquals(2678400, febTwentyEighth.subtract(new DateTime(28, 1, 2018, 23, 59, 59)));
+    }
+
+
+    @Test
+    public void subtractSameDiffYears() {
+        assertEquals(31536000, febTwentyEighth.subtract(new DateTime(28, 2, 2017, 23, 59, 59)));
+    }
+
+
+    @Test
+    public void subtractSameDiffYearsLeap() {
+        assertEquals(94694400, febTwentyEighth.subtract(new DateTime(28, 2, 2015, 23, 59, 59)));
+    }
+
+
+    @Test
+    public void subtractSameDiffSecondsNegative() {
+        assertEquals(-29, (new DateTime(28, 2, 2018, 23, 59, 30)).subtract(febTwentyEighth));
+    }
+
+
+    @Test
+    public void subtractSameDiffMinutesNegative() {
+        assertEquals(-1740, (new DateTime(28, 2, 2018, 23, 30, 59)).subtract(febTwentyEighth));
+    }
+
+
+    @Test
+    public void subtractSameDiffHoursNegative() {
+        assertEquals(-36000, (new DateTime(28, 2, 2018, 13, 59, 59)).subtract(febTwentyEighth));
+    }
+
+
+    @Test
+    public void subtractSameDiffDaysNegative() {
+        assertEquals(-86400, (new DateTime(27, 2, 2018, 23, 59, 59)).subtract(febTwentyEighth));
+    }
+
+    @Test
+    public void subtractSameDiffMonthsNegative() {
+        assertEquals(-2678400, (new DateTime(28, 1, 2018, 23, 59, 59)).subtract(febTwentyEighth));
+    }
+
+
+    @Test
+    public void subtractSameDiffYearsNegative() {
+        assertEquals(-31536000, (new DateTime(28, 2, 2017, 23, 59, 59)).subtract(febTwentyEighth));
+    }
+
+
+    @Test
+    public void subtractSameDiffYearsLeapNegative() {
+        assertEquals(-94694400, (new DateTime(28, 2, 2015, 23, 59, 59)).subtract(febTwentyEighth));
     }
 }
