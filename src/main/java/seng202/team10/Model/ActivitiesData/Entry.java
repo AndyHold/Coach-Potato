@@ -1,13 +1,14 @@
 package seng202.team10.Model.ActivitiesData;
 
 
+import java.io.Serializable;
 
 /**
  * Entry Class for Coach Potato
  * SENG202 2018S2
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
-public class Entry {
+public class Entry  implements Serializable {
 
     private boolean firstEntry;
     private DateTime time;
