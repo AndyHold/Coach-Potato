@@ -42,11 +42,11 @@ public class Parser {
      * that are each lists that contain each value in an index.
      */
     public ArrayList<ArrayList<String>> formatFileContents(ArrayList<String> fileContents) {
-        ArrayList<ArrayList<String>> formattedFile = new ArrayList<ArrayList<String>>();
+        ArrayList<ArrayList<String>> formattedFile = new ArrayList<>();
         String[] splitLine;
 
         for (int i = 0; i < fileContents.size(); i++) {
-            formattedFile.add(new ArrayList<String>());
+            formattedFile.add(new ArrayList<>());
             splitLine = fileContents.get(i).split(",");
             for (String aSplitLine : splitLine) {
                 formattedFile.get(i).add(aSplitLine);
@@ -62,7 +62,7 @@ public class Parser {
      * @return activites  An ArrayList<Activity> that contains every activity in the file.
      */
     public ArrayList<Activity> processFile(ArrayList<ArrayList<String>> formattedFile) {
-        ArrayList<Activity> activities = new ArrayList<Activity>();
+        ArrayList<Activity> activities = new ArrayList<>();
         while (linePosition < formattedFile.size()) {
             activities.add(processActivity(formattedFile));
         }
@@ -76,9 +76,8 @@ public class Parser {
      *
      * @return activity  An Activity object that contains a number of entries.
      */
-    public Activity processActivity(ArrayList<ArrayList<String>> formattedFile) {
-        Activity activity = new Activity();
-        activity.setName(formattedFile.get(linePosition).get(1));
+    public Activity processActivity(ArrayList<ArrayList<String>> formattedFile) throws NumberFormatException, IllegalArgumentException {
+        String name = formattedFile.get(linePosition).get(1);
         linePosition += 1;
 
         String[] dateArray = (formattedFile.get(linePosition).get(0)).split("/");
@@ -91,12 +90,17 @@ public class Parser {
         int second = Integer.valueOf(timeArray[2]);
 
         DateTime dateTime = new DateTime(year, month, day, hour, minute, second);
-//        activity.setDate(dateTime);
 
+        Activity activity = new Activity(name, dateTime);
         while (linePosition < formattedFile.size() && (formattedFile.get(linePosition)).size() == 6) {
             activity.addEntry(processLine(formattedFile));
             linePosition += 1;
         }
+        activity.calculateTotalDistance();
+        activity.calculateTotalDuration();
+        activity.calculateAverageHeartRate();
+        activity.calculateAverageVelocity();
+
         return activity;
     }
 
@@ -126,8 +130,7 @@ public class Parser {
         int heartRate = Integer.valueOf(currentLine.get(2));
         Position position = processPosition(currentLine);
 
-        Entry entry = new Entry(isFirst, dateTime, heartRate, position);
-        return entry;
+        return new Entry(isFirst, dateTime, heartRate, position);
     }
 
     /**

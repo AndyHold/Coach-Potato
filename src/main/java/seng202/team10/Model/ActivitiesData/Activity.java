@@ -1,7 +1,7 @@
 package seng202.team10.Model.ActivitiesData;
 
 
-import java.sql.Time;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -10,33 +10,38 @@ import java.util.ArrayList;
  * SENG202 2018S2
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
-public class Activity {
+public class Activity implements Serializable {
 
 
-//    private Date date;
+    private String name;
+    private DateTime startDateTime;
     private Double averageVelocity;
     private Double averageHeartRate;
     private Double totalDistance;
-    private String name;
     private ArrayList<Entry> entries = new ArrayList<>();
-    private Time startTime;
-    private Double totalTime;
-    private ActivityIntensity intensity;
+    private int totalDuration;
+    // private ActivityIntensity intensity;
 
 
-//    /**
-//     * Setter method for the date the activity was started on
-//     * @param day: Day
-//     * @param month: Month
-//     * @param year: Year
-//     */
-//    public void setDate(int day, int month, int year) {
-//        try {
-//            this.date = new Date(day, month, year);
-//        } catch (IllegalArgumentException ex) {
-//            System.out.print(ex);
-//        }
-//    }
+    /**
+     * Constructor method for Activity Class
+     * @param newName String: Name of the activity
+     * @param newStartDateTime DateTime: Start time and date of the activity
+     */
+    public Activity(String newName, DateTime newStartDateTime) {
+        this.name = newName;
+        this.startDateTime = newStartDateTime;
+        // this.intensity = newIntensity;
+    }
+
+
+    /**
+     * Setter method for the date and time the activity was started on
+     * @param newDateTime DateTime: Start date and time for this activity
+     */
+    public void setStartDateTime(DateTime newDateTime) {
+            this.startDateTime = newDateTime;
+    }
 
 
     /**
@@ -48,20 +53,20 @@ public class Activity {
     }
 
 
-//    /**
-//     * Getter method for the date the activity was started on
-//     * @return Date
-//     */
-//    public Date getDate() {
-//        return this.date;
-//    }
+    /**
+     * Getter method for the date the activity was started on
+     * @return DateTime
+     */
+    public DateTime getStartDateTime() {
+        return this.startDateTime;
+    }
 
 
     /**
      * Method to calculate and set the average velocity during the activity
      */
     public void calculateAverageVelocity() {
-        this.averageVelocity = this.totalDistance / this.totalTime;
+        this.averageVelocity = this.totalDistance / this.totalDuration;
     }
 
 
@@ -82,11 +87,11 @@ public class Activity {
     /**
      * method to calculate and set the total distance of the activity
      */
-//    public void calculateTotalDistance() {
-//        for(int i = 1; i < this.entries.size(); i++) {
-//            this.totalDistance += (this.entries.get(i).getPosition() - this.entries.get(i - 1).getPosition());
-//        }
-//    }
+    public void calculateTotalDistance() {
+        for(int i = 1; i < this.entries.size(); i++) {
+            this.totalDistance += (this.entries.get(i).getPosition().subtract(this.entries.get(i - 1).getPosition()));
+        }
+    }
 
 
     /**
@@ -133,25 +138,38 @@ public class Activity {
         return this.averageVelocity;
     }
 
-    public ArrayList<Entry> getEntries() {return this.entries;}
-//    /**
-//     * Setter method for the start time of the activity
-//     */
-//    public void setStartTime() { this.startTime = this.entries.get(0).getTime(); }
-//
-//
-//    /**
-//     * Method to calculate and set the total time taken during the activity
-//     */
-//    public void calculateTotalTime() { this.totalTime = this.entries.get(-1).getTime() - this.startTime; }
+
+    /**
+     * Getter method for the ArrayList<Entry> entries
+     * @return ArrayList<Entry>
+     */
+    public ArrayList<Entry> getEntries() {
+        return this.entries;
+    }
 
 
     /**
-     * Getter method for the total time taken during the activity
+     * Setter method for the start time of the activity
+     */
+    public void setStartTime() {
+        this.startDateTime = this.entries.get(0).getTime();
+    }
+
+
+    /**
+     * Method to calculate and set the total time taken during the activity
+     */
+    public void calculateTotalDuration() {
+        this.totalDuration = this.entries.get(this.entries.size()).getTime().subtract(this.startDateTime);
+    }
+
+
+    /**
+     * Getter method for the total time taken during the activity in seconds
      * @return Double
      */
-    public Double getTotalTime() {
-        return this.totalTime;
+    public int getTotalDuration() {
+        return this.totalDuration;
     }
 
 
@@ -159,16 +177,16 @@ public class Activity {
      * Getter method for the start time of the activity
      * @return Time
      */
-    public Time getStartTime() {
-        return this.startTime;
+    public DateTime getStartTime() {
+        return this.startDateTime;
     }
 
 
-    /**
-     * Setter method for the intensity of the activity
-     * @param newIntensity: ActivityIntensity
-     */
-    public void setIntensity(ActivityIntensity newIntensity) {
-        this.intensity = newIntensity;
-    }
+//    /**
+//     * Setter method for the intensity of the activity
+//     * @param newIntensity: ActivityIntensity
+//     */
+//    public void setIntensity(ActivityIntensity newIntensity) {
+//        this.intensity = newIntensity;
+//    }
 }
