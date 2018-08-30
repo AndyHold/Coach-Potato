@@ -288,6 +288,10 @@ public class Entry {
 >>>>>>> 5a3c8cd... No changes made
 =======
         DateTime prevTime = prevEntry.getTime();
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
         this.velocity = (this.distance - prevDistance)/((time.getMinute()-prevTime.getMinute())*60);
 >>>>>>> 7de2265... No changes made
 =======
@@ -298,6 +302,18 @@ public class Entry {
         DateTime prevTime = prevEntry.getTime();
         this.velocity = (this.distance - prevDistance)/((time.getMinute()-prevTime.getMinute())*60);
 >>>>>>> f5029c7... No changes made
+=======
+        this.velocity = (this.distance - prevDistance)/((time.subtract(prevTime)));
+>>>>>>> 7a666de... Modified Entry class and tests for it as datetime class was updated.
+=======
+        this.velocity = (this.distance - prevDistance)/((time.subtract(prevTime)));
+>>>>>>> 4de7043... Modified Entry class and tests for it as datetime class was updated.
+=======
+        this.velocity = (this.distance - prevDistance)/((time.subtract(prevTime)));
+>>>>>>> 8522a53... Modified Entry class and tests for it as datetime class was updated.
+=======
+        this.velocity = (this.distance - prevDistance)/((time.subtract(prevTime)));
+>>>>>>> beae2e7... Modified Entry class and tests for it as datetime class was updated.
     }
 
     public String toString(){

@@ -7,11 +7,11 @@ import static org.junit.Assert.*;
 public class EntryTest {
 
     Position position1 = new Position(0,0,0);
-    DateTime time1 = new DateTime(1,1,2018, 0,0,0);
+    DateTime time1 = new DateTime(2018,1,1, 0,0,0);
     Entry entry1 = new Entry(true, time1, 140, position1);
 
     Position position2 = new Position(1,2,3);
-    DateTime time2 = new DateTime(1,1,2018, 0,1,0);
+    DateTime time2 = new DateTime(2018,1,1, 0,1,0);
     Entry entry2 = new Entry(false, time2, 140, position2);
 
     @Test
