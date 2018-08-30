@@ -16,7 +16,7 @@ public class UserProfile implements java.io.Serializable {
 
 
     private String name;
-    private ArrayList<Activity> activities;
+    private ArrayList<Activity> activities = new ArrayList<>();
     private double weight;
     private double height;
     private Date birthdate;
@@ -58,6 +58,17 @@ public class UserProfile implements java.io.Serializable {
      */
     public void addActivity(Activity activity) {
         activities.add(activity);
+    }
+
+    /**
+     * Method for adding a new list of activities (such as when a new CSV file is loaded)
+     * TODO check for duplicates
+     * @param newActivities the arraylist of activity objects
+     */
+    public void addActivities(ArrayList<Activity> newActivities){
+        for(Activity newActivity: newActivities){
+            addActivity(newActivity);
+        }
     }
 
     /**

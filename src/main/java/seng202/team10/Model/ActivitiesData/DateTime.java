@@ -1,6 +1,7 @@
 package seng202.team10.Model.ActivitiesData;
 
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 import static java.lang.Math.abs;
@@ -10,7 +11,7 @@ import static java.lang.Math.abs;
  * SENG202 2018S2
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
-public class DateTime {
+public class DateTime implements Serializable {
 
     private int day;
     private int month;
@@ -48,7 +49,7 @@ public class DateTime {
         if ((2000 <= newYear) && (newYear <= 2100)) {
             this.year = newYear;
         } else {
-            throw new IllegalArgumentException("Year parameter not valid!\n");
+            throw new IllegalArgumentException("Year parameter not valid!\nvalue: " + String.valueOf(newYear) + " is not in range 2000 - 2100");
         }
     }
 
@@ -61,7 +62,7 @@ public class DateTime {
         if ((1 <= newMonth) && (newMonth <= 12)) {
             this.month = newMonth;
         } else {
-            throw new IllegalArgumentException("Month parameter not valid!");
+            throw new IllegalArgumentException("Month parameter not valid!\nvalue: " + String.valueOf(newMonth) + " is not in range 1 - 12");
         }
     }
 
@@ -75,12 +76,12 @@ public class DateTime {
             if ((1 <= newDay) && (newDay <= 29)) {
                 this.day = newDay;
             } else {
-                throw new IllegalArgumentException("Day parameter not valid!");
+                throw new IllegalArgumentException("Day parameter not valid!\nvalue: " + String.valueOf(newDay) + " is not in range 1 - 29");
             }
         } else if ((1 <= newDay) && (newDay <= this.daysInMonth.get(this.month))) {
             this.day = newDay;
         } else {
-            throw new IllegalArgumentException("Day parameter not valid!");
+            throw new IllegalArgumentException("Day parameter not valid!\nvalue: " + String.valueOf(newDay) + " is not in range 1 - " + String.valueOf(this.daysInMonth.get(this.month)));
         }
     }
 
@@ -93,7 +94,7 @@ public class DateTime {
         if ((0 <= newHour) && newHour <= 23) {
             this.hour = newHour;
         } else {
-            throw new IllegalArgumentException("Hour parameter not valid!");
+            throw new IllegalArgumentException("Hour parameter not valid!\nvalue: " + String.valueOf(newHour) + " is not in range 1 - 23");
         }
     }
 
@@ -106,7 +107,7 @@ public class DateTime {
         if ((0 <= newMinute) && (newMinute <= 59)) {
             this.minute = newMinute;
         } else {
-            throw new IllegalArgumentException("Minute parameter not valid!");
+            throw new IllegalArgumentException("Minute parameter not valid!\nvalue: " + String.valueOf(newMinute) + " is not in range 1 - 59");
         }
     }
 
@@ -119,7 +120,7 @@ public class DateTime {
         if ((0 <= newSecond) && (newSecond <= 59)) {
             this.second = newSecond;
         } else {
-            throw new IllegalArgumentException("Second parameter not valid!");
+            throw new IllegalArgumentException("Second parameter not valid!\nvalue: " + String.valueOf(newSecond) + " is not in range 1 - 59");
         }
     }
 
@@ -283,8 +284,7 @@ public class DateTime {
     public int subtractDaysFromDateTime(DateTime otherDateTime) {
         int daysThis = calculateDaysFrom2000(this);
         int daysOther = calculateDaysFrom2000(otherDateTime);
-        int days = daysThis - daysOther;
-        return days;
+        return daysThis - daysOther;
     }
 
 
