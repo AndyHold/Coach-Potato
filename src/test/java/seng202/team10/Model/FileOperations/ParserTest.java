@@ -15,6 +15,7 @@ public class ParserTest {
     private Parser testParser = new Parser();
 
     @Test
+    /* this is an unofficial test for me to test the whole process */
     public void overallTest() throws FileNotFoundException{
         ArrayList<String> fileContents = testParser.getFileContents("testdata.csv");
 
