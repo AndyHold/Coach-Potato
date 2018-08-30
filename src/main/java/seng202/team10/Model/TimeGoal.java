@@ -7,6 +7,6 @@ public class TimeGoal extends Goal {
     public TimeGoal(String name, DateTime start, DateTime target, double time) {
 
 
-        super(name, start, target, "Time", false, 0.0, 0, time, 0.0, 0.0, 0.0);
+        super(name, start, target, "Time", false, 0, time, 0.0, 0.0, 0.0);
     }
 }

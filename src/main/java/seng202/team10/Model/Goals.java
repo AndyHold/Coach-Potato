@@ -10,21 +10,25 @@ import java.util.ArrayList;
  * SENG202 2018S2
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
-public class Goals {
+public class Goals implements java.io.Serializable{
 
+    private UserProfile user;
     private ArrayList<Goal> currentGoals;
     private ArrayList<Goal> achievedGoals;
     private ArrayList<Goal> failedGoals;
     private ArrayList<Goal> availableGoals;
 
+    public Goals(UserProfile user) {
+        this.user = user;
+    }
 
 
     public Goal createGoal() {
         //prompt user for the type of goal they wish to create
-        String userAns = "Velocity"; //default for now. Will end up being a button or drop down box
+        String userAns = "Weight"; //default for now. Will end up being a button or drop down box
 
         //prompt user for a name for the goal
-        String goalName = "FirstGoal"; //default for now
+        String goalName = "FirstGoal"; //default for now. Will be a text input box
 
         //prompt user for starting day, month, year, hour, minute, second
         int startDay = 1; //default for now
@@ -61,12 +65,6 @@ public class Goals {
             //prompt user for target distance
             double distance = 45.6; //default for nowc
             DistanceGoal newGoal = new DistanceGoal(goalName, startDate, targetDate, distance);
-            availableGoals.add(newGoal);
-            return newGoal;
-        } else if (userAns == "Velocity") {
-            //prompt user for target velocity
-            double velocity = 14.9; //default for now
-            VelocityGoal newGoal = new VelocityGoal(goalName, startDate, targetDate, velocity);
             availableGoals.add(newGoal);
             return newGoal;
         } else if (userAns == "BMI") {
@@ -111,23 +109,19 @@ public class Goals {
         System.out.println("The current goal types you are working towards are: " + toPrint);
     }
 
-
-    //TODO: analyse the user's progress towards meeting a goal
     public void checkGoal(Goal goal) {
         if (currentGoals.contains(goal)) {
             System.out.println("" + goal.getGoalName() + "is of type " + goal.getGoalType());
-            if (goal.getGoalType() == "Weight") {
-                System.out.println("Your target for this goal is to weigh " + goal.getGoalWeight() + " by " + goal.getGoalTargetDate());
-            } else if (goal.getGoalType() == "Frequency") {
-                System.out.println("Your target for this goal is to exersize " + goal.getGoalFrequency() + " times by " + goal.getGoalTargetDate());
-            } else if (goal.getGoalType() == "Distance") {
-                System.out.println("Your target for this goal is to cover " + goal.getGoalDistance() + " metres by " + goal.getGoalTargetDate());
-            } else if (goal.getGoalType() == "Velocity") {
-                System.out.println("Your target for this goal is to reach a velocity of " + goal.getGoalVelocity() + " by " + goal.getGoalTargetDate());
-            } else if (goal.getGoalType() == "BMI") {
-                System.out.println("Your target for this goal is to obtain a BMI of " + goal.getGoalBmi() + " by " + goal.getGoalTargetDate());
-            } else {
-                System.out.println("Your target for this goal is to exercise for " + goal.getGoalTime() + " minutes by " + goal.getGoalTargetDate());
+
+            String type = goal.getGoalType();
+            switch (type) {
+                case "Weight":
+                    goal.reviewWeightGoal(goal, user.getWeight());
+                    break;
+                case "BMI":
+                    goal.reviewBmiGoal(goal, user.calcBmi());
+                    break;
+                //TODO add in the Distance, frequency, and time cases (which need data input first)
             }
         }
     }
