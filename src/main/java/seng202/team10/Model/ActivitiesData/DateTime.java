@@ -238,7 +238,7 @@ public class DateTime {
     public int subtract(DateTime otherDateTime) {
         int seconds = this.second - otherDateTime.getSecond();
         seconds += ((this.minute - otherDateTime.getMinute()) * 60);
-        seconds += ((this.hour - otherDateTime.getHour()) * 36000);
+        seconds += ((this.hour - otherDateTime.getHour()) * 3600);
 
         int days = subtractDaysFromDateTime(otherDateTime);
         seconds += days * 86400;
