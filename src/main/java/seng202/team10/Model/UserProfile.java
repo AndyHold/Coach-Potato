@@ -2,10 +2,7 @@ package seng202.team10.Model;
 
 
 import seng202.team10.Model.ActivitiesData.*;
-import seng202.team10.Model.FileOperations.FileWriter;
-
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * UserProfile Class for Coach Potato
@@ -19,7 +16,7 @@ public class UserProfile implements java.io.Serializable{
     private ArrayList<Activity> activities = new ArrayList<>();
     private double weight;
     private double height;
-    private Date birthdate;
+    private DateTime birthdate;
     private Goals goals;
     private Calendar calendar;
     private double bmi;
@@ -47,10 +44,10 @@ public class UserProfile implements java.io.Serializable{
      * Getter method for the activities of the user
      * @return Activities
      */
-
     public ArrayList<Activity> getActivities() {
         return this.activities;
     }
+
 
     /**
      * Method for adding an activity to the list of user's Activities.
@@ -59,6 +56,7 @@ public class UserProfile implements java.io.Serializable{
     public void addActivity(Activity activity) {
         activities.add(activity);
     }
+
 
     /**
      * Method for adding a new list of activities (such as when a new CSV file is loaded)
@@ -70,6 +68,7 @@ public class UserProfile implements java.io.Serializable{
             addActivity(newActivity);
         }
     }
+
 
     /**
      * Getter method for the weight of the user
@@ -109,18 +108,18 @@ public class UserProfile implements java.io.Serializable{
 
     /**
      * Setter method for the birthdate of the user
-     * @param newDate
+     * @param newDate DateTime
      */
-
-    public void setBirthdate(Date newDate) {
+    public void setBirthdate(DateTime newDate) {
         this.birthdate = newDate;
     }
+
 
     /**
      * Getter method for the birthdate of the user
      * @return Date
      */
-    public Date getBirthDate() {
+    public DateTime getBirthDate() {
         return this.birthdate;
     }
 
