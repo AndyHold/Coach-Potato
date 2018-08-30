@@ -129,7 +129,7 @@ public class Entry {
     public void calculateVelocity(Entry prevEntry) {
         double prevDistance = prevEntry.getDistance();
         DateTime prevTime = prevEntry.getTime();
-        this.velocity = (this.distance - prevDistance)/((time.getMinute()-prevTime.getMinute())*60);
+        this.velocity = (this.distance - prevDistance)/((time.subtract(prevTime)));
     }
 
     /**
