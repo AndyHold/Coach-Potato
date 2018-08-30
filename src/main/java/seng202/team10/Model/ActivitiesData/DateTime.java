@@ -3,6 +3,8 @@ package seng202.team10.Model.ActivitiesData;
 
 import java.util.HashMap;
 
+import static java.lang.Math.abs;
+
 /**
  * Date Class for Coach Potato
  * SENG202 2018S2
@@ -26,7 +28,7 @@ public class DateTime {
      * @param month int: month of the year
      * @param year: year between 2000 and 2100
      */
-    public DateTime(int day, int month, int year, int hour, int minute, int second) {
+    public DateTime(int year, int month, int day, int hour, int minute, int second) {
         fillMonths();
         fillDaysInMonth();
         setYear(year);
@@ -46,7 +48,7 @@ public class DateTime {
         if ((2000 <= newYear) && (newYear <= 2100)) {
             this.year = newYear;
         } else {
-            throw new IllegalArgumentException("Year parameter not valid!");
+            throw new IllegalArgumentException("Year parameter not valid!\n");
         }
     }
 
@@ -228,20 +230,62 @@ public class DateTime {
     }
 
 
-//    /**
-//     * Method to subtract another DateTime object from this DateTime object
-//     * @param otherDateTime DateTime: DateTime object to subtract
-//     * @return int: the difference between the two objects in seconds
-//     */
-//    public int subtract(DateTime otherDateTime) {
-//        int seconds = this.second - otherDateTime.getSecond();
-//        seconds += ((this.minute - otherDateTime.getMinute()) * 60);
-//        seconds += ((this.hour - otherDateTime.getHour()) * 36000);
-//
-//        int years = this.year - otherDateTime.getYear();
-//        int months = this.month - otherDateTime.getMonth();
-//        int days = this.day - otherDateTime.getDay();
-//        }
+    /**
+     * Method to subtract another DateTime object from this DateTime object
+     * @param otherDateTime DateTime: DateTime object to subtract
+     * @return int: the difference between the two objects in seconds
+     */
+    public int subtract(DateTime otherDateTime) {
+        int seconds = this.second - otherDateTime.getSecond();
+        seconds += ((this.minute - otherDateTime.getMinute()) * 60);
+        seconds += ((this.hour - otherDateTime.getHour()) * 3600);
+
+        int days = subtractDaysFromDateTime(otherDateTime);
+        seconds += days * 86400;
+        return seconds;
+    }
+
+
+    /**
+     * Method to calculate how many days since the beginning of the year 2000
+     * @param dateTime DateTime: the date to be calculated minus 2000 years
+     * @return int: The amount of days since the beginning of the year 2000
+     */
+    private int calculateDaysFrom2000(DateTime dateTime) {
+        int days = 0;
+        int index = 0;
+        int years = dateTime.getYear() - 2000;
+        for (; index < years; index++) {
+            if ((index % 4) == 0) {
+                days += 366;
+            } else {
+                days += 365;
+            }
+        }
+        index = 1;
+        for (; index < dateTime.getMonth(); index++) {
+            if ((index == 2) && ((dateTime.getYear() % 4) == 0)) {
+                days += 29;
+            } else {
+                days += this.daysInMonth.get(index);
+            }
+        }
+        days += dateTime.getDay();
+        return days;
+    }
+
+
+    /**
+     * Method to calculate the difference in days between two DateTime objects
+     * @param otherDateTime DateTime: DateTime to be subtracted from this DateTime
+     * @return int: number of days difference
+     */
+    public int subtractDaysFromDateTime(DateTime otherDateTime) {
+        int daysThis = calculateDaysFrom2000(this);
+        int daysOther = calculateDaysFrom2000(otherDateTime);
+        int days = daysThis - daysOther;
+        return days;
+    }
 
 
     /**

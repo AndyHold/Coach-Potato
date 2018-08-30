@@ -1,6 +1,7 @@
 package seng202.team10.Model.FileOperations;
 
 import seng202.team10.Model.ActivitiesData.Activity;
+import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.ActivitiesData.Entry;
 import seng202.team10.Model.ActivitiesData.Position;
 
@@ -9,14 +10,7 @@ import java.util.ArrayList;
 
 public class Parser {
 
-
-    private ArrayList<String> fileContents;
     private int linePosition = 0;
-    private ArrayList<Activity> activities;
-    private Activity currentActivity;
-    private Entry currentEntry;
-    private FileReader fileReader;
-    private FileWriter fileWriter;
 
 
     /**
@@ -27,13 +21,38 @@ public class Parser {
      * @return fileContents  An ArrayList containing an ArrayList containing string values.
      */
     public ArrayList<String> getFileContents(String filePath) throws FileNotFoundException { //handle this with gui message in what calls this
-        ArrayList<String> fileContents = new ArrayList<String>();
+        ArrayList<String> fileContents = new ArrayList<>();
         FileReader reader = new FileReader();
-        if(reader.checkFileExists(filePath)){
+        if(reader.checkFileExists("./FilesToLoad/" + filePath)) {
             fileContents = reader.openNewFile(filePath);
+        } else {
+            System.out.println("File does not exist");
         }
         return fileContents;
 
+    }
+
+    /**
+     *Formats an unparsed CSV file and returns an ArrayList with the values in indexes
+     * and easily accessible.
+     *
+     * @param fileContents The unparsed contents of the file, in arraylist form with values
+     *                     seperated with commas.
+     * @return formattedFile  An ArrayList<ArrayList<String>> that contains a list of lines,
+     * that are each lists that contain each value in an index.
+     */
+    public ArrayList<ArrayList<String>> formatFileContents(ArrayList<String> fileContents) {
+        ArrayList<ArrayList<String>> formattedFile = new ArrayList<ArrayList<String>>();
+        String[] splitLine;
+
+        for (int i = 0; i < fileContents.size(); i++) {
+            formattedFile.add(new ArrayList<String>());
+            splitLine = fileContents.get(i).split(",");
+            for (String aSplitLine : splitLine) {
+                formattedFile.get(i).add(aSplitLine);
+            }
+        }
+        return formattedFile;
     }
 
     /**
@@ -44,7 +63,7 @@ public class Parser {
      */
     public ArrayList<Activity> processFile(ArrayList<ArrayList<String>> formattedFile) {
         ArrayList<Activity> activities = new ArrayList<Activity>();
-        while (linePosition < fileContents.size()) {
+        while (linePosition < formattedFile.size()) {
             activities.add(processActivity(formattedFile));
         }
         return activities;
@@ -71,45 +90,45 @@ public class Parser {
         int minute = Integer.valueOf(timeArray[1]);
         int second = Integer.valueOf(timeArray[2]);
 
-//        DateTime dateTime = new DateTime(year, month, day, hour, minute, second);
+        DateTime dateTime = new DateTime(year, month, day, hour, minute, second);
 //        activity.setDate(dateTime);
 
-        while ((formattedFile.get(linePosition)).size() == 6) {
-            //activity.addEntry(processLine(formattedFile));
+        while (linePosition < formattedFile.size() && (formattedFile.get(linePosition)).size() == 6) {
+            activity.addEntry(processLine(formattedFile));
             linePosition += 1;
         }
         return activity;
     }
 
-//    /**
-//     * Processes an entry in the file contents, called by the processActivity() function.
-//     * Sets the time, heart rate and position of the entry, converting to int for time and
-//     * heart rate, and to a Position object for position.
-//     *
-//     * @return entry  An entry which details a moment in time in an activity.
-//     */
-//    public Entry processLine(ArrayList<ArrayList<String>> formattedFile){
-//        Entry entry = new Entry();
-//        ArrayList<String> currentLine = formattedFile.get(linePosition);
-//        String[] timeArray = (currentLine.get(0)).split(":");
-//        String[] dateArray = (currentLine.get(1)).split(":");
-//        int day = Integer.valueOf(dateArray[0]);
-//        int month = Integer.valueOf(dateArray[1]);
-//        int year = Integer.valueOf(dateArray[2]);
-//        int hour = Integer.valueOf(timeArray[0]);
-//        int minute = Integer.valueOf(timeArray[1]);
-//        int second = Integer.valueOf(timeArray[2]);
-////        DateTime dateTime = new DateTime(year, month, day, hour, minute, second);
-////        entry.setTime(dateTime);
-//
-//        int heartRate = Integer.valueOf(currentLine.get(2));
-//        entry.setHeartRate(heartRate);
-//
-//        Position position = processPosition(currentLine);
-//        entry.setPosition(position);
-//
-//        return entry;
-//    }
+    /**
+     * Processes an entry in the file contents, called by the processActivity() function.
+     * Sets the time, heart rate and position of the entry, converting to int for time and
+     * heart rate, and to a Position object for position.
+     *
+     * @return entry  An entry which details a moment in time in an activity.
+     */
+    public Entry processLine(ArrayList<ArrayList<String>> formattedFile){
+        boolean isFirst = false;
+        if(formattedFile.get(linePosition-1).size() != 6){
+            isFirst = true;
+        }
+        ArrayList<String> currentLine = formattedFile.get(linePosition);
+        String[] timeArray = (currentLine.get(1)).split(":");
+        String[] dateArray = (currentLine.get(0)).split("/");
+        int day = Integer.valueOf(dateArray[0]);
+        int month = Integer.valueOf(dateArray[1]);
+        int year = Integer.valueOf(dateArray[2]);
+        int hour = Integer.valueOf(timeArray[0]);
+        int minute = Integer.valueOf(timeArray[1]);
+        int second = Integer.valueOf(timeArray[2]);
+
+        DateTime dateTime = new DateTime(year, month, day, hour, minute, second);
+        int heartRate = Integer.valueOf(currentLine.get(2));
+        Position position = processPosition(currentLine);
+
+        Entry entry = new Entry(isFirst, dateTime, heartRate, position);
+        return entry;
+    }
 
     /**
      * Processes the position from the file by converting it to a position object from strings.
@@ -126,27 +145,7 @@ public class Parser {
         return new Position(latitude, longitude, elevation);
     }
 
-    /**
-     *Formats an unparsed CSV file and returns an ArrayList with the values in indexes
-     * and easily accessible.
-     *
-     * @param fileContents The unparsed contents of the file, in arraylist form with values
-     *                     seperated with commas.
-     * @return formattedFile  An ArrayList<ArrayList<String>> that contains a list of lines,
-     * that are each lists that contain each value in an index.
-     */
-    public ArrayList<ArrayList<String>> formatFileContents(ArrayList<String> fileContents) {
-        ArrayList<ArrayList<String>> formattedFile = new ArrayList<ArrayList<String>>();
-        String[] splitLine;
 
-        for (int i = 0; i < fileContents.size(); i++) {
-            splitLine = fileContents.get(i).split(",");
-            for (String aSplitLine : splitLine) {
-                formattedFile.get(i).add(aSplitLine);
-            }
-        }
-        return formattedFile;
-    }
 
     public int getLineIndex (){
         return linePosition;
@@ -160,17 +159,4 @@ public class Parser {
         return "";
     }
 
-//    public String userProfileToString(UserProfile) {
-//        return;
-//    }
-
-//    public void writeDataToFile(String data) {
-//        fileWriter = new FileWriter();
-//        if (fileWriter.checkFileExists() == true) {
-//            fileWriter.createFile();
-//            fileWriter.openFile();
-//            fileWriter.writeFileContents(data);
-//
-//        }
-//    }
 }
