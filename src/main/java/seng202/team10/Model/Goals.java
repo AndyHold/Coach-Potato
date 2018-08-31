@@ -104,9 +104,9 @@ public class Goals implements java.io.Serializable{
     public void printGoals() {
         String toPrint = "";
         for (Goal goal : currentGoals) {
-            toPrint += goal.getGoalType();
+            toPrint += goal.getGoalName();
         }
-        System.out.println("The current goal types you are working towards are: " + toPrint);
+        System.out.println("The current goals you are working towards are: " + toPrint);
     }
 
     public void checkGoal(Goal goal) {
@@ -121,9 +121,28 @@ public class Goals implements java.io.Serializable{
                 case "BMI":
                     goal.reviewBmiGoal(goal, user.calcBmi());
                     break;
-                //TODO add in the Distance, frequency, and time cases (which need data input first)
+                //TODO add in the Distance, frequency, and time cases (which need data loaded first)
             }
         }
     }
 
+    public ArrayList<Goal> getAchievedGoals() {
+        return achievedGoals;
+    }
+
+    public ArrayList<Goal> getCurrentGoals() {
+        return currentGoals;
+    }
+
+    public ArrayList<Goal> getAvailableGoals() {
+        return availableGoals;
+    }
+
+    public ArrayList<Goal> getFailedGoals() {
+        return failedGoals;
+    }
+
+    public UserProfile getUser() {
+        return user;
+    }
 }
