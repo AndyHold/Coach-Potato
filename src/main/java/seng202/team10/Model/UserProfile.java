@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * SENG202 2018S2
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
-public class UserProfile implements java.io.Serializable{
+public class UserProfile implements java.io.Serializable {
 
 
     private String name;
