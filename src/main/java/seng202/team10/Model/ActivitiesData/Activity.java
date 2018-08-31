@@ -173,6 +173,19 @@ public class Activity implements Serializable {
         return this.entries;
     }
 
+    @Override
+    public String toString() {
+        return "Activity{" +
+                "name='" + name + '\'' +
+                ", startDateTime=" + startDateTime +
+                ", averageVelocity=" + averageVelocity +
+                ", averageHeartRate=" + averageHeartRate +
+                ", totalDistance=" + totalDistance +
+                ", entries=" + entries +
+                ", totalDuration=" + totalDuration +
+                '}';
+    }
+
 
 //    /**
 //     * Getter method for intensity of activity
