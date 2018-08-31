@@ -84,7 +84,7 @@ public class CreateProfileControl {
     }
 
     @FXML
-    public void createProfile() {
+    public void createProfile() throws Exception {
         dateErrorLabel.setVisible(false);
         String nameString = nameEntry.getText();
         String heightString = heightEntry.getText();
@@ -114,11 +114,12 @@ public class CreateProfileControl {
             userProfile.setBirthdate(dateOfBirth);
             userProfile.setWeight(Double.valueOf(weightString));
             userProfile.setHeight(Double.valueOf(heightString));
+            app.createUser(userProfile);
 //            app.launchProfileScene();
     }
 
 //    private boolean checkNameStringValid(String name) {
-//
+//        if ()
 //    }
 //
 //    private boolean checkHeightStringValid(String height) {
