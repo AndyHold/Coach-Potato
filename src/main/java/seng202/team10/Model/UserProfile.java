@@ -431,4 +431,17 @@ public class UserProfile implements java.io.Serializable {
     }
 
 
+    @Override
+    public String toString() {
+        return "UserProfile{" +
+                "name='" + name + '\'' +
+                ", activities=" + activities +
+                ", weight=" + weight +
+                ", height=" + height +
+                ", birthdate=" + birthdate +
+                ", goals=" + goals +
+                ", calendar=" + calendar +
+                ", bmi=" + bmi +
+                '}';
+    }
 }
