@@ -22,7 +22,8 @@
       <Button fx:id="loginButton" mnemonicParsing="false" onAction="#login" text="Login" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <Label text="Coach Potato" />
       <Button fx:id="newProfileButton" mnemonicParsing="false" onAction="#createProfile" text="Create New Profile" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <ComboBox prefWidth="150.0" promptText="Select Profile" GridPane.rowIndex="1" />
+      <ComboBox fx:id="userComboBox" prefWidth="150.0" promptText="Select Profile" GridPane.rowIndex="1" />
+      <Label fx:id="userErrorLabel" text="Please select a user" textFill="#f20707" visible="false" GridPane.rowIndex="2" />
    </children>
    <padding>
       <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
