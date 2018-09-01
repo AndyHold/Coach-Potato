@@ -76,7 +76,7 @@ public class Parser {
      *
      * @return activity  An Activity object that contains a number of entries.
      */
-    public Activity processActivity(ArrayList<ArrayList<String>> formattedFile) throws NumberFormatException, IllegalArgumentException {
+    public Activity processActivity(ArrayList<ArrayList<String>> formattedFile) throws IllegalArgumentException {
         String name = formattedFile.get(linePosition).get(1);
         linePosition += 1;
 
@@ -140,7 +140,7 @@ public class Parser {
      * @param currentLine The current line the parser is on.
      * @return position  A Position object that details the position for an Entry.
      */
-    public Position processPosition(ArrayList<String> currentLine){
+    private Position processPosition(ArrayList<String> currentLine){
         double latitude = Double.valueOf(currentLine.get(3));
         double longitude = Double.valueOf(currentLine.get(4));
         double elevation = Double.valueOf(currentLine.get(5));
@@ -158,8 +158,5 @@ public class Parser {
         this.linePosition = linePosition;
     }
 
-    public String activitiesToString(){
-        return "";
-    }
 
 }
