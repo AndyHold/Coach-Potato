@@ -218,15 +218,12 @@ public class Activity implements Serializable {
 
     @Override
     public String toString() {
-        return "Activity{" +
-                "name='" + name + '\'' +
+        return "Name= '" + name + '\'' +
                 ", startDateTime=" + startDateTime +
                 ", averageVelocity=" + averageVelocity +
                 ", averageHeartRate=" + averageHeartRate +
                 ", totalDistance=" + totalDistance +
-                ", entries=" + entries +
-                ", totalDuration=" + totalDuration +
-                '}';
+                ", totalDuration=" + totalDuration;
     }
 
 
