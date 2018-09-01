@@ -5,9 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import seng202.team10.GUI.CreateProfileControl;
-import seng202.team10.GUI.LoginControl;
+import seng202.team10.GUI.*;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.FileOperations.FileWriter;
 import seng202.team10.Model.FileOperations.Parser;
@@ -33,9 +33,9 @@ public class GUIController extends Application {
 //    private Scene goalsScene;
 //    private GoalsController goalsController;
 
-//    private FXMLLoader uploadDataLoader;
-//    private Scene uploadDataScene;
-//    private UploadDataController uploadDataController;
+    private FXMLLoader uploadDataLoader;
+    private Scene uploadDataScene;
+    private UploadDataController uploadDataController;
 
     private Stage primaryStage;
     private ArrayList<UserProfile> users = new ArrayList<UserProfile>();
@@ -47,7 +47,7 @@ public class GUIController extends Application {
     public void start(Stage primaryStage) throws Exception{
         loadAllScenes();
         primaryStage.setTitle("Coach Potato");
-        primaryStage.setScene(loginScene);
+        primaryStage.setScene(uploadDataScene);
         primaryStage.show();
         this.primaryStage = primaryStage;
     }
@@ -78,10 +78,10 @@ public class GUIController extends Application {
 //      primaryStage.setScene(goalsScene);
 //    }
 
-//    public void launchUploadDataScene() {
-//      uploadDataController.setUpScene();
-//      primaryStage.setScene(uploadDataScene);
-//    }
+    public void launchUploadDataScene() {
+      uploadDataController.setUpScene();
+      primaryStage.setScene(uploadDataScene);
+    }
 
     public void launchCreateProfileScene() throws Exception {
         primaryStage.setScene(createProfileScene);
@@ -116,12 +116,12 @@ public class GUIController extends Application {
 //        goalsController.setUpScene();
 //        goalsScene = new Scene(gridPaneG, 900, 600);
 
-//        uploadDataLoader = new FXMLLoader(getClass().getResource("/fxml/uploadDataScreen.fxml"));
-//        Pane paneUD = uploadDataLoader.load();
-//        uploadDataController = uploadDataLoader.getController();
-//        uploadDataController.setApp(this);
-//        uploadDataController.setUpScene();
-//        uploadDataScene = new Scene(paneUD, 900, 600);
+        uploadDataLoader = new FXMLLoader(getClass().getResource("/fxml/uploadDataScreen.fxml"));
+        Pane paneUD = uploadDataLoader.load();
+        uploadDataController = uploadDataLoader.getController();
+        uploadDataController.setApp(this);
+        uploadDataController.setUpScene();
+        uploadDataScene = new Scene(paneUD, 900, 600);
     }
 
     public void createUser(UserProfile newUser) throws Exception{
