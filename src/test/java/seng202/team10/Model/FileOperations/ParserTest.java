@@ -64,22 +64,37 @@ public class ParserTest {
     }
 
     @Test
-    public void processActivity() {
+    public void processActivity() throws FileNotFoundException, IllegalArgumentException{
+        ArrayList<String> fileContents = testParser.getFileContents("testdata.csv");
+        ArrayList<ArrayList<String>> formattedFile = testParser.formatFileContents(fileContents);
+        Activity testActivity = testParser.processActivity(formattedFile);
+        assertEquals("Name= 'Walk in the woods', startDateTime=10th, April, 2015 - 23:42:28, averageVelocity=0.05050964943354281, averageHeartRate=138.15151515151516, totalDistance=49.80251434147321, totalDuration=986", testActivity.toString());
     }
 
     @Test
-    public void processLine() {
+    public void processLine() throws FileNotFoundException{
+        ArrayList<String> fileContents = testParser.getFileContents("testdata.csv");
+        ArrayList<ArrayList<String>> formattedFile = testParser.formatFileContents(fileContents);
+        testParser.setLinePosition(35);
+        Entry testEntry = testParser.processLine(formattedFile);
+        assertTrue(testEntry.isFirstEntry());
+    }
+
+
+    @Test
+    public void changeLinePos(){
+        testParser.setLinePosition(50);
+        assertEquals(50, testParser.getLineIndex());
     }
 
     @Test
-    public void processPosition() {
-    }
-
-    @Test
-    public void getLineIndex() {
-    }
-
-    @Test
-    public void activitiesToString() {
+    public void nonexistantFile(){
+        String message = "Test Failed";
+        try {
+            testParser.getFileContents("failtest");
+        } catch(FileNotFoundException f) {
+            message = "File Not Found";
+        }
+        assertEquals("File Not Found", message);
     }
 }
