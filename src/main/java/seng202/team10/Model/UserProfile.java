@@ -426,12 +426,46 @@ public class UserProfile implements java.io.Serializable {
 
 
     public double calcBmi() {
-        this.bmi = getWeight() / (Math.pow(getHeight(), 2));
+        this.bmi = getWeight() / (Math.pow(getHeight() / 100, 2));
         return this.bmi;
     }
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
     public double getBmi() {
         return bmi;
+=======
+=======
+>>>>>>> c6b8c94... Fixing BMI Calculation and adding BMI category check
+=======
+>>>>>>> d03ad17... Fixing BMI Calculation and adding BMI category check
+=======
+>>>>>>> e3fcb71... Fixing BMI Calculation and adding BMI category check
+    public String getBmiCategory() {
+        calcBmi();
+        String category;
+        if(this.bmi < 18.5) {
+            category = "Underweight";
+        } else if (this.bmi < 25){
+            category = "Healthy";
+        } else if (this.bmi < 30){
+            category = "Overweight";
+        } else {
+            category = "Obese";
+        }
+        return category;
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> f05db62... Fixing BMI Calculation and adding BMI category check
+=======
+>>>>>>> c6b8c94... Fixing BMI Calculation and adding BMI category check
+=======
+>>>>>>> d03ad17... Fixing BMI Calculation and adding BMI category check
+=======
+>>>>>>> e3fcb71... Fixing BMI Calculation and adding BMI category check
     }
 
 
