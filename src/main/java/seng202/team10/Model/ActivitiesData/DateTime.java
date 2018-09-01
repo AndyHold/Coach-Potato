@@ -1,6 +1,8 @@
 package seng202.team10.Model.ActivitiesData;
 
 
+import javafx.beans.property.SimpleStringProperty;
+
 import java.io.Serializable;
 import java.util.HashMap;
 
@@ -12,6 +14,8 @@ import java.util.HashMap;
  */
 public class DateTime implements Serializable {
 
+    private SimpleStringProperty date;
+    private SimpleStringProperty time;
     private int day = 1;
     private int month = 1;
     private int year = 1900;
@@ -37,6 +41,74 @@ public class DateTime implements Serializable {
         setHour(hour);
         setMinute(minute);
         setSecond(second);
+        setDate();
+        setTime();
+    }
+
+
+    /**
+     * Method to change the date once the DateTime has already been initiated
+     * @param year int: new year value
+     * @param month int: new month value
+     * @param day int: new month vlaue
+     */
+    public void changeDate(int year, int month, int day) throws IllegalArgumentException
+    {
+        int oldYear = this.year;
+        int oldMonth = this.month;
+        int oldDay = this.day;
+        try {
+            setYear(year);
+            setMonth(month);
+            setDay(day);
+        } catch(IllegalArgumentException ex) {
+            setYear(oldYear);
+            setMonth(oldMonth);
+            setDay(oldDay);
+            throw new IllegalArgumentException("your input date is invalid, please select a correct date between 1900-2100");
+        }
+    }
+
+
+    /**
+     * Method to change the time once the DateTime has already been initiated
+     * @param hour int: new hour value
+     * @param minute int: new minute value
+     * @param second int: new second vlaue
+     */
+    public void changeTime(int hour, int minute, int second) throws IllegalArgumentException
+    {
+        int oldHour = this.hour;
+        int oldMinute = this.month;
+        int oldSecond = this.second;
+        try {
+            setHour(hour);
+            setMinute(minute);
+            setSecond(second);
+        } catch(IllegalArgumentException ex) {
+            setYear(oldHour);
+            setMonth(oldMinute);
+            setDay(oldSecond);
+            throw new IllegalArgumentException("your input time is invalid, please select a correct date between 1900-2100");
+        }
+    }
+
+
+    /**
+     * Setter method for the string representation of date
+     */
+    public void setDate()
+    {
+        this.date = new SimpleStringProperty(String.format("%02d", this.day) + "/" + String.format("%02d", this.month) + "/" + String.format("%04d", this.year));
+    }
+
+
+    /**
+     * Setter method for the string representation of date
+     */
+    public void setTime()
+    {
+        this.time = new SimpleStringProperty(String.format("%02d", this.hour) + ":" + String.format("%02d", this.minute) + ":" + String.format("%02d", this.second));
     }
 
 
@@ -121,6 +193,25 @@ public class DateTime implements Serializable {
         } else {
             throw new IllegalArgumentException("Second parameter not valid!\nvalue: " + String.valueOf(newSecond) + " is not in range 1 - 59");
         }
+    }
+
+
+    /**
+     * Getter method for string of the date
+     * @return
+     */
+    public SimpleStringProperty getDate()
+    {
+        return this.date;
+    }
+
+
+    /**
+     * Getter method for string of the time
+     */
+    public SimpleStringProperty getTime()
+    {
+        return this.time;
     }
 
 
