@@ -130,12 +130,28 @@ public class UserProfile implements java.io.Serializable {
 
 
     public double calcBmi() {
-        this.bmi = getWeight() / (Math.pow(getHeight(), 2));
+        this.bmi = getWeight() / (Math.pow(getHeight() / 100, 2));
         return this.bmi;
     }
 
+<<<<<<< HEAD
     public double getBmi() {
         return bmi;
+=======
+    public String getBmiCategory() {
+        calcBmi();
+        String category;
+        if(this.bmi < 18.5) {
+            category = "Underweight";
+        } else if (this.bmi < 25){
+            category = "Healthy";
+        } else if (this.bmi < 30){
+            category = "Overweight";
+        } else {
+            category = "Obese";
+        }
+        return category;
+>>>>>>> e3fcb716... Fixing BMI Calculation and adding BMI category check
     }
 
 
