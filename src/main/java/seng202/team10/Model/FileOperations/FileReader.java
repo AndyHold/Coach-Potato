@@ -38,7 +38,7 @@ public class FileReader {
      * @param filename : the string of the filename being opened, eg. blablabla.csv (path is appended in function)
      * @return fileContents : ArrayList of strings, each is a line of the file*/
     public ArrayList openNewFile(String filename) throws FileNotFoundException{
-//        filename = "./FilesToLoad/" + filename;
+        filename = "./FilesToLoad/" + filename;
         Scanner localScanner = new Scanner(new File(filename));
         ArrayList<String> fileContents = new ArrayList<String>();
         while (localScanner.hasNextLine()){
