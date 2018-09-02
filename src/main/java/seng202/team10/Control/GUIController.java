@@ -11,6 +11,8 @@ import seng202.team10.GUI.*;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.FileOperations.FileWriter;
 import seng202.team10.Model.FileOperations.Parser;
+import seng202.team10.Model.Goal;
+import seng202.team10.Model.Goals;
 import seng202.team10.Model.UserProfile;
 
 import java.util.ArrayList;
@@ -29,9 +31,9 @@ public class GUIController extends Application {
 //    private Scene profileScene;
 //    private ProfileController profileController;
 
-//    private FXMLLoader goalsLoader;
-//    private Scene goalsScene;
-//    private GoalsController goalsController;
+    private FXMLLoader goalsLoader;
+    private Scene goalsScene;
+    private GoalController goalsController;
 
     private FXMLLoader uploadDataLoader;
     private Scene uploadDataScene;
@@ -43,11 +45,13 @@ public class GUIController extends Application {
     private Parser parser = new Parser();
     private FileWriter dataWriter = new FileWriter();
 
+    private Goals goals = new Goals(currentUser);
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         loadAllScenes();
         primaryStage.setTitle("Coach Potato");
-        primaryStage.setScene(uploadDataScene);
+        primaryStage.setScene(goalsScene);
         primaryStage.show();
         this.primaryStage = primaryStage;
     }
@@ -71,12 +75,12 @@ public class GUIController extends Application {
 //    public void launchProfileScene() {
 //      profileController.setUpScene();
 //      primaryStage.setScene(profileScene);
-//    }
+//    }roo
 
-//    public void launchGoalsScene() {
-//      goalsController.setUpScene();
-//      primaryStage.setScene(goalsScene);
-//    }
+    public void launchGoalsScene() {
+      goalsController.setUpScene();
+      primaryStage.setScene(goalsScene);
+    }
 
     public void launchUploadDataScene() {
       uploadDataController.setUpScene();
@@ -88,12 +92,21 @@ public class GUIController extends Application {
     }
 
     public void loadAllScenes() throws Exception{
-        loginLoader = new FXMLLoader(getClass().getResource("/fxml/loginScreen.fxml"));
-        Parent root = loginLoader.load();
-        loginController = loginLoader.getController();
-        loginController.setApp(this);
-        loginController.setUpScene();
-        loginScene = new Scene(root, 800, 400);
+
+
+        goalsLoader = new FXMLLoader(getClass().getResource("/fxml/goalsScreen.fxml"));
+        Parent root = goalsLoader.load();
+        goalsController = goalsLoader.getController();
+        goalsController.setApp(this);
+        goalsController.setUpScene();
+        goalsScene = new Scene(root, 900, 600);
+
+//        loginLoader = new FXMLLoader(getClass().getResource("/fxml/loginScreen.fxml"));
+//        Parent root = loginLoader.load();
+//        loginController = loginLoader.getController();
+//        loginController.setApp(this);
+//        loginController.setUpScene();
+//        loginScene = new Scene(root, 800, 400);
 
         createProfileLoader = new FXMLLoader(getClass().getResource("/fxml/createProfileScreen.fxml"));
         GridPane gridPaneCP = createProfileLoader.load();
@@ -109,12 +122,7 @@ public class GUIController extends Application {
 //        profileController.setUpScene();
 //        profileScene = new Scene(gridPaneP, 900, 600);
 
-//        goalsLoader = new FXMLLoader(getClass().getResource("/fxml/goalsScreen.fxml"));
-//        GridPane gridPaneG = goalsLoader.load();
-//        goalsController = goalsLoader.getController();
-//        goalsController.setApp(this);
-//        goalsController.setUpScene();
-//        goalsScene = new Scene(gridPaneG, 900, 600);
+
 
         uploadDataLoader = new FXMLLoader(getClass().getResource("/fxml/uploadDataScreen.fxml"));
         Pane paneUD = uploadDataLoader.load();
@@ -145,6 +153,11 @@ public class GUIController extends Application {
     public void setUsers(ArrayList<UserProfile> users) {
         this.users = users;
     }
+
+    public Goals getGoalsInstance() {
+        return goals;
+    }
+
 
     public static void main(String[] args) {
         launch(args);
