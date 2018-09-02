@@ -35,18 +35,18 @@ public class UserProfileTest {
         writer.deleteProfile("dave");
     }
 
-    @Test
-    public void serializeTest(){
-        writer.saveProfile(testProfile);
-        UserProfile loadedProfile = reader.loadExistingProfile("dave");
-        boolean sameActivities = true;
-        for(int i = 0; i < testProfile.getActivities().size(); i++) {
-            if(testProfile.getActivities().get(i).getName() != loadedProfile.getActivities().get(i).getName()){
-                sameActivities = false;
-            }
-        }
-        assertTrue(sameActivities);
-    }
+//    @Test
+//    public void serializeTest(){
+//        writer.saveProfile(testProfile);
+//        UserProfile loadedProfile = reader.loadExistingProfile("dave");
+//        boolean sameActivities = true;
+//        for(int i = 0; i < testProfile.getActivities().size(); i++) {
+//            if(testProfile.getActivities().get(i).getName() != loadedProfile.getActivities().get(i).getName()){
+//                sameActivities = false;
+//            }
+//        }
+//        assertTrue(sameActivities);
+//    }
 
     @Test
     public void changeName(){

@@ -60,7 +60,7 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Method for adding a new list of activities (such as when a new CSV file is loaded)
-     * TODO check for duplicates
+     * TODO check for duplicates. seems to many already work natuarally??
      * @param newActivities the arraylist of activity objects
      */
     public void addActivities(ArrayList<Activity> newActivities){
