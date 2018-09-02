@@ -9,10 +9,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.stage.FileChooser;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.ActivitiesData.Entry;
 import seng202.team10.Model.ActivitiesData.Position;
+
+import java.io.File;
 
 public class UploadDataController {
 
@@ -165,7 +168,9 @@ public class UploadDataController {
 
     @FXML public void uploadData()
     {
-        //
+        // NEED TO SORT ERROR HANDLING
+        // this.app.getCurrentProfile().uploadFile(filePathTextField.getText());
+
     }
 
 
@@ -177,6 +182,21 @@ public class UploadDataController {
 
     @FXML public void browse()
     {
-        //
+        // Create a file chooser
+        FileChooser fileChooser = new FileChooser();
+        // Get the selected file
+        File selectedFile = fileChooser.showOpenDialog(null);
+        // Check if the file is null
+        if (selectedFile != null) {
+            filePathTextField.setText(selectedFile.getAbsolutePath());
+        }
+//        else {
+//            Alert errorPopUp = new Alert(Alert.AlertType.ERROR);
+//            errorPopUp.setTitle("ERROR");
+//            errorPopUp.setContentText("File does not exist or is corrupted!");
+//            errorPopUp.setHeaderText(null);
+//            errorPopUp.showAndWait();
+//        }
+
     }
 }
