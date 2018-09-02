@@ -15,6 +15,7 @@ import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.ActivitiesData.Entry;
 import seng202.team10.Model.ActivitiesData.Position;
 
+import javax.swing.*;
 import java.io.File;
 
 public class UploadDataController {
@@ -42,6 +43,7 @@ public class UploadDataController {
     @FXML private TextField longitudeTextField;
     @FXML private TextField elevationTextField;
     @FXML private Button addEntryButton;
+    @FXML private TextField filePathTextField;
 
 
     /**
