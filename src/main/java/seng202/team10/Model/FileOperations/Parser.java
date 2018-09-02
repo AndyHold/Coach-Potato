@@ -112,7 +112,7 @@ public class Parser {
         activity.calculateAverageHeartRate();
         activity.calculateAverageVelocity();
         if((badEntries * 10) > totalEntries) {
-            throw new IllegalArgumentException("Too many bad entries! Activity discarded");
+            throw new IllegalArgumentException("Too many bad entries! Activity discarded!");
         }
         return activity;
     }
