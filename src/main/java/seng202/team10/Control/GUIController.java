@@ -89,8 +89,11 @@ public class GUIController extends Application{
      * Sets the scene on the primary stage to the profile scene.
      */
     public void launchProfileScene() {
-//       profileController.setUpScene();
-       primaryStage.setScene(profileScene);
+//        profileController.setUserDetails();
+//        profileController.setUpScene();
+        primaryStage.setScene(profileScene);
+//        profileController.setUserDetails();
+
     }
 
 //    public void launchGoalsScene() {
@@ -102,8 +105,8 @@ public class GUIController extends Application{
      * Sets the scene on the primary stage to the upload data scene.
      */
     public void launchUploadDataScene() {
-      uploadDataController.setUpScene();
-      primaryStage.setScene(uploadDataScene);
+        uploadDataController.setUpScene();
+        primaryStage.setScene(uploadDataScene);
     }
 
     /**
@@ -141,11 +144,12 @@ public class GUIController extends Application{
         createProfileScene = new Scene(paneCP, 900, 600);
 
         profileLoader = new FXMLLoader(getClass().getResource("/fxml/profileScreen.fxml"));
-        GridPane gridPaneP = profileLoader.load();
+        Pane PaneP = profileLoader.load();
         ProfileController profileController = profileLoader.getController();
-//        profileController.setApp(this);
-//        profileController.setUpScene();
-        profileScene = new Scene(gridPaneP, 900, 600);
+        profileController.setApp(this);
+        profileController.setUpScene();
+        //profileController.setUserDetails();
+        profileScene = new Scene(PaneP, 900, 600);
 
 //        goalsLoader = new FXMLLoader(getClass().getResource("/fxml/goalsScreen.fxml"));
 //        Pane paneG = goalsLoader.load();
