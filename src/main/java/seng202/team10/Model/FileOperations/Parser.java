@@ -77,9 +77,6 @@ public class Parser {
      * @return activity  An Activity object that contains a number of entries.
      */
     public Activity processActivity(ArrayList<ArrayList<String>> formattedFile) throws IllegalArgumentException {
-        while (linePosition < formattedFile.size() && formattedFile.get(linePosition).get(0) != "#start"){
-            linePosition+=1;
-        }
         String name = formattedFile.get(linePosition).get(1);
         linePosition += 1;
         String[] dateArray = (formattedFile.get(linePosition).get(0)).split("/");
@@ -113,6 +110,9 @@ public class Parser {
         activity.calculateAverageVelocity();
         if((badEntries * 10) > totalEntries) {
             throw new IllegalArgumentException("Too many bad entries! Activity discarded!");
+        }
+        while (linePosition < formattedFile.size() && formattedFile.get(linePosition).get(0) != "#start"){
+            linePosition+=1;
         }
         return activity;
     }
