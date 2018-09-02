@@ -26,7 +26,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="weightValueLabel" prefHeight="50.0" prefWidth="25.0" style="-fx-text-fill: black;" text="70">
+                  <Label fx:id="weightValueLabel" prefHeight="48.0" prefWidth="55.0" style="-fx-text-fill: black;" text="330.89">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -48,7 +48,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="heightValueLabel" prefHeight="50.0" prefWidth="35.0" style="-fx-text-fill: black;" text="180">
+                  <Label fx:id="heightValueLabel" prefHeight="48.0" prefWidth="55.0" style="-fx-text-fill: black;" text="180.05">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -62,7 +62,7 @@
             </HBox>
             <HBox fx:id="bmiHBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" style="-fx-border-color: black; -fx-background-color: darkgrey;">
                <children>
-                  <Label fx:id="bmiLabel" prefHeight="50.0" prefWidth="150.0" style="-fx-text-fill: black;" text="Current BMI:">
+                  <Label fx:id="bmiLabel" prefHeight="48.0" prefWidth="121.0" style="-fx-text-fill: black;" text="Current BMI:">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
@@ -70,7 +70,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="bmiValueLabel" prefHeight="50.0" prefWidth="25.0" style="-fx-text-fill: black;" text="30">
+                  <Label fx:id="bmiValueLabel" prefHeight="48.0" prefWidth="179.0" style="-fx-text-fill: black;" text="30.89">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -119,7 +119,7 @@
             <Glow />
          </effect>
          <children>
-            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" style="-fx-border-color: black; -fx-background-color: darkgrey;">
+            <HBox fx:id="activity1HBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" style="-fx-border-color: black; -fx-background-color: darkgrey;">
                <children>
                   <Text fx:id="activity1Text" strokeType="OUTSIDE" strokeWidth="0.0" text="Activity Name" wrappingWidth="280.0">
                      <font>
@@ -131,7 +131,7 @@
                   </Text>
                </children>
             </HBox>
-            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" style="-fx-border-color: black; -fx-background-color: darkgrey;">
+            <HBox fx:id="activity2HBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" style="-fx-border-color: black; -fx-background-color: darkgrey;">
                <children>
                   <Text fx:id="activity2Text" strokeType="OUTSIDE" strokeWidth="0.0" text="Activity Name" wrappingWidth="280.0">
                      <font>
@@ -143,7 +143,7 @@
                   </Text>
                </children>
             </HBox>
-            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" style="-fx-border-color: black; -fx-background-color: darkgrey;">
+            <HBox fx:id="activity3HBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" style="-fx-border-color: black; -fx-background-color: darkgrey;">
                <children>
                   <Text fx:id="activity3Text" strokeType="OUTSIDE" strokeWidth="0.0" text="Activity Name" wrappingWidth="280.0">
                      <font>
@@ -166,9 +166,9 @@
             <Glow />
          </effect>
          <children>
-            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="500.0" style="-fx-border-color: black; -fx-background-color: darkgrey;">
+            <HBox fx:id="distanceHBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="500.0" style="-fx-border-color: black; -fx-background-color: darkgrey;">
                <children>
-                  <Text fx:id="stat1Text" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Distance Covered: " wrappingWidth="480.0">
+                  <Text fx:id="distanceText" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Distance Covered: " wrappingWidth="480.0">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -178,9 +178,9 @@
                   </Text>
                </children>
             </HBox>
-            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="500.0" style="-fx-border-color: black; -fx-background-color: darkgrey;">
+            <HBox fx:id="velocityHBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="500.0" style="-fx-border-color: black; -fx-background-color: darkgrey;">
                <children>
-                  <Text fx:id="stat2Text" strokeType="OUTSIDE" strokeWidth="0.0" text="Average Velocity:" wrappingWidth="480.0">
+                  <Text fx:id="velocityText" strokeType="OUTSIDE" strokeWidth="0.0" text="Average Velocity:" wrappingWidth="480.0">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -190,9 +190,9 @@
                   </Text>
                </children>
             </HBox>
-            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="500.0" style="-fx-border-color: black; -fx-background-color: darkgrey;">
+            <HBox fx:id="heartRateHBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="500.0" style="-fx-border-color: black; -fx-background-color: darkgrey;">
                <children>
-                  <Text fx:id="stat3Text" strokeType="OUTSIDE" strokeWidth="0.0" text="Average Heart Rate: " wrappingWidth="480.0">
+                  <Text fx:id="heartRateText" strokeType="OUTSIDE" strokeWidth="0.0" text="Average Heart Rate: " wrappingWidth="480.0">
                      <font>
                         <Font size="18.0" />
                      </font>
