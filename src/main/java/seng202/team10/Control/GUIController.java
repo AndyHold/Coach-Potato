@@ -143,8 +143,8 @@ public class GUIController extends Application{
         profileLoader = new FXMLLoader(getClass().getResource("/fxml/profileScreen.fxml"));
         GridPane gridPaneP = profileLoader.load();
         ProfileController profileController = profileLoader.getController();
-        profileController.setApp(this);
-        profileController.setUpScene();
+//        profileController.setApp(this);
+//        profileController.setUpScene();
         profileScene = new Scene(gridPaneP, 900, 600);
 
 //        goalsLoader = new FXMLLoader(getClass().getResource("/fxml/goalsScreen.fxml"));
@@ -178,7 +178,7 @@ public class GUIController extends Application{
      */
     public void createUser(UserProfile newUser) throws Exception{
         users.add(newUser);
-        uploadDataToUser(currentUser, "testdata.csv"); //REMOVE LATER
+        uploadDataToUser(newUser, "testdata.csv"); //REMOVE LATER
     }
 
     /**
