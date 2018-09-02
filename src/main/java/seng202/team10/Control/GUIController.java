@@ -11,6 +11,8 @@ import seng202.team10.GUI.*;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.FileOperations.FileWriter;
 import seng202.team10.Model.FileOperations.Parser;
+import seng202.team10.Model.Goal;
+import seng202.team10.Model.Goals;
 import seng202.team10.Model.UserProfile;
 
 import java.util.ArrayList;
@@ -48,11 +50,17 @@ public class GUIController extends Application{
     private Parser parser = new Parser();
     private FileWriter dataWriter = new FileWriter();
 
+    private Goals goals = new Goals(currentUser);
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         loadAllScenes();
         primaryStage.setTitle("Coach Potato");
+<<<<<<< HEAD
         primaryStage.setScene(loginScene);
+=======
+        primaryStage.setScene(goalsScene);
+>>>>>>> 9358b9ec... Create new Goals instance in GUIController. Added various buttons, entry boxes and labels to the create goal tab. Implemented an action handler for the create button that creates a goal that is store either as a current goal or future goal. Added arraylist for createdGoals into Goals class and getter method. Edited create goal method to establish whether a goal is current or for the future.
         primaryStage.show();
         this.primaryStage = primaryStage;
     }
@@ -81,6 +89,7 @@ public class GUIController extends Application{
         primaryStage.setScene(loginScene);
     }
 
+<<<<<<< HEAD
     /**dNewScene("/fxml/loginScreen.fxml");
         createProfileScene = loadNewScene("/fxml/createProfileScreen.fxml");
         profileScene = loadNewScene("/fxml/profileScreen.fxml");
@@ -95,11 +104,17 @@ public class GUIController extends Application{
 //        profileController.setUserDetails();
 
     }
+=======
+//    public void launchProfileScene() {
+//      profileController.setUpScene();
+//      primaryStage.setScene(profileScene);
+//    }roo
+>>>>>>> 9358b9ec... Create new Goals instance in GUIController. Added various buttons, entry boxes and labels to the create goal tab. Implemented an action handler for the create button that creates a goal that is store either as a current goal or future goal. Added arraylist for createdGoals into Goals class and getter method. Edited create goal method to establish whether a goal is current or for the future.
 
-//    public void launchGoalsScene() {
-//      goalsController.setUpScene();
-//      primaryStage.setScene(goalsScene);
-//    }
+    public void launchGoalsScene() {
+      goalsController.setUpScene();
+      primaryStage.setScene(goalsScene);
+    }
 
     /**
      * Sets the scene on the primary stage to the upload data scene.
@@ -123,6 +138,7 @@ public class GUIController extends Application{
      * @throws Exception Not implemented.
      */
     public void loadAllScenes() throws Exception{
+<<<<<<< HEAD
 //        loginScene = loadNewScene("/fxml/loginScreen.fxml");
 //        createProfileScene = loadNewScene("/fxml/createProfileScreen.fxml");
 //        profileScene = loadNewScene("/fxml/profileScreen.fxml");
@@ -135,6 +151,23 @@ public class GUIController extends Application{
         loginController.setApp(this);
         loginController.setUpScene();
         loginScene = new Scene(root, 800, 400);
+=======
+
+
+        goalsLoader = new FXMLLoader(getClass().getResource("/fxml/goalsScreen.fxml"));
+        Parent root = goalsLoader.load();
+        goalsController = goalsLoader.getController();
+        goalsController.setApp(this);
+        goalsController.setUpScene();
+        goalsScene = new Scene(root, 900, 600);
+
+//        loginLoader = new FXMLLoader(getClass().getResource("/fxml/loginScreen.fxml"));
+//        Parent root = loginLoader.load();
+//        loginController = loginLoader.getController();
+//        loginController.setApp(this);
+//        loginController.setUpScene();
+//        loginScene = new Scene(root, 800, 400);
+>>>>>>> 9358b9ec... Create new Goals instance in GUIController. Added various buttons, entry boxes and labels to the create goal tab. Implemented an action handler for the create button that creates a goal that is store either as a current goal or future goal. Added arraylist for createdGoals into Goals class and getter method. Edited create goal method to establish whether a goal is current or for the future.
 
         createProfileLoader = new FXMLLoader(getClass().getResource("/fxml/createProfileScreen.fxml"));
         Pane paneCP = createProfileLoader.load();
@@ -151,12 +184,16 @@ public class GUIController extends Application{
         //profileController.setUserDetails();
         profileScene = new Scene(PaneP, 900, 600);
 
+<<<<<<< HEAD
 //        goalsLoader = new FXMLLoader(getClass().getResource("/fxml/goalsScreen.fxml"));
 //        Pane paneG = goalsLoader.load();
 //        goalsController = goalsLoader.getController();
 //        goalsController.setApp(this);
 //        goalsController.setUpScene();
 //        goalsScene = new Scene(paneG, 900, 600);
+=======
+
+>>>>>>> 9358b9ec... Create new Goals instance in GUIController. Added various buttons, entry boxes and labels to the create goal tab. Implemented an action handler for the create button that creates a goal that is store either as a current goal or future goal. Added arraylist for createdGoals into Goals class and getter method. Edited create goal method to establish whether a goal is current or for the future.
 
         uploadDataLoader = new FXMLLoader(getClass().getResource("/fxml/uploadDataScreen.fxml"));
         Pane paneUD = uploadDataLoader.load();
@@ -216,6 +253,11 @@ public class GUIController extends Application{
     public void setUsers(ArrayList<UserProfile> users) {
         this.users = users;
     }
+
+    public Goals getGoalsInstance() {
+        return goals;
+    }
+
 
     public static void main(String[] args) {
         launch(args);
