@@ -430,6 +430,10 @@ public class UserProfile implements java.io.Serializable {
         return this.bmi;
     }
 
+    public double getBmi() {
+        return bmi;
+    }
+
 
     @Override
     public String toString() {
