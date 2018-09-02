@@ -10,14 +10,15 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.GUI.activityViewerController">
    <children>
-      <TableView fx:id="DataTableView" layoutX="15.0" layoutY="71.0" prefHeight="479.0" prefWidth="870.0">
+      <TableView fx:id="ActivitiesTableView" editable="true" layoutX="15.0" layoutY="71.0" prefHeight="479.0" prefWidth="870.0">
          <columns>
-            <TableColumn fx:id="dateColumn" onEditCommit="#changeDateCellEvent" prefWidth="145.0" resizable="false" sortable="false" text="Date" />
-            <TableColumn fx:id="timeColumn" onEditCommit="#changeTimeCellEvent" prefWidth="145.0" resizable="false" sortable="false" text="Time" />
-            <TableColumn fx:id="heartRateColumn" onEditCommit="#changeHeartRateCellEvent" prefWidth="145.0" resizable="false" sortable="false" text="Heart Rate" />
-            <TableColumn fx:id="latitudeColumn" onEditCommit="#changeLatitudeCellEvent" prefWidth="145.0" resizable="false" sortable="false" text="Latitude" />
-            <TableColumn fx:id="longitudeColumn" onEditCommit="#changeLongitudeCellEvent" prefWidth="145.0" resizable="false" sortable="false" text="Longitude" />
-            <TableColumn fx:id="elevationColumn" onEditCommit="#changeElevationCellEvent" prefWidth="145.0" resizable="false" sortable="false" text="Elevation" />
+            <TableColumn fx:id="nameColumn" editable="false" prefWidth="257.0" resizable="false" text="Name" />
+            <TableColumn fx:id="starttimeColumn" editable="false" prefWidth="82.0" resizable="false" text="Start Time" />
+            <TableColumn fx:id="durationColumn" editable="false" prefWidth="91.0" resizable="false" text="Duration" />
+            <TableColumn fx:id="speedColumn" editable="false" prefWidth="115.0" resizable="false" text="Average Speed" />
+            <TableColumn fx:id="distanceColumn" editable="false" prefWidth="97.0" resizable="false" text="Distance" />
+            <TableColumn fx:id="entrynumColumn" editable="false" prefWidth="75.0" resizable="false" text="Entries" />
+            <TableColumn fx:id="avgheartRateColumn2" editable="false" maxWidth="222.0" prefWidth="152.0" resizable="false" text="Average Heart Rate" />
          </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
