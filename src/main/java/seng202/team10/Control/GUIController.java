@@ -46,6 +46,8 @@ public class GUIController extends Application{
 
     private Stage primaryStage;
     private ArrayList<UserProfile> users = new ArrayList<UserProfile>();
+
+
     private UserProfile currentUser;
     private Parser parser = new Parser();
     private FileWriter dataWriter = new FileWriter();
@@ -94,7 +96,7 @@ public class GUIController extends Application{
      * Sets the scene on the primary stage to the profile scene.
      */
     public void launchProfileScene() {
-//        profileController.setUserDetails();
+        profileController.setUserDetails();
 //        profileController.setUpScene();
         primaryStage.setScene(profileScene);
 //        profileController.setUserDetails();
@@ -150,7 +152,7 @@ public class GUIController extends Application{
 
         profileLoader = new FXMLLoader(getClass().getResource("/fxml/profileScreen.fxml"));
         Pane PaneP = profileLoader.load();
-        ProfileController profileController = profileLoader.getController();
+        profileController = profileLoader.getController();
         profileController.setApp(this);
         profileController.setUpScene();
         //profileController.setUserDetails();
