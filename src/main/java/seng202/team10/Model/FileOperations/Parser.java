@@ -109,7 +109,7 @@ public class Parser {
      * Sets the time, heart rate and position of the entry, converting to int for time and
      * heart rate, and to a Position object for position.
      *
-     * @return entry  An entry which details a moment in time in an activity.
+     * @return entry  An entry which details a moment in time in an activity .
      */
     public Entry processLine(ArrayList<ArrayList<String>> formattedFile){
         boolean isFirst = false;
