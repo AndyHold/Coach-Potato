@@ -111,9 +111,9 @@ public class Parser {
         if((badEntries * 10) > totalEntries) {
             throw new IllegalArgumentException("Too many bad entries! Activity discarded!");
         }
-        while (linePosition < formattedFile.size() && formattedFile.get(linePosition).get(0) != "#start"){
-            linePosition+=1;
-        }
+//        while (linePosition < formattedFile.size() && formattedFile.get(linePosition).get(0) != "#start"){
+////            linePosition+=1;
+////        }
         return activity;
     }
 
