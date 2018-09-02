@@ -3,8 +3,10 @@ package seng202.team10.Model;
 
 import seng202.team10.Model.ActivitiesData.DateTime;
 
+import java.io.Serializable;
 
-public class Goal {
+
+public class Goal implements Serializable {
 
     private String goalName;
     private DateTime goalStartDate;

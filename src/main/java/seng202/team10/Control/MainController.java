@@ -22,18 +22,18 @@ public class MainController {
 //
 //    private void runApplication() {
 //        runGUIController();
-////        if(!dataReader.checkFileExists("./profiles")){
-////            dataWriter.createProfileFolder();
-////        }
-////        users = dataReader.getExistingUsers();
-////
-////
-////        // not sure, but should save active profile upon closing?
-////        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
-////            public void run() {
-////                dataWriter.saveProfile(currentUser);
-////            }
-////        }, "Shutdown-thread"));
+/**        if(!dataReader.checkFileExists("./profiles")){
+            dataWriter.createProfileFolder();
+        }
+        users = dataReader.getExistingUsers();
+
+
+        // not sure, but should save active profile upon closing?
+        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+            public void run() {
+                dataWriter.saveProfile(currentUser);
+            }
+        }, "Shutdown-thread")); */
 //    }
 //
 //    public void saveData() {

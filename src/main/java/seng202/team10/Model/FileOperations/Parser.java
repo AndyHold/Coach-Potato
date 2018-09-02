@@ -76,10 +76,9 @@ public class Parser {
      *
      * @return activity  An Activity object that contains a number of entries.
      */
-    public Activity processActivity(ArrayList<ArrayList<String>> formattedFile) throws NumberFormatException, IllegalArgumentException {
+    public Activity processActivity(ArrayList<ArrayList<String>> formattedFile) throws IllegalArgumentException {
         String name = formattedFile.get(linePosition).get(1);
         linePosition += 1;
-
         String[] dateArray = (formattedFile.get(linePosition).get(0)).split("/");
         String[] timeArray = (formattedFile.get(linePosition).get(1)).split(":");
         int day = Integer.valueOf(dateArray[0]);
@@ -92,15 +91,29 @@ public class Parser {
         DateTime dateTime = new DateTime(year, month, day, hour, minute, second);
 
         Activity activity = new Activity(name, dateTime);
-        while (linePosition < formattedFile.size() && (formattedFile.get(linePosition)).size() == 6) {
-            activity.addEntry(processLine(formattedFile));
+
+        int badEntries = 0;
+        int totalEntries = 0;
+        while (linePosition < formattedFile.size() && (formattedFile.get(linePosition)).size() != 2) {
+            if(formattedFile.get(linePosition).size() == 6){
+                activity.addEntry(processLine(formattedFile));
+            } else {
+                badEntries += 1;
+            }
+
+            totalEntries += 1;
             linePosition += 1;
         }
         activity.calculateTotalDistance();
         activity.calculateTotalDuration();
         activity.calculateAverageHeartRate();
         activity.calculateAverageVelocity();
-
+        if((badEntries * 10) > totalEntries) {
+            throw new IllegalArgumentException("Too many bad entries! Activity discarded!");
+        }
+//        while (linePosition < formattedFile.size() && formattedFile.get(linePosition).get(0) != "#start"){
+////            linePosition+=1;
+////        }
         return activity;
     }
 
@@ -109,7 +122,7 @@ public class Parser {
      * Sets the time, heart rate and position of the entry, converting to int for time and
      * heart rate, and to a Position object for position.
      *
-     * @return entry  An entry which details a moment in time in an activity.
+     * @return entry  An entry which details a moment in time in an activity .
      */
     public Entry processLine(ArrayList<ArrayList<String>> formattedFile){
         boolean isFirst = false;
@@ -140,7 +153,7 @@ public class Parser {
      * @param currentLine The current line the parser is on.
      * @return position  A Position object that details the position for an Entry.
      */
-    public Position processPosition(ArrayList<String> currentLine){
+    private Position processPosition(ArrayList<String> currentLine){
         double latitude = Double.valueOf(currentLine.get(3));
         double longitude = Double.valueOf(currentLine.get(4));
         double elevation = Double.valueOf(currentLine.get(5));
@@ -158,8 +171,5 @@ public class Parser {
         this.linePosition = linePosition;
     }
 
-    public String activitiesToString(){
-        return "";
-    }
 
 }

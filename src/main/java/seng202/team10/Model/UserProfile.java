@@ -60,7 +60,7 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Method for adding a new list of activities (such as when a new CSV file is loaded)
-     * TODO check for duplicates
+     * TODO check for duplicates. seems to many already work natuarally??
      * @param newActivities the arraylist of activity objects
      */
     public void addActivities(ArrayList<Activity> newActivities){
@@ -125,12 +125,27 @@ public class UserProfile implements java.io.Serializable {
 
 
     public double calcBmi() {
-        this.bmi = getWeight() / (Math.pow(getHeight(), 2));
+        this.bmi = getWeight() / (Math.pow(getHeight() / 100, 2));
         return this.bmi;
     }
 
     public double getBmi() {
         return bmi;
+    }
+
+    public String getBmiCategory() {
+        calcBmi();
+        String category;
+        if(this.bmi < 18.5) {
+            category = "Underweight";
+        } else if (this.bmi < 25){
+            category = "Healthy";
+        } else if (this.bmi < 30){
+            category = "Overweight";
+        } else {
+            category = "Obese";
+        }
+        return category;
     }
 
 
