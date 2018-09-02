@@ -19,7 +19,7 @@ public class UploadDataController {
     private GUIController app;
 
 
-    @FXML private TextField filePathTextField;
+    @FXML private TextField C;
     @FXML private Button browseButton;
     @FXML private Button uploadButton;
     @FXML private TableView<Entry> manualDataTableView;
