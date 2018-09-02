@@ -26,10 +26,13 @@ public class ProfileController {
 
     public void setUpScene() {
         calendarPane.getChildren().add(new FullCalendarView(YearMonth.now()).getView());
-        UserProfile currentUser = app.getCurrentProfile();
-        //welcomeProfileLabel.setText("Welcome " + currentUser.getName() + ", Let's do it!");
-        //weightValueLabel.setText(String.valueOf(currentUser.getWeight()));
-        //heightValueLabel.setText(String.valueOf(currentUser.getHeight()));
-        //bmiValueLabel.setText(String.valueOf(currentUser.getBmi()));
+    }
+
+    public void setUserDetails() {
+//        UserProfile currentUser = app.getCurrentProfile();
+//        welcomeProfileLabel.setText("Welcome " + String.valueOf(currentUser.getName()) + ", Let's do it!");
+//        weightValueLabel.setText(String.valueOf(currentUser.getWeight()));
+//        heightValueLabel.setText(String.valueOf(currentUser.getHeight()));
+//        bmiValueLabel.setText(String.valueOf(currentUser.getBmi()));
     }
 }
