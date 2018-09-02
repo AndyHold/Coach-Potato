@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.UserProfile;
 
-public class LoginController {
+public class LoginController implements Controllable{
     private GUIController app;
 
     @FXML
@@ -24,11 +24,13 @@ public class LoginController {
     @FXML
     private Label userErrorLabel;
 
-
     public void setApp(GUIController app) {
         this.app = app;
     }
 
+    /**
+     *
+     */
     public void setUpScene() {
         ObservableList<String> userNames = FXCollections.observableArrayList();
         for (UserProfile user : app.getUsers()) {
@@ -37,6 +39,9 @@ public class LoginController {
         userComboBox.setItems(userNames);
         userComboBox.setVisibleRowCount(10);
         userErrorLabel.setVisible(false);
+        if (!userNames.isEmpty()) {
+            loginButton.setDisable(false);
+        }
     }
 
     @FXML
@@ -48,7 +53,8 @@ public class LoginController {
         } else {
             for (UserProfile user : app.getUsers()) {
                 if (userName == user.getName()) {
-                    app.launchProfileScene(user);
+                    app.setCurrentProfile(user);
+                    app.launchProfileScene();
                 }
             }
         }
