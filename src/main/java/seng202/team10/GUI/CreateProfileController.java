@@ -11,7 +11,7 @@ import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.UserProfile;
 
-public class CreateProfileController
+public class CreateProfileController implements Controllable
 {
 
     private GUIController app;
@@ -98,11 +98,8 @@ public class CreateProfileController
         String nameString = nameEntry.getText();
         String heightString = heightEntry.getText();
         String weightString = weightEntry.getText();
-        String day = dayEntry.getValue().toString();
-        String month = monthEntry.getValue().toString();
-        String year = yearEntry.getValue().toString();
 
-        if (day == null || month == null || year == null) {
+        if (dayEntry.getValue() == null || monthEntry.getValue() == null || yearEntry.getValue() == null) {
             dateErrorLabel.setVisible(true);
             invalidInput = true;
         }
@@ -119,6 +116,10 @@ public class CreateProfileController
             invalidInput = true;
         }
         if (!invalidInput) {
+
+            String day = dayEntry.getValue().toString();
+            String month = monthEntry.getValue().toString();
+            String year = yearEntry.getValue().toString();
 
             int yearInt = Integer.valueOf(year);
             int monthInt = Integer.valueOf(month);
@@ -141,6 +142,9 @@ public class CreateProfileController
 
     private boolean checkDoubleStringInvalid(String doubString, double max, double min)
     {
+        if (doubString.length() < 1) {
+            return true;
+        }
         try {
             double doubDouble = Double.parseDouble(doubString);
             return (doubDouble > max || doubDouble < min);
