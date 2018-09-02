@@ -11,6 +11,8 @@ import seng202.team10.GUI.*;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.FileOperations.FileWriter;
 import seng202.team10.Model.FileOperations.Parser;
+import seng202.team10.Model.Goal;
+import seng202.team10.Model.Goals;
 import seng202.team10.Model.UserProfile;
 
 import java.util.ArrayList;
@@ -48,11 +50,14 @@ public class GUIController extends Application{
     private Parser parser = new Parser();
     private FileWriter dataWriter = new FileWriter();
 
+    private Goals goals = new Goals(currentUser);
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         loadAllScenes();
         primaryStage.setTitle("Coach Potato");
         primaryStage.setScene(loginScene);
+        //primaryStage.setScene(goalsScene);
         primaryStage.show();
         this.primaryStage = primaryStage;
     }
@@ -216,6 +221,11 @@ public class GUIController extends Application{
     public void setUsers(ArrayList<UserProfile> users) {
         this.users = users;
     }
+
+    public Goals getGoalsInstance() {
+        return goals;
+    }
+
 
     public static void main(String[] args) {
         launch(args);
