@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.UserProfile;
 
-public class LoginControl {
+public class LoginController {
     private GUIController app;
 
     @FXML
@@ -34,28 +34,24 @@ public class LoginControl {
         for (UserProfile user : app.getUsers()) {
             userNames.add(user.getName());
         }
-        System.out.println(userNames);
         userComboBox.setItems(userNames);
         userComboBox.setVisibleRowCount(10);
         userErrorLabel.setVisible(false);
     }
 
     @FXML
-    public void login() {
+    public void login() throws Exception {
         setUpScene();
-        loginButton.setText("A thing happened.");
         String userName = userComboBox.getValue();
         if (userName == null) {
             userErrorLabel.setVisible(true);
         } else {
-//            for (UserProfile user : users) {
-//                if (userName == user.getName()) {
-////                    app.launchCreateProfileScene(user);
-//                }
-//            }
+            for (UserProfile user : app.getUsers()) {
+                if (userName == user.getName()) {
+                    app.launchProfileScene(user);
+                }
+            }
         }
-//        app.launchProfileScene(user);
-
     }
 
     @FXML
