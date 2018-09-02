@@ -77,7 +77,7 @@ public class Parser {
      * @return activity  An Activity object that contains a number of entries.
      */
     public Activity processActivity(ArrayList<ArrayList<String>> formattedFile) throws IllegalArgumentException {
-        while (formattedFile.get(linePosition).get(0) != "#start"){
+        while (linePosition < formattedFile.size() && formattedFile.get(linePosition).get(0) != "#start"){
             linePosition+=1;
         }
         String name = formattedFile.get(linePosition).get(1);
