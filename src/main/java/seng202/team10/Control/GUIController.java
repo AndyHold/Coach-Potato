@@ -19,19 +19,19 @@ public class GUIController extends Application {
 
     private FXMLLoader loginLoader;
     private Scene loginScene;
-    private LoginControl loginController;
+    private LoginController loginController;
 
     private FXMLLoader createProfileLoader;
     private Scene createProfileScene;
-    private CreateProfileControl createProfileController;
+    private CreateProfileController createProfileController;
 
-//    private FXMLLoader profileLoader;
-//    private Scene profileScene;
-//    private ProfileController profileController;
+    private FXMLLoader profileLoader;
+    private Scene profileScene;
+    private ProfileController profileController;
 
-//    private FXMLLoader goalsLoader;
-//    private Scene goalsScene;
-//    private GoalsController goalsController;
+    private FXMLLoader goalsLoader;
+    private Scene goalsScene;
+    private GoalController goalsController;
 
     private FXMLLoader uploadDataLoader;
     private Scene uploadDataScene;
@@ -47,7 +47,7 @@ public class GUIController extends Application {
     public void start(Stage primaryStage) throws Exception{
         loadAllScenes();
         primaryStage.setTitle("Coach Potato");
-        primaryStage.setScene(uploadDataScene);
+        primaryStage.setScene(loginScene);
         primaryStage.show();
         this.primaryStage = primaryStage;
     }
@@ -68,10 +68,10 @@ public class GUIController extends Application {
         primaryStage.setScene(loginScene);
     }
 
-//    public void launchProfileScene() {
-//      profileController.setUpScene();
-//      primaryStage.setScene(profileScene);
-//    }
+    public void launchProfileScene(UserProfile user) {
+//      profileController.setUpScene(user);
+      primaryStage.setScene(profileScene);
+    }
 
 //    public void launchGoalsScene() {
 //      goalsController.setUpScene();
@@ -102,12 +102,12 @@ public class GUIController extends Application {
         createProfileController.setUpScene();
         createProfileScene = new Scene(gridPaneCP, 800, 400);
 
-//        profileLoader = new FXMLLoader(getClass().getResource("/fxml/profileScreen.fxml"));
-//        GridPane gridPaneP = profileLoader.load();
-//        ProfileController profileController = profileLoader.getController();
+        profileLoader = new FXMLLoader(getClass().getResource("/fxml/profileScreen.fxml"));
+        GridPane gridPaneP = profileLoader.load();
+        ProfileController profileController = profileLoader.getController();
 //        profileController.setApp(this);
 //        profileController.setUpScene();
-//        profileScene = new Scene(gridPaneP, 900, 600);
+        profileScene = new Scene(gridPaneP, 900, 600);
 
 //        goalsLoader = new FXMLLoader(getClass().getResource("/fxml/goalsScreen.fxml"));
 //        GridPane gridPaneG = goalsLoader.load();
