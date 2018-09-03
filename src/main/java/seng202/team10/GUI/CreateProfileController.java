@@ -137,7 +137,7 @@ public class CreateProfileController implements Controllable
 
     private boolean checkNameStringValid(String name)
     {
-        return !(name.length() > 50 || !name.matches("[a-zA-Z]+"));
+        return !(name.length() > 50 || !name.matches("[a-zA-Z]+ ?[a-zA-Z]+"));
     }
 
     private boolean checkDoubleStringInvalid(String doubString, double max, double min)
