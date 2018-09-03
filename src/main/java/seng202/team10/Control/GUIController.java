@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seng202.team10.GUI.*;
 import seng202.team10.Model.ActivitiesData.Activity;
@@ -23,6 +24,10 @@ import java.util.ArrayList;
  * controllers so they can access any information they need.
  */
 public class GUIController extends Application{
+
+    private FXMLLoader mainLoader;
+    private Scene mainScene;
+    private MainScreenController mainController;
 
     private FXMLLoader loginLoader;
     private Scene loginScene;
@@ -58,7 +63,7 @@ public class GUIController extends Application{
     public void start(Stage primaryStage) throws Exception{
         loadAllScenes();
         primaryStage.setTitle("Coach Potato");
-        primaryStage.setScene(goalsScene);
+        primaryStage.setScene(loginScene);
         //primaryStage.setScene(goalsScene);
         primaryStage.show();
         this.primaryStage = primaryStage;
@@ -77,6 +82,11 @@ public class GUIController extends Application{
         ArrayList<ArrayList<String>> formattedFileContents = parser.formatFileContents(fileContents);
         ArrayList<Activity> activities = parser.processFile(formattedFileContents);
         user.addActivities(activities);
+    }
+
+    public void launchMainScene() throws Exception {
+        mainController.setUpScene();
+        primaryStage.setScene(mainScene);
     }
 
     /**
@@ -130,27 +140,26 @@ public class GUIController extends Application{
      * @throws Exception Not implemented.
      */
     public void loadAllScenes() throws Exception{
-
-        goalsLoader = new FXMLLoader(getClass().getResource("/fxml/goalsScreen.fxml"));
-        Parent root = goalsLoader.load();
-        goalsController = goalsLoader.getController();
-        goalsController.setApp(this);
-        goalsController.setUpScene();
-        goalsScene = new Scene(root, 900, 600);
-
-
 //        loginScene = loadNewScene("/fxml/loginScreen.fxml");
 //        createProfileScene = loadNewScene("/fxml/createProfileScreen.fxml");
 //        profileScene = loadNewScene("/fxml/profileScreen.fxml");
 //        goalsScene = loadNewScene("/fxml/goalsScreen.fxml");
 //        uploadDataScene = loadNewScene("/fxml/uploadDataScreen.fxml");
 
-//        loginLoader = new FXMLLoader(getClass().getResource("/fxml/loginScreen.fxml"));
-//        Parent root = loginLoader.load();
-//        loginController = loginLoader.getController();
-//        loginController.setApp(this);
-//        loginController.setUpScene();
-//        loginScene = new Scene(root, 800, 400);
+
+        loginLoader = new FXMLLoader(getClass().getResource("/fxml/loginScreen.fxml"));
+        Parent root = loginLoader.load();
+        loginController = loginLoader.getController();
+        loginController.setApp(this);
+        loginController.setUpScene();
+        loginScene = new Scene(root, 900, 600);
+
+        mainLoader = new FXMLLoader(getClass().getResource("/fxml/mainScreen.fxml"));
+        VBox mainVBox = mainLoader.load();
+        mainController = mainLoader.getController();
+        mainController.setApp(this);
+        mainController.setUpScene();
+        mainScene = new Scene(mainVBox, 900, 600);
 
         createProfileLoader = new FXMLLoader(getClass().getResource("/fxml/createProfileScreen.fxml"));
         Pane paneCP = createProfileLoader.load();
@@ -167,7 +176,12 @@ public class GUIController extends Application{
         //profileController.setUserDetails();
         profileScene = new Scene(PaneP, 900, 600);
 
-
+//        goalsLoader = new FXMLLoader(getClass().getResource("/fxml/goalsScreen.fxml"));
+//        Pane paneG = goalsLoader.load();
+//        goalsController = goalsLoader.getController();
+//        goalsController.setApp(this);
+//        goalsController.setUpScene();
+//        goalsScene = new Scene(paneG, 900, 600);
 
         uploadDataLoader = new FXMLLoader(getClass().getResource("/fxml/uploadDataScreen.fxml"));
         Pane paneUD = uploadDataLoader.load();
