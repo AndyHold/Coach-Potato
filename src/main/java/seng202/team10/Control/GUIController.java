@@ -67,6 +67,10 @@ public class GUIController extends Application{
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
         primaryStage.setScene(loginScene);
 =======
         primaryStage.setScene(goalsScene);
@@ -80,6 +84,16 @@ public class GUIController extends Application{
 =======
         primaryStage.setScene(goalsScene);
 >>>>>>> 9358b9e... Create new Goals instance in GUIController. Added various buttons, entry boxes and labels to the create goal tab. Implemented an action handler for the create button that creates a goal that is store either as a current goal or future goal. Added arraylist for createdGoals into Goals class and getter method. Edited create goal method to establish whether a goal is current or for the future.
+=======
+=======
+>>>>>>> 2f5af1f... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
+=======
+>>>>>>> 438a3e8... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
+=======
+>>>>>>> 879a82d... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
+        primaryStage.setScene(goalsScene);
+        //primaryStage.setScene(goalsScene);
+>>>>>>> 9a77444... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
         primaryStage.show();
         this.primaryStage = primaryStage;
     }
@@ -127,6 +141,10 @@ public class GUIController extends Application{
         primaryStage.setScene(profileScene);
 //        profileController.setUserDetails();
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
     }
 =======
 //    public void launchProfileScene() {
@@ -144,6 +162,14 @@ public class GUIController extends Application{
 =======
 >>>>>>> 9358b9e... Create new Goals instance in GUIController. Added various buttons, entry boxes and labels to the create goal tab. Implemented an action handler for the create button that creates a goal that is store either as a current goal or future goal. Added arraylist for createdGoals into Goals class and getter method. Edited create goal method to establish whether a goal is current or for the future.
 
+=======
+>>>>>>> 9a77444... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
+=======
+>>>>>>> 2f5af1f... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
+=======
+>>>>>>> 438a3e8... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
+=======
+>>>>>>> 879a82d... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
     public void launchGoalsScene() {
       goalsController.setUpScene();
       primaryStage.setScene(goalsScene);
@@ -175,12 +201,46 @@ public class GUIController extends Application{
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 2f5af1f... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
+=======
+>>>>>>> 438a3e8... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
+=======
+>>>>>>> 879a82d... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
+
+        goalsLoader = new FXMLLoader(getClass().getResource("/fxml/goalsScreen.fxml"));
+        Parent root = goalsLoader.load();
+        goalsController = goalsLoader.getController();
+        goalsController.setApp(this);
+        goalsController.setUpScene();
+        goalsScene = new Scene(root, 900, 600);
+
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 9a77444... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
+=======
+>>>>>>> 2f5af1f... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
+=======
+>>>>>>> 438a3e8... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
+=======
+>>>>>>> 879a82d... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
 //        loginScene = loadNewScene("/fxml/loginScreen.fxml");
 //        createProfileScene = loadNewScene("/fxml/createProfileScreen.fxml");
 //        profileScene = loadNewScene("/fxml/profileScreen.fxml");
 //        goalsScene = loadNewScene("/fxml/goalsScreen.fxml");
 //        uploadDataScene = loadNewScene("/fxml/uploadDataScreen.fxml");
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 
         loginLoader = new FXMLLoader(getClass().getResource("/fxml/loginScreen.fxml"));
         Parent root = loginLoader.load();
@@ -208,12 +268,24 @@ public class GUIController extends Application{
         goalsController.setUpScene();
         goalsScene = new Scene(root, 900, 600);
 
+=======
+>>>>>>> 9a77444... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
+=======
+>>>>>>> 2f5af1f... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
+=======
+>>>>>>> 438a3e8... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
+=======
+>>>>>>> 879a82d... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
 //        loginLoader = new FXMLLoader(getClass().getResource("/fxml/loginScreen.fxml"));
 //        Parent root = loginLoader.load();
 //        loginController = loginLoader.getController();
 //        loginController.setApp(this);
 //        loginController.setUpScene();
 //        loginScene = new Scene(root, 800, 400);
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -249,6 +321,14 @@ public class GUIController extends Application{
 >>>>>>> 9852212... Implemented the main Screen and merged all screens together, still have to do more on it to get it done properly.
 =======
 >>>>>>> a215ecb... Implemented the main Screen and merged all screens together, still have to do more on it to get it done properly.
+=======
+>>>>>>> 9a77444... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
+=======
+>>>>>>> 2f5af1f... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
+=======
+>>>>>>> 438a3e8... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
+=======
+>>>>>>> 879a82d... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
 
         createProfileLoader = new FXMLLoader(getClass().getResource("/fxml/createProfileScreen.fxml"));
         Pane paneCP = createProfileLoader.load();
@@ -258,6 +338,10 @@ public class GUIController extends Application{
         createProfileScene = new Scene(paneCP, 900, 600);
 
         profileLoader = new FXMLLoader(getClass().getResource("/fxml/profileScreen.fxml"));
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
         Pane PaneP = profileLoader.load();
         profileController = profileLoader.getController();
         profileController.setApp(this);
@@ -287,6 +371,30 @@ public class GUIController extends Application{
 =======
 
 >>>>>>> 9358b9e... Create new Goals instance in GUIController. Added various buttons, entry boxes and labels to the create goal tab. Implemented an action handler for the create button that creates a goal that is store either as a current goal or future goal. Added arraylist for createdGoals into Goals class and getter method. Edited create goal method to establish whether a goal is current or for the future.
+=======
+=======
+>>>>>>> 2f5af1f... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
+=======
+>>>>>>> 438a3e8... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
+=======
+>>>>>>> 879a82d... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
+        GridPane gridPaneP = profileLoader.load();
+        ProfileController profileController = profileLoader.getController();
+//        profileController.setApp(this);
+//        profileController.setUpScene();
+        profileScene = new Scene(gridPaneP, 900, 600);
+
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 9a77444... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
+=======
+>>>>>>> 2f5af1f... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
+=======
+>>>>>>> 438a3e8... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
+=======
+>>>>>>> 879a82d... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
 
         uploadDataLoader = new FXMLLoader(getClass().getResource("/fxml/uploadDataScreen.fxml"));
         Pane paneUD = uploadDataLoader.load();
