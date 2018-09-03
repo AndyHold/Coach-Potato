@@ -284,6 +284,10 @@ public class GUIController extends Application{
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
         loginScene = new Scene(root, 800, 400);
 =======
 =======
@@ -337,12 +341,28 @@ public class GUIController extends Application{
 =======
 >>>>>>> a215ecb... Implemented the main Screen and merged all screens together, still have to do more on it to get it done properly.
         loginScene = new Scene(root, 900, 600);
+=======
+        loginScene = new Scene(root, 900, 630);
+>>>>>>> 483c3e6... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
+=======
+        loginScene = new Scene(root, 900, 630);
+>>>>>>> 3b7cb94... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
+=======
+        loginScene = new Scene(root, 900, 630);
+>>>>>>> 1990352... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
+=======
+        loginScene = new Scene(root, 900, 630);
+>>>>>>> ef5ea11... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
 
         mainLoader = new FXMLLoader(getClass().getResource("/fxml/mainScreen.fxml"));
         VBox mainVBox = mainLoader.load();
         mainController = mainLoader.getController();
         mainController.setApp(this);
         mainController.setUpScene();
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
         mainScene = new Scene(mainVBox, 900, 600);
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -362,13 +382,25 @@ public class GUIController extends Application{
 >>>>>>> 438a3e8... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
 =======
 >>>>>>> 879a82d... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
+=======
+        mainScene = new Scene(mainVBox, 900, 630);
+>>>>>>> 483c3e6... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
+=======
+        mainScene = new Scene(mainVBox, 900, 630);
+>>>>>>> 3b7cb94... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
+=======
+        mainScene = new Scene(mainVBox, 900, 630);
+>>>>>>> 1990352... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
+=======
+        mainScene = new Scene(mainVBox, 900, 630);
+>>>>>>> ef5ea11... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
 
         createProfileLoader = new FXMLLoader(getClass().getResource("/fxml/createProfileScreen.fxml"));
         Pane paneCP = createProfileLoader.load();
         createProfileController = createProfileLoader.getController();
         createProfileController.setApp(this);
         createProfileController.setUpScene();
-        createProfileScene = new Scene(paneCP, 900, 600);
+        createProfileScene = new Scene(paneCP, 900, 630);
 
         profileLoader = new FXMLLoader(getClass().getResource("/fxml/profileScreen.fxml"));
 <<<<<<< HEAD
@@ -380,7 +412,7 @@ public class GUIController extends Application{
         profileController.setApp(this);
         profileController.setUpScene();
         //profileController.setUserDetails();
-        profileScene = new Scene(PaneP, 900, 600);
+        profileScene = new Scene(PaneP, 900, 630);
 
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -434,6 +466,10 @@ public class GUIController extends Application{
         uploadDataController = uploadDataLoader.getController();
         uploadDataController.setApp(this);
         uploadDataController.setUpScene();
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
         uploadDataScene = new Scene(paneUD, 900, 600);
 
         dataAnalysisLoader = new FXMLLoader(getClass().getResource("/fxml/dataAnalysisScreen.fxml"));
@@ -456,6 +492,18 @@ public class GUIController extends Application{
         entryViewerController.setApp(this);
 //        entryViewerController.setUpScene();
         entryViewerScene = new Scene(paneEV, 900, 600);
+=======
+        uploadDataScene = new Scene(paneUD, 900, 630);
+>>>>>>> 483c3e6... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
+=======
+        uploadDataScene = new Scene(paneUD, 900, 630);
+>>>>>>> 3b7cb94... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
+=======
+        uploadDataScene = new Scene(paneUD, 900, 630);
+>>>>>>> 1990352... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
+=======
+        uploadDataScene = new Scene(paneUD, 900, 630);
+>>>>>>> ef5ea11... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
     }
 
 //    public Pair<Scene, Controllable> loadNewScene(String fxmlPath) throws Exception{

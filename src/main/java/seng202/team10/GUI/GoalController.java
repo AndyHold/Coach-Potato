@@ -12,7 +12,23 @@ import seng202.team10.Model.FileOperations.Parser;
 
 import java.util.ArrayList;
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 public class GoalController implements Controllable {
+=======
+public class GoalController implements Controllable{
+>>>>>>> 483c3e6... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
+=======
+public class GoalController implements Controllable{
+>>>>>>> 3b7cb94... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
+=======
+public class GoalController implements Controllable{
+>>>>>>> 1990352... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
+=======
+public class GoalController implements Controllable{
+>>>>>>> ef5ea11... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
 
     private GUIController app;
 
