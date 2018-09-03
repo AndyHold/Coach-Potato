@@ -34,12 +34,12 @@ public class activityViewerController {
      * Sets up objects that require it prior to showing the scene
      */
     public void setUpScene() {
-
+        //populate table with activities of current profile
     }
 
     /**
      * fills the table with the activities to display. used by setUpScene as well as applyFilter
-     * @param displayActivities
+     * @param displayActivities the arraylist of activity objects to be displayed in the table
      */
     private void populateTable(ArrayList<Activity> displayActivities){
         //update table to display the passed in activities
