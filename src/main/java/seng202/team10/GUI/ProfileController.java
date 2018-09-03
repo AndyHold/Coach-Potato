@@ -1,10 +1,14 @@
 package seng202.team10.GUI;
 
+import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.UserProfile;
 
@@ -35,6 +39,8 @@ public class ProfileController {
     @FXML private Text distanceText;
     @FXML private Text velocityText;
     @FXML private Text heartRateText;
+    @FXML private Button menu;
+    @FXML private VBox drawer;
 
     public void setApp(GUIController app){
         this.app = app;
@@ -48,6 +54,24 @@ public class ProfileController {
         distanceHBox.setVisible(false);
         velocityHBox.setVisible(false);
         heartRateHBox.setVisible(false);
+    }
+
+    private void drawerAction() {
+
+        TranslateTransition openNav = new TranslateTransition(new Duration(350), drawer);
+        openNav.setToX(0);
+        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
+        menu.setOnAction((ActionEvent evt) -> {
+
+            if (drawer.getTranslateX() != 0) {
+                openNav.play();
+                //drawerHBox.setVisible(true);
+            } else {
+                closeNav.setToX(-(drawer.getWidth()));
+                closeNav.play();
+                //drawerHBox.setVisible(false);
+            }
+        });
     }
 
     public void setUserDetails() {
@@ -78,5 +102,34 @@ public class ProfileController {
                 }
             }
         }
+    }
+    @FXML public void openChooseProfile() throws Exception {
+        setUpScene();
+        app.launchLoginScene();
+    }
+
+    @FXML public void openViewProfile() throws Exception {
+        setUpScene();
+        app.launchProfileScene();
+    }
+
+    @FXML public void openUploadData() throws Exception {
+        setUpScene();
+        app.launchUploadDataScene();
+    }
+
+    @FXML public void openViewActivities() throws Exception {
+        setUpScene();
+        //app.launchViewActivitiesScreen();
+    }
+
+    @FXML public void openGoals() throws Exception {
+        setUpScene();
+        //app.launchGoalsScreen();
+    }
+
+    @FXML public void openAnalysis() throws Exception {
+        setUpScene();
+        //app.launchAnalysisScreen();
     }
 }
