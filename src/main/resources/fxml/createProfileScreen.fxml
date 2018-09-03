@@ -1,25 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.GUI.CreateProfileController">
+<Pane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.GUI.CreateProfileController">
    <children>
       <Label fx:id="heightErrorLabel" layoutX="642.0" layoutY="404.0" prefHeight="15.0" prefWidth="222.0" text="Height must be between 50-260" textFill="#e40606" visible="false" />
-      <Label fx:id="weightErrorLabel" layoutX="148.0" layoutY="404.0" text="Weight must be between 20 and 180" textFill="#eb0a0a" visible="false" />
+      <Label fx:id="weightErrorLabel" layoutX="148.0" layoutY="404.0" text="Weight must be between 30 and 180" textFill="#eb0a0a" visible="false" />
       <Label fx:id="nameErrorLabel" layoutX="194.0" layoutY="215.0" prefHeight="15.0" prefWidth="177.0" text="Please enter a valid name" textFill="#f80606" visible="false" />
       <Label fx:id="dateErrorLabel" layoutX="649.0" layoutY="223.0" text="Please enter all fields for date of birth" textFill="#f20808" visible="false">
          <font>
