@@ -5,13 +5,14 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import seng202.team10.Control.GUIController;
+import seng202.team10.Control.inputValidator;
 import seng202.team10.Model.*;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.FileOperations.Parser;
 
 import java.util.ArrayList;
 
-public class GoalController implements Controllable{
+public class GoalController implements Controllable {
 
     private GUIController app;
 
@@ -56,7 +57,6 @@ public class GoalController implements Controllable{
 
         Goals goalsInstance = app.getGoalsInstance();
 
-
         ObservableList<String> currentGoals = FXCollections.observableArrayList(goalsInstance.getCurrentGoalNames());
         currentGoalsCombo.setItems(currentGoals);
         currentGoalsCombo.setVisibleRowCount(5);
@@ -69,22 +69,58 @@ public class GoalController implements Controllable{
 
     @FXML
     public void createGoal() throws Exception {
+        boolean validInput = true;
         Goals goalsInstance = app.getGoalsInstance();
+        inputValidator input = new inputValidator(); //is this the best way to interact with the input validator class??
 
         String type = goalTypeCombo.getValue().toString();
+        if (type == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Not a valid goal type");
+            alert.setContentText("Please choose a goal type");
+            alert.showAndWait();
+            validInput = false;
+        }
         String name = goalNameEntry.getText();
-        int target = Integer.valueOf(targetValueEntry.getText());
+        if (!input.validGoalName(name)) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Not a valid goal name");
+            alert.setContentText("Name must be between 2 and 10 characters long");
+            alert.showAndWait();
+            validInput = false;
+        }
+
+        int target = Integer.valueOf(targetValueEntry.getText()); //TODO write a valid checking func in inputValidator and call that method from here
 
 
         int startYear = startDatePicker.getValue().getYear();
         int startMonth = startDatePicker.getValue().getMonthValue();
         int startDay = startDatePicker.getValue().getDayOfMonth();
         DateTime startDate = new DateTime(startYear, startMonth, startDay, 0, 0,0);
+        if (!input.validGoalStartDate(startDate)){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Not a valid starting date");
+            alert.setContentText("Start date must be during this year or next year and cannot be in the past.");
+            alert.showAndWait();
+            validInput = false;
+        }
 
         int targetYear = targetDatePicker.getValue().getYear();
         int targetMonth = targetDatePicker.getValue().getMonthValue();
         int targetDay = targetDatePicker.getValue().getDayOfMonth();
         DateTime targetDate = new DateTime(targetYear, targetMonth, targetDay, 0, 0,0);
+        if (!input.validGoalTargetDate(targetDate)){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Not a valid target date");
+            alert.setContentText("Target date must be in the next 5 years and cannot be in the past.");
+            alert.showAndWait();
+            validInput = false;
+        }
+
 
 //        String startDateStr = startDatePicker.getValue().toString();
 //        String[] startDateArray = startDateStr.split("-");
@@ -93,6 +129,7 @@ public class GoalController implements Controllable{
 //        int startDay = Integer.valueOf(startDateArray[2]);
 //        DateTime startDate = new DateTime(startYear, startMonth, startDay, 0, 0,0);
 
+        //TODO add an if-statement to check if validInput == true
         if (type == "Weight") {
             goalsInstance.createGoal(name, startDate, targetDate, type, false, 0,0, target, 0,0);
         } else if (type == "Frequency") {
