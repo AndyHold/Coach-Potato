@@ -30,6 +30,7 @@
       <Label layoutX="267.0" layoutY="38.0" text="To:" />
       <Button fx:id="filterAppyButton" layoutX="522.0" layoutY="34.0" mnemonicParsing="false" text="Apply Filter" />
       <Button fx:id="entryViewerButton" layoutX="16.0" layoutY="561.0" mnemonicParsing="false" text="View Entries" />
+      <Button fx:id="mapButton" layoutX="113.0" layoutY="561.0" mnemonicParsing="false" text="View Routemap" />
    </children>
    <padding>
       <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
