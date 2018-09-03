@@ -42,14 +42,16 @@ public class activityViewerController {
      * @param displayActivities
      */
     private void populateTable(ArrayList<Activity> displayActivities){
-
+        //update table to display the passed in activities
     }
 
     /**
      * updates table with entries between the two datepickers when the filterApplyButton is pressed
      */
     public void applyFilter(){
-
+        //get startdate and enddate from datepickers
+        //create new activitylist from activities in profile that have dates between start/end
+        //pass new activities into populate table
     }
 
 
@@ -57,7 +59,8 @@ public class activityViewerController {
      * opens the entryViewer screen with the selected activity when the entryViewerButton is pressed
      */
     public void openEntries(){
-
+        //set currentActivity to the currently selected row of the table
+        //app.launchEntryViewerScene(currentActivity);
     }
 
 
@@ -65,7 +68,7 @@ public class activityViewerController {
      * opens the routemap screen for the selected activity when the openMap button is pressed
      */
     public void openMap(){
-
+        //open a map screen with the selected activity to view routemap
     }
 
 
