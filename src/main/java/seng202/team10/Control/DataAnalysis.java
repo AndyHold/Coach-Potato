@@ -2,6 +2,7 @@ package seng202.team10.Control;
 
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
+import seng202.team10.Model.ActivitiesData.Entry;
 import seng202.team10.Model.ActivitiesData.Position;
 
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class DataAnalysis {
                 if(a2.getStartDateTime().isAfter(a1.getStartDateTime())) {
                     return -1;
                 } else if ((a2.getStartDateTime().isBefore(a1.getStartDateTime()))) {
-                    return -1;
+                    return 1;
                 } else {
                     return 0;
                 }
@@ -38,38 +39,66 @@ public class DataAnalysis {
         return activities;
     }
 
-    public ArrayList<Activity> sortByIntensity() {
-
-        return null;
-    }
+//    public ArrayList<Activity> sortByIntensity() {
+//
+//        return null;
+//    }
 
     public ArrayList<Activity> showDateRange(DateTime dateTime) {
+//        if (!activities.isEmpty()) {
+//            DateTime minDateTime = activities.get(0).getStartDateTime();
+//            DateTime maxDateTime = activities.get(0).getStartDateTime();
+//            for (Activity activity: activities) {
+//                if (minDateTime.isAfter(activity.getStartDateTime())) {
+//                    minDateTime = activity.getStartDateTime();
+//                }
+//            }
+//        }
+
 
         return null;
     }
 
-    public ArrayList<Double> getTimeFromActivity(Activity activity) {
-
-        return null;
+    public ArrayList<DateTime> getTimeFromActivity(Activity activity) {
+        ArrayList<DateTime> timeArray = new ArrayList<>();
+        for (Entry entry : activity.getEntries()) {
+            timeArray.add(entry.getTime());
+        }
+        return timeArray;
     }
 
     public ArrayList<Double> getDistanceFromActivity(Activity activity) {
 
-        return null;
+        ArrayList<Double> distanceArray = new ArrayList<>();
+        for (Entry entry : activity.getEntries()) {
+            distanceArray.add(entry.getDistance());
+        }
+        return distanceArray;
     }
 
-    public ArrayList<Integer> getHeartRateFromActivity(Activity activity) {
+    public ArrayList<Double> getHeartRateFromActivity(Activity activity) {
 
-        return null;
+        ArrayList<Double> heartRateArray = new ArrayList<>();
+        for (Entry entry : activity.getEntries()) {
+            heartRateArray.add(entry.getHeartRate());
+        }
+        return heartRateArray;
     }
 
-    public ArrayList<Double> getCaloriesFromActivity(Activity activity) {
+//    public ArrayList<Double> getCaloriesFromActivity(Activity activity) {
 
-        return null;
-    }
+//        ArrayList<Double> calorieArray = new ArrayList<>();
+//        for (Entry entry : activity.getEntries()) {
+//        }
+//        return calorieArray;
+//    }
 
     public ArrayList<Position> getPositionFromActivity(Activity activity) {
 
-        return null;
+        ArrayList<Position> positionArray = new ArrayList<>();
+        for (Entry entry : activity.getEntries()) {
+            positionArray.add(entry.getPosition());
+        }
+        return positionArray;
     }
 }

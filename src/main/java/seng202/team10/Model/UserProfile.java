@@ -129,6 +129,10 @@ public class UserProfile implements java.io.Serializable {
         return this.bmi;
     }
 
+    public double getBmi() {
+        return bmi;
+    }
+
     public String getBmiCategory() {
         calcBmi();
         String category;
