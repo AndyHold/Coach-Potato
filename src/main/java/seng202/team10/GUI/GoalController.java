@@ -11,7 +11,7 @@ import seng202.team10.Model.FileOperations.Parser;
 
 import java.util.ArrayList;
 
-public class GoalController {
+public class GoalController implements Controllable{
 
     private GUIController app;
 

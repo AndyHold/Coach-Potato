@@ -152,21 +152,21 @@ public class GUIController extends Application{
         loginController = loginLoader.getController();
         loginController.setApp(this);
         loginController.setUpScene();
-        loginScene = new Scene(root, 900, 600);
+        loginScene = new Scene(root, 900, 630);
 
         mainLoader = new FXMLLoader(getClass().getResource("/fxml/mainScreen.fxml"));
         VBox mainVBox = mainLoader.load();
         mainController = mainLoader.getController();
         mainController.setApp(this);
         mainController.setUpScene();
-        mainScene = new Scene(mainVBox, 900, 600);
+        mainScene = new Scene(mainVBox, 900, 630);
 
         createProfileLoader = new FXMLLoader(getClass().getResource("/fxml/createProfileScreen.fxml"));
         Pane paneCP = createProfileLoader.load();
         createProfileController = createProfileLoader.getController();
         createProfileController.setApp(this);
         createProfileController.setUpScene();
-        createProfileScene = new Scene(paneCP, 900, 600);
+        createProfileScene = new Scene(paneCP, 900, 630);
 
         profileLoader = new FXMLLoader(getClass().getResource("/fxml/profileScreen.fxml"));
         Pane PaneP = profileLoader.load();
@@ -174,7 +174,7 @@ public class GUIController extends Application{
         profileController.setApp(this);
         profileController.setUpScene();
         //profileController.setUserDetails();
-        profileScene = new Scene(PaneP, 900, 600);
+        profileScene = new Scene(PaneP, 900, 630);
 
 //        goalsLoader = new FXMLLoader(getClass().getResource("/fxml/goalsScreen.fxml"));
 //        Pane paneG = goalsLoader.load();
@@ -188,7 +188,7 @@ public class GUIController extends Application{
         uploadDataController = uploadDataLoader.getController();
         uploadDataController.setApp(this);
         uploadDataController.setUpScene();
-        uploadDataScene = new Scene(paneUD, 900, 600);
+        uploadDataScene = new Scene(paneUD, 900, 630);
     }
 
 //    public Pair<Scene, Controllable> loadNewScene(String fxmlPath) throws Exception{
