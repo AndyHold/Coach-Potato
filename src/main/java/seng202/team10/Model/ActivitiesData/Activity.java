@@ -26,6 +26,7 @@ public class Activity implements Serializable {
     private ArrayList<Entry> entries = new ArrayList<>();
     private int totalDuration = 0;
     // private ActivityIntensity intensity;
+    private String type;
 
 
     /**
@@ -57,6 +58,46 @@ public class Activity implements Serializable {
             this.startDateTime = newDateTime;
     }
 
+    /**
+     * Setter method for the type of the activity
+     * @param newtype String: the type of activity
+     */
+    public void setType(String newtype){
+        this.type = newtype;
+    }
+
+    /**
+     * getter method for the type of the activity
+     * @return String of the type of the activity
+     */
+    public String getType(){
+        return this.type;
+    }
+
+    /**
+     * determines and sets the type of the activity based on the name string.
+     * possible types are walk, run, hike, cycle, swim, workout, other
+     * */
+    public void determineType(){
+        String lowername = this.name.toLowerCase();
+        if(lowername.contains("walk")){
+            this.type = "walk";
+        } else if (lowername.contains("run") || lowername.contains("jog")){
+            this.type = "run";
+        } else if (lowername.contains("hike") || lowername.contains("hiking")){
+            this.type = "hike";
+        } else if (lowername.contains("cycle") || lowername.contains("cycling") || lowername.contains("bike") ||
+                lowername.contains("biking")){
+            this.type = "cycle";
+        } else if (lowername.contains("swim")){
+            this.type = "swim";
+        } else if (lowername.contains("workout") || lowername.contains("work out") || lowername.contains("working out")
+                || lowername.contains("exercise") || lowername.contains("exercising")){
+            this.type = "workout";
+        } else{
+            this.type = "other";
+        }
+    }
 
     /**
      * method to calculate and set the total distance of the activity
