@@ -12,7 +12,11 @@ import seng202.team10.Model.FileOperations.Parser;
 
 import java.util.ArrayList;
 
+<<<<<<< HEAD
 public class GoalController implements Controllable {
+=======
+public class GoalController implements Controllable{
+>>>>>>> ef5ea113... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
 
     private GUIController app;
 
