@@ -35,44 +35,51 @@ public class Goals implements java.io.Serializable{
         int month = now.getMonthValue();
         int day = now.getDayOfMonth();
         DateTime today = new DateTime(year, month, day, 0,0,0);
+
         if (type == "Weight") {
             WeightGoal newGoal = new WeightGoal(name, startDate, targetDate, weight);
-//            availableGoals.add(newGoal);
-//            availableGoalNames.add(newGoal.getGoalName());
             if (!startDate.isAfter(today)) {
                 currentGoals.add(newGoal);
                 currentGoalNames.add(newGoal.getGoalName());
             }
             createdGoals.add(newGoal);
             createdGoalNames.add(newGoal.getGoalName());
-            return newGoal; //TODO complete this kind of implementation for the other types of goals.
+            return newGoal;
         } else if (type == "Frequency") {
             FrequencyGoal newGoal = new FrequencyGoal(name, startDate, targetDate, frequency);
-//            availableGoals.add(newGoal);
-//            availableGoalNames.add(newGoal.getGoalName());
-            currentGoals.add(newGoal);
-            currentGoalNames.add(newGoal.getGoalName());
+            if (!startDate.isAfter(today)) {
+                currentGoals.add(newGoal);
+                currentGoalNames.add(newGoal.getGoalName());
+            }
+            createdGoals.add(newGoal);
+            createdGoalNames.add(newGoal.getGoalName());
             return newGoal;
         } else if (type == "Distance") {
             DistanceGoal newGoal = new DistanceGoal(name, startDate, targetDate, distance);
-//            availableGoals.add(newGoal);
-//            availableGoalNames.add(newGoal.getGoalName());
-            currentGoals.add(newGoal);
-            currentGoalNames.add(newGoal.getGoalName());
+            if (!startDate.isAfter(today)) {
+                currentGoals.add(newGoal);
+                currentGoalNames.add(newGoal.getGoalName());
+            }
+            createdGoals.add(newGoal);
+            createdGoalNames.add(newGoal.getGoalName());
             return newGoal;
         } else if (type == "BMI") {
             BmiGoal newGoal = new BmiGoal(name, startDate, targetDate, bmi);
-//            availableGoals.add(newGoal);
-//            availableGoalNames.add(newGoal.getGoalName());
-            currentGoals.add(newGoal);
-            currentGoalNames.add(newGoal.getGoalName());
+            if (!startDate.isAfter(today)) {
+                currentGoals.add(newGoal);
+                currentGoalNames.add(newGoal.getGoalName());
+            }
+            createdGoals.add(newGoal);
+            createdGoalNames.add(newGoal.getGoalName());
             return newGoal;
         } else { //goal must be of type Time
             TimeGoal newGoal = new TimeGoal(name, startDate, targetDate, time);
-//            availableGoals.add(newGoal);
-//            availableGoalNames.add(newGoal.getGoalName());
-            currentGoals.add(newGoal);
-            currentGoalNames.add(newGoal.getGoalName());
+            if (!startDate.isAfter(today)) {
+                currentGoals.add(newGoal);
+                currentGoalNames.add(newGoal.getGoalName());
+            }
+            createdGoals.add(newGoal);
+            createdGoalNames.add(newGoal.getGoalName());
             return newGoal;
         }
     }
@@ -87,9 +94,25 @@ public class Goals implements java.io.Serializable{
 //        }
 //    }
 
-    public void removeGoal(Goal goal) {
-        if (currentGoals.contains(goal)) {
+//    public void removeGoal(Goal goal) {
+//        if (currentGoals.contains(goal)) {
+//            currentGoals.remove(goal);
+//            currentGoalNames.remove(goal.getGoalName());
+//            createdGoals.remove(goal);
+//            createdGoalNames.remove(goal.getGoalName());
+//        }
+//        else {
+//            System.out.println("This goal is not one of your current goals");
+//        }
+//
+//    }
+    public void removeCurrentGoal(String goalName) {
+        if (currentGoalNames.contains(goalName)) {
+            currentGoalNames.remove(goalName);
+            createdGoalNames.remove(goalName);
+            Goal goal = getGoalObject(goalName);
             currentGoals.remove(goal);
+            createdGoals.remove(goal);
         }
         else {
             System.out.println("This goal is not one of your current goals");
@@ -97,29 +120,53 @@ public class Goals implements java.io.Serializable{
 
     }
 
-    public ArrayList<String> getCurrentGoalNames() {
-        return currentGoalNames;
-    }
-
 //    public ArrayList<String> getAvailableGoalNames() {
 //        return availableGoalNames;
 //    }
 
-    public void checkGoal(Goal goal) {
-        if (currentGoals.contains(goal)) {
-            System.out.println("" + goal.getGoalName() + "is of type " + goal.getGoalType());
+//    public void checkGoal(String goalName) {
+//        Goal goal = getGoalObject(goalName);
+//        if (currentGoals.contains(goal)) { // is this necessary if combobox will only ever have current goals??
+//            System.out.println("" + goalName + "is of type " + goal.getGoalType());
+//            String type = goal.getGoalType();
+//            switch (type) {
+//                case "Weight":
+//                    //goal.reviewWeightGoal(goal, user.getWeight());
+//                    goal.reviewWeightGoal(goal, 70);
+//                    break;
+//                case "BMI":
+//                    //goal.reviewBmiGoal(goal, user.calcBmi());
+//                    goal.reviewBmiGoal(goal, 30);
+//                    break;
+//                //TODO add in the Distance, frequency, and time cases (which need data loaded first)
+//            }
+//        }
+//    }
 
+
+    public String checkGoal(String goalName) {
+        Goal goal = getGoalObject(goalName);
+        String progress = "";
+        if (currentGoals.contains(goal)) { // is this necessary if combobox will only ever have current goals??
+            System.out.println("" + goalName + "is of type " + goal.getGoalType());
             String type = goal.getGoalType();
             switch (type) {
                 case "Weight":
-                    goal.reviewWeightGoal(goal, user.getWeight());
+                    //goal.reviewWeightGoal(goal, user.getWeight());
+                    progress = goal.reviewWeightGoal(goal, 70);
                     break;
                 case "BMI":
-                    goal.reviewBmiGoal(goal, user.calcBmi());
+                    //goal.reviewBmiGoal(goal, user.calcBmi());
+                    goal.reviewBmiGoal(goal, 30);
                     break;
                 //TODO add in the Distance, frequency, and time cases (which need data loaded first)
             }
         }
+        return progress;
+    }
+
+    public ArrayList<String> getCurrentGoalNames() {
+        return currentGoalNames;
     }
 
     public ArrayList<Goal> getAchievedGoals() {
@@ -148,6 +195,15 @@ public class Goals implements java.io.Serializable{
 
     public UserProfile getUser() {
         return user;
+    }
+
+    public Goal getGoalObject(String goalName) {
+        for (Goal goal : currentGoals) {
+            if (goal.getGoalName() == goalName) {
+                return goal;
+            }
+        }
+        return null;
     }
 
 }
