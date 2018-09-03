@@ -113,10 +113,10 @@ public class GUIController extends Application{
 
     }
 
-//    public void launchGoalsScene() {
-//      goalsController.setUpScene();
-//      primaryStage.setScene(goalsScene);
-//    }
+    public void launchGoalsScene() {
+      goalsController.setUpScene();
+      primaryStage.setScene(goalsScene);
+    }
 
     /**
      * Sets the scene on the primary stage to the upload data scene.

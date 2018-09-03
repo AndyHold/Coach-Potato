@@ -3,10 +3,7 @@ package seng202.team10.GUI;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.UserProfile;
@@ -15,6 +12,7 @@ public class CreateProfileController implements Controllable
 {
 
     private GUIController app;
+    ToggleGroup toggleGroup;
 
     @FXML
     private Button createProfileButton;
@@ -52,6 +50,18 @@ public class CreateProfileController implements Controllable
     @FXML
     private Label heightErrorLabel;
 
+    @FXML
+    private RadioButton femaleRad;
+
+    @FXML
+    private RadioButton maleRad;
+
+    @FXML
+    private RadioButton notSpecifiedRad;
+
+    @FXML
+    private Label genderWarning;
+
     public void setApp(GUIController app)
     {
         this.app = app;
@@ -79,6 +89,11 @@ public class CreateProfileController implements Controllable
         }
         yearEntry.setItems(years);
         yearEntry.setVisibleRowCount(5);
+
+        toggleGroup = new ToggleGroup();
+        femaleRad.setToggleGroup(toggleGroup);
+        maleRad.setToggleGroup(toggleGroup);
+        notSpecifiedRad.setToggleGroup(toggleGroup);
     }
 
     @FXML
@@ -98,6 +113,7 @@ public class CreateProfileController implements Controllable
         String nameString = nameEntry.getText();
         String heightString = heightEntry.getText();
         String weightString = weightEntry.getText();
+        String genderString = getSelectedGender();
 
         if (dayEntry.getValue() == null || monthEntry.getValue() == null || yearEntry.getValue() == null) {
             dateErrorLabel.setVisible(true);
@@ -115,6 +131,12 @@ public class CreateProfileController implements Controllable
             weightErrorLabel.setVisible(true);
             invalidInput = true;
         }
+
+        if (genderString == null) {
+            genderWarning.setText("Please select a gender option");
+            genderWarning.setVisible(true);
+            invalidInput = true;
+        }
         if (!invalidInput) {
 
             String day = dayEntry.getValue().toString();
@@ -127,6 +149,7 @@ public class CreateProfileController implements Controllable
             DateTime dateOfBirth = new DateTime(yearInt, monthInt, dayInt, 0, 0, 0);
             UserProfile userProfile = new UserProfile();
             userProfile.setName(nameString);
+//            userProfile.setGender(genderString);
             userProfile.setBirthdate(dateOfBirth);
             userProfile.setWeight(Double.valueOf(weightString));
             userProfile.setHeight(Double.valueOf(heightString));
@@ -135,9 +158,34 @@ public class CreateProfileController implements Controllable
         }
     }
 
+    @FXML
+    public void showWarning(){
+        genderWarning.setText("Warning: This may result in inaccurate analysis.");
+        genderWarning.setVisible(true);
+    }
+
+    @FXML
+    public void hideWarning() {
+        genderWarning.setVisible(false);
+    }
+
+    private String getSelectedGender() {
+        try {
+            if (toggleGroup.getSelectedToggle().equals(femaleRad)) {
+                return "Female";
+            } else if (toggleGroup.getSelectedToggle().equals(maleRad)) {
+                return "Male";
+            } else {
+                return "Other";
+            }
+        } catch (NullPointerException e) {
+            return null;
+        }
+    }
+
     private boolean checkNameStringValid(String name)
     {
-        return !(name.length() > 50 || !name.matches("[a-zA-Z]+"));
+        return !(name.length() > 50 || !name.matches("[a-zA-Z]+ ?[a-zA-Z]+"));
     }
 
     private boolean checkDoubleStringInvalid(String doubString, double max, double min)

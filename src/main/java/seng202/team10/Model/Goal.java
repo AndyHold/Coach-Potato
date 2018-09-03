@@ -75,14 +75,29 @@ public class Goal implements Serializable {
     }
 
 
-    public void reviewWeightGoal(Goal goal, double currentWeight) {
+//    public void reviewWeightGoal(Goal goal, double currentWeight) {
+//        System.out.println("Your target for this goal is to weigh " + goal.getGoalWeight() + " by " + goal.getGoalTargetDate());
+//        if (currentWeight <= goal.getGoalWeight()) {
+//            System.out.println("Congratulations you have completed this goal! It has been removed from your current goals.");
+//        } else {
+//            double difference = currentWeight - goal.getGoalWeight();
+//            System.out.println("You need to lose " + difference + " more kgs to meet your goal.");
+//        }
+//    }
+
+    public String reviewWeightGoal(Goal goal, double currentWeight) {
         System.out.println("Your target for this goal is to weigh " + goal.getGoalWeight() + " by " + goal.getGoalTargetDate());
+        String progressDescription = "";
+        progressDescription += "Your target for this goal is to weigh " + goal.getGoalWeight() + " by " + goal.getGoalTargetDate();
         if (currentWeight <= goal.getGoalWeight()) {
             System.out.println("Congratulations you have completed this goal! It has been removed from your current goals.");
+            progressDescription += "\nCongratulations you have completed this goal! It has been removed from your current goals.";
         } else {
-            double difference = goal.getGoalWeight() - currentWeight;
+            double difference = currentWeight - goal.getGoalWeight();
             System.out.println("You need to lose " + difference + " more kgs to meet your goal.");
+            progressDescription += "\nYou need to lose " + difference + " more kgs to meet your goal.";
         }
+        return progressDescription;
     }
 
     public void reviewBmiGoal(Goal goal, double currentBmi) {
@@ -90,7 +105,7 @@ public class Goal implements Serializable {
         if (currentBmi <= goal.getGoalBmi()) {
             System.out.println("Congratulations you have completed this goal! It has been removed from your current goals.");
         } else {
-            double difference = goal.getGoalBmi() - currentBmi;
+            double difference = currentBmi - goal.getGoalBmi();
             System.out.println("You need to decrease your BMI by " + difference + " more to meet your goal.");
         }
     }
