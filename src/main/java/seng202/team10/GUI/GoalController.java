@@ -36,6 +36,16 @@ public class GoalController {
     @FXML
     private Button createButton;
 
+    @FXML
+    private Button removeGoalButton;
+
+    @FXML
+    private Button reviewButton;
+
+    @FXML
+    private TextArea progressText;
+
+
 
     public void setApp(GUIController app){
         this.app = app;
@@ -108,4 +118,46 @@ public class GoalController {
         System.out.println(goalsInstance.getCreatedGoalNames());
 
     }
+
+    @FXML
+    public void removeGoal() throws Exception {
+        if (currentGoalsCombo.getValue() == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("You have not selected a goal");
+            alert.setContentText("Please choose a goal to remove");
+            alert.showAndWait();
+        } else {
+            Goals goalsInstance = app.getGoalsInstance();
+            String name = currentGoalsCombo.getValue().toString();
+            //Goal goalObject = goalsInstance.getGoalObject(name);
+            goalsInstance.removeCurrentGoal(name);
+            ObservableList<String> currentGoals = FXCollections.observableArrayList(goalsInstance.getCurrentGoalNames());
+            currentGoalsCombo.setItems(currentGoals);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information");
+            alert.setHeaderText("Goal successfully removed");
+            alert.showAndWait();
+        }
+
+    }
+
+    @FXML
+    public void reviewGoal() throws Exception {
+        if (currentGoalsCombo.getValue() == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("You have not selected a goal");
+            alert.setContentText("Please choose a goal to review");
+            alert.showAndWait();
+        } else {
+            Goals goalsInstance = app.getGoalsInstance();
+            String goalName = currentGoalsCombo.getValue().toString();
+            progressText.setText(goalsInstance.checkGoal(goalName));
+//            goalsInstance.checkGoal(goalName);
+            ObservableList<String> currentGoals = FXCollections.observableArrayList(goalsInstance.getCurrentGoalNames());
+            currentGoalsCombo.setItems(currentGoals);
+        }
+    }
+
 }
