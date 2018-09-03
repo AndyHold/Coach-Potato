@@ -56,7 +56,7 @@ public class GUIController extends Application{
     public void start(Stage primaryStage) throws Exception{
         loadAllScenes();
         primaryStage.setTitle("Coach Potato");
-        primaryStage.setScene(loginScene);
+        primaryStage.setScene(goalsScene);
         //primaryStage.setScene(goalsScene);
         primaryStage.show();
         this.primaryStage = primaryStage;
@@ -98,10 +98,10 @@ public class GUIController extends Application{
        primaryStage.setScene(profileScene);
     }
 
-//    public void launchGoalsScene() {
-//      goalsController.setUpScene();
-//      primaryStage.setScene(goalsScene);
-//    }
+    public void launchGoalsScene() {
+      goalsController.setUpScene();
+      primaryStage.setScene(goalsScene);
+    }
 
     /**
      * Sets the scene on the primary stage to the upload data scene.
@@ -125,18 +125,27 @@ public class GUIController extends Application{
      * @throws Exception Not implemented.
      */
     public void loadAllScenes() throws Exception{
+
+        goalsLoader = new FXMLLoader(getClass().getResource("/fxml/goalsScreen.fxml"));
+        Parent root = goalsLoader.load();
+        goalsController = goalsLoader.getController();
+        goalsController.setApp(this);
+        goalsController.setUpScene();
+        goalsScene = new Scene(root, 900, 600);
+
+
 //        loginScene = loadNewScene("/fxml/loginScreen.fxml");
 //        createProfileScene = loadNewScene("/fxml/createProfileScreen.fxml");
 //        profileScene = loadNewScene("/fxml/profileScreen.fxml");
 //        goalsScene = loadNewScene("/fxml/goalsScreen.fxml");
 //        uploadDataScene = loadNewScene("/fxml/uploadDataScreen.fxml");
 
-        loginLoader = new FXMLLoader(getClass().getResource("/fxml/loginScreen.fxml"));
-        Parent root = loginLoader.load();
-        loginController = loginLoader.getController();
-        loginController.setApp(this);
-        loginController.setUpScene();
-        loginScene = new Scene(root, 800, 400);
+//        loginLoader = new FXMLLoader(getClass().getResource("/fxml/loginScreen.fxml"));
+//        Parent root = loginLoader.load();
+//        loginController = loginLoader.getController();
+//        loginController.setApp(this);
+//        loginController.setUpScene();
+//        loginScene = new Scene(root, 800, 400);
 
         createProfileLoader = new FXMLLoader(getClass().getResource("/fxml/createProfileScreen.fxml"));
         Pane paneCP = createProfileLoader.load();
@@ -152,12 +161,7 @@ public class GUIController extends Application{
 //        profileController.setUpScene();
         profileScene = new Scene(gridPaneP, 900, 600);
 
-//        goalsLoader = new FXMLLoader(getClass().getResource("/fxml/goalsScreen.fxml"));
-//        Pane paneG = goalsLoader.load();
-//        goalsController = goalsLoader.getController();
-//        goalsController.setApp(this);
-//        goalsController.setUpScene();
-//        goalsScene = new Scene(paneG, 900, 600);
+
 
         uploadDataLoader = new FXMLLoader(getClass().getResource("/fxml/uploadDataScreen.fxml"));
         Pane paneUD = uploadDataLoader.load();
