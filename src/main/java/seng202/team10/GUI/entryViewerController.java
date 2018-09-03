@@ -9,7 +9,6 @@ import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.Entry;
 
-import java.awt.*;
 
 public class entryViewerController {
 
@@ -33,6 +32,7 @@ public class entryViewerController {
     private void setUpScene(Activity loadActivity){
         loadedActivity = loadActivity;
         activityNameLabel.setText(loadedActivity.getName());
+        //load all of the entries of the activity into the table
 
     }
 
