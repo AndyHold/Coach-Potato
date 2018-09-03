@@ -1,6 +1,8 @@
 package seng202.team10.Model.ActivitiesData;
 
 
+import java.io.Serializable;
+
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 
@@ -9,7 +11,7 @@ import static java.lang.Math.sqrt;
  * SENG202 2018S2
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
-public class Position {
+public class Position  implements Serializable {
 
     private double latitude;
     private double longitude;
@@ -86,5 +88,9 @@ public class Position {
         double elevationDifference = position.getElevation() - this.elevation;
         double distance = sqrt(pow(latitudeDifference, 2) + pow(longitudeDifference, 2) + pow(elevationDifference, 2));
         return distance;
+    }
+
+    public String toString(){
+        return ("Latitude: " + this.latitude + ". Longitude: " + this.longitude + ". Elevation: " + this.elevation);
     }
 }

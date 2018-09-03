@@ -1,7 +1,7 @@
 package seng202.team10.Model.ActivitiesData;
 
 
-import java.sql.Time;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -10,83 +10,30 @@ import java.util.ArrayList;
  * SENG202 2018S2
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
-public class Activity {
+public class Activity implements Serializable {
 
 
-//    private Date date;
-    private Double averageVelocity;
-    private Double averageHeartRate;
-    private Double totalDistance;
     private String name;
-    private ArrayList<Entry> entries;
-    private Time startTime;
-    private Double totalTime;
-    private ActivityIntensity intensity;
-
-
-//    /**
-//     * Setter method for the date the activity was started on
-//     * @param day: Day
-//     * @param month: Month
-//     * @param year: Year
-//     */
-//    public void setDate(int day, int month, int year) {
-//        try {
-//            this.date = new Date(day, month, year);
-//        } catch (IllegalArgumentException ex) {
-//            System.out.print(ex);
-//        }
-//    }
+    private DateTime startDateTime;
+    private Double averageVelocity = 0.0;
+    private Double averageHeartRate = 0.0;
+    private Double totalDistance = 0.0;
+    private ArrayList<Entry> entries = new ArrayList<>();
+    private int totalDuration = 0;
+    // private ActivityIntensity intensity;
+    private String type;
 
 
     /**
-     * addEntry Method to add an Entry to the arrayList entries
-     * @param newEntry: Entry to be added.
+     * Constructor method for Activity Class
+     * @param newName String: Name of the activity
+     * @param newStartDateTime DateTime: Start time and date of the activity
      */
-    public void addEntry(Entry newEntry) {
-        entries.add(newEntry);
+    public Activity(String newName, DateTime newStartDateTime) {
+        this.setName(newName);
+        this.setStartDateTime(newStartDateTime);
+        // this.intensity = newIntensity;
     }
-
-
-//    /**
-//     * Getter method for the date the activity was started on
-//     * @return Date
-//     */
-//    public Date getDate() {
-//        return this.date;
-//    }
-
-
-    /**
-     * Method to calculate and set the average velocity during the activity
-     */
-    public void calculateAverageVelocity() {
-        this.averageVelocity = this.totalDistance / this.totalTime;
-    }
-
-
-//    /**
-//     * Method to calculate and set the average heart rate during the activity
-//     */
-//    public void calculateAverageHeartRate() {
-//        Double totalHeartRate = 0.0;
-//        int count = 0;
-//        for(Entry entry: this.entries) {
-//            totalHeartRate += entry.getHeartRate();
-//            count++;
-//        }
-//        this.averageHeartRate = totalHeartRate / count;
-//    }
-//
-//
-//    /**
-//     * method to calculate and set the total distance of the activity
-//     */
-//    public void calculateTotalDistance() {
-//        for(int i = 1; i < this.entries.size(); i++) {
-//            this.totalDistance += (this.entries.get(i).getPosition() - this.entries.get(i - 1).getPosition());
-//        }
-//    }
 
 
     /**
@@ -99,11 +46,127 @@ public class Activity {
 
 
     /**
+     * Setter method for the date and time the activity was started on
+     * @param newDateTime DateTime: Start date and time for this activity
+     */
+    public void setStartDateTime(DateTime newDateTime) {
+            this.startDateTime = newDateTime;
+    }
+
+    /**
+     * Setter method for the type of the activity
+     * @param newtype String: the type of activity
+     */
+    public void setType(String newtype){
+        this.type = newtype;
+    }
+
+    /**
+     * getter method for the type of the activity
+     * @return String of the type of the activity
+     */
+    public String getType(){
+        return this.type;
+    }
+
+    /**
+     * determines and sets the type of the activity based on the name string.
+     * possible types are walk, run, hike, cycle, swim, workout, other
+     * */
+    public void determineType(){
+        String lowername = this.name.toLowerCase();
+        if(lowername.contains("walk")){
+            this.type = "walk";
+        } else if (lowername.contains("run") || lowername.contains("jog")){
+            this.type = "run";
+        } else if (lowername.contains("hike") || lowername.contains("hiking")){
+            this.type = "hike";
+        } else if (lowername.contains("cycle") || lowername.contains("cycling") || lowername.contains("bike") ||
+                lowername.contains("biking")){
+            this.type = "cycle";
+        } else if (lowername.contains("swim")){
+            this.type = "swim";
+        } else if (lowername.contains("workout") || lowername.contains("work out") || lowername.contains("working out")
+                || lowername.contains("exercise") || lowername.contains("exercising")){
+            this.type = "workout";
+        } else{
+            this.type = "other";
+        }
+    }
+
+    /**
+     * method to calculate and set the total distance of the activity
+     */
+    public void calculateTotalDistance() {
+        for(int i = 1; i < this.entries.size(); i++) {
+            this.totalDistance += (this.entries.get(i).getPosition().subtract(this.entries.get(i - 1).getPosition()));
+        }
+    }
+
+
+    /**
+     * Method to calculate and set the total time taken during the activity
+     */
+    public void calculateTotalDuration() {
+        this.totalDuration = this.entries.get(this.entries.size() - 1).getTime().subtract(this.startDateTime);
+    }
+
+
+    /**
+     * Method to calculate and set the average velocity during the activity
+     */
+    public void calculateAverageVelocity() {
+        this.averageVelocity = this.totalDistance / this.totalDuration;
+    }
+
+
+    /**
+     * Method to calculate and set the average heart rate during the activity
+     */
+    public void calculateAverageHeartRate() {
+        Double totalHeartRate = 0.0;
+        int count = 0;
+        for(Entry entry: this.entries) {
+            totalHeartRate += entry.getHeartRate();
+            count++;
+        }
+        this.averageHeartRate = totalHeartRate / count;
+    }
+
+
+    /**
+     * addEntry Method to add an Entry to the arrayList entries
+     * @param newEntry: Entry to be added.
+     */
+    public void addEntry(Entry newEntry) {
+        entries.add(newEntry);
+    }
+
+
+//    /**
+//     * Setter method for the intensity of the activity
+//     * @param newIntensity: ActivityIntensity
+//     */
+//    public void setIntensity(ActivityIntensity newIntensity) {
+//        this.intensity = newIntensity;
+//    }
+
+
+    /**
      * Getter method for the name of the activity
      * @return String
      */
     public String getName() {
         return this.name;
+    }
+
+
+    /**
+     * Getter method for the date the activity was started on
+     * @return DateTime
+     */
+    public DateTime getStartDateTime() {
+        return this.startDateTime;
     }
 
 
@@ -117,11 +180,11 @@ public class Activity {
 
 
     /**
-     * Getter method for the average heart rate during the activity
+     * Getter method for the total time taken during the activity in seconds
      * @return Double
      */
-    public Double getAverageHeartRate() {
-        return this.averageHeartRate;
+    public int getTotalDuration() {
+        return this.totalDuration;
     }
 
 
@@ -134,41 +197,39 @@ public class Activity {
     }
 
 
-//    /**
-//     * Setter method for the start time of the activity
-//     */
-//    public void setStartTime() { this.startTime = this.entries.get(0).getTime(); }
-//
-//
-//    /**
-//     * Method to calculate and set the total time taken during the activity
-//     */
-//    public void calculateTotalTime() { this.totalTime = this.entries.get(-1).getTime() - this.startTime; }
-
-
     /**
-     * Getter method for the total time taken during the activity
+     * Getter method for the average heart rate during the activity
      * @return Double
      */
-    public Double getTotalTime() {
-        return this.totalTime;
+    public Double getAverageHeartRate() {
+        return this.averageHeartRate;
     }
 
 
     /**
-     * Getter method for the start time of the activity
-     * @return Time
+     * Getter method for the ArrayList<Entry> entries
+     * @return ArrayList<Entry>
      */
-    public Time getStartTime() {
-        return this.startTime;
+    public ArrayList<Entry> getEntries() {
+        return this.entries;
+    }
+
+    @Override
+    public String toString() {
+        return "Name= '" + name + '\'' +
+                ", startDateTime=" + startDateTime +
+                ", averageVelocity=" + averageVelocity +
+                ", averageHeartRate=" + averageHeartRate +
+                ", totalDistance=" + totalDistance +
+                ", totalDuration=" + totalDuration;
     }
 
 
-    /**
-     * Setter method for the intensity of the activity
-     * @param newIntensity: ActivityIntensity
-     */
-    public void setIntensity(ActivityIntensity newIntensity) {
-        this.intensity = newIntensity;
-    }
+//    /**
+//     * Getter method for intensity of activity
+//     * @return ActivityIntensity
+//     */
+//    public ActivityIntensity getIntensity() {
+//        return this.intensity;
+//    }
 }

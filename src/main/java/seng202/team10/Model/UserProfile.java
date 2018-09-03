@@ -2,24 +2,21 @@ package seng202.team10.Model;
 
 
 import seng202.team10.Model.ActivitiesData.*;
-import seng202.team10.Model.FileOperations.FileWriter;
-
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * UserProfile Class for Coach Potato
  * SENG202 2018S2
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
-public class UserProfile implements java.io.Serializable{
+public class UserProfile implements java.io.Serializable {
 
 
     private String name;
-    private ArrayList<Activity> activities;
+    private ArrayList<Activity> activities = new ArrayList<>();
     private double weight;
     private double height;
-    private Date birthdate;
+    private DateTime birthdate;
     private Goals goals;
     private Calendar calendar;
     private double bmi;
@@ -51,6 +48,7 @@ public class UserProfile implements java.io.Serializable{
         return this.activities;
     }
 
+
     /**
      * Method for adding an activity to the list of user's Activities.
      * @param activity Activity
@@ -58,6 +56,19 @@ public class UserProfile implements java.io.Serializable{
     public void addActivity(Activity activity) {
         activities.add(activity);
     }
+
+
+    /**
+     * Method for adding a new list of activities (such as when a new CSV file is loaded)
+     * TODO check for duplicates. seems to many already work natuarally??
+     * @param newActivities the arraylist of activity objects
+     */
+    public void addActivities(ArrayList<Activity> newActivities){
+        for(Activity newActivity: newActivities){
+            addActivity(newActivity);
+        }
+    }
+
 
     /**
      * Getter method for the weight of the user
@@ -97,20 +108,58 @@ public class UserProfile implements java.io.Serializable{
 
     /**
      * Setter method for the birthdate of the user
-     * @param newDate
+     * @param newDate DateTime
      */
-
-    public void setBirthdate(Date newDate) {
+    public void setBirthdate(DateTime newDate) {
         this.birthdate = newDate;
     }
+
 
     /**
      * Getter method for the birthdate of the user
      * @return Date
      */
-    public Date getBirthDate() {
+    public DateTime getBirthDate() {
         return this.birthdate;
     }
 
 
+    public double calcBmi() {
+        this.bmi = getWeight() / (Math.pow(getHeight() / 100, 2));
+        return this.bmi;
+    }
+
+    public double getBmi() {
+        return bmi;
+    }
+
+    public String getBmiCategory() {
+        calcBmi();
+        String category;
+        if(this.bmi < 18.5) {
+            category = "Underweight";
+        } else if (this.bmi < 25){
+            category = "Healthy";
+        } else if (this.bmi < 30){
+            category = "Overweight";
+        } else {
+            category = "Obese";
+        }
+        return category;
+    }
+
+
+    @Override
+    public String toString() {
+        return "UserProfile{" +
+                "name='" + name + '\'' +
+                ", activities=" + activities +
+                ", weight=" + weight +
+                ", height=" + height +
+                ", birthdate=" + birthdate +
+                ", goals=" + goals +
+                ", calendar=" + calendar +
+                ", bmi=" + bmi +
+                '}';
+    }
 }
