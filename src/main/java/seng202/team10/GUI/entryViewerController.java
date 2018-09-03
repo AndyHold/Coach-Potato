@@ -48,7 +48,7 @@ public class entryViewerController {
     /**
      * returns to the activityViewer when the activityReturnButton is pressed
      */
-    public void returnToActivities() throws Exception{
+    @FXML public void returnToActivities() throws Exception{
         app.launchActivityViewerScene();
     }
 
