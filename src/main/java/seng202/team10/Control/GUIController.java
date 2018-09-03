@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seng202.team10.GUI.*;
 import seng202.team10.Model.ActivitiesData.Activity;
@@ -23,6 +24,10 @@ import java.util.ArrayList;
  * controllers so they can access any information they need.
  */
 public class GUIController extends Application{
+
+    private FXMLLoader mainLoader;
+    private Scene mainScene;
+    private MainScreenController mainController;
 
     private FXMLLoader loginLoader;
     private Scene loginScene;
@@ -92,6 +97,11 @@ public class GUIController extends Application{
         ArrayList<ArrayList<String>> formattedFileContents = parser.formatFileContents(fileContents);
         ArrayList<Activity> activities = parser.processFile(formattedFileContents);
         user.addActivities(activities);
+    }
+
+    public void launchMainScene() throws Exception {
+        mainController.setUpScene();
+        primaryStage.setScene(mainScene);
     }
 
     /**
@@ -171,11 +181,16 @@ public class GUIController extends Application{
 //        goalsScene = loadNewScene("/fxml/goalsScreen.fxml");
 //        uploadDataScene = loadNewScene("/fxml/uploadDataScreen.fxml");
 
+
         loginLoader = new FXMLLoader(getClass().getResource("/fxml/loginScreen.fxml"));
         Parent root = loginLoader.load();
         loginController = loginLoader.getController();
         loginController.setApp(this);
         loginController.setUpScene();
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
         loginScene = new Scene(root, 800, 400);
 =======
 =======
@@ -209,6 +224,31 @@ public class GUIController extends Application{
 >>>>>>> b7d8c0b... Create new Goals instance in GUIController. Added various buttons, entry boxes and labels to the create goal tab. Implemented an action handler for the create button that creates a goal that is store either as a current goal or future goal. Added arraylist for createdGoals into Goals class and getter method. Edited create goal method to establish whether a goal is current or for the future.
 =======
 >>>>>>> 9358b9e... Create new Goals instance in GUIController. Added various buttons, entry boxes and labels to the create goal tab. Implemented an action handler for the create button that creates a goal that is store either as a current goal or future goal. Added arraylist for createdGoals into Goals class and getter method. Edited create goal method to establish whether a goal is current or for the future.
+=======
+=======
+>>>>>>> f47d49d... Implemented the main Screen and merged all screens together, still have to do more on it to get it done properly.
+=======
+>>>>>>> 9852212... Implemented the main Screen and merged all screens together, still have to do more on it to get it done properly.
+=======
+>>>>>>> a215ecb... Implemented the main Screen and merged all screens together, still have to do more on it to get it done properly.
+        loginScene = new Scene(root, 900, 600);
+
+        mainLoader = new FXMLLoader(getClass().getResource("/fxml/mainScreen.fxml"));
+        VBox mainVBox = mainLoader.load();
+        mainController = mainLoader.getController();
+        mainController.setApp(this);
+        mainController.setUpScene();
+        mainScene = new Scene(mainVBox, 900, 600);
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 668e9dc... Implemented the main Screen and merged all screens together, still have to do more on it to get it done properly.
+=======
+>>>>>>> f47d49d... Implemented the main Screen and merged all screens together, still have to do more on it to get it done properly.
+=======
+>>>>>>> 9852212... Implemented the main Screen and merged all screens together, still have to do more on it to get it done properly.
+=======
+>>>>>>> a215ecb... Implemented the main Screen and merged all screens together, still have to do more on it to get it done properly.
 
         createProfileLoader = new FXMLLoader(getClass().getResource("/fxml/createProfileScreen.fxml"));
         Pane paneCP = createProfileLoader.load();
