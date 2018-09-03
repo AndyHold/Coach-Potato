@@ -1,8 +1,6 @@
 package seng202.team10.Model.ActivitiesData;
 
 
-import javafx.beans.property.SimpleStringProperty;
-
 import java.io.Serializable;
 import java.util.HashMap;
 
@@ -14,8 +12,8 @@ import java.util.HashMap;
  */
 public class DateTime implements Serializable {
 
-    private SimpleStringProperty date;
-    private SimpleStringProperty time;
+    private String date;
+    private String time;
     private int day = 1;
     private int month = 1;
     private int year = 1900;
@@ -99,7 +97,7 @@ public class DateTime implements Serializable {
      */
     public void setDate()
     {
-        this.date = new SimpleStringProperty(String.format("%02d", this.day) + "/" + String.format("%02d", this.month) + "/" + String.format("%04d", this.year));
+        this.date = String.format("%02d", this.day) + "/" + String.format("%02d", this.month) + "/" + String.format("%04d", this.year);
     }
 
 
@@ -108,7 +106,7 @@ public class DateTime implements Serializable {
      */
     public void setTime()
     {
-        this.time = new SimpleStringProperty(String.format("%02d", this.hour) + ":" + String.format("%02d", this.minute) + ":" + String.format("%02d", this.second));
+        this.time = String.format("%02d", this.hour) + ":" + String.format("%02d", this.minute) + ":" + String.format("%02d", this.second);
     }
 
 
@@ -200,7 +198,7 @@ public class DateTime implements Serializable {
      * Getter method for string of the date
      * @return
      */
-    public SimpleStringProperty getDate()
+    public String getDate()
     {
         return this.date;
     }
@@ -209,7 +207,7 @@ public class DateTime implements Serializable {
     /**
      * Getter method for string of the time
      */
-    public SimpleStringProperty getTime()
+    public String getTime()
     {
         return this.time;
     }

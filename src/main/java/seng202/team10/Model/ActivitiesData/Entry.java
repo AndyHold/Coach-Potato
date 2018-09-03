@@ -14,14 +14,14 @@ public class Entry  implements Serializable {
 
     private boolean firstEntry;
     private DateTime time;
-    private SimpleStringProperty timeString;
-    private SimpleStringProperty dateString;
-    private SimpleStringProperty heartRateString;
+    private String timeString;
+    private String dateString;
+    private String heartRateString;
     private double heartRate;
     private Position position;
-    private SimpleStringProperty longitudeString;
-    private SimpleStringProperty latitudeString;
-    private SimpleStringProperty elevationString;
+    private String longitudeString;
+    private String latitudeString;
+    private String elevationString;
     private double distance = 0;
     private double velocity = 0;
     //private Activity activity;
@@ -70,10 +70,10 @@ public class Entry  implements Serializable {
     {
         this.dateString = this.time.getDate();
         this.timeString = this.time.getTime();
-        this.heartRateString = new SimpleStringProperty(String.valueOf(this.heartRate));
-        this.latitudeString = new SimpleStringProperty(String.format("%.8f", this.position.getLatitude()));
-        this.longitudeString = new SimpleStringProperty(String.format("%.8f", this.position.getLongitude()));
-        this.elevationString = new SimpleStringProperty(String.valueOf(this.position.getElevation()));
+        this.heartRateString = String.valueOf(this.heartRate);
+        this.latitudeString = String.format("%.8f", this.position.getLatitude());
+        this.longitudeString = String.format("%.8f", this.position.getLongitude());
+        this.elevationString = String.valueOf(this.position.getElevation());
     }
 
 
@@ -156,7 +156,7 @@ public class Entry  implements Serializable {
      */
     public String getDateString()
     {
-        return this.dateString.get();
+        return this.dateString;
     }
 
 
@@ -165,13 +165,13 @@ public class Entry  implements Serializable {
      */
     public String getTimeString()
     {
-        return this.timeString.get();
+        return this.timeString;
     }
 
 
     public String getHeartRateString()
     {
-        return this.heartRateString.get();
+        return this.heartRateString;
     }
 
 
@@ -180,7 +180,7 @@ public class Entry  implements Serializable {
      */
     public String getLatitudeString()
     {
-        return this.latitudeString.get();
+        return this.latitudeString;
     }
 
 
@@ -189,7 +189,7 @@ public class Entry  implements Serializable {
      */
     public String getLongitudeString()
     {
-        return this.longitudeString.get();
+        return this.longitudeString;
     }
 
 
@@ -198,7 +198,7 @@ public class Entry  implements Serializable {
      */
     public String getElevationString()
     {
-        return this.elevationString.get();
+        return this.elevationString;
     }
 
 
