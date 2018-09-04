@@ -19,6 +19,12 @@
    <children>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 4fada315... Modified tests to fix pipeline, (Main change was to parser so complete url's could be accepted not just files from one directory)
       <TextField fx:id="filePathTextField" layoutX="14.0" layoutY="69.0" prefHeight="28.0" prefWidth="781.0" promptText="Please enter file path">
          <font>
             <Font size="14.0" />
@@ -36,8 +42,27 @@
          <font>
             <Font size="14.0" />
          </font></TextField>
+<<<<<<< HEAD
       <Button fx:id="browseButton" layoutX="757.0" layoutY="71.0" maxHeight="28.0" maxWidth="28.0" mnemonicParsing="false" onAction="#browse" prefHeight="28.0" prefWidth="28.0">
 >>>>>>> 6d5417be... Modified tests to fix pipeline, (Main change was to parser so complete url's could be accepted not just files from one directory)
+=======
+      <Button fx:id="browseButton" layoutX="757.0" layoutY="41.0" maxHeight="28.0" maxWidth="28.0" mnemonicParsing="false" onAction="#browse" prefHeight="28.0" prefWidth="28.0">
+>>>>>>> 40229ad... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
+=======
+      <TextField fx:id="filePathTextField" layoutX="15.0" layoutY="40.0" prefHeight="30.0" prefWidth="775.0" promptText="Please enter file path">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <Button fx:id="browseButton" layoutX="757.0" layoutY="41.0" maxHeight="28.0" maxWidth="28.0" mnemonicParsing="false" onAction="#browse" prefHeight="28.0" prefWidth="28.0">
+>>>>>>> 73cd156... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
+=======
+      <TextField fx:id="filePathTextField" layoutX="15.0" layoutY="70.0" prefHeight="30.0" prefWidth="775.0" promptText="Please enter file path">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <Button fx:id="browseButton" layoutX="757.0" layoutY="71.0" maxHeight="28.0" maxWidth="28.0" mnemonicParsing="false" onAction="#browse" prefHeight="28.0" prefWidth="28.0">
+>>>>>>> f3f8025... Modified tests to fix pipeline, (Main change was to parser so complete url's could be accepted not just files from one directory)
+>>>>>>> 4fada315... Modified tests to fix pipeline, (Main change was to parser so complete url's could be accepted not just files from one directory)
          <graphic>
             <ImageView fitHeight="16.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <viewport>
@@ -146,6 +171,17 @@
       </Button>
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+      <Button layoutX="477.0" layoutY="575.0" mnemonicParsing="false" text="Delete Entry">
+=======
+      <Button fx:id="deleteEntryButton" layoutX="477.0" layoutY="545.0" mnemonicParsing="false" onAction="#deleteEntryFromTableView" text="Delete Entry">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+>>>>>>> 4fada315... Modified tests to fix pipeline, (Main change was to parser so complete url's could be accepted not just files from one directory)
+<<<<<<< HEAD
       <Button layoutX="477.0" layoutY="575.0" mnemonicParsing="false" text="Delete Entry">
 =======
       <Button fx:id="deleteEntryButton" layoutX="477.0" layoutY="545.0" mnemonicParsing="false" onAction="#deleteEntryFromTableView" text="Delete Entry">
@@ -160,8 +196,25 @@
       <Button fx:id="clearTableButton" layoutX="335.0" layoutY="545.0" mnemonicParsing="false" onAction="#clearTableView" text="Clear Table">
 >>>>>>> 73cd1563... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
 =======
+<<<<<<< HEAD
       <Button fx:id="clearTableButton" layoutX="335.0" layoutY="575.0" mnemonicParsing="false" onAction="#clearTableView" text="Clear Table">
 >>>>>>> 6d5417be... Modified tests to fix pipeline, (Main change was to parser so complete url's could be accepted not just files from one directory)
+=======
+      <Button fx:id="deleteEntryButton" layoutX="477.0" layoutY="545.0" mnemonicParsing="false" onAction="#deleteEntryFromTableView" text="Delete Entry">
+=======
+      <Button fx:id="deleteEntryButton" layoutX="477.0" layoutY="575.0" mnemonicParsing="false" onAction="#deleteEntryFromTableView" text="Delete Entry">
+>>>>>>> f3f8025... Modified tests to fix pipeline, (Main change was to parser so complete url's could be accepted not just files from one directory)
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+<<<<<<< HEAD
+      <Button fx:id="clearTableButton" layoutX="335.0" layoutY="545.0" mnemonicParsing="false" onAction="#clearTableView" text="Clear Table">
+>>>>>>> 73cd156... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
+=======
+      <Button fx:id="clearTableButton" layoutX="335.0" layoutY="575.0" mnemonicParsing="false" onAction="#clearTableView" text="Clear Table">
+>>>>>>> f3f8025... Modified tests to fix pipeline, (Main change was to parser so complete url's could be accepted not just files from one directory)
+>>>>>>> 4fada315... Modified tests to fix pipeline, (Main change was to parser so complete url's could be accepted not just files from one directory)
          <font>
             <Font size="14.0" />
          </font>
