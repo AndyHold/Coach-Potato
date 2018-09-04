@@ -12,8 +12,10 @@ public class FileReader {
 
     private UserProfile localProfile;
 
-    /** loads an already established profile from file.
-     * @profileName should match what would be returned from UserProfile.getName()
+
+    /** Method to load an already established profile from file.
+     * @param profileName UserProfile: should match what would be returned from UserProfile.getName()
+     * @return UserProfile
      * */
     public UserProfile loadExistingProfile(String profileName){
         String filename = "./profiles/" + profileName + ".ser";
@@ -25,10 +27,10 @@ public class FileReader {
                 in.close();
                 fileIn.close();
                 return localProfile;
-            } catch (IOException i) {
-                i.printStackTrace();
             } catch (ClassNotFoundException c) {
                 c.printStackTrace();
+            } catch (IOException i) {
+                i.printStackTrace();
             }
         }
         return localProfile;
@@ -38,9 +40,9 @@ public class FileReader {
      * @param filename : the string of the filename being opened, eg. blablabla.csv (path is appended in function)
      * @return fileContents : ArrayList of strings, each is a line of the file*/
     public ArrayList openNewFile(String filename) throws FileNotFoundException{
-        filename = "./FilesToLoad/" + filename;
+//        filename = "./FilesToLoad/" + filename;
         Scanner localScanner = new Scanner(new File(filename));
-        ArrayList<String> fileContents = new ArrayList<String>();
+        ArrayList<String> fileContents = new ArrayList<>();
         while (localScanner.hasNextLine()){
             fileContents.add(localScanner.nextLine());
         }
@@ -53,8 +55,7 @@ public class FileReader {
      * @param filename : the string of the filename/path being checked*/
     public boolean checkFileExists(String filename){
         File tmpDir = new File(filename);
-        boolean exists = tmpDir.exists();
-        return exists;
+        return tmpDir.exists();
     }
 
     /**
@@ -62,14 +63,14 @@ public class FileReader {
      * @return foundUsers: arraylist of filenames of existing profiles (no extensions
      */
     public ArrayList getExistingUsers() {
-        ArrayList<String> foundUsers = new ArrayList<String>();
+        ArrayList<String> foundUsers = new ArrayList<>();
         File folder = new File("./profiles");
 
         File[] listOfFiles = folder.listFiles();
-        for (int i = 0; i < listOfFiles.length; i++) {
-            if (listOfFiles[i].isFile()) {
-                if (getFileExtension(listOfFiles[i]).equals(".ser")) {
-                    foundUsers.add(listOfFiles[i].getName().substring(0, listOfFiles[i].getName().length() - 4));
+        for (File listOfFile : listOfFiles) {
+            if (listOfFile.isFile()) {
+                if (getFileExtension(listOfFile).equals(".ser")) {
+                    foundUsers.add(listOfFile.getName().substring(0, listOfFile.getName().length() - 4));
                 }
             }
         }

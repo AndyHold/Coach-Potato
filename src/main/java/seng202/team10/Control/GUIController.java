@@ -60,7 +60,7 @@ public class GUIController extends Application{
     private entryViewerController entryViewerController;
 
     private Stage primaryStage;
-    private ArrayList<UserProfile> users = new ArrayList<UserProfile>();
+    private ArrayList<UserProfile> users = new ArrayList<>();
 
 
     private UserProfile currentUser;
@@ -75,16 +75,26 @@ public class GUIController extends Application{
         primaryStage.setTitle("Coach Potato");
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         primaryStage.setScene(loginScene);
 =======
         primaryStage.setScene(goalsScene);
 >>>>>>> 9358b9ec... Create new Goals instance in GUIController. Added various buttons, entry boxes and labels to the create goal tab. Implemented an action handler for the create button that creates a goal that is store either as a current goal or future goal. Added arraylist for createdGoals into Goals class and getter method. Edited create goal method to establish whether a goal is current or for the future.
 =======
         primaryStage.setScene(goalsScene);
+=======
+        primaryStage.setScene(uploadDataScene);
+>>>>>>> 73cd1563... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
         //primaryStage.setScene(goalsScene);
 >>>>>>> 879a82d8... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
         primaryStage.show();
         this.primaryStage = primaryStage;
+    }
+
+
+    public Parser getParser()
+    {
+        return this.parser;
     }
 
 
@@ -132,6 +142,7 @@ public class GUIController extends Application{
 
 <<<<<<< HEAD
     }
+<<<<<<< HEAD
 =======
 //    public void launchProfileScene() {
 //      profileController.setUpScene();
@@ -145,6 +156,13 @@ public class GUIController extends Application{
       goalsController.setUpScene();
       primaryStage.setScene(goalsScene);
     }
+=======
+
+//    public void launchGoalsScene() {
+//      goalsController.setUpScene();
+//      primaryStage.setScene(goalsScene);
+//    }
+>>>>>>> 73cd1563... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
 
     /**
      * Sets the scene on the primary stage to the upload data scene.
@@ -195,12 +213,12 @@ public class GUIController extends Application{
 <<<<<<< HEAD
 =======
 
-        goalsLoader = new FXMLLoader(getClass().getResource("/fxml/goalsScreen.fxml"));
-        Parent root = goalsLoader.load();
-        goalsController = goalsLoader.getController();
-        goalsController.setApp(this);
-        goalsController.setUpScene();
-        goalsScene = new Scene(root, 900, 600);
+//        goalsLoader = new FXMLLoader(getClass().getResource("/fxml/goalsScreen.fxml"));
+//        Parent root = goalsLoader.load();
+//        goalsController = goalsLoader.getController();
+//        goalsController.setApp(this);
+//        goalsController.setUpScene();
+//        goalsScene = new Scene(root, 900, 600);
 
 
 >>>>>>> 879a82d8... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.

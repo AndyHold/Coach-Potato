@@ -1,9 +1,8 @@
 package seng202.team10.Model.ActivitiesData;
 
 
-import javafx.beans.property.SimpleStringProperty;
-
 import java.io.Serializable;
+
 
 /**
  * Entry Class for Coach Potato
@@ -17,7 +16,7 @@ public class Entry  implements Serializable {
     private String timeString;
     private String dateString;
     private String heartRateString;
-    private double heartRate;
+    private int heartRate;
     private Position position;
     private String longitudeString;
     private String latitudeString;
@@ -53,7 +52,7 @@ public class Entry  implements Serializable {
      * @param activity: Activity Activity field of the entry.
 >>>>>>> 939a15b8... Minor changes for Javadoc for Entry and Position classes. Had to push before I pull.
      */
-    public Entry(boolean firstEntry, DateTime time, double heartRate, Position position) {
+    public Entry(boolean firstEntry, DateTime time, int heartRate, Position position) {
         this.firstEntry = firstEntry;
         this.time = time;
         this.heartRate = heartRate;
@@ -112,9 +111,13 @@ public class Entry  implements Serializable {
      * @param newHeartRate String: String representation of the heart rate double
      * @throws NumberFormatException String does not represent a number
      */
-    public void changeHeartRate(String newHeartRate) throws NumberFormatException
+    public void changeHeartRate(String newHeartRate) throws IllegalArgumentException
     {
-        this.heartRate = Double.valueOf(newHeartRate);
+        if ((0 < heartRate) && (heartRate <= 300)) {
+            this.heartRate = Integer.valueOf(newHeartRate);
+        } else {
+            throw new IllegalArgumentException("Heart Rate Invalid, must be between 1 & 300");
+        }
     }
 
 
@@ -123,7 +126,7 @@ public class Entry  implements Serializable {
      * @param newLatitude String: String representation of the heart rate double
      * @throws NumberFormatException String does not represent a number
      */
-    public void changeLatitude(String newLatitude) throws NumberFormatException
+    public void changeLatitude(String newLatitude) throws IllegalArgumentException
     {
         this.position.setLatitude(Double.valueOf(newLatitude));
     }
@@ -134,7 +137,7 @@ public class Entry  implements Serializable {
      * @param newLongitude String: String representation of the heart rate double
      * @throws NumberFormatException String does not represent a number
      */
-    public void changeLongitude(String newLongitude) throws NumberFormatException
+    public void changeLongitude(String newLongitude) throws IllegalArgumentException
     {
         this.position.setLongitude(Double.valueOf(newLongitude));
     }
@@ -145,7 +148,7 @@ public class Entry  implements Serializable {
      * @param newElevation String: String representation of the heart rate double
      * @throws NumberFormatException String does not represent a number
      */
-    public void changeElevation(String newElevation) throws NumberFormatException
+    public void changeElevation(String newElevation) throws IllegalArgumentException
     {
         this.position.setElevation(Double.valueOf(newElevation));
     }
@@ -169,6 +172,10 @@ public class Entry  implements Serializable {
     }
 
 
+    /**
+     * Getter method for the String representation of the Heart Rate
+     * @return String
+     */
     public String getHeartRateString()
     {
         return this.heartRateString;
@@ -238,7 +245,7 @@ public class Entry  implements Serializable {
      * Getter method to get user's heart rate.
      * @return heartRate: double
      */
-    public double getHeartRate() {
+    public int getHeartRate() {
         return heartRate;
     }
 
@@ -246,7 +253,7 @@ public class Entry  implements Serializable {
      * Setter method to set user's heart rate.
      * @param heartRate: double
      */
-    public void setHeartRate(double heartRate) {
+    public void setHeartRate(int heartRate) {
         this.heartRate = heartRate;
     }
 
@@ -274,6 +281,7 @@ public class Entry  implements Serializable {
         return distance;
     }
 
+
     /**
      * Method to calculate user's distance.
      * @param prevEntry: Entry
@@ -283,6 +291,7 @@ public class Entry  implements Serializable {
         this.distance = prevPosition.subtract(this.position);
     }
 
+
     /**
      * Getter method to get user's velocity.
      * @return velocity: double
@@ -290,6 +299,7 @@ public class Entry  implements Serializable {
     public double getVelocity() {
         return velocity;
     }
+
 
     /**
      * Method to calculate user's velocity.
@@ -301,17 +311,21 @@ public class Entry  implements Serializable {
         this.velocity = (this.distance - prevDistance)/((time.subtract(prevTime)));
     }
 
+
+    @Override
     public String toString(){
         return ("First Entry? : " + this.firstEntry + " , " + position.toString());
     }
-    /**
-     * Getter method to get user's activities.
-     * @return  activity: Activity
-     */
-    // Commented out as we don't need it for now but might need it later.
-    //public Activity getActivity() {
-    //    return activity;
-    //}
+
+
+//    /**
+//     * Getter method to get user's activities.
+//     * @return  activity: Activity
+//     */
+//    // Commented out as we don't need it for now but might need it later.
+//    public Activity getActivity() {
+//        return activity;
+//    }
 
 
 }
