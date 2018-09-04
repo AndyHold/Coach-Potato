@@ -61,11 +61,13 @@ public class DataAnalysis {
 
     public ArrayList<Integer> getTimeFromActivity(Activity activity) {
         ArrayList<Integer> timeArray = new ArrayList<>();
+        Integer timeSum = 0;
         int i = 0;
         while (i < activity.getEntries().size()-1) {
             DateTime time1 = activity.getEntries().get(i).getTime();
             DateTime time2 = activity.getEntries().get(i+1).getTime();
-            timeArray.add(time1.subtract(time2));
+            timeArray.add(timeSum);
+            timeSum += time2.subtract(time1);
             i++;
         }
         return timeArray;
@@ -104,5 +106,25 @@ public class DataAnalysis {
             positionArray.add(entry.getPosition());
         }
         return positionArray;
+    }
+
+    public void setActivities(ArrayList<Activity> activities) {
+        this.activities = activities;
+    }
+
+    public static void main(String[] args) throws Exception {
+//        GUIController guiController = new GUIController();
+//        UserProfile user = new UserProfile();
+////        user.setHeight(80);
+////        user.setWeight(80);
+//        guiController.uploadDataToUser(user, "/home/cosc/student/tkl34/Desktop/SENG202/SENG202_Project/SENG202_Project/FilesToLoad/testdata.csv");
+//        ArrayList<Activity> activities = user.getActivities();
+//        DataAnalysis dataAnalysis = new DataAnalysis();
+//        ArrayList<Integer> timesum = dataAnalysis.getTimeFromActivity(activities.get(0));
+//        System.out.println(timesum);
+//        System.out.println(activities);
+//        dataAnalysis.setActivities(activities);
+//        dataAnalysis.sortByDate();
+//        System.out.println(activities);
     }
 }
