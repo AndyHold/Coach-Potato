@@ -11,21 +11,17 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.FileChooser;
 import seng202.team10.Control.GUIController;
-import seng202.team10.Model.ActivitiesData.DateTime;
-import seng202.team10.Model.ActivitiesData.Entry;
-import seng202.team10.Model.ActivitiesData.Position;
-
-import javax.swing.*;
+import seng202.team10.Model.ActivitiesData.*;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 public class UploadDataController {
 
     private GUIController app;
 
 
-    @FXML private TextField C;
-    @FXML private Button browseButton;
-    @FXML private Button uploadButton;
+    @FXML private TextField filePathTextField;
     @FXML private TableView<Entry> manualDataTableView;
     @FXML private TableColumn<Entry, String> dateColumn;
     @FXML private TableColumn<Entry, String> timeColumn;
@@ -33,7 +29,6 @@ public class UploadDataController {
     @FXML private TableColumn<Entry, String> latitudeColumn;
     @FXML private TableColumn<Entry, String> longitudeColumn;
     @FXML private TableColumn<Entry, String> elevationColumn;
-    @FXML private Button submitDataButton;
     @FXML private TextField activityNameTextField;
     @FXML private ComboBox intensityComboBox;
     @FXML private TextField dateTextField;
@@ -42,8 +37,6 @@ public class UploadDataController {
     @FXML private TextField latitudeTextField;
     @FXML private TextField longitudeTextField;
     @FXML private TextField elevationTextField;
-    @FXML private Button addEntryButton;
-    @FXML private TextField filePathTextField;
 
 
     /**
@@ -89,116 +82,277 @@ public class UploadDataController {
     }
 
 
+    /**
+     * Method to change the time of an Entry when it is modified in the TableView
+     * @param editedCell TableColumn.CellEditEvent: Cell edited by the user
+     */
     @FXML public void changeTimeCellEvent(TableColumn.CellEditEvent editedCell)
     {
-        //NEED TO ERROR CHECK THE INPUT VALUE HERE
-        Entry entrySelected = manualDataTableView.getSelectionModel().getSelectedItem();
-        entrySelected.changeTime(editedCell.getNewValue().toString());
+        try {
+            Entry entrySelected = manualDataTableView.getSelectionModel().getSelectedItem();
+            entrySelected.changeTime(editedCell.getNewValue().toString());
+        } catch(NumberFormatException exception) {
+            createPopUp(Alert.AlertType.ERROR, "Error", "Time invalid, must be a valid number");
+        } catch(IllegalArgumentException exception) {
+            String message = exception.getMessage();
+            createPopUp(Alert.AlertType.ERROR, "Error", message);
+        }
     }
 
 
+    /**
+     * Method to change the date of an Entry when it is modified in the TableView
+     * @param editedCell TableColumn.CellEditEvent: Cell edited by the user
+     */
     @FXML public void changeDateCellEvent(TableColumn.CellEditEvent editedCell)
     {
-        //NEED TO ERROR CHECK THE INPUT VALUE HERE
-        Entry entrySelected = manualDataTableView.getSelectionModel().getSelectedItem();
-        entrySelected.changeDate(editedCell.getNewValue().toString());
+        try {
+            Entry entrySelected = manualDataTableView.getSelectionModel().getSelectedItem();
+            entrySelected.changeDate(editedCell.getNewValue().toString());
+        }  catch(NumberFormatException exception) {
+            createPopUp(Alert.AlertType.ERROR, "Error", "Date invalid, must be a valid number");
+        } catch(IllegalArgumentException exception) {
+            String message = exception.getMessage();
+            createPopUp(Alert.AlertType.ERROR, "Error", message);
+        }
     }
 
 
+    /**
+     * Method to change the Heart Rate of an Entry when it is modified in the TableView
+     * @param editedCell TableColumn.CellEditEvent: Cell edited by the user
+     */
     @FXML public void changeHeartRateCellEvent(TableColumn.CellEditEvent editedCell)
     {
-        //NEED TO ERROR CHECK THE INPUT VALUE HERE
-        Entry entrySelected = manualDataTableView.getSelectionModel().getSelectedItem();
-        entrySelected.changeHeartRate(editedCell.getNewValue().toString());
+        try {
+            Entry entrySelected = manualDataTableView.getSelectionModel().getSelectedItem();
+            entrySelected.changeHeartRate(editedCell.getNewValue().toString());
+        } catch(NumberFormatException exception) {
+            createPopUp(Alert.AlertType.ERROR, "Error", "HeartRate invalid, must be a valid number");
+        } catch(IllegalArgumentException exception) {
+            String message = exception.getMessage();
+            createPopUp(Alert.AlertType.ERROR, "Error", message);
+        }
     }
 
 
+    /**
+     * Method to change the Latitude of an Entry when it is modified in the TableView
+     * @param editedCell TableColumn.CellEditEvent: Cell edited by the user
+     */
     @FXML public void changeLatitudeCellEvent(TableColumn.CellEditEvent editedCell)
     {
-        //NEED TO ERROR CHECK THE INPUT VALUE HERE
-        Entry entrySelected = manualDataTableView.getSelectionModel().getSelectedItem();
-        entrySelected.changeLatitude(editedCell.getNewValue().toString());
+        try {
+            Entry entrySelected = manualDataTableView.getSelectionModel().getSelectedItem();
+            entrySelected.changeLatitude(editedCell.getNewValue().toString());
+        } catch(NumberFormatException exception) {
+            createPopUp(Alert.AlertType.ERROR, "Error", "Latitude invalid, must be a valid number");
+        } catch(IllegalArgumentException exception) {
+            String message = exception.getMessage();
+            createPopUp(Alert.AlertType.ERROR, "Error", message);
+        }
+
     }
 
 
+    /**
+     * Method to change the Longitude of an Entry when it is modified in the TableView
+     * @param editedCell TableColumn.CellEditEvent: Cell edited by the user
+     */
     @FXML public void changeLongitudeCellEvent(TableColumn.CellEditEvent editedCell)
     {
-        //NEED TO ERROR CHECK THE INPUT VALUE HERE
-        Entry entrySelected = manualDataTableView.getSelectionModel().getSelectedItem();
-        entrySelected.changeLongitude(editedCell.getNewValue().toString());
+        try {
+            Entry entrySelected = manualDataTableView.getSelectionModel().getSelectedItem();
+            entrySelected.changeLongitude(editedCell.getNewValue().toString());
+        } catch(NumberFormatException exception) {
+            createPopUp(Alert.AlertType.ERROR, "Error", "Longitude invalid, must be a valid number");
+        } catch(IllegalArgumentException exception) {
+            String message = exception.getMessage();
+            createPopUp(Alert.AlertType.ERROR, "Error", message);
+        }
+
     }
 
 
+    /**
+     * Method to change the Elevation of an Entry when it is modified in the TableView
+     * @param editedCell TableColumn.CellEditEvent: Cell edited by the user
+     */
     @FXML public void changeElevationCellEvent(TableColumn.CellEditEvent editedCell)
     {
-        //NEED TO ERROR CHECK THE INPUT VALUE HERE
-        Entry entrySelected = manualDataTableView.getSelectionModel().getSelectedItem();
-        entrySelected.changeElevation(editedCell.getNewValue().toString());
+        try {
+            Entry entrySelected = manualDataTableView.getSelectionModel().getSelectedItem();
+            entrySelected.changeElevation(editedCell.getNewValue().toString());
+        } catch(NumberFormatException exception) {
+            createPopUp(Alert.AlertType.ERROR, "Error", "Elevation invalid, must be a valid number");
+        } catch(IllegalArgumentException exception) {
+            String message = exception.getMessage();
+            createPopUp(Alert.AlertType.ERROR, "Error", message);
+        }
     }
 
 
+    /**
+     * Method to create an ObservableList<Entry> object for the TableView
+     * @return ObservableList<Entry>
+     */
     public ObservableList<Entry> getEntries()
     {
         ObservableList<Entry> entries = FXCollections.observableArrayList();
-        entries.add(new Entry(true, new DateTime(1900, 10, 2, 2, 2, 2), 80, new Position(-43.5222767, 172.5809189, 14.0)));
         return entries;
     }
 
 
-
+    /**
+     * Method to add an entry input by the user when the add entry button is pushed
+     */
     @FXML public void addEntryToTableView()
     {
-        // NEED TO ERROR CHECK THIS
-        String date = dateTextField.getText();
-        String[] dateArray = date.split("/");
-        int year = Integer.valueOf(dateArray[2]);
-        int month = Integer.valueOf(dateArray[1]);
-        int day = Integer.valueOf(dateArray[0]);
-        String time = timeTextField.getText();
-        String[] timeArray = time.split(":");
-        int hour = Integer.valueOf((timeArray[0]));
-        int minute = Integer.valueOf((timeArray[1]));
-        int second = Integer.valueOf((timeArray[2]));
-        double heartRate = Double.valueOf(heartRateTextField.getText());
-        double latitude = Double.valueOf(latitudeTextField.getText());
-        double longitude = Double.valueOf(longitudeTextField.getText());
-        double elevation = Double.valueOf(elevationTextField.getText());
-        Entry newEntry = new Entry(false, new DateTime(year, month, day, hour, minute, second), heartRate, new Position(latitude, longitude, elevation));
-        manualDataTableView.getItems().add(newEntry);
+        try {
+
+            String date = dateTextField.getText();
+            String time = timeTextField.getText();
+            DateTime dateTime = app.getParser().parseDateTimeFromStrings(date, time);
+            int heartRate = Integer.valueOf(heartRateTextField.getText());
+            double latitude = Double.valueOf(latitudeTextField.getText());
+            double longitude = Double.valueOf(longitudeTextField.getText());
+            double elevation = Double.valueOf(elevationTextField.getText());boolean firstEntry = false;
+            if (manualDataTableView.getItems().size() == 0) {
+                firstEntry = true;
+            }
+            Entry newEntry = new Entry(firstEntry, dateTime, heartRate, new Position(latitude, longitude, elevation));
+            manualDataTableView.getItems().add(newEntry);
+        } catch(NumberFormatException exception) {
+            createPopUp(Alert.AlertType.ERROR, "Error", "Invalid input, please only enter valid numbers");
+        } catch(IllegalArgumentException exception) {
+            createPopUp(Alert.AlertType.ERROR, "Error", exception.getMessage());
+        }
     }
 
 
+    /**
+     * Method to upload data from a file when the upload data button is pushed
+     */
     @FXML public void uploadData()
     {
-        // NEED TO SORT ERROR HANDLING
-        // this.app.getCurrentProfile().uploadFile(filePathTextField.getText());
-
+        String filename = filePathTextField.getText();
+        if (filename.length() == 0) {
+            createPopUp(Alert.AlertType.ERROR, "Error", "No file path, please select a csv file");
+        } else {
+            try {
+                ArrayList<String> fileContents = app.getParser().getFileContents(filename);
+                ArrayList<ArrayList<String>> formattedFile = app.getParser().formatFileContents(fileContents);
+                ArrayList<Activity> testResults = app.getParser().processFile(formattedFile);
+                app.getCurrentProfile().addActivities(testResults);
+            } catch (FileNotFoundException exception) {
+                createPopUp(Alert.AlertType.ERROR, "Error", "File not found, please choose a valid csv file");
+            }
+        }
     }
 
 
+    /**
+     * Method to create an Activity object from the entries input by the user and add it to the User Profile when the Submit Data button is pushed
+     */
     @FXML public void submitData()
     {
-        //
+        try {
+            // Get name of activity
+            String activityName = activityNameTextField.getText();
+            // Check an intensity has been chosen
+            if (intensityComboBox.getValue() == null) {
+                // If not send error message
+                createPopUp(Alert.AlertType.ERROR, "Activity Intensity Error", "Please choose an activity intensity");
+            } else {
+                // Else get the intensity
+                String intensityString = (String) intensityComboBox.getValue();
+                ActivityIntensity activityIntensity = ActivityIntensity.getIntensityFromString(intensityString);
+                // Check Entry list is not empty
+                if (manualDataTableView.getItems().size() == 0) {
+                    // If Entry list is empty send error
+                    createPopUp(Alert.AlertType.ERROR, "Entry Error", "You have not added any Entries to the list");
+                } else {
+                    // Else get date of first Entry
+                    ObservableList<Entry> currentEntries = manualDataTableView.getItems();
+                    DateTime startDateTime = currentEntries.get(0).getTime();
+                    // Create Activity
+                    Activity newActivity = new Activity(activityName, startDateTime);
+                    // newActivity.setIntensity(activityIntensity);
+                    // Iterate over Entries and add them to Activity
+                    for (Entry entry: currentEntries) {
+                        newActivity.addEntry(entry);
+                    }
+                    // Add Activity to user profile.
+                    // app.getCurrentProfile().addActivity(newActivity);
+                    createPopUp(Alert.AlertType.INFORMATION, "Success", "You have successfully created the activity \"" + activityName + "\"");
+                    clearTableView();
+                    activityNameTextField.setText("");
+                    intensityComboBox.setValue(null);
+                }
+            }
+        }
+        catch(IllegalArgumentException exception) {
+                createPopUp(Alert.AlertType.ERROR, "Data Error", exception.getMessage());
+            }
     }
 
 
+    /**
+     * Method to clear the TableView of current Entries when the Clear Table button is pushed
+     */
+    @FXML public void clearTableView()
+    {
+        for (int i = manualDataTableView.getItems().size() - 1; i >= 0; i--) {
+            manualDataTableView.getItems().remove(0);
+        }
+    }
+
+
+    /**
+     * Method to delete the selected entry from the table when the Delete Entry button is pushed
+     */
+    @FXML public void deleteEntryFromTableView()
+    {
+        try {
+            int index = manualDataTableView.getSelectionModel().getSelectedIndex();
+            manualDataTableView.getItems().remove(index);
+        } catch(ArrayIndexOutOfBoundsException ex) {
+            createPopUp(Alert.AlertType.ERROR, "Entry Table Error", "No Entry was selected from the table");
+        }
+    }
+
+
+    /**
+     * Method to display a pop up window with a title a message and a type (depending on if you want an error or information etc)
+     * @param type Alert.AlertType: type of alert
+     * @param title String: Title of pop up window
+     * @param message String: Message to display to user
+     */
+    private void createPopUp(Alert.AlertType type, String title, String message)
+    {
+        Alert errorPopUp = new Alert(type);
+        errorPopUp.setTitle(title);
+        errorPopUp.setContentText(message);
+        errorPopUp.setHeaderText(null);
+        errorPopUp.showAndWait();
+    }
+
+
+    /**
+     * Method to open a browse window to select a file and input the URL to the File Select Text Field
+     */
     @FXML public void browse()
     {
         // Create a file chooser
         FileChooser fileChooser = new FileChooser();
+        // Set Filter to only accept .csv files
+        FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("CSV FILES (*.csv)", "*.csv");
+        fileChooser.getExtensionFilters().add(filter);
         // Get the selected file
         File selectedFile = fileChooser.showOpenDialog(null);
         // Check if the file is null
         if (selectedFile != null) {
             filePathTextField.setText(selectedFile.getAbsolutePath());
         }
-//        else {
-//            Alert errorPopUp = new Alert(Alert.AlertType.ERROR);
-//            errorPopUp.setTitle("ERROR");
-//            errorPopUp.setContentText("File does not exist or is corrupted!");
-//            errorPopUp.setHeaderText(null);
-//            errorPopUp.showAndWait();
-//        }
-
     }
 }

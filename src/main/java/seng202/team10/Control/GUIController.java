@@ -45,7 +45,7 @@ public class GUIController extends Application{
     private UploadDataController uploadDataController;
 
     private Stage primaryStage;
-    private ArrayList<UserProfile> users = new ArrayList<UserProfile>();
+    private ArrayList<UserProfile> users = new ArrayList<>();
 
 
     private UserProfile currentUser;
@@ -58,10 +58,16 @@ public class GUIController extends Application{
     public void start(Stage primaryStage) throws Exception{
         loadAllScenes();
         primaryStage.setTitle("Coach Potato");
-        primaryStage.setScene(goalsScene);
+        primaryStage.setScene(uploadDataScene);
         //primaryStage.setScene(goalsScene);
         primaryStage.show();
         this.primaryStage = primaryStage;
+    }
+
+
+    public Parser getParser()
+    {
+        return this.parser;
     }
 
 
@@ -103,10 +109,10 @@ public class GUIController extends Application{
 
     }
 
-    public void launchGoalsScene() {
-      goalsController.setUpScene();
-      primaryStage.setScene(goalsScene);
-    }
+//    public void launchGoalsScene() {
+//      goalsController.setUpScene();
+//      primaryStage.setScene(goalsScene);
+//    }
 
     /**
      * Sets the scene on the primary stage to the upload data scene.
@@ -131,12 +137,12 @@ public class GUIController extends Application{
      */
     public void loadAllScenes() throws Exception{
 
-        goalsLoader = new FXMLLoader(getClass().getResource("/fxml/goalsScreen.fxml"));
-        Parent root = goalsLoader.load();
-        goalsController = goalsLoader.getController();
-        goalsController.setApp(this);
-        goalsController.setUpScene();
-        goalsScene = new Scene(root, 900, 600);
+//        goalsLoader = new FXMLLoader(getClass().getResource("/fxml/goalsScreen.fxml"));
+//        Parent root = goalsLoader.load();
+//        goalsController = goalsLoader.getController();
+//        goalsController.setApp(this);
+//        goalsController.setUpScene();
+//        goalsScene = new Scene(root, 900, 600);
 
 
 //        loginScene = loadNewScene("/fxml/loginScreen.fxml");

@@ -76,9 +76,9 @@ public class DataAnalysis {
         return distanceArray;
     }
 
-    public ArrayList<Double> getHeartRateFromActivity(Activity activity) {
+    public ArrayList<Integer> getHeartRateFromActivity(Activity activity) {
 
-        ArrayList<Double> heartRateArray = new ArrayList<>();
+        ArrayList<Integer> heartRateArray = new ArrayList<>();
         for (Entry entry : activity.getEntries()) {
             heartRateArray.add(entry.getHeartRate());
         }
