@@ -271,7 +271,6 @@ public class GUIController extends Application{
      */
     public void createUser(UserProfile newUser) throws Exception{
         users.add(newUser);
-        uploadDataToUser(newUser, "testdata.csv"); //REMOVE LATER
     }
 
     /**
