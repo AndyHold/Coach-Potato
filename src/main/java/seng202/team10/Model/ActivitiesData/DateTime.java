@@ -114,7 +114,8 @@ public class DateTime implements Serializable {
      * Setter method for year
      * @param newYear int: year parameter for the date
      */
-    private void setYear(int newYear) {
+    private void setYear(int newYear)
+    {
         if ((1900 <= newYear) && (newYear <= 2100)) {
             this.year = newYear;
         } else {
@@ -127,7 +128,8 @@ public class DateTime implements Serializable {
      * Setter method for month
      * @param newMonth int: month parameter for the date
      */
-    private void setMonth(int newMonth) {
+    private void setMonth(int newMonth)
+    {
         if ((1 <= newMonth) && (newMonth <= 12)) {
             this.month = newMonth;
         } else {
@@ -140,7 +142,8 @@ public class DateTime implements Serializable {
      * Setter method for day
      * @param newDay int: day parameter for the date
      */
-    private void setDay(int newDay) {
+    private void setDay(int newDay)
+    {
         if ((this.month == 2) && ((this.year % 4) == 0)) {
             if ((1 <= newDay) && (newDay <= 29)) {
                 this.day = newDay;
@@ -159,7 +162,8 @@ public class DateTime implements Serializable {
      * Setter method for hour
      * @param newHour int: hour in 24 hour format
      */
-    private void setHour(int newHour) {
+    private void setHour(int newHour)
+    {
         if ((0 <= newHour) && newHour <= 23) {
             this.hour = newHour;
         } else {
@@ -172,7 +176,8 @@ public class DateTime implements Serializable {
      * Setter method for minute
      * @param newMinute int: minutes
      */
-    private void setMinute(int newMinute) {
+    private void setMinute(int newMinute)
+    {
         if ((0 <= newMinute) && (newMinute <= 59)) {
             this.minute = newMinute;
         } else {
@@ -185,7 +190,8 @@ public class DateTime implements Serializable {
      * Setter method for second
      * @param newSecond int: seconds
      */
-    private void setSecond(int newSecond) {
+    private void setSecond(int newSecond)
+    {
         if ((0 <= newSecond) && (newSecond <= 59)) {
             this.second = newSecond;
         } else {
@@ -196,7 +202,7 @@ public class DateTime implements Serializable {
 
     /**
      * Getter method for string of the date
-     * @return
+     * @return String: Date
      */
     public String getDate()
     {
@@ -217,7 +223,8 @@ public class DateTime implements Serializable {
      * Getter method for year
      * @return int: Year
      */
-    public int getYear() {
+    public int getYear()
+    {
         return this.year;
     }
 
@@ -226,7 +233,8 @@ public class DateTime implements Serializable {
      * Getter method for month
      * @return int: Month
      */
-    public int getMonth() {
+    public int getMonth()
+    {
         return this.month;
     }
 
@@ -235,7 +243,8 @@ public class DateTime implements Serializable {
      * Getter method for day
      * @return int: Day
      */
-    public int getDay() {
+    public int getDay()
+    {
         return this.day;
     }
 
@@ -244,7 +253,8 @@ public class DateTime implements Serializable {
      * Getter method for hour
      * @return int: Hour
      */
-    public int getHour() {
+    public int getHour()
+    {
         return this.hour;
     }
 
@@ -253,7 +263,8 @@ public class DateTime implements Serializable {
      * Getter method for minute
      * @return int: Minute
      */
-    public int getMinute() {
+    public int getMinute()
+    {
         return this.minute;
     }
 
@@ -262,7 +273,8 @@ public class DateTime implements Serializable {
      * Getter method for second
      * @return int: Second
      */
-    public int getSecond() {
+    public int getSecond()
+    {
         return this.second;
     }
 
@@ -272,7 +284,8 @@ public class DateTime implements Serializable {
      * @param otherDateTime DateTime: DateTime to be compared
      * @return boolean
      */
-    public boolean isBefore(DateTime otherDateTime) {
+    public boolean isBefore(DateTime otherDateTime)
+    {
         if (this.year < otherDateTime.getYear()) {
             return true;
         } else if (this.year == otherDateTime.getYear() && (this.month < otherDateTime.getMonth())) {
@@ -292,7 +305,8 @@ public class DateTime implements Serializable {
      * @param otherDateTime DateTime: DateTime to be compared
      * @return boolean
      */
-    public boolean isAfter(DateTime otherDateTime) {
+    public boolean isAfter(DateTime otherDateTime)
+    {
         if (this.year > otherDateTime.getYear()) {
             return true;
         } else if (this.year == otherDateTime.getYear() && (this.month > otherDateTime.getMonth())) {
@@ -312,7 +326,8 @@ public class DateTime implements Serializable {
      * @param otherDateTime DateTime: DateTime to be compared
      * @return boolean
      */
-    public boolean isEqual(DateTime otherDateTime) {
+    public boolean isEqual(DateTime otherDateTime)
+    {
         return ((this.year == otherDateTime.getYear()) && (this.month == otherDateTime.getMonth()) &&
                 (this.day == otherDateTime.getDay()) && (this.hour == otherDateTime.getHour()) &&
                 (this.minute == otherDateTime.getMinute()) && (this.second == otherDateTime.getSecond()));
@@ -324,7 +339,8 @@ public class DateTime implements Serializable {
      * @param otherDateTime DateTime: DateTime object to subtract
      * @return int: the difference between the two objects in seconds
      */
-    public int subtract(DateTime otherDateTime) {
+    public int subtract(DateTime otherDateTime)
+    {
         int seconds = this.second - otherDateTime.getSecond();
         seconds += ((this.minute - otherDateTime.getMinute()) * 60);
         seconds += ((this.hour - otherDateTime.getHour()) * 3600);
@@ -340,7 +356,8 @@ public class DateTime implements Serializable {
      * @param dateTime DateTime: the date to be calculated minus 2000 years
      * @return int: The amount of days since the beginning of the year 2000
      */
-    private int calculateDaysFrom1900(DateTime dateTime) {
+    private int calculateDaysFrom1900(DateTime dateTime)
+    {
         int days = 0;
         int index = 0;
         int years = dateTime.getYear() - 1900;
@@ -369,7 +386,8 @@ public class DateTime implements Serializable {
      * @param otherDateTime DateTime: DateTime to be subtracted from this DateTime
      * @return int: number of days difference
      */
-    public int subtractDaysFromDateTime(DateTime otherDateTime) {
+    public int subtractDaysFromDateTime(DateTime otherDateTime)
+    {
         int daysThis = calculateDaysFrom1900(this);
         int daysOther = calculateDaysFrom1900(otherDateTime);
         return daysThis - daysOther;
@@ -379,7 +397,8 @@ public class DateTime implements Serializable {
     /**
      * Method to fill the HashMap with month names
      */
-    private void fillMonths() {
+    private void fillMonths()
+    {
         months = new HashMap<Integer, String>() {{
             put(1, "January");
             put(2, "February");
@@ -400,7 +419,8 @@ public class DateTime implements Serializable {
     /**
      * Method to fill in the HashMap daysInMonth with the amount of days in each month (excluding leap years)
      */
-    private void fillDaysInMonth() {
+    private void fillDaysInMonth()
+    {
         daysInMonth = new HashMap<Integer, Integer>() {{
             put(1, 31);
             put(2, 28);
@@ -419,7 +439,8 @@ public class DateTime implements Serializable {
 
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         String dayPostfix = "th";
         if (this.day != 11 && ((this.day % 10) == 1)) {
             dayPostfix = "st";
