@@ -39,8 +39,8 @@ public class ProfileController {
     @FXML private Text distanceText;
     @FXML private Text velocityText;
     @FXML private Text heartRateText;
-    @FXML private Button menu;
     @FXML private VBox drawer;
+
 
     public void setApp(GUIController app){
         this.app = app;
@@ -56,23 +56,6 @@ public class ProfileController {
         heartRateHBox.setVisible(false);
     }
 
-    private void drawerAction() {
-
-        TranslateTransition openNav = new TranslateTransition(new Duration(350), drawer);
-        openNav.setToX(0);
-        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
-        menu.setOnAction((ActionEvent evt) -> {
-
-            if (drawer.getTranslateX() != 0) {
-                openNav.play();
-                //drawerHBox.setVisible(true);
-            } else {
-                closeNav.setToX(-(drawer.getWidth()));
-                closeNav.play();
-                //drawerHBox.setVisible(false);
-            }
-        });
-    }
 
     public void setUserDetails() {
         DecimalFormat df2 = new DecimalFormat(".##");
@@ -87,7 +70,7 @@ public class ProfileController {
             activity1Text.setText(currentUser.getActivities().get(0).getName());
             distanceText.setText("Total Distance Covered: " + df2.format(currentUser.getActivities().get(0).getTotalDistance()) + " km");
             velocityText.setText("Average Velocity: " + df2.format(currentUser.getActivities().get(0).getAverageVelocity()) + " m/s");
-            heartRateText.setText("Average Heart Rate: " + String.valueOf((currentUser.getActivities().get(0).getAverageHeartRate()).intValue()) + " bpm");
+            heartRateText.setText("Average Heart Rate: " + String.valueOf((currentUser.getActivities().get(0).getAverageHeartRate())) + " bpm");
             activity1HBox.setVisible(true);
             distanceHBox.setVisible(true);
             velocityHBox.setVisible(true);
@@ -103,33 +86,65 @@ public class ProfileController {
             }
         }
     }
+
+    @FXML private void drawerAction() {
+
+        TranslateTransition openNav = new TranslateTransition(new Duration(350), drawer);
+        openNav.setToX(0);
+        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
+        if (drawer.getTranslateX() != 0) {
+            openNav.play();
+        } else {
+            closeNav.setToX(-(drawer.getWidth()));
+            closeNav.play();
+        }
+    }
+
     @FXML public void openChooseProfile() throws Exception {
+        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
+        closeNav.setToX(-(drawer.getWidth()));
+        closeNav.play();
         setUpScene();
         app.launchLoginScene();
     }
 
     @FXML public void openViewProfile() throws Exception {
+        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
+        closeNav.setToX(-(drawer.getWidth()));
+        closeNav.play();
         setUpScene();
         app.launchProfileScene();
     }
 
     @FXML public void openUploadData() throws Exception {
+        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
+        closeNav.setToX(-(drawer.getWidth()));
+        closeNav.play();
         setUpScene();
         app.launchUploadDataScene();
     }
 
     @FXML public void openViewActivities() throws Exception {
-        setUpScene();
-        //app.launchViewActivitiesScreen();
+        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
+        closeNav.setToX(-(drawer.getWidth()));
+        closeNav.play();
+        //setUpScene();
+        //app.launchViewActivitiesScene();
     }
 
     @FXML public void openGoals() throws Exception {
-        setUpScene();
-        //app.launchGoalsScreen();
+        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
+        closeNav.setToX(-(drawer.getWidth()));
+        closeNav.play();
+        //setUpScene();
+        //app.launchGoalsScene();
     }
 
     @FXML public void openAnalysis() throws Exception {
-        setUpScene();
-        //app.launchAnalysisScreen();
+        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
+        closeNav.setToX(-(drawer.getWidth()));
+        closeNav.play();
+        //setUpScene();
+        //app.launchAnalysisScene();
     }
 }

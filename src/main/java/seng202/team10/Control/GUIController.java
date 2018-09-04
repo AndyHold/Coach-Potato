@@ -60,7 +60,7 @@ public class GUIController extends Application{
     private entryViewerController entryViewerController;
 
     private Stage primaryStage;
-    private ArrayList<UserProfile> users = new ArrayList<UserProfile>();
+    private ArrayList<UserProfile> users = new ArrayList<>();
 
 
     private UserProfile currentUser;
@@ -73,10 +73,20 @@ public class GUIController extends Application{
     public void start(Stage primaryStage) throws Exception{
         loadAllScenes();
         primaryStage.setTitle("Coach Potato");
-        primaryStage.setScene(loginScene);
+        primaryStage.setScene(mainScene);
         //primaryStage.setScene(goalsScene);
         primaryStage.show();
         this.primaryStage = primaryStage;
+    }
+
+
+    /**
+     * Getter method for the Parser
+     * @return Parser
+     */
+    public Parser getParser()
+    {
+        return this.parser;
     }
 
 
@@ -185,21 +195,21 @@ public class GUIController extends Application{
         loginController = loginLoader.getController();
         loginController.setApp(this);
         loginController.setUpScene();
-        loginScene = new Scene(root, 900, 600);
+        loginScene = new Scene(root, 900, 630);
 
         mainLoader = new FXMLLoader(getClass().getResource("/fxml/mainScreen.fxml"));
         VBox mainVBox = mainLoader.load();
         mainController = mainLoader.getController();
         mainController.setApp(this);
         mainController.setUpScene();
-        mainScene = new Scene(mainVBox, 900, 600);
+        mainScene = new Scene(mainVBox, 900, 630);
 
         createProfileLoader = new FXMLLoader(getClass().getResource("/fxml/createProfileScreen.fxml"));
         Pane paneCP = createProfileLoader.load();
         createProfileController = createProfileLoader.getController();
         createProfileController.setApp(this);
         createProfileController.setUpScene();
-        createProfileScene = new Scene(paneCP, 900, 600);
+        createProfileScene = new Scene(paneCP, 900, 630);
 
         profileLoader = new FXMLLoader(getClass().getResource("/fxml/profileScreen.fxml"));
         Pane PaneP = profileLoader.load();
@@ -207,7 +217,7 @@ public class GUIController extends Application{
         profileController.setApp(this);
         profileController.setUpScene();
         //profileController.setUserDetails();
-        profileScene = new Scene(PaneP, 900, 600);
+        profileScene = new Scene(PaneP, 900, 630);
 
 //        goalsLoader = new FXMLLoader(getClass().getResource("/fxml/goalsScreen.fxml"));
 //        Pane paneG = goalsLoader.load();
@@ -221,28 +231,28 @@ public class GUIController extends Application{
         uploadDataController = uploadDataLoader.getController();
         uploadDataController.setApp(this);
         uploadDataController.setUpScene();
-        uploadDataScene = new Scene(paneUD, 900, 600);
+        uploadDataScene = new Scene(paneUD, 900, 630);
 
         dataAnalysisLoader = new FXMLLoader(getClass().getResource("/fxml/dataAnalysisScreen.fxml"));
         Pane paneDA = dataAnalysisLoader.load();
         dataAnalysisController = dataAnalysisLoader.getController();
         dataAnalysisController.setApp(this);
 //        dataAnalysisController.setUpScene();
-        dataAnalysisScene = new Scene(paneDA, 900, 600);
+        dataAnalysisScene = new Scene(paneDA, 900, 630);
 
         activityViewerLoader = new FXMLLoader(getClass().getResource("/fxml/activityViewerScreen.fxml"));
         Pane paneAV = activityViewerLoader.load();
         activityViewerController = activityViewerLoader.getController();
         activityViewerController.setApp(this);
 //        activityViewerController.setUpScene();
-        activityViewerScene = new Scene(paneAV, 900, 600);
+        activityViewerScene = new Scene(paneAV, 900, 630);
 
         entryViewerLoader = new FXMLLoader(getClass().getResource("/fxml/entryViewerScreen.fxml"));
         Pane paneEV = entryViewerLoader.load();
         entryViewerController = entryViewerLoader.getController();
         entryViewerController.setApp(this);
 //        entryViewerController.setUpScene();
-        entryViewerScene = new Scene(paneEV, 900, 600);
+        entryViewerScene = new Scene(paneEV, 900, 630);
     }
 
 //    public Pair<Scene, Controllable> loadNewScene(String fxmlPath) throws Exception{
@@ -261,7 +271,6 @@ public class GUIController extends Application{
      */
     public void createUser(UserProfile newUser) throws Exception{
         users.add(newUser);
-        uploadDataToUser(newUser, "testdata.csv"); //REMOVE LATER
     }
 
     /**
