@@ -8,7 +8,6 @@ import javafx.scene.control.TabPane;
 import seng202.team10.Control.DataAnalysis;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.Activity;
-import seng202.team10.Model.ActivitiesData.DateTime;
 
 import java.util.ArrayList;
 
@@ -48,7 +47,7 @@ public class DataAnalysisController implements Controllable{
     public void setUpScene() {
         dataAnalysis = new DataAnalysis();
         activityNameLabel.setText(activity.getName());
-        ArrayList<DateTime> timeArray = dataAnalysis.getTimeFromActivity(activity);
+        ArrayList<Integer> timeArray = dataAnalysis.getTimeFromActivity(activity);
 //        DateTime startTime = activity.getStartDateTime();
 //        DateTime endTime = activity.getTotalDuration();
 //        startTime.subtract(endTime);
