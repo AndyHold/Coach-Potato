@@ -59,11 +59,13 @@ public class DataAnalysis {
         return null;
     }
 
-    public ArrayList<DateTime> getTimeFromActivity(Activity activity) {
-        ArrayList<DateTime> timeArray = new ArrayList<>();
+    public ArrayList<Integer> getTimeFromActivity(Activity activity) {
+        ArrayList<Integer> timeArray = new ArrayList<>();
         int i = 0;
-        while (i < timeArray.size()) {
-
+        while (i < activity.getEntries().size()-1) {
+            DateTime time1 = activity.getEntries().get(i).getTime();
+            DateTime time2 = activity.getEntries().get(i+1).getTime();
+            timeArray.add(time1.subtract(time2));
             i++;
         }
         return timeArray;
