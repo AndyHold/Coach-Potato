@@ -1,10 +1,14 @@
 package seng202.team10.GUI;
 
+import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.UserProfile;
 
@@ -35,6 +39,8 @@ public class ProfileController {
     @FXML private Text distanceText;
     @FXML private Text velocityText;
     @FXML private Text heartRateText;
+    @FXML private VBox drawer;
+
 
     public void setApp(GUIController app){
         this.app = app;
@@ -49,6 +55,7 @@ public class ProfileController {
         velocityHBox.setVisible(false);
         heartRateHBox.setVisible(false);
     }
+
 
     public void setUserDetails() {
         DecimalFormat df2 = new DecimalFormat(".##");
@@ -78,5 +85,66 @@ public class ProfileController {
                 }
             }
         }
+    }
+
+    @FXML private void drawerAction() {
+
+        TranslateTransition openNav = new TranslateTransition(new Duration(350), drawer);
+        openNav.setToX(0);
+        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
+        if (drawer.getTranslateX() != 0) {
+            openNav.play();
+        } else {
+            closeNav.setToX(-(drawer.getWidth()));
+            closeNav.play();
+        }
+    }
+
+    @FXML public void openChooseProfile() throws Exception {
+        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
+        closeNav.setToX(-(drawer.getWidth()));
+        closeNav.play();
+        setUpScene();
+        app.launchLoginScene();
+    }
+
+    @FXML public void openViewProfile() throws Exception {
+        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
+        closeNav.setToX(-(drawer.getWidth()));
+        closeNav.play();
+        setUpScene();
+        app.launchProfileScene();
+    }
+
+    @FXML public void openUploadData() throws Exception {
+        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
+        closeNav.setToX(-(drawer.getWidth()));
+        closeNav.play();
+        setUpScene();
+        app.launchUploadDataScene();
+    }
+
+    @FXML public void openViewActivities() throws Exception {
+        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
+        closeNav.setToX(-(drawer.getWidth()));
+        closeNav.play();
+        //setUpScene();
+        //app.launchViewActivitiesScene();
+    }
+
+    @FXML public void openGoals() throws Exception {
+        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
+        closeNav.setToX(-(drawer.getWidth()));
+        closeNav.play();
+        //setUpScene();
+        //app.launchGoalsScene();
+    }
+
+    @FXML public void openAnalysis() throws Exception {
+        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
+        closeNav.setToX(-(drawer.getWidth()));
+        closeNav.play();
+        //setUpScene();
+        //app.launchAnalysisScene();
     }
 }

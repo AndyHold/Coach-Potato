@@ -61,8 +61,10 @@ public class DataAnalysis {
 
     public ArrayList<DateTime> getTimeFromActivity(Activity activity) {
         ArrayList<DateTime> timeArray = new ArrayList<>();
-        for (Entry entry : activity.getEntries()) {
-            timeArray.add(entry.getTime());
+        int i = 0;
+        while (i < timeArray.size()) {
+
+            i++;
         }
         return timeArray;
     }

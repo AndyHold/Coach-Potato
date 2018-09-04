@@ -1,7 +1,9 @@
 package seng202.team10.GUI;
 
+import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -9,7 +11,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
+import javafx.util.Duration;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.*;
 import java.io.File;
@@ -37,6 +41,7 @@ public class UploadDataController {
     @FXML private TextField latitudeTextField;
     @FXML private TextField longitudeTextField;
     @FXML private TextField elevationTextField;
+    @FXML private VBox drawer;
 
 
     /**
@@ -54,22 +59,21 @@ public class UploadDataController {
      */
     public void setUpScene()
     {
-
-        //Set the values in the intensity ComboBox
+        // Set the values in the intensity ComboBox
         ObservableList<String> intensities = FXCollections.observableArrayList();
         intensities.add("Low");
         intensities.add("Medium");
         intensities.add("High");
         intensityComboBox.setItems(intensities);
         intensityComboBox.setVisibleRowCount(3);
-        //Set up the columns in the table.
+        // Set up the columns in the table.
         dateColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("dateString"));
         timeColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("timeString"));
         heartRateColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("heartRateString"));
         latitudeColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("latitudeString"));
         longitudeColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("longitudeString"));
         elevationColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("elevationString"));
-        //load dummy data
+        // Load entries array
         manualDataTableView.setItems(getEntries());
         // Update the table to allow the columns to be editable
         manualDataTableView.setEditable(true);
@@ -354,5 +358,68 @@ public class UploadDataController {
         if (selectedFile != null) {
             filePathTextField.setText(selectedFile.getAbsolutePath());
         }
+    }
+
+
+    @FXML private void drawerAction()
+    {
+        TranslateTransition openNav = new TranslateTransition(new Duration(350), drawer);
+        openNav.setToX(0);
+        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
+        if (drawer.getTranslateX() != 0) {
+            openNav.play();
+        } else {
+            closeNav.setToX(-(drawer.getWidth()));
+            closeNav.play();
+        }
+    }
+
+    @FXML public void openChooseProfile() throws Exception {
+        //drawerAction();
+        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
+        closeNav.setToX(-(drawer.getWidth()));
+        closeNav.play();
+        setUpScene();
+        app.launchLoginScene();
+    }
+
+    @FXML public void openViewProfile() throws Exception {
+        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
+        closeNav.setToX(-(drawer.getWidth()));
+        closeNav.play();
+        setUpScene();
+        app.launchProfileScene();
+    }
+
+    @FXML public void openUploadData() throws Exception {
+        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
+        closeNav.setToX(-(drawer.getWidth()));
+        closeNav.play();
+        setUpScene();
+        app.launchUploadDataScene();
+    }
+
+    @FXML public void openViewActivities() throws Exception {
+        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
+        closeNav.setToX(-(drawer.getWidth()));
+        closeNav.play();
+        //setUpScene();
+        //app.launchViewActivitiesScene();
+    }
+
+    @FXML public void openGoals() throws Exception {
+        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
+        closeNav.setToX(-(drawer.getWidth()));
+        closeNav.play();
+        //setUpScene();
+        //app.launchGoalsScene();
+    }
+
+    @FXML public void openAnalysis() throws Exception {
+        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
+        closeNav.setToX(-(drawer.getWidth()));
+        closeNav.play();
+        //setUpScene();
+        //app.launchAnalysisScene();
     }
 }
