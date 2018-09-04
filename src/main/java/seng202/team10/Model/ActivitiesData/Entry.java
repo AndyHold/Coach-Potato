@@ -1,9 +1,8 @@
 package seng202.team10.Model.ActivitiesData;
 
 
-import javafx.beans.property.SimpleStringProperty;
-
 import java.io.Serializable;
+
 
 /**
  * Entry Class for Coach Potato
@@ -17,7 +16,7 @@ public class Entry  implements Serializable {
     private String timeString;
     private String dateString;
     private String heartRateString;
-    private double heartRate;
+    private int heartRate;
     private Position position;
     private String longitudeString;
     private String latitudeString;
@@ -112,6 +111,9 @@ public class Entry  implements Serializable {
 <<<<<<< HEAD
 >>>>>>> b7e8ef2... No changes made
      */
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
     public Entry(boolean firstEntry, DateTime time, double heartRate, Position position) {
 =======
      */
@@ -119,6 +121,7 @@ public class Entry  implements Serializable {
 >>>>>>> e576ec5... No changes made
 =======
      */
+<<<<<<< HEAD
     public Entry(boolean firstEntry, DateTime time, double heartRate, Position position) {
 >>>>>>> 79c9f1d... No changes made
 =======
@@ -149,6 +152,18 @@ public class Entry  implements Serializable {
      */
     public Entry(boolean firstEntry, DateTime time, double heartRate, Position position) {
 >>>>>>> f5029c7... No changes made
+=======
+    public Entry(boolean firstEntry, DateTime time, int heartRate, Position position) {
+>>>>>>> b21c354... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
+=======
+    public Entry(boolean firstEntry, DateTime time, int heartRate, Position position) {
+>>>>>>> c64d7f7... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
+=======
+    public Entry(boolean firstEntry, DateTime time, int heartRate, Position position) {
+>>>>>>> 40229ad... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
+=======
+    public Entry(boolean firstEntry, DateTime time, int heartRate, Position position) {
+>>>>>>> 73cd156... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
         this.firstEntry = firstEntry;
         this.time = time;
         this.heartRate = heartRate;
@@ -248,9 +263,13 @@ public class Entry  implements Serializable {
      * @param newHeartRate String: String representation of the heart rate double
      * @throws NumberFormatException String does not represent a number
      */
-    public void changeHeartRate(String newHeartRate) throws NumberFormatException
+    public void changeHeartRate(String newHeartRate) throws IllegalArgumentException
     {
-        this.heartRate = Double.valueOf(newHeartRate);
+        if ((0 < heartRate) && (heartRate <= 300)) {
+            this.heartRate = Integer.valueOf(newHeartRate);
+        } else {
+            throw new IllegalArgumentException("Heart Rate Invalid, must be between 1 & 300");
+        }
     }
 
 
@@ -259,7 +278,7 @@ public class Entry  implements Serializable {
      * @param newLatitude String: String representation of the heart rate double
      * @throws NumberFormatException String does not represent a number
      */
-    public void changeLatitude(String newLatitude) throws NumberFormatException
+    public void changeLatitude(String newLatitude) throws IllegalArgumentException
     {
         this.position.setLatitude(Double.valueOf(newLatitude));
     }
@@ -320,9 +339,13 @@ public class Entry  implements Serializable {
      * @param newHeartRate String: String representation of the heart rate double
      * @throws NumberFormatException String does not represent a number
      */
-    public void changeHeartRate(String newHeartRate) throws NumberFormatException
+    public void changeHeartRate(String newHeartRate) throws IllegalArgumentException
     {
-        this.heartRate = Double.valueOf(newHeartRate);
+        if ((0 < heartRate) && (heartRate <= 300)) {
+            this.heartRate = Integer.valueOf(newHeartRate);
+        } else {
+            throw new IllegalArgumentException("Heart Rate Invalid, must be between 1 & 300");
+        }
     }
 
 
@@ -331,7 +354,7 @@ public class Entry  implements Serializable {
      * @param newLatitude String: String representation of the heart rate double
      * @throws NumberFormatException String does not represent a number
      */
-    public void changeLatitude(String newLatitude) throws NumberFormatException
+    public void changeLatitude(String newLatitude) throws IllegalArgumentException
     {
         this.position.setLatitude(Double.valueOf(newLatitude));
     }
@@ -349,7 +372,7 @@ public class Entry  implements Serializable {
      * @param newLongitude String: String representation of the heart rate double
      * @throws NumberFormatException String does not represent a number
      */
-    public void changeLongitude(String newLongitude) throws NumberFormatException
+    public void changeLongitude(String newLongitude) throws IllegalArgumentException
     {
         this.position.setLongitude(Double.valueOf(newLongitude));
     }
@@ -360,7 +383,7 @@ public class Entry  implements Serializable {
      * @param newElevation String: String representation of the heart rate double
      * @throws NumberFormatException String does not represent a number
      */
-    public void changeElevation(String newElevation) throws NumberFormatException
+    public void changeElevation(String newElevation) throws IllegalArgumentException
     {
         this.position.setElevation(Double.valueOf(newElevation));
     }
@@ -384,6 +407,10 @@ public class Entry  implements Serializable {
     }
 
 
+    /**
+     * Getter method for the String representation of the Heart Rate
+     * @return String
+     */
     public String getHeartRateString()
     {
         return this.heartRateString;
@@ -453,7 +480,7 @@ public class Entry  implements Serializable {
      * Getter method to get user's heart rate.
      * @return heartRate: double
      */
-    public double getHeartRate() {
+    public int getHeartRate() {
         return heartRate;
     }
 
@@ -461,7 +488,7 @@ public class Entry  implements Serializable {
      * Setter method to set user's heart rate.
      * @param heartRate: double
      */
-    public void setHeartRate(double heartRate) {
+    public void setHeartRate(int heartRate) {
         this.heartRate = heartRate;
     }
 
@@ -489,6 +516,7 @@ public class Entry  implements Serializable {
         return distance;
     }
 
+
     /**
      * Method to calculate user's distance.
      * @param prevEntry: Entry
@@ -498,6 +526,7 @@ public class Entry  implements Serializable {
         this.distance = prevPosition.subtract(this.position);
     }
 
+
     /**
      * Getter method to get user's velocity.
      * @return velocity: double
@@ -505,6 +534,7 @@ public class Entry  implements Serializable {
     public double getVelocity() {
         return velocity;
     }
+
 
     /**
      * Method to calculate user's velocity.
@@ -562,9 +592,15 @@ public class Entry  implements Serializable {
 >>>>>>> beae2e7... Modified Entry class and tests for it as datetime class was updated.
     }
 
+
+    @Override
     public String toString(){
         return ("First Entry? : " + this.firstEntry + " , " + position.toString());
     }
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
     /**
      * Getter method to get user's activities.
      * @return  activity: Activity
@@ -611,6 +647,27 @@ public class Entry  implements Serializable {
 >>>>>>> 7de2265... No changes made
 =======
 >>>>>>> f5029c7... No changes made
+=======
+=======
+>>>>>>> c64d7f7... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
+=======
+>>>>>>> 40229ad... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
+=======
+>>>>>>> 73cd156... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
+
+
+//    /**
+//     * Getter method to get user's activities.
+//     * @return  activity: Activity
+//     */
+//    // Commented out as we don't need it for now but might need it later.
+//    public Activity getActivity() {
+//        return activity;
+//    }
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> b21c354... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
 
 
 =======
@@ -621,4 +678,14 @@ public class Entry  implements Serializable {
 >>>>>>> 5810ac0... Minor changes for Javadoc for Entry and Position classes. Had to push before I pull.
 =======
 >>>>>>> 939a15b... Minor changes for Javadoc for Entry and Position classes. Had to push before I pull.
+=======
+
+
+>>>>>>> c64d7f7... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
+=======
+=======
+>>>>>>> 73cd156... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
+
+
+>>>>>>> 40229ad... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
 }

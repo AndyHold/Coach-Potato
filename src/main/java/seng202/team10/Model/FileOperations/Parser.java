@@ -7,6 +7,7 @@ import seng202.team10.Model.ActivitiesData.Position;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.IllegalFormatException;
 
 public class Parser {
 
@@ -21,9 +22,10 @@ public class Parser {
      * @return fileContents  An ArrayList containing an ArrayList containing string values.
      */
     public ArrayList<String> getFileContents(String filePath) throws FileNotFoundException { //handle this with gui message in what calls this
-        ArrayList<String> fileContents = new ArrayList<>();
+        ArrayList<String> fileContents;
         FileReader reader = new FileReader();
-        if(reader.checkFileExists("./FilesToLoad/" + filePath)) {
+//        if(reader.checkFileExists("./FilesToLoad/" + filePath)) {
+        if(reader.checkFileExists(filePath)) {
             fileContents = reader.openNewFile(filePath);
         } else {
             throw new FileNotFoundException();
@@ -33,7 +35,7 @@ public class Parser {
     }
 
     /**
-     *Formats an unparsed CSV file and returns an ArrayList with the values in indexes
+     * Formats an unparsed CSV file and returns an ArrayList with the values in indexes
      * and easily accessible.
      *
      * @param fileContents The unparsed contents of the file, in arraylist form with values
@@ -69,6 +71,27 @@ public class Parser {
         return activities;
     }
 
+
+    public DateTime parseDateTimeFromStrings(String dateString, String timeString) throws IllegalArgumentException
+    {
+        String[] dateArray = dateString.split("/");
+        if (dateArray.length != 3) {
+            throw new IllegalArgumentException("Date format wrong, needs to be of the format DD/MM/YYYY");
+        }
+        String[] timeArray = timeString.split(":");
+        if (timeArray.length != 3) {
+            throw new IllegalArgumentException("Time format wrong, needs to be of the format HH:MM:SS");
+        }
+        int day = Integer.valueOf(dateArray[0]);
+        int month = Integer.valueOf(dateArray[1]);
+        int year = Integer.valueOf(dateArray[2]);
+        int hour = Integer.valueOf(timeArray[0]);
+        int minute = Integer.valueOf(timeArray[1]);
+        int second = Integer.valueOf(timeArray[2]);
+        return new DateTime(year, month, day, hour, minute, second);
+    }
+
+
     /**
      * Processes an activity in the file contents, called by the processFile() function.
      * Sets the name and date of the activity, then loops through the file
@@ -76,19 +99,15 @@ public class Parser {
      *
      * @return activity  An Activity object that contains a number of entries.
      */
-    public Activity processActivity(ArrayList<ArrayList<String>> formattedFile) throws IllegalArgumentException {
+    public Activity processActivity(ArrayList<ArrayList<String>> formattedFile) throws IllegalArgumentException
+    {
+        // Needs reformatting, uncaught errors in parse date time from string
         String name = formattedFile.get(linePosition).get(1);
         linePosition += 1;
-        String[] dateArray = (formattedFile.get(linePosition).get(0)).split("/");
-        String[] timeArray = (formattedFile.get(linePosition).get(1)).split(":");
-        int day = Integer.valueOf(dateArray[0]);
-        int month = Integer.valueOf(dateArray[1]);
-        int year = Integer.valueOf(dateArray[2]);
-        int hour = Integer.valueOf(timeArray[0]);
-        int minute = Integer.valueOf(timeArray[1]);
-        int second = Integer.valueOf(timeArray[2]);
 
-        DateTime dateTime = new DateTime(year, month, day, hour, minute, second);
+        String dateString = (formattedFile.get(linePosition).get(0));
+        String timeString = (formattedFile.get(linePosition).get(1));
+        DateTime dateTime = parseDateTimeFromStrings(dateString, timeString);
 
         Activity activity = new Activity(name, dateTime);
 
