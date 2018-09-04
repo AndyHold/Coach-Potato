@@ -1,10 +1,7 @@
 package seng202.team10.Model.ActivitiesData;
 
 
-import com.sun.javaws.exceptions.InvalidArgumentException;
-
 import java.io.Serializable;
-
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 
