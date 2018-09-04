@@ -21,7 +21,7 @@ public class ParserTest {
     @Test
     /* this is an unofficial test for me to test the whole process */
     public void overallTest() throws FileNotFoundException{
-        ArrayList<String> fileContents = testParser.getFileContents("testdata.csv");
+        ArrayList<String> fileContents = testParser.getFileContents("./FilesToLoad/testdata.csv");
         ArrayList<ArrayList<String>> formattedFile = testParser.formatFileContents(fileContents);
         ArrayList<Activity> testResults = testParser.processFile(formattedFile);
         int activityCounter = 0;
@@ -44,20 +44,20 @@ public class ParserTest {
 
     @Test
     public void getFileContents() throws FileNotFoundException {
-        ArrayList<String> fileContents = testParser.getFileContents("testdata.csv");
+        ArrayList<String> fileContents = testParser.getFileContents("./FilesToLoad/testdata.csv");
         assertEquals(1147, fileContents.size());
     }
 
     @Test
     public void formatFileContents() throws FileNotFoundException{
-        ArrayList<String> fileContents = testParser.getFileContents("testdata.csv");
+        ArrayList<String> fileContents = testParser.getFileContents("./FilesToLoad/testdata.csv");
         ArrayList<ArrayList<String>> formattedFile = testParser.formatFileContents(fileContents);
         assertEquals(1147, formattedFile.size());
     }
 
     @Test
     public void processFile() throws FileNotFoundException {
-        ArrayList<String> fileContents = testParser.getFileContents("testdata.csv");
+        ArrayList<String> fileContents = testParser.getFileContents("./FilesToLoad/testdata.csv");
         ArrayList<ArrayList<String>> formattedFile = testParser.formatFileContents(fileContents);
         ArrayList<Activity> testResults = testParser.processFile(formattedFile);
         assertEquals(12, testResults.size());
@@ -65,7 +65,7 @@ public class ParserTest {
 
     @Test
     public void processActivity() throws FileNotFoundException, IllegalArgumentException{
-        ArrayList<String> fileContents = testParser.getFileContents("testdata.csv");
+        ArrayList<String> fileContents = testParser.getFileContents("./FilesToLoad/testdata.csv");
         ArrayList<ArrayList<String>> formattedFile = testParser.formatFileContents(fileContents);
         Activity testActivity = testParser.processActivity(formattedFile);
         assertEquals("Name= 'Walk in the woods', startDateTime=10th, April, 2015 - 23:42:28, averageVelocity=0.05050964943354281, averageHeartRate=138.15151515151516, totalDistance=49.80251434147321, totalDuration=986", testActivity.toString());
@@ -73,7 +73,7 @@ public class ParserTest {
 
     @Test
     public void processLine() throws FileNotFoundException{
-        ArrayList<String> fileContents = testParser.getFileContents("testdata.csv");
+        ArrayList<String> fileContents = testParser.getFileContents("./FilesToLoad/testdata.csv");
         ArrayList<ArrayList<String>> formattedFile = testParser.formatFileContents(fileContents);
         testParser.setLinePosition(35);
         Entry testEntry = testParser.processLine(formattedFile);

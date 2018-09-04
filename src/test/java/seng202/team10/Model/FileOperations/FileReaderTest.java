@@ -38,7 +38,7 @@ public class FileReaderTest {
     @Test
     public void openNewFile() throws FileNotFoundException {
         assertTrue(testReader.checkFileExists("./FilesToLoad/testdata.csv"));
-        ArrayList<String> dataLines = testReader.openNewFile("testdata.csv");
+        ArrayList<String> dataLines = testReader.openNewFile("./FilesToLoad/testdata.csv");
         assertEquals(1147, dataLines.size(), 1);
     }
 

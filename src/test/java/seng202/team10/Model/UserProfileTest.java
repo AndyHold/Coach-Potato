@@ -24,7 +24,7 @@ public class UserProfileTest {
     public void setUp() throws Exception {
         testProfile.setName("dave");
         testProfile.setWeight(80);
-        ArrayList<String> fileContents = testParser.getFileContents("testdata.csv");
+        ArrayList<String> fileContents = testParser.getFileContents("./FilesToLoad/testdata.csv");
         ArrayList<ArrayList<String>> formattedFile = testParser.formatFileContents(fileContents);
         ArrayList<Activity> testResults = testParser.processFile(formattedFile);
         testProfile.addActivities(testResults);
@@ -58,7 +58,7 @@ public class UserProfileTest {
 
     @Test
     public void addDupeActivities() throws FileNotFoundException {
-        ArrayList<String> fileContents = testParser.getFileContents("testdata.csv");
+        ArrayList<String> fileContents = testParser.getFileContents("./FilesToLoad/testdata.csv");
         ArrayList<ArrayList<String>> formattedFile = testParser.formatFileContents(fileContents);
         ArrayList<Activity> testResults = testParser.processFile(formattedFile);
         testProfile.addActivities(testResults);
