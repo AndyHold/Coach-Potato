@@ -60,7 +60,7 @@ public class GUIController extends Application{
     private entryViewerController entryViewerController;
 
     private Stage primaryStage;
-    private ArrayList<UserProfile> users = new ArrayList<UserProfile>();
+    private ArrayList<UserProfile> users = new ArrayList<>();
 
 
     private UserProfile currentUser;
@@ -73,10 +73,20 @@ public class GUIController extends Application{
     public void start(Stage primaryStage) throws Exception{
         loadAllScenes();
         primaryStage.setTitle("Coach Potato");
-        primaryStage.setScene(loginScene);
+        primaryStage.setScene(mainScene);
         //primaryStage.setScene(goalsScene);
         primaryStage.show();
         this.primaryStage = primaryStage;
+    }
+
+
+    /**
+     * Getter method for the Parser
+     * @return Parser
+     */
+    public Parser getParser()
+    {
+        return this.parser;
     }
 
 
