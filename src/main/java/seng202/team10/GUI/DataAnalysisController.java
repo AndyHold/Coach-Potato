@@ -66,7 +66,7 @@ public class DataAnalysisController implements Controllable{
         distanceOverTime.getData().add(dtSeries);
 
         XYChart.Series hrtSeries = new XYChart.Series();
-        ArrayList<Double> heartRateArray = dataAnalysis.getHeartRateFromActivity(activity);
+        ArrayList<Integer> heartRateArray = dataAnalysis.getHeartRateFromActivity(activity);
         for (int i = 0; i < timeArray.size(); i++) {
             hrtSeries.getData().add(new XYChart.Data(timeArray.get(i).toString(), heartRateArray.get(i)));
         }

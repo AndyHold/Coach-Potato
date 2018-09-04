@@ -73,7 +73,7 @@ public class GUIController extends Application{
     public void start(Stage primaryStage) throws Exception{
         loadAllScenes();
         primaryStage.setTitle("Coach Potato");
-        primaryStage.setScene(goalsScene);
+        primaryStage.setScene(mainScene);
         //primaryStage.setScene(goalsScene);
         primaryStage.show();
         this.primaryStage = primaryStage;
