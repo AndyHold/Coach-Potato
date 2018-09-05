@@ -90,7 +90,21 @@ public class GUIController extends Application{
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 4fada315... Modified tests to fix pipeline, (Main change was to parser so complete url's could be accepted not just files from one directory)
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+        primaryStage.setScene(loginScene);
+=======
+        primaryStage.setScene(goalsScene);
+>>>>>>> a590442... Create new Goals instance in GUIController. Added various buttons, entry boxes and labels to the create goal tab. Implemented an action handler for the create button that creates a goal that is store either as a current goal or future goal. Added arraylist for createdGoals into Goals class and getter method. Edited create goal method to establish whether a goal is current or for the future.
+=======
+        primaryStage.setScene(goalsScene);
+>>>>>>> f0140c6... Create new Goals instance in GUIController. Added various buttons, entry boxes and labels to the create goal tab. Implemented an action handler for the create button that creates a goal that is store either as a current goal or future goal. Added arraylist for createdGoals into Goals class and getter method. Edited create goal method to establish whether a goal is current or for the future.
+>>>>>>> 09152fc2... Now starts on the createProfile scene if no users are found, otherwise starts on login screen.
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -127,15 +141,38 @@ public class GUIController extends Application{
 =======
         primaryStage.setScene(mainScene);
 >>>>>>> 6d5417b... Modified tests to fix pipeline, (Main change was to parser so complete url's could be accepted not just files from one directory)
+<<<<<<< HEAD
 >>>>>>> 197d533e... Modified tests to fix pipeline, (Main change was to parser so complete url's could be accepted not just files from one directory)
 =======
+=======
+=======
+=======
+>>>>>>> 6d929aa... Now starts on the createProfile scene if no users are found, otherwise starts on login screen.
+=======
+>>>>>>> 4022cc1... Now starts on the createProfile scene if no users are found, otherwise starts on login screen.
+=======
+>>>>>>> 1b1f8a0... Now starts on the createProfile scene if no users are found, otherwise starts on login screen.
+>>>>>>> 09152fc2... Now starts on the createProfile scene if no users are found, otherwise starts on login screen.
         if (users.isEmpty()) {
             primaryStage.setScene(createProfileScene);
         } else {
             primaryStage.setScene(loginScene);
         }
 //        primaryStage.setScene(mainScene);
+<<<<<<< HEAD
 >>>>>>> 1b1f8a0b... Now starts on the createProfile scene if no users are found, otherwise starts on login screen.
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 76138f6... Now starts on the createProfile scene if no users are found, otherwise starts on login screen.
+=======
+>>>>>>> 6d929aa... Now starts on the createProfile scene if no users are found, otherwise starts on login screen.
+=======
+>>>>>>> 4022cc1... Now starts on the createProfile scene if no users are found, otherwise starts on login screen.
+=======
+>>>>>>> 1b1f8a0... Now starts on the createProfile scene if no users are found, otherwise starts on login screen.
+>>>>>>> 09152fc2... Now starts on the createProfile scene if no users are found, otherwise starts on login screen.
         //primaryStage.setScene(goalsScene);
 >>>>>>> 879a82d8... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
         primaryStage.show();
