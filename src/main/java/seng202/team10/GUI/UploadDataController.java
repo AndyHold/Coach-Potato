@@ -3,12 +3,8 @@ package seng202.team10.GUI;
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.VBox;
@@ -16,6 +12,7 @@ import javafx.stage.FileChooser;
 import javafx.util.Duration;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.*;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -378,51 +375,39 @@ public class UploadDataController {
     }
 
     @FXML public void openChooseProfile() throws Exception {
-        //drawerAction();
-        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
-        closeNav.setToX(-(drawer.getWidth()));
-        closeNav.play();
-        setUpScene();
+        moveDrawer();
         app.launchLoginScene();
     }
 
     @FXML public void openViewProfile() throws Exception {
-        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
-        closeNav.setToX(-(drawer.getWidth()));
-        closeNav.play();
-        setUpScene();
+        moveDrawer();
         app.launchProfileScene();
     }
 
     @FXML public void openUploadData() throws Exception {
-        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
-        closeNav.setToX(-(drawer.getWidth()));
-        closeNav.play();
-        setUpScene();
+        moveDrawer();
         app.launchUploadDataScene();
     }
 
     @FXML public void openViewActivities() throws Exception {
-        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
-        closeNav.setToX(-(drawer.getWidth()));
-        closeNav.play();
-        //setUpScene();
+        moveDrawer();
         //app.launchViewActivitiesScene();
     }
 
     @FXML public void openGoals() throws Exception {
-        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
-        closeNav.setToX(-(drawer.getWidth()));
-        closeNav.play();
-        //setUpScene();
+        moveDrawer();
         //app.launchGoalsScene();
     }
 
     @FXML public void openAnalysis() throws Exception {
+        moveDrawer();
+        app.launchDataAnalysisScene();
+    }
+
+    private void moveDrawer() {
         TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
         closeNav.setToX(-(drawer.getWidth()));
         closeNav.play();
-        //setUpScene();
-        //app.launchAnalysisScene();
+        setUpScene();
     }
 }
