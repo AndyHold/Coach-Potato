@@ -89,6 +89,10 @@ public class GUIController extends Application{
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
         primaryStage.setScene(loginScene);
 =======
         primaryStage.setScene(goalsScene);
@@ -134,6 +138,29 @@ public class GUIController extends Application{
 =======
         primaryStage.setScene(mainScene);
 >>>>>>> 6d5417b... Modified tests to fix pipeline, (Main change was to parser so complete url's could be accepted not just files from one directory)
+=======
+=======
+>>>>>>> 6d929aa... Now starts on the createProfile scene if no users are found, otherwise starts on login screen.
+=======
+>>>>>>> 4022cc1... Now starts on the createProfile scene if no users are found, otherwise starts on login screen.
+=======
+>>>>>>> 1b1f8a0... Now starts on the createProfile scene if no users are found, otherwise starts on login screen.
+        if (users.isEmpty()) {
+            primaryStage.setScene(createProfileScene);
+        } else {
+            primaryStage.setScene(loginScene);
+        }
+//        primaryStage.setScene(mainScene);
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 76138f6... Now starts on the createProfile scene if no users are found, otherwise starts on login screen.
+=======
+>>>>>>> 6d929aa... Now starts on the createProfile scene if no users are found, otherwise starts on login screen.
+=======
+>>>>>>> 4022cc1... Now starts on the createProfile scene if no users are found, otherwise starts on login screen.
+=======
+>>>>>>> 1b1f8a0... Now starts on the createProfile scene if no users are found, otherwise starts on login screen.
         //primaryStage.setScene(goalsScene);
 >>>>>>> 9a77444... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
         primaryStage.show();
