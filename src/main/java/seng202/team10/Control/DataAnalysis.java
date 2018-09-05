@@ -89,15 +89,25 @@ public class DataAnalysis {
             timeSum += time2.subtract(time1);
             i++;
         }
+        timeArray.add(timeSum);
         return timeArray;
     }
 
     public ArrayList<Double> getDistanceFromActivity(Activity activity) {
 
         ArrayList<Double> distanceArray = new ArrayList<>();
-        for (Entry entry : activity.getEntries()) {
-            distanceArray.add(entry.getDistance());
+        double distanceSum = 0;
+        int i = 0;
+        while (i < activity.getEntries().size()-1) {
+            Entry entryA = activity.getEntries().get(i);
+            Entry entryB = activity.getEntries().get(i+1);
+            entryA.calculateDistance(entryB);
+            double distance = entryA.getDistance();
+            distanceArray.add(distanceSum);
+            distanceSum += distance;
+            i++;
         }
+        distanceArray.add(distanceSum);
         return distanceArray;
     }
 
