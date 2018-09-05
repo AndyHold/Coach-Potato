@@ -4,6 +4,7 @@ import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.ActivitiesData.Entry;
 import seng202.team10.Model.ActivitiesData.Position;
+import seng202.team10.Model.UserProfile;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -14,16 +15,6 @@ public class DataAnalysis {
 
     public ArrayList<Activity> sortByDate() {
 
-//        ArrayList<Activity> sortedActivities = activities;
-//        try {
-//            int lenOfArray = sortedActivities.size();
-//            for (int i = 0; i < lenOfArray-1; i++) {
-//                DateTime minDateTime = sortedActivities.get(i).getStartDateTime();
-//                for (int j = i + 1; j < lenOfArray; j++) {
-//                    if (minDateTime.isAfter(sortedActivities.get(j).getStartDateTime())) {
-//                        minDateTime = sortedActivities.get(j).getStartDateTime();
-//                    }
-//                }
         activities.sort(new Comparator<Activity>() {
             @Override
             public int compare(Activity a1, Activity a2) {
@@ -39,10 +30,38 @@ public class DataAnalysis {
         return activities;
     }
 
-//    public ArrayList<Activity> sortByIntensity() {
+    public ArrayList<Activity> sortByIntensity() {
+
+//        activities.sort(new Comparator<Activity>() {
+//            @Override
+//            public int compare(Activity a1, Activity a2) {
+//                if (a2.getIntensity() == LOW) {
+//                    if (a1.getIntensity() == LOW) {
+//                        return 0;
+//                    } else {
+//                        return 1;
+//                    }
+//                } else if (a2.getIntensity() == MEDIUM) {
+//                    if (a1.getIntensity() == LOW) {
+//                        return -1;
+//                    } else if (a1.getIntensity() == HIGH) {
+//                        return 1;
+//                    } else {
+//                        return 0;
+//                    }
+//                } else {
+//                    if (a1.getIntensity() == HIGH) {
+//                        return 0;
+//                    } else {
+//                        return -1;
+//                    }
+//                }
+//            }
 //
-//        return null;
-//    }
+//        });
+//        return activities;
+        return null;
+    }
 
     public ArrayList<Activity> showDateRange(DateTime dateTime) {
 //        if (!activities.isEmpty()) {
@@ -113,18 +132,15 @@ public class DataAnalysis {
     }
 
     public static void main(String[] args) throws Exception {
-//        GUIController guiController = new GUIController();
-//        UserProfile user = new UserProfile();
-////        user.setHeight(80);
-////        user.setWeight(80);
-//        guiController.uploadDataToUser(user, "/home/cosc/student/tkl34/Desktop/SENG202/SENG202_Project/SENG202_Project/FilesToLoad/testdata.csv");
-//        ArrayList<Activity> activities = user.getActivities();
-//        DataAnalysis dataAnalysis = new DataAnalysis();
-//        ArrayList<Integer> timesum = dataAnalysis.getTimeFromActivity(activities.get(0));
-//        System.out.println(timesum);
-//        System.out.println(activities);
-//        dataAnalysis.setActivities(activities);
-//        dataAnalysis.sortByDate();
-//        System.out.println(activities);
+        GUIController guiController = new GUIController();
+        UserProfile user = new UserProfile();
+//        user.setHeight(80);
+//        user.setWeight(80);
+        guiController.uploadDataToUser(user, "/home/cosc/student/tkl34/Desktop/SENG202/SENG202_Project/SENG202_Project/FilesToLoad/testdata.csv");
+        ArrayList<Activity> activities = user.getActivities();
+        DataAnalysis dataAnalysis = new DataAnalysis();
+        ArrayList<Integer> timesum = dataAnalysis.getTimeFromActivity(activities.get(0));
+        dataAnalysis.setActivities(activities);
+        dataAnalysis.sortByDate();
     }
 }
