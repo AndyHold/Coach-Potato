@@ -157,7 +157,7 @@ public class GUIController extends Application{
      * Sets the scene on the primary stage to the data analysis scene.
      */
     public void launchDataAnalysisScene() throws Exception {
-        dataAnalysisController.setActivity(currentUser.getActivities().get(0));
+//        dataAnalysisController.setActivity(currentUser.getActivities().get(0));
         dataAnalysisController.setUpScene();
         primaryStage.setScene(dataAnalysisScene);
     }

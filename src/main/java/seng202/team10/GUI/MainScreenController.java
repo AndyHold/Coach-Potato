@@ -1,22 +1,13 @@
 package seng202.team10.GUI;
 
 import javafx.animation.TranslateTransition;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import seng202.team10.Control.GUIController;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class MainScreenController implements Controllable {
 
@@ -90,7 +81,7 @@ public class MainScreenController implements Controllable {
 
     @FXML public void openAnalysis() throws Exception {
         setUpScene();
-        //app.launchAnalysisScreen();
+        app.launchDataAnalysisScene();
     }
 
 }
