@@ -3,12 +3,8 @@ package seng202.team10.GUI;
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.VBox;
@@ -16,6 +12,7 @@ import javafx.stage.FileChooser;
 import javafx.util.Duration;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.*;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -399,50 +396,43 @@ public class UploadDataController {
     }
 
     @FXML public void openChooseProfile() throws Exception {
-        //drawerAction();
-        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
-        closeNav.setToX(-(drawer.getWidth()));
-        closeNav.play();
-        setUpScene();
+        moveDrawer();
         app.launchLoginScene();
     }
 
     @FXML public void openViewProfile() throws Exception {
-        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
-        closeNav.setToX(-(drawer.getWidth()));
-        closeNav.play();
-        setUpScene();
+        moveDrawer();
         app.launchProfileScene();
     }
 
     @FXML public void openUploadData() throws Exception {
-        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
-        closeNav.setToX(-(drawer.getWidth()));
-        closeNav.play();
-        setUpScene();
+        moveDrawer();
         app.launchUploadDataScene();
     }
 
     @FXML public void openViewActivities() throws Exception {
-        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
-        closeNav.setToX(-(drawer.getWidth()));
-        closeNav.play();
-        //setUpScene();
+        moveDrawer();
         //app.launchViewActivitiesScene();
     }
 
     @FXML public void openGoals() throws Exception {
-        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
-        closeNav.setToX(-(drawer.getWidth()));
-        closeNav.play();
-        //setUpScene();
+        moveDrawer();
         //app.launchGoalsScene();
     }
 
     @FXML public void openAnalysis() throws Exception {
+        moveDrawer();
+        app.launchDataAnalysisScene();
+    }
+
+    private void moveDrawer() {
         TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
         closeNav.setToX(-(drawer.getWidth()));
         closeNav.play();
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
         //setUpScene();
         //app.launchAnalysisScene();
 =======
@@ -451,5 +441,17 @@ public class UploadDataController {
 >>>>>>> 40229ad... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
 =======
 >>>>>>> 73cd156... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
+=======
+        setUpScene();
+>>>>>>> 63c2d62... Uncommented the launchDataAnalysis method and refactored some duplicate code into a method.
+=======
+        setUpScene();
+>>>>>>> 82bc121... Uncommented the launchDataAnalysis method and refactored some duplicate code into a method.
+=======
+        setUpScene();
+>>>>>>> ee3e10f... Uncommented the launchDataAnalysis method and refactored some duplicate code into a method.
+=======
+        setUpScene();
+>>>>>>> 54f11f8... Uncommented the launchDataAnalysis method and refactored some duplicate code into a method.
     }
 }
