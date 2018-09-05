@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.GUI.DataAnalysisController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.GUI.DataAnalysisController">
    <children>
-      <TabPane layoutX="278.0" layoutY="90.0" prefHeight="504.0" prefWidth="608.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="tabPane" layoutX="278.0" layoutY="90.0" prefHeight="504.0" prefWidth="608.0" tabClosingPolicy="UNAVAILABLE" visible="false">
         <tabs>
           <Tab text="Distance/Time">
             <content>
@@ -75,5 +79,6 @@
       </TabPane>
       <Label fx:id="activityNameLabel" layoutX="345.0" layoutY="43.0" text="Name Of Activity" />
       <Label fx:id="timeTakenLabel" layoutX="662.0" layoutY="43.0" text="Total Time Taken" />
+      <Label fx:id="noActivitiesLabel" layoutX="379.0" layoutY="292.0" text="No activities found" visible="false" />
    </children>
 </Pane>
