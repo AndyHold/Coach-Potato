@@ -151,6 +151,7 @@ public class CreateProfileController implements Controllable
             userProfile.setName(nameString);
             userProfile.setGender(genderString);
             userProfile.setBirthdate(dateOfBirth);
+            userProfile.setMaxHeartrate(220 - (java.util.Calendar.getInstance().get(java.util.Calendar.YEAR) - dateOfBirth.getYear()));
             userProfile.setWeight(Double.valueOf(weightString));
             userProfile.setHeight(Double.valueOf(heightString));
             app.createUser(userProfile);
