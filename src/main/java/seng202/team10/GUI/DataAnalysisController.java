@@ -9,6 +9,7 @@ import seng202.team10.Control.DataAnalysis;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
+import seng202.team10.Model.UserProfile;
 
 import java.util.ArrayList;
 
@@ -34,11 +35,13 @@ public class DataAnalysisController implements Controllable{
 
     @Override
     public void setUpScene() {
-        if (guiController.getCurrentProfile().getActivities().isEmpty()) {
+        UserProfile currentProfile = guiController.getCurrentProfile();
+
+        if (currentProfile.getActivities().isEmpty()) {
             this.displayNoData(true);
         } else {
             this.displayNoData(false);
-            activity = guiController.getCurrentProfile().getActivities().get(0);
+            activity = currentProfile.getActivities().get(0);
             dataAnalysis = new DataAnalysis();
             activityNameLabel.setText(activity.getName());
             ArrayList<Integer> timeArray = dataAnalysis.getTimeFromActivity(activity);
@@ -63,18 +66,20 @@ public class DataAnalysisController implements Controllable{
             heartRateOverTime.getData().add(hrtSeries);
 
             XYChart.Series cbSeries = new XYChart.Series();
-            ArrayList<Double> calorieArray = dataAnalysis.getCaloriesFromActivity(activity, guiController.getCurrentProfile());
+            ArrayList<Double> calorieArray = dataAnalysis.getCaloriesFromActivity(activity, currentProfile);
             for (int i = 0; i < timeArray.size(); i++) {
                 cbSeries.getData().add(new XYChart.Data(timeArray.get(i).toString(), calorieArray.get(i)));
             }
             caloriesBurned.getData().add(cbSeries);
-    //
-    //        XYChart.Series sltSeries = new XYChart.Series();
-    //        ArrayList<Double> stressArray = dataAnalysis.getStressFromActivity(activity);
-    //        for (int i = 0; i < timeArray.size(); i++) {
-    //            sltSeries.getData().add(new XYChart.Data(timeArray.get(i).toString(), stressArray.get(i)));
 
-    //        stressLevelOverTime.getData().add(sltSeries);
+            XYChart.Series sltSeries = new XYChart.Series();
+            ArrayList<Double> stressArray = new ArrayList<>();
+            for (int i = 0; i < timeArray.size(); i++) {
+                double stressPercent = (double)heartRateArray.get(i)/(double)currentProfile.getMaxHeartrate();
+                stressArray.add(stressPercent);
+                sltSeries.getData().add(new XYChart.Data(timeArray.get(i).toString(), stressArray.get(i)));
+            }
+            stressLevelOverTime.getData().add(sltSeries);
         }
 
     }
