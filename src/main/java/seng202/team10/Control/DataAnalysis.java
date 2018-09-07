@@ -4,7 +4,6 @@ import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.ActivitiesData.Entry;
 import seng202.team10.Model.ActivitiesData.Position;
-import seng202.team10.Model.UserProfile;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -141,16 +140,33 @@ public class DataAnalysis {
         this.activities = activities;
     }
 
+//    /**
+//     * Takes an arraylist of entries and fills in any missing gaps in the data for analysis.
+//     *
+//     * @param entryArrayList
+//     * @return
+//     */
+//    public ArrayList<Entry> interpolateEntries(ArrayList<Entry> entryArrayList) {
+//        ArrayList<Entry> interpolatedEntries = new ArrayList<>();
+//        DateTime entryTime;
+//        for (Entry entry : entryArrayList) {
+//            entryTime = entry.getTime();
+//            interpolatedEntries.add(entry);
+//
+//        }
+//
+//    }
+
     public static void main(String[] args) throws Exception {
-        GUIController guiController = new GUIController();
-        UserProfile user = new UserProfile();
-//        user.setHeight(80);
-//        user.setWeight(80);
-        guiController.uploadDataToUser(user, "/home/cosc/student/tkl34/Desktop/SENG202/SENG202_Project/SENG202_Project/FilesToLoad/testdata.csv");
-        ArrayList<Activity> activities = user.getActivities();
-        DataAnalysis dataAnalysis = new DataAnalysis();
-        ArrayList<Integer> timesum = dataAnalysis.getTimeFromActivity(activities.get(0));
-        dataAnalysis.setActivities(activities);
-        dataAnalysis.sortByDate();
+//        GUIController guiController = new GUIController();
+//        UserProfile user = new UserProfile();
+////        user.setHeight(80);
+////        user.setWeight(80);
+//        guiController.uploadDataToUser(user, "/home/cosc/student/tkl34/Desktop/SENG202/SENG202_Project/SENG202_Project/FilesToLoad/testdata.csv");
+//        ArrayList<Activity> activities = user.getActivities();
+//        DataAnalysis dataAnalysis = new DataAnalysis();
+//        ArrayList<Integer> timesum = dataAnalysis.getTimeFromActivity(activities.get(0));
+//        dataAnalysis.setActivities(activities);
+//        dataAnalysis.sortByDate();
     }
 }
