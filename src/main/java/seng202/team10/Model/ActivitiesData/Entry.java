@@ -293,6 +293,29 @@ public class Entry  implements Serializable {
     }
 
 
+    //THE FOLLOWING METHOD WAS AN ATTEMPT TO INTERPOLATE, LEAVING IT HERE JUST IN CASE BUT WILL TRY INTERPOLATION IN DATAANALYSIS
+
+
+//    /**
+//     * Method to find the average of two entries. Assumes that the year and the month are the same.
+//     * @param otherEntry  Is the entry directly after this entry.
+//     * @return An entry that will be slotted between this entry and other entry.
+//     */
+//    public Entry getAverageEntry(Entry otherEntry) {
+//
+//        int timeDifference = otherEntry.getTime().subtract(this.time);
+//        DateTime averageTime = this.time.
+//        int averageHeartRate = (this.heartRate + otherEntry.getHeartRate()) / 2;
+//
+//        double averageLatitude = (this.getPosition().getLatitude() - otherEntry.getPosition().getLatitude()) / 2;
+//        double averageLongitude = (this.getPosition().getLongitude() - otherEntry.getPosition().getLongitude()) / 2;
+//        double averageElevation = (this.getPosition().getElevation() - otherEntry.getPosition().getElevation()) / 2;
+//        Position averagePosition = new Position(averageLatitude, averageLongitude, averageElevation);
+//
+//        return new Entry(false, averageTime, averageHeartRate, averagePosition);
+//    }
+
+
     @Override
     public String toString(){
         return ("First Entry? : " + this.firstEntry + " , " + position.toString());
