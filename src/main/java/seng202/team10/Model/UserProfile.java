@@ -18,6 +18,7 @@ public class UserProfile implements java.io.Serializable {
     private double height;
     private DateTime birthdate;
     private String gender;
+    private int maxHeartrate;
     private Goals goals;
     private Calendar calendar;
     private double bmi;
@@ -53,6 +54,21 @@ public class UserProfile implements java.io.Serializable {
      * @return String
      */
     public String getGender() { return gender; }
+
+
+    /**
+     * Setter method for the maxHeartrate of the user
+     * @param maxHeartrate: int
+     */
+    public void setMaxHeartrate(int maxHeartrate) { this.maxHeartrate = maxHeartrate; }
+
+    /**
+     * Getter method for the maxHeartrate of the user
+     * @return int
+     */
+    public int getMaxHeartrate() { return maxHeartrate; }
+
+
 
     /**
      * Getter method for the activities of the user
