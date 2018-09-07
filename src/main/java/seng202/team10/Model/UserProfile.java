@@ -17,6 +17,7 @@ public class UserProfile implements java.io.Serializable {
     private double weight;
     private double height;
     private DateTime birthdate;
+    private String gender;
     private Goals goals;
     private Calendar calendar;
     private double bmi;
@@ -39,6 +40,19 @@ public class UserProfile implements java.io.Serializable {
         this.name = newName;
     }
 
+
+    /**
+     * Setter method for the gender of the user
+     * @param gender: String: "Male", "Female", or "Other"
+     */
+    public void setGender(String gender) { this.gender = gender; }
+
+
+    /**
+     * Getter method for the gender of the user
+     * @return String
+     */
+    public String getGender() { return gender; }
 
     /**
      * Getter method for the activities of the user
