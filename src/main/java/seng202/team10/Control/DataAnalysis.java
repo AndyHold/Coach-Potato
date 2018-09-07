@@ -4,8 +4,10 @@ import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.ActivitiesData.Entry;
 import seng202.team10.Model.ActivitiesData.Position;
+import seng202.team10.Model.UserProfile;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Comparator;
 
 public class DataAnalysis {
@@ -77,6 +79,12 @@ public class DataAnalysis {
         return null;
     }
 
+    /**
+     * Method to calculate the cumulative time spent in an activity, with each array index holding a sum of the time
+     * spent before it.
+     * @param activity  The activity the time spent is gotten from.
+     * @return  An array of integers, each index holding a sum of the time spent before it.
+     */
     public ArrayList<Integer> getTimeFromActivity(Activity activity) {
         ArrayList<Integer> timeArray = new ArrayList<>();
         Integer timeSum = 0;
@@ -119,13 +127,40 @@ public class DataAnalysis {
         return heartRateArray;
     }
 
-//    public ArrayList<Double> getCaloriesFromActivity(Activity activity) {
+    /**
+     * Method to find the calories burned at each point in an activity. This is based on the gender, weight, age and
+     * heartrate of the user. For the not specified gender, an average of the male and female calculations are used.
+     * @param activity
+     * @param user
+     * @return
+     */
+    public ArrayList<Double> getCaloriesFromActivity(Activity activity, UserProfile user) {
+        ArrayList<Integer> timeArray= getTimeFromActivity(activity);
+        ArrayList<Double> calorieArray = new ArrayList<>();
 
-//        ArrayList<Double> calorieArray = new ArrayList<>();
-//        for (Entry entry : activity.getEntries()) {
-//        }
-//        return calorieArray;
-//    }
+        int userAge = Calendar.getInstance().get(Calendar.YEAR) - user.getBirthDate().getYear();
+        if (user.getGender() == "Male") {
+            for (int index = 0; index < activity.getEntries().size(); index++) {
+                Entry entry = activity.getEntries().get(index);
+                double calories = ((-55.0969 + (0.6309 * entry.getHeartRate()) + (0.1988 * user.getWeight()) + (0.2017 * userAge))/4.184) * 60 * timeArray.get(index)/3600;
+                calorieArray.add(calories);
+            }
+        } else if (user.getGender() == "Female") {
+            for (int index = 0; index < activity.getEntries().size(); index++) {
+                Entry entry = activity.getEntries().get(index);
+                double calories = ((-20.4022 + (0.4472 * entry.getHeartRate()) + (0.1263 * user.getWeight()) + (0.074 * userAge))/4.184) * 60 * timeArray.get(index)/3600;
+                calorieArray.add(calories);
+            }
+        } else {
+            for (int index = 0; index < activity.getEntries().size(); index++) {
+                Entry entry = activity.getEntries().get(index);
+                double calories = ((-37.5 + (0.54 * entry.getHeartRate()) + (0.155 * user.getWeight()) + (0.138 * userAge))/4.184) * 60 * timeArray.get(index)/3600;
+                calorieArray.add(calories);
+            }
+        }
+        return calorieArray;
+    }
+
 
     public ArrayList<Position> getPositionFromActivity(Activity activity) {
 
@@ -158,15 +193,17 @@ public class DataAnalysis {
 //    }
 
     public static void main(String[] args) throws Exception {
-//        GUIController guiController = new GUIController();
-//        UserProfile user = new UserProfile();
-////        user.setHeight(80);
-////        user.setWeight(80);
-//        guiController.uploadDataToUser(user, "/home/cosc/student/tkl34/Desktop/SENG202/SENG202_Project/SENG202_Project/FilesToLoad/testdata.csv");
-//        ArrayList<Activity> activities = user.getActivities();
-//        DataAnalysis dataAnalysis = new DataAnalysis();
-//        ArrayList<Integer> timesum = dataAnalysis.getTimeFromActivity(activities.get(0));
-//        dataAnalysis.setActivities(activities);
-//        dataAnalysis.sortByDate();
+        GUIController guiController = new GUIController();
+        UserProfile user = new UserProfile();
+        user.setHeight(80);
+        user.setWeight(80);
+        user.setGender("Male");
+        DateTime birthday = new DateTime(1996, 12, 04, 0, 0, 0);
+        user.setBirthdate(birthday);
+        guiController.uploadDataToUser(user, "/home/cosc/student/tkl34/Desktop/SENG202/SENG202_Project/SENG202_Project/FilesToLoad/testdata.csv");
+        ArrayList<Activity> activities = user.getActivities();
+        DataAnalysis dataAnalysis = new DataAnalysis();
+        ArrayList<Double> calorieArray = dataAnalysis.getCaloriesFromActivity(activities.get(0), user);
+        System.out.println(calorieArray);
     }
 }
