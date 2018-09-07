@@ -193,17 +193,24 @@ public class DataAnalysis {
 //    }
 
     public static void main(String[] args) throws Exception {
-        GUIController guiController = new GUIController();
-        UserProfile user = new UserProfile();
-        user.setHeight(80);
-        user.setWeight(80);
-        user.setGender("Male");
-        DateTime birthday = new DateTime(1996, 12, 04, 0, 0, 0);
-        user.setBirthdate(birthday);
-        guiController.uploadDataToUser(user, "/home/cosc/student/tkl34/Desktop/SENG202/SENG202_Project/SENG202_Project/FilesToLoad/testdata.csv");
-        ArrayList<Activity> activities = user.getActivities();
-        DataAnalysis dataAnalysis = new DataAnalysis();
-        ArrayList<Double> calorieArray = dataAnalysis.getCaloriesFromActivity(activities.get(0), user);
-        System.out.println(calorieArray);
+//        GUIController guiController = new GUIController();
+//        UserProfile user = new UserProfile();
+//        user.setHeight(80);
+//        user.setWeight(80);
+//        user.setGender("Male");
+//        user.setMaxHeartrate(170);
+//        DateTime birthday = new DateTime(1996, 12, 04, 0, 0, 0);
+//        user.setBirthdate(birthday);
+//        guiController.uploadDataToUser(user, "/home/cosc/student/tkl34/Desktop/SENG202/SENG202_Project/SENG202_Project/FilesToLoad/testdata.csv");
+//        ArrayList<Activity> activities = user.getActivities();
+//        DataAnalysis dataAnalysis = new DataAnalysis();
+//        ArrayList<Double> stressArray = new ArrayList<>();
+//        ArrayList<Integer> timeArray = dataAnalysis.getTimeFromActivity(activities.get(0));
+//        ArrayList<Integer> heartRateArray = dataAnalysis.getHeartRateFromActivity(activities.get(0));
+//        for (int i = 0; i < timeArray.size(); i++) {
+//            double stressPercent = (double)heartRateArray.get(i) / (double)user.getMaxHeartrate();
+//            stressArray.add(stressPercent);
+//        }
+//        System.out.println(stressArray);
     }
 }
