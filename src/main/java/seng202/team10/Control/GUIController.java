@@ -420,10 +420,29 @@ public class GUIController extends Application{
         dataAnalysisController.setApp(this);
 //        dataAnalysisController.setUpScene();
 <<<<<<< HEAD
+<<<<<<< HEAD
         dataAnalysisScene = new Scene(paneDA, 900, 600);
 =======
         dataAnalysisScene = new Scene(paneDA, 1280, 720);
 >>>>>>> d7480a7a... Added map Controller
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+        dataAnalysisScene = new Scene(paneDA, 900, 600);
+=======
+        dataAnalysisScene = new Scene(paneDA, 1280, 720);
+>>>>>>> 8c1f178... Added map Controller
+=======
+        dataAnalysisScene = new Scene(paneDA, 1280, 720);
+>>>>>>> 3940c8a... Added map Controller
+=======
+        dataAnalysisScene = new Scene(paneDA, 1280, 720);
+>>>>>>> 661d1cc... Added map Controller
+=======
+        dataAnalysisScene = new Scene(paneDA, 1280, 720);
+>>>>>>> d7480a7... Added map Controller
+>>>>>>> e4a580e1... Added map Controller
 
         activityViewerLoader = new FXMLLoader(getClass().getResource("/fxml/activityViewerScreen.fxml"));
         Pane paneAV = activityViewerLoader.load();
@@ -443,6 +462,12 @@ public class GUIController extends Application{
         uploadDataScene = new Scene(paneUD, 900, 630);
 >>>>>>> ef5ea113... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
 =======
+<<<<<<< HEAD
+=======
+        uploadDataScene = new Scene(paneUD, 900, 630);
+>>>>>>> ef5ea11... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
+=======
+>>>>>>> e4a580e1... Added map Controller
         entryViewerScene = new Scene(paneEV, 900, 630);
 
         mapLoader = new FXMLLoader(getClass().getResource("/fxml/mapScreen.fxml"));
@@ -451,7 +476,20 @@ public class GUIController extends Application{
         mapController.setApp(this);
         mapController.setUpScene();
         mapScene = new Scene(paneMap, 1280, 720);
+<<<<<<< HEAD
 >>>>>>> d7480a7a... Added map Controller
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 8c1f178... Added map Controller
+=======
+>>>>>>> 3940c8a... Added map Controller
+=======
+>>>>>>> 661d1cc... Added map Controller
+=======
+>>>>>>> d7480a7... Added map Controller
+>>>>>>> e4a580e1... Added map Controller
     }
 
 //    public Pair<Scene, Controllable> loadNewScene(String fxmlPath) throws Exception{
