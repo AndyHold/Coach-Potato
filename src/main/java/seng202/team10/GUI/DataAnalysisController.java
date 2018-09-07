@@ -53,8 +53,6 @@ public class DataAnalysisController implements Controllable{
                 totalDistance = totalDistance + distanceArray.get(i);
                 dtSeries.getData().add(new XYChart.Data(timeArray.get(i).toString(), totalDistance));
             }
-            System.out.println(totalDistance);
-            System.out.println(distanceArray);
             distanceOverTime.getData().add(dtSeries);
 
             XYChart.Series hrtSeries = new XYChart.Series();
@@ -64,12 +62,12 @@ public class DataAnalysisController implements Controllable{
             }
             heartRateOverTime.getData().add(hrtSeries);
 
-    //        XYChart.Series cbSeries = new XYChart.Series();
-    //        ArrayList<Double> calorieArray = dataAnalysis.getCaloriesFromActivity(activity);
-    //        for (int i = 0; i < timeArray.size(); i++) {
-    //            cbSeries.getData().add(new XYChart.Data(timeArray.get(i).toString(), calorieArray.get(i)));
-    //        }
-    //        caloriesBurned.getData().add(cbSeries);
+            XYChart.Series cbSeries = new XYChart.Series();
+            ArrayList<Double> calorieArray = dataAnalysis.getCaloriesFromActivity(activity, guiController.getCurrentProfile());
+            for (int i = 0; i < timeArray.size(); i++) {
+                cbSeries.getData().add(new XYChart.Data(timeArray.get(i).toString(), calorieArray.get(i)));
+            }
+            caloriesBurned.getData().add(cbSeries);
     //
     //        XYChart.Series sltSeries = new XYChart.Series();
     //        ArrayList<Double> stressArray = dataAnalysis.getStressFromActivity(activity);
