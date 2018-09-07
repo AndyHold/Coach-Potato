@@ -1,9 +1,12 @@
 package seng202.team10.GUI;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TabPane;
 import seng202.team10.Control.DataAnalysis;
 import seng202.team10.Control.GUIController;
@@ -27,6 +30,7 @@ public class DataAnalysisController implements Controllable{
     @FXML private LineChart caloriesBurned;
     @FXML private LineChart stressLevelOverTime;
     @FXML private Label noActivitiesLabel;
+    @FXML private ListView activityList;
 
     @Override
     public void setApp(GUIController guiController) {
@@ -35,14 +39,22 @@ public class DataAnalysisController implements Controllable{
 
     @Override
     public void setUpScene() {
-        UserProfile currentProfile = guiController.getCurrentProfile();
 
+        dataAnalysis = new DataAnalysis();
+        UserProfile currentProfile = guiController.getCurrentProfile();
         if (currentProfile.getActivities().isEmpty()) {
             this.displayNoData(true);
         } else {
+            ObservableList<String> activityNames = FXCollections.observableArrayList();
+            for (Activity activity : currentProfile.getActivities()) {
+                String activityString = activity.getStartDateTime().toString() + ": " + activity.getName();
+                activityNames.add(activityString);
+            }
+            activityList.setItems(activityNames);
+
             this.displayNoData(false);
-            activity = currentProfile.getActivities().get(0);
-            dataAnalysis = new DataAnalysis();
+            activity = currentProfile.getActivities().get(0); //for now
+
             activityNameLabel.setText(activity.getName());
             ArrayList<Integer> timeArray = dataAnalysis.getTimeFromActivity(activity);
             DateTime startTime = activity.getStartDateTime();
