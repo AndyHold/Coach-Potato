@@ -59,6 +59,10 @@ public class GUIController extends Application{
     private Scene entryViewerScene;
     private entryViewerController entryViewerController;
 
+    private FXMLLoader mapLoader;
+    private Scene mapScene;
+    private MapController mapController;
+
     private Stage primaryStage;
     private ArrayList<UserProfile> users = new ArrayList<>();
 
@@ -154,7 +158,7 @@ public class GUIController extends Application{
 >>>>>>> 1b1f8a0... Now starts on the createProfile scene if no users are found, otherwise starts on login screen.
 >>>>>>> 09152fc2... Now starts on the createProfile scene if no users are found, otherwise starts on login screen.
         if (users.isEmpty()) {
-            primaryStage.setScene(createProfileScene);
+            primaryStage.setScene(mapScene);
         } else {
             primaryStage.setScene(loginScene);
         }
@@ -371,7 +375,7 @@ public class GUIController extends Application{
         createProfileController = createProfileLoader.getController();
         createProfileController.setApp(this);
         createProfileController.setUpScene();
-        createProfileScene = new Scene(paneCP, 900, 630);
+        createProfileScene = new Scene(paneCP, 1280, 720);
 
         profileLoader = new FXMLLoader(getClass().getResource("/fxml/profileScreen.fxml"));
 <<<<<<< HEAD
@@ -415,7 +419,11 @@ public class GUIController extends Application{
         dataAnalysisController = dataAnalysisLoader.getController();
         dataAnalysisController.setApp(this);
 //        dataAnalysisController.setUpScene();
+<<<<<<< HEAD
         dataAnalysisScene = new Scene(paneDA, 900, 600);
+=======
+        dataAnalysisScene = new Scene(paneDA, 1280, 720);
+>>>>>>> d7480a7a... Added map Controller
 
         activityViewerLoader = new FXMLLoader(getClass().getResource("/fxml/activityViewerScreen.fxml"));
         Pane paneAV = activityViewerLoader.load();
@@ -429,10 +437,21 @@ public class GUIController extends Application{
         entryViewerController = entryViewerLoader.getController();
         entryViewerController.setApp(this);
 //        entryViewerController.setUpScene();
+<<<<<<< HEAD
         entryViewerScene = new Scene(paneEV, 900, 600);
 =======
         uploadDataScene = new Scene(paneUD, 900, 630);
 >>>>>>> ef5ea113... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
+=======
+        entryViewerScene = new Scene(paneEV, 900, 630);
+
+        mapLoader = new FXMLLoader(getClass().getResource("/fxml/mapScreen.fxml"));
+        Pane paneMap = mapLoader.load();
+        mapController = mapLoader.getController();
+        mapController.setApp(this);
+        mapController.setUpScene();
+        mapScene = new Scene(paneMap, 1280, 720);
+>>>>>>> d7480a7a... Added map Controller
     }
 
 //    public Pair<Scene, Controllable> loadNewScene(String fxmlPath) throws Exception{
