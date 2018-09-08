@@ -78,7 +78,7 @@ public class GUIController extends Application{
         loadAllScenes();
         primaryStage.setTitle("Coach Potato");
         if (users.isEmpty()) {
-            primaryStage.setScene(mapScene);
+            primaryStage.setScene(createProfileScene);
         } else {
             primaryStage.setScene(loginScene);
         }
