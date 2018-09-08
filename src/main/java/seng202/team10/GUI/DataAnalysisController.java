@@ -59,28 +59,29 @@ public class DataAnalysisController implements Controllable{
             ArrayList<Integer> timeArray = dataAnalysis.getTimeFromActivity(activity);
             DateTime startTime = activity.getStartDateTime();
             Integer timeTaken = activity.getTotalDuration();
-            timeTakenLabel.setText(timeTaken.toString());
+            timeTakenLabel.setText("Time Taken: " + dataAnalysis.secondsToTime(timeTaken));
 
+            setUpGraphs();
             XYChart.Series dtSeries = new XYChart.Series();
             ArrayList<Double> distanceArray = dataAnalysis.getDistanceFromActivity(activity);
             double totalDistance = 0;
             for (int i = 0; i < timeArray.size(); i++) {
                 totalDistance = totalDistance + distanceArray.get(i);
-                dtSeries.getData().add(new XYChart.Data(timeArray.get(i).toString(), totalDistance));
+                dtSeries.getData().add(new XYChart.Data(dataAnalysis.secondsToTime(timeArray.get(i)), totalDistance));
             }
             distanceOverTime.getData().add(dtSeries);
 
             XYChart.Series hrtSeries = new XYChart.Series();
             ArrayList<Integer> heartRateArray = dataAnalysis.getHeartRateFromActivity(activity);
             for (int i = 0; i < timeArray.size(); i++) {
-                hrtSeries.getData().add(new XYChart.Data(timeArray.get(i).toString(), heartRateArray.get(i)));
+                hrtSeries.getData().add(new XYChart.Data(dataAnalysis.secondsToTime(timeArray.get(i)), heartRateArray.get(i)));
             }
             heartRateOverTime.getData().add(hrtSeries);
 
             XYChart.Series cbSeries = new XYChart.Series();
             ArrayList<Double> calorieArray = dataAnalysis.getCaloriesFromActivity(activity, currentProfile);
             for (int i = 0; i < timeArray.size(); i++) {
-                cbSeries.getData().add(new XYChart.Data(timeArray.get(i).toString(), calorieArray.get(i)));
+                cbSeries.getData().add(new XYChart.Data(dataAnalysis.secondsToTime(timeArray.get(i)), calorieArray.get(i)));
             }
             caloriesBurned.getData().add(cbSeries);
 
@@ -89,11 +90,30 @@ public class DataAnalysisController implements Controllable{
             for (int i = 0; i < timeArray.size(); i++) {
                 double stressPercent = (double)heartRateArray.get(i)/(double)currentProfile.getMaxHeartrate();
                 stressArray.add(stressPercent);
-                sltSeries.getData().add(new XYChart.Data(timeArray.get(i).toString(), stressArray.get(i)));
+                sltSeries.getData().add(new XYChart.Data(dataAnalysis.secondsToTime(timeArray.get(i)), stressArray.get(i)));
             }
             stressLevelOverTime.getData().add(sltSeries);
         }
 
+    }
+
+    private void setUpGraphs() {
+        setUpOneGraph(distanceOverTime);
+        setUpOneGraph(heartRateOverTime);
+        setUpOneGraph(caloriesBurned);
+        setUpOneGraph(stressLevelOverTime);
+
+        distanceOverTime.getYAxis().setLabel("Distance (m)");
+        heartRateOverTime.getYAxis().setLabel("Heart rate (bpm)");
+        caloriesBurned.getYAxis().setLabel("Calories burned");
+        stressLevelOverTime.getYAxis().setLabel("Stress level");
+    }
+
+    private void setUpOneGraph(LineChart linechart) {
+        linechart.getXAxis().setLabel("Time");
+//        NumberAxis xAxis = (NumberAxis)linechart.getXAxis();
+//        xAxis.setLowerBound();
+        linechart.setCreateSymbols(false);
     }
     private void displayNoData(boolean noDataFound) {
         if (noDataFound) {
