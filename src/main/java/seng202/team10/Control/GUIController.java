@@ -150,7 +150,7 @@ public class GUIController extends Application{
 =======
 >>>>>>> 1b1f8a0... Now starts on the createProfile scene if no users are found, otherwise starts on login screen.
         if (users.isEmpty()) {
-            primaryStage.setScene(mapScene);
+            primaryStage.setScene(createProfileScene);
         } else {
             primaryStage.setScene(loginScene);
         }
