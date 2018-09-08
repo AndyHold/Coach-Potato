@@ -175,6 +175,34 @@ public class DataAnalysis {
         this.activities = activities;
     }
 
+    public String secondsToTime(int seconds) {
+        int minutes = 0;
+        int hours = 0;
+
+        while (seconds > 59) {
+            seconds = seconds - 60;
+            minutes++;
+            if (minutes == 60) {
+                minutes = 0;
+                hours++;
+            }
+        }
+        String strSeconds = String.valueOf(seconds);
+        String strMinutes = String.valueOf(minutes);
+        String strHours = String.valueOf(hours);
+        if (strSeconds.length() == 1) {
+            strSeconds = "0" + strSeconds;
+        }
+        if (strMinutes.length() == 1) {
+            strMinutes = "0" + strMinutes;
+        }
+        if (strHours.length() == 1) {
+            strHours = "0" + strHours;
+        }
+        return strHours + ":" + strMinutes + ":" + strSeconds;
+
+    }
+
 //    /**
 //     * Takes an arraylist of entries and fills in any missing gaps in the data for analysis.
 //     *
@@ -193,6 +221,8 @@ public class DataAnalysis {
 //    }
 
     public static void main(String[] args) throws Exception {
+        DataAnalysis dataAnalysis = new DataAnalysis();
+        System.out.println(dataAnalysis.secondsToTime(800));
 //        GUIController guiController = new GUIController();
 //        UserProfile user = new UserProfile();
 //        user.setHeight(80);
