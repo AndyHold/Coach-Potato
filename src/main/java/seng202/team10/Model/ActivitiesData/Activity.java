@@ -101,6 +101,7 @@ public class Activity implements Serializable {
      * */
     public void determineType()
     {
+        //TODO switch this over to using Enum
         String lowername = this.name.toLowerCase();
         if(lowername.contains("walk")){
             this.type = "walk";

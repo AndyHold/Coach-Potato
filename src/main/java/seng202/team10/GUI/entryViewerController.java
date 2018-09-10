@@ -32,7 +32,7 @@ public class entryViewerController {
     private void setUpScene(Activity loadActivity){
         loadedActivity = loadActivity;
         activityNameLabel.setText(loadedActivity.getName());
-        //load all of the entries of the activity into the table
+        //TODO load all of the entries of the activity into the table
 
     }
 
