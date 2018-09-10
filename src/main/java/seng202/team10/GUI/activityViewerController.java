@@ -42,16 +42,18 @@ public class activityViewerController {
      * @param displayActivities the arraylist of activity objects to be displayed in the table
      */
     private void populateTable(ArrayList<Activity> displayActivities){
-        //update table to display the passed in activities
+        //TODO update table to display the passed in activities
     }
 
     /**
      * updates table with entries between the two datepickers when the filterApplyButton is pressed
      */
     @FXML public void applyFilter(){
-        //get startdate and enddate from datepickers
-        //create new activitylist from activities in profile that have dates between start/end
-        //pass new activities into populate table
+        // TODO get startdate and enddate from datepickers
+        // TODO add a dropdown for a specific type of activity
+        // TODO create new activitylist from activities in profile that match filters
+        // TODO pass new activities into populate table
+
     }
 
 
@@ -68,7 +70,7 @@ public class activityViewerController {
      * opens the routemap screen for the selected activity when the openMap button is pressed
      */
     @FXML public void openMap(){
-        //open a map screen with the selected activity to view routemap
+        // TODO open a map screen with the selected activity to view routemap
     }
 
 
