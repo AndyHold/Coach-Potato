@@ -21,6 +21,8 @@ public class Goals implements java.io.Serializable{
     private ArrayList<Goal> failedGoals = new ArrayList<Goal>();;
     private ArrayList<Goal> createdGoals = new ArrayList<Goal>();
     ArrayList<String> createdGoalNames = new ArrayList<String>();
+    private ArrayList<String> futureGoals = new ArrayList<String>();
+
     //private ArrayList<Goal> availableGoals = new ArrayList<Goal>();
     //ArrayList<String> availableGoalNames = new ArrayList<String>();
 
@@ -203,6 +205,10 @@ public class Goals implements java.io.Serializable{
 
     public ArrayList<String> getCreatedGoalNames() {
         return createdGoalNames;
+    }
+
+    public ArrayList<String> getFutureGoals() {
+        return futureGoals;
     }
 
     public UserProfile getUser() {
