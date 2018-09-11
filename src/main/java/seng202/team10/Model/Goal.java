@@ -86,28 +86,40 @@ public class Goal implements Serializable {
 //    }
 
     public String reviewWeightGoal(Goal goal, double currentWeight) {
-        System.out.println("Your target for this goal is to weigh " + goal.getGoalWeight() + " by " + goal.getGoalTargetDate());
         String progressDescription = "";
-        progressDescription += "Your target for this goal is to weigh " + goal.getGoalWeight() + " by " + goal.getGoalTargetDate();
+        progressDescription += "Your target for this goal was to weigh less than" + goal.getGoalWeight() + " by " + goal.getGoalTargetDate();
         if (currentWeight <= goal.getGoalWeight()) {
-            System.out.println("Congratulations you have completed this goal! It has been removed from your current goals.");
             progressDescription += "\nCongratulations you have completed this goal! It has been removed from your current goals.";
         } else {
+            //progressDescription += "Your target for this goal is to weigh " + goal.getGoalWeight() + " by " + goal.getGoalTargetDate();
             double difference = currentWeight - goal.getGoalWeight();
-            System.out.println("You need to lose " + difference + " more kgs to meet your goal.");
             progressDescription += "\nYou need to lose " + difference + " more kgs to meet your goal.";
         }
         return progressDescription;
     }
 
-    public void reviewBmiGoal(Goal goal, double currentBmi) {
-        System.out.println("Your target for this goal is to have a BMI of " + goal.getGoalBmi() + " by " + goal.getGoalTargetDate());
+//    public void reviewBmiGoal(Goal goal, double currentBmi) {
+//        System.out.println("Your target for this goal is to have a BMI of " + goal.getGoalBmi() + " by " + goal.getGoalTargetDate());
+//        if (currentBmi <= goal.getGoalBmi()) {
+//            System.out.println("Congratulations you have completed this goal! It has been removed from your current goals.");
+//        } else {
+//            double difference = currentBmi - goal.getGoalBmi();
+//            System.out.println("You need to decrease your BMI by " + difference + " more to meet your goal.");
+//        }
+//    }
+
+    public String reviewBmiGoal(Goal goal, double currentBmi) {
+        String progressDescription = "";
         if (currentBmi <= goal.getGoalBmi()) {
-            System.out.println("Congratulations you have completed this goal! It has been removed from your current goals.");
+            progressDescription += "Your target for this goal was to have a BMI less than or equal to " + goal.getGoalBmi() + " by " + goal.getGoalTargetDate();
+            progressDescription += "Congratulations you have completed this goal! It has been removed from your current goals.";
+
         } else {
+            progressDescription += "Your target for this goal is to have a BMI of " + goal.getGoalBmi() + " by " + goal.getGoalTargetDate();
             double difference = currentBmi - goal.getGoalBmi();
-            System.out.println("You need to decrease your BMI by " + difference + " more to meet your goal.");
+            progressDescription += "You need to decrease your BMI by " + difference + " more to meet your goal.";
         }
+        return progressDescription;
     }
 
     public void reviewDistanceGoal(Goal goal, double dist) {

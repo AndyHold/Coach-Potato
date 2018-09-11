@@ -129,30 +129,32 @@ public class GoalController implements Controllable {
 //        int startDay = Integer.valueOf(startDateArray[2]);
 //        DateTime startDate = new DateTime(startYear, startMonth, startDay, 0, 0,0);
 
-        //TODO add an if-statement to check if validInput == true
-        if (type == "Weight") {
-            goalsInstance.createGoal(name, startDate, targetDate, type, false, 0,0, target, 0,0);
-        } else if (type == "Frequency") {
-            goalsInstance.createGoal(name, startDate, targetDate, type, false, target,0, 0, 0,0);
-        } else if (type == "Distance") {
-            goalsInstance.createGoal(name, startDate, targetDate, type, false, 0,0, 0, target,0);
-        } else if (type == "BMI") {
-            goalsInstance.createGoal(name, startDate, targetDate, type, false, 0,0, 0, 0, target);
-        } else { //goal must be of type Time
-            goalsInstance.createGoal(name, startDate, targetDate, type, false, 0, target, 0, 0,0);
+        if (validInput == true) {
+            if (type == "Weight") {
+                goalsInstance.createGoal(name, startDate, targetDate, type, false, 0,0, target, 0,0);
+            } else if (type == "Frequency") {
+                goalsInstance.createGoal(name, startDate, targetDate, type, false, target,0, 0, 0,0);
+            } else if (type == "Distance") {
+                goalsInstance.createGoal(name, startDate, targetDate, type, false, 0,0, 0, target,0);
+            } else if (type == "BMI") {
+                goalsInstance.createGoal(name, startDate, targetDate, type, false, 0,0, 0, 0, target);
+            } else { //goal must be of type Time
+                goalsInstance.createGoal(name, startDate, targetDate, type, false, 0, target, 0, 0,0);
+            }
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information");
+            alert.setHeaderText("Goal successfully created!");
+//        alert.setContentText("Select 'Add Goal' to add it to your current goals.");
+            alert.showAndWait();
+
+            //updates the current goals combo box
+            ObservableList<String> currentGoals = FXCollections.observableArrayList(goalsInstance.getCurrentGoalNames());
+            currentGoalsCombo.setItems(currentGoals);
+            System.out.println(goalsInstance.getCurrentGoalNames());
+            System.out.println(goalsInstance.getCreatedGoalNames());
         }
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Information");
-        alert.setHeaderText("Goal successfully created!");
-//        alert.setContentText("Select 'Add Goal' to add it to your current goals.");
-        alert.showAndWait();
-
-        //updates the current goals combo box
-        ObservableList<String> currentGoals = FXCollections.observableArrayList(goalsInstance.getCurrentGoalNames());
-        currentGoalsCombo.setItems(currentGoals);
-        System.out.println(goalsInstance.getCurrentGoalNames());
-        System.out.println(goalsInstance.getCreatedGoalNames());
 
     }
 
@@ -175,6 +177,8 @@ public class GoalController implements Controllable {
             alert.setTitle("Information");
             alert.setHeaderText("Goal successfully removed");
             alert.showAndWait();
+
+            progressText.setText("");
         }
 
     }
