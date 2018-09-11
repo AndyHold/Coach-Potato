@@ -1,10 +1,13 @@
 package seng202.team10.GUI;
 
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.Entry;
@@ -29,6 +32,7 @@ public class activityViewerController {
     @FXML private TableColumn<Activity, String> entrynoColumn;
     @FXML private Button entryViewerButton;
     @FXML private Button mapButton;
+    @FXML private VBox drawer;
 
     /**
      * Sets up objects that require it prior to showing the scene
@@ -81,5 +85,55 @@ public class activityViewerController {
     public void setApp(GUIController app)
     {
         this.app = app;
+    }
+
+    @FXML private void drawerAction() {
+
+        TranslateTransition openNav = new TranslateTransition(new Duration(350), drawer);
+        openNav.setToX(0);
+        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
+        if (drawer.getTranslateX() != 0) {
+            openNav.play();
+        } else {
+            closeNav.setToX(-(drawer.getWidth()));
+            closeNav.play();
+        }
+    }
+
+    @FXML public void openChooseProfile() throws Exception {
+        moveDrawer();
+        app.launchLoginScene();
+    }
+
+    @FXML public void openViewProfile() throws Exception {
+        moveDrawer();
+        app.launchProfileScene();
+    }
+
+    @FXML public void openUploadData() throws Exception {
+        moveDrawer();
+        app.launchUploadDataScene();
+    }
+
+    @FXML public void openViewActivities() throws Exception {
+        moveDrawer();
+        app.launchActivityViewerScene();
+    }
+
+    @FXML public void openGoals() throws Exception {
+        moveDrawer();
+        app.launchGoalsScene();
+    }
+
+    @FXML public void openAnalysis() throws Exception {
+        moveDrawer();
+        app.launchDataAnalysisScene();
+    }
+
+    private void moveDrawer() {
+        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
+        closeNav.setToX(-(drawer.getWidth()));
+        closeNav.play();
+        setUpScene();
     }
 }
