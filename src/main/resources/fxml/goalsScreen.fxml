@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.GUI.GoalController">
+  <tabs>
+      <Tab text="Current Goals">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="25.0" layoutY="43.0" text="Select a goal you are currently working towards to review it: " />
+                  <ComboBox fx:id="currentGoalsCombo" layoutX="61.0" layoutY="75.0" prefWidth="150.0" promptText="Select..." />
+                  <Button fx:id="removeGoalButton" layoutX="61.0" layoutY="460.0" mnemonicParsing="false" onAction="#removeGoal" text="Remove Goal" />
+                  <Button fx:id="reviewButton" layoutX="309.0" layoutY="75.0" mnemonicParsing="false" onAction="#reviewGoal" text="Review Progress" />
+                  <TextArea fx:id="progressText" layoutX="309.0" layoutY="173.0" prefHeight="152.0" prefWidth="400.0" scrollTop="1.0" wrapText="true" />
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+    <Tab text="Past Goals">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="67.0" layoutY="61.0" text="Goals that achieved: " />
+                  <Label layoutX="465.0" layoutY="61.0" text="Goals that you failed:" />
+               </children></AnchorPane>
+      </content>
+    </Tab>
+      <Tab text="Future Goals">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+        </content>
+      </Tab>
+      <Tab text="Create Goal">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ComboBox fx:id="goalTypeCombo" layoutX="60.0" layoutY="69.0" prefHeight="25.0" prefWidth="179.0" promptText="Choose Goal Type..." />
+                  <TextField fx:id="goalNameEntry" layoutX="331.0" layoutY="69.0" promptText="Enter Goal Name..." />
+                  <DatePicker fx:id="startDatePicker" layoutX="60.0" layoutY="411.0" />
+                  <DatePicker fx:id="targetDatePicker" layoutX="331.0" layoutY="411.0" />
+                  <Label layoutX="60.0" layoutY="377.0" text="Goal start date:" />
+                  <Label layoutX="331.0" layoutY="377.0" text="Goal target date:" />
+                  <TextField fx:id="targetValueEntry" layoutX="60.0" layoutY="217.0" promptText="Enter target value:" />
+                  <Button fx:id="createButton" layoutX="739.0" layoutY="486.0" mnemonicParsing="false" onAction="#createGoal" text="Create!" />
+               </children></AnchorPane>
+        </content>
+      </Tab>
+  </tabs>
+</TabPane>
