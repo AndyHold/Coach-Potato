@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 
 public class FullCalendarView {
+    
 
     private ArrayList<AnchorPaneNode> allCalendarDays = new ArrayList<>(42);
     private VBox view;
