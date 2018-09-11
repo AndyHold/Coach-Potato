@@ -138,7 +138,7 @@ public class Goals implements java.io.Serializable{
 //                    //goal.reviewBmiGoal(goal, user.calcBmi());
 //                    goal.reviewBmiGoal(goal, 30);
 //                    break;
-//                //TODO add in the Distance, frequency, and time cases (which need data loaded first)
+//                //to do add in the Distance, frequency, and time cases (which need data loaded first)
 //            }
 //        }
 //    }
@@ -147,17 +147,29 @@ public class Goals implements java.io.Serializable{
     public String checkGoal(String goalName) {
         Goal goal = getGoalObject(goalName);
         String progress = "";
-        if (currentGoals.contains(goal)) { // is this necessary if combobox will only ever have current goals??
+        if (currentGoals.contains(goal)) { // is this necessaprogress = ry if combobox will only ever have current goals??
             System.out.println("" + goalName + "is of type " + goal.getGoalType());
             String type = goal.getGoalType();
             switch (type) {
                 case "Weight":
-                    //goal.reviewWeightGoal(goal, user.getWeight());
+                    //progress = goal.reviewWeightGoal(goal, user.getWeight());
+//                    if (user.getWeight() <= goal.getGoalWeight()) {
+//                        removeCurrentGoal(goalName);
+//                    }
                     progress = goal.reviewWeightGoal(goal, 70);
+                    if (70 <= goal.getGoalBmi()) {
+                        removeCurrentGoal(goalName);
+                    }
                     break;
                 case "BMI":
-                    //goal.reviewBmiGoal(goal, user.calcBmi());
-                    goal.reviewBmiGoal(goal, 30);
+                    //progress = goal.reviewBmiGoal(goal, user.calcBmi());
+//                    if (user.getBmi() <= goal.getGoalBmi()) {
+//                        removeCurrentGoal(goalName);
+//                    }
+                    progress = goal.reviewBmiGoal(goal, 30);
+                    if (30 <= goal.getGoalBmi()) {
+                        removeCurrentGoal(goalName);
+                    }
                     break;
                 //TODO add in the Distance, frequency, and time cases (which need data loaded first)
             }
