@@ -1,10 +1,14 @@
 package seng202.team10.Model.FileOperations;
 
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.Entry;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
