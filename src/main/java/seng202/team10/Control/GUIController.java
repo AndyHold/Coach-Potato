@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -190,11 +191,6 @@ public class GUIController extends Application{
         ArrayList<ArrayList<String>> formattedFileContents = parser.formatFileContents(fileContents);
         ArrayList<Activity> activities = parser.processFile(formattedFileContents);
         user.addActivities(activities);
-    }
-
-    public void launchMainScene() throws Exception {
-        mainController.setUpScene();
-        primaryStage.setScene(mainScene);
     }
 
     /**
@@ -477,6 +473,10 @@ public class GUIController extends Application{
         loginScene = new Scene(root, 1280, 720);
 >>>>>>> 663db25... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
         mainLoader = new FXMLLoader(getClass().getResource("/fxml/mainScreen.fxml"));
         VBox mainVBox = mainLoader.load();
         mainController = mainLoader.getController();
@@ -533,6 +533,29 @@ public class GUIController extends Application{
 =======
         mainScene = new Scene(mainVBox, 1280, 720);
 >>>>>>> 663db25... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
+=======
+=======
+>>>>>>> 1862dba... 1)Linked all the screens together so that we can go to any screen from any screen. 2)deleted unused files. 3)Fixed calendar. 4) Gui improvement on all screens.
+=======
+>>>>>>> 6e92841... 1)Linked all the screens together so that we can go to any screen from any screen. 2)deleted unused files. 3)Fixed calendar. 4) Gui improvement on all screens.
+=======
+>>>>>>> 240eba1... 1)Linked all the screens together so that we can go to any screen from any screen. 2)deleted unused files. 3)Fixed calendar. 4) Gui improvement on all screens.
+//        mainLoader = new FXMLLoader(getClass().getResource("/fxml/mainScreen.fxml"));
+//        VBox mainVBox = mainLoader.load();
+//        mainController = mainLoader.getController();
+//        mainController.setApp(this);
+//        mainController.setUpScene();
+//        mainScene = new Scene(mainVBox, 1280, 720);
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 8e53f9b... 1)Linked all the screens together so that we can go to any screen from any screen. 2)deleted unused files. 3)Fixed calendar. 4) Gui improvement on all screens.
+=======
+>>>>>>> 1862dba... 1)Linked all the screens together so that we can go to any screen from any screen. 2)deleted unused files. 3)Fixed calendar. 4) Gui improvement on all screens.
+=======
+>>>>>>> 6e92841... 1)Linked all the screens together so that we can go to any screen from any screen. 2)deleted unused files. 3)Fixed calendar. 4) Gui improvement on all screens.
+=======
+>>>>>>> 240eba1... 1)Linked all the screens together so that we can go to any screen from any screen. 2)deleted unused files. 3)Fixed calendar. 4) Gui improvement on all screens.
 
         createProfileLoader = new FXMLLoader(getClass().getResource("/fxml/createProfileScreen.fxml"));
         Pane paneCP = createProfileLoader.load();
@@ -553,6 +576,10 @@ public class GUIController extends Application{
         //profileController.setUserDetails();
         profileScene = new Scene(PaneP, 1280, 720);
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -599,6 +626,29 @@ public class GUIController extends Application{
 >>>>>>> 438a3e8... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
 =======
 >>>>>>> 879a82d... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
+=======
+=======
+>>>>>>> 1862dba... 1)Linked all the screens together so that we can go to any screen from any screen. 2)deleted unused files. 3)Fixed calendar. 4) Gui improvement on all screens.
+=======
+>>>>>>> 6e92841... 1)Linked all the screens together so that we can go to any screen from any screen. 2)deleted unused files. 3)Fixed calendar. 4) Gui improvement on all screens.
+=======
+>>>>>>> 240eba1... 1)Linked all the screens together so that we can go to any screen from any screen. 2)deleted unused files. 3)Fixed calendar. 4) Gui improvement on all screens.
+        goalsLoader = new FXMLLoader(getClass().getResource("/fxml/goalsScreen.fxml"));
+        Pane paneG = goalsLoader.load();
+        goalsController = goalsLoader.getController();
+        goalsController.setApp(this);
+        goalsController.setUpScene();
+        goalsScene = new Scene(paneG, 1280, 720);
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 8e53f9b... 1)Linked all the screens together so that we can go to any screen from any screen. 2)deleted unused files. 3)Fixed calendar. 4) Gui improvement on all screens.
+=======
+>>>>>>> 1862dba... 1)Linked all the screens together so that we can go to any screen from any screen. 2)deleted unused files. 3)Fixed calendar. 4) Gui improvement on all screens.
+=======
+>>>>>>> 6e92841... 1)Linked all the screens together so that we can go to any screen from any screen. 2)deleted unused files. 3)Fixed calendar. 4) Gui improvement on all screens.
+=======
+>>>>>>> 240eba1... 1)Linked all the screens together so that we can go to any screen from any screen. 2)deleted unused files. 3)Fixed calendar. 4) Gui improvement on all screens.
 
         uploadDataLoader = new FXMLLoader(getClass().getResource("/fxml/uploadDataScreen.fxml"));
         Pane paneUD = uploadDataLoader.load();
