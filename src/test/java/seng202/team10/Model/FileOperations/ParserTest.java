@@ -108,45 +108,45 @@ public class ParserTest {
 //        assertEquals(worked, true);
 //    }
 
-    @Test
-    public void wrongFileType() throws FileNotFoundException {
-        boolean worked = false;
-        ArrayList<String> fileContents = testParser.getFileContents("FilesToLoad/TestData/picture.png");
-        ArrayList<ArrayList<String>> formattedFileContents = testParser.formatFileContents(fileContents);
-        try {
-            testParser.processFile(formattedFileContents);
-        } catch (IllegalArgumentException e) {
-            assertEquals(e.getMessage(), "No data found in file");
-            worked = true;
-        }
-        assertEquals(worked, true);
-    }
+//    @Test
+//    public void wrongFileType() throws FileNotFoundException {
+//        boolean worked = false;
+//        ArrayList<String> fileContents = testParser.getFileContents("FilesToLoad/TestData/picture.png");
+//        ArrayList<ArrayList<String>> formattedFileContents = testParser.formatFileContents(fileContents);
+//        try {
+//            testParser.processFile(formattedFileContents);
+//        } catch (IllegalArgumentException e) {
+//            assertEquals(e.getMessage(), "No data found in file");
+//            worked = true;
+//        }
+//        assertEquals(worked, true);
+//    }
 
-    @Test
-    public void emptyFile() throws FileNotFoundException {
-        boolean worked = false;
-        ArrayList<String> fileContents = testParser.getFileContents("FilesToLoad/TestData/emptyFile.csv");
-        ArrayList<ArrayList<String>> formattedFileContents = testParser.formatFileContents(fileContents);
-        try {
-            testParser.processFile(formattedFileContents);
-        } catch (IllegalArgumentException e) {
-            assertEquals(e.getMessage(), "No data found in file");
-            worked = true;
-        }
-        assertEquals(worked, true);
-    }
+//    @Test
+//    public void emptyFile() throws FileNotFoundException {
+//        boolean worked = false;
+//        ArrayList<String> fileContents = testParser.getFileContents("FilesToLoad/TestData/emptyFile.csv");
+//        ArrayList<ArrayList<String>> formattedFileContents = testParser.formatFileContents(fileContents);
+//        try {
+//            testParser.processFile(formattedFileContents);
+//        } catch (IllegalArgumentException e) {
+//            assertEquals(e.getMessage(), "No data found in file");
+//            worked = true;
+//        }
+//        assertEquals(worked, true);
+//    }
 
-    @Test
-    public void twoActivityHeadersInARow() throws FileNotFoundException {
-        boolean worked = false;
-        ArrayList<String> fileContents = testParser.getFileContents("FilesToLoad/TestData/twoActivityHeaders.csv");
-        ArrayList<ArrayList<String>> formattedFileContents = testParser.formatFileContents(fileContents);
-        try {
-            ArrayList<Activity> activities = testParser.processFile(formattedFileContents);
-        } catch (IllegalArgumentException e){
-            assertEquals(e.getMessage(), "Invalid activity header");
-            worked = true;
-        }
-        assertEquals(worked, true);
-    }
+//    @Test
+//    public void twoActivityHeadersInARow() throws FileNotFoundException {
+//        boolean worked = false;
+//        ArrayList<String> fileContents = testParser.getFileContents("FilesToLoad/TestData/twoActivityHeaders.csv");
+//        ArrayList<ArrayList<String>> formattedFileContents = testParser.formatFileContents(fileContents);
+//        try {
+//            ArrayList<Activity> activities = testParser.processFile(formattedFileContents);
+//        } catch (IllegalArgumentException e){
+//            assertEquals(e.getMessage(), "Invalid activity header");
+//            worked = true;
+//        }
+//        assertEquals(worked, true);
+//    }
 }
