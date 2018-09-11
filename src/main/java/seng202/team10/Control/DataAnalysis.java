@@ -10,10 +10,17 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Comparator;
 
+/**
+ * Class that contains methods for processing activities for data analysis, mostly used by the DataAnalysisController class.
+ */
 public class DataAnalysis {
 
     private ArrayList<Activity> activities;
 
+    /**
+     * Method to sort a list of activities by their date.
+     * @return  A sorted list of activities.
+     */
     public ArrayList<Activity> sortByDate() {
 
         activities.sort(new Comparator<Activity>() {
@@ -31,6 +38,10 @@ public class DataAnalysis {
         return activities;
     }
 
+    /**
+     * Method to sort a list of activities by their intensity.
+     * @return  A sorted list of activities.
+     */
     public ArrayList<Activity> sortByIntensity() {
 
 //        activities.sort(new Comparator<Activity>() {
@@ -100,6 +111,12 @@ public class DataAnalysis {
         return timeArray;
     }
 
+    /**
+     * Method to get an array of distances between entries from an activity. Each index in the array is the distance
+     * between the first entry and the entry at that index.
+     * @param activity  The activity the distance array is being calculated from.
+     * @return  An ArrayList<Double> that contains distances from the first entry position.
+     */
     public ArrayList<Double> getDistanceFromActivity(Activity activity) {
 
         ArrayList<Double> distanceArray = new ArrayList<>();
@@ -118,6 +135,11 @@ public class DataAnalysis {
         return distanceArray;
     }
 
+    /**
+     * Method to get an array of heart rates from an activity. Each heart rate corresponds to one entry.
+     * @param activity  The activity the heart rates are being taken from.
+     * @return  An ArrayList<Integer> that contains the heart rate values in an activity.
+     */
     public ArrayList<Integer> getHeartRateFromActivity(Activity activity) {
 
         ArrayList<Integer> heartRateArray = new ArrayList<>();
@@ -129,10 +151,10 @@ public class DataAnalysis {
 
     /**
      * Method to find the calories burned at each point in an activity. This is based on the gender, weight, age and
-     * heartrate of the user. For the not specified gender, an average of the male and female calculations are used.
-     * @param activity
-     * @param user
-     * @return
+     * heart rate of the user. For the not specified gender, an average of the male and female calculations are used.
+     * @param activity  The activity the calories are being calculated from.
+     * @param user  The user being used for the calorie calculations.
+     * @return  An ArrayList<Double> that contains a sum of the calories burned at a point in time for an activity.
      */
     public ArrayList<Double> getCaloriesFromActivity(Activity activity, UserProfile user) {
         ArrayList<Integer> timeArray= getTimeFromActivity(activity);
@@ -162,6 +184,11 @@ public class DataAnalysis {
     }
 
 
+    /**
+     * Method to get the positions of entries from an activity.
+     * @param activity  The activity the entries are being taken from
+     * @return  An ArrayList<Position> that contains the positions in an activity.
+     */
     public ArrayList<Position> getPositionFromActivity(Activity activity) {
 
         ArrayList<Position> positionArray = new ArrayList<>();
@@ -171,10 +198,19 @@ public class DataAnalysis {
         return positionArray;
     }
 
+    /**
+     * Sets the activities value.
+     * @param activities  An ArrayList<Activity>
+     */
     public void setActivities(ArrayList<Activity> activities) {
         this.activities = activities;
     }
 
+    /**
+     * Method to convert a number of seconds to a string in the format HH:MM:SS
+     * @param seconds  The time in seconds to be converted.
+     * @return  A string in the format HH:MM:SS that describes the time.
+     */
     public String secondsToTime(int seconds) {
         int minutes = 0;
         int hours = 0;
@@ -199,6 +235,9 @@ public class DataAnalysis {
         if (strHours.length() == 1) {
             strHours = "0" + strHours;
         }
+        if (hours > 23) {
+            return null;
+        }
         return strHours + ":" + strMinutes + ":" + strSeconds;
 
     }
@@ -221,8 +260,8 @@ public class DataAnalysis {
 //    }
 
     public static void main(String[] args) throws Exception {
-        DataAnalysis dataAnalysis = new DataAnalysis();
-        System.out.println(dataAnalysis.secondsToTime(800));
+//        DataAnalysis dataAnalysis = new DataAnalysis();
+//        System.out.println(dataAnalysis.secondsToTime(800));
 //        GUIController guiController = new GUIController();
 //        UserProfile user = new UserProfile();
 //        user.setHeight(80);
