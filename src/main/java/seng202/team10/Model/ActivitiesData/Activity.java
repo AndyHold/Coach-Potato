@@ -29,7 +29,8 @@ public class Activity implements Serializable {
      * @param newName String: Name of the activity
      * @param newStartDateTime DateTime: Start time and date of the activity
      */
-    public Activity(String newName, DateTime newStartDateTime) {
+    public Activity(String newName, DateTime newStartDateTime)
+    {
         this.setName(newName);
         this.setStartDateTime(newStartDateTime);
         // this.intensity = newIntensity;
@@ -40,8 +41,13 @@ public class Activity implements Serializable {
      * Setter method for name of the activity
      * @param newName: String
      */
-    public void setName(String newName) {
-        this.name = newName;
+    public void setName(String newName)
+    {
+        if ((newName.length() <= 30) && (newName.length() > 0)) {
+            this.name = newName;
+        } else {
+            throw new IllegalArgumentException("Activity name invalid, either blank or too long. Please change to between 1 - 30 characters");
+        }
     }
 
 
@@ -49,31 +55,39 @@ public class Activity implements Serializable {
      * Setter method for the date and time the activity was started on
      * @param newDateTime DateTime: Start date and time for this activity
      */
-    public void setStartDateTime(DateTime newDateTime) {
+    public void setStartDateTime(DateTime newDateTime)
+    {
             this.startDateTime = newDateTime;
     }
+
 
     /**
      * Setter method for the type of the activity
      * @param newtype String: the type of activity
      */
-    public void setType(String newtype){
+    public void setType(String newtype)
+    {
         this.type = newtype;
     }
+
 
     /**
      * getter method for the type of the activity
      * @return String of the type of the activity
      */
-    public String getType(){
+    public String getType()
+    {
         return this.type;
     }
+
 
     /**
      * determines and sets the type of the activity based on the name string.
      * possible types are walk, run, hike, cycle, swim, workout, other
      * */
-    public void determineType(){
+    public void determineType()
+    {
+        //TODO switch this over to using Enum
         String lowername = this.name.toLowerCase();
         if(lowername.contains("walk")){
             this.type = "walk";
@@ -94,10 +108,12 @@ public class Activity implements Serializable {
         }
     }
 
+
     /**
      * method to calculate and set the total distance of the activity
      */
-    public void calculateTotalDistance() {
+    public void calculateTotalDistance()
+    {
         for(int i = 1; i < this.entries.size(); i++) {
             this.totalDistance += (this.entries.get(i).getPosition().subtract(this.entries.get(i - 1).getPosition()));
         }
@@ -107,7 +123,8 @@ public class Activity implements Serializable {
     /**
      * Method to calculate and set the total time taken during the activity
      */
-    public void calculateTotalDuration() {
+    public void calculateTotalDuration()
+    {
         this.totalDuration = this.entries.get(this.entries.size() - 1).getTime().subtract(this.startDateTime);
     }
 
@@ -115,7 +132,8 @@ public class Activity implements Serializable {
     /**
      * Method to calculate and set the average velocity during the activity
      */
-    public void calculateAverageVelocity() {
+    public void calculateAverageVelocity()
+    {
         this.averageVelocity = this.totalDistance / this.totalDuration;
     }
 
@@ -123,14 +141,15 @@ public class Activity implements Serializable {
     /**
      * Method to calculate and set the average heart rate during the activity
      */
-    public void calculateAverageHeartRate() {
-        Double totalHeartRate = 0.0;
+    public void calculateAverageHeartRate()
+    {
+        double totalHeartRate = 0.0;
         int count = 0;
         for(Entry entry: this.entries) {
             totalHeartRate += entry.getHeartRate();
             count++;
         }
-        this.averageHeartRate = totalHeartRate / count;
+        this.averageHeartRate = (totalHeartRate / count);
     }
 
 
@@ -138,7 +157,8 @@ public class Activity implements Serializable {
      * addEntry Method to add an Entry to the arrayList entries
      * @param newEntry: Entry to be added.
      */
-    public void addEntry(Entry newEntry) {
+    public void addEntry(Entry newEntry)
+    {
         entries.add(newEntry);
     }
 
@@ -156,7 +176,8 @@ public class Activity implements Serializable {
      * Getter method for the name of the activity
      * @return String
      */
-    public String getName() {
+    public String getName()
+    {
         return this.name;
     }
 
@@ -165,7 +186,8 @@ public class Activity implements Serializable {
      * Getter method for the date the activity was started on
      * @return DateTime
      */
-    public DateTime getStartDateTime() {
+    public DateTime getStartDateTime()
+    {
         return this.startDateTime;
     }
 
@@ -174,7 +196,8 @@ public class Activity implements Serializable {
      * Getter method for the total distance travelled in the activity
      * @return Double
      */
-    public Double getTotalDistance() {
+    public Double getTotalDistance()
+    {
         return this.totalDistance;
     }
 
@@ -183,7 +206,8 @@ public class Activity implements Serializable {
      * Getter method for the total time taken during the activity in seconds
      * @return Double
      */
-    public int getTotalDuration() {
+    public int getTotalDuration()
+    {
         return this.totalDuration;
     }
 
@@ -192,7 +216,8 @@ public class Activity implements Serializable {
      * Getter method for the average velocity over the activity
      * @return Double
      */
-    public Double getAverageVelocity() {
+    public Double getAverageVelocity()
+    {
         return this.averageVelocity;
     }
 
@@ -201,7 +226,8 @@ public class Activity implements Serializable {
      * Getter method for the average heart rate during the activity
      * @return Double
      */
-    public Double getAverageHeartRate() {
+    public double getAverageHeartRate()
+    {
         return this.averageHeartRate;
     }
 
@@ -210,12 +236,14 @@ public class Activity implements Serializable {
      * Getter method for the ArrayList<Entry> entries
      * @return ArrayList<Entry>
      */
-    public ArrayList<Entry> getEntries() {
+    public ArrayList<Entry> getEntries()
+    {
         return this.entries;
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "Name= '" + name + '\'' +
                 ", startDateTime=" + startDateTime +
                 ", averageVelocity=" + averageVelocity +

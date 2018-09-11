@@ -59,8 +59,12 @@ public class GUIController extends Application{
     private Scene entryViewerScene;
     private entryViewerController entryViewerController;
 
+    private FXMLLoader mapLoader;
+    private Scene mapScene;
+    private MapController mapController;
+
     private Stage primaryStage;
-    private ArrayList<UserProfile> users = new ArrayList<UserProfile>();
+    private ArrayList<UserProfile> users = new ArrayList<>();
 
 
     private UserProfile currentUser;
@@ -73,10 +77,25 @@ public class GUIController extends Application{
     public void start(Stage primaryStage) throws Exception{
         loadAllScenes();
         primaryStage.setTitle("Coach Potato");
-        primaryStage.setScene(loginScene);
+        if (users.isEmpty()) {
+            primaryStage.setScene(createProfileScene);
+        } else {
+            primaryStage.setScene(loginScene);
+        }
+//        primaryStage.setScene(mainScene);
         //primaryStage.setScene(goalsScene);
         primaryStage.show();
         this.primaryStage = primaryStage;
+    }
+
+
+    /**
+     * Getter method for the Parser
+     * @return Parser
+     */
+    public Parser getParser()
+    {
+        return this.parser;
     }
 
 
@@ -147,7 +166,7 @@ public class GUIController extends Application{
      * Sets the scene on the primary stage to the data analysis scene.
      */
     public void launchDataAnalysisScene() throws Exception {
-        dataAnalysisController.setActivity(currentUser.getActivities().get(0));
+//        dataAnalysisController.setActivity(currentUser.getActivities().get(0));
         dataAnalysisController.setUpScene();
         primaryStage.setScene(dataAnalysisScene);
     }
@@ -199,7 +218,7 @@ public class GUIController extends Application{
         createProfileController = createProfileLoader.getController();
         createProfileController.setApp(this);
         createProfileController.setUpScene();
-        createProfileScene = new Scene(paneCP, 900, 630);
+        createProfileScene = new Scene(paneCP, 1280, 720);
 
         profileLoader = new FXMLLoader(getClass().getResource("/fxml/profileScreen.fxml"));
         Pane PaneP = profileLoader.load();
@@ -228,7 +247,7 @@ public class GUIController extends Application{
         dataAnalysisController = dataAnalysisLoader.getController();
         dataAnalysisController.setApp(this);
 //        dataAnalysisController.setUpScene();
-        dataAnalysisScene = new Scene(paneDA, 900, 630);
+        dataAnalysisScene = new Scene(paneDA, 1280, 720);
 
         activityViewerLoader = new FXMLLoader(getClass().getResource("/fxml/activityViewerScreen.fxml"));
         Pane paneAV = activityViewerLoader.load();
@@ -243,6 +262,13 @@ public class GUIController extends Application{
         entryViewerController.setApp(this);
 //        entryViewerController.setUpScene();
         entryViewerScene = new Scene(paneEV, 900, 630);
+
+        mapLoader = new FXMLLoader(getClass().getResource("/fxml/mapScreen.fxml"));
+        Pane paneMap = mapLoader.load();
+        mapController = mapLoader.getController();
+        mapController.setApp(this);
+        mapController.setUpScene();
+        mapScene = new Scene(paneMap, 1280, 720);
     }
 
 //    public Pair<Scene, Controllable> loadNewScene(String fxmlPath) throws Exception{
@@ -261,7 +287,6 @@ public class GUIController extends Application{
      */
     public void createUser(UserProfile newUser) throws Exception{
         users.add(newUser);
-        uploadDataToUser(newUser, "testdata.csv"); //REMOVE LATER
     }
 
     /**

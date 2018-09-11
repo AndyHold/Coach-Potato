@@ -110,6 +110,7 @@ public class CreateProfileController implements Controllable
         nameErrorLabel.setVisible(false);
         weightErrorLabel.setVisible(false);
         heightErrorLabel.setVisible(false);
+        genderWarning.setVisible(false);
         String nameString = nameEntry.getText();
         String heightString = heightEntry.getText();
         String weightString = weightEntry.getText();
@@ -133,7 +134,6 @@ public class CreateProfileController implements Controllable
         }
 
         if (genderString == null) {
-            genderWarning.setText("Please select a gender option");
             genderWarning.setVisible(true);
             invalidInput = true;
         }
@@ -149,24 +149,14 @@ public class CreateProfileController implements Controllable
             DateTime dateOfBirth = new DateTime(yearInt, monthInt, dayInt, 0, 0, 0);
             UserProfile userProfile = new UserProfile();
             userProfile.setName(nameString);
-//            userProfile.setGender(genderString);
+            userProfile.setGender(genderString);
             userProfile.setBirthdate(dateOfBirth);
+            userProfile.setMaxHeartrate(220 - (java.util.Calendar.getInstance().get(java.util.Calendar.YEAR) - dateOfBirth.getYear()));
             userProfile.setWeight(Double.valueOf(weightString));
             userProfile.setHeight(Double.valueOf(heightString));
             app.createUser(userProfile);
             app.launchLoginScene();
         }
-    }
-
-    @FXML
-    public void showWarning(){
-        genderWarning.setText("Warning: This may result in inaccurate analysis.");
-        genderWarning.setVisible(true);
-    }
-
-    @FXML
-    public void hideWarning() {
-        genderWarning.setVisible(false);
     }
 
     private String getSelectedGender() {

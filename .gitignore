@@ -22,6 +22,7 @@ tmp/
 *.bak
 *.swp
 *~.nib
+code.style.schemes.xml
 local.properties
 .settings/
 .loadpath
@@ -33,8 +34,12 @@ filetypes.xml
 debugger.xml
 databaseSettings.xml
 baseRefactoring.xml
-/._linux/*
+/._linux/git.xml
+/._linux/laf.xml
+/._linux/path.macros.xml
 /._linux/
+ui.lnf.xml
+/.codestyles/Default.xml
 # External tool builders
 .externalToolBuilders/
 
