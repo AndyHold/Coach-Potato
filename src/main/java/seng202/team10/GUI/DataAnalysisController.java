@@ -1,5 +1,6 @@
 package seng202.team10.GUI;
 
+import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -8,6 +9,8 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TabPane;
+import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import seng202.team10.Control.DataAnalysis;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.Activity;
@@ -31,6 +34,7 @@ public class DataAnalysisController implements Controllable{
     @FXML private LineChart stressLevelOverTime;
     @FXML private Label noActivitiesLabel;
     @FXML private ListView activityList;
+    @FXML private VBox drawer;
 
     @Override
     public void setApp(GUIController guiController) {
@@ -132,5 +136,55 @@ public class DataAnalysisController implements Controllable{
 
     public void setActivity(Activity activity) {
         this.activity = activity;
+    }
+
+    @FXML private void drawerAction() {
+
+        TranslateTransition openNav = new TranslateTransition(new Duration(350), drawer);
+        openNav.setToX(0);
+        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
+        if (drawer.getTranslateX() != 0) {
+            openNav.play();
+        } else {
+            closeNav.setToX(-(drawer.getWidth()));
+            closeNav.play();
+        }
+    }
+
+    @FXML public void openChooseProfile() throws Exception {
+        moveDrawer();
+        guiController.launchLoginScene();
+    }
+
+    @FXML public void openViewProfile() throws Exception {
+        moveDrawer();
+        guiController.launchProfileScene();
+    }
+
+    @FXML public void openUploadData() throws Exception {
+        moveDrawer();
+        guiController.launchUploadDataScene();
+    }
+
+    @FXML public void openViewActivities() throws Exception {
+        moveDrawer();
+        guiController.launchActivityViewerScene();
+    }
+
+    @FXML public void openGoals() throws Exception {
+        moveDrawer();
+        guiController.launchGoalsScene();
+    }
+
+    @FXML public void openAnalysis() throws Exception {
+        moveDrawer();
+        guiController.launchDataAnalysisScene();
+    }
+
+    private void moveDrawer() {
+        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
+        closeNav.setToX(-(drawer.getWidth()));
+        closeNav.play();
+        setUpScene();
     }
 }
