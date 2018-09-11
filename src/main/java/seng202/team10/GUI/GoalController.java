@@ -8,12 +8,9 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import seng202.team10.Control.GUIController;
-import seng202.team10.Control.inputValidator;
-import seng202.team10.Model.*;
+import seng202.team10.Control.InputValidator;
 import seng202.team10.Model.ActivitiesData.DateTime;
-import seng202.team10.Model.FileOperations.Parser;
-
-import java.util.ArrayList;
+import seng202.team10.Model.Goals;
 
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -92,7 +89,7 @@ public class GoalController implements Controllable{
     public void createGoal() throws Exception {
         boolean validInput = true;
         Goals goalsInstance = app.getGoalsInstance();
-        inputValidator input = new inputValidator(); //is this the best way to interact with the input validator class??
+        InputValidator input = new InputValidator(); //is this the best way to interact with the input validator class??
 
         String type = goalTypeCombo.getValue().toString();
         if (type == null) {
