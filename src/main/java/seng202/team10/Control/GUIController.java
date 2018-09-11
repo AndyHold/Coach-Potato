@@ -254,8 +254,8 @@ public class GUIController extends Application{
 =======
 >>>>>>> 879a82d... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
     public void launchGoalsScene() {
-      goalsController.setUpScene();
-      primaryStage.setScene(goalsScene);
+        //goalsController.setUpScene();
+        primaryStage.setScene(goalsScene);
     }
 =======
 =======
@@ -395,6 +395,10 @@ public class GUIController extends Application{
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
         loginScene = new Scene(root, 800, 400);
 =======
 =======
@@ -460,12 +464,28 @@ public class GUIController extends Application{
 =======
         loginScene = new Scene(root, 900, 630);
 >>>>>>> ef5ea11... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
+=======
+        loginScene = new Scene(root, 1280, 720);
+>>>>>>> 9ec6680... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
+=======
+        loginScene = new Scene(root, 1280, 720);
+>>>>>>> 410d95e... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
+=======
+        loginScene = new Scene(root, 1280, 720);
+>>>>>>> 30ac4eb... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
+=======
+        loginScene = new Scene(root, 1280, 720);
+>>>>>>> 663db25... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
 
         mainLoader = new FXMLLoader(getClass().getResource("/fxml/mainScreen.fxml"));
         VBox mainVBox = mainLoader.load();
         mainController = mainLoader.getController();
         mainController.setApp(this);
         mainController.setUpScene();
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -501,6 +521,18 @@ public class GUIController extends Application{
 =======
         mainScene = new Scene(mainVBox, 900, 630);
 >>>>>>> ef5ea11... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
+=======
+        mainScene = new Scene(mainVBox, 1280, 720);
+>>>>>>> 9ec6680... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
+=======
+        mainScene = new Scene(mainVBox, 1280, 720);
+>>>>>>> 410d95e... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
+=======
+        mainScene = new Scene(mainVBox, 1280, 720);
+>>>>>>> 30ac4eb... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
+=======
+        mainScene = new Scene(mainVBox, 1280, 720);
+>>>>>>> 663db25... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
 
         createProfileLoader = new FXMLLoader(getClass().getResource("/fxml/createProfileScreen.fxml"));
         Pane paneCP = createProfileLoader.load();
@@ -519,7 +551,7 @@ public class GUIController extends Application{
         profileController.setApp(this);
         profileController.setUpScene();
         //profileController.setUserDetails();
-        profileScene = new Scene(PaneP, 900, 630);
+        profileScene = new Scene(PaneP, 1280, 720);
 
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -577,7 +609,23 @@ public class GUIController extends Application{
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
         uploadDataScene = new Scene(paneUD, 900, 600);
+=======
+        uploadDataScene = new Scene(paneUD, 1280, 720);
+>>>>>>> 9ec6680... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
+=======
+        uploadDataScene = new Scene(paneUD, 1280, 720);
+>>>>>>> 410d95e... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
+=======
+        uploadDataScene = new Scene(paneUD, 1280, 720);
+>>>>>>> 30ac4eb... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
+=======
+        uploadDataScene = new Scene(paneUD, 1280, 720);
+>>>>>>> 663db25... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
 
         dataAnalysisLoader = new FXMLLoader(getClass().getResource("/fxml/dataAnalysisScreen.fxml"));
         Pane paneDA = dataAnalysisLoader.load();
@@ -607,13 +655,33 @@ public class GUIController extends Application{
         activityViewerController = activityViewerLoader.getController();
         activityViewerController.setApp(this);
 //        activityViewerController.setUpScene();
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
         activityViewerScene = new Scene(paneAV, 900, 600);
+=======
+        activityViewerScene = new Scene(paneAV, 1280, 720);
+>>>>>>> 9ec6680... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
+=======
+        activityViewerScene = new Scene(paneAV, 1280, 720);
+>>>>>>> 410d95e... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
+=======
+        activityViewerScene = new Scene(paneAV, 1280, 720);
+>>>>>>> 30ac4eb... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
+=======
+        activityViewerScene = new Scene(paneAV, 1280, 720);
+>>>>>>> 663db25... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
 
         entryViewerLoader = new FXMLLoader(getClass().getResource("/fxml/entryViewerScreen.fxml"));
         Pane paneEV = entryViewerLoader.load();
         entryViewerController = entryViewerLoader.getController();
         entryViewerController.setApp(this);
 //        entryViewerController.setUpScene();
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD
         entryViewerScene = new Scene(paneEV, 900, 600);
 =======
@@ -630,6 +698,18 @@ public class GUIController extends Application{
 >>>>>>> ef5ea11... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
 =======
         entryViewerScene = new Scene(paneEV, 900, 630);
+=======
+        entryViewerScene = new Scene(paneEV, 1280, 720);
+>>>>>>> 9ec6680... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
+=======
+        entryViewerScene = new Scene(paneEV, 1280, 720);
+>>>>>>> 410d95e... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
+=======
+        entryViewerScene = new Scene(paneEV, 1280, 720);
+>>>>>>> 30ac4eb... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
+=======
+        entryViewerScene = new Scene(paneEV, 1280, 720);
+>>>>>>> 663db25... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
 
         mapLoader = new FXMLLoader(getClass().getResource("/fxml/mapScreen.fxml"));
         Pane paneMap = mapLoader.load();

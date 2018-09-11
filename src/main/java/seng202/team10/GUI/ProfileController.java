@@ -113,12 +113,12 @@ public class ProfileController {
 
     @FXML public void openViewActivities() throws Exception {
         moveDrawer();
-        //app.launchViewActivitiesScene();
+        app.launchActivityViewerScene();
     }
 
     @FXML public void openGoals() throws Exception {
         moveDrawer();
-        //app.launchGoalsScene();
+        app.launchGoalsScene();
     }
 
     @FXML public void openAnalysis() throws Exception {
