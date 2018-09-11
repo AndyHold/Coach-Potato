@@ -86,6 +86,7 @@
       <Label fx:id="noActivitiesLabel" layoutX="379.0" layoutY="292.0" text="No activities found" visible="false" />
       <ListView fx:id="activityList" layoutX="43.0" layoutY="122.0" prefHeight="504.0" prefWidth="336.0" />
       <Label layoutX="168.0" layoutY="87.0" text="Activities" />
+      <Button fx:id="refreshButton" layoutX="166.0" layoutY="647.0" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
       <ToolBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="1280.0" style="-fx-background-color: #435;">
          <items>
             <Button fx:id="menu" mnemonicParsing="false" onAction="#drawerAction" style="-fx-background-color: #435; -fx-border-color: #ffffff;" text="Menu" textFill="WHITE" />
