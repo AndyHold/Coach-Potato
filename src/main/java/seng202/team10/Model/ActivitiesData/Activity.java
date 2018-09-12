@@ -22,6 +22,13 @@ public class Activity implements Serializable {
     private int totalDuration = 0;
     // private ActivityIntensity intensity;
     private String type;
+    private String nameString;
+    private String timeString;
+    private String durationString;
+    private String speedString;
+    private String distanceString;
+    private String heartString;
+    private String entrynoString;
 
 
     /**
@@ -34,6 +41,16 @@ public class Activity implements Serializable {
         this.setName(newName);
         this.setStartDateTime(newStartDateTime);
         // this.intensity = newIntensity;
+    }
+
+    public void setStrings() {
+        this.nameString = this.name;
+        this.timeString = this.startDateTime.toString();
+        this.durationString = String.valueOf(this.totalDuration);
+        this.speedString = String.format("%.2f", this.averageVelocity);
+        this.distanceString = String.format("%.2f", this.totalDistance);
+        this.heartString = String.format("%.2f", this.averageHeartRate);
+        this.entrynoString = String.valueOf(this.entries.size());
     }
 
 
@@ -250,6 +267,62 @@ public class Activity implements Serializable {
                 ", averageHeartRate=" + averageHeartRate +
                 ", totalDistance=" + totalDistance +
                 ", totalDuration=" + totalDuration;
+    }
+
+    public String getNameString() {
+        return nameString;
+    }
+
+    public void setNameString(String nameString) {
+        this.nameString = nameString;
+    }
+
+    public String getTimeString() {
+        return timeString;
+    }
+
+    public void setTimeString(String timeString) {
+        this.timeString = timeString;
+    }
+
+    public String getDurationString() {
+        return durationString;
+    }
+
+    public void setDurationString(String durationString) {
+        this.durationString = durationString;
+    }
+
+    public String getSpeedString() {
+        return speedString;
+    }
+
+    public void setSpeedString(String speedString) {
+        this.speedString = speedString;
+    }
+
+    public String getDistanceString() {
+        return distanceString;
+    }
+
+    public void setDistanceString(String distanceString) {
+        this.distanceString = distanceString;
+    }
+
+    public String getHeartString() {
+        return heartString;
+    }
+
+    public void setHeartString(String heartString) {
+        this.heartString = heartString;
+    }
+
+    public String getEntrynoString() {
+        return entrynoString;
+    }
+
+    public void setEntrynoString(String entrynoString) {
+        this.entrynoString = entrynoString;
     }
 
 
