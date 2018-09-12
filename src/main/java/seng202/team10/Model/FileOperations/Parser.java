@@ -152,6 +152,7 @@ public class Parser {
         activity.calculateAverageHeartRate();
         activity.calculateAverageVelocity();
         activity.determineType();
+        activity.setStrings();
 
 
 //        while (linePosition < formattedFile.size() && formattedFile.get(linePosition).get(0) != "#start"){
