@@ -49,8 +49,7 @@ public class FileReaderTest {
         testWriter.saveProfile(secondTestProfile);
         ArrayList<String> testFileNames = testReader.getExistingUsers();
         ArrayList<String> expectedNames = new ArrayList<String>(Arrays.asList("bill", "jeff"));
-//        assertEquals(expectedNames , testFileNames);
-        assertTrue(expectedNames.containsAll(testFileNames));
+        assertTrue(testFileNames.containsAll(expectedNames));
     }
 
     @Test
