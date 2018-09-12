@@ -1,13 +1,19 @@
 package seng202.team10.GUI;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.Entry;
+
+import java.util.ArrayList;
 
 
 public class entryViewerController {
@@ -29,11 +35,25 @@ public class entryViewerController {
     /**
      * Sets up objects that require it prior to showing the scene
      */
-    private void setUpScene(Activity loadActivity){
+    public void setUpScene(Activity loadActivity){
         loadedActivity = loadActivity;
         activityNameLabel.setText(loadedActivity.getName());
-        //TODO load all of the entries of the activity into the table
-
+        ObservableList<Entry> entries = FXCollections.observableArrayList(loadedActivity.getEntries());
+        dateColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("dateString"));
+        timeColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("timeString"));
+        heartRateColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("heartRateString"));
+        latitudeColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("latitudeString"));
+        longitudeColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("longitudeString"));
+        elevationColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("elevationString"));
+        // Load entries array
+        entriesTableView.setItems(entries);
+        entriesTableView.setEditable(true);
+        dateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        timeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        heartRateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        latitudeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        longitudeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        elevationColumn.setCellFactory(TextFieldTableCell.forTableColumn());
     }
 
     /**
