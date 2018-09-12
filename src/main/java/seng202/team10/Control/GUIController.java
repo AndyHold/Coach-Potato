@@ -206,6 +206,7 @@ public class GUIController extends Application{
         user.addActivities(activities);
     }
 
+
     /**
      * Sets the scene on the primary stage to the login scene.
      * @throws Exception Not implemented.
