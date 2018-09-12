@@ -170,6 +170,7 @@ public class GUIController extends Application{
 >>>>>>> 9a77444... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
         primaryStage.show();
         this.primaryStage = primaryStage;
+
     }
 
 
@@ -304,7 +305,7 @@ public class GUIController extends Application{
      * Sets the scene on the primary stage to the entry viewer scene.
      */
     public void launchEntryViewerScene(Activity activity) throws Exception {
-//        entryViewerController.setActivity(activity);
+        entryViewerController.setUpScene(activity);
         primaryStage.setScene(entryViewerScene);
     }
 
@@ -312,6 +313,7 @@ public class GUIController extends Application{
      * Sets the scene on the primary stage to the activity viewer scene.
      */
     public void launchActivityViewerScene() throws Exception {
+        activityViewerController.setUpScene();
         primaryStage.setScene(activityViewerScene);
     }
 
