@@ -36,6 +36,7 @@ public class Activity implements Serializable {
     private int totalDuration = 0;
     // private ActivityIntensity intensity;
     private String type;
+    private DateTime endDateTime;
     private String nameString;
     private String timeString;
     private String durationString;
@@ -89,6 +90,15 @@ public class Activity implements Serializable {
     public void setStartDateTime(DateTime newDateTime)
     {
             this.startDateTime = newDateTime;
+    }
+
+
+    /**
+     * Setter method for the date and time the activity was finished on
+     */
+    public void setEndDateTime()
+    {
+        this.endDateTime = this.entries.get(this.entries.size() - 1).getTime();
     }
 
 
@@ -220,6 +230,12 @@ public class Activity implements Serializable {
     public DateTime getStartDateTime()
     {
         return this.startDateTime;
+    }
+
+
+    public DateTime getEndDateTime()
+    {
+        return this.endDateTime;
     }
 
 
