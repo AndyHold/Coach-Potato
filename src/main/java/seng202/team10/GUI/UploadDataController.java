@@ -245,6 +245,8 @@ public class UploadDataController {
                 ArrayList<ArrayList<String>> formattedFile = app.getParser().formatFileContents(fileContents);
                 ArrayList<Activity> testResults = app.getParser().processFile(formattedFile);
                 app.getCurrentProfile().addActivities(testResults);
+                createPopUp(Alert.AlertType.INFORMATION, "Success", "Your file has been successfully uploaded to your profile");
+                //TODO need to add data to table instead of uploading straight to profile. Confirmation message for clearing table.
             } catch (FileNotFoundException exception) {
                 createPopUp(Alert.AlertType.ERROR, "Error", "File not found, please choose a valid csv file");
             }
@@ -257,6 +259,7 @@ public class UploadDataController {
      */
     @FXML public void submitData()
     {
+        //TODO Check if data is already in the profile before uploading.
         try {
             // Get name of activity
             String activityName = activityNameTextField.getText();
