@@ -1,11 +1,15 @@
 package seng202.team10.GUI;
 
 import javafx.animation.TranslateTransition;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import seng202.team10.Control.GUIController;
@@ -38,7 +42,26 @@ public class activityViewerController {
      * Sets up objects that require it prior to showing the scene
      */
     public void setUpScene() {
-        //populate table with activities of current profile
+        //populateTable(app.getCurrentProfile().getActivities());
+
+        ObservableList<Activity> activities = FXCollections.observableArrayList(app.getCurrentProfile().getActivities());
+        nameColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("nameString"));
+        starttimeColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("timeString"));
+        durationColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("durationString"));
+        speedColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("speedString"));
+        distanceColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("distanceString"));
+        heartrateColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("heartString"));
+        entrynoColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("entrynoString"));
+
+        activitiesTableView.setItems(activities);
+
+        nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        starttimeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        durationColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        speedColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        distanceColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        heartrateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        entrynoColumn.setCellFactory(TextFieldTableCell.forTableColumn());
     }
 
     /**
@@ -46,7 +69,8 @@ public class activityViewerController {
      * @param displayActivities the arraylist of activity objects to be displayed in the table
      */
     private void populateTable(ArrayList<Activity> displayActivities){
-        //TODO update table to display the passed in activities
+
+
     }
 
     /**
@@ -64,9 +88,10 @@ public class activityViewerController {
     /**
      * opens the entryViewer screen with the selected activity when the entryViewerButton is pressed
      */
-    @FXML public void openEntries(){
-        //set currentActivity to the currently selected row of the table
-        //app.launchEntryViewerScene(currentActivity);
+    @FXML public void openEntries() throws Exception{
+        //TODO set currentActivity to the currently selected row of the table
+        Activity currentActivity = app.getCurrentProfile().getActivities().get(1);
+        app.launchEntryViewerScene(currentActivity);
     }
 
 
@@ -87,6 +112,10 @@ public class activityViewerController {
         this.app = app;
     }
 
+
+    /**
+     * the menu
+     */
     @FXML private void drawerAction() {
 
         TranslateTransition openNav = new TranslateTransition(new Duration(350), drawer);
