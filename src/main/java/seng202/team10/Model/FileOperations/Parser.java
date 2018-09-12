@@ -74,6 +74,7 @@ public class Parser {
             while (linePosition < formattedFile.size()) {
                 activities.add(processActivity(formattedFile));
             }
+            this.linePosition = 0;
             return activities;
         }
     }
@@ -152,6 +153,7 @@ public class Parser {
         activity.calculateAverageHeartRate();
         activity.calculateAverageVelocity();
         activity.determineType();
+        activity.setEndDateTime();
         activity.setStrings();
 
 
