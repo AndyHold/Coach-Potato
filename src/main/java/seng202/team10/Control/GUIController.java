@@ -87,6 +87,7 @@ public class GUIController extends Application{
         //primaryStage.setScene(goalsScene);
         primaryStage.show();
         this.primaryStage = primaryStage;
+
     }
 
 
@@ -171,7 +172,7 @@ public class GUIController extends Application{
      * Sets the scene on the primary stage to the entry viewer scene.
      */
     public void launchEntryViewerScene(Activity activity) throws Exception {
-//        entryViewerController.setActivity(activity);
+        entryViewerController.setUpScene(activity);
         primaryStage.setScene(entryViewerScene);
     }
 
@@ -179,6 +180,7 @@ public class GUIController extends Application{
      * Sets the scene on the primary stage to the activity viewer scene.
      */
     public void launchActivityViewerScene() throws Exception {
+        activityViewerController.setUpScene();
         primaryStage.setScene(activityViewerScene);
     }
 
