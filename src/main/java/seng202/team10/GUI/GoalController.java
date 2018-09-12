@@ -1,16 +1,16 @@
 package seng202.team10.GUI;
 
+import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import seng202.team10.Control.GUIController;
-import seng202.team10.Control.inputValidator;
-import seng202.team10.Model.*;
+import seng202.team10.Control.InputValidator;
 import seng202.team10.Model.ActivitiesData.DateTime;
-import seng202.team10.Model.FileOperations.Parser;
-
-import java.util.ArrayList;
+import seng202.team10.Model.Goals;
 
 public class GoalController implements Controllable {
 
@@ -46,6 +46,8 @@ public class GoalController implements Controllable {
     @FXML
     private TextArea progressText;
 
+    @FXML private VBox drawer;
+
 
 
     public void setApp(GUIController app){
@@ -71,7 +73,7 @@ public class GoalController implements Controllable {
     public void createGoal() throws Exception {
         boolean validInput = true;
         Goals goalsInstance = app.getGoalsInstance();
-        inputValidator input = new inputValidator(); //is this the best way to interact with the input validator class??
+        InputValidator input = new InputValidator(); //is this the best way to interact with the input validator class??
 
         String type = goalTypeCombo.getValue().toString();
         if (type == null) {
@@ -129,30 +131,32 @@ public class GoalController implements Controllable {
 //        int startDay = Integer.valueOf(startDateArray[2]);
 //        DateTime startDate = new DateTime(startYear, startMonth, startDay, 0, 0,0);
 
-        //TODO add an if-statement to check if validInput == true
-        if (type == "Weight") {
-            goalsInstance.createGoal(name, startDate, targetDate, type, false, 0,0, target, 0,0);
-        } else if (type == "Frequency") {
-            goalsInstance.createGoal(name, startDate, targetDate, type, false, target,0, 0, 0,0);
-        } else if (type == "Distance") {
-            goalsInstance.createGoal(name, startDate, targetDate, type, false, 0,0, 0, target,0);
-        } else if (type == "BMI") {
-            goalsInstance.createGoal(name, startDate, targetDate, type, false, 0,0, 0, 0, target);
-        } else { //goal must be of type Time
-            goalsInstance.createGoal(name, startDate, targetDate, type, false, 0, target, 0, 0,0);
+        if (validInput == true) {
+            if (type == "Weight") {
+                goalsInstance.createGoal(name, startDate, targetDate, type, false, 0,0, target, 0,0);
+            } else if (type == "Frequency") {
+                goalsInstance.createGoal(name, startDate, targetDate, type, false, target,0, 0, 0,0);
+            } else if (type == "Distance") {
+                goalsInstance.createGoal(name, startDate, targetDate, type, false, 0,0, 0, target,0);
+            } else if (type == "BMI") {
+                goalsInstance.createGoal(name, startDate, targetDate, type, false, 0,0, 0, 0, target);
+            } else { //goal must be of type Time
+                goalsInstance.createGoal(name, startDate, targetDate, type, false, 0, target, 0, 0,0);
+            }
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information");
+            alert.setHeaderText("Goal successfully created!");
+//        alert.setContentText("Select 'Add Goal' to add it to your current goals.");
+            alert.showAndWait();
+
+            //updates the current goals combo box
+            ObservableList<String> currentGoals = FXCollections.observableArrayList(goalsInstance.getCurrentGoalNames());
+            currentGoalsCombo.setItems(currentGoals);
+            System.out.println(goalsInstance.getCurrentGoalNames());
+            System.out.println(goalsInstance.getCreatedGoalNames());
         }
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Information");
-        alert.setHeaderText("Goal successfully created!");
-//        alert.setContentText("Select 'Add Goal' to add it to your current goals.");
-        alert.showAndWait();
-
-        //updates the current goals combo box
-        ObservableList<String> currentGoals = FXCollections.observableArrayList(goalsInstance.getCurrentGoalNames());
-        currentGoalsCombo.setItems(currentGoals);
-        System.out.println(goalsInstance.getCurrentGoalNames());
-        System.out.println(goalsInstance.getCreatedGoalNames());
 
     }
 
@@ -175,6 +179,8 @@ public class GoalController implements Controllable {
             alert.setTitle("Information");
             alert.setHeaderText("Goal successfully removed");
             alert.showAndWait();
+
+            progressText.setText("");
         }
 
     }
@@ -197,4 +203,53 @@ public class GoalController implements Controllable {
         }
     }
 
+    @FXML private void drawerAction()
+    {
+        TranslateTransition openNav = new TranslateTransition(new Duration(350), drawer);
+        openNav.setToX(0);
+        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
+        if (drawer.getTranslateX() != 0) {
+            openNav.play();
+        } else {
+            closeNav.setToX(-(drawer.getWidth()));
+            closeNav.play();
+        }
+    }
+
+    @FXML public void openChooseProfile() throws Exception {
+        moveDrawer();
+        app.launchLoginScene();
+    }
+
+    @FXML public void openViewProfile() throws Exception {
+        moveDrawer();
+        app.launchProfileScene();
+    }
+
+    @FXML public void openUploadData() throws Exception {
+        moveDrawer();
+        app.launchUploadDataScene();
+    }
+
+    @FXML public void openViewActivities() throws Exception {
+        moveDrawer();
+        app.launchActivityViewerScene();
+    }
+
+    @FXML public void openGoals() throws Exception {
+        moveDrawer();
+        app.launchGoalsScene();
+    }
+
+    @FXML public void openAnalysis() throws Exception {
+        moveDrawer();
+        app.launchDataAnalysisScene();
+    }
+
+    private void moveDrawer() {
+        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
+        closeNav.setToX(-(drawer.getWidth()));
+        closeNav.play();
+        setUpScene();
+    }
 }

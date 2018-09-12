@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -113,10 +114,6 @@ public class GUIController extends Application{
         user.addActivities(activities);
     }
 
-    public void launchMainScene() throws Exception {
-        mainController.setUpScene();
-        primaryStage.setScene(mainScene);
-    }
 
     /**
      * Sets the scene on the primary stage to the login scene.
@@ -143,8 +140,8 @@ public class GUIController extends Application{
     }
 
     public void launchGoalsScene() {
-      goalsController.setUpScene();
-      primaryStage.setScene(goalsScene);
+        //goalsController.setUpScene();
+        primaryStage.setScene(goalsScene);
     }
 
     /**
@@ -204,14 +201,14 @@ public class GUIController extends Application{
         loginController = loginLoader.getController();
         loginController.setApp(this);
         loginController.setUpScene();
-        loginScene = new Scene(root, 900, 630);
+        loginScene = new Scene(root, 1280, 720);
 
-        mainLoader = new FXMLLoader(getClass().getResource("/fxml/mainScreen.fxml"));
-        VBox mainVBox = mainLoader.load();
-        mainController = mainLoader.getController();
-        mainController.setApp(this);
-        mainController.setUpScene();
-        mainScene = new Scene(mainVBox, 900, 630);
+//        mainLoader = new FXMLLoader(getClass().getResource("/fxml/mainScreen.fxml"));
+//        VBox mainVBox = mainLoader.load();
+//        mainController = mainLoader.getController();
+//        mainController.setApp(this);
+//        mainController.setUpScene();
+//        mainScene = new Scene(mainVBox, 1280, 720);
 
         createProfileLoader = new FXMLLoader(getClass().getResource("/fxml/createProfileScreen.fxml"));
         Pane paneCP = createProfileLoader.load();
@@ -226,21 +223,21 @@ public class GUIController extends Application{
         profileController.setApp(this);
         profileController.setUpScene();
         //profileController.setUserDetails();
-        profileScene = new Scene(PaneP, 900, 630);
+        profileScene = new Scene(PaneP, 1280, 720);
 
-//        goalsLoader = new FXMLLoader(getClass().getResource("/fxml/goalsScreen.fxml"));
-//        Pane paneG = goalsLoader.load();
-//        goalsController = goalsLoader.getController();
-//        goalsController.setApp(this);
-//        goalsController.setUpScene();
-//        goalsScene = new Scene(paneG, 900, 600);
+        goalsLoader = new FXMLLoader(getClass().getResource("/fxml/goalsScreen.fxml"));
+        Pane paneG = goalsLoader.load();
+        goalsController = goalsLoader.getController();
+        goalsController.setApp(this);
+        goalsController.setUpScene();
+        goalsScene = new Scene(paneG, 1280, 720);
 
         uploadDataLoader = new FXMLLoader(getClass().getResource("/fxml/uploadDataScreen.fxml"));
         Pane paneUD = uploadDataLoader.load();
         uploadDataController = uploadDataLoader.getController();
         uploadDataController.setApp(this);
         uploadDataController.setUpScene();
-        uploadDataScene = new Scene(paneUD, 900, 630);
+        uploadDataScene = new Scene(paneUD, 1280, 720);
 
         dataAnalysisLoader = new FXMLLoader(getClass().getResource("/fxml/dataAnalysisScreen.fxml"));
         Pane paneDA = dataAnalysisLoader.load();
@@ -254,14 +251,14 @@ public class GUIController extends Application{
         activityViewerController = activityViewerLoader.getController();
         activityViewerController.setApp(this);
 //        activityViewerController.setUpScene();
-        activityViewerScene = new Scene(paneAV, 900, 630);
+        activityViewerScene = new Scene(paneAV, 1280, 720);
 
         entryViewerLoader = new FXMLLoader(getClass().getResource("/fxml/entryViewerScreen.fxml"));
         Pane paneEV = entryViewerLoader.load();
         entryViewerController = entryViewerLoader.getController();
         entryViewerController.setApp(this);
 //        entryViewerController.setUpScene();
-        entryViewerScene = new Scene(paneEV, 900, 630);
+        entryViewerScene = new Scene(paneEV, 1280, 720);
 
         mapLoader = new FXMLLoader(getClass().getResource("/fxml/mapScreen.fxml"));
         Pane paneMap = mapLoader.load();

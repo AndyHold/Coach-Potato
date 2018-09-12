@@ -71,12 +71,12 @@ public class MainScreenController implements Controllable {
 
     @FXML public void openViewActivities() throws Exception {
         setUpScene();
-        //app.launchViewActivitiesScreen();
+        app.launchActivityViewerScene();
     }
 
     @FXML public void openGoals() throws Exception {
         setUpScene();
-        //app.launchGoalsScreen();
+        app.launchGoalsScene();
     }
 
     @FXML public void openAnalysis() throws Exception {

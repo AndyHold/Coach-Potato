@@ -10,6 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 
 
 public class FullCalendarView {
+    
 
     private ArrayList<AnchorPaneNode> allCalendarDays = new ArrayList<>(42);
     private VBox view;
@@ -32,36 +34,40 @@ public class FullCalendarView {
         // Create the calendar grid pane
         GridPane calendar = new GridPane();
         calendar.setStyle("-fx-background-color: #F06292");
-        calendar.setPrefSize(499, 300);
-        calendar.setMaxSize(499, 300);
-        calendar.setMinSize(499, 300);
+        calendar.setPrefSize(280, 240);
+        calendar.setMaxSize(280, 240);
+        calendar.setMinSize(280, 240);
         calendar.setGridLinesVisible(true);
         // Create rows and columns with anchor panes for the calendar
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 7; j++) {
                 AnchorPaneNode ap = new AnchorPaneNode();
-                ap.setPrefSize(71, 50);
-                ap.setMaxSize(150, 50);
-                //ap.setMinSize(60, 60);
+                ap.setPrefSize(40, 40);
+                ap.setMaxSize(40, 40);
+                ap.setMinSize(40, 40);
                 calendar.add(ap,j,i);
                 allCalendarDays.add(ap);
             }
         }
         // Days of the week labels
-        Text[] dayNames = new Text[]{ new Text(" Sunday"), new Text(" Monday"), new Text(" Tuesday"),
-                                        new Text(" Wednesday"), new Text(" Thursday"), new Text(" Friday"),
-                                        new Text(" Saturday") };
+        Text[] dayNames = new Text[]{ new Text(" Sun"), new Text(" Mon"), new Text(" Tue"),
+                                        new Text(" Wed"), new Text(" Thu"), new Text(" Fri"),
+                                        new Text(" Sat") };
         GridPane dayLabels = new GridPane();
         dayLabels.setStyle("-fx-background-color: #F06292");
-        dayLabels.setPrefWidth(499);
+        dayLabels.setPrefWidth(280);
+        dayLabels.setMaxWidth(280);
+        dayLabels.setMinWidth(280);
         dayLabels.setGridLinesVisible(true);
         Integer col = 0;
         for (Text txt : dayNames) {
             AnchorPane ap = new AnchorPane();
-            ap.setPrefSize(71, 10);
-            ap.setMaxSize(100, 10);
-            //ap.setMinSize(60, 10);
-            ap.setBottomAnchor(txt, 5.0);
+            ap.setPrefSize(40, 20);
+            ap.setMaxSize(40, 20);
+            ap.setMinSize(40, 20);
+            txt.setTextAlignment(TextAlignment.CENTER);
+            ap.setTopAnchor(txt, 0.0);
+            ap.setLeftAnchor(txt, 0.0);
             ap.getChildren().add(txt);
             dayLabels.add(ap, col++, 0);
         }
@@ -106,11 +112,11 @@ public class FullCalendarView {
             }
             Text txt = new Text(String.valueOf(calendarDate.getDayOfMonth()));
             txt.setFill(Color.BLACK);
+            txt.setTextAlignment(TextAlignment.CENTER);
             ap.setDate(calendarDate);
-            ap.setTopAnchor(txt, 5.0);
-            ap.setLeftAnchor(txt, 5.0);
+            ap.setTopAnchor(txt, 10.0);
+            ap.setLeftAnchor(txt, 10.0);
 
-            //ap.setStyle("-fx-background-color: white");
             if (calendarDate.getMonth() == yearMonth.getMonth()) {
                 txt.setFill(Color.WHITE);
                 ap.getChildren().add(txt);

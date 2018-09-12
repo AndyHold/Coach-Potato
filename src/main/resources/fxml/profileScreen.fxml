@@ -11,16 +11,16 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="profilePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="900.0" style="-fx-background-color: darkgrey" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.GUI.ProfileController">
+<Pane fx:id="profilePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: darkgrey" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.GUI.ProfileController">
    <children>
-      <VBox fx:id="measurementsVBox" layoutY="250.0" prefHeight="150.0" prefWidth="300.0">
+      <VBox fx:id="measurementsVBox" layoutY="250.0" prefHeight="150.0" prefWidth="600.0">
          <effect>
             <Glow />
          </effect>
          <children>
-            <HBox fx:id="weightHBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" style="-fx-border-color: black; -fx-background-color: darkgrey">
+            <HBox fx:id="weightHBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="600.0" style="-fx-border-color: black; -fx-background-color: darkgrey">
                <children>
-                  <Label fx:id="weightLabel" prefHeight="50.0" prefWidth="150.0" style="-fx-text-fill: black;" text="Current Weight:">
+                  <Label fx:id="weightLabel" prefHeight="48.0" prefWidth="200.0" style="-fx-text-fill: black;" text="Current Weight:">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
@@ -28,21 +28,21 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="weightValueLabel" prefHeight="48.0" prefWidth="55.0" style="-fx-text-fill: black;" text="330.89">
+                  <Label fx:id="weightValueLabel" prefHeight="48.0" prefWidth="75.0" style="-fx-text-fill: black;" text="330.89">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="kgLabel" prefHeight="50.0" prefWidth="25.0" style="-fx-text-fill: black;" text="kg">
+                  <Label fx:id="kgLabel" prefHeight="48.0" prefWidth="35.0" style="-fx-text-fill: black;" text="kg">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <HBox fx:id="heightHBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" style="-fx-border-color: black; -fx-background-color: darkgrey;">
+            <HBox fx:id="heightHBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="600.0" style="-fx-border-color: black; -fx-background-color: darkgrey;">
                <children>
-                  <Label fx:id="heightLabel" prefHeight="50.0" prefWidth="150.0" style="-fx-text-fill: black;" text="Current Height:">
+                  <Label fx:id="heightLabel" prefHeight="48.0" prefWidth="200.0" style="-fx-text-fill: black;" text="Current Height:">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
@@ -50,21 +50,21 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="heightValueLabel" prefHeight="48.0" prefWidth="55.0" style="-fx-text-fill: black;" text="180.05">
+                  <Label fx:id="heightValueLabel" prefHeight="48.0" prefWidth="75.0" style="-fx-text-fill: black;" text="180.05">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="cmLabel" prefHeight="50.0" prefWidth="25.0" style="-fx-text-fill: black;" text="cm">
+                  <Label fx:id="cmLabel" prefHeight="48.0" prefWidth="35.0" style="-fx-text-fill: black;" text="cm">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <HBox fx:id="bmiHBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" style="-fx-border-color: black; -fx-background-color: darkgrey;">
+            <HBox fx:id="bmiHBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="600.0" style="-fx-border-color: black; -fx-background-color: darkgrey;">
                <children>
-                  <Label fx:id="bmiLabel" prefHeight="48.0" prefWidth="121.0" style="-fx-text-fill: black;" text="Current BMI:">
+                  <Label fx:id="bmiLabel" prefHeight="48.0" prefWidth="200.0" style="-fx-text-fill: black;" text="Current BMI:">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
@@ -72,7 +72,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="bmiValueLabel" prefHeight="48.0" prefWidth="179.0" style="-fx-text-fill: black;" text="30.89">
+                  <Label fx:id="bmiValueLabel" prefHeight="48.0" prefWidth="250.0" style="-fx-text-fill: black;" text="30.89">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -84,7 +84,7 @@
             <Insets left="10.0" right="10.0" />
          </padding>
       </VBox>
-      <Label fx:id="welcomeProfileLabel" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="350.0" text="Welcome User name, Let's Do it!">
+      <Label fx:id="welcomeProfileLabel" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="600.0" text="Welcome User name, Let's Do it!">
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
@@ -92,7 +92,7 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <Label fx:id="measurementsLabel" layoutY="203.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0" text="Body Measurements">
+      <Label fx:id="measurementsLabel" layoutY="203.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" text="Body Measurements">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>
@@ -100,7 +100,7 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </Label>
-      <Label fx:id="qoutesLabel" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="106.0" prefWidth="350.0" text="Motivational Quotes" wrapText="true">
+      <Label fx:id="quotesLabel" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="600.0" text="Motivational Quotes" wrapText="true">
          <font>
             <Font size="14.0" />
          </font>
@@ -116,12 +116,12 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </Label>
-      <VBox fx:id="recentActivitiesVBox" layoutY="450.0" prefHeight="150.0" prefWidth="300.0">
+      <VBox fx:id="recentActivitiesVBox" layoutY="450.0" prefHeight="150.0" prefWidth="600.0">
          <effect>
             <Glow />
          </effect>
          <children>
-            <HBox fx:id="activity1HBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" style="-fx-border-color: black; -fx-background-color: darkgrey;">
+            <HBox fx:id="activity1HBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="600.0" style="-fx-border-color: black; -fx-background-color: darkgrey;">
                <children>
                   <Text fx:id="activity1Text" strokeType="OUTSIDE" strokeWidth="0.0" text="Activity Name" wrappingWidth="280.0">
                      <font>
@@ -133,7 +133,7 @@
                   </Text>
                </children>
             </HBox>
-            <HBox fx:id="activity2HBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" style="-fx-border-color: black; -fx-background-color: darkgrey;">
+            <HBox fx:id="activity2HBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="600.0" style="-fx-border-color: black; -fx-background-color: darkgrey;">
                <children>
                   <Text fx:id="activity2Text" strokeType="OUTSIDE" strokeWidth="0.0" text="Activity Name" wrappingWidth="280.0">
                      <font>
@@ -145,7 +145,7 @@
                   </Text>
                </children>
             </HBox>
-            <HBox fx:id="activity3HBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" style="-fx-border-color: black; -fx-background-color: darkgrey;">
+            <HBox fx:id="activity3HBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="600.0" style="-fx-border-color: black; -fx-background-color: darkgrey;">
                <children>
                   <Text fx:id="activity3Text" strokeType="OUTSIDE" strokeWidth="0.0" text="Activity Name" wrappingWidth="280.0">
                      <font>
@@ -162,8 +162,8 @@
             <Insets left="10.0" right="10.0" />
          </padding>
       </VBox>
-      <Pane fx:id="calendarPane" layoutX="375.0" layoutY="55.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="500.0" />
-      <VBox fx:id="profileStatsVBox" layoutX="375.0" layoutY="450.0" prefHeight="150.0" prefWidth="500.0">
+      <Pane fx:id="calendarPane" layoutX="735.0" layoutY="55.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="500.0" />
+      <VBox fx:id="profileStatsVBox" layoutX="735.0" layoutY="450.0" prefHeight="150.0" prefWidth="500.0">
          <effect>
             <Glow />
          </effect>
@@ -206,19 +206,19 @@
             </HBox>
          </children>
       </VBox>
-      <ToolBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="900.0">
+      <ToolBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="1280.0" style="-fx-background-color: #435;">
         <items>
-          <Button fx:id="menu" mnemonicParsing="false" onAction="#drawerAction" text="Menu" />
+          <Button fx:id="menu" mnemonicParsing="false" onAction="#drawerAction" style="-fx-background-color: #435; -fx-border-color: #ffffff;" text="Menu" textFill="WHITE" />
         </items>
       </ToolBar>
-      <VBox fx:id="drawer" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="150.0" style="-fx-background-color: #435;" translateX="-150.0">
+      <VBox fx:id="drawer" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="150.0" style="-fx-background-color: #435;" translateX="-150.0">
          <children>
-            <Button fx:id="selectProfileButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openChooseProfile" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color : #435" text="Choose Profile" textFill="WHITE" />
-            <Button fx:id="viewProfileButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openViewProfile" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color : #435" text="View Profile" textFill="WHITE" />
-            <Button fx:id="uploadDataButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openUploadData" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color : #435" text="Upload Data" textFill="WHITE" />
-            <Button fx:id="viewActivitiesButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openViewActivities" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color : #435" text="View Activities" textFill="WHITE" />
-            <Button fx:id="goalsButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openGoals" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color : #435" text="Goals and Progress" textFill="WHITE" />
-            <Button fx:id="analysisButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openAnalysis" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color : #435" text="Analysis" textFill="WHITE" />
+            <Button fx:id="selectProfileButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openChooseProfile" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #435; -fx-border-color: #ffffff;" text="Choose Profile" textFill="WHITE" />
+            <Button fx:id="viewProfileButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openViewProfile" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #435; -fx-border-color: #ffffff;" text="View Profile" textFill="WHITE" />
+            <Button fx:id="uploadDataButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openUploadData" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #435; -fx-border-color: #ffffff;" text="Upload Data" textFill="WHITE" />
+            <Button fx:id="viewActivitiesButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openViewActivities" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #435; -fx-border-color: #ffffff;" text="View Activities" textFill="WHITE" />
+            <Button fx:id="goalsButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openGoals" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #435; -fx-border-color: #ffffff;" text="Goals and Progress" textFill="WHITE" />
+            <Button fx:id="analysisButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openAnalysis" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #435; -fx-border-color: #ffffff;" text="Analysis" textFill="WHITE" />
          </children>
       </VBox>
    </children>
