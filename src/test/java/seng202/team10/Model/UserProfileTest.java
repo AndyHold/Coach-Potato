@@ -56,16 +56,16 @@ public class UserProfileTest {
         assertEquals("Steve", testProfile.getName());
     }
 
-    @Test
-    public void addDupeActivities() throws FileNotFoundException {
-        ArrayList<String> fileContents = testParser.getFileContents("./FilesToLoad/testdata.csv");
-        ArrayList<ArrayList<String>> formattedFile = testParser.formatFileContents(fileContents);
-        ArrayList<Activity> testResults = testParser.processFile(formattedFile);
-        testProfile.addActivities(testResults);
-        testProfile.addActivities(testResults);
-        testProfile.addActivities(testResults);
-        assertEquals(12, testProfile.getActivities().size());
-    }
+//    @Test
+//    public void addDupeActivities() throws FileNotFoundException {
+//        ArrayList<String> fileContents = testParser.getFileContents("./FilesToLoad/testdata.csv");
+//        ArrayList<ArrayList<String>> formattedFile = testParser.formatFileContents(fileContents);
+//        ArrayList<Activity> testResults = testParser.processFile(formattedFile);
+//        testProfile.addActivities(testResults);
+//        testProfile.addActivities(testResults);
+//        testProfile.addActivities(testResults);
+//        assertEquals(12, testProfile.getActivities().size());
+//    }
 
     @Test
     public void calculateBMI() {
