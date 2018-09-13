@@ -76,6 +76,8 @@ public class GUIController extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        // Added a test user.
+        users.add(new UserProfile("Potato", 75, 180, new DateTime(2000,1,1,1,1,1), "Male"));
         loadAllScenes();
         primaryStage.setTitle("Coach Potato");
 <<<<<<< HEAD
@@ -233,6 +235,7 @@ public class GUIController extends Application{
 <<<<<<< HEAD
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 //    public void launchProfileScene() {
 //      profileController.setUpScene();
@@ -242,6 +245,9 @@ public class GUIController extends Application{
 
 =======
 >>>>>>> 879a82d8... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
+=======
+
+>>>>>>> f05f9ca3... Created constructors for userProfile and Added a test user.
     public void launchGoalsScene() {
         //goalsController.setUpScene();
         primaryStage.setScene(goalsScene);
