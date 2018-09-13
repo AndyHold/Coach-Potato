@@ -111,7 +111,15 @@
       <Button fx:id="refreshButton" layoutX="166.0" layoutY="647.0" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
 >>>>>>> 19e7af00... Added a refresh button to view other activities
 =======
+<<<<<<< HEAD
       <Button fx:id="mapButton" layoutX="764.0" layoutY="647.0" mnemonicParsing="false" onAction="#viewMap" text="View Map" />
 >>>>>>> c44070fc... Added a buton to go to maps
+=======
+      <Button fx:id="refreshButton" layoutX="166.0" layoutY="647.0" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
+>>>>>>> 19e7af0... Added a refresh button to view other activities
+=======
+      <Button fx:id="mapButton" layoutX="764.0" layoutY="647.0" mnemonicParsing="false" onAction="#viewMap" text="View Map" />
+>>>>>>> 497d568... Added a buton to go to maps
+>>>>>>> 8d56fd19... Added a buton to go to maps
    </children>
 </Pane>
