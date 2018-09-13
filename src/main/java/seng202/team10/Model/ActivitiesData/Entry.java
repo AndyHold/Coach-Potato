@@ -30,6 +30,7 @@ public class Entry  implements Serializable {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
      * @param firstEntry True if first entry.
      * @param time Time field of the entry.
      * @param heartRate Heart rate field of the entry.
@@ -51,6 +52,12 @@ public class Entry  implements Serializable {
 =======
      * @param activity: Activity Activity field of the entry.
 >>>>>>> 939a15b8... Minor changes for Javadoc for Entry and Position classes. Had to push before I pull.
+=======
+     * @param firstEntry: boolean True if first entry.
+     * @param time: double Time field of the entry.
+     * @param heartRate: double Heart rate field of the entry.
+     * @param position: Position Position of the entry.
+>>>>>>> 793f578b... Changed latitude and longitude error checking in Position class and removed unnecessary lines from Entry class.
      */
     public Entry(boolean firstEntry, DateTime time, int heartRate, Position position) {
         this.firstEntry = firstEntry;
@@ -58,7 +65,6 @@ public class Entry  implements Serializable {
         this.heartRate = heartRate;
         this.position = position;
         setStrings();
-        //this.activity = activity;
     }
 
 
