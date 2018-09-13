@@ -47,7 +47,7 @@ public class Position  implements Serializable {
      */
     public void setLatitude(double latitude) throws IllegalArgumentException
     {
-        if ((-90 < latitude) && (latitude < 90)) {
+        if ((-90 <= latitude) && (latitude <= 90)) {
             this.latitude = latitude;
         } else {
             throw new IllegalArgumentException("Latitude Invalid, must be between -90 & 90");
@@ -71,7 +71,7 @@ public class Position  implements Serializable {
      */
     public void setLongitude(double longitude) throws IllegalArgumentException
     {
-        if ((-180 < longitude) && (longitude < 180)) {
+        if ((-180 <= longitude) && (longitude <= 180)) {
             this.longitude = longitude;
         } else {
             throw new IllegalArgumentException("Longitude Invalid, must be between -180 & 180");
