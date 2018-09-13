@@ -38,6 +38,8 @@ public class Entry  implements Serializable {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 =======
     private Activity activity;
 =======
@@ -137,10 +139,22 @@ public class Entry  implements Serializable {
 =======
      * @param activity: Activity Activity field of the entry.
 >>>>>>> 939a15b... Minor changes for Javadoc for Entry and Position classes. Had to push before I pull.
+=======
+     * @param firstEntry: boolean True if first entry.
+     * @param time: double Time field of the entry.
+     * @param heartRate: double Heart rate field of the entry.
+     * @param position: Position Position of the entry.
+>>>>>>> f947029... Changed latitude and longitude error checking in Position class and removed unnecessary lines from Entry class.
      */
     public Entry(boolean firstEntry, double time, double heartRate, Position position, Activity activity) {
 >>>>>>> 5a3c8cd... No changes made
 =======
+=======
+     * @param firstEntry: boolean True if first entry.
+     * @param time: double Time field of the entry.
+     * @param heartRate: double Heart rate field of the entry.
+     * @param position: Position Position of the entry.
+>>>>>>> cd4ab4b... Changed latitude and longitude error checking in Position class and removed unnecessary lines from Entry class.
      */
     public Entry(boolean firstEntry, DateTime time, double heartRate, Position position) {
 >>>>>>> 7de2265... No changes made
@@ -194,6 +208,7 @@ public class Entry  implements Serializable {
 >>>>>>> 5a8b62d... Modified table in Data Upload Screen so that it can edit values and input entries. Code is messy but works so will require a refactor
 =======
         setStrings();
+<<<<<<< HEAD
 >>>>>>> c4550eb... Modified table in Data Upload Screen so that it can edit values and input entries. Code is messy but works so will require a refactor
 =======
         setStrings();
@@ -206,9 +221,12 @@ public class Entry  implements Serializable {
 =======
 =======
         setStrings();
+<<<<<<< HEAD
 >>>>>>> b4179b8... Modified table in Data Upload Screen so that it can edit values and input entries. Code is messy but works so will require a refactor
         //this.activity = activity;
 >>>>>>> f5029c7... No changes made
+=======
+>>>>>>> cd4ab4b... Changed latitude and longitude error checking in Position class and removed unnecessary lines from Entry class.
     }
 
 
@@ -270,6 +288,8 @@ public class Entry  implements Serializable {
         } else {
             throw new IllegalArgumentException("Heart Rate Invalid, must be between 1 & 300");
         }
+=======
+>>>>>>> f947029... Changed latitude and longitude error checking in Position class and removed unnecessary lines from Entry class.
     }
 
 
