@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import seng202.team10.GUI.*;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.Route;
+import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.FileOperations.FileWriter;
 import seng202.team10.Model.FileOperations.Parser;
 import seng202.team10.Model.Goals;
@@ -75,6 +76,8 @@ public class GUIController extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        // Added a test user.
+        users.add(new UserProfile("Potato", 75, 180, new DateTime(2000,1,1,1,1,1), "Male"));
         loadAllScenes();
         primaryStage.setTitle("Coach Potato");
         if (users.isEmpty()) {
@@ -86,6 +89,7 @@ public class GUIController extends Application{
         //primaryStage.setScene(goalsScene);
         primaryStage.show();
         this.primaryStage = primaryStage;
+
     }
 
 
@@ -112,6 +116,7 @@ public class GUIController extends Application{
         ArrayList<Activity> activities = parser.processFile(formattedFileContents);
         user.addActivities(activities);
     }
+
 
     /**
      * Sets the scene on the primary stage to the login scene.
@@ -178,7 +183,7 @@ public class GUIController extends Application{
      * Sets the scene on the primary stage to the entry viewer scene.
      */
     public void launchEntryViewerScene(Activity activity) throws Exception {
-//        entryViewerController.setActivity(activity);
+        entryViewerController.setUpScene(activity);
         primaryStage.setScene(entryViewerScene);
     }
 
@@ -186,6 +191,7 @@ public class GUIController extends Application{
      * Sets the scene on the primary stage to the activity viewer scene.
      */
     public void launchActivityViewerScene() throws Exception {
+        activityViewerController.setUpScene();
         primaryStage.setScene(activityViewerScene);
     }
 

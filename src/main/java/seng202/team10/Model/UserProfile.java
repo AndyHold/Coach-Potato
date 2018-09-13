@@ -23,6 +23,17 @@ public class UserProfile implements java.io.Serializable {
     private Calendar calendar;
     private double bmi;
 
+    public UserProfile() {
+
+    }
+
+    public UserProfile(String name, double weight, double height, DateTime birthdate, String gender) {
+        this.name = name;
+        this.weight = weight;
+        this.height = height;
+        this.birthdate = birthdate;
+        this.gender = gender;
+    }
 
     /**
      * Getter method for the name of the user
@@ -81,10 +92,19 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Method for adding an activity to the list of user's Activities.
-     * @param activity Activity
+     * @param newActivity Activity
      */
-    public void addActivity(Activity activity) {
-        activities.add(activity);
+    public void addActivity(Activity newActivity) throws ExistingActivityException
+    {
+        // TODO fix this it is not working!!!
+        for (Activity existingActivity: activities) {
+            if (!newActivity.getStartDateTime().isAfter(existingActivity.getEndDateTime())) { // If the existing activity's end is not before the new activity's start
+                if (!newActivity.getEndDateTime().isBefore(existingActivity.getStartDateTime())) { // If the existing activity's start is not after the new activity's end
+                    throw new ExistingActivityException("One of the activities you have selected overlaps with an existing activity"); // Throw an exception
+                }
+            }
+        } // Else continue to add the activity.
+        activities.add(newActivity);
     }
 
 
@@ -93,9 +113,18 @@ public class UserProfile implements java.io.Serializable {
      * TODO check for duplicates. seems to many already work natuarally??
      * @param newActivities the arraylist of activity objects
      */
-    public void addActivities(ArrayList<Activity> newActivities){
+    public void addActivities(ArrayList<Activity> newActivities) throws ExistingElementException
+    {
+        int numberOfBadActivities = 0;
         for(Activity newActivity: newActivities){
-            addActivity(newActivity);
+            try {
+                addActivity(newActivity);
+            } catch(ExistingActivityException exception) {
+                numberOfBadActivities++;
+            }
+        }
+        if (numberOfBadActivities > 0) {
+            throw new ExistingElementException(String.valueOf(numberOfBadActivities) + " Activities overlapped with existing activities and were not added");
         }
     }
 

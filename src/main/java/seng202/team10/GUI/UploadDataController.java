@@ -12,6 +12,8 @@ import javafx.stage.FileChooser;
 import javafx.util.Duration;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.*;
+import seng202.team10.Model.ExistingActivityException;
+import seng202.team10.Model.ExistingElementException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -243,10 +245,14 @@ public class UploadDataController {
             try {
                 ArrayList<String> fileContents = app.getParser().getFileContents(filename);
                 ArrayList<ArrayList<String>> formattedFile = app.getParser().formatFileContents(fileContents);
-                ArrayList<Activity> testResults = app.getParser().processFile(formattedFile);
-                app.getCurrentProfile().addActivities(testResults);
+                ArrayList<Activity> newActivities = app.getParser().processFile(formattedFile);
+                app.getCurrentProfile().addActivities(newActivities);
+                createPopUp(Alert.AlertType.INFORMATION, "Success", "Your file has been successfully uploaded to your profile");
+                //TODO need to add data to table instead of uploading straight to profile. Confirmation message for clearing table.
             } catch (FileNotFoundException exception) {
                 createPopUp(Alert.AlertType.ERROR, "Error", "File not found, please choose a valid csv file");
+            } catch (ExistingElementException exception) {
+                createPopUp(Alert.AlertType.ERROR, "Error", exception.getMessage());
             }
         }
     }
@@ -257,6 +263,7 @@ public class UploadDataController {
      */
     @FXML public void submitData()
     {
+        //TODO Check if data is already in the profile before uploading.
         try {
             // Get name of activity
             String activityName = activityNameTextField.getText();
@@ -284,7 +291,7 @@ public class UploadDataController {
                         newActivity.addEntry(entry);
                     }
                     // Add Activity to user profile.
-                    // app.getCurrentProfile().addActivity(newActivity);
+                    app.getCurrentProfile().addActivity(newActivity);
                     createPopUp(Alert.AlertType.INFORMATION, "Success", "You have successfully created the activity \"" + activityName + "\"");
                     clearTableView();
                     activityNameTextField.setText("");
@@ -293,8 +300,11 @@ public class UploadDataController {
             }
         }
         catch(IllegalArgumentException exception) {
-                createPopUp(Alert.AlertType.ERROR, "Data Error", exception.getMessage());
-            }
+            createPopUp(Alert.AlertType.ERROR, "Data Error", exception.getMessage());
+        }
+        catch(ExistingActivityException exception) {
+            createPopUp(Alert.AlertType.ERROR, "Data Error", exception.getMessage());
+        }
     }
 
 
