@@ -84,7 +84,7 @@ public class CreateProfileController implements Controllable
         monthEntry.setVisibleRowCount(5);
 
         ObservableList<Integer> years = FXCollections.observableArrayList();
-        for (int i = 1900; i <= 2000; i ++) {
+        for (int i = 1900; i <= 2010; i ++) {
             years.add(i);
         }
         yearEntry.setItems(years);
@@ -175,7 +175,7 @@ public class CreateProfileController implements Controllable
 
     private boolean checkNameStringValid(String name)
     {
-        return !(name.length() > 50 || !name.matches("[a-zA-Z]+ ?[a-zA-Z]+"));
+        return !(name.length() > 50 || !name.matches("[a-zA-Z0-9]+ ?[a-zA-Z0-9]+"));
     }
 
     private boolean checkDoubleStringInvalid(String doubString, double max, double min)
@@ -192,4 +192,3 @@ public class CreateProfileController implements Controllable
 
     }
 }
-
