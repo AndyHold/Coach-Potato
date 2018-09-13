@@ -1,7 +1,10 @@
 package seng202.team10.GUI;
 
 import javafx.animation.TranslateTransition;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -12,10 +15,8 @@ import seng202.team10.Model.UserProfile;
 
 import java.text.DecimalFormat;
 import java.time.YearMonth;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 public class ProfileController {
 
@@ -40,6 +41,7 @@ public class ProfileController {
     @FXML private Text velocityText;
     @FXML private Text heartRateText;
     @FXML private VBox drawer;
+    @FXML private ComboBox userNameComboBox;
     private List<String> quotes = Arrays.asList(
             "To not prepare is to prepare to fail.",
             "Exercise instead of extra fries.",
@@ -76,6 +78,11 @@ public class ProfileController {
         velocityHBox.setVisible(false);
         heartRateHBox.setVisible(false);
         quotesLabel.setText(quotes.get((int)(Math.random()*(quotes.size()))));
+        ObservableList<String> usersList = FXCollections.observableArrayList();
+        for (UserProfile user: app.getUsers()) {
+            usersList.add(user.getName());
+        }
+        userNameComboBox.setItems(usersList);
     }
 
 
@@ -83,6 +90,7 @@ public class ProfileController {
         DecimalFormat df2 = new DecimalFormat(".##");
         setUpScene();
         UserProfile currentUser = app.getCurrentProfile();
+        userNameComboBox.setPromptText((currentUser.getName()).toString());
         welcomeProfileLabel.setText("Welcome " + String.valueOf(currentUser.getName()) + ", Let's do it!");
         weightValueLabel.setText(df2.format((currentUser.getWeight())));
         heightValueLabel.setText(df2.format((currentUser.getHeight())));
