@@ -10,6 +10,7 @@ import seng202.team10.GUI.*;
 import seng202.team10.Model.ActivitiesData.Activity;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import seng202.team10.Model.ActivitiesData.DateTime;
 =======
 import seng202.team10.Model.ActivitiesData.Route;
@@ -17,6 +18,10 @@ import seng202.team10.Model.ActivitiesData.Route;
 =======
 import seng202.team10.Model.ActivitiesData.Route;
 >>>>>>> dc1460de... Added functionality for the map controller
+=======
+import seng202.team10.Model.ActivitiesData.DateTime;
+import seng202.team10.Model.ActivitiesData.Route;
+>>>>>>> 874b31ca... Re-added launch mapscene
 import seng202.team10.Model.FileOperations.FileWriter;
 import seng202.team10.Model.FileOperations.Parser;
 import seng202.team10.Model.Goals;
@@ -279,10 +284,21 @@ public class GUIController extends Application{
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 0fbb14ad... Added functionality for the map controller
 =======
 >>>>>>> 431c3ad... Added functionality for the map controller
 >>>>>>> dc1460de... Added functionality for the map controller
+=======
+    public void launchMapScene(Activity activity) {
+        mapController.setActivity(activity);
+        mapController.setUpScene();
+        Route newRoute = mapController.makeRoute(activity);
+        mapController.displayRoute(newRoute);
+        primaryStage.setScene(mapScene);
+    }
+
+>>>>>>> 874b31ca... Re-added launch mapscene
     public void launchGoalsScene() {
         //goalsController.setUpScene();
         primaryStage.setScene(goalsScene);
