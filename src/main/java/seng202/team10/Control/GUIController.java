@@ -4,12 +4,11 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TabPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seng202.team10.GUI.*;
 import seng202.team10.Model.ActivitiesData.Activity;
+import seng202.team10.Model.ActivitiesData.Route;
 import seng202.team10.Model.FileOperations.FileWriter;
 import seng202.team10.Model.FileOperations.Parser;
 import seng202.team10.Model.Goals;
@@ -230,6 +229,7 @@ public class GUIController extends Application{
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 //    public void launchProfileScene() {
 //      profileController.setUpScene();
@@ -257,6 +257,17 @@ public class GUIController extends Application{
 =======
 
 >>>>>>> 5e839bc... Created constructors for userProfile and Added a test user.
+=======
+
+    public void launchMapScene(Activity activity) {
+        mapController.setActivity(activity);
+        mapController.setUpScene();
+        Route newRoute = mapController.makeRoute(activity);
+        mapController.displayRoute(newRoute);
+        primaryStage.setScene(mapScene);
+    }
+
+>>>>>>> 431c3ad... Added functionality for the map controller
     public void launchGoalsScene() {
         //goalsController.setUpScene();
         primaryStage.setScene(goalsScene);
