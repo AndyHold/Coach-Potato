@@ -165,6 +165,10 @@ public class DataAnalysisController implements Controllable, Initializable{
         this.activity = activity;
     }
 
+    @FXML public void viewMap() {
+        guiController.launchMapScene(activity);
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setUpGraphs();
