@@ -93,7 +93,7 @@ public class UserProfile implements java.io.Serializable {
 >>>>>>> 35a851d... Implementation of UserProfile class getter and setter methods
 =======
     public String getName() {
-        return this.name;
+        return name;
     }
 >>>>>>> a40329b... Implementation of UserProfile class getter and setter methods
 
