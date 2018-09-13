@@ -31,6 +31,42 @@ public class Entry  implements Serializable {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    private Activity activity;
+=======
+    //private Activity activity;
+>>>>>>> 79c9f1d... No changes made
+=======
+    //private Activity activity;
+>>>>>>> 7de2265... No changes made
+
+    /**
+     * Constructor for the Entry.
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> e576ec5... No changes made
+=======
+=======
+>>>>>>> 3c6c4ff... No changes made
+    private Activity activity;
+=======
+    //private Activity activity;
+>>>>>>> f5029c7... No changes made
+
+    /**
+     * Constructor for the Entry.
+<<<<<<< HEAD
+>>>>>>> 5a3c8cd... No changes made
+=======
+>>>>>>> 3c6c4ff... No changes made
+>>>>>>> 0c709513... Changed latitude and longitude error checking in Position class and removed unnecessary lines from Entry class.
      * @param firstEntry True if first entry.
      * @param time Time field of the entry.
      * @param heartRate Heart rate field of the entry.
@@ -51,7 +87,34 @@ public class Entry  implements Serializable {
 >>>>>>> f5029c7d... No changes made
 =======
      * @param activity: Activity Activity field of the entry.
+<<<<<<< HEAD
 >>>>>>> 939a15b8... Minor changes for Javadoc for Entry and Position classes. Had to push before I pull.
+=======
+>>>>>>> 939a15b... Minor changes for Javadoc for Entry and Position classes. Had to push before I pull.
+=======
+     * @param firstEntry: boolean True if first entry.
+     * @param time: double Time field of the entry.
+     * @param heartRate: double Heart rate field of the entry.
+     * @param position: Position Position of the entry.
+>>>>>>> f947029... Changed latitude and longitude error checking in Position class and removed unnecessary lines from Entry class.
+     */
+    public Entry(boolean firstEntry, double time, double heartRate, Position position, Activity activity) {
+>>>>>>> 5a3c8cd... No changes made
+=======
+=======
+     * @param firstEntry: boolean True if first entry.
+     * @param time: double Time field of the entry.
+     * @param heartRate: double Heart rate field of the entry.
+     * @param position: Position Position of the entry.
+>>>>>>> cd4ab4b... Changed latitude and longitude error checking in Position class and removed unnecessary lines from Entry class.
+     */
+    public Entry(boolean firstEntry, DateTime time, double heartRate, Position position) {
+>>>>>>> 7de2265... No changes made
+=======
+     */
+    public Entry(boolean firstEntry, double time, double heartRate, Position position, Activity activity) {
+>>>>>>> 3c6c4ff... No changes made
+>>>>>>> 0c709513... Changed latitude and longitude error checking in Position class and removed unnecessary lines from Entry class.
 =======
      * @param firstEntry: boolean True if first entry.
      * @param time: double Time field of the entry.
@@ -64,7 +127,118 @@ public class Entry  implements Serializable {
         this.time = time;
         this.heartRate = heartRate;
         this.position = position;
+<<<<<<< HEAD
         setStrings();
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+        //this.activity = activity;
+=======
+        this.activity = activity;
+>>>>>>> e576ec5... No changes made
+=======
+        //this.activity = activity;
+>>>>>>> 79c9f1d... No changes made
+=======
+        this.activity = activity;
+>>>>>>> 5a3c8cd... No changes made
+=======
+=======
+        setStrings();
+>>>>>>> 5a8b62d... Modified table in Data Upload Screen so that it can edit values and input entries. Code is messy but works so will require a refactor
+=======
+        setStrings();
+<<<<<<< HEAD
+>>>>>>> c4550eb... Modified table in Data Upload Screen so that it can edit values and input entries. Code is messy but works so will require a refactor
+=======
+        setStrings();
+>>>>>>> 5395118... Modified table in Data Upload Screen so that it can edit values and input entries. Code is messy but works so will require a refactor
+        //this.activity = activity;
+>>>>>>> 7de2265... No changes made
+=======
+        this.activity = activity;
+>>>>>>> 3c6c4ff... No changes made
+=======
+=======
+        setStrings();
+<<<<<<< HEAD
+>>>>>>> b4179b8... Modified table in Data Upload Screen so that it can edit values and input entries. Code is messy but works so will require a refactor
+        //this.activity = activity;
+>>>>>>> f5029c7... No changes made
+=======
+>>>>>>> cd4ab4b... Changed latitude and longitude error checking in Position class and removed unnecessary lines from Entry class.
+    }
+
+
+    /**
+     * Setter method for the string representations for the GUI Table View
+     */
+    private void setStrings()
+    {
+        this.dateString = this.time.getDate();
+        this.timeString = this.time.getTime();
+        this.heartRateString = String.valueOf(this.heartRate);
+        this.latitudeString = String.format("%.8f", this.position.getLatitude());
+        this.longitudeString = String.format("%.8f", this.position.getLongitude());
+        this.elevationString = String.valueOf(this.position.getElevation());
+    }
+
+
+    /**
+<<<<<<< HEAD
+<<<<<<< HEAD
+     * Method to change the current date of the entry (for GUI purposes)
+     * @param newDate String: String representation of a Date
+     * @throws IllegalArgumentException if illegal arguments encountered
+     */
+    public void changeDate(String newDate) throws IllegalArgumentException
+    {
+        String[] dateArray = newDate.split("/");
+        int day = Integer.valueOf(dateArray[0]);
+        int month = Integer.valueOf(dateArray[1]);
+        int year = Integer.valueOf(dateArray[2]);
+        this.time.changeDate(year, month, day);
+    }
+
+
+    /**
+     * Method to change the current date of the entry (for GUI purposes)
+     * @param newDate String: String representation of a Time
+     * @throws IllegalArgumentException if illegal arguments encountered
+     */
+    public void changeTime(String newDate) throws IllegalArgumentException
+    {
+        String[] timeArray = newDate.split(":");
+        int hour = Integer.valueOf(timeArray[0]);
+        int minute = Integer.valueOf(timeArray[1]);
+        int second = Integer.valueOf(timeArray[2]);
+        this.time.changeTime(hour, minute, second);
+    }
+
+
+    /**
+     * Method to change the current heart rate of the entry (for GUI purposes)
+     * @param newHeartRate String: String representation of the heart rate double
+     * @throws NumberFormatException String does not represent a number
+     */
+    public void changeHeartRate(String newHeartRate) throws IllegalArgumentException
+    {
+        if ((0 < heartRate) && (heartRate <= 300)) {
+            this.heartRate = Integer.valueOf(newHeartRate);
+        } else {
+            throw new IllegalArgumentException("Heart Rate Invalid, must be between 1 & 300");
+        }
+=======
+>>>>>>> f947029... Changed latitude and longitude error checking in Position class and removed unnecessary lines from Entry class.
+>>>>>>> 0c709513... Changed latitude and longitude error checking in Position class and removed unnecessary lines from Entry class.
     }
 
 
