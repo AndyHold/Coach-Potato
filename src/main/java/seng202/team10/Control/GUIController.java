@@ -9,10 +9,14 @@ import javafx.stage.Stage;
 import seng202.team10.GUI.*;
 import seng202.team10.Model.ActivitiesData.Activity;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import seng202.team10.Model.ActivitiesData.DateTime;
 =======
 import seng202.team10.Model.ActivitiesData.Route;
 >>>>>>> 0fbb14ad... Added functionality for the map controller
+=======
+import seng202.team10.Model.ActivitiesData.Route;
+>>>>>>> dc1460de... Added functionality for the map controller
 import seng202.team10.Model.FileOperations.FileWriter;
 import seng202.team10.Model.FileOperations.Parser;
 import seng202.team10.Model.Goals;
@@ -240,6 +244,12 @@ public class GUIController extends Application{
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> dc1460de... Added functionality for the map controller
 =======
 //    public void launchProfileScene() {
 //      profileController.setUpScene();
@@ -254,6 +264,12 @@ public class GUIController extends Application{
 >>>>>>> f05f9ca3... Created constructors for userProfile and Added a test user.
 =======
 
+<<<<<<< HEAD
+=======
+>>>>>>> 5e839bc... Created constructors for userProfile and Added a test user.
+=======
+
+>>>>>>> dc1460de... Added functionality for the map controller
     public void launchMapScene(Activity activity) {
         mapController.setActivity(activity);
         mapController.setUpScene();
@@ -262,7 +278,11 @@ public class GUIController extends Application{
         primaryStage.setScene(mapScene);
     }
 
+<<<<<<< HEAD
 >>>>>>> 0fbb14ad... Added functionality for the map controller
+=======
+>>>>>>> 431c3ad... Added functionality for the map controller
+>>>>>>> dc1460de... Added functionality for the map controller
     public void launchGoalsScene() {
         //goalsController.setUpScene();
         primaryStage.setScene(goalsScene);
