@@ -167,6 +167,12 @@ public class DataAnalysisController implements Controllable, Initializable{
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 93aee887... Added a view map button to the controller
 =======
     @FXML public void viewMap() {
         guiController.launchMapScene(activity);
@@ -177,7 +183,11 @@ public class DataAnalysisController implements Controllable, Initializable{
         setUpGraphs();
     }
 
+<<<<<<< HEAD
 >>>>>>> 845b91d6... Added a view map button to the controller
+=======
+>>>>>>> b13266a... Added a view map button to the controller
+>>>>>>> 93aee887... Added a view map button to the controller
     @FXML private void drawerAction() {
 
         TranslateTransition openNav = new TranslateTransition(new Duration(350), drawer);
