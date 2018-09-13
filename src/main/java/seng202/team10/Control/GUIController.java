@@ -10,6 +10,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seng202.team10.GUI.*;
 import seng202.team10.Model.ActivitiesData.Activity;
+import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.FileOperations.FileWriter;
 import seng202.team10.Model.FileOperations.Parser;
 import seng202.team10.Model.Goals;
@@ -76,6 +77,8 @@ public class GUIController extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        // Added a test user.
+        users.add(new UserProfile("Potato", 75, 180, new DateTime(2000,1,1,1,1,1), "Male"));
         loadAllScenes();
         primaryStage.setTitle("Coach Potato");
 <<<<<<< HEAD
