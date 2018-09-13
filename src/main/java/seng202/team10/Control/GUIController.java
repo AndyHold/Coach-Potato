@@ -8,6 +8,10 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import seng202.team10.GUI.*;
 import seng202.team10.Model.ActivitiesData.Activity;
+<<<<<<< HEAD
+=======
+import seng202.team10.Model.ActivitiesData.DateTime;
+>>>>>>> 81b0c6a... Re-added launch mapscene
 import seng202.team10.Model.ActivitiesData.Route;
 import seng202.team10.Model.FileOperations.FileWriter;
 import seng202.team10.Model.FileOperations.Parser;
@@ -267,7 +271,18 @@ public class GUIController extends Application{
         primaryStage.setScene(mapScene);
     }
 
+<<<<<<< HEAD
 >>>>>>> 431c3ad... Added functionality for the map controller
+=======
+    public void launchMapScene(Activity activity) {
+        mapController.setActivity(activity);
+        mapController.setUpScene();
+        Route newRoute = mapController.makeRoute(activity);
+        mapController.displayRoute(newRoute);
+        primaryStage.setScene(mapScene);
+    }
+
+>>>>>>> 81b0c6a... Re-added launch mapscene
     public void launchGoalsScene() {
         //goalsController.setUpScene();
         primaryStage.setScene(goalsScene);
