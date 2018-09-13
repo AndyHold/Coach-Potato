@@ -106,8 +106,12 @@
             <Button fx:id="analysisButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openAnalysis" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #435; -fx-border-color: #ffffff;" text="Analysis" textFill="WHITE" />
          </children>
       </VBox>
+<<<<<<< HEAD
 =======
       <Button fx:id="refreshButton" layoutX="166.0" layoutY="647.0" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
 >>>>>>> 19e7af00... Added a refresh button to view other activities
+=======
+      <Button fx:id="mapButton" layoutX="764.0" layoutY="647.0" mnemonicParsing="false" onAction="#viewMap" text="View Map" />
+>>>>>>> c44070fc... Added a buton to go to maps
    </children>
 </Pane>
