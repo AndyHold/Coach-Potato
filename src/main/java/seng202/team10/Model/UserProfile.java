@@ -40,7 +40,7 @@ public class UserProfile implements java.io.Serializable {
      * @return String
      */
     public String getName() {
-        return this.name;
+        return name;
     }
 
 
