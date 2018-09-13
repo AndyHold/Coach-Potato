@@ -54,6 +54,18 @@ public class UserProfile implements java.io.Serializable {
     public String getName() {
         return name;
     }
+<<<<<<< HEAD
+=======
+>>>>>>> a85d43e... Implementation of UserProfile class getter and setter methods
+=======
+    public String getName() { return this.name; }
+>>>>>>> 35a851d... Implementation of UserProfile class getter and setter methods
+=======
+    public String getName() {
+        return name;
+    }
+>>>>>>> a40329b... Implementation of UserProfile class getter and setter methods
+>>>>>>> 5998348f... Added a ComboBox for User names to be displayed on the profile screen.
 
 
     /**
