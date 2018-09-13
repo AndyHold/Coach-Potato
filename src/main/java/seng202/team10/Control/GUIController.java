@@ -78,6 +78,8 @@ public class GUIController extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        // Added a test user.
+        users.add(new UserProfile("Potato", 75, 180, new DateTime(2000,1,1,1,1,1), "Male"));
         loadAllScenes();
         primaryStage.setTitle("Coach Potato");
         if (users.isEmpty()) {
@@ -140,14 +142,6 @@ public class GUIController extends Application{
         primaryStage.setScene(profileScene);
 //        profileController.setUserDetails();
 
-    }
-
-    public void launchMapScene(Activity activity) {
-        mapController.setActivity(activity);
-        mapController.setUpScene();
-        Route newRoute = mapController.makeRoute(activity);
-        mapController.displayRoute(newRoute);
-        primaryStage.setScene(mapScene);
     }
 
     public void launchGoalsScene() {
