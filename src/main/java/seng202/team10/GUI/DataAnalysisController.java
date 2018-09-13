@@ -187,6 +187,18 @@ public class DataAnalysisController implements Controllable, Initializable{
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    @FXML public void viewMap() {
+        guiController.launchMapScene(activity);
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        setUpGraphs();
+    }
+
+>>>>>>> b13266a... Added a view map button to the controller
     @FXML private void drawerAction() {
 
         TranslateTransition openNav = new TranslateTransition(new Duration(350), drawer);
