@@ -40,6 +40,17 @@ public class UserProfile implements java.io.Serializable {
     private Calendar calendar;
     private double bmi;
 
+    public UserProfile() {
+
+    }
+
+    public UserProfile(String name, double weight, double height, DateTime birthdate, String gender) {
+        this.name = name;
+        this.weight = weight;
+        this.height = height;
+        this.birthdate = birthdate;
+        this.gender = gender;
+    }
 
     /**
      * Getter method for the name of the user
