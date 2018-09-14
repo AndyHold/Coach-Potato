@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -28,6 +29,7 @@ public class ProfileController {
     @FXML private javafx.scene.control.Label weightValueLabel;
     @FXML private javafx.scene.control.Label heightValueLabel;
     @FXML private javafx.scene.control.Label bmiValueLabel;
+    @FXML private Label recentActivitiesLabel;
     @FXML private HBox activity1HBox;
     @FXML private HBox activity2HBox;
     @FXML private HBox activity3HBox;
@@ -71,6 +73,7 @@ public class ProfileController {
 
     public void setUpScene() {
         calendarPane.getChildren().add(new FullCalendarView(YearMonth.now()).getView());
+        recentActivitiesLabel.setVisible(false);
         activity1HBox.setVisible(false);
         activity2HBox.setVisible(false);
         activity3HBox.setVisible(false);
@@ -98,9 +101,10 @@ public class ProfileController {
 
         if (currentUser.getActivities().size() > 0) {
             activity1Text.setText(currentUser.getActivities().get(0).getName());
-            distanceText.setText("Total Distance Covered: " + df2.format(currentUser.getActivities().get(0).getTotalDistance()) + " km");
+            distanceText.setText("Total Distance Covered: " + String.valueOf(currentUser.getActivities().get(0).getTotalDistance()) + " km");
             velocityText.setText("Average Velocity: " + df2.format(currentUser.getActivities().get(0).getAverageVelocity()) + " m/s");
-            heartRateText.setText("Average Heart Rate: " + String.valueOf((currentUser.getActivities().get(0).getAverageHeartRate())) + " bpm");
+            heartRateText.setText("Average Heart Rate: " + String.valueOf((int)(currentUser.getActivities().get(0).getAverageHeartRate())) + " bpm");
+            recentActivitiesLabel.setVisible(true);
             activity1HBox.setVisible(true);
             distanceHBox.setVisible(true);
             velocityHBox.setVisible(true);

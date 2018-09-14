@@ -245,10 +245,9 @@ public class GUIController extends Application{
      * Sets the scene on the primary stage to the profile scene.
      */
     public void launchProfileScene() {
-        profileController.setUserDetails();
 //        profileController.setUpScene();
+        profileController.setUserDetails();
         primaryStage.setScene(profileScene);
-//        profileController.setUserDetails();
 
 <<<<<<< HEAD
     }
