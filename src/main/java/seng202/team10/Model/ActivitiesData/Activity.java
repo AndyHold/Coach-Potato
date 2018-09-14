@@ -115,6 +115,21 @@ public class Activity implements Serializable {
 
 
     /**
+     * Setter method for after Entries have been loaded to the Activity
+     * TODO add this method whenever Activities are modified.
+     */
+    public void postEntriesSetUp() {
+        calculateTotalDistance();
+        calculateTotalDuration();
+        calculateAverageHeartRate();
+        calculateAverageVelocity();
+        determineType();
+        setEndDateTime();
+        setStrings();
+    }
+
+
+    /**
      * getter method for the type of the activity
      * @return String of the type of the activity
      */
