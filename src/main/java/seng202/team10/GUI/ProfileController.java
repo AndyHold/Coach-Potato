@@ -101,7 +101,7 @@ public class ProfileController {
 
         if (currentUser.getActivities().size() > 0) {
             activity1Text.setText(currentUser.getActivities().get(0).getName());
-            distanceText.setText("Total Distance Covered: " + String.valueOf(currentUser.getActivities().get(0).getTotalDistance()) + " km");
+            distanceText.setText("Total Distance Covered: " + df2.format(currentUser.getActivities().get(0).getTotalDistance()/1000) + " km");
             velocityText.setText("Average Velocity: " + df2.format(currentUser.getActivities().get(0).getAverageVelocity()) + " m/s");
             heartRateText.setText("Average Heart Rate: " + String.valueOf((int)(currentUser.getActivities().get(0).getAverageHeartRate())) + " bpm");
             recentActivitiesLabel.setVisible(true);
