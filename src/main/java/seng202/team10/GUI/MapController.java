@@ -5,6 +5,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Worker;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import seng202.team10.Control.GUIController;
@@ -21,9 +22,9 @@ public class MapController implements Controllable, Initializable{
     private WebEngine webEngine;
     private Activity activity;
 
-    @FXML WebView mapWebView;
+    @FXML private WebView mapWebView;
 
-//    @FXML Label activityLabel;
+    @FXML private Label activityLabel;
 
     @Override
     public void setApp(GUIController guiController) {
@@ -48,7 +49,7 @@ public class MapController implements Controllable, Initializable{
                     public void changed(ObservableValue ov, Worker.State oldState, Worker.State newState) {
                         if (newState == Worker.State.SUCCEEDED) {
                             String scriptToExecute = "displayRoute(" + newRoute.toJSONArray() + ");";
-                            System.out.println(scriptToExecute);
+
                             webEngine.executeScript(scriptToExecute);
                         }
                     }
@@ -83,6 +84,7 @@ public class MapController implements Controllable, Initializable{
 
     public void setActivity(Activity activity) {
         this.activity = activity;
+        this.activityLabel.setText(activity.getName());
     }
 
     @FXML
