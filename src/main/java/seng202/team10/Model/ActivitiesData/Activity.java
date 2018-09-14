@@ -30,6 +30,7 @@ public class Activity implements Serializable {
     private String distanceString;
     private String heartString;
     private String entrynoString;
+    private String typeString;
 
 
     /**
@@ -46,6 +47,7 @@ public class Activity implements Serializable {
 
     public void setStrings() {
         this.nameString = this.name;
+        this.typeString = this.type;
         this.timeString = this.startDateTime.toString();
         this.durationString = String.valueOf(this.totalDuration);
         this.speedString = String.format("%.2f", this.averageVelocity);
@@ -339,6 +341,14 @@ public class Activity implements Serializable {
 
     public void setEntrynoString(String entrynoString) {
         this.entrynoString = entrynoString;
+    }
+
+    public String getTypeString() {
+        return typeString;
+    }
+
+    public void setTypeString(String typeString) {
+        this.typeString = typeString;
     }
 
 
