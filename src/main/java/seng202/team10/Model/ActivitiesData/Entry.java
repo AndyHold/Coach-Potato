@@ -32,6 +32,7 @@ public class Entry  implements Serializable {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -117,13 +118,14 @@ public class Entry  implements Serializable {
 >>>>>>> 0c709513... Changed latitude and longitude error checking in Position class and removed unnecessary lines from Entry class.
 =======
      * @param firstEntry: boolean True if first entry.
+=======
+>>>>>>> 4e355c0c... Working on some updates to dataUpload screen, had to change the constructor for the entry Class too.
      * @param time: double Time field of the entry.
      * @param heartRate: double Heart rate field of the entry.
      * @param position: Position Position of the entry.
 >>>>>>> 793f578b... Changed latitude and longitude error checking in Position class and removed unnecessary lines from Entry class.
      */
-    public Entry(boolean firstEntry, DateTime time, int heartRate, Position position) {
-        this.firstEntry = firstEntry;
+    public Entry(DateTime time, int heartRate, Position position) {
         this.time = time;
         this.heartRate = heartRate;
         this.position = position;
