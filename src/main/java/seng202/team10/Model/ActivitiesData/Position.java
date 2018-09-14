@@ -2,8 +2,8 @@ package seng202.team10.Model.ActivitiesData;
 
 
 import java.io.Serializable;
-import static java.lang.Math.pow;
-import static java.lang.Math.sqrt;
+
+import static java.lang.Math.*;
 
 
 /**
@@ -103,6 +103,20 @@ public class Position  implements Serializable {
     }
 
 
+//    /**
+//     * Subtract method calculates the distance between two positions.
+//     * @param position: double
+//     * @return distance: double
+//     */
+//    public double subtract(Position position)
+//    {
+//        //TODO Change this to calculate in meters
+//        double latitudeDifference = position.getLatitude() - this.latitude;
+//        double longitudeDifference = position.getLongitude() - this.longitude;
+//        double elevationDifference = position.getElevation() - this.elevation;
+//        return sqrt(pow(latitudeDifference, 2) + pow(longitudeDifference, 2) + pow(elevationDifference, 2));
+//    }
+
     /**
      * Subtract method calculates the distance between two positions.
      * @param position: double
@@ -110,11 +124,18 @@ public class Position  implements Serializable {
      */
     public double subtract(Position position)
     {
-        //TODO Change this to calculate in meters
-        double latitudeDifference = position.getLatitude() - this.latitude;
-        double longitudeDifference = position.getLongitude() - this.longitude;
-        double elevationDifference = position.getElevation() - this.elevation;
-        return sqrt(pow(latitudeDifference, 2) + pow(longitudeDifference, 2) + pow(elevationDifference, 2));
+        double polarX1 = this.elevation * cos(this.latitude) * sin(this.longitude);
+        double polarY1 = this.elevation * sin(this.latitude);
+        double polarZ1 = this.elevation * cos(this.latitude) * cos(this.longitude);
+
+        double polarX2 = position.getElevation() * cos(position.getLatitude()) * sin(position.getLongitude());
+        double polarY2 = position.getElevation() * sin(position.getLatitude());
+        double polarZ2 = position.getElevation() * cos(position.getLatitude()) * cos(position.getLongitude());
+
+        double polarXDifference = polarX2 - polarX1;
+        double polarYDifference = polarY2 - polarY1;
+        double polarZDifference = polarZ2 - polarZ1;
+        return sqrt(pow(polarXDifference, 2) + pow(polarYDifference, 2) + pow(polarZDifference, 2));
     }
 
     public String toString()
