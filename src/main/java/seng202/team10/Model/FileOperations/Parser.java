@@ -120,18 +120,38 @@ public class Parser {
         String name = formattedFile.get(linePosition).get(1);
         linePosition += 1;
 
+        int badEntries = 0;
+        int totalEntries = 0;
+
+        boolean dateIsParsable = false;
+
         String dateString = (formattedFile.get(linePosition).get(0));
         String timeString = (formattedFile.get(linePosition).get(1));
+        DateTime dateTime = null;
+        while (!dateIsParsable && linePosition < formattedFile.size()) {
+            try {
+                dateTime = parseDateTimeFromStrings(dateString, timeString);
+                dateIsParsable = true;
+            } catch (IllegalArgumentException e) {
+                badEntries += 1;
+                totalEntries += 1;
+                linePosition += 1;
+            }
+        }
+
+        if((badEntries * 10) > totalEntries || !dateIsParsable) {
+            throw new IllegalArgumentException("Too many bad entries! Activity discarded!");
+        }
 
 //        if (!inputValidator.isValidDateString(dateString) || !inputValidator.isValidTimeString(timeString)) {
 //            badEntries += 1;
 //        }
 
-        DateTime dateTime = parseDateTimeFromStrings(dateString, timeString);
+
         Activity activity = new Activity(name, dateTime);
 
-        int badEntries = 0;
-        int totalEntries = 0;
+
+
         while (linePosition < formattedFile.size() && (formattedFile.get(linePosition)).size() != 2) {
 
             if(inputValidator.isValidEntryLine(formattedFile.get(linePosition))){
@@ -163,6 +183,7 @@ public class Parser {
         return activity;
     }
 
+
     /**
      * Processes an entry in the file contents, called by the processActivity() function.
      * Sets the time, heart rate and position of the entry, converting to int for time and
@@ -189,7 +210,9 @@ public class Parser {
         int heartRate = Integer.valueOf(currentLine.get(2));
         Position position = processPosition(currentLine);
 
-        return new Entry(isFirst, dateTime, heartRate, position);
+        Entry newEntry = new Entry(dateTime, heartRate, position);
+        newEntry.setFirstEntry(isFirst);
+        return newEntry;
     }
 
     /**

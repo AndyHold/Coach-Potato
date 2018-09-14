@@ -82,7 +82,7 @@ public class InputValidator {
 //    }
 
     public boolean isValidActivityName(String activityName) {
-        return !(activityName.length() > 50 || !activityName.matches("[a-zA-Z]+[a-zA-Z ]*"));
+        return ((activityName.length() <= 50) && (activityName.matches("[a-zA-Z]+[a-zA-Z ]*")));
     }
 
     public boolean isValidDateString(String date) {
