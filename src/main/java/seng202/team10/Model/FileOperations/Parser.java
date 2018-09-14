@@ -210,7 +210,9 @@ public class Parser {
         int heartRate = Integer.valueOf(currentLine.get(2));
         Position position = processPosition(currentLine);
 
-        return new Entry(isFirst, dateTime, heartRate, position);
+        Entry newEntry = new Entry(dateTime, heartRate, position);
+        newEntry.setFirstEntry(isFirst);
+        return newEntry;
     }
 
     /**
