@@ -339,7 +339,11 @@ public class GUIController extends Application{
         goalsController.updateGoals();
 =======
         dataWriter.saveProfile(currentUser);
+<<<<<<< HEAD
 >>>>>>> 541edbd0... Saving and loading of profiles to/from folder
+=======
+>>>>>>> 0c1d4e0... Saving and loading of profiles to/from folder
+>>>>>>> 5f1c6fb1... Saving and loading of profiles to/from folder
         primaryStage.setScene(goalsScene);
 
     }
