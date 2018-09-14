@@ -4,10 +4,7 @@ import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.VBox;
@@ -36,12 +33,23 @@ public class activityViewerController {
     @FXML private TableColumn<Activity, String> heartrateColumn;
     @FXML private TableColumn<Activity, String> entrynoColumn;
     @FXML private Button entryViewerButton;
+    @FXML private ComboBox typeSelect;
     @FXML private VBox drawer;
 
     /**
      * Sets up objects that require it prior to showing the scene
      */
     public void setUpScene() {
+        ObservableList<String> types = FXCollections.observableArrayList();
+        types.add("walk");
+        types.add("run");
+        types.add("hike");
+        types.add("cycle");
+        types.add("swim");
+        types.add("workout");
+        types.add("other");
+        typeSelect.setItems(types);
+        typeSelect.setVisibleRowCount(7);
         ObservableList<Activity> activities = FXCollections.observableArrayList(app.getCurrentProfile().getActivities());
         nameColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("nameString"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("typeString"));
@@ -87,9 +95,21 @@ public class activityViewerController {
      * opens the entryViewer screen with the selected activity when the entryViewerButton is pressed
      */
     @FXML public void openEntries() throws Exception{
-        //TODO set currentActivity to the currently selected row of the table
-        Activity currentActivity = app.getCurrentProfile().getActivities().get(1);
-        app.launchEntryViewerScene(currentActivity);
+        if(activitiesTableView.getSelectionModel().getSelectedItem() != null) {
+            Activity currentActivity = activitiesTableView.getSelectionModel().getSelectedItem();
+            app.launchEntryViewerScene(currentActivity);
+        } else {
+            createPopUp(Alert.AlertType.ERROR, "Error", "Please select an Activity first");
+        }
+    }
+
+    private void createPopUp(Alert.AlertType type, String title, String message)
+    {
+        Alert errorPopUp = new Alert(type);
+        errorPopUp.setTitle(title);
+        errorPopUp.setContentText(message);
+        errorPopUp.setHeaderText(null);
+        errorPopUp.showAndWait();
     }
 
     /**
