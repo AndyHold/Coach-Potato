@@ -168,13 +168,7 @@ public class Parser {
             throw new IllegalArgumentException("Too many bad entries! Activity discarded!");
         }
 
-        activity.calculateTotalDistance();
-        activity.calculateTotalDuration();
-        activity.calculateAverageHeartRate();
-        activity.calculateAverageVelocity();
-        activity.determineType();
-        activity.setEndDateTime();
-        activity.setStrings();
+        activity.postEntriesSetUp();
 
 
 //        while (linePosition < formattedFile.size() && formattedFile.get(linePosition).get(0) != "#start"){
