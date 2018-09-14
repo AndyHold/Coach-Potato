@@ -96,8 +96,7 @@ public class activityViewerController {
      */
     @FXML public void openEntries() throws Exception{
         if(activitiesTableView.getSelectionModel().getSelectedItem() != null) {
-            Activity currentActivity = activitiesTableView.getSelectionModel().getSelectedItem();
-            app.launchEntryViewerScene(currentActivity);
+            app.launchEntryViewerScene(app.getCurrentProfile().getActivities().get(activitiesTableView.getSelectionModel().getSelectedIndex()));
         } else {
             createPopUp(Alert.AlertType.ERROR, "Error", "Please select an Activity first");
         }
