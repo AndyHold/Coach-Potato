@@ -10,6 +10,7 @@ import seng202.team10.GUI.*;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.ActivitiesData.Route;
+import seng202.team10.Model.FileOperations.FileReader;
 import seng202.team10.Model.FileOperations.FileWriter;
 import seng202.team10.Model.FileOperations.Parser;
 import seng202.team10.Model.Goals;
@@ -71,6 +72,7 @@ public class GUIController extends Application{
     private UserProfile currentUser;
     private Parser parser = new Parser();
     private FileWriter dataWriter = new FileWriter();
+    private FileReader dataReader = new FileReader();
 
     private Goals goals = new Goals(currentUser);
 
@@ -78,6 +80,7 @@ public class GUIController extends Application{
     public void start(Stage primaryStage) throws Exception{
         // Added a test user.
         users.add(new UserProfile("Potato", 75, 180, new DateTime(2000,1,1,1,1,1), "Male"));
+        loadAllUsers();
         loadAllScenes();
         primaryStage.setTitle("Coach Potato");
         if (users.isEmpty()) {
@@ -90,6 +93,17 @@ public class GUIController extends Application{
         primaryStage.show();
         this.primaryStage = primaryStage;
 
+    }
+
+    /**
+     * loads all the users in the profiles folder and adds them to the users arraylist
+     */
+    private void loadAllUsers() {
+        ArrayList<String> userNames = dataReader.getExistingUsers();
+        for(String username: userNames){
+            System.out.println(username);
+            users.add(dataReader.loadExistingProfile(username));
+        }
     }
 
 
