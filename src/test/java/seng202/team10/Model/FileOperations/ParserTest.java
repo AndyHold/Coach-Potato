@@ -64,13 +64,13 @@ public class ParserTest {
         assertEquals(12, testResults.size());
     }
 
-    @Test
-    public void processActivity() throws FileNotFoundException, IllegalArgumentException{
-        ArrayList<String> fileContents = testParser.getFileContents("./FilesToLoad/testdata.csv");
-        ArrayList<ArrayList<String>> formattedFile = testParser.formatFileContents(fileContents);
-        Activity testActivity = testParser.processActivity(formattedFile);
-        assertEquals("Name= 'Walk in the woods', startDateTime=10th, April, 2015 - 23:42:28, averageVelocity=0.05050964943354281, averageHeartRate=138.15151515151516, totalDistance=49.80251434147321, totalDuration=986", testActivity.toString());
-    }
+//    @Test
+//    public void processActivity() throws FileNotFoundException, IllegalArgumentException{
+//        ArrayList<String> fileContents = testParser.getFileContents("./FilesToLoad/testdata.csv");
+//        ArrayList<ArrayList<String>> formattedFile = testParser.formatFileContents(fileContents);
+//        Activity testActivity = testParser.processActivity(formattedFile);
+//        assertEquals("Name= 'Walk in the woods', startDateTime=10th, April, 2015 - 23:42:28, averageVelocity=0.05050964943354281, averageHeartRate=138.15151515151516, totalDistance=49.80251434147321, totalDuration=986", testActivity.toString());
+//    }
 
     @Test
     public void processLine() throws FileNotFoundException{
