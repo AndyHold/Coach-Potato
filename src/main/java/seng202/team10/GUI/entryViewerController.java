@@ -27,6 +27,7 @@ public class entryViewerController {
     @FXML private TableColumn<Entry, String> longitudeColumn;
     @FXML private TableColumn<Entry, String> elevationColumn;
     @FXML private Button activityReturnButton;
+    @FXML private ObservableList<Entry> entries;
 
 
     /**
@@ -35,7 +36,7 @@ public class entryViewerController {
     public void setUpScene(Activity loadActivity){
         loadedActivity = loadActivity;
         activityNameLabel.setText(loadedActivity.getName());
-        ObservableList<Entry> entries = FXCollections.observableArrayList(loadedActivity.getEntries());
+        entries = FXCollections.observableArrayList(loadedActivity.getEntries());
         dateColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("dateString"));
         timeColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("timeString"));
         heartRateColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("heartRateString"));
@@ -66,7 +67,11 @@ public class entryViewerController {
      * returns to the activityViewer when the activityReturnButton is pressed
      */
     @FXML public void returnToActivities() throws Exception{
+        ArrayList<Entry> savingEntries = new ArrayList<>(this.entries);
+        loadedActivity.setEntries(savingEntries);
         app.launchActivityViewerScene();
+        //TODO get this saving properly to the activity in the profile
+
     }
 
 
