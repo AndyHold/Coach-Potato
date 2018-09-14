@@ -105,7 +105,11 @@ public class Position  implements Serializable {
 
 
 =======
+<<<<<<< HEAD
 >>>>>>> 0b144cca... Got the correct Distance formula working and all good to go.
+=======
+>>>>>>> ad6d5c5... Got the correct Distance formula working and all good to go.
+>>>>>>> 24e2cd90... Got the correct Distance formula working and all good to go.
     /**
      * Subtract method calculates the distance between two positions.
      * @param position: double
