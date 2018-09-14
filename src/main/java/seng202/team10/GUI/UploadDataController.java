@@ -222,28 +222,32 @@ public class UploadDataController {
             double longitude = Double.valueOf(longitudeTextField.getText());
             double elevation = Double.valueOf(elevationTextField.getText());boolean firstEntry = false;
             Entry newEntry = new Entry(dateTime, heartRate, new Position(latitude, longitude, elevation));
-//            if (manualDataTableView.getItems().size() == 0) {
-//                newEntry.setFirstEntry(true);
-//                manualDataTableView.getItems().add(0, newEntry);
-//            } else {
-//                int index = 0;
-//                while (index < manualDataTableView.getItems().size() && newEntry.getTime().isAfter(manualDataTableView.getItems().get(index).getTime())) {
-//                    index++;
-//                }
-//                if (manualDataTableView.getItems().get(index).getTime().isEqual(newEntry.getTime())) {
-//                    throw new DuplicateEntryException();
-//                } else if (index == 0) {
-//                    newEntry.setFirstEntry(true);
-//                    manualDataTableView.getItems().get(0).setFirstEntry(false);
-//                    manualDataTableView.getItems().add(index, newEntry);
-//                }
-//            }
+            if (manualDataTableView.getItems().size() == 0) {
+                newEntry.setFirstEntry(true);
+                manualDataTableView.getItems().add(0, newEntry);
+            } else {
+                int index = 0;
+                System.out.println("Size = " + manualDataTableView.getItems().size());
+                while (index < manualDataTableView.getItems().size() && newEntry.getTime().isAfter(manualDataTableView.getItems().get(index).getTime())) {
+                    index++;
+                    System.out.println(index + "Index currently");
+                }
+                if (!(index == manualDataTableView.getItems().size()) && manualDataTableView.getItems().get(index).getTime().isEqual(newEntry.getTime())) {
+                    throw new DuplicateEntryException();
+                } else if (index == 0) {
+                    newEntry.setFirstEntry(true);
+                    manualDataTableView.getItems().get(0).setFirstEntry(false);
+                    manualDataTableView.getItems().add(index, newEntry);
+                } else {
+                    manualDataTableView.getItems().add(index, newEntry);
+                }
+            }
         } catch(NumberFormatException exception) {
             createPopUp(Alert.AlertType.ERROR, "Error", "Invalid input, please only enter valid numbers");
         } catch(IllegalArgumentException exception) {
             createPopUp(Alert.AlertType.ERROR, "Error", exception.getMessage());
-//        } catch(DuplicateEntryException exception) {
-//            createPopUp(Alert.AlertType.ERROR, "Error", exception.getMessage());
+        } catch(DuplicateEntryException exception) {
+            createPopUp(Alert.AlertType.ERROR, "Error", exception.getMessage());
         }
     }
 
