@@ -49,7 +49,7 @@
             <Button fx:id="analysisButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openAnalysis" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #435; -fx-border-color: #ffffff;" text="Analysis" textFill="WHITE" />
          </children>
       </VBox>
-      <ComboBox fx:id="typeSelect" layoutX="590.0" layoutY="54.0" prefWidth="150.0" />
+      <ComboBox fx:id="typeSelect" layoutX="590.0" layoutY="54.0" prefWidth="150.0" promptText="All" />
       <Label layoutX="547.0" layoutY="58.0" text="Type:" />
    </children>
    <padding>
