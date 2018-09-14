@@ -309,6 +309,11 @@ public class Activity implements Serializable {
         return this.entries;
     }
 
+    public void setEntries(ArrayList<Entry> newEntries)
+    {
+        this.entries = newEntries;
+    }
+
     @Override
     public String toString()
     {
