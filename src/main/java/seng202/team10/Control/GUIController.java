@@ -104,7 +104,7 @@ public class GUIController extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception{
         // Added a test user.
-        users.add(new UserProfile("Potato", 75, 180, new DateTime(2000,1,1,1,1,1), "Male"));
+//        users.add(new UserProfile("Potato", 75, 180, new DateTime(2000,1,1,1,1,1), "Male"));
         loadAllUsers();
         loadAllScenes();
         primaryStage.setTitle("Coach Potato");
@@ -221,7 +221,6 @@ public class GUIController extends Application{
     private void loadAllUsers() {
         ArrayList<String> userNames = dataReader.getExistingUsers();
         for(String username: userNames){
-            System.out.println(username);
             users.add(dataReader.loadExistingProfile(username));
         }
     }
@@ -268,6 +267,7 @@ public class GUIController extends Application{
     public void launchProfileScene() {
 //        profileController.setUpScene();
         profileController.setUserDetails();
+        dataWriter.saveProfile(currentUser);
         primaryStage.setScene(profileScene);
 
 <<<<<<< HEAD
@@ -335,7 +335,11 @@ public class GUIController extends Application{
 >>>>>>> fa48cc98... Re-added launch mapscene
     public void launchGoalsScene() {
         //goalsController.setUpScene();
+<<<<<<< HEAD
         goalsController.updateGoals();
+=======
+        dataWriter.saveProfile(currentUser);
+>>>>>>> 541edbd0... Saving and loading of profiles to/from folder
         primaryStage.setScene(goalsScene);
 
     }
@@ -352,6 +356,7 @@ public class GUIController extends Application{
      */
     public void launchUploadDataScene() {
         uploadDataController.setUpScene();
+        dataWriter.saveProfile(currentUser);
         primaryStage.setScene(uploadDataScene);
     }
 
@@ -368,6 +373,7 @@ public class GUIController extends Application{
     public void launchDataAnalysisScene() throws Exception {
 //        dataAnalysisController.setActivity(currentUser.getActivities().get(0));
         dataAnalysisController.setUpScene();
+        dataWriter.saveProfile(currentUser);
         primaryStage.setScene(dataAnalysisScene);
     }
 
@@ -376,6 +382,7 @@ public class GUIController extends Application{
      */
     public void launchEntryViewerScene(Activity activity) throws Exception {
         entryViewerController.setUpScene(activity);
+        dataWriter.saveProfile(currentUser);
         primaryStage.setScene(entryViewerScene);
     }
 
@@ -384,6 +391,7 @@ public class GUIController extends Application{
      */
     public void launchActivityViewerScene() throws Exception {
         activityViewerController.setUpScene();
+        dataWriter.saveProfile(currentUser);
         primaryStage.setScene(activityViewerScene);
     }
 
