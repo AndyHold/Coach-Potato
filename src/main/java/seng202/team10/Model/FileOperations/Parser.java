@@ -165,7 +165,11 @@ public class Parser {
 =======
         //TODO get rid of dateTime in constructor
         Activity activity = new Activity(name, dateTime);
+<<<<<<< HEAD
 >>>>>>> f9972c74... Javadocced a function
+=======
+>>>>>>> 59ccd0b... Javadocced a function
+>>>>>>> c62c59eb... Javadocced a function
         while (linePosition < formattedFile.size() && (formattedFile.get(linePosition)).size() != 2) {
 
             if(inputValidator.isValidEntryLine(formattedFile.get(linePosition))){
@@ -193,7 +197,11 @@ public class Parser {
         activity.determineType();
         activity.setEndDateTime();
         activity.setStrings();
+<<<<<<< HEAD
 >>>>>>> f9972c74... Javadocced a function
+=======
+>>>>>>> 59ccd0b... Javadocced a function
+>>>>>>> c62c59eb... Javadocced a function
 
 
 //        while (linePosition < formattedFile.size() && formattedFile.get(linePosition).get(0) != "#start"){
