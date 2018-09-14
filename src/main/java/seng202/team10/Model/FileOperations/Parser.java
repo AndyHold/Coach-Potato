@@ -168,13 +168,7 @@ public class Parser {
             throw new IllegalArgumentException("Too many bad entries! Activity discarded!");
         }
 
-        activity.calculateTotalDistance();
-        activity.calculateTotalDuration();
-        activity.calculateAverageHeartRate();
-        activity.calculateAverageVelocity();
-        activity.determineType();
-        activity.setEndDateTime();
-        activity.setStrings();
+        activity.postEntriesSetUp();
 
 
 //        while (linePosition < formattedFile.size() && formattedFile.get(linePosition).get(0) != "#start"){
@@ -210,7 +204,9 @@ public class Parser {
         int heartRate = Integer.valueOf(currentLine.get(2));
         Position position = processPosition(currentLine);
 
-        return new Entry(isFirst, dateTime, heartRate, position);
+        Entry newEntry = new Entry(dateTime, heartRate, position);
+        newEntry.setFirstEntry(isFirst);
+        return newEntry;
     }
 
     /**

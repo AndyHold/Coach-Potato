@@ -27,13 +27,11 @@ public class Entry  implements Serializable {
 
     /**
      * Constructor for the Entry.
-     * @param firstEntry: boolean True if first entry.
      * @param time: double Time field of the entry.
      * @param heartRate: double Heart rate field of the entry.
      * @param position: Position Position of the entry.
      */
-    public Entry(boolean firstEntry, DateTime time, int heartRate, Position position) {
-        this.firstEntry = firstEntry;
+    public Entry(DateTime time, int heartRate, Position position) {
         this.time = time;
         this.heartRate = heartRate;
         this.position = position;
