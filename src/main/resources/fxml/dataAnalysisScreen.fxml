@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
@@ -13,7 +17,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.GUI.DataAnalysisController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.GUI.DataAnalysisController">
    <children>
       <TabPane fx:id="tabPane" layoutX="471.0" layoutY="122.0" prefHeight="504.0" prefWidth="608.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -21,12 +25,12 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <LineChart fx:id="distanceOverTime" prefHeight="474.0" prefWidth="608.0">
+                        <LineChart fx:id="distanceOverTime" prefHeight="474.0" prefWidth="608.0" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <xAxis>
-                            <CategoryAxis side="BOTTOM" />
+                            <CategoryAxis side="BOTTOM" fx:id="xAxisDT" />
                           </xAxis>
                           <yAxis>
-                            <NumberAxis side="LEFT" />
+                            <NumberAxis fx:id="yAxisDT" side="LEFT" />
                           </yAxis>
                         </LineChart>
                      </children></AnchorPane>
@@ -94,6 +98,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       <Button fx:id="refreshButton" layoutX="166.0" layoutY="647.0" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
 >>>>>>> 2570070... Resolved conflicts.
@@ -106,6 +111,8 @@
 =======
       <Button fx:id="refreshButton" layoutX="166.0" layoutY="647.0" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
 >>>>>>> 474015e... Resolved conflicts.
+=======
+>>>>>>> 57b0159... Added FXIDs for the axes
       <ToolBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="1280.0" style="-fx-background-color: #435;">
          <items>
             <Button fx:id="menu" mnemonicParsing="false" onAction="#drawerAction" style="-fx-background-color: #435; -fx-border-color: #ffffff;" text="Menu" textFill="WHITE" />
