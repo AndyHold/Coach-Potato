@@ -3,10 +3,7 @@ package seng202.team10.GUI;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import seng202.team10.Control.GUIController;
@@ -75,50 +72,121 @@ public class entryViewerController {
 
 
 
+    /**
+     * Method to change the time of an Entry when it is modified in the TableView
+     * @param editedCell TableColumn.CellEditEvent: Cell edited by the user
+     */
     @FXML public void changeTimeCellEvent(TableColumn.CellEditEvent editedCell)
     {
-        //NEED TO ERROR CHECK THE INPUT VALUE HERE
-        Entry entrySelected = entriesTableView.getSelectionModel().getSelectedItem();
-        entrySelected.changeTime(editedCell.getNewValue().toString());
+        try {
+            Entry entrySelected = entriesTableView.getSelectionModel().getSelectedItem();
+            entrySelected.changeTime(editedCell.getNewValue().toString());
+        } catch(NumberFormatException exception) {
+            createPopUp(Alert.AlertType.ERROR, "Error", "Time invalid, must be a valid number");
+        } catch(IllegalArgumentException exception) {
+            String message = exception.getMessage();
+            createPopUp(Alert.AlertType.ERROR, "Error", message);
+        }
     }
 
 
+    /**
+     * Method to change the date of an Entry when it is modified in the TableView
+     * @param editedCell TableColumn.CellEditEvent: Cell edited by the user
+     */
     @FXML public void changeDateCellEvent(TableColumn.CellEditEvent editedCell)
     {
-        //NEED TO ERROR CHECK THE INPUT VALUE HERE
-        Entry entrySelected = entriesTableView.getSelectionModel().getSelectedItem();
-        entrySelected.changeDate(editedCell.getNewValue().toString());
+        try {
+            Entry entrySelected = entriesTableView.getSelectionModel().getSelectedItem();
+            entrySelected.changeDate(editedCell.getNewValue().toString());
+        }  catch(NumberFormatException exception) {
+            createPopUp(Alert.AlertType.ERROR, "Error", "Date invalid, must be a valid number");
+        } catch(IllegalArgumentException exception) {
+            String message = exception.getMessage();
+            createPopUp(Alert.AlertType.ERROR, "Error", message);
+        }
     }
 
 
+    /**
+     * Method to change the Heart Rate of an Entry when it is modified in the TableView
+     * @param editedCell TableColumn.CellEditEvent: Cell edited by the user
+     */
     @FXML public void changeHeartRateCellEvent(TableColumn.CellEditEvent editedCell)
     {
-        //NEED TO ERROR CHECK THE INPUT VALUE HERE
-        Entry entrySelected = entriesTableView.getSelectionModel().getSelectedItem();
-        entrySelected.changeHeartRate(editedCell.getNewValue().toString());
+        try {
+            Entry entrySelected = entriesTableView.getSelectionModel().getSelectedItem();
+            entrySelected.changeHeartRate(editedCell.getNewValue().toString());
+        } catch(NumberFormatException exception) {
+            createPopUp(Alert.AlertType.ERROR, "Error", "HeartRate invalid, must be a valid number");
+        } catch(IllegalArgumentException exception) {
+            String message = exception.getMessage();
+            createPopUp(Alert.AlertType.ERROR, "Error", message);
+        }
     }
 
 
+    /**
+     * Method to change the Latitude of an Entry when it is modified in the TableView
+     * @param editedCell TableColumn.CellEditEvent: Cell edited by the user
+     */
     @FXML public void changeLatitudeCellEvent(TableColumn.CellEditEvent editedCell)
     {
-        //NEED TO ERROR CHECK THE INPUT VALUE HERE
-        Entry entrySelected = entriesTableView.getSelectionModel().getSelectedItem();
-        entrySelected.changeLatitude(editedCell.getNewValue().toString());
+        try {
+            Entry entrySelected = entriesTableView.getSelectionModel().getSelectedItem();
+            entrySelected.changeLatitude(editedCell.getNewValue().toString());
+        } catch(NumberFormatException exception) {
+            createPopUp(Alert.AlertType.ERROR, "Error", "Latitude invalid, must be a valid number");
+        } catch(IllegalArgumentException exception) {
+            String message = exception.getMessage();
+            createPopUp(Alert.AlertType.ERROR, "Error", message);
+        }
+
     }
 
 
+    /**
+     * Method to change the Longitude of an Entry when it is modified in the TableView
+     * @param editedCell TableColumn.CellEditEvent: Cell edited by the user
+     */
     @FXML public void changeLongitudeCellEvent(TableColumn.CellEditEvent editedCell)
     {
-        //NEED TO ERROR CHECK THE INPUT VALUE HERE
-        Entry entrySelected = entriesTableView.getSelectionModel().getSelectedItem();
-        entrySelected.changeLongitude(editedCell.getNewValue().toString());
+        try {
+            Entry entrySelected = entriesTableView.getSelectionModel().getSelectedItem();
+            entrySelected.changeLongitude(editedCell.getNewValue().toString());
+        } catch(NumberFormatException exception) {
+            createPopUp(Alert.AlertType.ERROR, "Error", "Longitude invalid, must be a valid number");
+        } catch(IllegalArgumentException exception) {
+            String message = exception.getMessage();
+            createPopUp(Alert.AlertType.ERROR, "Error", message);
+        }
+
     }
 
 
+    /**
+     * Method to change the Elevation of an Entry when it is modified in the TableView
+     * @param editedCell TableColumn.CellEditEvent: Cell edited by the user
+     */
     @FXML public void changeElevationCellEvent(TableColumn.CellEditEvent editedCell)
     {
-        //NEED TO ERROR CHECK THE INPUT VALUE HERE
-        Entry entrySelected = entriesTableView.getSelectionModel().getSelectedItem();
-        entrySelected.changeElevation(editedCell.getNewValue().toString());
+        try {
+            Entry entrySelected = entriesTableView.getSelectionModel().getSelectedItem();
+            entrySelected.changeElevation(editedCell.getNewValue().toString());
+        } catch(NumberFormatException exception) {
+            createPopUp(Alert.AlertType.ERROR, "Error", "Elevation invalid, must be a valid number");
+        } catch(IllegalArgumentException exception) {
+            String message = exception.getMessage();
+            createPopUp(Alert.AlertType.ERROR, "Error", message);
+        }
+    }
+
+    private void createPopUp(Alert.AlertType type, String title, String message)
+    {
+        Alert errorPopUp = new Alert(type);
+        errorPopUp.setTitle(title);
+        errorPopUp.setContentText(message);
+        errorPopUp.setHeaderText(null);
+        errorPopUp.showAndWait();
     }
 }
