@@ -129,8 +129,7 @@ public class Activity implements Serializable {
             this.type = "cycle";
         } else if (lowername.contains("swim")){
             this.type = "swim";
-        } else if (lowername.contains("workout") || lowername.contains("work out") || lowername.contains("working out")
-                || lowername.contains("exercise") || lowername.contains("exercising")){
+        } else if (lowername.contains("workout") || lowername.contains("work out") || lowername.contains("working out")){
             this.type = "workout";
         } else{
             this.type = "other";
