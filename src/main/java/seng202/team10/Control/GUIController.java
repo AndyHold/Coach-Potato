@@ -28,10 +28,14 @@ import seng202.team10.Model.ActivitiesData.Route;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.ActivitiesData.Route;
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 874b31ca... Re-added launch mapscene
 =======
 import seng202.team10.Model.FileOperations.FileReader;
 >>>>>>> 88343792... loading existing users from file when logging in, deleted some old test users
+=======
+import seng202.team10.Model.FileOperations.FileReader;
+>>>>>>> 61ade368... loading existing users from file when logging in, deleted some old test users
 import seng202.team10.Model.FileOperations.FileWriter;
 import seng202.team10.Model.FileOperations.Parser;
 import seng202.team10.Model.Goals;
