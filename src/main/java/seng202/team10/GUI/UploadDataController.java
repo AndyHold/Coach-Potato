@@ -12,6 +12,7 @@ import javafx.stage.FileChooser;
 import javafx.util.Duration;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.*;
+import seng202.team10.Model.DuplicateEntryException;
 import seng202.team10.Model.ExistingActivityException;
 import seng202.team10.Model.ExistingElementException;
 
@@ -222,7 +223,6 @@ public class UploadDataController {
     @FXML public void addEntryToTableView()
     {
         try {
-
             String date = dateTextField.getText();
             String time = timeTextField.getText();
             DateTime dateTime = app.getParser().parseDateTimeFromStrings(date, time);
@@ -230,15 +230,29 @@ public class UploadDataController {
             double latitude = Double.valueOf(latitudeTextField.getText());
             double longitude = Double.valueOf(longitudeTextField.getText());
             double elevation = Double.valueOf(elevationTextField.getText());boolean firstEntry = false;
-            if (manualDataTableView.getItems().size() == 0) {
-                firstEntry = true;
-            }
-            Entry newEntry = new Entry(firstEntry, dateTime, heartRate, new Position(latitude, longitude, elevation));
-            manualDataTableView.getItems().add(newEntry);
+            Entry newEntry = new Entry(dateTime, heartRate, new Position(latitude, longitude, elevation));
+//            if (manualDataTableView.getItems().size() == 0) {
+//                newEntry.setFirstEntry(true);
+//                manualDataTableView.getItems().add(0, newEntry);
+//            } else {
+//                int index = 0;
+//                while (index < manualDataTableView.getItems().size() && newEntry.getTime().isAfter(manualDataTableView.getItems().get(index).getTime())) {
+//                    index++;
+//                }
+//                if (manualDataTableView.getItems().get(index).getTime().isEqual(newEntry.getTime())) {
+//                    throw new DuplicateEntryException();
+//                } else if (index == 0) {
+//                    newEntry.setFirstEntry(true);
+//                    manualDataTableView.getItems().get(0).setFirstEntry(false);
+//                    manualDataTableView.getItems().add(index, newEntry);
+//                }
+//            }
         } catch(NumberFormatException exception) {
             createPopUp(Alert.AlertType.ERROR, "Error", "Invalid input, please only enter valid numbers");
         } catch(IllegalArgumentException exception) {
             createPopUp(Alert.AlertType.ERROR, "Error", exception.getMessage());
+//        } catch(DuplicateEntryException exception) {
+//            createPopUp(Alert.AlertType.ERROR, "Error", exception.getMessage());
         }
     }
 

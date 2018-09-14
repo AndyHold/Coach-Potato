@@ -40,6 +40,7 @@ public class Entry  implements Serializable {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     private Activity activity;
 =======
@@ -100,6 +101,8 @@ public class Entry  implements Serializable {
 =======
 //     * @param firstEntry: boolean True if first entry.
 >>>>>>> 4efdce8... Big ol fixing of parser and related things
+=======
+>>>>>>> 863c0ab... Working on some updates to dataUpload screen, had to change the constructor for the entry Class too.
      * @param time: double Time field of the entry.
      * @param heartRate: double Heart rate field of the entry.
      * @param position: Position Position of the entry.
@@ -119,6 +122,7 @@ public class Entry  implements Serializable {
     public Entry(boolean firstEntry, DateTime time, double heartRate, Position position) {
 =======
      */
+<<<<<<< HEAD
     public Entry(boolean firstEntry, double time, double heartRate, Position position, Activity activity) {
 >>>>>>> e576ec5... No changes made
 =======
@@ -179,6 +183,9 @@ public class Entry  implements Serializable {
     public Entry(boolean firstEntry, DateTime time, int heartRate, Position position) {
 >>>>>>> 73cd156... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
         this.firstEntry = firstEntry;
+=======
+    public Entry(DateTime time, int heartRate, Position position) {
+>>>>>>> 863c0ab... Working on some updates to dataUpload screen, had to change the constructor for the entry Class too.
         this.time = time;
         this.heartRate = heartRate;
         this.position = position;
