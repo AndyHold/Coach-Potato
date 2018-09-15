@@ -123,32 +123,32 @@ public class Parser {
         int badEntries = 0;
         int totalEntries = 0;
 
-        boolean dateIsParsable = false;
-
-        String dateString = (formattedFile.get(linePosition).get(0));
-        String timeString = (formattedFile.get(linePosition).get(1));
-        DateTime dateTime = null;
-        while (!dateIsParsable && linePosition < formattedFile.size()) {
-            try {
-                dateTime = parseDateTimeFromStrings(dateString, timeString);
-                dateIsParsable = true;
-            } catch (IllegalArgumentException e) {
-                badEntries += 1;
-                totalEntries += 1;
-                linePosition += 1;
-            }
-        }
-
-        if((badEntries * 10) > totalEntries || !dateIsParsable) {
-            throw new IllegalArgumentException("Too many bad entries! Activity discarded!");
-        }
+//        boolean dateIsParsable = false;
+//
+//        String dateString = (formattedFile.get(linePosition).get(0));
+//        String timeString = (formattedFile.get(linePosition).get(1));
+//        DateTime dateTime = null;
+//        while (!dateIsParsable && linePosition < formattedFile.size()) {
+//            try {
+//                dateTime = parseDateTimeFromStrings(dateString, timeString);
+//                dateIsParsable = true;
+//            } catch (IllegalArgumentException e) {
+//                badEntries += 1;
+//                totalEntries += 1;
+//                linePosition += 1;
+//            }
+//        }
+//
+//        if((badEntries * 10) > totalEntries || !dateIsParsable) {
+//            throw new IllegalArgumentException("Too many bad entries! Activity discarded!");
+//        }
 
 //        if (!inputValidator.isValidDateString(dateString) || !inputValidator.isValidTimeString(timeString)) {
 //            badEntries += 1;
 //        }
 
 
-        Activity activity = new Activity(name, dateTime);
+        Activity activity = new Activity(name);
 
 
 

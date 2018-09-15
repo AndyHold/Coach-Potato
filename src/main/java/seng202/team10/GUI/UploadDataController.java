@@ -34,7 +34,6 @@ public class UploadDataController {
     @FXML private TableColumn<Entry, String> longitudeColumn;
     @FXML private TableColumn<Entry, String> elevationColumn;
     @FXML private TextField activityNameTextField;
-//    @FXML private ComboBox intensityComboBox;
     @FXML private TextField dateTextField;
     @FXML private TextField timeTextField;
     @FXML private TextField heartRateTextField;
@@ -70,6 +69,7 @@ public class UploadDataController {
     public void setUpScene()
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         //Set the values in the intensity ComboBox
         ObservableList<String> intensities = FXCollections.observableArrayList();
         intensities.add("Low");
@@ -90,6 +90,8 @@ public class UploadDataController {
 //        intensities.add("Other");
 //        intensityComboBox.setItems(intensities);
 //        intensityComboBox.setVisibleRowCount(3);
+=======
+>>>>>>> d6582a5... refactored Activity to have start date time not set in the constructor but after the entries have been added. Changed all code using this functionality to make it a lot simpler. Also fixed the issue where data was not being saved properly after being uploaded, simply called to re serialize after each submission of manual data or file ulpoaded.
         // Set up the columns in the table.
 >>>>>>> ca7698b... Renamed ActivityIntensity to be ActivityType, fixed all methods and attributes of Activity to be directed to this and moved the determine type method into the ActivityType Enum. Also got rid of the ComboBox in the upload Data screen as the type is now determined from the name. Fixed a few bugs that this process created and found another unrelated bug in the process which i have created an issue for in git and put a TODO in the code for it.
         dateColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("dateString"));
@@ -251,10 +253,8 @@ public class UploadDataController {
                 manualDataTableView.getItems().add(0, newEntry);
             } else {
                 int index = 0;
-                System.out.println("Size = " + manualDataTableView.getItems().size());
                 while (index < manualDataTableView.getItems().size() && newEntry.getTime().isAfter(manualDataTableView.getItems().get(index).getTime())) {
                     index++;
-                    System.out.println(index + "Index currently");
                 }
                 if (!(index == manualDataTableView.getItems().size()) && manualDataTableView.getItems().get(index).getTime().isEqual(newEntry.getTime())) {
                     throw new DuplicateEntryException();
@@ -290,6 +290,7 @@ public class UploadDataController {
                 ArrayList<ArrayList<String>> formattedFile = app.getParser().formatFileContents(fileContents);
                 ArrayList<Activity> newActivities = app.getParser().processFile(formattedFile);
                 app.getCurrentProfile().addActivities(newActivities);
+                app.getDataWriter().saveProfile(app.getCurrentProfile()); // Reserialize profile after adding data
                 createPopUp(Alert.AlertType.INFORMATION, "Success", "Your file has been successfully uploaded to your profile");
                 //TODO have an option to cut to Data Viewer or to upload/input another File/Activity when one is submitted.
                 //TODO this will require a custom pop up button (Low Priority).
@@ -328,9 +329,8 @@ public class UploadDataController {
             } else {
                 // Else get date of first Entry
                 ObservableList<Entry> currentEntries = manualDataTableView.getItems();
-                DateTime startDateTime = currentEntries.get(0).getTime();
                 // Create Activity
-                Activity newActivity = new Activity(activityName, startDateTime);
+                Activity newActivity = new Activity(activityName);
                 newActivity.setType(ActivityType.determineType(activityName));
                 // Iterate over Entries and add them to Activity
                 for (Entry entry: currentEntries) {
@@ -339,6 +339,8 @@ public class UploadDataController {
                 newActivity.postEntriesSetUp();
                 // Add Activity to user profile.
                 app.getCurrentProfile().addActivity(newActivity);
+                // Reserialize profile after adding data
+                app.getDataWriter().saveProfile(app.getCurrentProfile());
                 // Display a success pop up
                 createPopUp(Alert.AlertType.INFORMATION, "Success", "You have successfully created the activity \"" + activityName + "\"");
                 // Reset table, text field and ComboBox to be blank

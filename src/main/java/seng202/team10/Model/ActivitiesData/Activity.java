@@ -49,12 +49,10 @@ public class Activity implements Serializable {
     /**
      * Constructor method for Activity Class
      * @param newName String: Name of the activity
-     * @param newStartDateTime DateTime: Start time and date of the activity
      */
-    public Activity(String newName, DateTime newStartDateTime)
+    public Activity(String newName)
     {
         this.setName(newName);
-        this.setStartDateTime(newStartDateTime);
         this.type = ActivityType.determineType(this.name);
     }
 
@@ -90,11 +88,10 @@ public class Activity implements Serializable {
 
     /**
      * Setter method for the date and time the activity was started on
-     * @param newDateTime DateTime: Start date and time for this activity
      */
-    public void setStartDateTime(DateTime newDateTime)
+    public void setStartDateTime()
     {
-            this.startDateTime = newDateTime;
+            this.startDateTime = entries.get(0).getTime();
     }
 
 
@@ -122,6 +119,7 @@ public class Activity implements Serializable {
      * TODO add this method whenever Activities are modified.
      */
     public void postEntriesSetUp() {
+        setStartDateTime();
         calculateTotalDistance();
         calculateTotalDuration();
         calculateAverageHeartRate();
