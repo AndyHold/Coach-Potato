@@ -34,7 +34,7 @@ public class UploadDataController {
     @FXML private TableColumn<Entry, String> longitudeColumn;
     @FXML private TableColumn<Entry, String> elevationColumn;
     @FXML private TextField activityNameTextField;
-    @FXML private ComboBox intensityComboBox;
+//    @FXML private ComboBox intensityComboBox;
     @FXML private TextField dateTextField;
     @FXML private TextField timeTextField;
     @FXML private TextField heartRateTextField;
@@ -60,6 +60,7 @@ public class UploadDataController {
      */
     public void setUpScene()
     {
+<<<<<<< HEAD
         //Set the values in the intensity ComboBox
         ObservableList<String> intensities = FXCollections.observableArrayList();
         intensities.add("Low");
@@ -68,6 +69,20 @@ public class UploadDataController {
         intensityComboBox.setItems(intensities);
         intensityComboBox.setVisibleRowCount(3);
         //Set up the columns in the table.
+=======
+        // Set the values in the intensity ComboBox
+//        ObservableList<String> intensities = FXCollections.observableArrayList();
+//        intensities.add("Walk");
+//        intensities.add("Run");
+//        intensities.add("Hike");
+//        intensities.add("Cycle");
+//        intensities.add("Swim");
+//        intensities.add("Workout");
+//        intensities.add("Other");
+//        intensityComboBox.setItems(intensities);
+//        intensityComboBox.setVisibleRowCount(3);
+        // Set up the columns in the table.
+>>>>>>> 72a43850... Renamed ActivityIntensity to be ActivityType, fixed all methods and attributes of Activity to be directed to this and moved the determine type method into the ActivityType Enum. Also got rid of the ComboBox in the upload Data screen as the type is now determined from the name. Fixed a few bugs that this process created and found another unrelated bug in the process which i have created an issue for in git and put a TODO in the code for it.
         dateColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("dateString"));
         timeColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("timeString"));
         heartRateColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("heartRateString"));
@@ -267,7 +282,8 @@ public class UploadDataController {
                 ArrayList<Activity> newActivities = app.getParser().processFile(formattedFile);
                 app.getCurrentProfile().addActivities(newActivities);
                 createPopUp(Alert.AlertType.INFORMATION, "Success", "Your file has been successfully uploaded to your profile");
-                //TODO need to add data to table instead of uploading straight to profile. Confirmation message for clearing table.
+                //TODO have an option to cut to Data Viewer or to upload/input another File/Activity when one is submitted.
+                //TODO this will require a custom pop up button (Low Priority).
             } catch (FileNotFoundException exception) {
                 createPopUp(Alert.AlertType.ERROR, "Error", "File not found, please choose a valid csv file");
             } catch (ExistingElementException exception) {
@@ -285,42 +301,35 @@ public class UploadDataController {
 >>>>>>> 73cd1563... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
     @FXML public void submitData()
     {
-        //TODO Check if data is already in the profile before uploading.
         try {
             // Get name of activity
             String activityName = activityNameTextField.getText();
-            // Check an intensity has been chosen
-            if (intensityComboBox.getValue() == null) {
-                // If not send error message
-                createPopUp(Alert.AlertType.ERROR, "Activity Intensity Error", "Please choose an activity intensity");
+            if (manualDataTableView.getItems().size() < 2) {
+                // If Entry list is empty send error
+                createPopUp(Alert.AlertType.ERROR, "Entry Error", "You have not added enough Entries to the list");
             } else {
-                // Else get the intensity
-                String intensityString = (String) intensityComboBox.getValue();
-                ActivityIntensity activityIntensity = ActivityIntensity.getIntensityFromString(intensityString);
-                // Check Entry list is not empty
-                if (manualDataTableView.getItems().size() == 0) {
-                    // If Entry list is empty send error
-                    createPopUp(Alert.AlertType.ERROR, "Entry Error", "You have not added any Entries to the list");
-                } else {
-                    // Else get date of first Entry
-                    ObservableList<Entry> currentEntries = manualDataTableView.getItems();
-                    DateTime startDateTime = currentEntries.get(0).getTime();
-                    // Create Activity
-                    Activity newActivity = new Activity(activityName, startDateTime);
-                    // newActivity.setIntensity(activityIntensity);
-                    // Iterate over Entries and add them to Activity
-                    for (Entry entry: currentEntries) {
-                        newActivity.addEntry(entry);
-                    }
-                    // Add Activity to user profile.
-                    app.getCurrentProfile().addActivity(newActivity);
-                    createPopUp(Alert.AlertType.INFORMATION, "Success", "You have successfully created the activity \"" + activityName + "\"");
-                    clearTableView();
-                    activityNameTextField.setText("");
-                    intensityComboBox.setValue(null);
+                // Else get date of first Entry
+                ObservableList<Entry> currentEntries = manualDataTableView.getItems();
+                DateTime startDateTime = currentEntries.get(0).getTime();
+                // Create Activity
+                Activity newActivity = new Activity(activityName, startDateTime);
+                newActivity.setType(ActivityType.determineType(activityName));
+                // Iterate over Entries and add them to Activity
+                for (Entry entry: currentEntries) {
+                    newActivity.addEntry(entry);
                 }
+                newActivity.postEntriesSetUp();
+                // Add Activity to user profile.
+                app.getCurrentProfile().addActivity(newActivity);
+                // Display a success pop up
+                createPopUp(Alert.AlertType.INFORMATION, "Success", "You have successfully created the activity \"" + activityName + "\"");
+                // Reset table, text field and ComboBox to be blank
+                clearTableView();
+                activityNameTextField.setText("");
+//                intensityComboBox.setValue(null);
+                // TODO figure out why these cause errors in the graphs(only did it with one of size 2 though so that could be it)
             }
-        }
+        } // Catch Exceptions and display error messages
         catch(IllegalArgumentException exception) {
             createPopUp(Alert.AlertType.ERROR, "Data Error", exception.getMessage());
         }
