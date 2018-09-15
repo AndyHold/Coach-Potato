@@ -82,7 +82,11 @@ public class UploadDataController {
 //        intensityComboBox.setItems(intensities);
 //        intensityComboBox.setVisibleRowCount(3);
 =======
+<<<<<<< HEAD
 >>>>>>> 6b17c394... refactored Activity to have start date time not set in the constructor but after the entries have been added. Changed all code using this functionality to make it a lot simpler. Also fixed the issue where data was not being saved properly after being uploaded, simply called to re serialize after each submission of manual data or file ulpoaded.
+=======
+>>>>>>> d6582a5... refactored Activity to have start date time not set in the constructor but after the entries have been added. Changed all code using this functionality to make it a lot simpler. Also fixed the issue where data was not being saved properly after being uploaded, simply called to re serialize after each submission of manual data or file ulpoaded.
+>>>>>>> 57562dae... refactored Activity to have start date time not set in the constructor but after the entries have been added. Changed all code using this functionality to make it a lot simpler. Also fixed the issue where data was not being saved properly after being uploaded, simply called to re serialize after each submission of manual data or file ulpoaded.
         // Set up the columns in the table.
 <<<<<<< HEAD
 >>>>>>> 72a43850... Renamed ActivityIntensity to be ActivityType, fixed all methods and attributes of Activity to be directed to this and moved the determine type method into the ActivityType Enum. Also got rid of the ComboBox in the upload Data screen as the type is now determined from the name. Fixed a few bugs that this process created and found another unrelated bug in the process which i have created an issue for in git and put a TODO in the code for it.
