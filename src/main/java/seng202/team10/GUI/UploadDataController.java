@@ -82,7 +82,11 @@ public class UploadDataController {
 //        intensityComboBox.setItems(intensities);
 //        intensityComboBox.setVisibleRowCount(3);
         // Set up the columns in the table.
+<<<<<<< HEAD
 >>>>>>> 72a43850... Renamed ActivityIntensity to be ActivityType, fixed all methods and attributes of Activity to be directed to this and moved the determine type method into the ActivityType Enum. Also got rid of the ComboBox in the upload Data screen as the type is now determined from the name. Fixed a few bugs that this process created and found another unrelated bug in the process which i have created an issue for in git and put a TODO in the code for it.
+=======
+>>>>>>> ca7698b... Renamed ActivityIntensity to be ActivityType, fixed all methods and attributes of Activity to be directed to this and moved the determine type method into the ActivityType Enum. Also got rid of the ComboBox in the upload Data screen as the type is now determined from the name. Fixed a few bugs that this process created and found another unrelated bug in the process which i have created an issue for in git and put a TODO in the code for it.
+>>>>>>> 8ff5c56f... Renamed ActivityIntensity to be ActivityType, fixed all methods and attributes of Activity to be directed to this and moved the determine type method into the ActivityType Enum. Also got rid of the ComboBox in the upload Data screen as the type is now determined from the name. Fixed a few bugs that this process created and found another unrelated bug in the process which i have created an issue for in git and put a TODO in the code for it.
         dateColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("dateString"));
         timeColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("timeString"));
         heartRateColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("heartRateString"));
