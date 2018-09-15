@@ -63,7 +63,7 @@ public class DateTime implements Serializable {
             setYear(oldYear);
             setMonth(oldMonth);
             setDay(oldDay);
-            throw new IllegalArgumentException("your input date is invalid, please select a correct date between 1900-2100");
+            throw new IllegalArgumentException("Invalid year, please select a correct date format DD/MM/YYYY in between 1900-2100");
         }
     }
 
@@ -84,10 +84,10 @@ public class DateTime implements Serializable {
             setMinute(minute);
             setSecond(second);
         } catch(IllegalArgumentException ex) {
-            setYear(oldHour);
-            setMonth(oldMinute);
-            setDay(oldSecond);
-            throw new IllegalArgumentException("your input time is invalid, please select a correct date between 1900-2100");
+            setHour(oldHour);
+            setMinute(oldMinute);
+            setSecond(oldSecond);
+            throw new IllegalArgumentException("Invalid time, please select a correct time format HH:MM:SS");
         }
     }
 
