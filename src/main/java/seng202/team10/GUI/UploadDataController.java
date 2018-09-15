@@ -34,7 +34,6 @@ public class UploadDataController {
     @FXML private TableColumn<Entry, String> longitudeColumn;
     @FXML private TableColumn<Entry, String> elevationColumn;
     @FXML private TextField activityNameTextField;
-//    @FXML private ComboBox intensityComboBox;
     @FXML private TextField dateTextField;
     @FXML private TextField timeTextField;
     @FXML private TextField heartRateTextField;
@@ -59,17 +58,6 @@ public class UploadDataController {
      */
     public void setUpScene()
     {
-        // Set the values in the intensity ComboBox
-//        ObservableList<String> intensities = FXCollections.observableArrayList();
-//        intensities.add("Walk");
-//        intensities.add("Run");
-//        intensities.add("Hike");
-//        intensities.add("Cycle");
-//        intensities.add("Swim");
-//        intensities.add("Workout");
-//        intensities.add("Other");
-//        intensityComboBox.setItems(intensities);
-//        intensityComboBox.setVisibleRowCount(3);
         // Set up the columns in the table.
         dateColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("dateString"));
         timeColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("timeString"));
@@ -230,10 +218,8 @@ public class UploadDataController {
                 manualDataTableView.getItems().add(0, newEntry);
             } else {
                 int index = 0;
-                System.out.println("Size = " + manualDataTableView.getItems().size());
                 while (index < manualDataTableView.getItems().size() && newEntry.getTime().isAfter(manualDataTableView.getItems().get(index).getTime())) {
                     index++;
-                    System.out.println(index + "Index currently");
                 }
                 if (!(index == manualDataTableView.getItems().size()) && manualDataTableView.getItems().get(index).getTime().isEqual(newEntry.getTime())) {
                     throw new DuplicateEntryException();
@@ -269,6 +255,7 @@ public class UploadDataController {
                 ArrayList<ArrayList<String>> formattedFile = app.getParser().formatFileContents(fileContents);
                 ArrayList<Activity> newActivities = app.getParser().processFile(formattedFile);
                 app.getCurrentProfile().addActivities(newActivities);
+                app.getDataWriter().saveProfile(app.getCurrentProfile()); // Reserialize profile after adding data
                 createPopUp(Alert.AlertType.INFORMATION, "Success", "Your file has been successfully uploaded to your profile");
                 //TODO have an option to cut to Data Viewer or to upload/input another File/Activity when one is submitted.
                 //TODO this will require a custom pop up button (Low Priority).
@@ -295,9 +282,8 @@ public class UploadDataController {
             } else {
                 // Else get date of first Entry
                 ObservableList<Entry> currentEntries = manualDataTableView.getItems();
-                DateTime startDateTime = currentEntries.get(0).getTime();
                 // Create Activity
-                Activity newActivity = new Activity(activityName, startDateTime);
+                Activity newActivity = new Activity(activityName);
                 newActivity.setType(ActivityType.determineType(activityName));
                 // Iterate over Entries and add them to Activity
                 for (Entry entry: currentEntries) {
@@ -306,6 +292,8 @@ public class UploadDataController {
                 newActivity.postEntriesSetUp();
                 // Add Activity to user profile.
                 app.getCurrentProfile().addActivity(newActivity);
+                // Reserialize profile after adding data
+                app.getDataWriter().saveProfile(app.getCurrentProfile());
                 // Display a success pop up
                 createPopUp(Alert.AlertType.INFORMATION, "Success", "You have successfully created the activity \"" + activityName + "\"");
                 // Reset table, text field and ComboBox to be blank

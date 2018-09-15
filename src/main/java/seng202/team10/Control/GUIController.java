@@ -117,6 +117,16 @@ public class GUIController extends Application{
 
 
     /**
+     * Getter method for data writer
+     * @return FileWriter
+     */
+    public FileWriter getDataWriter()
+    {
+        return this.dataWriter;
+    }
+
+
+    /**
      * Uploads the data from a file and stores it in the specified user profile.
      *
      * @param user  The user profile that the data is uploaded to.
