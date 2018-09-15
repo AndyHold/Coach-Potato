@@ -34,8 +34,7 @@ public class Activity implements Serializable {
     private Double totalDistance = 0.0;
     private ArrayList<Entry> entries = new ArrayList<>();
     private int totalDuration = 0;
-    // private ActivityIntensity intensity;
-    private String type;
+    private ActivityType type;
     private DateTime endDateTime;
     private String nameString;
     private String timeString;
@@ -43,7 +42,7 @@ public class Activity implements Serializable {
     private String speedString;
     private String distanceString;
     private String heartString;
-    private String entrynoString;
+    private String entryNoString;
     private String typeString;
 
 
@@ -56,18 +55,22 @@ public class Activity implements Serializable {
     {
         this.setName(newName);
         this.setStartDateTime(newStartDateTime);
-        // this.intensity = newIntensity;
+        this.type = ActivityType.determineType(this.name);
     }
 
+
+    /**
+     * Setter method to set all strings needed for the GUI.
+     */
     public void setStrings() {
         this.nameString = this.name;
-        this.typeString = this.type;
+        this.typeString = this.type.toString();
         this.timeString = this.startDateTime.toString();
         this.durationString = String.valueOf(this.totalDuration);
         this.speedString = String.format("%.2f", this.averageVelocity);
         this.distanceString = String.format("%.2f", this.totalDistance);
         this.heartString = String.format("%.2f", this.averageHeartRate);
-        this.entrynoString = String.valueOf(this.entries.size());
+        this.entryNoString = String.valueOf(this.entries.size());
     }
 
 
@@ -106,11 +109,11 @@ public class Activity implements Serializable {
 
     /**
      * Setter method for the type of the activity
-     * @param newtype String: the type of activity
+     * @param newType String: the type of activity
      */
-    public void setType(String newtype)
+    public void setType(ActivityType newType)
     {
-        this.type = newtype;
+        this.type = newType;
     }
 
 
@@ -123,7 +126,7 @@ public class Activity implements Serializable {
         calculateTotalDuration();
         calculateAverageHeartRate();
         calculateAverageVelocity();
-        determineType();
+        this.type = ActivityType.determineType(this.name);
         setEndDateTime();
         setStrings();
     }
@@ -133,36 +136,9 @@ public class Activity implements Serializable {
      * getter method for the type of the activity
      * @return String of the type of the activity
      */
-    public String getType()
+    public ActivityType getType()
     {
         return this.type;
-    }
-
-
-    /**
-     * determines and sets the type of the activity based on the name string.
-     * possible types are walk, run, hike, cycle, swim, workout, other
-     * */
-    public void determineType()
-    {
-        //TODO switch this over to using Enum
-        String lowername = this.name.toLowerCase();
-        if(lowername.contains("walk")){
-            this.type = "walk";
-        } else if (lowername.contains("run") || lowername.contains("jog")){
-            this.type = "run";
-        } else if (lowername.contains("hike") || lowername.contains("hiking")){
-            this.type = "hike";
-        } else if (lowername.contains("cycle") || lowername.contains("cycling") || lowername.contains("bike") ||
-                lowername.contains("biking")){
-            this.type = "cycle";
-        } else if (lowername.contains("swim")){
-            this.type = "swim";
-        } else if (lowername.contains("workout") || lowername.contains("work out") || lowername.contains("working out")){
-            this.type = "workout";
-        } else{
-            this.type = "other";
-        }
     }
 
 
@@ -398,11 +374,11 @@ public class Activity implements Serializable {
     }
 
     public String getEntrynoString() {
-        return entrynoString;
+        return entryNoString;
     }
 
     public void setEntrynoString(String entrynoString) {
-        this.entrynoString = entrynoString;
+        this.entryNoString = entrynoString;
     }
 
     public String getTypeString() {
