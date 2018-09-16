@@ -1,6 +1,7 @@
 package seng202.team10.Model;
 
 
+import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
 
 import java.time.LocalDate;
@@ -154,25 +155,28 @@ public class Goals implements java.io.Serializable{
             String type = goal.getGoalType();
             switch (type) {
                 case "Weight":
-                    //progress = goal.reviewWeightGoal(goal, user.getWeight());
-//                    if (user.getWeight() <= goal.getGoalWeight()) {
-//                        removeCurrentGoal(goalName);
-//                    }
-                    progress = goal.reviewWeightGoal(goal, 70);
-                    if (70 <= goal.getGoalBmi()) {
+                    System.out.println(user);
+                    progress = goal.reviewWeightGoal(goal, user.getWeight());
+                    if (user.getWeight() <= goal.getGoalWeight()) {
                         removeCurrentGoal(goalName);
                     }
                     break;
                 case "BMI":
-                    //progress = goal.reviewBmiGoal(goal, user.calcBmi());
-//                    if (user.getBmi() <= goal.getGoalBmi()) {
-//                        removeCurrentGoal(goalName);
-//                    }
-                    progress = goal.reviewBmiGoal(goal, 30);
-                    if (30 <= goal.getGoalBmi()) {
+                    System.out.println(user);
+                    progress = goal.reviewBmiGoal(goal, user.getBmi());
+                    if (user.getBmi() <= goal.getGoalBmi()) {
                         removeCurrentGoal(goalName);
                     }
                     break;
+                case "Distance":
+                    System.out.println(user);
+                    double totalDistance = user.getActivitiesDistance();
+                    System.out.println(totalDistance);
+                    progress = goal.reviewDistanceGoal(goal, totalDistance);
+                    if (totalDistance >= goal.getGoalDistance()) {
+                        removeCurrentGoal(goalName);
+                    }
+
                 //TODO add in the Distance, frequency, and time cases (which need data loaded first)
             }
         }
@@ -211,9 +215,6 @@ public class Goals implements java.io.Serializable{
         return futureGoals;
     }
 
-    public UserProfile getUser() {
-        return user;
-    }
 
     public Goal getGoalObject(String goalName) {
         for (Goal goal : currentGoals) {
