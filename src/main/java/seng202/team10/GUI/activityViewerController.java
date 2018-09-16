@@ -4,10 +4,7 @@ import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.VBox;
@@ -28,6 +25,7 @@ public class activityViewerController {
     @FXML private Button filterApplyButton;
     @FXML private TableView<Activity> activitiesTableView;
     @FXML private TableColumn<Activity, String> nameColumn;
+    @FXML private TableColumn<Activity, String> typeColumn;
     @FXML private TableColumn<Activity, String> starttimeColumn;
     @FXML private TableColumn<Activity, String> durationColumn;
     @FXML private TableColumn<Activity, String> speedColumn;
@@ -35,26 +33,42 @@ public class activityViewerController {
     @FXML private TableColumn<Activity, String> heartrateColumn;
     @FXML private TableColumn<Activity, String> entrynoColumn;
     @FXML private Button entryViewerButton;
-    @FXML private Button mapButton;
+    @FXML private ComboBox typeSelect;
     @FXML private VBox drawer;
 
     /**
      * Sets up objects that require it prior to showing the scene
      */
     public void setUpScene() {
-        //populateTable(app.getCurrentProfile().getActivities());
-
+        ObservableList<String> types = FXCollections.observableArrayList();
+        types.add("walk");
+        types.add("run");
+        types.add("hike");
+        types.add("cycle");
+        types.add("swim");
+        types.add("workout");
+        types.add("other");
+        typeSelect.setItems(types);
+        typeSelect.setVisibleRowCount(7);
         ObservableList<Activity> activities = FXCollections.observableArrayList(app.getCurrentProfile().getActivities());
         nameColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("nameString"));
+        typeColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("typeString"));
         starttimeColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("timeString"));
         durationColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("durationString"));
         speedColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("speedString"));
         distanceColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("distanceString"));
         heartrateColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("heartString"));
         entrynoColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("entrynoString"));
+        populateTable(activities);
 
-        activitiesTableView.setItems(activities);
+    }
 
+    /**
+     * fills the table with the activities to display. used by setUpScene as well as applyFilter
+     * @param displayActivities the arraylist of activity objects to be displayed in the table
+     */
+    private void populateTable(ObservableList<Activity> displayActivities){
+        activitiesTableView.setItems(displayActivities);
         nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         starttimeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         durationColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -62,14 +76,6 @@ public class activityViewerController {
         distanceColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         heartrateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         entrynoColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-    }
-
-    /**
-     * fills the table with the activities to display. used by setUpScene as well as applyFilter
-     * @param displayActivities the arraylist of activity objects to be displayed in the table
-     */
-    private void populateTable(ArrayList<Activity> displayActivities){
-
 
     }
 
@@ -89,19 +95,21 @@ public class activityViewerController {
      * opens the entryViewer screen with the selected activity when the entryViewerButton is pressed
      */
     @FXML public void openEntries() throws Exception{
-        //TODO set currentActivity to the currently selected row of the table
-        Activity currentActivity = app.getCurrentProfile().getActivities().get(1);
-        app.launchEntryViewerScene(currentActivity);
+        if(activitiesTableView.getSelectionModel().getSelectedItem() != null) {
+            app.launchEntryViewerScene(app.getCurrentProfile().getActivities().get(activitiesTableView.getSelectionModel().getSelectedIndex()));
+        } else {
+            createPopUp(Alert.AlertType.ERROR, "Error", "Please select an Activity first");
+        }
     }
 
-
-    /**
-     * opens the routemap screen for the selected activity when the openMap button is pressed
-     */
-    @FXML public void openMap(){
-        // TODO open a map screen with the selected activity to view routemap
+    private void createPopUp(Alert.AlertType type, String title, String message)
+    {
+        Alert errorPopUp = new Alert(type);
+        errorPopUp.setTitle(title);
+        errorPopUp.setContentText(message);
+        errorPopUp.setHeaderText(null);
+        errorPopUp.showAndWait();
     }
-
 
     /**
      * Setter method to set the GUI controller for this Scene
@@ -111,6 +119,9 @@ public class activityViewerController {
     {
         this.app = app;
     }
+
+
+
 
 
     /**

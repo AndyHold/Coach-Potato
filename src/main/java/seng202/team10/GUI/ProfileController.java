@@ -1,7 +1,11 @@
 package seng202.team10.GUI;
 
 import javafx.animation.TranslateTransition;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -12,10 +16,8 @@ import seng202.team10.Model.UserProfile;
 
 import java.text.DecimalFormat;
 import java.time.YearMonth;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 public class ProfileController {
 
@@ -27,6 +29,7 @@ public class ProfileController {
     @FXML private javafx.scene.control.Label weightValueLabel;
     @FXML private javafx.scene.control.Label heightValueLabel;
     @FXML private javafx.scene.control.Label bmiValueLabel;
+    @FXML private Label recentActivitiesLabel;
     @FXML private HBox activity1HBox;
     @FXML private HBox activity2HBox;
     @FXML private HBox activity3HBox;
@@ -40,6 +43,7 @@ public class ProfileController {
     @FXML private Text velocityText;
     @FXML private Text heartRateText;
     @FXML private VBox drawer;
+    @FXML private ComboBox userNameComboBox;
     private List<String> quotes = Arrays.asList(
             "To not prepare is to prepare to fail.",
             "Exercise instead of extra fries.",
@@ -69,6 +73,7 @@ public class ProfileController {
 
     public void setUpScene() {
         calendarPane.getChildren().add(new FullCalendarView(YearMonth.now()).getView());
+        recentActivitiesLabel.setVisible(false);
         activity1HBox.setVisible(false);
         activity2HBox.setVisible(false);
         activity3HBox.setVisible(false);
@@ -76,6 +81,11 @@ public class ProfileController {
         velocityHBox.setVisible(false);
         heartRateHBox.setVisible(false);
         quotesLabel.setText(quotes.get((int)(Math.random()*(quotes.size()))));
+        ObservableList<String> usersList = FXCollections.observableArrayList();
+        for (UserProfile user: app.getUsers()) {
+            usersList.add(user.getName());
+        }
+        userNameComboBox.setItems(usersList);
     }
 
 
@@ -83,6 +93,7 @@ public class ProfileController {
         DecimalFormat df2 = new DecimalFormat(".##");
         setUpScene();
         UserProfile currentUser = app.getCurrentProfile();
+        userNameComboBox.setPromptText((currentUser.getName()).toString());
         welcomeProfileLabel.setText("Welcome " + String.valueOf(currentUser.getName()) + ", Let's do it!");
         weightValueLabel.setText(df2.format((currentUser.getWeight())));
         heightValueLabel.setText(df2.format((currentUser.getHeight())));
@@ -90,9 +101,10 @@ public class ProfileController {
 
         if (currentUser.getActivities().size() > 0) {
             activity1Text.setText(currentUser.getActivities().get(0).getName());
-            distanceText.setText("Total Distance Covered: " + df2.format(currentUser.getActivities().get(0).getTotalDistance()) + " km");
+            distanceText.setText("Total Distance Covered: " + String.valueOf(currentUser.getActivities().get(0).getTotalDistance()) + " km");
             velocityText.setText("Average Velocity: " + df2.format(currentUser.getActivities().get(0).getAverageVelocity()) + " m/s");
-            heartRateText.setText("Average Heart Rate: " + String.valueOf((currentUser.getActivities().get(0).getAverageHeartRate())) + " bpm");
+            heartRateText.setText("Average Heart Rate: " + String.valueOf((int)(currentUser.getActivities().get(0).getAverageHeartRate())) + " bpm");
+            recentActivitiesLabel.setVisible(true);
             activity1HBox.setVisible(true);
             distanceHBox.setVisible(true);
             velocityHBox.setVisible(true);
