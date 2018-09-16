@@ -75,7 +75,7 @@ public class GUIController extends Application{
     private Parser parser = new Parser();
     private FileWriter dataWriter = new FileWriter();
 
-    private Goals goals = new Goals(currentUser);
+    //private Goals goals = new Goals(currentUser);
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -285,7 +285,9 @@ public class GUIController extends Application{
 >>>>>>> 81b0c6a... Re-added launch mapscene
     public void launchGoalsScene() {
         //goalsController.setUpScene();
+        goalsController.updateGoals();
         primaryStage.setScene(goalsScene);
+
     }
 =======
 =======
@@ -864,9 +866,7 @@ public class GUIController extends Application{
         this.users = users;
     }
 
-    public Goals getGoalsInstance() {
-        return goals;
-    }
+
 
 
     public static void main(String[] args) {

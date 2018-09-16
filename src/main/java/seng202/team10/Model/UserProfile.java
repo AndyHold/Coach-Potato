@@ -36,9 +36,14 @@ public class UserProfile implements java.io.Serializable {
     private DateTime birthdate;
     private String gender;
     private int maxHeartrate;
-    private Goals goals;
+    //private Goals goals;
     private Calendar calendar;
     private double bmi;
+
+
+
+    private Goals goals = new Goals(this);
+
 
     public UserProfile() {
 
@@ -51,6 +56,8 @@ public class UserProfile implements java.io.Serializable {
         this.birthdate = birthdate;
         this.gender = gender;
     }
+
+
 
     /**
      * Getter method for the name of the user
@@ -541,4 +548,23 @@ public class UserProfile implements java.io.Serializable {
                 ", bmi=" + bmi +
                 '}';
     }
+
+
+    public Goals getGoals() {
+        return goals;
+    }
+
+    public void setGoals(Goals goals) {
+        this.goals = goals;
+    }
+
+    //public double getActivitiesDistance(DateTime startDate, DateTime endDate)
+    public double getActivitiesDistance() {
+        double sum = 0;
+        for (Activity activity : activities) {
+            sum += activity.getTotalDistance();
+        }
+        return sum;
+    }
+
 }
