@@ -57,22 +57,27 @@ public class GoalController implements Controllable {
 
     public void setUpScene() {
 
-        Goals goalsInstance = app.getGoalsInstance();
+    }
 
-        ObservableList<String> currentGoals = FXCollections.observableArrayList(goalsInstance.getCurrentGoalNames());
-        currentGoalsCombo.setItems(currentGoals);
-        currentGoalsCombo.setVisibleRowCount(5);
+    public void updateGoals() {
+        Goals goalsInstance = app.getCurrentProfile().getGoals();
+
+        if (goalsInstance != null) {
+            ObservableList<String> currentGoals = FXCollections.observableArrayList(goalsInstance.getCurrentGoalNames());
+            currentGoalsCombo.setItems(currentGoals);
+            currentGoalsCombo.setVisibleRowCount(5);
+        }
+
 
         ObservableList<String> goalTypes = FXCollections.observableArrayList("Weight", "Distance", "Frequency", "BMI", "Time");
         goalTypeCombo.setItems(goalTypes);
         goalTypeCombo.setVisibleRowCount(5);
-
     }
 
     @FXML
     public void createGoal() throws Exception {
         boolean validInput = true;
-        Goals goalsInstance = app.getGoalsInstance();
+        Goals goalsInstance = app.getCurrentProfile().getGoals();
         InputValidator input = new InputValidator(); //is this the best way to interact with the input validator class??
 
         String type = goalTypeCombo.getValue().toString();
@@ -169,7 +174,7 @@ public class GoalController implements Controllable {
             alert.setContentText("Please choose a goal to remove");
             alert.showAndWait();
         } else {
-            Goals goalsInstance = app.getGoalsInstance();
+            Goals goalsInstance = app.getCurrentProfile().getGoals();
             String name = currentGoalsCombo.getValue().toString();
             //Goal goalObject = goalsInstance.getGoalObject(name);
             goalsInstance.removeCurrentGoal(name);
@@ -194,7 +199,7 @@ public class GoalController implements Controllable {
             alert.setContentText("Please choose a goal to review");
             alert.showAndWait();
         } else {
-            Goals goalsInstance = app.getGoalsInstance();
+            Goals goalsInstance = app.getCurrentProfile().getGoals();
             String goalName = currentGoalsCombo.getValue().toString();
             progressText.setText(goalsInstance.checkGoal(goalName));
 //            goalsInstance.checkGoal(goalName);
