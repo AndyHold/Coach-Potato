@@ -150,7 +150,7 @@ public class Goals implements java.io.Serializable{
     public String checkGoal(String goalName) {
         Goal goal = getGoalObject(goalName);
         String progress = "";
-        if (currentGoals.contains(goal)) { // is this necessaprogress = ry if combobox will only ever have current goals??
+        if (currentGoals.contains(goal)) { // is this necessary if combobox will only ever have current goals??
             System.out.println("" + goalName + "is of type " + goal.getGoalType());
             String type = goal.getGoalType();
             switch (type) {
@@ -170,14 +170,31 @@ public class Goals implements java.io.Serializable{
                     break;
                 case "Distance":
                     System.out.println(user);
-                    double totalDistance = user.getActivitiesDistance();
+                    double totalDistance = user.getActivitiesDistance(goal.getGoalStartDate(), goal.getGoalTargetDate());
                     System.out.println(totalDistance);
                     progress = goal.reviewDistanceGoal(goal, totalDistance);
                     if (totalDistance >= goal.getGoalDistance()) {
                         removeCurrentGoal(goalName);
                     }
-
-                //TODO add in the Distance, frequency, and time cases (which need data loaded first)
+                    break;
+                case "Frequency":
+                    System.out.println(user);
+                    int numActivities = user.getActivitiesFreq(goal.getGoalStartDate(), goal.getGoalTargetDate());
+                    System.out.println(numActivities);
+                    progress = goal.reviewFrequencyGoal(goal, numActivities);
+                    if (numActivities >= goal.getGoalFrequency()) {
+                        removeCurrentGoal(goalName);
+                    }
+                    break;
+                case "Time":
+                    System.out.println(user);
+                    int timeSumActivities = user.getActivitiesTime(goal.getGoalStartDate(), goal.getGoalTargetDate());
+                    System.out.println(timeSumActivities);
+                    progress = goal.reviewTimeGoal(goal, timeSumActivities);
+                    if (timeSumActivities >= goal.getGoalTime()) {
+                        removeCurrentGoal(goalName);
+                    }
+                    break;
             }
         }
         return progress;

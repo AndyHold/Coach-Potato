@@ -133,17 +133,32 @@ public class Goal implements Serializable {
         return progressDescription;
     }
 
-    public void reviewFrequencyGoal(Goal goal, double freq) {
+    public String reviewFrequencyGoal(Goal goal, int freq) {
         System.out.println("Your target for this goal is to have completed " + goal.getGoalFrequency() + " activities by " + goal.getGoalTargetDate());
         //TODO calculate here whether or not the user has completed the goal
         //Determine the number of activities entered from the goal start to present. Then compare this to the target frequency / quantity
+        String progressDescription = "Your target for this goal was to excersize " + goal.getGoalFrequency() + " times by " + goal.getGoalTargetDate();
+        if (freq >= goal.getGoalFrequency()) {
+            progressDescription += "Congratulations you have completed this goal! It has been removed from your current goals.";
+        } else {
+            double difference = goal.getGoalFrequency() - freq;
+            progressDescription += "You need to complete " + difference + " more activities to meet your goal.";
+        }
+        return progressDescription;
     }
 
-    public void reviewTimeGoal(Goal goal, double time) {
+    public String reviewTimeGoal(Goal goal, int time) {
         System.out.println("Your target for this goal is to have completed " + goal.getGoalTime() + " mins of activities by " + goal.getGoalTargetDate());
         //TODO calculate here whether or not the user has completed the goal
         //for-loop over data entries within the goal period (start time - present) and sum up total time across the activities. Then compare this to the target time
-
+        String progressDescription = "Your target for this goal was to excersize for " + goal.getGoalFrequency() + " minutes? by " + goal.getGoalTargetDate();
+        if (time >= goal.getGoalTime()) {
+            progressDescription += "Congratulations you have completed this goal! It has been removed from your current goals.";
+        } else {
+            double difference = goal.getGoalTime() - time;
+            progressDescription += "You need to complete " + difference + " more minutes? of activities to meet your goal.";
+        }
+        return progressDescription;
     }
 
 
