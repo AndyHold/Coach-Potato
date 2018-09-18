@@ -33,6 +33,13 @@ public class UserProfile implements java.io.Serializable {
 
     }
 
+    /**
+     * Constructor method for UserProfile class
+     * @param name: String
+     * @param weight: double
+     * @param birthdate: DateTime
+     * @param gender: String
+     */
     public UserProfile(String name, double weight, double height, DateTime birthdate, String gender) {
         this.name = name;
         this.weight = weight;
