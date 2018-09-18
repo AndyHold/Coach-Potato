@@ -1,12 +1,15 @@
 package seng202.team10.Model.ActivitiesData;
 
 
+import java.io.Serializable;
+
+
 /**
  * ActivityIntensity Enum for Coach Potato
  * SENG202 2018S2
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
-public enum ActivityType {
+public enum ActivityType implements Serializable {
     WALK("Walk"), RUN("Run"), HIKE("Hike"), CYCLE("Cycle"), SWIM("Swim"), WORKOUT("Workout"), OTHER("Other");
 
 
@@ -24,26 +27,27 @@ public enum ActivityType {
 
 
     /**
-     * determines and sets the type of the activity based on the name string.
+     * determines and returns the type of the activity based on the name string.
      * possible types are walk, run, hike, cycle, swim, workout, other
+     * @return ActivityType
      * */
     public static ActivityType determineType(String name)
     {
-        String lowername = name.toLowerCase();
+        String lowerName = name.toLowerCase();
         ActivityType type;
-        if(lowername.contains("walk")){
-            type = ActivityType.WALK;
-        } else if (lowername.contains("run") || lowername.contains("jog")){
-            type = ActivityType.RUN;
-        } else if (lowername.contains("hike") || lowername.contains("hiking")){
+        if (lowerName.contains("hike") || lowerName.contains("hiking")){
             type = ActivityType.HIKE;
-        } else if (lowername.contains("cycle") || lowername.contains("cycling") || lowername.contains("bike") ||
-                lowername.contains("biking")){
-            type = ActivityType.CYCLE;
-        } else if (lowername.contains("swim")){
+        } else if (lowerName.contains("swim")){
             type = ActivityType.SWIM;
-        } else if (lowername.contains("workout") || lowername.contains("work out") || lowername.contains("working out")){
+        } else if (lowerName.contains("run") || lowerName.contains("jog")){
+        type = ActivityType.RUN;
+        } else if (lowerName.contains("cycle") || lowerName.contains("cycling") || lowerName.contains("bike") ||
+                lowerName.contains("biking")){
+            type = ActivityType.CYCLE;
+        } else if (lowerName.contains("workout") || lowerName.contains("work out") || lowerName.contains("working out")){
             type = ActivityType.WORKOUT;
+        } else if (lowerName.contains("walk")){
+            type = ActivityType.WALK;
         } else{
             type = ActivityType.OTHER;
         }
