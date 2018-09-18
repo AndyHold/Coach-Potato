@@ -147,11 +147,18 @@ public class Goal implements Serializable {
         return progressDescription;
     }
 
-    public void reviewTimeGoal(Goal goal, double time) {
+    public String reviewTimeGoal(Goal goal, int time) {
         System.out.println("Your target for this goal is to have completed " + goal.getGoalTime() + " mins of activities by " + goal.getGoalTargetDate());
         //TODO calculate here whether or not the user has completed the goal
         //for-loop over data entries within the goal period (start time - present) and sum up total time across the activities. Then compare this to the target time
-
+        String progressDescription = "Your target for this goal was to excersize for " + goal.getGoalFrequency() + " minutes? by " + goal.getGoalTargetDate();
+        if (time >= goal.getGoalTime()) {
+            progressDescription += "Congratulations you have completed this goal! It has been removed from your current goals.";
+        } else {
+            double difference = goal.getGoalTime() - time;
+            progressDescription += "You need to complete " + difference + " more minutes? of activities to meet your goal.";
+        }
+        return progressDescription;
     }
 
 
