@@ -23,7 +23,7 @@ public class Entry  implements Serializable {
     private String elevationString;
     private double distance = 0;
     private double velocity = 0;
-    //private Activity activity;
+
 
     /**
      * Constructor for the Entry.
@@ -112,6 +112,7 @@ public class Entry  implements Serializable {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     public Entry(boolean firstEntry, DateTime time, double heartRate, Position position) {
 =======
      */
@@ -174,6 +175,10 @@ public class Entry  implements Serializable {
     public Entry(DateTime time, int heartRate, Position position) {
 >>>>>>> 863c0ab... Working on some updates to dataUpload screen, had to change the constructor for the entry Class too.
 >>>>>>> 9df8089c... Working on some updates to dataUpload screen, had to change the constructor for the entry Class too.
+=======
+    public Entry(DateTime time, int heartRate, Position position)
+    {
+>>>>>>> 24c904e8... Refactored Activity Class to delete some redundant code, fixed Activity class created a ActivityTypeTest class and implemented tests for it. Wrote some more tests for DateTime's new change methods, wrote some tests for the Position class.
         this.time = time;
         this.heartRate = heartRate;
         this.position = position;
@@ -297,8 +302,8 @@ public class Entry  implements Serializable {
      */
     private void setStrings()
     {
-        this.dateString = this.time.getDate();
-        this.timeString = this.time.getTime();
+        this.dateString = this.time.getDateAsString();
+        this.timeString = this.time.getTimeAsString();
         this.heartRateString = String.valueOf(this.heartRate);
         this.latitudeString = String.format("%.8f", this.position.getLatitude());
         this.longitudeString = String.format("%.8f", this.position.getLongitude());
@@ -443,71 +448,88 @@ public class Entry  implements Serializable {
      * Getter method to check if it is user's first entry.
      * @return firstEntry: boolean
      */
-    public boolean isFirstEntry() {
+    public boolean isFirstEntry()
+    {
         return firstEntry;
     }
+
 
     /**
      * Setter method to set user's first entry.
      * @param firstEntry: boolean
      */
-    public void setFirstEntry(boolean firstEntry) {
+    public void setFirstEntry(boolean firstEntry)
+    {
         this.firstEntry = firstEntry;
     }
+
 
     /**
      * Getter method to get user's entry time.
      * @return time: double
      */
-    public DateTime getTime() {
+    public DateTime getTime()
+    {
         return time;
     }
+
 
     /**
      * Setter method to set user's entry time.
      * @param time: double
      */
-    public void setTime(DateTime time) {
+    public void setTime(DateTime time)
+    {
         this.time = time;
     }
+
 
     /**
      * Getter method to get user's heart rate.
      * @return heartRate: double
      */
-    public int getHeartRate() {
+    public int getHeartRate()
+    {
         return heartRate;
     }
+
 
     /**
      * Setter method to set user's heart rate.
      * @param heartRate: double
      */
-    public void setHeartRate(int heartRate) {
+    public void setHeartRate(int heartRate)
+    {
         this.heartRate = heartRate;
     }
+
 
     /**
      * Getter method to get user's position.
      * @return position: Position
      */
-    public Position getPosition() {
+    public Position getPosition()
+    {
         return position;
     }
+
 
     /**
      * Setter method to set user's position.
      * @param position: Position
      */
-    public void setPosition(Position position) {
+    public void setPosition(Position position)
+    {
         this.position = position;
     }
+
 
     /**
      * Getter method to get user's distance.
      * @return distance: double
      */
-    public double getDistance() {
+    public double getDistance()
+    {
         return distance;
     }
 
@@ -516,7 +538,8 @@ public class Entry  implements Serializable {
      * Method to calculate user's distance.
      * @param prevEntry: Entry
      */
-    public void calculateDistance(Entry prevEntry) {
+    public void calculateDistance(Entry prevEntry)
+    {
         Position prevPosition = prevEntry.getPosition();
         this.distance = prevPosition.subtract(this.position);
     }
@@ -526,7 +549,8 @@ public class Entry  implements Serializable {
      * Getter method to get user's velocity.
      * @return velocity: double
      */
-    public double getVelocity() {
+    public double getVelocity()
+    {
         return velocity;
     }
 
@@ -535,7 +559,8 @@ public class Entry  implements Serializable {
      * Method to calculate user's velocity.
      * @param prevEntry: Entry
      */
-    public void calculateVelocity(Entry prevEntry) {
+    public void calculateVelocity(Entry prevEntry)
+    {
         double prevDistance = prevEntry.getDistance();
         DateTime prevTime = prevEntry.getTime();
         this.velocity = (this.distance - prevDistance)/((time.subtract(prevTime)));
@@ -543,14 +568,15 @@ public class Entry  implements Serializable {
 
 
     //THE FOLLOWING METHOD WAS AN ATTEMPT TO INTERPOLATE, LEAVING IT HERE JUST IN CASE BUT WILL TRY INTERPOLATION IN DATAANALYSIS
-
+    // TODO how did this end up??? Can we use more two or three entries either side if possible???
 
 //    /**
 //     * Method to find the average of two entries. Assumes that the year and the month are the same.
 //     * @param otherEntry  Is the entry directly after this entry.
 //     * @return An entry that will be slotted between this entry and other entry.
 //     */
-//    public Entry getAverageEntry(Entry otherEntry) {
+//    public Entry getAverageEntry(Entry otherEntry)
+//        {
 //
 //        int timeDifference = otherEntry.getTime().subtract(this.time);
 //        DateTime averageTime = this.time.
@@ -566,19 +592,8 @@ public class Entry  implements Serializable {
 
 
     @Override
-    public String toString(){
+    public String toString()
+    {
         return ("First Entry? : " + this.firstEntry + " , " + position.toString());
     }
-
-
-//    /**
-//     * Getter method to get user's activities.
-//     * @return  activity: Activity
-//     */
-//    // Commented out as we don't need it for now but might need it later.
-//    public Activity getActivity() {
-//        return activity;
-//    }
-
-
 }
