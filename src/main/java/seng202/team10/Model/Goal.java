@@ -133,10 +133,18 @@ public class Goal implements Serializable {
         return progressDescription;
     }
 
-    public void reviewFrequencyGoal(Goal goal, double freq) {
+    public String reviewFrequencyGoal(Goal goal, int freq) {
         System.out.println("Your target for this goal is to have completed " + goal.getGoalFrequency() + " activities by " + goal.getGoalTargetDate());
         //TODO calculate here whether or not the user has completed the goal
         //Determine the number of activities entered from the goal start to present. Then compare this to the target frequency / quantity
+        String progressDescription = "Your target for this goal was to excersize " + goal.getGoalFrequency() + " times by " + goal.getGoalTargetDate();
+        if (freq >= goal.getGoalFrequency()) {
+            progressDescription += "Congratulations you have completed this goal! It has been removed from your current goals.";
+        } else {
+            double difference = goal.getGoalFrequency() - freq;
+            progressDescription += "You need to complete " + difference + " more activities to meet your goal.";
+        }
+        return progressDescription;
     }
 
     public void reviewTimeGoal(Goal goal, double time) {
