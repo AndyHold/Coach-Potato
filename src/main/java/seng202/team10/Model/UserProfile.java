@@ -25,6 +25,7 @@ public class UserProfile implements java.io.Serializable {
 
 
 
+
     private Goals goals = new Goals(this);
 
 
@@ -259,6 +260,20 @@ public class UserProfile implements java.io.Serializable {
         for (Activity activity : activities) {
             if (activity.getStartDateTime().isAfter(startDate) && activity.getEndDateTime().isBefore(endDate)) {
                 sum ++;
+                System.out.println("Added to sum");
+            } else {
+                System.out.println("Not added to sum");
+            }
+        }
+        return sum;
+    }
+
+
+    public int getActivitiesTime(DateTime startDate, DateTime endDate) {
+        int sum = 0;
+        for (Activity activity : activities) {
+            if (activity.getStartDateTime().isAfter(startDate) && activity.getEndDateTime().isBefore(endDate)) {
+                sum += activity.getTotalDuration();
                 System.out.println("Added to sum");
             } else {
                 System.out.println("Not added to sum");
