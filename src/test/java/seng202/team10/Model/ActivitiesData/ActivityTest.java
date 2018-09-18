@@ -26,11 +26,12 @@ public class ActivityTest {
     private DateTime sixthDateTime = new DateTime(2018, 8, 30, 15, 1, 50);
     private Position sixthPosition = new Position(-43.5215921, 172.5814768, 14.000);
     private Entry sixthEntry = new Entry(sixthDateTime, 110, sixthPosition);
-    private Activity activity = new Activity("testActivity");
+    private Activity activity = new Activity("Walk in the park");
 
 
     @Before
-    public void setUp() {
+    public void setUp()
+    {
         firstEntry.setFirstEntry(true);
         secondEntry.setFirstEntry(false);
         thirdEntry.setFirstEntry(false);
@@ -48,7 +49,8 @@ public class ActivityTest {
 
 
     @Test
-    public void addEntry() {
+    public void addEntry()
+    {
         int initialSize = activity.getEntries().size();
         Entry newEntry = new Entry(new DateTime(2000, 1, 1, 0, 0, 0), 120, new Position(0.0, 0.0, 0.0));
         newEntry.setFirstEntry(false);
@@ -58,26 +60,29 @@ public class ActivityTest {
     }
 
 
-//    @Test
-//    public void calculateTotalDistance() {
-//        activity.calculateTotalDistance();
-//        assertEquals(0.0008882871265815719, activity.getTotalDistance(), 1.0E-19);
-//    }
+    @Test
+    public void calculateTotalDistance()
+    {
+        activity.calculateTotalDistance();
+        assertEquals(0.023865612348432826, activity.getTotalDistance(), 1.0E-18);
+    }
 
 
     @Test
-    public void calculateTotalDuration() {
+    public void calculateTotalDuration()
+    {
         activity.calculateTotalDuration();
         assertEquals(50, activity.getTotalDuration());
     }
 
-//    @Test
-//    public void calculateAverageVelocity() {
-//        activity.calculateTotalDistance();
-//        activity.calculateTotalDuration();
-//        activity.calculateAverageVelocity();
-//        assertEquals(0.000017765742531631437, activity.getAverageVelocity(), 1.0E-19);
-//    }
+    @Test
+    public void calculateAverageVelocity()
+    {
+        activity.calculateTotalDistance();
+        activity.calculateTotalDuration();
+        activity.calculateAverageVelocity();
+        assertEquals(4.773122469686565E-4, activity.getAverageVelocity(), 1.0E-19);
+    }
 
     @Test
     public void calculateAverageHeartRate()
@@ -85,20 +90,4 @@ public class ActivityTest {
         activity.calculateAverageHeartRate();
         assertEquals(85.0, activity.getAverageHeartRate(), 1.0E-19);
     }
-
-
-//TODO Modify these tests to correctly test this functionality,
-//    @Test
-//    public void determineType1() {
-//        activity.determineType();
-//        assertEquals("other", activity.getType());
-//    }
-//
-//    @Test
-//    public void determineType2() {
-//        activity.setName("cycling with mates");
-//        activity.determineType();
-//        assertEquals("cycle", activity.getType());
-//    }
-
 }

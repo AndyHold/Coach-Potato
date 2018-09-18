@@ -51,7 +51,7 @@ public class activityViewerController {
         typeSelect.setItems(types);
         typeSelect.setVisibleRowCount(7);
         ObservableList<Activity> activities = FXCollections.observableArrayList(app.getCurrentProfile().getActivities());
-        nameColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("nameString"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("name"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("typeString"));
         starttimeColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("timeString"));
         durationColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("durationString"));
