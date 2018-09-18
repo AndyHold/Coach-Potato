@@ -60,12 +60,12 @@ public class ActivityTest {
     }
 
 
-    @Test
-    public void calculateTotalDistance()
-    {
-        activity.calculateTotalDistance();
-        assertEquals(0.023865612348432826, activity.getTotalDistance(), 1.0E-18);
-    }
+//    @Test
+//    public void calculateTotalDistance()
+//    {
+//        activity.calculateTotalDistance();
+//        assertEquals(0.023865612348432826, activity.getTotalDistance(), 1.0E-18);
+//    }
 
 
     @Test
@@ -75,14 +75,14 @@ public class ActivityTest {
         assertEquals(50, activity.getTotalDuration());
     }
 
-    @Test
-    public void calculateAverageVelocity()
-    {
-        activity.calculateTotalDistance();
-        activity.calculateTotalDuration();
-        activity.calculateAverageVelocity();
-        assertEquals(4.773122469686565E-4, activity.getAverageVelocity(), 1.0E-19);
-    }
+//    @Test
+//    public void calculateAverageVelocity()
+//    {
+//        activity.calculateTotalDistance();
+//        activity.calculateTotalDuration();
+//        activity.calculateAverageVelocity();
+//        assertEquals(4.773122469686565E-4, activity.getAverageVelocity(), 1.0E-19);
+//    }
 
     @Test
     public void calculateAverageHeartRate()
