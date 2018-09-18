@@ -80,6 +80,16 @@ public class Parser {
     }
 
 
+    /**
+     * Parses a DateTime object from a date string and a time string.
+     * Checks that there are the correct amount of values in
+     * each, but does not check that the values are valid.
+     *
+     * @param dateString  A string that describes a date, should be in the format "DD/MM/YYYY"
+     * @param timeString  A string that describes a time, should be in the format "HH:MM:SS"
+     * @return  A new DateTime object initialized with the values gotten from the date and time strings.
+     * @throws IllegalArgumentException  When the date or time string are not in the correct format
+     */
     public DateTime parseDateTimeFromStrings(String dateString, String timeString) throws IllegalArgumentException
     {
         String[] dateArray = dateString.split("/");
@@ -109,7 +119,6 @@ public class Parser {
      */
     public Activity processActivity(ArrayList<ArrayList<String>> formattedFile) throws IllegalArgumentException
     {
-        // Needs reformatting, uncaught errors in parse date time from string
         InputValidator inputValidator = new InputValidator();
         if (!inputValidator.validActivityHeader(formattedFile.get(linePosition))) {
             while (!inputValidator.validActivityHeader(formattedFile.get(linePosition)) && linePosition < formattedFile.size()-1) {
@@ -177,7 +186,6 @@ public class Parser {
         return activity;
     }
 
-
     /**
      * Processes an entry in the file contents, called by the processActivity() function.
      * Sets the time, heart rate and position of the entry, converting to int for time and
@@ -225,6 +233,7 @@ public class Parser {
     }
 
 
+    //POSSIBLY AN UNUSED FUNCTION.
     private int removeDuplicateEntries(Activity activity) {
         int removeCount = 0;
         for (int i = 0; i < activity.getEntries().size(); i++) {

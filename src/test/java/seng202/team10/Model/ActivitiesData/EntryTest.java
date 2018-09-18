@@ -6,6 +6,9 @@ import static org.junit.Assert.*;
 
 public class EntryTest {
 
+
+
+
 //    Position position1 = new Position(0,0,0);
 //    DateTime time1 = new DateTime(2018,1,1, 0,0,0);
 //    Entry entry1 = new Entry(true, time1, 140, position1);
