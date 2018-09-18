@@ -558,13 +558,35 @@ public class UserProfile implements java.io.Serializable {
         this.goals = goals;
     }
 
-    //public double getActivitiesDistance(DateTime startDate, DateTime endDate)
-    public double getActivitiesDistance() {
+    public double getActivitiesDistance(DateTime startDate, DateTime endDate) {
         double sum = 0;
         for (Activity activity : activities) {
-            sum += activity.getTotalDistance();
+            System.out.println((activity.getStartDateTime().isAfter(startDate)));
+            if (activity.getStartDateTime().isAfter(startDate) && activity.getEndDateTime().isBefore(endDate)) {
+                System.out.println(activity.getStartDateTime());
+                System.out.println(startDate);
+                sum += activity.getTotalDistance();
+                System.out.println("Added to sum");
+            } else {
+                System.out.println("Not added to sum");
+            }
         }
         return sum;
     }
+
+    public int getActivitiesFreq(DateTime startDate, DateTime endDate) {
+        int sum = 0;
+        for (Activity activity : activities) {
+            if (activity.getStartDateTime().isAfter(startDate) && activity.getEndDateTime().isBefore(endDate)) {
+                sum ++;
+                System.out.println("Added to sum");
+            } else {
+                System.out.println("Not added to sum");
+            }
+        }
+        return sum;
+    }
+
+
 
 }
