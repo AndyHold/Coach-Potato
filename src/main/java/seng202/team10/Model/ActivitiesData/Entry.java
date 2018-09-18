@@ -201,11 +201,14 @@ public class Entry  implements Serializable {
 =======
     public Entry(DateTime time, int heartRate, Position position)
     {
+<<<<<<< HEAD
 >>>>>>> 24c904e8... Refactored Activity Class to delete some redundant code, fixed Activity class created a ActivityTypeTest class and implemented tests for it. Wrote some more tests for DateTime's new change methods, wrote some tests for the Position class.
 =======
 =======
     public Entry(DateTime time, int heartRate, Position position)
     {
+=======
+>>>>>>> 04fec49c... DateTime now has 100% test coverage, refactored Activity and Entry to make them more readable and got rid of unnecessary String attributes and had them be derived when asked for in the getter method instead. This will make it easier when the values are changed. Implemented the calculateVelocity method in Entry and the calculateEntriesVelocity method in Activity properly so that the data can now be used for graphing.
 <<<<<<< HEAD
 >>>>>>> 173bfae... Refactored Activity Class to delete some redundant code, fixed Activity class created a ActivityTypeTest class and implemented tests for it. Wrote some more tests for DateTime's new change methods, wrote some tests for the Position class.
 >>>>>>> d15fa3f6... Refactored Activity Class to delete some redundant code, fixed Activity class created a ActivityTypeTest class and implemented tests for it. Wrote some more tests for DateTime's new change methods, wrote some tests for the Position class.
@@ -260,14 +263,21 @@ public class Entry  implements Serializable {
 >>>>>>> f5029c7... No changes made
 =======
 >>>>>>> cd4ab4b... Changed latitude and longitude error checking in Position class and removed unnecessary lines from Entry class.
+=======
+        setTime(time);
+        setHeartRate(heartRate);
+        setPosition(position);
+>>>>>>> 4774d9b... DateTime now has 100% test coverage, refactored Activity and Entry to make them more readable and got rid of unnecessary String attributes and had them be derived when asked for in the getter method instead. This will make it easier when the values are changed. Implemented the calculateVelocity method in Entry and the calculateEntriesVelocity method in Activity properly so that the data can now be used for graphing.
     }
 
 
     /**
-     * Setter method for the string representations for the GUI Table View
+     * Setter method to set user's entry time.
+     * @param time: double
      */
-    private void setStrings()
+    public void setTime(DateTime time)
     {
+<<<<<<< HEAD
         this.dateString = this.time.getDate();
         this.timeString = this.time.getTime();
         this.heartRateString = String.valueOf(this.heartRate);
@@ -349,25 +359,52 @@ public class Entry  implements Serializable {
      */
     public void setHeartRate(int newHeartRate) throws IllegalArgumentException
     {
+<<<<<<< HEAD
         if ((0 < heartRate) && (heartRate <= 300)) {
             this.heartRate = newHeartRate;
         } else {
             throw new IllegalArgumentException("Heart Rate Invalid, must be between 1 & 300");
         }
+=======
+        this.dateString = this.time.getDateAsString();
+        this.timeString = this.time.getTimeAsString();
+        this.heartRateString = String.valueOf(this.heartRate);
+        this.latitudeString = String.format("%.8f", this.position.getLatitude());
+        this.longitudeString = String.format("%.8f", this.position.getLongitude());
+        this.elevationString = String.valueOf(this.position.getElevation());
+=======
+        this.time = time;
+>>>>>>> 4774d9b... DateTime now has 100% test coverage, refactored Activity and Entry to make them more readable and got rid of unnecessary String attributes and had them be derived when asked for in the getter method instead. This will make it easier when the values are changed. Implemented the calculateVelocity method in Entry and the calculateEntriesVelocity method in Activity properly so that the data can now be used for graphing.
+>>>>>>> 04fec49c... DateTime now has 100% test coverage, refactored Activity and Entry to make them more readable and got rid of unnecessary String attributes and had them be derived when asked for in the getter method instead. This will make it easier when the values are changed. Implemented the calculateVelocity method in Entry and the calculateEntriesVelocity method in Activity properly so that the data can now be used for graphing.
     }
 
 
     /**
+<<<<<<< HEAD
      * Setter method to set user's position.
      * @param position: Position
      */
     public void setPosition(Position position)
     {
         this.position = position;
+=======
+     * Method to set the current heart rate of the entry
+     * @param newHeartRate int: heart rate int
+     * @throws IllegalArgumentException newHeartRate is not a valid heart rate.
+     */
+    public void setHeartRate(int newHeartRate) throws IllegalArgumentException
+    {
+        if ((0 < heartRate) && (heartRate <= 300)) {
+            this.heartRate = newHeartRate;
+        } else {
+            throw new IllegalArgumentException("Heart Rate Invalid, must be between 1 & 300");
+        }
+>>>>>>> 04fec49c... DateTime now has 100% test coverage, refactored Activity and Entry to make them more readable and got rid of unnecessary String attributes and had them be derived when asked for in the getter method instead. This will make it easier when the values are changed. Implemented the calculateVelocity method in Entry and the calculateEntriesVelocity method in Activity properly so that the data can now be used for graphing.
     }
 
 
     /**
+<<<<<<< HEAD
      * Method to set the current latitude of the entry
      * @param newLatitude double: latitude double
      * @throws IllegalArgumentException newLatitude does not represent a valid latitude
@@ -375,10 +412,19 @@ public class Entry  implements Serializable {
     public void setLatitude(double newLatitude) throws IllegalArgumentException
     {
         this.position.setLatitude(newLatitude);
+=======
+     * Setter method to set user's position.
+     * @param position: Position
+     */
+    public void setPosition(Position position)
+    {
+        this.position = position;
+>>>>>>> 04fec49c... DateTime now has 100% test coverage, refactored Activity and Entry to make them more readable and got rid of unnecessary String attributes and had them be derived when asked for in the getter method instead. This will make it easier when the values are changed. Implemented the calculateVelocity method in Entry and the calculateEntriesVelocity method in Activity properly so that the data can now be used for graphing.
     }
 
 
     /**
+<<<<<<< HEAD
      * Method to change the current longitude of the entry
      * @param newLongitude double: longitude double
      * @throws IllegalArgumentException newLongitude does not represent a valid longitude
@@ -386,10 +432,20 @@ public class Entry  implements Serializable {
     public void setLongitude(double newLongitude) throws IllegalArgumentException
     {
         this.position.setLongitude(newLongitude);
+=======
+     * Method to set the current latitude of the entry
+     * @param newLatitude double: latitude double
+     * @throws IllegalArgumentException newLatitude does not represent a valid latitude
+     */
+    public void setLatitude(double newLatitude) throws IllegalArgumentException
+    {
+        this.position.setLatitude(newLatitude);
+>>>>>>> 04fec49c... DateTime now has 100% test coverage, refactored Activity and Entry to make them more readable and got rid of unnecessary String attributes and had them be derived when asked for in the getter method instead. This will make it easier when the values are changed. Implemented the calculateVelocity method in Entry and the calculateEntriesVelocity method in Activity properly so that the data can now be used for graphing.
     }
 
 
     /**
+<<<<<<< HEAD
      * Method to set the current elevation of the entry (for GUI purposes)
      * @param newElevation double: elevation double
      * @throws NumberFormatException newElevation does not represent a valid elevation
@@ -397,10 +453,20 @@ public class Entry  implements Serializable {
     public void setElevation(double newElevation) throws IllegalArgumentException
     {
         this.position.setElevation(newElevation);
+=======
+     * Method to change the current longitude of the entry
+     * @param newLongitude double: longitude double
+     * @throws IllegalArgumentException newLongitude does not represent a valid longitude
+     */
+    public void setLongitude(double newLongitude) throws IllegalArgumentException
+    {
+        this.position.setLongitude(newLongitude);
+>>>>>>> 04fec49c... DateTime now has 100% test coverage, refactored Activity and Entry to make them more readable and got rid of unnecessary String attributes and had them be derived when asked for in the getter method instead. This will make it easier when the values are changed. Implemented the calculateVelocity method in Entry and the calculateEntriesVelocity method in Activity properly so that the data can now be used for graphing.
     }
 
 
     /**
+<<<<<<< HEAD
      * Setter method to set user's first entry.
      * @param firstEntry: boolean
      */
@@ -410,10 +476,33 @@ public class Entry  implements Serializable {
             this.velocity = 0.0;
         }
         this.firstEntry = firstEntry;
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> b4179b8... Modified table in Data Upload Screen so that it can edit values and input entries. Code is messy but works so will require a refactor
+=======
+>>>>>>> c4550eb... Modified table in Data Upload Screen so that it can edit values and input entries. Code is messy but works so will require a refactor
+=======
+>>>>>>> 5395118... Modified table in Data Upload Screen so that it can edit values and input entries. Code is messy but works so will require a refactor
+     * Method to change the current longitude of the entry (for GUI purposes)
+     * @param newLongitude String: String representation of the heart rate double
+     * @throws NumberFormatException String does not represent a number
+=======
+     * Method to set the current elevation of the entry (for GUI purposes)
+     * @param newElevation double: elevation double
+     * @throws NumberFormatException newElevation does not represent a valid elevation
+>>>>>>> 4774d9b... DateTime now has 100% test coverage, refactored Activity and Entry to make them more readable and got rid of unnecessary String attributes and had them be derived when asked for in the getter method instead. This will make it easier when the values are changed. Implemented the calculateVelocity method in Entry and the calculateEntriesVelocity method in Activity properly so that the data can now be used for graphing.
+     */
+    public void setElevation(double newElevation) throws IllegalArgumentException
+    {
+        this.position.setElevation(newElevation);
+>>>>>>> 04fec49c... DateTime now has 100% test coverage, refactored Activity and Entry to make them more readable and got rid of unnecessary String attributes and had them be derived when asked for in the getter method instead. This will make it easier when the values are changed. Implemented the calculateVelocity method in Entry and the calculateEntriesVelocity method in Activity properly so that the data can now be used for graphing.
     }
 
 
     /**
+<<<<<<< HEAD
      * Method to calculate user's distance.
      * @param prevEntry: Entry
      */
@@ -421,10 +510,22 @@ public class Entry  implements Serializable {
     {
         Position prevPosition = prevEntry.getPosition();
         this.distance = prevPosition.subtract(this.position);
+=======
+     * Setter method to set user's first entry.
+     * @param firstEntry: boolean
+     */
+    public void setFirstEntry(boolean firstEntry)
+    {
+        if (firstEntry) {
+            this.velocity = 0.0;
+        }
+        this.firstEntry = firstEntry;
+>>>>>>> 04fec49c... DateTime now has 100% test coverage, refactored Activity and Entry to make them more readable and got rid of unnecessary String attributes and had them be derived when asked for in the getter method instead. This will make it easier when the values are changed. Implemented the calculateVelocity method in Entry and the calculateEntriesVelocity method in Activity properly so that the data can now be used for graphing.
     }
 
 
     /**
+<<<<<<< HEAD
      * Method to calculate user's velocity.
      * @param prevEntry: Entry
      */
@@ -433,10 +534,20 @@ public class Entry  implements Serializable {
         double prevDistance = prevEntry.getDistance();
         DateTime prevTime = prevEntry.getTime();
         this.velocity = (this.distance - prevDistance)/((time.subtract(prevTime)));
+=======
+     * Method to calculate user's distance.
+     * @param prevEntry: Entry
+     */
+    public void calculateDistance(Entry prevEntry)
+    {
+        Position prevPosition = prevEntry.getPosition();
+        this.distance = prevPosition.subtract(this.position);
+>>>>>>> 04fec49c... DateTime now has 100% test coverage, refactored Activity and Entry to make them more readable and got rid of unnecessary String attributes and had them be derived when asked for in the getter method instead. This will make it easier when the values are changed. Implemented the calculateVelocity method in Entry and the calculateEntriesVelocity method in Activity properly so that the data can now be used for graphing.
     }
 
 
     /**
+<<<<<<< HEAD
      * Method to change the current date of the entry (for GUI purposes)
      * @param newDate String: String representation of a Date
      * @throws IllegalArgumentException if illegal arguments encountered
@@ -448,10 +559,56 @@ public class Entry  implements Serializable {
         int month = Integer.valueOf(dateArray[1]);
         int year = Integer.valueOf(dateArray[2]);
         this.time.changeDate(year, month, day);
+=======
+     * Method to calculate user's velocity.
+     * @param prevEntry: Entry
+     */
+    public void calculateVelocity(Entry prevEntry)
+    {
+        double prevDistance = prevEntry.getDistance();
+        DateTime prevTime = prevEntry.getTime();
+        this.velocity = (this.distance - prevDistance)/((time.subtract(prevTime)));
+>>>>>>> 04fec49c... DateTime now has 100% test coverage, refactored Activity and Entry to make them more readable and got rid of unnecessary String attributes and had them be derived when asked for in the getter method instead. This will make it easier when the values are changed. Implemented the calculateVelocity method in Entry and the calculateEntriesVelocity method in Activity properly so that the data can now be used for graphing.
     }
 
 
     /**
+     * Method to change the current date of the entry (for GUI purposes)
+<<<<<<< HEAD
+     * @param newDate String: String representation of a Time
+     * @throws IllegalArgumentException if illegal arguments encountered
+     */
+    public void changeTime(String newDate) throws IllegalArgumentException
+    {
+        String[] timeArray = newDate.split(":");
+        int hour = Integer.valueOf(timeArray[0]);
+        int minute = Integer.valueOf(timeArray[1]);
+        int second = Integer.valueOf(timeArray[2]);
+        this.time.changeTime(hour, minute, second);
+=======
+     * @param newDate String: String representation of a Date
+     * @throws IllegalArgumentException if illegal arguments encountered
+     */
+    public void changeDate(String newDate) throws IllegalArgumentException
+    {
+        String[] dateArray = newDate.split("/");
+        int day = Integer.valueOf(dateArray[0]);
+        int month = Integer.valueOf(dateArray[1]);
+        int year = Integer.valueOf(dateArray[2]);
+        this.time.changeDate(year, month, day);
+>>>>>>> 04fec49c... DateTime now has 100% test coverage, refactored Activity and Entry to make them more readable and got rid of unnecessary String attributes and had them be derived when asked for in the getter method instead. This will make it easier when the values are changed. Implemented the calculateVelocity method in Entry and the calculateEntriesVelocity method in Activity properly so that the data can now be used for graphing.
+    }
+
+
+    /**
+<<<<<<< HEAD
+     * Getter method to get user's entry time.
+     * @return time: double
+     */
+    public DateTime getTime()
+    {
+        return time;
+=======
      * Method to change the current date of the entry (for GUI purposes)
      * @param newDate String: String representation of a Time
      * @throws IllegalArgumentException if illegal arguments encountered
@@ -463,26 +620,45 @@ public class Entry  implements Serializable {
         int minute = Integer.valueOf(timeArray[1]);
         int second = Integer.valueOf(timeArray[2]);
         this.time.changeTime(hour, minute, second);
+>>>>>>> 04fec49c... DateTime now has 100% test coverage, refactored Activity and Entry to make them more readable and got rid of unnecessary String attributes and had them be derived when asked for in the getter method instead. This will make it easier when the values are changed. Implemented the calculateVelocity method in Entry and the calculateEntriesVelocity method in Activity properly so that the data can now be used for graphing.
     }
 
 
     /**
-     * Getter method to get user's entry time.
-     * @return time: double
-     */
-    public DateTime getTime()
-    {
-        return time;
-    }
-
-
-    /**
+<<<<<<< HEAD
      * Getter method to get user's heart rate.
      * @return heartRate: double
      */
     public int getHeartRate()
     {
         return heartRate;
+=======
+     * Getter method to get user's entry time.
+     * @return time: double
+     */
+    public DateTime getTime()
+    {
+        return time;
+>>>>>>> 04fec49c... DateTime now has 100% test coverage, refactored Activity and Entry to make them more readable and got rid of unnecessary String attributes and had them be derived when asked for in the getter method instead. This will make it easier when the values are changed. Implemented the calculateVelocity method in Entry and the calculateEntriesVelocity method in Activity properly so that the data can now be used for graphing.
+    }
+
+
+    /**
+<<<<<<< HEAD
+     * Getter method to get user's position.
+     * @return position: Position
+     */
+    public Position getPosition()
+    {
+        return position;
+=======
+     * Getter method to get user's heart rate.
+     * @return heartRate: double
+     */
+    public int getHeartRate()
+    {
+        return heartRate;
+>>>>>>> 04fec49c... DateTime now has 100% test coverage, refactored Activity and Entry to make them more readable and got rid of unnecessary String attributes and had them be derived when asked for in the getter method instead. This will make it easier when the values are changed. Implemented the calculateVelocity method in Entry and the calculateEntriesVelocity method in Activity properly so that the data can now be used for graphing.
     }
 
 
@@ -497,6 +673,8 @@ public class Entry  implements Serializable {
 
 
     /**
+<<<<<<< HEAD
+=======
      * Getter method to check if it is user's first entry.
      * @return firstEntry: boolean
      */
@@ -507,6 +685,7 @@ public class Entry  implements Serializable {
 
 
     /**
+>>>>>>> 04fec49c... DateTime now has 100% test coverage, refactored Activity and Entry to make them more readable and got rid of unnecessary String attributes and had them be derived when asked for in the getter method instead. This will make it easier when the values are changed. Implemented the calculateVelocity method in Entry and the calculateEntriesVelocity method in Activity properly so that the data can now be used for graphing.
      * Getter method for the String representation of the date
      */
     public String getDateString()
@@ -582,6 +761,70 @@ public class Entry  implements Serializable {
     }
 
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    /**
+     * Method to calculate user's velocity.
+     * @param prevEntry: Entry
+     */
+    public void calculateVelocity(Entry prevEntry)
+    {
+        double prevDistance = prevEntry.getDistance();
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+        DateTime prevTime = prevEntry.getTime();
+        this.velocity = (this.distance - prevDistance)/((time.getMinute()-prevTime.getMinute())*60);
+=======
+        double prevTime = prevEntry.getTime();
+        this.velocity = (this.distance - prevDistance)/(this.time-prevTime);
+>>>>>>> e576ec5... No changes made
+=======
+        DateTime prevTime = prevEntry.getTime();
+        this.velocity = (this.distance - prevDistance)/((time.getMinute()-prevTime.getMinute())*60);
+>>>>>>> 79c9f1d... No changes made
+=======
+        double prevTime = prevEntry.getTime();
+        this.velocity = (this.distance - prevDistance)/(this.time-prevTime);
+>>>>>>> 5a3c8cd... No changes made
+=======
+        DateTime prevTime = prevEntry.getTime();
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+        this.velocity = (this.distance - prevDistance)/((time.getMinute()-prevTime.getMinute())*60);
+>>>>>>> 7de2265... No changes made
+=======
+        double prevTime = prevEntry.getTime();
+        this.velocity = (this.distance - prevDistance)/(this.time-prevTime);
+>>>>>>> 3c6c4ff... No changes made
+=======
+        DateTime prevTime = prevEntry.getTime();
+        this.velocity = (this.distance - prevDistance)/((time.getMinute()-prevTime.getMinute())*60);
+>>>>>>> f5029c7... No changes made
+=======
+        this.velocity = (this.distance - prevDistance)/((time.subtract(prevTime)));
+>>>>>>> 7a666de... Modified Entry class and tests for it as datetime class was updated.
+=======
+        this.velocity = (this.distance - prevDistance)/((time.subtract(prevTime)));
+>>>>>>> 4de7043... Modified Entry class and tests for it as datetime class was updated.
+=======
+        this.velocity = (this.distance - prevDistance)/((time.subtract(prevTime)));
+>>>>>>> 8522a53... Modified Entry class and tests for it as datetime class was updated.
+=======
+        this.velocity = (this.distance - prevDistance)/((time.subtract(prevTime)));
+>>>>>>> beae2e7... Modified Entry class and tests for it as datetime class was updated.
+    }
+
+
+=======
+>>>>>>> 4774d9b... DateTime now has 100% test coverage, refactored Activity and Entry to make them more readable and got rid of unnecessary String attributes and had them be derived when asked for in the getter method instead. This will make it easier when the values are changed. Implemented the calculateVelocity method in Entry and the calculateEntriesVelocity method in Activity properly so that the data can now be used for graphing.
+>>>>>>> 04fec49c... DateTime now has 100% test coverage, refactored Activity and Entry to make them more readable and got rid of unnecessary String attributes and had them be derived when asked for in the getter method instead. This will make it easier when the values are changed. Implemented the calculateVelocity method in Entry and the calculateEntriesVelocity method in Activity properly so that the data can now be used for graphing.
     //THE FOLLOWING METHOD WAS AN ATTEMPT TO INTERPOLATE, LEAVING IT HERE JUST IN CASE BUT WILL TRY INTERPOLATION IN DATAANALYSIS
     // TODO how did this end up??? Can we use more two or three entries either side if possible???
 
