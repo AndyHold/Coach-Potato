@@ -5,11 +5,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Control.InputValidator;
+import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
+import seng202.team10.Model.ActivitiesData.Entry;
+import seng202.team10.Model.Goal;
 import seng202.team10.Model.Goals;
 
 <<<<<<< HEAD
@@ -66,6 +71,19 @@ public class GoalController implements Controllable{
 
 
 
+    @FXML private TableView<Goal> entriesTableView;
+    @FXML private TableColumn<Goal, String> nameColumn;
+    @FXML private TableColumn<Goal, String> typeColumn;
+    @FXML private TableColumn<Goal, String> targetColumn;
+    @FXML private TableColumn<Goal, String> startDateColumn;
+    @FXML private TableColumn<Goal, String> endDateColumn;
+
+
+    @FXML
+    private ObservableList<String> entries;
+
+
+
     public void setApp(GUIController app){
         this.app = app;
     }
@@ -73,7 +91,23 @@ public class GoalController implements Controllable{
 
     public void setUpScene() {
 
+//        entries = FXCollections.observableArrayList(app.getCurrentProfile().getGoals().getFutureGoals());
+//        nameColumn.setCellValueFactory(new PropertyValueFactory<Goal, String>("name"));
+//        typeColumn.setCellValueFactory(new PropertyValueFactory<Goal, String>("type"));
+//        targetColumn.setCellValueFactory(new PropertyValueFactory<Goal, String>("target"));
+//        startDateColumn.setCellValueFactory(new PropertyValueFactory<Goal, String>("startDate"));
+//        endDateColumn.setCellValueFactory(new PropertyValueFactory<Goal, String>("endDate"));
     }
+
+    private void populateTable(ObservableList<Goal> entries) {
+        entriesTableView.setItems(entries);
+        nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        typeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        targetColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        startDateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        endDateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+    }
+
 
     public void updateGoals() {
         Goals goalsInstance = app.getCurrentProfile().getGoals();
@@ -82,6 +116,7 @@ public class GoalController implements Controllable{
             ObservableList<String> currentGoals = FXCollections.observableArrayList(goalsInstance.getCurrentGoalNames());
             currentGoalsCombo.setItems(currentGoals);
             currentGoalsCombo.setVisibleRowCount(5);
+
         }
 
 
@@ -89,6 +124,8 @@ public class GoalController implements Controllable{
         goalTypeCombo.setItems(goalTypes);
         goalTypeCombo.setVisibleRowCount(5);
     }
+
+
 
     @FXML
     public void createGoal() throws Exception {
