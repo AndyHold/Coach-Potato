@@ -160,6 +160,7 @@ public class Activity implements Serializable {
         calculateAverageVelocity();
         this.type = ActivityType.determineType(this.name);
         setEndDateTime();
+        calculateEntriesVelocity();
     }
 
 
@@ -190,6 +191,19 @@ public class Activity implements Serializable {
     public DateTime getEndDateTime()
     {
         return this.endDateTime;
+    }
+
+
+    /**
+     * Setter method for the velocity at each Entry in the Activity
+     * TODO test this method.
+     */
+    public void calculateEntriesVelocity()
+    {
+        entries.get(0).setFirstEntry(true);
+        for (int i = 1; i < entries.size(); i++) {
+                entries.get(i).calculateVelocity(entries.get(i - 1));
+        }
     }
 
 
