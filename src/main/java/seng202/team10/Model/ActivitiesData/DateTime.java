@@ -281,27 +281,6 @@ public class DateTime implements Serializable {
 
 
     /**
-     * Method to compare two DateTime objects, returns true if the called DateTime is before the parameter
-     * @param otherDateTime DateTime: DateTime to be compared
-     * @return boolean
-     */
-    public boolean isBefore(DateTime otherDateTime)
-    {
-        if (this.year < otherDateTime.getYear()) {
-            return true;
-        } else if (this.year == otherDateTime.getYear() && (this.month < otherDateTime.getMonth())) {
-            return true;
-        } else if ((this.month == otherDateTime.getMonth()) && (this.day < otherDateTime.getDay())) {
-            return true;
-        } else if ((this.day == otherDateTime.getDay()) && (this.hour < otherDateTime.getHour())) {
-            return true;
-        } else if ((this.hour == otherDateTime.getHour()) && (this.minute < otherDateTime.getMinute())) {
-            return true;
-        } else return (this.minute == otherDateTime.getMinute()) && (this.second < otherDateTime.getSecond());
-    }
-
-
-    /**
      * Method to compare two DateTime objects, returns true if the called DateTime is after the parameter
      * @param otherDateTime DateTime: DateTime to be compared
      * @return boolean
@@ -310,15 +289,42 @@ public class DateTime implements Serializable {
     {
         if (this.year > otherDateTime.getYear()) {
             return true;
-        } else if (this.year == otherDateTime.getYear() && (this.month > otherDateTime.getMonth())) {
+        } else if (this.year < otherDateTime.getYear()) {
+            return false;
+        } else if (this.month > otherDateTime.getMonth()) {
             return true;
-        } else if ((this.month == otherDateTime.getMonth()) && (this.day > otherDateTime.getDay())) {
+        } else if (this.month < otherDateTime.getMonth()) {
+            return false;
+        } else if (this.day > otherDateTime.getDay()) {
             return true;
-        } else if ((this.day == otherDateTime.getDay()) && (this.hour > otherDateTime.getHour())) {
+        } else if (this.day < otherDateTime.getDay()) {
+            return false;
+        } else if (this.hour > otherDateTime.getHour()) {
             return true;
-        } else if ((this.hour == otherDateTime.getHour()) && (this.minute > otherDateTime.getMinute())) {
+        } else if (this.hour < otherDateTime.getHour()) {
+            return false;
+        } else if (this.minute > otherDateTime.getMinute()) {
             return true;
-        } else return (this.minute == otherDateTime.getMinute()) && (this.second > otherDateTime.getSecond());
+        } else if (this.minute < otherDateTime.getMinute()) {
+            return false;
+        } else if (this.second > otherDateTime.getSecond()) {
+            return true;
+        } else if (this.second < otherDateTime.getSecond()) {
+            return false;
+        } else {
+            return false;
+        }
+    }
+
+
+    /**
+     * Method to compare two DateTime objects, returns true if the called DateTime is before the parameter
+     * @param otherDateTime DateTime: DateTime to be compared
+     * @return boolean
+     */
+    public boolean isBefore(DateTime otherDateTime)
+    {
+        return !(this.isAfter(otherDateTime) || this.isEqual(otherDateTime));
     }
 
 
