@@ -11,9 +11,11 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.Activity;
+import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.ActivitiesData.Entry;
 import seng202.team10.Model.UserProfile;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class activityViewerController {
@@ -41,15 +43,16 @@ public class activityViewerController {
      */
     public void setUpScene() {
         ObservableList<String> types = FXCollections.observableArrayList();
-        types.add("walk");
-        types.add("run");
-        types.add("hike");
-        types.add("cycle");
-        types.add("swim");
-        types.add("workout");
-        types.add("other");
+        types.add("All");
+        types.add("Walk");
+        types.add("Run");
+        types.add("Hike");
+        types.add("Cycle");
+        types.add("Swim");
+        types.add("Workout");
+        types.add("Other");
         typeSelect.setItems(types);
-        typeSelect.setVisibleRowCount(7);
+        typeSelect.setVisibleRowCount(8);
         ObservableList<Activity> activities = FXCollections.observableArrayList(app.getCurrentProfile().getActivities());
         nameColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("name"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("typeString"));
@@ -80,23 +83,44 @@ public class activityViewerController {
     }
 
     /**
-     * updates table with entries between the two datepickers when the filterApplyButton is pressed
+     * Method to update table with activities between the two datepickers and of matching type when the filterApplyButton is pressed
      */
     @FXML public void applyFilter(){
-        // TODO get startdate and enddate from datepickers
-        // TODO add a dropdown for a specific type of activity
-        // TODO create new activitylist from activities in profile that match filters
-        // TODO pass new activities into populate table
-
+        ArrayList<Activity> dateFiltered = new ArrayList<>();
+        LocalDate lowerDate = startDate.getValue();
+        LocalDate upperDate = endDate.getValue();
+        String typeSelected = (String) typeSelect.getValue();
+        if (lowerDate != null && upperDate != null) {
+            DateTime lowerDateTime = new DateTime(lowerDate.getYear(), lowerDate.getMonthValue(), lowerDate.getDayOfMonth(), 0, 0, 1);
+            DateTime upperDateTime = new DateTime(upperDate.getYear(), upperDate.getMonthValue(), upperDate.getDayOfMonth(), 23, 59, 59);
+            for (Activity eachActivity : app.getCurrentProfile().getActivities()) {
+                if (lowerDateTime.isBefore(eachActivity.getStartDateTime()) && upperDateTime.isAfter(eachActivity.getStartDateTime())) {
+                    dateFiltered.add(eachActivity);
+                }
+            }
+        } else {
+            dateFiltered = app.getCurrentProfile().getActivities();
+        }
+        ArrayList<Activity> typeFiltered = new ArrayList<>();
+        for (Activity eachActivity : dateFiltered) {
+            if (typeSelected == null || typeSelected == "All" || typeSelected == eachActivity.getTypeString()) {
+                typeFiltered.add(eachActivity);
+            }
+        }
+        ObservableList<Activity> newActivities = FXCollections.observableArrayList(typeFiltered);
+        populateTable(newActivities);
     }
 
+
+    //TODO add a button to clear filters
 
     /**
      * opens the entryViewer screen with the selected activity when the entryViewerButton is pressed
      */
     @FXML public void openEntries() throws Exception{
         if(activitiesTableView.getSelectionModel().getSelectedItem() != null) {
-            app.launchEntryViewerScene(app.getCurrentProfile().getActivities().get(activitiesTableView.getSelectionModel().getSelectedIndex()));
+            app.launchEntryViewerScene(activitiesTableView.getSelectionModel().getSelectedItem());
+//            app.launchEntryViewerScene(app.getCurrentProfile().getActivities().get(activitiesTableView.getSelectionModel().getSelectedIndex())); //wont work with filtered table, change back
         } else {
             createPopUp(Alert.AlertType.ERROR, "Error", "Please select an Activity first");
         }
