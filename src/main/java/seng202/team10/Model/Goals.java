@@ -4,16 +4,18 @@ package seng202.team10.Model;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
+
 
 /**
  * Goals Class for Coach Potato
  * SENG202 2018S2
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
-public class Goals implements java.io.Serializable{
+public class Goals implements Serializable {
 
     private UserProfile user;
     private ArrayList<Goal> currentGoals = new ArrayList<Goal>();;
@@ -27,11 +29,28 @@ public class Goals implements java.io.Serializable{
     //private ArrayList<Goal> availableGoals = new ArrayList<Goal>();
     //ArrayList<String> availableGoalNames = new ArrayList<String>();
 
+    /**
+     * Constructor method for Goals Class
+     * @param user: UserProfile
+     */
     public Goals(UserProfile user) {
         this.user = user;
     }
 
-
+    /**
+     * Method to create a goal for a user to work towards.
+     * @param name: String
+     * @param startDate: DateTime
+     * @param targetDate: DateTime
+     * @param type: String
+     * @param achieved: Boolean
+     * @param frequency: int
+     * @param time: double
+     * @param weight: double
+     * @param distance: double
+     * @param bmi: double
+     * @return Goal
+     */
     public Goal createGoal(String name, DateTime startDate, DateTime targetDate, String type, Boolean achieved, int frequency, double time, double weight, double distance, double bmi) {
         LocalDateTime now = LocalDateTime.now();
         int year = now.getYear();
@@ -109,6 +128,11 @@ public class Goals implements java.io.Serializable{
 //        }
 //
 //    }
+
+    /**
+     * Method to remove a current goal from the currentGoals and currentGoalNames array lists
+     * @param goalName: String
+     */
     public void removeCurrentGoal(String goalName) {
         if (currentGoalNames.contains(goalName)) {
             currentGoalNames.remove(goalName);
@@ -146,7 +170,11 @@ public class Goals implements java.io.Serializable{
 //        }
 //    }
 
-
+    /**
+     * Method to check a goal, i.e. review the progress the user is making towards meeting a particular goal
+     * @param goalName: String
+     * @return String: a textual description of the user progress towards meeting the goal
+     */
     public String checkGoal(String goalName) {
         Goal goal = getGoalObject(goalName);
         String progress = "";
@@ -200,14 +228,26 @@ public class Goals implements java.io.Serializable{
         return progress;
     }
 
+    /**
+     * Getter method for the currentGoalNames of the user
+     * @return ArrayList<String>
+     */
     public ArrayList<String> getCurrentGoalNames() {
         return currentGoalNames;
     }
 
+    /**
+     * Getter method for the achieved goals of the user
+     * @return ArrayList<Goal>
+     */
     public ArrayList<Goal> getAchievedGoals() {
         return achievedGoals;
     }
 
+    /**
+     * Getter method for the current goals of the user
+     * @return ArrayList<Goal>
+     */
     public ArrayList<Goal> getCurrentGoals() {
         return currentGoals;
     }
@@ -216,23 +256,42 @@ public class Goals implements java.io.Serializable{
 //        return availableGoals;
 //    }
 
+    /**
+     * Getter method for the failed goals of the user
+     * @return ArrayList<Goal>
+     */
     public ArrayList<Goal> getFailedGoals() {
         return failedGoals;
     }
 
+    /**
+     * Getter method for the created goals of the user (current, past and future)
+     * @return ArrayList<Goal>
+     */
     public ArrayList<Goal> getCreatedGoals() {
         return createdGoals;
     }
 
+    /**
+     * Getter method for the created goal names of the user
+     * @return ArrayList<String>
+     */
     public ArrayList<String> getCreatedGoalNames() {
         return createdGoalNames;
     }
 
+    /**
+     * Getter method for the future goals of the user
+     * @return ArrayList<Goal>
+     */
     public ArrayList<String> getFutureGoals() {
         return futureGoals;
     }
 
-
+    /**
+     * Getter method for the goal instance of the user
+     * @return Goal
+     */
     public Goal getGoalObject(String goalName) {
         for (Goal goal : currentGoals) {
             if (goal.getGoalName() == goalName) {
