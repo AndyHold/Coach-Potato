@@ -10,6 +10,7 @@ import seng202.team10.GUI.*;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.ActivitiesData.Route;
+import seng202.team10.Model.FileOperations.FileReader;
 import seng202.team10.Model.FileOperations.FileWriter;
 import seng202.team10.Model.FileOperations.Parser;
 import seng202.team10.Model.Goals;
@@ -71,13 +72,15 @@ public class GUIController extends Application{
     private UserProfile currentUser;
     private Parser parser = new Parser();
     private FileWriter dataWriter = new FileWriter();
+    private FileReader dataReader = new FileReader();
 
-    private Goals goals = new Goals(currentUser);
+    //private Goals goals = new Goals(currentUser);
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         // Added a test user.
-        users.add(new UserProfile("Potato", 75, 180, new DateTime(2000,1,1,1,1,1), "Male"));
+//        users.add(new UserProfile("Potato", 75, 180, new DateTime(2000,1,1,1,1,1), "Male"));
+        loadAllUsers();
         loadAllScenes();
         primaryStage.setTitle("Coach Potato");
         if (users.isEmpty()) {
@@ -92,6 +95,16 @@ public class GUIController extends Application{
 
     }
 
+    /**
+     * loads all the users in the profiles folder and adds them to the users arraylist
+     */
+    private void loadAllUsers() {
+        ArrayList<String> userNames = dataReader.getExistingUsers();
+        for(String username: userNames){
+            users.add(dataReader.loadExistingProfile(username));
+        }
+    }
+
 
     /**
      * Getter method for the Parser
@@ -100,6 +113,16 @@ public class GUIController extends Application{
     public Parser getParser()
     {
         return this.parser;
+    }
+
+
+    /**
+     * Getter method for data writer
+     * @return FileWriter
+     */
+    public FileWriter getDataWriter()
+    {
+        return this.dataWriter;
     }
 
 
@@ -137,6 +160,7 @@ public class GUIController extends Application{
     public void launchProfileScene() {
 //        profileController.setUpScene();
         profileController.setUserDetails();
+        dataWriter.saveProfile(currentUser);
         primaryStage.setScene(profileScene);
 
     }
@@ -151,6 +175,8 @@ public class GUIController extends Application{
 
     public void launchGoalsScene() {
         //goalsController.setUpScene();
+        dataWriter.saveProfile(currentUser);
+        goalsController.updateGoals();
         primaryStage.setScene(goalsScene);
     }
 
@@ -159,6 +185,7 @@ public class GUIController extends Application{
      */
     public void launchUploadDataScene() {
         uploadDataController.setUpScene();
+        dataWriter.saveProfile(currentUser);
         primaryStage.setScene(uploadDataScene);
     }
 
@@ -175,6 +202,7 @@ public class GUIController extends Application{
     public void launchDataAnalysisScene() throws Exception {
 //        dataAnalysisController.setActivity(currentUser.getActivities().get(0));
         dataAnalysisController.setUpScene();
+        dataWriter.saveProfile(currentUser);
         primaryStage.setScene(dataAnalysisScene);
     }
 
@@ -183,6 +211,7 @@ public class GUIController extends Application{
      */
     public void launchEntryViewerScene(Activity activity) throws Exception {
         entryViewerController.setUpScene(activity);
+        dataWriter.saveProfile(currentUser);
         primaryStage.setScene(entryViewerScene);
     }
 
@@ -191,6 +220,7 @@ public class GUIController extends Application{
      */
     public void launchActivityViewerScene() throws Exception {
         activityViewerController.setUpScene();
+        dataWriter.saveProfile(currentUser);
         primaryStage.setScene(activityViewerScene);
     }
 
@@ -329,9 +359,7 @@ public class GUIController extends Application{
         this.users = users;
     }
 
-    public Goals getGoalsInstance() {
-        return goals;
-    }
+
 
 
     public static void main(String[] args) {

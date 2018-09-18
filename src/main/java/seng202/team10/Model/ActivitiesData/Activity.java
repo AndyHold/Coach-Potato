@@ -20,38 +20,18 @@ public class Activity implements Serializable {
     private Double totalDistance = 0.0;
     private ArrayList<Entry> entries = new ArrayList<>();
     private int totalDuration = 0;
-    // private ActivityIntensity intensity;
-    private String type;
+    private ActivityType type;
     private DateTime endDateTime;
-    private String nameString;
-    private String timeString;
-    private String durationString;
-    private String speedString;
-    private String distanceString;
-    private String heartString;
-    private String entrynoString;
 
 
     /**
      * Constructor method for Activity Class
      * @param newName String: Name of the activity
-     * @param newStartDateTime DateTime: Start time and date of the activity
      */
-    public Activity(String newName, DateTime newStartDateTime)
+    public Activity(String newName)
     {
         this.setName(newName);
-        this.setStartDateTime(newStartDateTime);
-        // this.intensity = newIntensity;
-    }
-
-    public void setStrings() {
-        this.nameString = this.name;
-        this.timeString = this.startDateTime.toString();
-        this.durationString = String.valueOf(this.totalDuration);
-        this.speedString = String.format("%.2f", this.averageVelocity);
-        this.distanceString = String.format("%.2f", this.totalDistance);
-        this.heartString = String.format("%.2f", this.averageHeartRate);
-        this.entrynoString = String.valueOf(this.entries.size());
+        this.type = ActivityType.determineType(this.name);
     }
 
 
@@ -71,11 +51,10 @@ public class Activity implements Serializable {
 
     /**
      * Setter method for the date and time the activity was started on
-     * @param newDateTime DateTime: Start date and time for this activity
      */
-    public void setStartDateTime(DateTime newDateTime)
+    public void setStartDateTime()
     {
-            this.startDateTime = newDateTime;
+            this.startDateTime = entries.get(0).getTime();
     }
 
 
@@ -90,49 +69,22 @@ public class Activity implements Serializable {
 
     /**
      * Setter method for the type of the activity
-     * @param newtype String: the type of activity
+     * @param newType String: the type of activity
      */
-    public void setType(String newtype)
+    public void setType(ActivityType newType)
     {
-        this.type = newtype;
+        this.type = newType;
     }
 
 
     /**
-     * getter method for the type of the activity
-     * @return String of the type of the activity
+     * Setter method for a list of activities
+     * @param newEntries ArrayList<Entry>
+     *                   TODO speak to Cam about this, is this really the best way to do this? - Andy
      */
-    public String getType()
+    public void setEntries(ArrayList<Entry> newEntries)
     {
-        return this.type;
-    }
-
-
-    /**
-     * determines and sets the type of the activity based on the name string.
-     * possible types are walk, run, hike, cycle, swim, workout, other
-     * */
-    public void determineType()
-    {
-        //TODO switch this over to using Enum
-        String lowername = this.name.toLowerCase();
-        if(lowername.contains("walk")){
-            this.type = "walk";
-        } else if (lowername.contains("run") || lowername.contains("jog")){
-            this.type = "run";
-        } else if (lowername.contains("hike") || lowername.contains("hiking")){
-            this.type = "hike";
-        } else if (lowername.contains("cycle") || lowername.contains("cycling") || lowername.contains("bike") ||
-                lowername.contains("biking")){
-            this.type = "cycle";
-        } else if (lowername.contains("swim")){
-            this.type = "swim";
-        } else if (lowername.contains("workout") || lowername.contains("work out") || lowername.contains("working out")
-                || lowername.contains("exercise") || lowername.contains("exercising")){
-            this.type = "workout";
-        } else{
-            this.type = "other";
-        }
+        this.entries = newEntries;
     }
 
 
@@ -190,13 +142,20 @@ public class Activity implements Serializable {
     }
 
 
-//    /**
-//     * Setter method for the intensity of the activity
-//     * @param newIntensity: ActivityIntensity
-//     */
-//    public void setIntensity(ActivityIntensity newIntensity) {
-//        this.intensity = newIntensity;
-//    }
+    /**
+     * Setter method for after Entries have been loaded to the Activity
+     * TODO add this method whenever Activities are modified.
+     */
+    public void postEntriesSetUp()
+    {
+        setStartDateTime();
+        calculateTotalDistance();
+        calculateTotalDuration();
+        calculateAverageHeartRate();
+        calculateAverageVelocity();
+        this.type = ActivityType.determineType(this.name);
+        setEndDateTime();
+    }
 
 
     /**
@@ -219,6 +178,10 @@ public class Activity implements Serializable {
     }
 
 
+    /**
+     * Getter method for the end DateTime
+     * @return DateTime
+     */
     public DateTime getEndDateTime()
     {
         return this.endDateTime;
@@ -274,79 +237,83 @@ public class Activity implements Serializable {
         return this.entries;
     }
 
-    @Override
-    public String toString()
+
+    /**
+     * getter method for the type of the activity
+     * @return String of the type of the activity
+     */
+    public ActivityType getType()
     {
-        return "Name= '" + name + '\'' +
-                ", startDateTime=" + startDateTime +
-                ", averageVelocity=" + averageVelocity +
-                ", averageHeartRate=" + averageHeartRate +
-                ", totalDistance=" + totalDistance +
-                ", totalDuration=" + totalDuration;
-    }
-
-    public String getNameString() {
-        return nameString;
-    }
-
-    public void setNameString(String nameString) {
-        this.nameString = nameString;
-    }
-
-    public String getTimeString() {
-        return timeString;
-    }
-
-    public void setTimeString(String timeString) {
-        this.timeString = timeString;
-    }
-
-    public String getDurationString() {
-        return durationString;
-    }
-
-    public void setDurationString(String durationString) {
-        this.durationString = durationString;
-    }
-
-    public String getSpeedString() {
-        return speedString;
-    }
-
-    public void setSpeedString(String speedString) {
-        this.speedString = speedString;
-    }
-
-    public String getDistanceString() {
-        return distanceString;
-    }
-
-    public void setDistanceString(String distanceString) {
-        this.distanceString = distanceString;
-    }
-
-    public String getHeartString() {
-        return heartString;
-    }
-
-    public void setHeartString(String heartString) {
-        this.heartString = heartString;
-    }
-
-    public String getEntrynoString() {
-        return entrynoString;
-    }
-
-    public void setEntrynoString(String entrynoString) {
-        this.entrynoString = entrynoString;
+        return this.type;
     }
 
 
-//    /**
-//     * Getter method for intensity of activity
-//     * @return ActivityIntensity
-//     */
-//    public ActivityIntensity getIntensity() {
-//        return this.intensity;
-//    }
+    /**
+     * Getter method for the Time as a String
+     * @return String
+     */
+    public String getTimeString()
+    {
+        return this.startDateTime.toString();
+    }
+
+
+    /**
+     * Getter method for the Duration as a String
+     * @return String
+     */
+    public String getDurationString()
+    {
+        return String.valueOf(this.totalDuration);
+    }
+
+
+    /**
+     * Getter method for the Average Speed as a String
+     * @return String
+     */
+    public String getSpeedString()
+    {
+        return String.format("%.2f", this.averageVelocity);
+    }
+
+
+    /**
+     * Getter method for the Distance as a String
+     * @return String
+     */
+    public String getDistanceString()
+    {
+        return String.format("%.2f", this.totalDistance);
+    }
+
+
+    /**
+     * Getter method for the Average Heart Rate as a String
+     * @return String
+     */
+    public String getHeartString()
+    {
+        return String.format("%.2f", this.averageHeartRate);
+    }
+
+
+    /**
+     * Getter method for the Number of Entries as a String
+     * @return String
+     */
+    public String getEntrynoString()
+    {
+        return String.valueOf(this.entries.size());
+    }
+
+
+    /**
+     * Getter method for the Type as a String
+     * @return String
+     */
+    public String getTypeString()
+    {
+        return this.type.toString();
+    }
 }

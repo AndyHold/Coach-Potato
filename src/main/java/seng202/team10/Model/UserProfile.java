@@ -19,9 +19,15 @@ public class UserProfile implements java.io.Serializable {
     private DateTime birthdate;
     private String gender;
     private int maxHeartrate;
-    private Goals goals;
+    //private Goals goals;
     private Calendar calendar;
     private double bmi;
+
+
+
+
+    private Goals goals = new Goals(this);
+
 
     public UserProfile() {
 
@@ -34,6 +40,8 @@ public class UserProfile implements java.io.Serializable {
         this.birthdate = birthdate;
         this.gender = gender;
     }
+
+
 
     /**
      * Getter method for the name of the user
@@ -221,4 +229,59 @@ public class UserProfile implements java.io.Serializable {
                 ", bmi=" + bmi +
                 '}';
     }
+
+
+    public Goals getGoals() {
+        return goals;
+    }
+
+    public void setGoals(Goals goals) {
+        this.goals = goals;
+    }
+
+    public double getActivitiesDistance(DateTime startDate, DateTime endDate) {
+        double sum = 0;
+        for (Activity activity : activities) {
+            System.out.println((activity.getStartDateTime().isAfter(startDate)));
+            if (activity.getStartDateTime().isAfter(startDate) && activity.getEndDateTime().isBefore(endDate)) {
+                System.out.println(activity.getStartDateTime());
+                System.out.println(startDate);
+                sum += activity.getTotalDistance();
+                System.out.println("Added to sum");
+            } else {
+                System.out.println("Not added to sum");
+            }
+        }
+        return sum;
+    }
+
+    public int getActivitiesFreq(DateTime startDate, DateTime endDate) {
+        int sum = 0;
+        for (Activity activity : activities) {
+            if (activity.getStartDateTime().isAfter(startDate) && activity.getEndDateTime().isBefore(endDate)) {
+                sum ++;
+                System.out.println("Added to sum");
+            } else {
+                System.out.println("Not added to sum");
+            }
+        }
+        return sum;
+    }
+
+
+    public int getActivitiesTime(DateTime startDate, DateTime endDate) {
+        int sum = 0;
+        for (Activity activity : activities) {
+            if (activity.getStartDateTime().isAfter(startDate) && activity.getEndDateTime().isBefore(endDate)) {
+                sum += activity.getTotalDuration();
+                System.out.println("Added to sum");
+            } else {
+                System.out.println("Not added to sum");
+            }
+        }
+        return sum;
+    }
+
+
+
 }

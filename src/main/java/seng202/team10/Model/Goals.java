@@ -1,6 +1,7 @@
 package seng202.team10.Model;
 
 
+import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
 
 import java.time.LocalDate;
@@ -149,31 +150,51 @@ public class Goals implements java.io.Serializable{
     public String checkGoal(String goalName) {
         Goal goal = getGoalObject(goalName);
         String progress = "";
-        if (currentGoals.contains(goal)) { // is this necessaprogress = ry if combobox will only ever have current goals??
+        if (currentGoals.contains(goal)) { // is this necessary if combobox will only ever have current goals??
             System.out.println("" + goalName + "is of type " + goal.getGoalType());
             String type = goal.getGoalType();
             switch (type) {
                 case "Weight":
-                    //progress = goal.reviewWeightGoal(goal, user.getWeight());
-//                    if (user.getWeight() <= goal.getGoalWeight()) {
-//                        removeCurrentGoal(goalName);
-//                    }
-                    progress = goal.reviewWeightGoal(goal, 70);
-                    if (70 <= goal.getGoalBmi()) {
+                    System.out.println(user);
+                    progress = goal.reviewWeightGoal(goal, user.getWeight());
+                    if (user.getWeight() <= goal.getGoalWeight()) {
                         removeCurrentGoal(goalName);
                     }
                     break;
                 case "BMI":
-                    //progress = goal.reviewBmiGoal(goal, user.calcBmi());
-//                    if (user.getBmi() <= goal.getGoalBmi()) {
-//                        removeCurrentGoal(goalName);
-//                    }
-                    progress = goal.reviewBmiGoal(goal, 30);
-                    if (30 <= goal.getGoalBmi()) {
+                    System.out.println(user);
+                    progress = goal.reviewBmiGoal(goal, user.getBmi());
+                    if (user.getBmi() <= goal.getGoalBmi()) {
                         removeCurrentGoal(goalName);
                     }
                     break;
-                //TODO add in the Distance, frequency, and time cases (which need data loaded first)
+                case "Distance":
+                    System.out.println(user);
+                    double totalDistance = user.getActivitiesDistance(goal.getGoalStartDate(), goal.getGoalTargetDate());
+                    System.out.println(totalDistance);
+                    progress = goal.reviewDistanceGoal(goal, totalDistance);
+                    if (totalDistance >= goal.getGoalDistance()) {
+                        removeCurrentGoal(goalName);
+                    }
+                    break;
+                case "Frequency":
+                    System.out.println(user);
+                    int numActivities = user.getActivitiesFreq(goal.getGoalStartDate(), goal.getGoalTargetDate());
+                    System.out.println(numActivities);
+                    progress = goal.reviewFrequencyGoal(goal, numActivities);
+                    if (numActivities >= goal.getGoalFrequency()) {
+                        removeCurrentGoal(goalName);
+                    }
+                    break;
+                case "Time":
+                    System.out.println(user);
+                    int timeSumActivities = user.getActivitiesTime(goal.getGoalStartDate(), goal.getGoalTargetDate());
+                    System.out.println(timeSumActivities);
+                    progress = goal.reviewTimeGoal(goal, timeSumActivities);
+                    if (timeSumActivities >= goal.getGoalTime()) {
+                        removeCurrentGoal(goalName);
+                    }
+                    break;
             }
         }
         return progress;
@@ -211,9 +232,6 @@ public class Goals implements java.io.Serializable{
         return futureGoals;
     }
 
-    public UserProfile getUser() {
-        return user;
-    }
 
     public Goal getGoalObject(String goalName) {
         for (Goal goal : currentGoals) {
