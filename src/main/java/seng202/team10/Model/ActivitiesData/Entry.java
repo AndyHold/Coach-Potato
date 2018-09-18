@@ -23,7 +23,21 @@ public class Entry  implements Serializable {
     private String elevationString;
     private double distance = 0;
     private double velocity = 0;
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    //private Activity activity;
+=======
+
+>>>>>>> 173bfae... Refactored Activity Class to delete some redundant code, fixed Activity class created a ActivityTypeTest class and implemented tests for it. Wrote some more tests for DateTime's new change methods, wrote some tests for the Position class.
+>>>>>>> d15fa3f6... Refactored Activity Class to delete some redundant code, fixed Activity class created a ActivityTypeTest class and implemented tests for it. Wrote some more tests for DateTime's new change methods, wrote some tests for the Position class.
 
     /**
      * Constructor for the Entry.
@@ -157,7 +171,20 @@ public class Entry  implements Serializable {
 >>>>>>> 3c6c4ff... No changes made
 >>>>>>> 0c709513... Changed latitude and longitude error checking in Position class and removed unnecessary lines from Entry class.
 =======
+<<<<<<< HEAD
      * @param firstEntry: boolean True if first entry.
+=======
+     */
+<<<<<<< HEAD
+    public Entry(boolean firstEntry, DateTime time, double heartRate, Position position) {
+>>>>>>> f5029c7... No changes made
+=======
+    public Entry(boolean firstEntry, DateTime time, int heartRate, Position position) {
+>>>>>>> b21c354... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
+=======
+    public Entry(boolean firstEntry, DateTime time, int heartRate, Position position) {
+>>>>>>> c64d7f7... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
+>>>>>>> d15fa3f6... Refactored Activity Class to delete some redundant code, fixed Activity class created a ActivityTypeTest class and implemented tests for it. Wrote some more tests for DateTime's new change methods, wrote some tests for the Position class.
 =======
 <<<<<<< HEAD
 >>>>>>> 4e355c0c... Working on some updates to dataUpload screen, had to change the constructor for the entry Class too.
@@ -174,11 +201,18 @@ public class Entry  implements Serializable {
 =======
     public Entry(DateTime time, int heartRate, Position position) {
 >>>>>>> 863c0ab... Working on some updates to dataUpload screen, had to change the constructor for the entry Class too.
+<<<<<<< HEAD
 >>>>>>> 9df8089c... Working on some updates to dataUpload screen, had to change the constructor for the entry Class too.
 =======
     public Entry(DateTime time, int heartRate, Position position)
     {
 >>>>>>> 24c904e8... Refactored Activity Class to delete some redundant code, fixed Activity class created a ActivityTypeTest class and implemented tests for it. Wrote some more tests for DateTime's new change methods, wrote some tests for the Position class.
+=======
+=======
+    public Entry(DateTime time, int heartRate, Position position)
+    {
+>>>>>>> 173bfae... Refactored Activity Class to delete some redundant code, fixed Activity class created a ActivityTypeTest class and implemented tests for it. Wrote some more tests for DateTime's new change methods, wrote some tests for the Position class.
+>>>>>>> d15fa3f6... Refactored Activity Class to delete some redundant code, fixed Activity class created a ActivityTypeTest class and implemented tests for it. Wrote some more tests for DateTime's new change methods, wrote some tests for the Position class.
         this.time = time;
         this.heartRate = heartRate;
         this.position = position;
@@ -596,4 +630,101 @@ public class Entry  implements Serializable {
     {
         return ("First Entry? : " + this.firstEntry + " , " + position.toString());
     }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    /**
+     * Getter method to get user's activities.
+     * @return  activity: Activity
+     */
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 79c9f1d... No changes made
+=======
+>>>>>>> 7de2265... No changes made
+=======
+>>>>>>> f5029c7... No changes made
+    // Commented out as we don't need it for now but might need it later.
+    //public Activity getActivity() {
+    //    return activity;
+    //}
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 5a3c8cd... No changes made
+=======
+>>>>>>> 3c6c4ff... No changes made
+    public Activity getActivity() {
+        return activity;
+    }
+>>>>>>> e576ec5... No changes made
+
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 79c9f1d... No changes made
+=======
+>>>>>>> 7de2265... No changes made
+=======
+>>>>>>> f5029c7... No changes made
+=======
+=======
+>>>>>>> c64d7f7... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
+=======
+>>>>>>> 40229ad... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
+=======
+>>>>>>> 73cd156... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
+
+
+//    /**
+//     * Getter method to get user's activities.
+//     * @return  activity: Activity
+//     */
+//    // Commented out as we don't need it for now but might need it later.
+//    public Activity getActivity() {
+//        return activity;
+//    }
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> b21c354... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
+
+
+=======
+>>>>>>> d6a4db3... Minor changes for Javadoc for Entry and Position classes. Had to push before I pull.
+=======
+>>>>>>> da734e9... Minor changes for Javadoc for Entry and Position classes. Had to push before I pull.
+=======
+>>>>>>> 5810ac0... Minor changes for Javadoc for Entry and Position classes. Had to push before I pull.
+=======
+>>>>>>> 939a15b... Minor changes for Javadoc for Entry and Position classes. Had to push before I pull.
+=======
+
+
+>>>>>>> c64d7f7... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
+=======
+=======
+>>>>>>> 73cd156... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
+
+
+>>>>>>> 40229ad... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
+=======
+>>>>>>> 173bfae... Refactored Activity Class to delete some redundant code, fixed Activity class created a ActivityTypeTest class and implemented tests for it. Wrote some more tests for DateTime's new change methods, wrote some tests for the Position class.
+>>>>>>> d15fa3f6... Refactored Activity Class to delete some redundant code, fixed Activity class created a ActivityTypeTest class and implemented tests for it. Wrote some more tests for DateTime's new change methods, wrote some tests for the Position class.
 }
