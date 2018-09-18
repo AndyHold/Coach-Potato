@@ -41,15 +41,15 @@ public class DateTimeTest {
     private DateTime oneSecond = new DateTime(2000, 1, 1, 0, 0, 1);
     private DateTime fiftyEightSecond = new DateTime(2000, 1, 1, 0, 0, 58);
     private DateTime fiftyNineSecond = new DateTime(2000, 1, 1, 0, 0, 59);
-    private DateTime yearBefore = new DateTime(2000, 12, 31, 23, 59, 59);
+    private DateTime yearBefore = new DateTime(2000, 1, 1, 0, 0, 0);
     private DateTime yearAfter = new DateTime(2100, 1, 1, 0, 0, 0);
-    private DateTime monthBefore = new DateTime(2000, 1, 31, 23, 59, 59);
+    private DateTime monthBefore = new DateTime(2000, 1, 1, 0, 0, 0);
     private DateTime monthAfter = new DateTime(2000, 12, 1, 0, 0, 0);
-    private DateTime dayBefore = new DateTime(2000, 1, 1, 23, 59, 59);
+    private DateTime dayBefore = new DateTime(2000, 1, 1, 0, 0, 0);
     private DateTime dayAfter = new DateTime(2000, 1, 31, 0, 0, 0);
-    private DateTime hourBefore = new DateTime(2000, 1, 1, 0, 59, 59);
+    private DateTime hourBefore = new DateTime(2000, 1, 1, 0, 0, 0);
     private DateTime hourAfter = new DateTime(2000, 1, 1, 23, 0, 0);
-    private DateTime minuteBefore = new DateTime(2000, 1, 1, 0, 0, 59);
+    private DateTime minuteBefore = new DateTime(2000, 1, 1, 0, 0, 0);
     private DateTime minuteAfter = new DateTime(2000, 1, 1, 0, 59, 0);
     private DateTime secondBefore = new DateTime(2000, 1, 1, 0, 0, 0);
     private DateTime secondAfter = new DateTime(2000, 1, 1, 0, 0, 59);
@@ -530,170 +530,183 @@ public class DateTimeTest {
 
 
     @Test
-    public void isBeforeYear()
+    public void isBeforeYearTrue()
     {
         assertTrue(yearBefore.isBefore(yearAfter));
     }
 
 
     @Test
-    public void isBeforeMonth()
-    {
-        assertTrue(monthBefore.isBefore(monthAfter));
-    }
-
-
-    @Test
-    public void isBeforeDay()
-    {
-        assertTrue(dayBefore.isBefore(dayAfter));
-    }
-
-
-    @Test
-    public void isBeforeHour()
-    {
-        assertTrue(hourBefore.isBefore(hourAfter));
-    }
-
-
-    @Test
-    public void isBeforeMinute()
-    {
-        assertTrue(minuteBefore.isBefore(minuteAfter));
-    }
-
-
-    @Test
-    public void isBeforeSecond()
-    {
-        assertTrue(secondBefore.isBefore(secondAfter));
-    }
-
-
-    @Test
-    public void isNotBeforeYear()
+    public void isBeforeYearFalse()
     {
         assertFalse(yearAfter.isBefore(yearBefore));
     }
 
 
     @Test
-    public void isNotBeforeMonth()
+    public void isBeforeMonthTrue()
+    {
+        assertTrue(monthBefore.isBefore(monthAfter));
+    }
+
+
+    @Test
+    public void isBeforeMonthFalse()
     {
         assertFalse(monthAfter.isBefore(monthBefore));
     }
 
 
     @Test
-    public void isNotBeforeDay()
+    public void isBeforeDayTrue()
+    {
+        assertTrue(dayBefore.isBefore(dayAfter));
+    }
+
+
+    @Test
+    public void isBeforeDayFalse()
     {
         assertFalse(dayAfter.isBefore(dayBefore));
     }
 
 
     @Test
-    public void isNotBeforeHour()
+    public void isBeforeHourTrue()
+    {
+        assertTrue(hourBefore.isBefore(hourAfter));
+    }
+
+
+    @Test
+    public void isBeforeHourFalse()
     {
         assertFalse(hourAfter.isBefore(hourBefore));
     }
 
 
     @Test
-    public void isNotBeforeMinute()
+    public void isBeforeMinuteTrue()
+    {
+        assertTrue(minuteBefore.isBefore(minuteAfter));
+    }
+
+
+    @Test
+    public void isBeforeMinuteFalse()
     {
         assertFalse(minuteAfter.isBefore(minuteBefore));
     }
 
 
     @Test
-    public void isNotBeforeSecond()
+    public void isBeforeSecondTrue()
+    {
+        assertTrue(secondBefore.isBefore(secondAfter));
+    }
+
+
+    @Test
+    public void isBeforeSecondFalse()
     {
         assertFalse(secondAfter.isBefore(secondBefore));
     }
 
 
     @Test
-    public void isAfterYear()
+    public void isAfterYearTrue()
     {
         assertTrue(yearAfter.isAfter(yearBefore));
     }
 
 
     @Test
-    public void isAfterMonth()
+    public void isAfterMonthTrue()
     {
         assertTrue(monthAfter.isAfter(monthBefore));
     }
 
 
     @Test
-    public void isAfterDay()
+    public void isAfterDayTrue()
     {
         assertTrue(dayAfter.isAfter(dayBefore));
     }
 
 
     @Test
-    public void isAfterHour()
+    public void isAfterHourTrue()
     {
         assertTrue(hourAfter.isAfter(hourBefore));
     }
 
 
+
     @Test
-    public void isAfterMinute()
+    public void isAfterMinuteTrue()
     {
         assertTrue(minuteAfter.isAfter(minuteBefore));
     }
 
 
     @Test
-    public void isAfterSecond()
+    public void isAfterSecondTrue()
     {
         assertTrue(secondAfter.isAfter(secondBefore));
     }
 
 
     @Test
-    public void isNotAfterYear()
+    public void isAfterYearFalse()
     {
         assertFalse(yearBefore.isAfter(yearAfter));
     }
 
 
     @Test
-    public void isNotAfterMonth()
+    public void isAfterMonthFalse()
     {
         assertFalse(monthBefore.isAfter(monthAfter));
     }
 
 
     @Test
-    public void isNotAfterDay()
+    public void isAfterDayFalse()
     {
         assertFalse(dayBefore.isAfter(dayAfter));
     }
 
 
     @Test
-    public void isNotAfterHour()
+    public void isAfterHourFalse()
     {
         assertFalse(hourBefore.isAfter(hourAfter));
     }
 
 
     @Test
-    public void isNotAfterMinute()
+    public void isAfterMinuteFalse()
     {
         assertFalse(minuteBefore.isAfter(minuteAfter));
     }
 
 
     @Test
-    public void isNotAfterSecond()
+    public void isAfterSecondFalse()
     {
         assertFalse(secondBefore.isAfter(secondAfter));
+    }
+
+    @Test
+    public void isAfterEqual()
+    {
+        assertFalse(secondAfter.isAfter(secondAfter));
+    }
+
+    @Test
+    public void isBeforeEqual()
+    {
+        assertFalse(secondBefore.isBefore(secondBefore));
     }
 
 
@@ -1091,5 +1104,19 @@ public class DateTimeTest {
             message = e.getMessage();
         }
         assertEquals("Invalid time, please select a correct time format HH:MM:SS", message);
+    }
+
+
+    @Test
+    public void getDateAsString()
+    {
+        assertEquals("01/01/2000", secondBefore.getDateAsString());
+    }
+
+
+    @Test
+    public void getTimeAsString()
+    {
+        assertEquals("00:00:00", secondBefore.getTimeAsString());
     }
 }

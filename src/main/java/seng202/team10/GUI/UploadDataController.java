@@ -157,7 +157,7 @@ public class UploadDataController {
     {
         try {
             Entry entrySelected = manualDataTableView.getSelectionModel().getSelectedItem();
-            entrySelected.changeHeartRate(editedCell.getNewValue().toString());
+            entrySelected.setHeartRate(Integer.valueOf(editedCell.getNewValue().toString()));
         } catch(NumberFormatException exception) {
             createPopUp(Alert.AlertType.ERROR, "Error", "HeartRate invalid, must be a valid number");
         } catch(IllegalArgumentException exception) {
@@ -175,7 +175,7 @@ public class UploadDataController {
     {
         try {
             Entry entrySelected = manualDataTableView.getSelectionModel().getSelectedItem();
-            entrySelected.changeLatitude(editedCell.getNewValue().toString());
+            entrySelected.setLatitude(Double.valueOf(editedCell.getNewValue().toString()));
         } catch(NumberFormatException exception) {
             createPopUp(Alert.AlertType.ERROR, "Error", "Latitude invalid, must be a valid number");
         } catch(IllegalArgumentException exception) {
@@ -194,7 +194,7 @@ public class UploadDataController {
     {
         try {
             Entry entrySelected = manualDataTableView.getSelectionModel().getSelectedItem();
-            entrySelected.changeLongitude(editedCell.getNewValue().toString());
+            entrySelected.setLongitude(Double.valueOf(editedCell.getNewValue().toString()));
         } catch(NumberFormatException exception) {
             createPopUp(Alert.AlertType.ERROR, "Error", "Longitude invalid, must be a valid number");
         } catch(IllegalArgumentException exception) {
@@ -213,7 +213,7 @@ public class UploadDataController {
     {
         try {
             Entry entrySelected = manualDataTableView.getSelectionModel().getSelectedItem();
-            entrySelected.changeElevation(editedCell.getNewValue().toString());
+            entrySelected.setElevation(Double.valueOf(editedCell.getNewValue().toString()));
         } catch(NumberFormatException exception) {
             createPopUp(Alert.AlertType.ERROR, "Error", "Elevation invalid, must be a valid number");
         } catch(IllegalArgumentException exception) {
@@ -236,6 +236,7 @@ public class UploadDataController {
 
     /**
      * Method to add an entry input by the user when the add entry button is pushed
+     * // TODO make a catch for future dates.
      */
     @FXML public void addEntryToTableView()
     {
