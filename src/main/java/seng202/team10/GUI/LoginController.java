@@ -25,6 +25,16 @@ public class LoginController implements Controllable{
     @FXML private ImageView user3Image;
     @FXML private ImageView user4Image;
     @FXML private ImageView user5Image;
+    @FXML private Button user1Button;
+    @FXML private Button user2Button;
+    @FXML private Button user3Button;
+    @FXML private Button user4Button;
+    @FXML private Button user5Button;
+    @FXML private Label user1Label;
+    @FXML private Label user2Label;
+    @FXML private Label user3Label;
+    @FXML private Label user4Label;
+    @FXML private Label user5Label;
 
 
     public void setApp(GUIController app) {
@@ -39,11 +49,6 @@ public class LoginController implements Controllable{
         for (UserProfile user : app.getUsers()) {
             userNames.add(user.getName());
         }
-        user1Image.setImage(new Image("Images/stick-man.jpg"));
-        user2Image.setImage(new Image("Images/stick-man.jpg"));
-        user3Image.setImage(new Image("Images/stick-man.jpg"));
-        user4Image.setImage(new Image("Images/stick-man.jpg"));
-        user5Image.setImage(new Image("Images/stick-man.jpg"));
         user1Image.setVisible(true);
         user2Image.setVisible(true);
         user3Image.setVisible(true);
