@@ -186,8 +186,15 @@ public class Goals implements java.io.Serializable{
                         removeCurrentGoal(goalName);
                     }
                     break;
-
-                //TODO add in the frequency, and time cases (which need data loaded first)
+                case "Time":
+                    System.out.println(user);
+                    int timeSumActivities = user.getActivitiesTime(goal.getGoalStartDate(), goal.getGoalTargetDate());
+                    System.out.println(timeSumActivities);
+                    progress = goal.reviewTimeGoal(goal, timeSumActivities);
+                    if (timeSumActivities >= goal.getGoalTime()) {
+                        removeCurrentGoal(goalName);
+                    }
+                    break;
             }
         }
         return progress;
