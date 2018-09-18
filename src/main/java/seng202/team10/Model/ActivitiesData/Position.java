@@ -25,19 +25,9 @@ public class Position  implements Serializable {
      */
     public Position(double latitude, double longitude, double elevation)
     {
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.elevation = elevation;
-    }
-
-
-    /**
-     * Getter method to get user's latitude.
-     * @return latitude: double
-     */
-    public double getLatitude()
-    {
-        return latitude;
+        setLatitude(latitude);
+        setLongitude(longitude);
+        setElevation(elevation);
     }
 
 
@@ -47,11 +37,49 @@ public class Position  implements Serializable {
      */
     public void setLatitude(double latitude) throws IllegalArgumentException
     {
-        if ((-90 <= latitude) && (latitude <= 90)) {
+        if ((-90.0 < latitude) && (latitude < 90.0)) {
             this.latitude = latitude;
         } else {
             throw new IllegalArgumentException("Latitude Invalid, must be between -90 & 90");
         }
+    }
+
+
+    /**
+     * Setter method to set user's longitude.
+     * @param longitude: double
+     */
+    public void setLongitude(double longitude) throws IllegalArgumentException
+    {
+        if ((-180 < longitude) && (longitude < 180)) {
+            this.longitude = longitude;
+        } else {
+            throw new IllegalArgumentException("Longitude Invalid, must be between -180 & 180");
+        }
+    }
+
+
+    /**
+     * Setter method to set user's elevation.
+     * @param elevation: double
+     */
+    public void setElevation(double elevation) throws IllegalArgumentException
+    {
+        if (-430.0 > elevation || elevation > 8850.0) {
+            throw new IllegalArgumentException("Elevation Invalid, must be above 430 meters below sea level and below 8850 meters above sea level");
+        } else {
+            this.elevation = elevation;
+        }
+    }
+
+
+    /**
+     * Getter method to get user's latitude.
+     * @return latitude: double
+     */
+    public double getLatitude()
+    {
+        return this.latitude;
     }
 
 
@@ -66,40 +94,12 @@ public class Position  implements Serializable {
 
 
     /**
-     * Setter method to set user's longitude.
-     * @param longitude: double
-     */
-    public void setLongitude(double longitude) throws IllegalArgumentException
-    {
-        if ((-180 <= longitude) && (longitude <= 180)) {
-            this.longitude = longitude;
-        } else {
-            throw new IllegalArgumentException("Longitude Invalid, must be between -180 & 180");
-        }
-    }
-
-
-    /**
      * Getter method to get user's elevation.
      * @return elevation: double
      */
     public double getElevation()
     {
         return elevation;
-    }
-
-
-    /**
-     * Setter method to set user's elevation.
-     * @param elevation: double
-     */
-    public void setElevation(double elevation) throws IllegalArgumentException
-    {
-        if (elevation < 0) {
-            throw new IllegalArgumentException("Elevation Invalid, must be a positive number");
-        } else {
-            this.elevation = elevation;
-        }
     }
 
 
