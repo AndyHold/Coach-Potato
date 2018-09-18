@@ -56,79 +56,92 @@ public class DateTimeTest {
 
 
     @Test
-    public void janFirstToString() {
+    public void janFirstToString()
+    {
         assertEquals("1st, January, 2018 - 10:30:10", janFirst.toString());
     }
 
 
     @Test
-    public void febSecondToString() {
+    public void febSecondToString()
+    {
         assertEquals("2nd, February, 2018 - 23:59:59", febSecond.toString());
     }
 
 
     @Test
-    public void marchThirdToString() {
+    public void marchThirdToString()
+    {
         assertEquals("3rd, March, 2020 - 12:30:30", marchThird.toString());
     }
 
 
     @Test
-    public void aprilEleventhToString() {
+    public void aprilEleventhToString()
+    {
         assertEquals("11th, April, 2018 - 00:00:00", aprilEleventh.toString());
     }
 
 
     @Test
-    public void mayTwelfthToString() {
+    public void mayTwelfthToString()
+    {
         assertEquals("12th, May, 2018 - 00:00:00", mayTwelfth.toString());
     }
 
 
     @Test
-    public void juneThirteenthToString() {
+    public void juneThirteenthToString()
+    {
         assertEquals("13th, June, 2018 - 00:00:00", juneThirteenth.toString());
     }
 
 
     @Test
-    public void julyTwentyFirstToString() {
+    public void julyTwentyFirstToString()
+    {
         assertEquals("21st, July, 2018 - 00:00:00", julyTwentyFirst.toString());
     }
 
 
     @Test
-    public void augustTwentySecondToString() {
+    public void augustTwentySecondToString()
+    {
         assertEquals("22nd, August, 2018 - 00:00:00", augustTwentySecond.toString());
     }
 
 
     @Test
-    public void septemberTwentyThirdToString() {
+    public void septemberTwentyThirdToString()
+    {
         assertEquals("23rd, September, 2018 - 00:00:00", septemberTwentyThird.toString());
     }
 
 
     @Test
-    public void octoberFourthToString() {
+    public void octoberFourthToString()
+    {
         assertEquals("4th, October, 2018 - 00:00:00", octoberFourth.toString());
     }
 
 
     @Test
-    public void novemberTwentyFifthToString() {
+    public void novemberTwentyFifthToString()
+    {
         assertEquals("25th, November, 2018 - 00:00:00", novemberTwentyFifth.toString());
     }
 
 
     @Test
-    public void decemberSixteenthToString() {
+    public void decemberSixteenthToString()
+    {
         assertEquals("16th, December, 2017 - 00:00:00", decemberSixteenth.toString());
     }
 
 
     @Test
-    public void eighteenNinetyNineYear() {
+    public void eighteenNinetyNineYear()
+    {
         String message = "Test Failed";
         try {
             new DateTime(1899, 1, 1, 0, 0, 0);
@@ -140,31 +153,36 @@ public class DateTimeTest {
 
 
     @Test
-    public void nineteenHundredYear() {
+    public void nineteenHundredYear()
+    {
         assertEquals(1900, nineteenHundredYear.getYear());
     }
 
 
     @Test
-    public void nineteenHundredOneYear() {
+    public void nineteenHundredOneYear()
+    {
         assertEquals(1901, nineteenHundredOneYear.getYear());
     }
 
 
     @Test
-    public void twoThousandNinetyNineYear() {
+    public void twoThousandNinetyNineYear()
+    {
         assertEquals(2099, twoThousandNinetyNineYear.getYear());
     }
 
 
     @Test
-    public void twoThousandOneHundredYear() {
+    public void twoThousandOneHundredYear()
+    {
         assertEquals(2100, twoThousandOneHundredYear.getYear());
     }
 
 
     @Test
-    public void twoThousandOneHundredOneYear() {
+    public void twoThousandOneHundredOneYear()
+    {
         String message = "Test failed";
         try {
             new DateTime(2101, 1, 1, 0, 0, 0);
@@ -176,7 +194,8 @@ public class DateTimeTest {
 
 
     @Test
-    public void zeroMonth() {
+    public void zeroMonth()
+    {
         String message = "Test failed";
         try {
             new DateTime(2000, 0, 1, 0, 0, 0);
@@ -188,7 +207,8 @@ public class DateTimeTest {
 
 
     @Test
-    public void thirteenthMonth() {
+    public void thirteenthMonth()
+    {
         String message = "Test failed";
         try {
             new DateTime(2000, 13, 1, 0, 0, 0);
@@ -200,7 +220,8 @@ public class DateTimeTest {
 
 
     @Test
-    public void negativeDay() {
+    public void negativeDay()
+    {
         String message = "Test failed";
         try {
             new DateTime(2000, 1, -1, 0, 0, 0);
@@ -212,7 +233,8 @@ public class DateTimeTest {
 
 
     @Test
-    public void zeroDay() {
+    public void zeroDay()
+    {
         String message = "Test Failed";
         try {
             new DateTime(2000, 1, 0, 0, 0, 0);
@@ -224,31 +246,36 @@ public class DateTimeTest {
 
 
     @Test
-    public void firstDay() {
+    public void firstDay()
+    {
         assertEquals(1, janFirst.getDay());
     }
 
 
     @Test
-    public void secondDay() {
+    public void secondDay()
+    {
         assertEquals(2, febSecond.getDay());
     }
 
 
     @Test
-    public void janThirtiethDay() {
+    public void janThirtiethDay()
+    {
         assertEquals(30, janThirtieth.getDay());
     }
 
 
     @Test
-    public void janThirtyFirstDay() {
+    public void janThirtyFirstDay()
+    {
         assertEquals(31, janThirtyFirst.getDay());
     }
 
 
     @Test
-    public void janThirtySecondDay() {
+    public void janThirtySecondDay()
+    {
         String message = "Test Failed";
         try {
             new DateTime(2018, 1, 32, 0, 0, 0);
@@ -260,19 +287,22 @@ public class DateTimeTest {
 
 
     @Test
-    public void febTwentySeventhDay() {
+    public void febTwentySeventhDay()
+    {
         assertEquals(27, febTwentySeventh.getDay());
     }
 
 
     @Test
-    public void febTwentyEighthDay() {
+    public void febTwentyEighthDay()
+    {
         assertEquals(28, febTwentyEighth.getDay());
     }
 
 
     @Test
-    public void febTwentyNinthDay() {
+    public void febTwentyNinthDay()
+    {
         String message = "Test Failed";
         try {
             new DateTime(2018, 2, 29, 0, 0, 0);
@@ -284,19 +314,22 @@ public class DateTimeTest {
 
 
     @Test
-    public void febTwentyEighthLeapDay() {
+    public void febTwentyEighthLeapDay()
+    {
         assertEquals(28, febTwentyEighthLeap.getDay());
     }
 
 
     @Test
-    public void febTwentyNinthLeapDay() {
+    public void febTwentyNinthLeapDay()
+    {
         assertEquals(29, febTwentyNinthLeap.getDay());
     }
 
 
     @Test
-    public void febThirtiethLeapDay() {
+    public void febThirtiethLeapDay()
+    {
         String message = "Test Failed";
         try {
             new DateTime(2020, 2, 31, 0, 0, 0);
@@ -308,19 +341,22 @@ public class DateTimeTest {
 
 
     @Test
-    public void aprilTwentyNinthDay() {
+    public void aprilTwentyNinthDay()
+    {
         assertEquals(29, aprilTwentyNinth.getDay());
     }
 
 
     @Test
-    public void aprilThirtiethDay() {
+    public void aprilThirtiethDay()
+    {
         assertEquals(30, aprilThirtieth.getDay());
     }
 
 
     @Test
-    public void aprilThirtyFirstDay() {
+    public void aprilThirtyFirstDay()
+    {
         String message = "Test Failed";
         try {
             new DateTime(2018, 4, 31, 0, 0, 0);
@@ -332,7 +368,8 @@ public class DateTimeTest {
 
 
     @Test
-    public void negativeHour() {
+    public void negativeHour()
+    {
         String message = "Test Failed";
         try {
             new DateTime(2000, 1, 1, -1, 0, 0);
@@ -344,31 +381,36 @@ public class DateTimeTest {
 
 
     @Test
-    public void zeroHour() {
+    public void zeroHour()
+    {
         assertEquals(0, zeroHour.getHour());
     }
 
 
     @Test
-    public void oneHour() {
+    public void oneHour()
+    {
         assertEquals(1, oneHour.getHour());
     }
 
 
     @Test
-    public void twentyTwoHour() {
+    public void twentyTwoHour()
+    {
         assertEquals(22, twentyTwoHour.getHour());
     }
 
 
     @Test
-    public void twentyThreeHour() {
+    public void twentyThreeHour()
+    {
         assertEquals(23, twentyThreeHour.getHour());
     }
 
 
     @Test
-    public void twentyFourthHour() {
+    public void twentyFourthHour()
+    {
         String message = "Test Failed";
         try {
             new DateTime(2000, 1, 1, 24, 0, 0);
@@ -380,7 +422,8 @@ public class DateTimeTest {
 
 
     @Test
-    public void negativeMinute() {
+    public void negativeMinute()
+    {
         String message = "Test Failed";
         try {
             new DateTime(2000, 1, 1, 0, -1, 0);
@@ -392,31 +435,36 @@ public class DateTimeTest {
 
 
     @Test
-    public void zeroMinute() {
+    public void zeroMinute()
+    {
         assertEquals(0, zeroMinute.getMinute());
     }
 
 
     @Test
-    public void oneMinute() {
+    public void oneMinute()
+    {
         assertEquals(1, oneMinute.getMinute());
     }
 
 
     @Test
-    public void fiftyEightMinute() {
+    public void fiftyEightMinute()
+    {
         assertEquals(58, fiftyEightMinute.getMinute());
     }
 
 
     @Test
-    public void fiftyNineMinute() {
+    public void fiftyNineMinute()
+    {
         assertEquals(59, fiftyNineMinute.getMinute());
     }
 
 
     @Test
-    public void sixtyMinute() {
+    public void sixtyMinute()
+    {
         String message = "Test Failed";
         try {
             new DateTime(2000, 1, 1, 0, 60, 0);
@@ -428,7 +476,8 @@ public class DateTimeTest {
 
 
     @Test
-    public void negativeSecond() {
+    public void negativeSecond()
+    {
         String message = "Test Failed";
         try {
             new DateTime(2000, 1, 1, 0, 0, -1);
@@ -440,31 +489,36 @@ public class DateTimeTest {
 
 
     @Test
-    public void zeroSecond() {
+    public void zeroSecond()
+    {
         assertEquals(0, zeroSecond.getSecond());
     }
 
 
     @Test
-    public void oneSecond() {
+    public void oneSecond()
+    {
         assertEquals(1, oneSecond.getSecond());
     }
 
 
     @Test
-    public void fiftyEightSecond() {
+    public void fiftyEightSecond()
+    {
         assertEquals(58, fiftyEightSecond.getSecond());
     }
 
 
     @Test
-    public void fiftyNineSecond() {
+    public void fiftyNineSecond()
+    {
         assertEquals(59, fiftyNineSecond.getSecond());
     }
 
 
     @Test
-    public void sixtySecond() {
+    public void sixtySecond()
+    {
         String message = "Test Failed";
         try {
             new DateTime(2000, 1, 1, 0, 0, 60);
@@ -476,329 +530,566 @@ public class DateTimeTest {
 
 
     @Test
-    public void isBeforeYear() {
+    public void isBeforeYear()
+    {
         assertTrue(yearBefore.isBefore(yearAfter));
     }
 
 
     @Test
-    public void isBeforeMonth() {
+    public void isBeforeMonth()
+    {
         assertTrue(monthBefore.isBefore(monthAfter));
     }
 
 
     @Test
-    public void isBeforeDay() {
+    public void isBeforeDay()
+    {
         assertTrue(dayBefore.isBefore(dayAfter));
     }
 
 
     @Test
-    public void isBeforeHour() {
+    public void isBeforeHour()
+    {
         assertTrue(hourBefore.isBefore(hourAfter));
     }
 
 
     @Test
-    public void isBeforeMinute() {
+    public void isBeforeMinute()
+    {
         assertTrue(minuteBefore.isBefore(minuteAfter));
     }
 
 
     @Test
-    public void isBeforeSecond() {
+    public void isBeforeSecond()
+    {
         assertTrue(secondBefore.isBefore(secondAfter));
     }
 
 
     @Test
-    public void isNotBeforeYear() {
+    public void isNotBeforeYear()
+    {
         assertFalse(yearAfter.isBefore(yearBefore));
     }
 
 
     @Test
-    public void isNotBeforeMonth() {
+    public void isNotBeforeMonth()
+    {
         assertFalse(monthAfter.isBefore(monthBefore));
     }
 
 
     @Test
-    public void isNotBeforeDay() {
+    public void isNotBeforeDay()
+    {
         assertFalse(dayAfter.isBefore(dayBefore));
     }
 
 
     @Test
-    public void isNotBeforeHour() {
+    public void isNotBeforeHour()
+    {
         assertFalse(hourAfter.isBefore(hourBefore));
     }
 
 
     @Test
-    public void isNotBeforeMinute() {
+    public void isNotBeforeMinute()
+    {
         assertFalse(minuteAfter.isBefore(minuteBefore));
     }
 
 
     @Test
-    public void isNotBeforeSecond() {
+    public void isNotBeforeSecond()
+    {
         assertFalse(secondAfter.isBefore(secondBefore));
     }
 
 
     @Test
-    public void isAfterYear() {
+    public void isAfterYear()
+    {
         assertTrue(yearAfter.isAfter(yearBefore));
     }
 
 
     @Test
-    public void isAfterMonth() {
+    public void isAfterMonth()
+    {
         assertTrue(monthAfter.isAfter(monthBefore));
     }
 
 
     @Test
-    public void isAfterDay() {
+    public void isAfterDay()
+    {
         assertTrue(dayAfter.isAfter(dayBefore));
     }
 
 
     @Test
-    public void isAfterHour() {
+    public void isAfterHour()
+    {
         assertTrue(hourAfter.isAfter(hourBefore));
     }
 
 
     @Test
-    public void isAfterMinute() {
+    public void isAfterMinute()
+    {
         assertTrue(minuteAfter.isAfter(minuteBefore));
     }
 
 
     @Test
-    public void isAfterSecond() {
+    public void isAfterSecond()
+    {
         assertTrue(secondAfter.isAfter(secondBefore));
     }
 
 
     @Test
-    public void isNotAfterYear() {
+    public void isNotAfterYear()
+    {
         assertFalse(yearBefore.isAfter(yearAfter));
     }
 
 
     @Test
-    public void isNotAfterMonth() {
+    public void isNotAfterMonth()
+    {
         assertFalse(monthBefore.isAfter(monthAfter));
     }
 
 
     @Test
-    public void isNotAfterDay() {
+    public void isNotAfterDay()
+    {
         assertFalse(dayBefore.isAfter(dayAfter));
     }
 
 
     @Test
-    public void isNotAfterHour() {
+    public void isNotAfterHour()
+    {
         assertFalse(hourBefore.isAfter(hourAfter));
     }
 
 
     @Test
-    public void isNotAfterMinute() {
+    public void isNotAfterMinute()
+    {
         assertFalse(minuteBefore.isAfter(minuteAfter));
     }
 
 
     @Test
-    public void isNotAfterSecond() {
+    public void isNotAfterSecond()
+    {
         assertFalse(secondBefore.isAfter(secondAfter));
     }
 
 
     @Test
-    public void isEqual() {
+    public void isEqual()
+    {
         assertTrue(zeroHour.isEqual(new DateTime(2000, 1, 1, 0, 0, 0)));
     }
 
 
     @Test
-    public void isNotEqualYear() {
+    public void isNotEqualYear()
+    {
         assertFalse(zeroHour.isEqual(new DateTime(2001, 1, 1, 0, 0, 0)));
     }
 
 
 
     @Test
-    public void isNotEqualMonth() {
+    public void isNotEqualMonth()
+    {
         assertFalse(zeroHour.isEqual(new DateTime(2000, 2, 1, 0, 0, 0)));
     }
 
 
     @Test
-    public void isNotEqualDay() {
+    public void isNotEqualDay()
+    {
         assertFalse(zeroHour.isEqual(new DateTime(2000, 1, 2, 0, 0, 0)));
     }
 
 
     @Test
-    public void isNotEqualHour() {
+    public void isNotEqualHour()
+    {
         assertFalse(zeroHour.isEqual(new DateTime(2000, 1, 1, 1, 0, 0)));
     }
 
 
     @Test
-    public void isNotEqualMinute() {
+    public void isNotEqualMinute()
+    {
         assertFalse(zeroHour.isEqual(new DateTime(2000, 1, 1, 0, 1, 0)));
     }
 
 
     @Test
-    public void isNotEqualSecond() {
+    public void isNotEqualSecond()
+    {
         assertFalse(zeroHour.isEqual(new DateTime(2000, 1, 1, 0, 0, 1)));
     }
 
 
     @Test
-    public void subtractSameMonthDays() {
+    public void subtractSameMonthDays()
+    {
         assertEquals(26, febTwentyEighth.subtractDaysFromDateTime(febSecond));
     }
 
 
     @Test
-    public void subtractSameYearDays() {
+    public void subtractSameYearDays()
+    {
         assertEquals(2, febSecond.subtractDaysFromDateTime(janThirtyFirst));
     }
 
 
     @Test
-    public void subtractSameYearLeapDays() {
+    public void subtractSameYearLeapDays()
+    {
         assertEquals(4, marchThird.subtractDaysFromDateTime(febTwentyEighthLeap));
     }
 
 
     @Test
-    public void subtractDifferentYearDays() {
+    public void subtractDifferentYearDays()
+    {
         assertEquals(16, janFirst.subtractDaysFromDateTime(decemberSixteenth));
     }
 
     @Test
-    public void subtractDifferentYearLeapDays() {
+    public void subtractDifferentYearLeapDays()
+    {
         assertEquals(464, marchThird.subtractDaysFromDateTime(novemberTwentyFifth));
     }
 
 
     @Test
-    public void subtractSameMonthDaysNegative() {
+    public void subtractSameMonthDaysNegative()
+    {
         assertEquals(-26, febSecond.subtractDaysFromDateTime(febTwentyEighth));
     }
 
 
     @Test
-    public void subtractSameYearDaysNegative() {
+    public void subtractSameYearDaysNegative()
+    {
         assertEquals(-2, janThirtyFirst.subtractDaysFromDateTime(febSecond));
     }
 
 
     @Test
-    public void subtractSameYearLeapDaysNegative() {
+    public void subtractSameYearLeapDaysNegative()
+    {
         assertEquals(-4, febTwentyEighthLeap.subtractDaysFromDateTime(marchThird));
     }
 
 
     @Test
-    public void subtractDifferentYearDaysNegative() {
+    public void subtractDifferentYearDaysNegative()
+    {
         assertEquals(-16, decemberSixteenth.subtractDaysFromDateTime(janFirst));
     }
 
 
     @Test
-    public void subtractDifferentYearLeapDaysNegative() {
+    public void subtractDifferentYearLeapDaysNegative()
+    {
         assertEquals(-464, novemberTwentyFifth.subtractDaysFromDateTime(marchThird));
     }
 
 
     @Test
-    public void subtractSameDiffSeconds() {
+    public void subtractSameDiffSeconds()
+    {
         assertEquals(29, febTwentyEighth.subtract(new DateTime(2018, 2, 28, 23, 59, 30)));
     }
 
 
     @Test
-    public void subtractSameDiffMinutes() {
+    public void subtractSameDiffMinutes()
+    {
         assertEquals(1740, febTwentyEighth.subtract(new DateTime(2018, 2, 28, 23, 30, 59)));
     }
 
 
     @Test
-    public void subtractSameDiffHours() {
+    public void subtractSameDiffHours()
+    {
         assertEquals(36000, febTwentyEighth.subtract(new DateTime(2018, 2, 28, 13, 59, 59)));
     }
 
 
     @Test
-    public void subtractSameDiffDays() {
+    public void subtractSameDiffDays()
+    {
         assertEquals(86400, febTwentyEighth.subtract(new DateTime(2018, 2, 27, 23, 59, 59)));
     }
 
     @Test
-    public void subtractSameDiffMonths() {
+    public void subtractSameDiffMonths()
+    {
         assertEquals(2678400, febTwentyEighth.subtract(new DateTime(2018, 1, 28, 23, 59, 59)));
     }
 
 
     @Test
-    public void subtractSameDiffYears() {
+    public void subtractSameDiffYears()
+    {
         assertEquals(31536000, febTwentyEighth.subtract(new DateTime(2017, 2, 28, 23, 59, 59)));
     }
 
 
     @Test
-    public void subtractSameDiffYearsLeap() {
+    public void subtractSameDiffYearsLeap()
+    {
         assertEquals(94694400, febTwentyEighth.subtract(new DateTime(2015, 2, 28, 23, 59, 59)));
     }
 
 
     @Test
-    public void subtractSameDiffSecondsNegative() {
+    public void subtractSameDiffSecondsNegative()
+    {
         assertEquals(-29, (new DateTime(2018, 2, 28, 23, 59, 30)).subtract(febTwentyEighth));
     }
 
 
     @Test
-    public void subtractSameDiffMinutesNegative() {
+    public void subtractSameDiffMinutesNegative()
+    {
         assertEquals(-1740, (new DateTime(2018, 2, 28, 23, 30, 59)).subtract(febTwentyEighth));
     }
 
 
     @Test
-    public void subtractSameDiffHoursNegative() {
+    public void subtractSameDiffHoursNegative()
+    {
         assertEquals(-36000, (new DateTime(2018, 2, 28, 13, 59, 59)).subtract(febTwentyEighth));
     }
 
 
     @Test
-    public void subtractSameDiffDaysNegative() {
+    public void subtractSameDiffDaysNegative()
+    {
         assertEquals(-86400, (new DateTime(2018, 2, 27, 23, 59, 59)).subtract(febTwentyEighth));
     }
 
     @Test
-    public void subtractSameDiffMonthsNegative() {
+    public void subtractSameDiffMonthsNegative()
+    {
         assertEquals(-2678400, (new DateTime(2018, 1, 28, 23, 59, 59)).subtract(febTwentyEighth));
     }
 
 
     @Test
-    public void subtractSameDiffYearsNegative() {
+    public void subtractSameDiffYearsNegative()
+    {
         assertEquals(-31536000, (new DateTime(2017, 2, 28, 23, 59, 59)).subtract(febTwentyEighth));
     }
 
 
     @Test
-    public void subtractSameDiffYearsLeapNegative() {
+    public void subtractSameDiffYearsLeapNegative()
+    {
         assertEquals(-94694400, (new DateTime(2015, 2, 28, 23, 59, 59)).subtract(febTwentyEighth));
+    }
+
+
+    @Test
+    public void changeDateGoodDateYear()
+    {
+        String message = "Nothing";
+        try{
+            janFirst.changeDate(1900, 1, 1);
+        } catch(IllegalArgumentException e) {
+            message = e.getMessage();
+        }
+        assertEquals("1st, January, 1900 - 10:30:10", janFirst.toString());
+    }
+
+
+    @Test
+    public void changeDateBadDateYear()
+    {
+        String message = "Nothing";
+        try{
+            janFirst.changeDate(2200, 10, 20);
+        } catch(IllegalArgumentException e) {
+            message = e.getMessage();
+        }
+        assertEquals("1st, January, 2018 - 10:30:10", janFirst.toString());
+    }
+
+
+    @Test
+    public void changeDateGoodDateMonth()
+    {
+        String message = "Nothing";
+        try{
+            janFirst.changeDate(2018, 4, 1);
+        } catch(IllegalArgumentException e) {
+            message = e.getMessage();
+        }
+        assertEquals("1st, April, 2018 - 10:30:10", janFirst.toString());
+    }
+
+
+    @Test
+    public void changeDateBadDateMonth()
+    {
+        String message = "Nothing";
+        try{
+            janFirst.changeDate(2030, 17, 20);
+        } catch(IllegalArgumentException e) {
+            message = e.getMessage();
+        }
+        assertEquals("1st, January, 2018 - 10:30:10", janFirst.toString());
+    }
+
+
+    @Test
+    public void changeDateGoodDateDay()
+    {
+        String message = "Nothing";
+        try{
+            janFirst.changeDate(2018, 1, 20);
+        } catch(IllegalArgumentException e) {
+            message = e.getMessage();
+        }
+        assertEquals("20th, January, 2018 - 10:30:10", janFirst.toString());
+    }
+
+
+    @Test
+    public void changeDateBadDateDay()
+    {
+        String message = "Nothing";
+        try{
+            janFirst.changeDate(2030, 10, 33);
+        } catch(IllegalArgumentException e) {
+            message = e.getMessage();
+        }
+        assertEquals("1st, January, 2018 - 10:30:10", janFirst.toString());
+    }
+
+
+    @Test
+    public void changeDateBadDateMessage()
+    {
+        String message = "Nothing";
+        try{
+            janFirst.changeDate(2200, 1, 1);
+        } catch(IllegalArgumentException e) {
+            message = e.getMessage();
+        }
+        assertEquals("Invalid date, please select a correct date format DD/MM/YYYY in between 1900-2100", message);
+    }
+
+
+    @Test
+    public void changeTimeGoodTimeHour()
+    {
+        String message = "Nothing";
+        try{
+            janFirst.changeTime(20, 30, 10);
+        } catch(IllegalArgumentException e) {
+            message = e.getMessage();
+        }
+        assertEquals("1st, January, 2018 - 20:30:10", janFirst.toString());
+    }
+
+
+    @Test
+    public void changeTimeBadTimeHour()
+    {
+        String message = "Nothing";
+        try{
+            janFirst.changeTime(30, 10, 50);
+        } catch(IllegalArgumentException e) {
+            message = e.getMessage();
+        }
+        assertEquals("1st, January, 2018 - 10:30:10", janFirst.toString());
+    }
+
+
+    @Test
+    public void changeTimeGoodTimeMinute()
+    {
+        String message = "Nothing";
+        try{
+            janFirst.changeTime(10, 15, 10);
+        } catch(IllegalArgumentException e) {
+            message = e.getMessage();
+        }
+        assertEquals("1st, January, 2018 - 10:15:10", janFirst.toString());
+    }
+
+
+    @Test
+    public void changeTimeBadTimeMinute()
+    {
+        String message = "Nothing";
+        try{
+            janFirst.changeTime(20, 90, 30);
+        } catch(IllegalArgumentException e) {
+            message = e.getMessage();
+        }
+        assertEquals("1st, January, 2018 - 10:30:10", janFirst.toString());
+    }
+
+
+    @Test
+    public void changeTimeGoodTimeSecond()
+    {
+        String message = "Nothing";
+        try{
+            janFirst.changeTime(10, 30, 20);
+        } catch(IllegalArgumentException e) {
+            message = e.getMessage();
+        }
+        assertEquals("1st, January, 2018 - 10:30:20", janFirst.toString());
+    }
+
+
+    @Test
+    public void changeTimeBadTimeSecond()
+    {
+        String message = "Nothing";
+        try{
+            janFirst.changeTime(20, 10, 90);
+        } catch(IllegalArgumentException e) {
+            message = e.getMessage();
+        }
+        assertEquals("1st, January, 2018 - 10:30:10", janFirst.toString());
+    }
+
+
+    @Test
+    public void changeTimeBadTimeMessage()
+    {
+        String message = "Nothing";
+        try{
+            janFirst.changeTime(30, 90, 90);
+        } catch(IllegalArgumentException e) {
+            message = e.getMessage();
+        }
+        assertEquals("Invalid time, please select a correct time format HH:MM:SS", message);
     }
 }

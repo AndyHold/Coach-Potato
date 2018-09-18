@@ -30,7 +30,8 @@ public class DateTime implements Serializable {
      * @param month int: month of the year
      * @param year: year between 2000 and 2100
      */
-    public DateTime(int year, int month, int day, int hour, int minute, int second) {
+    public DateTime(int year, int month, int day, int hour, int minute, int second)
+    {
         fillMonths();
         fillDaysInMonth();
         setYear(year);
@@ -39,8 +40,8 @@ public class DateTime implements Serializable {
         setHour(hour);
         setMinute(minute);
         setSecond(second);
-        setDate();
-        setTime();
+        setDateAsString();
+        setTimeAsString();
     }
 
 
@@ -63,7 +64,7 @@ public class DateTime implements Serializable {
             setYear(oldYear);
             setMonth(oldMonth);
             setDay(oldDay);
-            throw new IllegalArgumentException("Invalid year, please select a correct date format DD/MM/YYYY in between 1900-2100");
+            throw new IllegalArgumentException("Invalid date, please select a correct date format DD/MM/YYYY in between 1900-2100");
         }
     }
 
@@ -77,7 +78,7 @@ public class DateTime implements Serializable {
     public void changeTime(int hour, int minute, int second) throws IllegalArgumentException
     {
         int oldHour = this.hour;
-        int oldMinute = this.month;
+        int oldMinute = this.minute;
         int oldSecond = this.second;
         try {
             setHour(hour);
@@ -95,7 +96,7 @@ public class DateTime implements Serializable {
     /**
      * Setter method for the string representation of date
      */
-    public void setDate()
+    public void setDateAsString()
     {
         this.date = String.format("%02d", this.day) + "/" + String.format("%02d", this.month) + "/" + String.format("%04d", this.year);
     }
@@ -104,7 +105,7 @@ public class DateTime implements Serializable {
     /**
      * Setter method for the string representation of date
      */
-    public void setTime()
+    public void setTimeAsString()
     {
         this.time = String.format("%02d", this.hour) + ":" + String.format("%02d", this.minute) + ":" + String.format("%02d", this.second);
     }
@@ -204,7 +205,7 @@ public class DateTime implements Serializable {
      * Getter method for string of the date
      * @return String: Date
      */
-    public String getDate()
+    public String getDateAsString()
     {
         return this.date;
     }
@@ -213,7 +214,7 @@ public class DateTime implements Serializable {
     /**
      * Getter method for string of the time
      */
-    public String getTime()
+    public String getTimeAsString()
     {
         return this.time;
     }
@@ -280,27 +281,6 @@ public class DateTime implements Serializable {
 
 
     /**
-     * Method to compare two DateTime objects, returns true if the called DateTime is before the parameter
-     * @param otherDateTime DateTime: DateTime to be compared
-     * @return boolean
-     */
-    public boolean isBefore(DateTime otherDateTime)
-    {
-        if (this.year < otherDateTime.getYear()) {
-            return true;
-        } else if (this.year == otherDateTime.getYear() && (this.month < otherDateTime.getMonth())) {
-            return true;
-        } else if ((this.month == otherDateTime.getMonth()) && (this.day < otherDateTime.getDay())) {
-            return true;
-        } else if ((this.day == otherDateTime.getDay()) && (this.hour < otherDateTime.getHour())) {
-            return true;
-        } else if ((this.hour == otherDateTime.getHour()) && (this.minute < otherDateTime.getMinute())) {
-            return true;
-        } else return (this.minute == otherDateTime.getMinute()) && (this.second < otherDateTime.getSecond());
-    }
-
-
-    /**
      * Method to compare two DateTime objects, returns true if the called DateTime is after the parameter
      * @param otherDateTime DateTime: DateTime to be compared
      * @return boolean
@@ -309,15 +289,42 @@ public class DateTime implements Serializable {
     {
         if (this.year > otherDateTime.getYear()) {
             return true;
-        } else if (this.year == otherDateTime.getYear() && (this.month > otherDateTime.getMonth())) {
+        } else if (this.year < otherDateTime.getYear()) {
+            return false;
+        } else if (this.month > otherDateTime.getMonth()) {
             return true;
-        } else if ((this.month == otherDateTime.getMonth()) && (this.day > otherDateTime.getDay())) {
+        } else if (this.month < otherDateTime.getMonth()) {
+            return false;
+        } else if (this.day > otherDateTime.getDay()) {
             return true;
-        } else if ((this.day == otherDateTime.getDay()) && (this.hour > otherDateTime.getHour())) {
+        } else if (this.day < otherDateTime.getDay()) {
+            return false;
+        } else if (this.hour > otherDateTime.getHour()) {
             return true;
-        } else if ((this.hour == otherDateTime.getHour()) && (this.minute > otherDateTime.getMinute())) {
+        } else if (this.hour < otherDateTime.getHour()) {
+            return false;
+        } else if (this.minute > otherDateTime.getMinute()) {
             return true;
-        } else return (this.minute == otherDateTime.getMinute()) && (this.second > otherDateTime.getSecond());
+        } else if (this.minute < otherDateTime.getMinute()) {
+            return false;
+        } else if (this.second > otherDateTime.getSecond()) {
+            return true;
+        } else if (this.second < otherDateTime.getSecond()) {
+            return false;
+        } else {
+            return false;
+        }
+    }
+
+
+    /**
+     * Method to compare two DateTime objects, returns true if the called DateTime is before the parameter
+     * @param otherDateTime DateTime: DateTime to be compared
+     * @return boolean
+     */
+    public boolean isBefore(DateTime otherDateTime)
+    {
+        return !(this.isAfter(otherDateTime) || this.isEqual(otherDateTime));
     }
 
 
