@@ -353,7 +353,7 @@ public class Entry  implements Serializable {
      */
     public void setHeartRate(int newHeartRate) throws IllegalArgumentException
     {
-        if ((0 < heartRate) && (heartRate <= 300)) {
+        if ((0 < newHeartRate) && (newHeartRate <= 300)) {
             this.heartRate = newHeartRate;
         } else {
             throw new IllegalArgumentException("Heart Rate Invalid, must be between 1 & 300");
