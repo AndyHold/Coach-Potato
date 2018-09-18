@@ -360,7 +360,11 @@ public class Entry  implements Serializable {
     public void setHeartRate(int newHeartRate) throws IllegalArgumentException
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         if ((0 < heartRate) && (heartRate <= 300)) {
+=======
+        if ((0 < newHeartRate) && (newHeartRate <= 300)) {
+>>>>>>> a05ec57b... Fixed a small bug in the setHeartRate method to fix the pipeline.
             this.heartRate = newHeartRate;
         } else {
             throw new IllegalArgumentException("Heart Rate Invalid, must be between 1 & 300");
