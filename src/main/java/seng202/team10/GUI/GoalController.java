@@ -85,6 +85,7 @@ public class GoalController implements Controllable{
 //        targetColumn.setCellValueFactory(new PropertyValueFactory<Goal, String>("target"));
 //        startDateColumn.setCellValueFactory(new PropertyValueFactory<Goal, String>("startDate"));
 //        endDateColumn.setCellValueFactory(new PropertyValueFactory<Goal, String>("endDate"));
+<<<<<<< HEAD
     }
 
     private void populateTable(ObservableList<Goal> entries) {
@@ -96,6 +97,19 @@ public class GoalController implements Controllable{
         endDateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
     }
 
+=======
+    }
+
+    private void populateTable(ObservableList<Goal> entries) {
+        entriesTableView.setItems(entries);
+        nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        typeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        targetColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        startDateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        endDateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+    }
+
+>>>>>>> 888cf8cc... Added table to future goals tab. Wrote a populate table function, however at the moment it is unused. Wrote more JavaDoc in userProfile and Goals classes
 
     public void updateGoals() {
         Goals goalsInstance = app.getCurrentProfile().getGoals();
