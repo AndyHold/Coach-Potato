@@ -2,6 +2,9 @@ package seng202.team10.Model;
 
 
 import seng202.team10.Model.ActivitiesData.*;
+import seng202.team10.Model.Exceptions.ExistingActivityException;
+import seng202.team10.Model.Exceptions.ExistingElementException;
+
 import java.util.ArrayList;
 
 /**
@@ -20,7 +23,6 @@ public class UserProfile implements java.io.Serializable {
     private String gender;
     private int maxHeartrate;
     //private Goals goals;
-    private Calendar calendar;
     private double bmi;
 
 
@@ -232,7 +234,6 @@ public class UserProfile implements java.io.Serializable {
                 ", height=" + height +
                 ", birthdate=" + birthdate +
                 ", goals=" + goals +
-                ", calendar=" + calendar +
                 ", bmi=" + bmi +
                 '}';
     }

@@ -1,4 +1,4 @@
-package seng202.team10.Model;
+package seng202.team10.Model.Exceptions;
 
 
 /**
@@ -12,7 +12,7 @@ public class ExistingActivityException extends Exception {
      * Constructor method for ExistingElementException
      * @param newMessage String: Message to be displayed on exception.
      */
-    ExistingActivityException(String newMessage) {
+    public ExistingActivityException(String newMessage) {
         super(newMessage);
     }
 }

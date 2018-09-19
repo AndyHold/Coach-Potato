@@ -12,9 +12,9 @@ import javafx.stage.FileChooser;
 import javafx.util.Duration;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.*;
-import seng202.team10.Model.DuplicateEntryException;
-import seng202.team10.Model.ExistingActivityException;
-import seng202.team10.Model.ExistingElementException;
+import seng202.team10.Model.Exceptions.DuplicateEntryException;
+import seng202.team10.Model.Exceptions.ExistingActivityException;
+import seng202.team10.Model.Exceptions.ExistingElementException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -110,6 +110,8 @@ public class UploadDataController {
         } catch(IllegalArgumentException exception) {
             String message = exception.getMessage();
             createPopUp(Alert.AlertType.ERROR, "Error", message);
+        } catch(ArrayIndexOutOfBoundsException exception) {
+            createPopUp(Alert.AlertType.ERROR, "Error", "Invalid date, please select a correct date format DD/MM/YYYY in between 1900-2100");
         }
     }
 
@@ -234,9 +236,7 @@ public class UploadDataController {
             }
         } catch(NumberFormatException exception) {
             createPopUp(Alert.AlertType.ERROR, "Error", "Invalid input, please only enter valid numbers");
-        } catch(IllegalArgumentException exception) {
-            createPopUp(Alert.AlertType.ERROR, "Error", exception.getMessage());
-        } catch(DuplicateEntryException exception) {
+        } catch(IllegalArgumentException | DuplicateEntryException exception) {
             createPopUp(Alert.AlertType.ERROR, "Error", exception.getMessage());
         }
     }
@@ -304,10 +304,7 @@ public class UploadDataController {
                 // TODO figure out why these cause errors in the graphs(only did it with one of size 2 though so that could be it)
             }
         } // Catch Exceptions and display error messages
-        catch(IllegalArgumentException exception) {
-            createPopUp(Alert.AlertType.ERROR, "Data Error", exception.getMessage());
-        }
-        catch(ExistingActivityException exception) {
+        catch(IllegalArgumentException | ExistingActivityException exception) {
             createPopUp(Alert.AlertType.ERROR, "Data Error", exception.getMessage());
         }
     }
@@ -391,12 +388,12 @@ public class UploadDataController {
         app.launchLoginScene();
     }
 
-    @FXML public void openViewProfile() throws Exception {
+    @FXML public void openViewProfile() {
         moveDrawer();
         app.launchProfileScene();
     }
 
-    @FXML public void openUploadData() throws Exception {
+    @FXML public void openUploadData() {
         moveDrawer();
         app.launchUploadDataScene();
     }
@@ -406,7 +403,7 @@ public class UploadDataController {
         app.launchActivityViewerScene();
     }
 
-    @FXML public void openGoals() throws Exception {
+    @FXML public void openGoals(){
         moveDrawer();
         app.launchGoalsScene();
     }
