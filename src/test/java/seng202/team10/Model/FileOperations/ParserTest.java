@@ -3,7 +3,7 @@ package seng202.team10.Model.FileOperations;
 import org.junit.Test;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.Entry;
-import seng202.team10.Model.NoDataFoundException;
+import seng202.team10.Model.Exceptions.NoDataFoundException;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -107,7 +107,7 @@ public class ParserTest {
             assertEquals("Too many bad entries! Activity discarded!", e.getMessage());
             worked = true;
         }
-        assertEquals(worked, true);
+        assertTrue(worked);
     }
 
     @Test
@@ -121,7 +121,7 @@ public class ParserTest {
             assertEquals("Too many bad entries! Activity discarded!", e.getMessage());
             worked = true;
         }
-        assertEquals(worked, true);
+        assertTrue(worked);
     }
 
     @Test
@@ -132,7 +132,7 @@ public class ParserTest {
 
         //TODO format this properly
         testParser.processFile(formattedFileContents);
-        assertEquals(true, true);
+        assertTrue(true);
     }
 
     @Test
@@ -142,7 +142,7 @@ public class ParserTest {
         ArrayList<ArrayList<String>> formattedFileContents = testParser.formatFileContents(fileContents);
         try {
             testParser.processFile(formattedFileContents);
-            assertEquals(worked, true);
+            assertTrue(worked);
         } catch(Exception e) {
             worked = false;
         }
@@ -186,7 +186,7 @@ public class ParserTest {
             assertEquals(e.getMessage(), "No data found in file");
             worked = true;
         }
-        assertEquals(worked, true);
+        assertTrue(worked);
     }
 
     @Test
@@ -200,7 +200,7 @@ public class ParserTest {
             assertEquals(e.getMessage(), "No data found in file");
             worked = true;
         }
-        assertEquals(worked, true);
+        assertTrue(worked);
     }
 
     @Test
@@ -214,6 +214,6 @@ public class ParserTest {
             assertEquals(e.getMessage(), "Invalid activity header");
             worked = true;
         }
-        assertEquals(worked, true);
+        assertTrue(worked);
     }
 }

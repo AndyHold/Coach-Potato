@@ -96,7 +96,7 @@ public class DataAnalysisController implements Controllable, Initializable{
             stressLevelTimeSeries = new XYChart.Series();
 
             distanceOverTime.getData().clear();
-            heartRateOverTime.getData().clear();;
+            heartRateOverTime.getData().clear();
             caloriesBurned.getData().clear();
             stressLevelOverTime.getData().clear();
 
@@ -231,12 +231,14 @@ public class DataAnalysisController implements Controllable, Initializable{
         guiController.launchLoginScene();
     }
 
-    @FXML public void openViewProfile() throws Exception {
+    @FXML public void openViewProfile()
+    {
         moveDrawer();
         guiController.launchProfileScene();
     }
 
-    @FXML public void openUploadData() throws Exception {
+    @FXML public void openUploadData()
+    {
         moveDrawer();
         guiController.launchUploadDataScene();
     }
@@ -246,7 +248,8 @@ public class DataAnalysisController implements Controllable, Initializable{
         guiController.launchActivityViewerScene();
     }
 
-    @FXML public void openGoals() throws Exception {
+    @FXML public void openGoals()
+    {
         moveDrawer();
         guiController.launchGoalsScene();
     }
