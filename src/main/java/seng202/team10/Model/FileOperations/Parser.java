@@ -198,11 +198,18 @@ public class Parser {
 >>>>>>> f9972c74... Javadocced a function
 =======
 >>>>>>> 59ccd0b... Javadocced a function
+<<<<<<< HEAD
 >>>>>>> c62c59eb... Javadocced a function
 =======
         Activity activity = new Activity(name);
 
 >>>>>>> 7399b470... Added several cases to check for bad activities and bad entries, throwing exceptions where necessary
+=======
+=======
+        Activity activity = new Activity(name);
+
+>>>>>>> f72fa75... Added several cases to check for bad activities and bad entries, throwing exceptions where necessary
+>>>>>>> 2775b492... Added several cases to check for bad activities and bad entries, throwing exceptions where necessary
         while (linePosition < formattedFile.size() && (formattedFile.get(linePosition)).size() != 2) {
 
             if(inputValidator.isValidEntryLine(formattedFile.get(linePosition))){
@@ -235,12 +242,19 @@ public class Parser {
 >>>>>>> f9972c74... Javadocced a function
 =======
 >>>>>>> 59ccd0b... Javadocced a function
+<<<<<<< HEAD
 >>>>>>> c62c59eb... Javadocced a function
+=======
+>>>>>>> 2775b492... Added several cases to check for bad activities and bad entries, throwing exceptions where necessary
 =======
         if (activity.getEntries().size() < 2) {
             throw new BadActivityException();
         }
+<<<<<<< HEAD
 >>>>>>> 7399b470... Added several cases to check for bad activities and bad entries, throwing exceptions where necessary
+=======
+>>>>>>> f72fa75... Added several cases to check for bad activities and bad entries, throwing exceptions where necessary
+>>>>>>> 2775b492... Added several cases to check for bad activities and bad entries, throwing exceptions where necessary
 
         activity.postEntriesSetUp();
 
