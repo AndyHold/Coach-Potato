@@ -4,6 +4,14 @@ package seng202.team10.Model;
 import seng202.team10.Model.ActivitiesData.*;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 59668d96... Created Exceptions Package, Wrote tests for Entry and Activity, they are currently both completely tested apart from getters and setters. did some small code style refactors on various other classes. Also deleted redundant Calendar and Event classes as they are never used.
 =======
 
 
@@ -12,7 +20,16 @@ import seng202.team10.Model.ActivitiesData.*;
 import seng202.team10.Model.Exceptions.ExistingActivityException;
 import seng202.team10.Model.Exceptions.ExistingElementException;
 
+<<<<<<< HEAD
 >>>>>>> 9253f1d9... Created Exceptions Package, Wrote tests for Entry and Activity, they are currently both completely tested apart from getters and setters. did some small code style refactors on various other classes. Also deleted redundant Calendar and Event classes as they are never used.
+=======
+>>>>>>> d8e4382... Fixing Calculation of total distance and total duration
+=======
+import seng202.team10.Model.Exceptions.ExistingActivityException;
+import seng202.team10.Model.Exceptions.ExistingElementException;
+
+>>>>>>> 081c071... Created Exceptions Package, Wrote tests for Entry and Activity, they are currently both completely tested apart from getters and setters. did some small code style refactors on various other classes. Also deleted redundant Calendar and Event classes as they are never used.
+>>>>>>> 59668d96... Created Exceptions Package, Wrote tests for Entry and Activity, they are currently both completely tested apart from getters and setters. did some small code style refactors on various other classes. Also deleted redundant Calendar and Event classes as they are never used.
 import java.util.ArrayList;
 
 /**
