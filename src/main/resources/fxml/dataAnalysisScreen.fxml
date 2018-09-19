@@ -102,6 +102,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       <Button fx:id="refreshButton" layoutX="166.0" layoutY="647.0" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
 >>>>>>> 2570070... Resolved conflicts.
@@ -132,7 +133,11 @@
                <Button fx:id="menu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#drawerAction" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #435; -fx-border-color: #ffffff;" text="Menu" textFill="WHITE" />
            </items>
        </ToolBar>
+<<<<<<< HEAD
 >>>>>>> 1cd8c180... Updated the menu toolbar on most screens
+=======
+>>>>>>> c9a8e0d... Updated the menu toolbar on most screens
+>>>>>>> 4f115d3a... Updated the menu toolbar on most screens
       <VBox fx:id="drawer" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="150.0" style="-fx-background-color: #435;" translateX="-150.0">
          <children>
             <Button fx:id="selectProfileButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openChooseProfile" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #435; -fx-border-color: #ffffff;" text="Choose Profile" textFill="WHITE" />
