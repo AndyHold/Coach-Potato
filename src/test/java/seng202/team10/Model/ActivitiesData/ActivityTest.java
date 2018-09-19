@@ -49,6 +49,48 @@ public class ActivityTest {
 
 
     @Test
+    public void badNameEmpty()
+    {
+        String message = "Test Failed!";
+        try {
+            new Activity("");
+        } catch (IllegalArgumentException exception) {
+            message = exception.getMessage();
+        }
+        assertEquals("Activity name invalid, either blank or too long. Please change to between 1 - 30 characters", message);
+    }
+
+
+    @Test
+    public void badNameLong()
+    {
+        String message = "Test Failed!";
+        try {
+            new Activity("0000000000000000000000000000000");
+        } catch (IllegalArgumentException exception) {
+            message = exception.getMessage();
+        }
+        assertEquals("Activity name invalid, either blank or too long. Please change to between 1 - 30 characters", message);
+    }
+
+
+    @Test
+    public void goodNameShort()
+    {
+        Activity testActivity = new Activity("a");
+        assertEquals("a", testActivity.getName());
+    }
+
+
+    @Test
+    public void goodNameLong()
+    {
+        Activity testActivity = new Activity("abcdefghijklmnopqrstuvwxyz0123");
+        assertEquals("abcdefghijklmnopqrstuvwxyz0123", testActivity.getName());
+    }
+
+
+    @Test
     public void addEntry()
     {
         int initialSize = activity.getEntries().size();
@@ -60,34 +102,34 @@ public class ActivityTest {
     }
 
 
-//    @Test
-//    public void calculateTotalDistance()
-//    {
-//        activity.calculateTotalDistance();
-//        assertEquals(0.023865612348432826, activity.getTotalDistance(), 1.0E-18);
-//    }
+    @Test
+    public void calculateTotalDistance()
+    {
+        activity.calculateTotalDistance();
+        assertEquals("177.68", activity.getDistanceString());
+    }
 
 
     @Test
     public void calculateTotalDuration()
     {
         activity.calculateTotalDuration();
-        assertEquals(50, activity.getTotalDuration());
+        assertEquals("50", activity.getDurationString());
     }
 
-//    @Test
-//    public void calculateAverageVelocity()
-//    {
-//        activity.calculateTotalDistance();
-//        activity.calculateTotalDuration();
-//        activity.calculateAverageVelocity();
-//        assertEquals(4.773122469686565E-4, activity.getAverageVelocity(), 1.0E-19);
-//    }
+    @Test
+    public void calculateAverageVelocity()
+    {
+        activity.calculateTotalDistance();
+        activity.calculateTotalDuration();
+        activity.calculateAverageVelocity();
+        assertEquals("3.55", activity.getSpeedString());
+    }
 
     @Test
     public void calculateAverageHeartRate()
     {
         activity.calculateAverageHeartRate();
-        assertEquals(85.0, activity.getAverageHeartRate(), 1.0E-19);
+        assertEquals("85.00", activity.getHeartString());
     }
 }
