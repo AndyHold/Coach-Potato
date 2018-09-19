@@ -3,6 +3,7 @@ package seng202.team10.Model.FileOperations;
 import org.junit.Test;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.Entry;
+import seng202.team10.Model.NoDataFoundException;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ public class ParserTest {
 
     @Test
     /* this is an unofficial test for me to test the whole process */
-    public void overallTest() throws FileNotFoundException{
+    public void overallTest() throws FileNotFoundException, NoDataFoundException {
         ArrayList<String> fileContents = testParser.getFileContents("./FilesToLoad/testdata.csv");
         ArrayList<ArrayList<String>> formattedFile = testParser.formatFileContents(fileContents);
         ArrayList<Activity> testResults = testParser.processFile(formattedFile);
@@ -53,7 +54,7 @@ public class ParserTest {
     }
 
     @Test
-    public void processFile() throws FileNotFoundException {
+    public void processFile() throws FileNotFoundException, NoDataFoundException {
         ArrayList<String> fileContents = testParser.getFileContents("./FilesToLoad/testdata.csv");
         ArrayList<ArrayList<String>> formattedFile = testParser.formatFileContents(fileContents);
         ArrayList<Activity> testResults = testParser.processFile(formattedFile);
@@ -96,7 +97,7 @@ public class ParserTest {
     }
 
     @Test
-    public void tooManyBadEntries() throws FileNotFoundException {
+    public void tooManyBadEntries() throws FileNotFoundException, NoDataFoundException {
         boolean worked = false;
         ArrayList<String> fileContents = testParser.getFileContents("FilesToLoad/TestData/toomanycommas.csv");
         ArrayList<ArrayList<String>> formattedFileContents = testParser.formatFileContents(fileContents);
@@ -110,7 +111,7 @@ public class ParserTest {
     }
 
     @Test
-    public void justTooManyBadEntries() throws FileNotFoundException {
+    public void justTooManyBadEntries() throws FileNotFoundException, NoDataFoundException {
         boolean worked = false;
         ArrayList<String> fileContents = testParser.getFileContents("FilesToLoad/TestData/justTooManyBadEntries.csv");
         ArrayList<ArrayList<String>> formattedFileContents = testParser.formatFileContents(fileContents);
@@ -124,7 +125,7 @@ public class ParserTest {
     }
 
     @Test
-    public void justNotEnoughBadEntries() throws FileNotFoundException {
+    public void justNotEnoughBadEntries() throws FileNotFoundException, NoDataFoundException {
         boolean worked = false;
         ArrayList<String> fileContents = testParser.getFileContents("FilesToLoad/TestData/justNotEnoughBadEntries.csv");
         ArrayList<ArrayList<String>> formattedFileContents = testParser.formatFileContents(fileContents);
@@ -175,7 +176,7 @@ public class ParserTest {
     }
 
     @Test
-    public void wrongFileType() throws FileNotFoundException {
+    public void wrongFileType() throws FileNotFoundException, NoDataFoundException {
         boolean worked = false;
         ArrayList<String> fileContents = testParser.getFileContents("FilesToLoad/TestData/picture.png");
         ArrayList<ArrayList<String>> formattedFileContents = testParser.formatFileContents(fileContents);
@@ -189,7 +190,7 @@ public class ParserTest {
     }
 
     @Test
-    public void emptyFile() throws FileNotFoundException {
+    public void emptyFile() throws FileNotFoundException, NoDataFoundException {
         boolean worked = false;
         ArrayList<String> fileContents = testParser.getFileContents("FilesToLoad/TestData/emptyFile.csv");
         ArrayList<ArrayList<String>> formattedFileContents = testParser.formatFileContents(fileContents);
@@ -203,7 +204,7 @@ public class ParserTest {
     }
 
     @Test
-    public void twoActivityHeadersInARow() throws FileNotFoundException {
+    public void twoActivityHeadersInARow() throws FileNotFoundException, NoDataFoundException {
         boolean worked = false;
         ArrayList<String> fileContents = testParser.getFileContents("FilesToLoad/TestData/twoActivityHeaders.csv");
         ArrayList<ArrayList<String>> formattedFileContents = testParser.formatFileContents(fileContents);
