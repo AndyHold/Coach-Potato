@@ -37,7 +37,7 @@ public class Position  implements Serializable {
      */
     public void setLatitude(double latitude) throws IllegalArgumentException
     {
-        if ((-90.0 < latitude) && (latitude < 90.0)) {
+        if ((-90.0 <= latitude) && (latitude <= 90.0)) {
             this.latitude = latitude;
         } else {
             throw new IllegalArgumentException("Latitude Invalid, must be between -90 & 90");
@@ -51,7 +51,7 @@ public class Position  implements Serializable {
      */
     public void setLongitude(double longitude) throws IllegalArgumentException
     {
-        if ((-180 < longitude) && (longitude < 180)) {
+        if ((-180 <= longitude) && (longitude <= 180)) {
             this.longitude = longitude;
         } else {
             throw new IllegalArgumentException("Longitude Invalid, must be between -180 & 180");
@@ -65,10 +65,10 @@ public class Position  implements Serializable {
      */
     public void setElevation(double elevation) throws IllegalArgumentException
     {
-        if (-430.0 > elevation || elevation > 8850.0) {
-            throw new IllegalArgumentException("Elevation Invalid, must be above 430 meters below sea level and below 8850 meters above sea level");
-        } else {
+        if (-430.0 <= elevation && elevation <= 8850.0) {
             this.elevation = elevation;
+        } else {
+            throw new IllegalArgumentException("Elevation Invalid, must be above 430 meters below sea level and below 8850 meters above sea level");
         }
     }
 
