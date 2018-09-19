@@ -38,7 +38,6 @@ import seng202.team10.Model.FileOperations.FileReader;
 >>>>>>> 61ade368... loading existing users from file when logging in, deleted some old test users
 import seng202.team10.Model.FileOperations.FileWriter;
 import seng202.team10.Model.FileOperations.Parser;
-import seng202.team10.Model.Goals;
 import seng202.team10.Model.UserProfile;
 
 import java.util.ArrayList;
@@ -104,7 +103,8 @@ public class GUIController extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception{
         // Added a test user.
-//        users.add(new UserProfile("Potato", 75, 180, new DateTime(2000,1,1,1,1,1), "Male"));
+        users.add(new UserProfile("Potato", 75, 180, new DateTime(2000,1,1,1,1,1), "Male"));
+        users.get(0).setMaxHeartrate(210);
         loadAllUsers();
         loadAllScenes();
         primaryStage.setTitle("Coach Potato");
