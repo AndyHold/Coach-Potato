@@ -4,7 +4,10 @@ import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.VBox;
@@ -12,6 +15,8 @@ import javafx.stage.FileChooser;
 import javafx.util.Duration;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.*;
+import seng202.team10.Model.FileOperations.Parser;
+import seng202.team10.Model.NoDataFoundException;
 import seng202.team10.Model.Exceptions.DuplicateEntryException;
 import seng202.team10.Model.Exceptions.ExistingActivityException;
 import seng202.team10.Model.Exceptions.ExistingElementException;
@@ -23,6 +28,7 @@ import java.util.ArrayList;
 public class UploadDataController {
 
     private GUIController app;
+    private Parser parser = new Parser();
 
 
     @FXML private TextField filePathTextField;
@@ -252,17 +258,25 @@ public class UploadDataController {
             createPopUp(Alert.AlertType.ERROR, "Error", "No file path, please select a csv file");
         } else {
             try {
-                ArrayList<String> fileContents = app.getParser().getFileContents(filename);
-                ArrayList<ArrayList<String>> formattedFile = app.getParser().formatFileContents(fileContents);
-                ArrayList<Activity> newActivities = app.getParser().processFile(formattedFile);
+                ArrayList<String> fileContents = this.parser.getFileContents(filename);
+                ArrayList<ArrayList<String>> formattedFile = this.parser.formatFileContents(fileContents);
+                ArrayList<Activity> newActivities = this.parser.processFile(formattedFile);
                 app.getCurrentProfile().addActivities(newActivities);
                 app.getDataWriter().saveProfile(app.getCurrentProfile()); // Reserialize profile after adding data
-                createPopUp(Alert.AlertType.INFORMATION, "Success", "Your file has been successfully uploaded to your profile");
+                if (this.parser.getBadActivities() > 0) {
+                    String discardedMessage = String.valueOf(this.parser.getBadActivities()) + " of " + String.valueOf(newActivities.size() + this.parser.getBadActivities()) + " activities found were discarded due to being unparsable";
+                    createPopUp(Alert.AlertType.WARNING, "Warning", discardedMessage);
+                }
+                else {
+                    createPopUp(Alert.AlertType.INFORMATION, "Success", String.valueOf(newActivities.size()) +" activities have been successfully uploaded to your profile");
+                }
                 //TODO have an option to cut to Data Viewer or to upload/input another File/Activity when one is submitted.
                 //TODO this will require a custom pop up button (Low Priority).
             } catch (FileNotFoundException exception) {
                 createPopUp(Alert.AlertType.ERROR, "Error", "File not found, please choose a valid csv file");
             } catch (ExistingElementException exception) {
+                createPopUp(Alert.AlertType.ERROR, "Error", exception.getMessage());
+            } catch (NoDataFoundException exception) {
                 createPopUp(Alert.AlertType.ERROR, "Error", exception.getMessage());
             }
         }
