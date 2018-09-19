@@ -8,11 +8,7 @@ import java.util.ArrayList;
 public class InputValidator {
 
     public boolean validGoalName(String name) {
-        if (name.length() <= 10 && name.length() >= 2) {
-            return true;
-        } else {
-            return false;
-        }
+        return name.length() <= 10 && name.length() >= 2;
     }
 
     public boolean validGoalStartDate(DateTime startDate) {
@@ -21,11 +17,7 @@ public class InputValidator {
         int month = now.getMonthValue();
         int day = now.getDayOfMonth();
         DateTime today = new DateTime(year, month, day, 0,0,0);
-        if (startDate.isBefore(today) || (startDate.getYear() > (today.getYear() + 1))) {
-            return false;
-        } else {
-            return true;
-        }
+        return !startDate.isBefore(today) && (startDate.getYear() <= (today.getYear() + 1));
     }
 
     public boolean validGoalTargetDate(DateTime targetDate) {
@@ -34,20 +26,12 @@ public class InputValidator {
         int month = now.getMonthValue();
         int day = now.getDayOfMonth();
         DateTime today = new DateTime(year, month, day, 0,0,0);
-        if (targetDate.isBefore(today) || (targetDate.getYear() > (today.getYear() + 5))) {
-            return false;
-        } else {
-            return true;
-        }
+        return !targetDate.isBefore(today) && (targetDate.getYear() <= (today.getYear() + 5));
     }
 
     public boolean intValueInRange(String value, int lowerBound, int upperBound) {
         try {
-            if (Integer.valueOf(value) >= lowerBound && Integer.valueOf(value) <= upperBound) {
-                return true;
-            } else {
-                return false;
-            }
+            return Integer.valueOf(value) >= lowerBound && Integer.valueOf(value) <= upperBound;
         } catch (NumberFormatException e) {
             return false;
         }
@@ -55,11 +39,7 @@ public class InputValidator {
 
     public boolean floatValueInRange(String value, float lowerBound, float upperBound) {
         try {
-            if (Float.valueOf(value) >= lowerBound && Float.valueOf(value) <= upperBound) {
-                return true;
-            } else {
-                return false;
-            }
+            return Float.valueOf(value) >= lowerBound && Float.valueOf(value) <= upperBound;
         } catch (NumberFormatException e) {
             return false;
         }
@@ -122,9 +102,7 @@ public class InputValidator {
     public boolean validActivityHeader(ArrayList<String> header) {
         if (header.size() >= 2) {
             if (header.get(0).equals("#start")) {
-                if (isValidActivityName(header.get(1))) {
-                    return true;
-                }
+                return isValidActivityName(header.get(1));
             }
         }
         return false;
@@ -152,10 +130,7 @@ public class InputValidator {
             if (!this.floatValueInRange(entryLine.get(4), -180, 180)) {
                 return false;
             }
-            if (!this.floatValueInRange(entryLine.get(5), -500, 5000)) {
-                return false;
-            }
-            return true;
+            return this.floatValueInRange(entryLine.get(5), -500, 5000);
         }
         return false;
     }
