@@ -107,10 +107,8 @@ public class DataAnalysisController implements Controllable, Initializable{
             timeTakenLabel.setText("Time Taken: " + dataAnalysis.secondsToTime(timeTaken));
 
             ArrayList<Double> distanceArray = dataAnalysis.getDistanceFromActivity(activity);
-            double totalDistance = 0;
             for (int i = 0; i < timeArray.size(); i++) {
-                totalDistance = totalDistance + distanceArray.get(i);
-                distanceTimeSeries.getData().add(new XYChart.Data(dataAnalysis.secondsToTime(timeArray.get(i)), totalDistance));
+                distanceTimeSeries.getData().add(new XYChart.Data(dataAnalysis.secondsToTime(timeArray.get(i)), distanceArray.get(i)));
             }
             distanceOverTime.getData().add(distanceTimeSeries);
 
