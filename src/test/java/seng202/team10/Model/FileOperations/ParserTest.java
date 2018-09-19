@@ -110,6 +110,71 @@ public class ParserTest {
     }
 
     @Test
+    public void justTooManyBadEntries() throws FileNotFoundException {
+        boolean worked = false;
+        ArrayList<String> fileContents = testParser.getFileContents("FilesToLoad/TestData/justTooManyBadEntries.csv");
+        ArrayList<ArrayList<String>> formattedFileContents = testParser.formatFileContents(fileContents);
+        try {
+            testParser.processFile(formattedFileContents);
+        } catch (IllegalArgumentException e){
+            assertEquals("Too many bad entries! Activity discarded!", e.getMessage());
+            worked = true;
+        }
+        assertEquals(worked, true);
+    }
+
+    @Test
+    public void justNotEnoughBadEntries() throws FileNotFoundException {
+        boolean worked = false;
+        ArrayList<String> fileContents = testParser.getFileContents("FilesToLoad/TestData/justNotEnoughBadEntries.csv");
+        ArrayList<ArrayList<String>> formattedFileContents = testParser.formatFileContents(fileContents);
+
+        //TODO format this properly
+        testParser.processFile(formattedFileContents);
+        assertEquals(true, true);
+    }
+
+    @Test
+    public void allGoodEntries() throws FileNotFoundException {
+        boolean worked = true;
+        ArrayList<String> fileContents = testParser.getFileContents("FilesToLoad/TestData/allGoodEntries.csv");
+        ArrayList<ArrayList<String>> formattedFileContents = testParser.formatFileContents(fileContents);
+        try {
+            testParser.processFile(formattedFileContents);
+            assertEquals(worked, true);
+        } catch(Exception e) {
+            worked = false;
+        }
+        assertEquals(worked, true);
+
+    }
+
+    @Test
+    public void allBadEntries() throws FileNotFoundException {
+
+    }
+
+    @Test
+    public void allBadActivityHeaders() throws FileNotFoundException {
+
+    }
+
+    @Test
+    public void someBadActivityHeaders() throws FileNotFoundException {
+
+    }
+
+    @Test
+    public void emptyActivity() throws FileNotFoundException {
+
+    }
+
+    @Test
+    public void oneEntryInActivity() throws FileNotFoundException {
+
+    }
+
+    @Test
     public void wrongFileType() throws FileNotFoundException {
         boolean worked = false;
         ArrayList<String> fileContents = testParser.getFileContents("FilesToLoad/TestData/picture.png");
