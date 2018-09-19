@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TabPane;
@@ -146,6 +147,7 @@ public class DataAnalysisController implements Controllable, Initializable{
 //        xAxis.setLowerBound();
         linechart.setCreateSymbols(false);
     }
+
     private void displayNoData(boolean noDataFound) {
         if (noDataFound) {
             tabPane.setVisible(false);
@@ -166,7 +168,21 @@ public class DataAnalysisController implements Controllable, Initializable{
     }
 
     @FXML public void viewMap() {
-        guiController.launchMapScene(activity);
+        if (!(activity == null)) {
+            guiController.launchMapScene(activity);
+        } else {
+            createPopUp(Alert.AlertType.ERROR, "Error", "Please select an activity.");
+        }
+
+    }
+
+    private void createPopUp(Alert.AlertType type, String title, String message)
+    {
+        Alert errorPopUp = new Alert(type);
+        errorPopUp.setTitle(title);
+        errorPopUp.setContentText(message);
+        errorPopUp.setHeaderText(null);
+        errorPopUp.showAndWait();
     }
 
     @Override
