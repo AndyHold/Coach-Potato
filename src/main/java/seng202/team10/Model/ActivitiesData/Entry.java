@@ -16,6 +16,7 @@ public class Entry  implements Serializable {
     private DateTime time;
     private int heartRate;
     private Position position;
+<<<<<<< HEAD
     private double distance = 0;
     private double velocity = 0;
 <<<<<<< HEAD
@@ -33,6 +34,10 @@ public class Entry  implements Serializable {
 
 >>>>>>> 173bfae... Refactored Activity Class to delete some redundant code, fixed Activity class created a ActivityTypeTest class and implemented tests for it. Wrote some more tests for DateTime's new change methods, wrote some tests for the Position class.
 >>>>>>> d15fa3f6... Refactored Activity Class to delete some redundant code, fixed Activity class created a ActivityTypeTest class and implemented tests for it. Wrote some more tests for DateTime's new change methods, wrote some tests for the Position class.
+=======
+    private double distance;
+    private double velocity;
+>>>>>>> 9253f1d9... Created Exceptions Package, Wrote tests for Entry and Activity, they are currently both completely tested apart from getters and setters. did some small code style refactors on various other classes. Also deleted redundant Calendar and Event classes as they are never used.
 
     /**
      * Constructor for the Entry.
@@ -520,9 +525,6 @@ public class Entry  implements Serializable {
      */
     public void setFirstEntry(boolean firstEntry)
     {
-        if (firstEntry) {
-            this.velocity = 0.0;
-        }
         this.firstEntry = firstEntry;
 >>>>>>> 04fec49c... DateTime now has 100% test coverage, refactored Activity and Entry to make them more readable and got rid of unnecessary String attributes and had them be derived when asked for in the getter method instead. This will make it easier when the values are changed. Implemented the calculateVelocity method in Entry and the calculateEntriesVelocity method in Activity properly so that the data can now be used for graphing.
     }
@@ -569,10 +571,13 @@ public class Entry  implements Serializable {
      */
     public void calculateVelocity(Entry prevEntry)
     {
-        double prevDistance = prevEntry.getDistance();
         DateTime prevTime = prevEntry.getTime();
+<<<<<<< HEAD
         this.velocity = (this.distance - prevDistance)/((time.subtract(prevTime)));
 >>>>>>> 04fec49c... DateTime now has 100% test coverage, refactored Activity and Entry to make them more readable and got rid of unnecessary String attributes and had them be derived when asked for in the getter method instead. This will make it easier when the values are changed. Implemented the calculateVelocity method in Entry and the calculateEntriesVelocity method in Activity properly so that the data can now be used for graphing.
+=======
+        this.velocity = (this.distance/time.subtract(prevTime));
+>>>>>>> 9253f1d9... Created Exceptions Package, Wrote tests for Entry and Activity, they are currently both completely tested apart from getters and setters. did some small code style refactors on various other classes. Also deleted redundant Calendar and Event classes as they are never used.
     }
 
 
@@ -678,7 +683,31 @@ public class Entry  implements Serializable {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+     * Getter method to get user's distance.
+     * @return distance: double
+     */
+    public double getDistance()
+    {
+        return distance;
+    }
+
+
+    /**
+     * Getter method to get user's velocity.
+     * TODO Torben can create a graph for this attribute now.
+     * @return velocity: double
+     */
+    public double getVelocity()
+    {
+        return velocity;
+    }
+
+
+    /**
+>>>>>>> 9253f1d9... Created Exceptions Package, Wrote tests for Entry and Activity, they are currently both completely tested apart from getters and setters. did some small code style refactors on various other classes. Also deleted redundant Calendar and Event classes as they are never used.
      * Getter method to check if it is user's first entry.
      * @return firstEntry: boolean
      */
@@ -719,6 +748,7 @@ public class Entry  implements Serializable {
 
     /**
      * Getter method for the String representation of the latitude
+     * @return String
      */
     public String getLatitudeString()
     {
@@ -728,6 +758,7 @@ public class Entry  implements Serializable {
 
     /**
      * Getter method for the String representation of the longitude
+     * @return String
      */
     public String getLongitudeString()
     {
@@ -737,6 +768,7 @@ public class Entry  implements Serializable {
 
     /**
      * Getter method for the String representation of the elevation
+     * @return String
      */
     public String getElevationString()
     {
@@ -745,23 +777,22 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Getter method to get user's distance.
-     * @return distance: double
+     * Getter method for the String representation of the distance from the previous Entry
+     * @return String
      */
-    public double getDistance()
+    public String getDistanceString()
     {
-        return distance;
+        return String.format("%.2f", this.getDistance());
     }
 
 
     /**
-     * Getter method to get user's velocity.
-     * TODO Torben can create a graph for this attribute now.
-     * @return velocity: double
+     * Getter method for the String representation of the velocity at this Entry
+     * @return String
      */
-    public double getVelocity()
+    public String getVelocityString()
     {
-        return velocity;
+        return String.format("%.2f", this.getVelocity());
     }
 
 

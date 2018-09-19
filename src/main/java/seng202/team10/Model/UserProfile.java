@@ -3,10 +3,16 @@ package seng202.team10.Model;
 
 import seng202.team10.Model.ActivitiesData.*;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 
 >>>>>>> f5a854f6... Fixing Calculation of total distance and total duration
+=======
+import seng202.team10.Model.Exceptions.ExistingActivityException;
+import seng202.team10.Model.Exceptions.ExistingElementException;
+
+>>>>>>> 9253f1d9... Created Exceptions Package, Wrote tests for Entry and Activity, they are currently both completely tested apart from getters and setters. did some small code style refactors on various other classes. Also deleted redundant Calendar and Event classes as they are never used.
 import java.util.ArrayList;
 
 /**
@@ -25,7 +31,6 @@ public class UserProfile implements java.io.Serializable {
     private String gender;
     private int maxHeartrate;
     //private Goals goals;
-    private Calendar calendar;
     private double bmi;
 
 
@@ -250,7 +255,6 @@ public class UserProfile implements java.io.Serializable {
                 ", height=" + height +
                 ", birthdate=" + birthdate +
                 ", goals=" + goals +
-                ", calendar=" + calendar +
                 ", bmi=" + bmi +
                 '}';
     }
