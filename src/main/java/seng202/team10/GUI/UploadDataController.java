@@ -25,7 +25,11 @@ import seng202.team10.Model.ExistingActivityException;
 import seng202.team10.Model.ExistingElementException;
 import seng202.team10.Model.FileOperations.Parser;
 import seng202.team10.Model.NoDataFoundException;
+<<<<<<< HEAD
 >>>>>>> 6e50a5fd... Added several alerts and pop up windows for different cases of parsing data
+=======
+>>>>>>> fa9df04... Added several alerts and pop up windows for different cases of parsing data
+>>>>>>> 3228303f... Added several alerts and pop up windows for different cases of parsing data
 
 import java.io.File;
 import java.io.FileNotFoundException;
