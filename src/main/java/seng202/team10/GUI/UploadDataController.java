@@ -16,7 +16,7 @@ import javafx.util.Duration;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.*;
 import seng202.team10.Model.FileOperations.Parser;
-import seng202.team10.Model.NoDataFoundException;
+import seng202.team10.Model.Exceptions.NoDataFoundException;
 import seng202.team10.Model.Exceptions.DuplicateEntryException;
 import seng202.team10.Model.Exceptions.ExistingActivityException;
 import seng202.team10.Model.Exceptions.ExistingElementException;

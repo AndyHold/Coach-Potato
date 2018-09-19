@@ -5,9 +5,9 @@ import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.ActivitiesData.Entry;
 import seng202.team10.Model.ActivitiesData.Position;
-import seng202.team10.Model.BadActivityException;
-import seng202.team10.Model.NoActivityFoundException;
-import seng202.team10.Model.NoDataFoundException;
+import seng202.team10.Model.Exceptions.BadActivityException;
+import seng202.team10.Model.Exceptions.NoActivityFoundException;
+import seng202.team10.Model.Exceptions.NoDataFoundException;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;

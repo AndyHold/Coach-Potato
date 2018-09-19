@@ -145,7 +145,8 @@ public class GUIController extends Application{
      * Sets the scene on the primary stage to the login scene.
      * @throws Exception Not implemented.
      */
-    public void launchLoginScene() throws Exception {
+    public void launchLoginScene()
+    {
         loginController.setUpScene();
         primaryStage.setScene(loginScene);
     }
@@ -192,14 +193,16 @@ public class GUIController extends Application{
     /**
      * Sets the scene on the primary stage to the create profile scene.
      */
-    public void launchCreateProfileScene() throws Exception {
+    public void launchCreateProfileScene()
+    {
         primaryStage.setScene(createProfileScene);
     }
 
     /**
      * Sets the scene on the primary stage to the data analysis scene.
      */
-    public void launchDataAnalysisScene() throws Exception {
+    public void launchDataAnalysisScene()
+    {
 //        dataAnalysisController.setActivity(currentUser.getActivities().get(0));
         dataAnalysisController.setUpScene();
         dataWriter.saveProfile(currentUser);
@@ -209,7 +212,8 @@ public class GUIController extends Application{
     /**
      * Sets the scene on the primary stage to the entry viewer scene.
      */
-    public void launchEntryViewerScene(Activity activity) throws Exception {
+    public void launchEntryViewerScene(Activity activity)
+    {
         entryViewerController.setUpScene(activity);
         dataWriter.saveProfile(currentUser);
         primaryStage.setScene(entryViewerScene);
@@ -218,7 +222,8 @@ public class GUIController extends Application{
     /**
      * Sets the scene on the primary stage to the activity viewer scene.
      */
-    public void launchActivityViewerScene() throws Exception {
+    public void launchActivityViewerScene()
+    {
         activityViewerController.setUpScene();
         dataWriter.saveProfile(currentUser);
         primaryStage.setScene(activityViewerScene);
@@ -323,7 +328,8 @@ public class GUIController extends Application{
      * @param newUser  The profile being created.
      * @throws Exception Not implemented
      */
-    public void createUser(UserProfile newUser) throws Exception{
+    public void createUser(UserProfile newUser)
+    {
         users.add(newUser);
     }
 
