@@ -6,13 +6,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import org.apache.commons.lang3.ObjectUtils;
 import javafx.scene.layout.VBox;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.DateTime;
-import seng202.team10.Model.Exceptions.InvalidHeightException;
-import seng202.team10.Model.Exceptions.InvalidUserException;
-import seng202.team10.Model.Exceptions.InvalidWeightException;
+import seng202.team10.Model.Exceptions.*;
 import seng202.team10.Model.UserProfile;
 
 import javax.naming.InvalidNameException;
@@ -23,6 +22,7 @@ public class CreateProfileController implements Controllable
 
     private GUIController app;
     ToggleGroup toggleGroup;
+
 
     @FXML private TextField nameEntry;
     @FXML private TextField weightEntry;
@@ -39,6 +39,7 @@ public class CreateProfileController implements Controllable
     @FXML private RadioButton maleRad;
     @FXML private RadioButton notSpecifiedRad;
     @FXML private VBox wholeProfileVBox;
+    @FXML private Button backButton;
 
 
     /**
@@ -48,6 +49,17 @@ public class CreateProfileController implements Controllable
     public void setApp(GUIController app)
     {
         this.app = app;
+    }
+
+
+    public void toggleBackButton()
+    {
+        backButton.requestFocus();
+        if (this.app.getUsers().size() == 0) {
+            backButton.setDisable(true);
+        } else {
+            backButton.setDisable(false);
+        }
     }
 
 
@@ -78,12 +90,12 @@ public class CreateProfileController implements Controllable
         yearEntry.setItems(years);
         yearEntry.setVisibleRowCount(5);
 
-        nameEntry.focusedProperty().addListener((observable,  oldValue,  newValue) -> {
-            if(newValue && firstTime.get()){
-                wholeProfileVBox.requestFocus(); // Delegate the focus to container
-                firstTime.setValue(false); // Variable value changed for future references
-            }
-        });
+//        nameEntry.focusedProperty().addListener((observable,  oldValue,  newValue) -> {
+//            if(newValue && firstTime.get()){
+//                wholeProfileVBox.requestFocus(); // Delegate the focus to container
+//                firstTime.setValue(false); // Variable value changed for future references
+//            }
+//        });
 
         toggleGroup = new ToggleGroup();
         femaleRad.setToggleGroup(toggleGroup);
@@ -152,6 +164,7 @@ public class CreateProfileController implements Controllable
         // Set Name and handle Exceptions
         try {
             String nameString =  getTextFieldString(nameEntry);
+            this.app.checkUniqueName(nameString);
             userProfile.setName(nameString);
         } catch (InvalidNameException | IllegalArgumentException exception) {
             nameErrorLabel.setVisible(true);
@@ -194,6 +207,8 @@ public class CreateProfileController implements Controllable
             userProfile.setGender(genderString);
         } catch (NullPointerException exception) {
             genderErrorLabel.setVisible(true);
+        } catch (IllegalArgumentException exception) {
+            this.app.createPopUp(Alert.AlertType.ERROR, "Error", "Could not find image");
         }
 
         // Set Max Heart Rate
@@ -206,6 +221,7 @@ public class CreateProfileController implements Controllable
             app.createUser(userProfile);
             setErrorsInvisible();
             setInputsToNull();
+            this.app.getDataWriter().saveProfile(userProfile);
             app.launchLoginScene();
         } catch (InvalidUserException exception) { }
     }
@@ -219,7 +235,7 @@ public class CreateProfileController implements Controllable
     private String getTextFieldString(TextField textField) throws IllegalArgumentException
     {
         String newString = textField.getText();
-        if (newString.length() < 1) {
+        if (newString == null) {
             throw new IllegalArgumentException();
         }
         return newString;
