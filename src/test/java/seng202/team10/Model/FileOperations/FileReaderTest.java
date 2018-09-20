@@ -6,6 +6,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import seng202.team10.Model.UserProfile;
 
+import javax.naming.InvalidNameException;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,7 +44,8 @@ public class FileReaderTest {
     }
 
     @Test
-    public void getExistingUsers(){
+    public void getExistingUsers() throws InvalidNameException
+    {
         UserProfile secondTestProfile = new UserProfile();
         secondTestProfile.setName("bill");
         testWriter.saveProfile(secondTestProfile);

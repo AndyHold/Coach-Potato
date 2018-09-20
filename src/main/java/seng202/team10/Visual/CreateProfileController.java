@@ -6,10 +6,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import org.apache.commons.lang3.ObjectUtils;
 import javafx.scene.layout.VBox;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.DateTime;
+import seng202.team10.Model.Exceptions.InvalidHeightException;
+import seng202.team10.Model.Exceptions.InvalidUserException;
+import seng202.team10.Model.Exceptions.InvalidWeightException;
 import seng202.team10.Model.UserProfile;
+
+import javax.naming.InvalidNameException;
+import java.util.Calendar;
 
 public class CreateProfileController implements Controllable
 {
@@ -17,65 +24,38 @@ public class CreateProfileController implements Controllable
     private GUIController app;
     ToggleGroup toggleGroup;
 
-    @FXML
-    private Button createProfileButton;
+    @FXML private TextField nameEntry;
+    @FXML private TextField weightEntry;
+    @FXML private TextField heightEntry;
+    @FXML private ComboBox dayEntry;
+    @FXML private ComboBox monthEntry;
+    @FXML private ComboBox yearEntry;
+    @FXML private Label dateErrorLabel;
+    @FXML private Label nameErrorLabel;
+    @FXML private Label weightErrorLabel;
+    @FXML private Label heightErrorLabel;
+    @FXML private Label genderErrorLabel;
+    @FXML private RadioButton femaleRad;
+    @FXML private RadioButton maleRad;
+    @FXML private RadioButton notSpecifiedRad;
+    @FXML private VBox wholeProfileVBox;
 
-    @FXML
-    private Button backButton;
 
-    @FXML
-    private TextField nameEntry;
-
-    @FXML
-    private TextField weightEntry;
-
-    @FXML
-    private TextField heightEntry;
-
-    @FXML
-    private ComboBox dayEntry;
-
-    @FXML
-    private ComboBox monthEntry;
-
-    @FXML
-    private ComboBox yearEntry;
-
-    @FXML
-    private Label dateErrorLabel;
-
-    @FXML
-    private Label nameErrorLabel;
-
-    @FXML
-    private Label weightErrorLabel;
-
-    @FXML
-    private Label heightErrorLabel;
-
-    @FXML
-    private RadioButton femaleRad;
-
-    @FXML
-    private RadioButton maleRad;
-
-    @FXML
-    private RadioButton notSpecifiedRad;
-
-    @FXML
-    private Label genderWarning;
-
-    @FXML
-    private VBox wholeProfileVBox;
-
+    /**
+     * Setter method to set the GUI controller for this Scene
+     * @param app GUIController
+     */
     public void setApp(GUIController app)
     {
         this.app = app;
     }
 
+
+    /**
+     * Sets up objects that require it prior to showing the scene
+     */
     public void setUpScene()
     {
-        final BooleanProperty firstTime = new SimpleBooleanProperty(true);
         ObservableList<Integer> days = FXCollections.observableArrayList();
         for (int i = 1; i <= 31; i ++) {
             days.add(i);
@@ -110,49 +90,90 @@ public class CreateProfileController implements Controllable
         notSpecifiedRad.setToggleGroup(toggleGroup);
     }
 
-    @FXML
-    public void back() throws Exception
-    {
-        app.launchLoginScene();
-    }
 
-    @FXML
-    public void createProfile() throws Exception
+    /**
+     * Method to set all Error Labels to Invisible
+     */
+    private void setErrorsInvisible()
     {
-        boolean invalidInput = false;
         dateErrorLabel.setVisible(false);
         nameErrorLabel.setVisible(false);
         weightErrorLabel.setVisible(false);
         heightErrorLabel.setVisible(false);
-        genderWarning.setVisible(false);
-        String nameString = nameEntry.getText();
-        String heightString = heightEntry.getText();
-        String weightString = weightEntry.getText();
-        String genderString = getSelectedGender();
+        genderErrorLabel.setVisible(false);
+    }
 
-        if (dayEntry.getValue() == null || monthEntry.getValue() == null || yearEntry.getValue() == null) {
-            dateErrorLabel.setVisible(true);
-            invalidInput = true;
-        }
-        if (!checkNameStringValid(nameString)){
+
+    /**
+     * Method to set all input fields to blank values ready for the next user to be created.
+     */
+    private void setInputsToNull()
+    {
+        nameEntry.setText(null);
+        weightEntry.setText(null);
+        heightEntry.setText(null);
+        dayEntry.setValue(null);
+        monthEntry.setValue(null);
+        yearEntry.setValue(null);
+        femaleRad.setSelected(false);
+        maleRad.setSelected(false);
+        notSpecifiedRad.setSelected(false);
+    }
+
+
+    /**
+     * Method to return to the login screen
+     */
+    @FXML public void back()
+    {
+        // Set all error labels to invisible
+        setErrorsInvisible();
+
+        // Set all Text fields etc to null
+        setInputsToNull();
+
+        // Launch login screen
+        app.launchLoginScene();
+    }
+
+
+    /**
+     * Method to create a profile from the given information.
+     */
+    @FXML public void createProfile()
+    {
+        // Set error labels invisible
+        setErrorsInvisible();
+
+        // Create new User Profile
+        UserProfile userProfile = new UserProfile();
+
+        // Set Name and handle Exceptions
+        try {
+            String nameString =  getTextFieldString(nameEntry);
+            userProfile.setName(nameString);
+        } catch (InvalidNameException | IllegalArgumentException excpetion) {
             nameErrorLabel.setVisible(true);
-            invalidInput = true;
         }
-        if (checkDoubleStringInvalid(heightString, 260, 50)){
-            heightErrorLabel.setVisible(true);
-            invalidInput = true;
-        }
-        if (checkDoubleStringInvalid(weightString, 180, 30)){
+
+        // Set weight and handle exceptions
+        try {
+            String weightString = getTextFieldString(weightEntry);
+            userProfile.setWeight(Double.valueOf(weightString));
+        }  catch (InvalidWeightException | IllegalArgumentException exception) {
             weightErrorLabel.setVisible(true);
-            invalidInput = true;
         }
 
-        if (genderString == null) {
-            genderWarning.setVisible(true);
-            invalidInput = true;
+        // Set height and handle Exceptions
+        try {
+            String heightString = getTextFieldString(heightEntry);
+            userProfile.setHeight(Double.valueOf(heightString));
+        } catch (InvalidHeightException | IllegalArgumentException exception) {
+            heightErrorLabel.setVisible(true);
         }
-        if (!invalidInput) {
 
+        // Set Date of Birth and handle exceptions
+        try {
             String day = dayEntry.getValue().toString();
             String month = monthEntry.getValue().toString();
             String year = yearEntry.getValue().toString();
@@ -161,48 +182,61 @@ public class CreateProfileController implements Controllable
             int monthInt = Integer.valueOf(month);
             int dayInt = Integer.valueOf(day);
             DateTime dateOfBirth = new DateTime(yearInt, monthInt, dayInt, 0, 0, 0);
-            UserProfile userProfile = new UserProfile();
-            userProfile.setName(nameString);
-            userProfile.setGender(genderString);
             userProfile.setBirthdate(dateOfBirth);
-            userProfile.setMaxHeartrate(220 - (java.util.Calendar.getInstance().get(java.util.Calendar.YEAR) - dateOfBirth.getYear()));
-            userProfile.setWeight(Double.valueOf(weightString));
-            userProfile.setHeight(Double.valueOf(heightString));
+        } catch (NullPointerException | IllegalArgumentException exception) {
+            dateErrorLabel.setVisible(true);
+        }
+
+        // Set gender and handle Exceptions
+        try {
+            String genderString = getSelectedGender();
+            userProfile.setGender(genderString);
+        } catch (NullPointerException exception) {
+            genderErrorLabel.setVisible(true);
+        }
+
+        // Set Max Heart Rate
+        try {
+            userProfile.setMaxHeartRate(220 - (Calendar.getInstance().get(Calendar.YEAR) - userProfile.getBirthDate().getYear()));
+        } catch (NullPointerException excpetion) { }
+
+        // Add the user to the Controller
+        try {
             app.createUser(userProfile);
+            setErrorsInvisible();
+            setInputsToNull();
             app.launchLoginScene();
-        }
+        } catch (InvalidUserException exception) { }
     }
 
-    private String getSelectedGender() {
-        try {
-            if (toggleGroup.getSelectedToggle().equals(femaleRad)) {
-                return "Female";
-            } else if (toggleGroup.getSelectedToggle().equals(maleRad)) {
-                return "Male";
-            } else {
-                return "Other";
-            }
-        } catch (NullPointerException e) {
-            return null;
-        }
-    }
 
-    private boolean checkNameStringValid(String name)
+    /**
+     * Method to get a String from a TextField element
+     * @param textField TextField: text field the String value is extracted from
+     * @throws IllegalArgumentException when String is empty
+     */
+    private String getTextFieldString(TextField textField) throws IllegalArgumentException
     {
-        return !(name.length() > 50 || !name.matches("[a-zA-Z0-9]+ ?[a-zA-Z0-9]+"));
+        String newString = textField.getText();
+        if (newString.length() < 1) {
+            throw new IllegalArgumentException();
+        }
+        return newString;
     }
 
-    private boolean checkDoubleStringInvalid(String doubString, double max, double min)
-    {
-        if (doubString.length() < 1) {
-            return true;
-        }
-        try {
-            double doubDouble = Double.parseDouble(doubString);
-            return (doubDouble > max || doubDouble < min);
-        } catch (NumberFormatException e) {
-            return true;
-        }
 
+    /**
+     * Getter method for the selected Gender
+     * @return String
+     */
+    private String getSelectedGender() throws NullPointerException
+    {
+        if (toggleGroup.getSelectedToggle().equals(femaleRad)) {
+            return "Female";
+        } else if (toggleGroup.getSelectedToggle().equals(maleRad)) {
+            return "Male";
+        } else {
+            return "Other";
+        }
     }
 }
