@@ -2,10 +2,13 @@ package seng202.team10.Model;
 
 import org.junit.*;
 import seng202.team10.Model.ActivitiesData.Activity;
+import seng202.team10.Model.Exceptions.InvalidHeightException;
+import seng202.team10.Model.Exceptions.InvalidWeightException;
 import seng202.team10.Model.FileOperations.FileReader;
 import seng202.team10.Model.FileOperations.FileWriter;
 import seng202.team10.Model.FileOperations.Parser;
 
+import javax.naming.InvalidNameException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -51,7 +54,8 @@ public class UserProfileTest {
     }
 
     @Test
-    public void changeName(){
+    public void changeName() throws InvalidNameException
+    {
         testProfile.setName("Steve");
         assertEquals("Steve", testProfile.getName());
     }
@@ -68,14 +72,15 @@ public class UserProfileTest {
 //    }
 
     @Test
-    public void calculateBMI() {
+    public void calculateBMI() throws InvalidWeightException, InvalidHeightException {
         testProfile.setWeight(100);
         testProfile.setHeight(200);
         assertEquals(25,testProfile.calcBmi(), 0.1);
     }
 
     @Test
-    public void underweightBMI(){
+    public void underweightBMI() throws InvalidWeightException, InvalidHeightException
+    {
         testProfile.setWeight(50);
         testProfile.setHeight(200);
         String bmicat = testProfile.getBmiCategory();
@@ -83,7 +88,8 @@ public class UserProfileTest {
     }
 
     @Test
-    public void underweighthealthyBMIedge(){
+    public void underweighthealthyBMIedge() throws InvalidWeightException, InvalidHeightException
+    {
         testProfile.setWeight(74);
         testProfile.setHeight(200);
         String bmicat = testProfile.getBmiCategory();
@@ -91,7 +97,8 @@ public class UserProfileTest {
     }
 
     @Test
-    public void healthyBMI(){
+    public void healthyBMI() throws InvalidWeightException, InvalidHeightException
+    {
         testProfile.setWeight(90);
         testProfile.setHeight(200);
         String bmicat = testProfile.getBmiCategory();
@@ -99,7 +106,8 @@ public class UserProfileTest {
     }
 
     @Test
-    public void healthyoverweightBMIedge(){
+    public void healthyoverweightBMIedge() throws InvalidWeightException, InvalidHeightException
+    {
         testProfile.setWeight(100);
         testProfile.setHeight(200);
         String bmicat = testProfile.getBmiCategory();
@@ -107,21 +115,24 @@ public class UserProfileTest {
     }
 
     @Test
-    public void overweightBMI(){
+    public void overweightBMI() throws InvalidWeightException, InvalidHeightException
+    {
         testProfile.setWeight(110);
         testProfile.setHeight(200);
         String bmicat = testProfile.getBmiCategory();
         assertEquals("Overweight", bmicat);
     }
     @Test
-    public void overweightobeseBMIedge(){
+    public void overweightobeseBMIedge() throws InvalidWeightException, InvalidHeightException
+    {
         testProfile.setWeight(120);
         testProfile.setHeight(200);
         String bmicat = testProfile.getBmiCategory();
         assertEquals("Obese", bmicat);
     }
     @Test
-    public void obeseBMI(){
+    public void obeseBMI() throws InvalidWeightException, InvalidHeightException
+    {
         testProfile.setWeight(100000);
         testProfile.setHeight(200);
         String bmicat = testProfile.getBmiCategory();
