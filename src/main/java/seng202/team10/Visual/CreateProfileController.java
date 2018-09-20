@@ -1,10 +1,13 @@
 package seng202.team10.Visual;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.apache.commons.lang3.ObjectUtils;
+import javafx.scene.layout.VBox;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.Exceptions.InvalidHeightException;
@@ -21,7 +24,6 @@ public class CreateProfileController implements Controllable
     private GUIController app;
     ToggleGroup toggleGroup;
 
-
     @FXML private TextField nameEntry;
     @FXML private TextField weightEntry;
     @FXML private TextField heightEntry;
@@ -36,6 +38,7 @@ public class CreateProfileController implements Controllable
     @FXML private RadioButton femaleRad;
     @FXML private RadioButton maleRad;
     @FXML private RadioButton notSpecifiedRad;
+    @FXML private VBox wholeProfileVBox;
 
 
     /**
@@ -73,6 +76,13 @@ public class CreateProfileController implements Controllable
         }
         yearEntry.setItems(years);
         yearEntry.setVisibleRowCount(5);
+
+        nameEntry.focusedProperty().addListener((observable,  oldValue,  newValue) -> {
+            if(newValue && firstTime.get()){
+                wholeProfileVBox.requestFocus(); // Delegate the focus to container
+                firstTime.setValue(false); // Variable value changed for future references
+            }
+        });
 
         toggleGroup = new ToggleGroup();
         femaleRad.setToggleGroup(toggleGroup);
