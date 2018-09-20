@@ -4,6 +4,7 @@ import org.junit.*;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.Exceptions.InvalidHeightException;
 import seng202.team10.Model.Exceptions.InvalidWeightException;
+import seng202.team10.Model.Exceptions.UserNameException;
 import seng202.team10.Model.FileOperations.FileReader;
 import seng202.team10.Model.FileOperations.FileWriter;
 import seng202.team10.Model.FileOperations.Parser;
@@ -54,7 +55,7 @@ public class UserProfileTest {
     }
 
     @Test
-    public void changeName() throws InvalidNameException
+    public void changeName() throws UserNameException
     {
         testProfile.setName("Steve");
         assertEquals("Steve", testProfile.getName());

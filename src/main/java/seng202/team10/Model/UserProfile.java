@@ -4,10 +4,7 @@ package seng202.team10.Model;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import seng202.team10.Model.ActivitiesData.*;
-import seng202.team10.Model.Exceptions.ExistingActivityException;
-import seng202.team10.Model.Exceptions.ExistingElementException;
-import seng202.team10.Model.Exceptions.InvalidHeightException;
-import seng202.team10.Model.Exceptions.InvalidWeightException;
+import seng202.team10.Model.Exceptions.*;
 
 import javax.naming.InvalidNameException;
 import java.util.ArrayList;
@@ -50,7 +47,7 @@ public class UserProfile implements java.io.Serializable {
      * @param birthdate: DateTime
      * @param gender: String
      */
-    public UserProfile(String name, double weight, double height, DateTime birthdate, String gender) throws InvalidNameException, InvalidWeightException, InvalidHeightException, IllegalArgumentException
+    public UserProfile(String name, double weight, double height, DateTime birthdate, String gender) throws UserNameException, InvalidWeightException, InvalidHeightException, IllegalArgumentException
     {
         this.setName(name);
         this.setWeight(weight);
@@ -74,12 +71,12 @@ public class UserProfile implements java.io.Serializable {
      * Setter method for the name of the user
      * @param newName: String
      */
-    public void setName(String newName) throws InvalidNameException
+    public void setName(String newName) throws UserNameException
     {
         if (!(newName.length() > 15 || !newName.matches("[a-zA-Z0-9]+ ?[a-zA-Z0-9]+"))) {
             this.name = newName;
         } else {
-            throw new InvalidNameException();
+            throw new UserNameException();
         }
     }
 

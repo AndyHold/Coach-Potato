@@ -166,7 +166,7 @@ public class CreateProfileController implements Controllable
             String nameString =  getTextFieldString(nameEntry);
             this.app.checkUniqueName(nameString);
             userProfile.setName(nameString);
-        } catch (InvalidNameException | IllegalArgumentException exception) {
+        } catch (UserNameException | IllegalArgumentException exception) {
             nameErrorLabel.setVisible(true);
         }
 
