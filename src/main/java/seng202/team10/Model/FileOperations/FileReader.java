@@ -67,10 +67,12 @@ public class FileReader {
         ArrayList<String> foundUsers = new ArrayList<>();
         File folder = new File("./profiles");
         File[] listOfFiles = folder.listFiles();
-        for (File listOfFile : listOfFiles) {
-            if (listOfFile.isFile()) {
-                if (getFileExtension(listOfFile).equals(".ser")) {
-                    foundUsers.add(listOfFile.getName().substring(0, listOfFile.getName().length() - 4));
+        if (listOfFiles != null) {
+            for (File listOfFile : listOfFiles) {
+                if (listOfFile.isFile()) {
+                    if (getFileExtension(listOfFile).equals(".ser")) {
+                        foundUsers.add(listOfFile.getName().substring(0, listOfFile.getName().length() - 4));
+                    }
                 }
             }
         }
