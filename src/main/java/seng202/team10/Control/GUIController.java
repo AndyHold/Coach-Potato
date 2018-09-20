@@ -35,7 +35,11 @@ import seng202.team10.Model.ActivitiesData.Route;
 =======
 =======
 import seng202.team10.Model.Exceptions.InvalidUserException;
+<<<<<<< HEAD
 >>>>>>> 2d5633a2... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
+=======
+import seng202.team10.Model.Exceptions.UserNameException;
+>>>>>>> 4e37ab85... Finished Implementing new Login Screen Layout.
 import seng202.team10.Model.FileOperations.FileReader;
 >>>>>>> 88343792... loading existing users from file when logging in, deleted some old test users
 =======
@@ -112,6 +116,7 @@ public class GUIController extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception
     {
+<<<<<<< HEAD
         // Added a test user.
         users.add(new UserProfile("Potato", 75, 180, new DateTime(2000,1,1,1,1,1), "Male"));
         users.get(0).setMaxHeartRate(210);
@@ -223,6 +228,27 @@ public class GUIController extends Application{
         primaryStage.show();
         this.primaryStage = primaryStage;
 
+=======
+        try {
+            // Added a test user.
+            users.add(new UserProfile("Potato", 75, 180, new DateTime(2000, 1, 1, 1, 1, 1), "Male"));
+            users.get(0).setMaxHeartRate(210);
+        } catch (IllegalArgumentException exception) {
+            createPopUp(Alert.AlertType.ERROR, "Error", "Could not find image");
+        }
+            loadAllUsers();
+            loadAllScenes();
+            primaryStage.setTitle("Coach Potato");
+            if (users.isEmpty()) {
+                primaryStage.setScene(createProfileScene);
+            } else {
+                primaryStage.setScene(loginScene);
+            }
+            //        primaryStage.setScene(mainScene);
+            //primaryStage.setScene(goalsScene);
+            primaryStage.show();
+            this.primaryStage = primaryStage;
+>>>>>>> 4e37ab85... Finished Implementing new Login Screen Layout.
     }
 
     /**
@@ -333,6 +359,7 @@ public class GUIController extends Application{
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 0fbb14ad... Added functionality for the map controller
 =======
 >>>>>>> 431c3ad... Added functionality for the map controller
@@ -341,6 +368,19 @@ public class GUIController extends Application{
 >>>>>>> 431c3ad... Added functionality for the map controller
 >>>>>>> fa48cc98... Re-added launch mapscene
 =======
+=======
+
+    public void checkUniqueName(String userName) throws UserNameException
+    {
+        for (UserProfile userProfile: this.getUsers()) {
+            if (userProfile.getName() == userName) {
+                throw new UserNameException();
+            }
+        }
+    }
+
+
+>>>>>>> 4e37ab85... Finished Implementing new Login Screen Layout.
     public void launchMapScene(Activity activity) {
         mapController.setActivity(activity);
         mapController.setUpScene();
@@ -402,6 +442,7 @@ public class GUIController extends Application{
      */
     public void launchCreateProfileScene()
     {
+        createProfileController.toggleBackButton();
         primaryStage.setScene(createProfileScene);
     }
 

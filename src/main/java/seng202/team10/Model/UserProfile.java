@@ -1,6 +1,8 @@
 package seng202.team10.Model;
 
 
+import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
 import seng202.team10.Model.ActivitiesData.*;
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -85,7 +87,7 @@ public class UserProfile implements java.io.Serializable {
      * @param birthdate: DateTime
      * @param gender: String
      */
-    public UserProfile(String name, double weight, double height, DateTime birthdate, String gender) throws InvalidNameException, InvalidWeightException, InvalidHeightException
+    public UserProfile(String name, double weight, double height, DateTime birthdate, String gender) throws InvalidNameException, InvalidWeightException, InvalidHeightException, IllegalArgumentException
     {
         this.setName(name);
         this.setWeight(weight);
@@ -136,7 +138,7 @@ public class UserProfile implements java.io.Serializable {
 >>>>>>> 2d5633a2... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
     public void setName(String newName) throws InvalidNameException
     {
-        if (!(newName.length() > 50 || !newName.matches("[a-zA-Z0-9]+ ?[a-zA-Z0-9]+"))) {
+        if (!(newName.length() > 15 || !newName.matches("[a-zA-Z0-9]+ ?[a-zA-Z0-9]+"))) {
             this.name = newName;
         } else {
             throw new InvalidNameException();

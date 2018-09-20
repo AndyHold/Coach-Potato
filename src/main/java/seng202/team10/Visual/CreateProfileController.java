@@ -7,6 +7,10 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import javafx.scene.layout.HBox;
+>>>>>>> 4e37ab85... Finished Implementing new Login Screen Layout.
 import org.apache.commons.lang3.ObjectUtils;
 =======
 import javafx.scene.layout.VBox;
@@ -17,9 +21,7 @@ import javafx.scene.layout.VBox;
 >>>>>>> 62550e03... Now the cursor is not focused on the name field on create profile screen.
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.DateTime;
-import seng202.team10.Model.Exceptions.InvalidHeightException;
-import seng202.team10.Model.Exceptions.InvalidUserException;
-import seng202.team10.Model.Exceptions.InvalidWeightException;
+import seng202.team10.Model.Exceptions.*;
 import seng202.team10.Model.UserProfile;
 
 import javax.naming.InvalidNameException;
@@ -47,6 +49,7 @@ public class CreateProfileController implements Controllable
     @FXML private RadioButton femaleRad;
     @FXML private RadioButton maleRad;
     @FXML private RadioButton notSpecifiedRad;
+    @FXML private Button backButton;
 
 
     /**
@@ -65,6 +68,17 @@ public class CreateProfileController implements Controllable
     public void setApp(GUIController app)
     {
         this.app = app;
+    }
+
+
+    public void toggleBackButton()
+    {
+        backButton.requestFocus();
+        if (this.app.getUsers().size() == 0) {
+            backButton.setDisable(true);
+        } else {
+            backButton.setDisable(false);
+        }
     }
 
 
@@ -169,8 +183,13 @@ public class CreateProfileController implements Controllable
         // Set Name and handle Exceptions
         try {
             String nameString =  getTextFieldString(nameEntry);
+            this.app.checkUniqueName(nameString);
             userProfile.setName(nameString);
+<<<<<<< HEAD
         } catch (InvalidNameException | IllegalArgumentException exception) {
+=======
+        } catch (InvalidNameException | IllegalArgumentException | UserNameException excpetion) {
+>>>>>>> 4e37ab85... Finished Implementing new Login Screen Layout.
             nameErrorLabel.setVisible(true);
         }
 
@@ -211,6 +230,8 @@ public class CreateProfileController implements Controllable
             userProfile.setGender(genderString);
         } catch (NullPointerException exception) {
             genderErrorLabel.setVisible(true);
+        } catch (IllegalArgumentException exception) {
+            this.app.createPopUp(Alert.AlertType.ERROR, "Error", "Could not find image");
         }
 
         // Set Max Heart Rate
@@ -223,6 +244,7 @@ public class CreateProfileController implements Controllable
             app.createUser(userProfile);
             setErrorsInvisible();
             setInputsToNull();
+            this.app.getDataWriter().saveProfile(userProfile);
             app.launchLoginScene();
         } catch (InvalidUserException exception) { }
     }
@@ -236,7 +258,7 @@ public class CreateProfileController implements Controllable
     private String getTextFieldString(TextField textField) throws IllegalArgumentException
     {
         String newString = textField.getText();
-        if (newString.length() < 1) {
+        if (newString == null) {
             throw new IllegalArgumentException();
         }
         return newString;
