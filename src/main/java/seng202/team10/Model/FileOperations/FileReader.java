@@ -60,12 +60,12 @@ public class FileReader {
 
     /**
      * checks which users are saved in the profiles folder, returning their names
-     * @return foundUsers: arraylist of filenames of existing profiles (no extensions
+     * @return foundUsers: arraylist of filenames of existing profiles (no extensions)
+     * TODO find out how to check if directory exists and call create directory if not.
      */
     public ArrayList getExistingUsers() {
         ArrayList<String> foundUsers = new ArrayList<>();
         File folder = new File("./profiles");
-
         File[] listOfFiles = folder.listFiles();
         for (File listOfFile : listOfFiles) {
             if (listOfFile.isFile()) {
