@@ -4,6 +4,7 @@ package seng202.team10.Model;
 import seng202.team10.Model.ActivitiesData.DateTime;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 
 public class Goal implements Serializable {
@@ -86,38 +87,35 @@ public class Goal implements Serializable {
 //    }
 
     public String reviewWeightGoal(Goal goal, double currentWeight) {
-        String progressDescription = "";
-        progressDescription += "Your target for this goal was to weigh less than" + goal.getGoalWeight() + " by " + goal.getGoalTargetDate();
+        String progressDescription = "Your target for this goal was to weigh " + goal.getGoalWeight() + " or less by " + goal.getGoalTargetDate();
         if (currentWeight <= goal.getGoalWeight()) {
-            progressDescription += "\nCongratulations you have completed this goal! It has been removed from your current goals.";
+            progressDescription += "\nCongratulations you have completed this goal! It has been removed from your current goals and added to your achieved goals.";
         } else {
-            //progressDescription += "Your target for this goal is to weigh " + goal.getGoalWeight() + " by " + goal.getGoalTargetDate();
-            double difference = currentWeight - goal.getGoalWeight();
-            progressDescription += "\nYou need to lose " + difference + " more kgs to meet your goal.";
+            LocalDateTime now1 = LocalDateTime.now();
+            DateTime now2 = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth()+2, now1.getHour(), now1.getMinute(), now1.getSecond());
+            if (!goal.getGoalTargetDate().isAfter(now2)) {
+                progressDescription += "\n\nYou have failed to complete this goal in time. It has been removed from your current goals and added to your failed goals.";
+            } else {
+                double difference = currentWeight - goal.getGoalWeight();
+                progressDescription += "\n\nYou need to lose " + difference + " more kgs to meet your goal.";
+            }
         }
         return progressDescription;
     }
 
-//    public void reviewBmiGoal(Goal goal, double currentBmi) {
-//        System.out.println("Your target for this goal is to have a BMI of " + goal.getGoalBmi() + " by " + goal.getGoalTargetDate());
-//        if (currentBmi <= goal.getGoalBmi()) {
-//            System.out.println("Congratulations you have completed this goal! It has been removed from your current goals.");
-//        } else {
-//            double difference = currentBmi - goal.getGoalBmi();
-//            System.out.println("You need to decrease your BMI by " + difference + " more to meet your goal.");
-//        }
-//    }
-
     public String reviewBmiGoal(Goal goal, double currentBmi) {
-        String progressDescription = "";
+        String progressDescription = "Your target for this goal was to have a BMI less than or equal to " + goal.getGoalBmi() + " by " + goal.getGoalTargetDate();
         if (currentBmi <= goal.getGoalBmi()) {
-            progressDescription += "Your target for this goal was to have a BMI less than or equal to " + goal.getGoalBmi() + " by " + goal.getGoalTargetDate();
-            progressDescription += "Congratulations you have completed this goal! It has been removed from your current goals.";
-
+            progressDescription += "\nCongratulations you have completed this goal! It has been removed from your current goals and added to your achieved goals.";
         } else {
-            progressDescription += "Your target for this goal is to have a BMI of " + goal.getGoalBmi() + " by " + goal.getGoalTargetDate();
-            double difference = currentBmi - goal.getGoalBmi();
-            progressDescription += "You need to decrease your BMI by " + difference + " more to meet your goal.";
+            LocalDateTime now1 = LocalDateTime.now();
+            DateTime now2 = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth()+2, now1.getHour(), now1.getMinute(), now1.getSecond());
+            if (!goal.getGoalTargetDate().isAfter(now2)) {
+                progressDescription += "\n\nYou have failed to complete this goal in time. It has been removed from your current goals and added to your failed goals.";
+            } else {
+                double difference = currentBmi - goal.getGoalBmi();
+                progressDescription += "\n\nYou need to decrease your BMI by " + difference + " more to meet your goal.";
+            }
         }
         return progressDescription;
     }
@@ -125,38 +123,50 @@ public class Goal implements Serializable {
     public String reviewDistanceGoal(Goal goal, double dist) {
         String progressDescription = "Your target for this goal was to cover " + goal.getGoalDistance() + " km in distance by " + goal.getGoalTargetDate();
         if (dist >= goal.getGoalDistance()) {
-            progressDescription += "Congratulations you have completed this goal! It has been removed from your current goals.";
+            progressDescription += "\nCongratulations you have completed this goal! It has been removed from your current goals and added to your achieved goals.";
         } else {
-            double difference = goal.getGoalDistance() - dist;
-            progressDescription += "You need to cover " + difference + " more km to meet your goal.";
+            LocalDateTime now1 = LocalDateTime.now();
+            DateTime now2 = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth()+2, now1.getHour(), now1.getMinute(), now1.getSecond());
+            if (!goal.getGoalTargetDate().isAfter(now2)) {
+                progressDescription += "\n\nYou have failed to complete this goal in time. It has been removed from your current goals and added to your failed goals.";
+            } else {
+                double difference = goal.getGoalDistance() - dist;
+                progressDescription += "\n\nYou need to cover " + difference + " more km to meet your goal.";
+            }
         }
         return progressDescription;
     }
 
     public String reviewFrequencyGoal(Goal goal, int freq) {
-        System.out.println("Your target for this goal is to have completed " + goal.getGoalFrequency() + " activities by " + goal.getGoalTargetDate());
-        //TODO calculate here whether or not the user has completed the goal
-        //Determine the number of activities entered from the goal start to present. Then compare this to the target frequency / quantity
         String progressDescription = "Your target for this goal was to excersize " + goal.getGoalFrequency() + " times by " + goal.getGoalTargetDate();
         if (freq >= goal.getGoalFrequency()) {
-            progressDescription += "Congratulations you have completed this goal! It has been removed from your current goals.";
+            progressDescription += "\nCongratulations you have completed this goal! It has been removed from your current goals and added to your achieved goals.";
         } else {
-            double difference = goal.getGoalFrequency() - freq;
-            progressDescription += "You need to complete " + difference + " more activities to meet your goal.";
+            LocalDateTime now1 = LocalDateTime.now();
+            DateTime now2 = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth()+2, now1.getHour(), now1.getMinute(), now1.getSecond());
+            if (!goal.getGoalTargetDate().isAfter(now2)) {
+                progressDescription += "\n\nYou have failed to complete this goal in time. It has been removed from your current goals and added to your failed goals.";
+            } else {
+                double difference = goal.getGoalFrequency() - freq;
+                progressDescription += "\n\nYou need to complete " + difference + " more activities to meet your goal.";
+            }
         }
         return progressDescription;
     }
 
     public String reviewTimeGoal(Goal goal, int time) {
-        System.out.println("Your target for this goal is to have completed " + goal.getGoalTime() + " mins of activities by " + goal.getGoalTargetDate());
-        //TODO calculate here whether or not the user has completed the goal
-        //for-loop over data entries within the goal period (start time - present) and sum up total time across the activities. Then compare this to the target time
         String progressDescription = "Your target for this goal was to excersize for " + goal.getGoalFrequency() + " minutes? by " + goal.getGoalTargetDate();
         if (time >= goal.getGoalTime()) {
-            progressDescription += "Congratulations you have completed this goal! It has been removed from your current goals.";
+            progressDescription += "\nCongratulations you have completed this goal! It has been removed from your current goals and added to your achieved goals.";
         } else {
-            double difference = goal.getGoalTime() - time;
-            progressDescription += "You need to complete " + difference + " more minutes? of activities to meet your goal.";
+            LocalDateTime now1 = LocalDateTime.now();
+            DateTime now2 = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth()+2, now1.getHour(), now1.getMinute(), now1.getSecond());
+            if (!goal.getGoalTargetDate().isAfter(now2)) {
+                progressDescription += "\n\nYou have failed to complete this goal in time. It has been removed from your current goals and added to your failed goals.";
+            } else {
+                double difference = goal.getGoalTime() - time;
+                progressDescription += "\n\nYou need to complete " + difference + " more minutes? of activities to meet your goal.";
+            }
         }
         return progressDescription;
     }

@@ -18,13 +18,16 @@ import java.time.LocalDateTime;
 public class Goals implements Serializable {
 
     private UserProfile user;
-    private ArrayList<Goal> currentGoals = new ArrayList<Goal>();;
+    private ArrayList<Goal> currentGoals = new ArrayList<Goal>();
     ArrayList<String> currentGoalNames = new ArrayList<String>();
     private ArrayList<Goal> achievedGoals = new ArrayList<Goal>();
-    private ArrayList<Goal> failedGoals = new ArrayList<Goal>();;
+    ArrayList<String> achievedGoalNames = new ArrayList<String>();
+    private ArrayList<Goal> failedGoals = new ArrayList<Goal>();
+    ArrayList<String> failedGoalNames = new ArrayList<String>();
     private ArrayList<Goal> createdGoals = new ArrayList<Goal>();
     ArrayList<String> createdGoalNames = new ArrayList<String>();
-    private ArrayList<String> futureGoals = new ArrayList<String>();
+    private ArrayList<Goal> futureGoals = new ArrayList<>();
+    ArrayList<String> futureGoalNames = new ArrayList<String>();
 
     //private ArrayList<Goal> availableGoals = new ArrayList<Goal>();
     //ArrayList<String> availableGoalNames = new ArrayList<String>();
@@ -63,6 +66,9 @@ public class Goals implements Serializable {
             if (!startDate.isAfter(today)) {
                 currentGoals.add(newGoal);
                 currentGoalNames.add(newGoal.getGoalName());
+            } else {
+                futureGoals.add(newGoal);
+                futureGoalNames.add(newGoal.getGoalName());
             }
             createdGoals.add(newGoal);
             createdGoalNames.add(newGoal.getGoalName());
@@ -72,6 +78,9 @@ public class Goals implements Serializable {
             if (!startDate.isAfter(today)) {
                 currentGoals.add(newGoal);
                 currentGoalNames.add(newGoal.getGoalName());
+            } else {
+                futureGoals.add(newGoal);
+                futureGoalNames.add(newGoal.getGoalName());
             }
             createdGoals.add(newGoal);
             createdGoalNames.add(newGoal.getGoalName());
@@ -81,6 +90,9 @@ public class Goals implements Serializable {
             if (!startDate.isAfter(today)) {
                 currentGoals.add(newGoal);
                 currentGoalNames.add(newGoal.getGoalName());
+            } else {
+                futureGoals.add(newGoal);
+                futureGoalNames.add(newGoal.getGoalName());
             }
             createdGoals.add(newGoal);
             createdGoalNames.add(newGoal.getGoalName());
@@ -90,6 +102,9 @@ public class Goals implements Serializable {
             if (!startDate.isAfter(today)) {
                 currentGoals.add(newGoal);
                 currentGoalNames.add(newGoal.getGoalName());
+            } else {
+                futureGoals.add(newGoal);
+                futureGoalNames.add(newGoal.getGoalName());
             }
             createdGoals.add(newGoal);
             createdGoalNames.add(newGoal.getGoalName());
@@ -99,6 +114,9 @@ public class Goals implements Serializable {
             if (!startDate.isAfter(today)) {
                 currentGoals.add(newGoal);
                 currentGoalNames.add(newGoal.getGoalName());
+            } else {
+                futureGoals.add(newGoal);
+                futureGoalNames.add(newGoal.getGoalName());
             }
             createdGoals.add(newGoal);
             createdGoalNames.add(newGoal.getGoalName());
@@ -176,6 +194,8 @@ public class Goals implements Serializable {
      * @return String: a textual description of the user progress towards meeting the goal
      */
     public String checkGoal(String goalName) {
+        LocalDateTime now1 = LocalDateTime.now();
+        DateTime now2 = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth()+2, now1.getHour(), now1.getMinute(), now1.getSecond());
         Goal goal = getGoalObject(goalName);
         String progress = "";
         if (currentGoals.contains(goal)) { // is this necessary if combobox will only ever have current goals??
@@ -187,6 +207,12 @@ public class Goals implements Serializable {
                     progress = goal.reviewWeightGoal(goal, user.getWeight());
                     if (user.getWeight() <= goal.getGoalWeight()) {
                         removeCurrentGoal(goalName);
+                        achievedGoals.add(goal);
+                        achievedGoalNames.add(goalName);
+                    } else if (!goal.getGoalTargetDate().isAfter(now2)) {
+                        removeCurrentGoal(goalName);
+                        failedGoals.add(goal);
+                        failedGoalNames.add(goalName);
                     }
                     break;
                 case "BMI":
@@ -194,6 +220,12 @@ public class Goals implements Serializable {
                     progress = goal.reviewBmiGoal(goal, user.getBmi());
                     if (user.getBmi() <= goal.getGoalBmi()) {
                         removeCurrentGoal(goalName);
+                        achievedGoals.add(goal);
+                        achievedGoalNames.add(goalName);
+                    } else if (!goal.getGoalTargetDate().isAfter(now2)) {
+                        removeCurrentGoal(goalName);
+                        failedGoals.add(goal);
+                        failedGoalNames.add(goalName);
                     }
                     break;
                 case "Distance":
@@ -203,6 +235,12 @@ public class Goals implements Serializable {
                     progress = goal.reviewDistanceGoal(goal, totalDistance);
                     if (totalDistance >= goal.getGoalDistance()) {
                         removeCurrentGoal(goalName);
+                        achievedGoals.add(goal);
+                        achievedGoalNames.add(goalName);
+                    } else if (!goal.getGoalTargetDate().isAfter(now2)) {
+                        removeCurrentGoal(goalName);
+                        failedGoals.add(goal);
+                        failedGoalNames.add(goalName);
                     }
                     break;
                 case "Frequency":
@@ -212,6 +250,12 @@ public class Goals implements Serializable {
                     progress = goal.reviewFrequencyGoal(goal, numActivities);
                     if (numActivities >= goal.getGoalFrequency()) {
                         removeCurrentGoal(goalName);
+                        achievedGoals.add(goal);
+                        achievedGoalNames.add(goalName);
+                    } else if (!goal.getGoalTargetDate().isAfter(now2)) {
+                        removeCurrentGoal(goalName);
+                        failedGoals.add(goal);
+                        failedGoalNames.add(goalName);
                     }
                     break;
                 case "Time":
@@ -221,6 +265,12 @@ public class Goals implements Serializable {
                     progress = goal.reviewTimeGoal(goal, timeSumActivities);
                     if (timeSumActivities >= goal.getGoalTime()) {
                         removeCurrentGoal(goalName);
+                        achievedGoals.add(goal);
+                        achievedGoalNames.add(goalName);
+                    } else if (!goal.getGoalTargetDate().isAfter(now2)) {
+                        removeCurrentGoal(goalName);
+                        failedGoals.add(goal);
+                        failedGoalNames.add(goalName);
                     }
                     break;
             }
@@ -264,6 +314,12 @@ public class Goals implements Serializable {
         return failedGoals;
     }
 
+
+    public ArrayList<String> getFailedGoalNames() {
+        return failedGoalNames;
+    }
+
+
     /**
      * Getter method for the created goals of the user (current, past and future)
      * @return ArrayList<Goal>
@@ -284,8 +340,16 @@ public class Goals implements Serializable {
      * Getter method for the future goals of the user
      * @return ArrayList<Goal>
      */
-    public ArrayList<String> getFutureGoals() {
+    public ArrayList<Goal> getFutureGoals() {
         return futureGoals;
+    }
+
+    /**
+     * Getter method for the future goal names of the user
+     * @return ArrayList<String>
+     */
+    public ArrayList<String> getFutureGoalNames() {
+        return futureGoalNames;
     }
 
     /**
@@ -299,6 +363,30 @@ public class Goals implements Serializable {
             }
         }
         return null;
+    }
+
+    public ArrayList<String> getAchievedGoalNames() {
+        return achievedGoalNames;
+    }
+
+
+    public void refreshGoals() {
+        System.out.println("eeeeeeeeeeek");
+        LocalDateTime now1 = LocalDateTime.now();
+        //DateTime now2 = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
+        DateTime now2 = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth()+2, now1.getHour(), now1.getMinute(), now1.getSecond());
+        ArrayList<Goal>futureGoalsCopy = (ArrayList<Goal>) futureGoals.clone();
+        for (Goal goal : futureGoalsCopy) {
+            if (!goal.getGoalStartDate().isAfter(now2)) {
+                futureGoals.remove(goal);
+                futureGoalNames.remove(goal.getGoalName());
+                currentGoals.add(goal);
+                currentGoalNames.add(goal.getGoalName());
+                System.out.println("Future goal changed to current");
+            }
+        }
+
+        //TODO atm user must review their current goals before they can become past goals. Possibly implement something here that checks if the current goal has become a past goal
     }
 
 }

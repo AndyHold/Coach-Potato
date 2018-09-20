@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -24,24 +25,49 @@
                       <children>
                          <Label layoutX="25.0" layoutY="43.0" text="Select a goal you are currently working towards to review it: " />
                          <ComboBox fx:id="currentGoalsCombo" layoutX="61.0" layoutY="75.0" prefWidth="150.0" promptText="Select..." />
-                         <Button fx:id="removeGoalButton" layoutX="61.0" layoutY="460.0" mnemonicParsing="false" onAction="#removeGoal" text="Remove Goal" />
+                         <Button fx:id="removeGoalButton" layoutX="61.0" layoutY="460.0" mnemonicParsing="false" onAction="#removeGoal" prefHeight="50.0" prefWidth="161.0" text="Remove Goal">
+                           <font>
+                              <Font size="15.0" />
+                           </font></Button>
                          <Button fx:id="reviewButton" layoutX="309.0" layoutY="75.0" mnemonicParsing="false" onAction="#reviewGoal" text="Review Progress" />
-                         <TextArea fx:id="progressText" layoutX="309.0" layoutY="173.0" prefHeight="152.0" prefWidth="400.0" scrollTop="1.0" wrapText="true" />
+                         <TextArea fx:id="progressText" editable="false" layoutX="309.0" layoutY="173.0" prefHeight="152.0" prefWidth="400.0" scrollTop="1.0" wrapText="true" />
                       </children>
                    </AnchorPane>
                </content>
              </Tab>
-           <Tab text="Past Goals">
+           <Tab onSelectionChanged="#addGoalsToTable" text="Past Goals">
              <content>
                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                       <children>
-                         <Label layoutX="67.0" layoutY="61.0" text="Goals that achieved: " />
-                         <Label layoutX="465.0" layoutY="61.0" text="Goals that you failed:" />
+                         <Label layoutX="37.0" layoutY="69.0" text="Achieved Goals:">
+                           <font>
+                              <Font size="20.0" />
+                           </font></Label>
+                         <Label layoutX="619.0" layoutY="65.0" text="Failed Goals:">
+                           <font>
+                              <Font size="20.0" />
+                           </font></Label>
+                        <ListView fx:id="achievedListView" layoutX="37.0" layoutY="111.0" onMouseClicked="#updateAchievedListView" prefHeight="320.0" prefWidth="167.0" />
+                        <Label layoutX="228.0" layoutY="138.0" text="Type: " />
+                        <Label layoutX="228.0" layoutY="216.0" text="Start Date:" />
+                        <Label layoutX="228.0" layoutY="297.0" text="Goal achieved:" />
+                        <TextField fx:id="typeTextField" editable="false" layoutX="344.0" layoutY="133.0" />
+                        <TextField fx:id="startDateTextField" editable="false" layoutX="344.0" layoutY="211.0" />
+                        <TextArea fx:id="goalTextArea" editable="false" layoutX="344.0" layoutY="296.0" prefHeight="135.0" prefWidth="177.0" wrapText="true" />
+                        <Label layoutX="211.0" layoutY="74.0" text="(Select one to review it)" />
+                        <Label layoutX="769.0" layoutY="70.0" text="(Select one to review it)" />
+                        <ListView fx:id="failedListView" layoutX="619.0" layoutY="107.0" onMouseClicked="#updateFailedListView" prefHeight="328.0" prefWidth="180.0" />
+                        <Label layoutX="827.0" layoutY="138.0" text="Type: " />
+                        <Label layoutX="828.0" layoutY="216.0" text="Start Date:" />
+                        <Label layoutX="828.0" layoutY="304.0" text="Goal failed:" />
+                        <TextField fx:id="typeTextField2" editable="false" layoutX="949.0" layoutY="133.0" />
+                        <TextField fx:id="startDateTextField2" editable="false" layoutX="949.0" layoutY="211.0" />
+                        <TextArea fx:id="goalTextArea2" editable="false" layoutX="949.0" layoutY="304.0" prefHeight="131.0" prefWidth="172.0" wrapText="true" />
                       </children>
                   </AnchorPane>
              </content>
            </Tab>
-             <Tab text="Future Goals">
+             <Tab onSelectionChanged="#addGoalsToTable" text="Future Goals">
                <content>
                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -61,18 +87,21 @@
                      </children></AnchorPane>
                </content>
              </Tab>
-             <Tab text="Create Goal">
+             <Tab onSelectionChanged="#addGoalsToTable" text="Create Goal">
                <content>
                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                       <children>
-                         <ComboBox fx:id="goalTypeCombo" layoutX="60.0" layoutY="69.0" prefHeight="25.0" prefWidth="179.0" promptText="Choose Goal Type..." />
-                         <TextField fx:id="goalNameEntry" layoutX="331.0" layoutY="69.0" promptText="Enter Goal Name..." />
-                         <DatePicker fx:id="startDatePicker" layoutX="60.0" layoutY="411.0" />
-                         <DatePicker fx:id="targetDatePicker" layoutX="331.0" layoutY="411.0" />
-                         <Label layoutX="60.0" layoutY="377.0" text="Goal start date:" />
-                         <Label layoutX="331.0" layoutY="377.0" text="Goal target date:" />
-                         <TextField fx:id="targetValueEntry" layoutX="60.0" layoutY="217.0" promptText="Enter target value:" />
-                         <Button fx:id="createButton" layoutX="739.0" layoutY="486.0" mnemonicParsing="false" onAction="#createGoal" text="Create!" />
+                         <ComboBox fx:id="goalTypeCombo" layoutX="197.0" layoutY="70.0" prefHeight="30.0" prefWidth="179.0" promptText="Choose Goal Type..." />
+                         <TextField fx:id="goalNameEntry" layoutX="581.0" layoutY="70.0" prefHeight="30.0" prefWidth="171.0" promptText="Enter Goal Name..." />
+                         <DatePicker fx:id="startDatePicker" layoutX="197.0" layoutY="230.0" prefHeight="30.0" prefWidth="198.0" />
+                         <DatePicker fx:id="targetDatePicker" layoutX="581.0" layoutY="230.0" prefHeight="30.0" prefWidth="198.0" />
+                         <Label layoutX="197.0" layoutY="188.0" text="Goal start date:" />
+                         <Label layoutX="584.0" layoutY="188.0" text="Goal target date:" />
+                         <TextField fx:id="targetValueEntry" layoutX="197.0" layoutY="368.0" prefHeight="30.0" prefWidth="171.0" promptText="Enter target value:" />
+                         <Button fx:id="createButton" layoutX="945.0" layoutY="451.0" mnemonicParsing="false" onAction="#createGoal" prefHeight="69.0" prefWidth="142.0" text="Create!">
+                           <font>
+                              <Font size="20.0" />
+                           </font></Button>
                       </children>
                   </AnchorPane>
                </content>

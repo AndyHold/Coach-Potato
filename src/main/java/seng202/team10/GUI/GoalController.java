@@ -53,9 +53,36 @@ public class GoalController implements Controllable{
     private Button reviewButton;
 
     @FXML
+    private ListView achievedListView;
+
+    @FXML
+    private ListView failedListView;
+
+    @FXML
     private TextArea progressText;
 
+    @FXML
+    private TextField typeTextField;
+
+    @FXML
+    private TextField startDateTextField;
+
+    @FXML
+    private TextArea goalTextArea;
+
+    @FXML
+    private TextField typeTextField2;
+
+    @FXML
+    private TextField startDateTextField2;
+
+    @FXML
+    private TextArea goalTextArea2;
+
     @FXML private VBox drawer;
+
+
+
 
 
 
@@ -68,7 +95,7 @@ public class GoalController implements Controllable{
 
 
     @FXML
-    private ObservableList<String> entries;
+    private ObservableList<Goal> entries;
 
 
 
@@ -79,12 +106,23 @@ public class GoalController implements Controllable{
 
     public void setUpScene() {
 
-//        entries = FXCollections.observableArrayList(app.getCurrentProfile().getGoals().getFutureGoals());
+        typeTextField.setVisible(false);
+        startDateTextField.setVisible(false);
+        goalTextArea.setVisible(false);
+
+        typeTextField2.setVisible(false);
+        startDateTextField2.setVisible(false);
+        goalTextArea2.setVisible(false);
+
+//        String item = achievedListView.getSelectionModel().getSelectedItem().toString();
+//        achievedTextArea.setText("Goal :  " + item);
+
 //        nameColumn.setCellValueFactory(new PropertyValueFactory<Goal, String>("name"));
 //        typeColumn.setCellValueFactory(new PropertyValueFactory<Goal, String>("type"));
 //        targetColumn.setCellValueFactory(new PropertyValueFactory<Goal, String>("target"));
 //        startDateColumn.setCellValueFactory(new PropertyValueFactory<Goal, String>("startDate"));
 //        endDateColumn.setCellValueFactory(new PropertyValueFactory<Goal, String>("endDate"));
+<<<<<<< HEAD
 <<<<<<< HEAD
     }
 
@@ -116,16 +154,55 @@ public class GoalController implements Controllable{
 
         if (goalsInstance != null) {
             ObservableList<String> currentGoals = FXCollections.observableArrayList(goalsInstance.getCurrentGoalNames());
+=======
+//
+//
+//        entriesTableView.setItems(getEntries());
+//        nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+//        typeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+//        targetColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+//        startDateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+//        endDateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+    }
+
+//    public ObservableList<Goal> getEntries() {
+//        this.entries = FXCollections.observableArrayList();
+//        return entries;
+//    }
+
+//    public void addGoalsToTable() {
+//        for (Goal goal : app.getCurrentProfile().getGoals().getCurrentGoals()) {
+//            this.entries.add(goal);
+//            entriesTableView.getItems().add(0, goal);
+//        }
+//        //entriesTableView.setItems(this.entries);
+//    }
+
+    public void addGoalsToTable() {
+        app.getCurrentProfile().getGoals().refreshGoals();
+        if (app.getCurrentProfile().getGoals() != null) {
+            ObservableList<String> currentGoals = FXCollections.observableArrayList(app.getCurrentProfile().getGoals().getCurrentGoalNames());
+>>>>>>> 3e145f3c... Now call addGoalsToTable when profile is set. Added text fields and areas for achieved and failed goals. Implemented addGoalsToTable, updateAchievedListView, updateFailedListView, and printPastGoalsReview functions in GoalController. In review goal methods, now compares current time to target date to see if you have failed your goal. Added achievedGoalNames, failedGoalNames and futureGoalNames ArrayLists to Goals.
             currentGoalsCombo.setItems(currentGoals);
             currentGoalsCombo.setVisibleRowCount(5);
 
+            ObservableList<String> achievedGoalNames = FXCollections.observableArrayList(app.getCurrentProfile().getGoals().getAchievedGoalNames());
+//            ObservableList<String> achievedGoalNames = FXCollections.observableArrayList();
+//            for (String goalName : app.getCurrentProfile().getGoals().getAchievedGoalNames()) {
+//                achievedGoalNames.add(goalName);
+//            }
+            achievedListView.setItems(achievedGoalNames);
+
+            ObservableList<String> failedGoalNames = FXCollections.observableArrayList(app.getCurrentProfile().getGoals().getFailedGoalNames());
+            failedListView.setItems(failedGoalNames);
         }
-
-
         ObservableList<String> goalTypes = FXCollections.observableArrayList("Weight", "Distance", "Frequency", "BMI", "Time");
         goalTypeCombo.setItems(goalTypes);
         goalTypeCombo.setVisibleRowCount(5);
+        progressText.setText("");
     }
+
+
 
 
 
@@ -213,8 +290,13 @@ public class GoalController implements Controllable{
             //updates the current goals combo box
             ObservableList<String> currentGoals = FXCollections.observableArrayList(goalsInstance.getCurrentGoalNames());
             currentGoalsCombo.setItems(currentGoals);
+            ObservableList<String> futureGoals = FXCollections.observableArrayList(goalsInstance.getFutureGoalNames());
+            //failedListView.setItems(futureGoals); //TODO delete this line (put similar line here refering to future goals tab)
             System.out.println(goalsInstance.getCurrentGoalNames());
-            System.out.println(goalsInstance.getCreatedGoalNames());
+
+            //reset the entry values, ready for a new goal to be created
+            goalNameEntry.setText("");
+            targetValueEntry.setText("");
         }
 
 
@@ -260,6 +342,91 @@ public class GoalController implements Controllable{
 //            goalsInstance.checkGoal(goalName);
             ObservableList<String> currentGoals = FXCollections.observableArrayList(goalsInstance.getCurrentGoalNames());
             currentGoalsCombo.setItems(currentGoals);
+        }
+    }
+
+    @FXML
+    public void updateAchievedListView() {
+        String item = achievedListView.getSelectionModel().getSelectedItem().toString();
+        Goal goal = null;
+        for (Goal selectedGoal : app.getCurrentProfile().getGoals().getAchievedGoals()) {
+            if (selectedGoal.getGoalName() == item) {
+                goal = selectedGoal;
+                break;
+            }
+        }
+        if (goal != null) {
+            String type = goal.getGoalType();
+            System.out.println(type);
+            typeTextField.setVisible(true);
+            startDateTextField.setVisible(true);
+            goalTextArea.setVisible(true);
+            if (type.equals("Weight")) {
+                typeTextField.setText(goal.getGoalType());
+                startDateTextField.setText(goal.getGoalStartDate().toString());
+                goalTextArea.setText("To weigh " + goal.getGoalWeight() + " kgs or less by " + goal.getGoalTargetDate());
+            } else if (type.equals("Frequency")) {
+                typeTextField.setText(goal.getGoalType());
+                startDateTextField.setText(goal.getGoalStartDate().toString());
+                goalTextArea.setText("To participate in " + goal.getGoalFrequency() + " activities by " + goal.getGoalTargetDate());
+            } else if (type.equals("Distance")) {
+                typeTextField.setText(goal.getGoalType());
+                startDateTextField.setText(goal.getGoalStartDate().toString());
+                goalTextArea.setText("To cover " + goal.getGoalDistance() + " km by " + goal.getGoalTargetDate());
+            } else if (type.equals("BMI")) {
+                typeTextField.setText(goal.getGoalType());
+                startDateTextField.setText(goal.getGoalStartDate().toString());
+                goalTextArea.setText("To have a BMI of " + goal.getGoalBmi() + " or less by " + goal.getGoalTargetDate());
+            } else { //goal must be of type Time
+                typeTextField.setText(goal.getGoalType());
+                startDateTextField.setText(goal.getGoalStartDate().toString());
+                goalTextArea.setText("To spend " + goal.getGoalTime() + " minutes exercising by " + goal.getGoalTargetDate());
+            }
+        }
+
+
+    }
+
+    @FXML
+    public void updateFailedListView() {
+        String item = failedListView.getSelectionModel().getSelectedItem().toString();
+        Goal goal = null;
+        for (Goal selectedGoal : app.getCurrentProfile().getGoals().getFutureGoals()) {
+            if (selectedGoal.getGoalName() == item) {
+                goal = selectedGoal;
+                break;
+            }
+        }
+        if (goal != null) {
+            printPastGoalsReview(goal);
+        }
+    }
+
+    public void printPastGoalsReview(Goal goal) {
+        String type = goal.getGoalType();
+        typeTextField2.setVisible(true);
+        startDateTextField2.setVisible(true);
+        goalTextArea2.setVisible(true);
+        if (type.equals("Weight")) {
+            typeTextField2.setText(type);
+            startDateTextField2.setText(goal.getGoalStartDate().toString());
+            goalTextArea2.setText("To weigh " + goal.getGoalWeight() + " kgs or less by " + goal.getGoalTargetDate());
+        } else if (type.equals("Frequency")) {
+            typeTextField2.setText(type);
+            startDateTextField2.setText(goal.getGoalStartDate().toString());
+            goalTextArea2.setText("To participate in " + goal.getGoalFrequency() + " activities by " + goal.getGoalTargetDate());
+        } else if (type.equals("Distance")) {
+            typeTextField2.setText(type);
+            startDateTextField2.setText(goal.getGoalStartDate().toString());
+            goalTextArea2.setText("To cover " + goal.getGoalDistance() + " km by " + goal.getGoalTargetDate());
+        } else if (type.equals("BMI")) {
+            typeTextField2.setText(type);
+            startDateTextField2.setText(goal.getGoalStartDate().toString());
+            goalTextArea2.setText("To have a BMI of " + goal.getGoalBmi() + " or less by " + goal.getGoalTargetDate());
+        } else { //goal must be of type Time
+            typeTextField2.setText(type);
+            startDateTextField2.setText(goal.getGoalStartDate().toString());
+            goalTextArea2.setText("To spend " + goal.getGoalTime() + " minutes exercising by " + goal.getGoalTargetDate());
         }
     }
 
