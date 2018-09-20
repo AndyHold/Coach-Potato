@@ -176,6 +176,7 @@ public class CreateProfileController implements Controllable
         try {
             String nameString =  getTextFieldString(nameEntry);
             this.app.checkUniqueName(nameString);
+<<<<<<< HEAD
             userProfile.setName(nameString);
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -186,6 +187,15 @@ public class CreateProfileController implements Controllable
 =======
         } catch (UserNameException | IllegalArgumentException exception) {
 >>>>>>> 798a1f8... fixed invalidNameException bug
+=======
+            try {
+                userProfile.setName(nameString);
+            } catch (UserNameException | IllegalArgumentException exception) {
+                nameErrorLabel.setVisible(true);
+            }
+        } catch (UniqueNameException | IllegalArgumentException exception) {
+            nameErrorLabel.setText("This username already exists.");
+>>>>>>> 31fa09e... Fixed up Unique name error and got it completely working so that it catches all errors on Create profile and edit profile.
             nameErrorLabel.setVisible(true);
         }
 

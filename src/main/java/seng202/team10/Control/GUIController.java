@@ -15,6 +15,7 @@ import seng202.team10.Model.ActivitiesData.DateTime;
 >>>>>>> 81b0c6a... Re-added launch mapscene
 import seng202.team10.Model.ActivitiesData.Route;
 import seng202.team10.Model.Exceptions.InvalidUserException;
+import seng202.team10.Model.Exceptions.UniqueNameException;
 import seng202.team10.Model.Exceptions.UserNameException;
 import seng202.team10.Model.FileOperations.FileReader;
 import seng202.team10.Model.FileOperations.FileWriter;
@@ -320,11 +321,11 @@ public class GUIController extends Application{
 =======
 
 
-    public void checkUniqueName(String userName) throws UserNameException
+    public void checkUniqueName(String userName) throws UniqueNameException
     {
         for (UserProfile userProfile: this.getUsers()) {
-            if (userProfile.getName() == userName) {
-                throw new UserNameException();
+            if (userProfile.getName().equals(userName)) {
+                throw new UniqueNameException();
             }
         }
     }
