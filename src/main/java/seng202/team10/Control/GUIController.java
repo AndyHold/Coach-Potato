@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import seng202.team10.Model.ActivitiesData.Activity;
@@ -28,11 +29,15 @@ import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.ActivitiesData.Route;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 874b31ca... Re-added launch mapscene
 =======
 import seng202.team10.Model.FileOperations.FileReader;
 >>>>>>> 88343792... loading existing users from file when logging in, deleted some old test users
 =======
+=======
+import seng202.team10.Model.Exceptions.InvalidUserException;
+>>>>>>> 0e69f208... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
 import seng202.team10.Model.FileOperations.FileReader;
 >>>>>>> 61ade368... loading existing users from file when logging in, deleted some old test users
 import seng202.team10.Model.FileOperations.FileWriter;
@@ -79,11 +84,11 @@ public class GUIController extends Application{
 
     private FXMLLoader activityViewerLoader;
     private Scene activityViewerScene;
-    private seng202.team10.Visual.activityViewerController activityViewerController;
+    private ActivityViewerController activityViewerController;
 
     private FXMLLoader entryViewerLoader;
     private Scene entryViewerScene;
-    private seng202.team10.Visual.entryViewerController entryViewerController;
+    private EntryViewerController entryViewerController;
 
     private FXMLLoader mapLoader;
     private Scene mapScene;
@@ -101,10 +106,11 @@ public class GUIController extends Application{
     //private Goals goals = new Goals(currentUser);
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception
+    {
         // Added a test user.
         users.add(new UserProfile("Potato", 75, 180, new DateTime(2000,1,1,1,1,1), "Male"));
-        users.get(0).setMaxHeartrate(210);
+        users.get(0).setMaxHeartRate(210);
         loadAllUsers();
         loadAllScenes();
         primaryStage.setTitle("Coach Potato");
@@ -609,10 +615,14 @@ public class GUIController extends Application{
         Pane paneAV = activityViewerLoader.load();
         activityViewerController = activityViewerLoader.getController();
         activityViewerController.setApp(this);
+<<<<<<< HEAD
 //        activityViewerController.setUpScene();
 <<<<<<< HEAD
         activityViewerScene = new Scene(paneAV, 900, 600);
 =======
+=======
+//        ActivityViewerController.setUpScene();
+>>>>>>> 0e69f208... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
         activityViewerScene = new Scene(paneAV, 1280, 720);
 >>>>>>> 663db25d... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
 
@@ -620,6 +630,7 @@ public class GUIController extends Application{
         Pane paneEV = entryViewerLoader.load();
         entryViewerController = entryViewerLoader.getController();
         entryViewerController.setApp(this);
+<<<<<<< HEAD
 //        entryViewerController.setUpScene();
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -636,6 +647,9 @@ public class GUIController extends Application{
 >>>>>>> e4a580e1... Added map Controller
         entryViewerScene = new Scene(paneEV, 900, 630);
 =======
+=======
+//        EntryViewerController.setUpScene();
+>>>>>>> 0e69f208... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
         entryViewerScene = new Scene(paneEV, 1280, 720);
 >>>>>>> 663db25d... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
 
@@ -673,11 +687,15 @@ public class GUIController extends Application{
     /**
      * Creates a new profile (and adds the test data to it for now).
      * @param newUser  The profile being created.
-     * @throws Exception Not implemented
      */
-    public void createUser(UserProfile newUser)
+    public void createUser(UserProfile newUser) throws InvalidUserException
     {
-        users.add(newUser);
+        //TODO this should be in UserProfile???
+        if (newUser.getName() != null && newUser.getWeight() != 0.0 && newUser.getHeight() != 0.0 && newUser.getBirthDate() != null && newUser.getGender() != null && newUser.getMaxHeartrate() != 0) {
+            users.add(newUser);
+        } else {
+            throw new InvalidUserException();
+        }
     }
 
     /**
@@ -718,5 +736,21 @@ public class GUIController extends Application{
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+
+    /**
+     * Method to display a pop up window with a title a message and a type (depending on if you want an error or information etc)
+     * @param type Alert.AlertType: type of alert
+     * @param title String: Title of pop up window
+     * @param message String: Message to display to user
+     */
+    public void createPopUp(Alert.AlertType type, String title, String message)
+    {
+        Alert errorPopUp = new Alert(type);
+        errorPopUp.setTitle(title);
+        errorPopUp.setContentText(message);
+        errorPopUp.setHeaderText(null);
+        errorPopUp.showAndWait();
     }
 }
