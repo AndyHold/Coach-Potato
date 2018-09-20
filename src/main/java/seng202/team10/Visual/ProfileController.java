@@ -17,10 +17,8 @@ import seng202.team10.Model.Exceptions.InvalidWeightException;
 import seng202.team10.Model.Exceptions.UserNameException;
 import seng202.team10.Model.UserProfile;
 
-import javax.naming.InvalidNameException;
 import java.text.DecimalFormat;
 import java.time.YearMonth;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -163,20 +161,20 @@ public class ProfileController {
         try {
             app.getUsers().get(app.getUsers().indexOf(currentUser)).setName(usernameTA.getText());
         } catch (UserNameException | IllegalArgumentException exception) {
-            app.createPopUp(Alert.AlertType.ERROR, "Invalid Username", "Please enter a valid Username: It should be lass than 15 characters." );
+            app.createPopUp(Alert.AlertType.ERROR, "Invalid Username", "Please enter a valid username: It should be less than 50 characters and only contain alphanumeric characters." );
         }
         // Set weight and handle exceptions
         try {
             app.getUsers().get(app.getUsers().indexOf(currentUser)).setWeight(Double.valueOf(weightValueTA.getText()));
         }  catch (InvalidWeightException | IllegalArgumentException exception) {
-            app.createPopUp(Alert.AlertType.ERROR, "Invalid Weight", "Please enter a valid Weight: It should be grater than 30 kg and less than 180 kg." );
+            app.createPopUp(Alert.AlertType.ERROR, "Invalid Weight", "Please enter a valid weight: It should be greater than 30 kg and less than 500 kg." );
         }
 
         // Set height and handle Exceptions
         try {
             app.getUsers().get(app.getUsers().indexOf(currentUser)).setHeight(Double.valueOf(heightValueTA.getText()));
         } catch (InvalidHeightException | IllegalArgumentException exception) {
-            app.createPopUp(Alert.AlertType.ERROR, "Invalid Height", "Please enter a valid Height: It should be grater than 50 cm and less than 250 cm." );
+            app.createPopUp(Alert.AlertType.ERROR, "Invalid Height", "Please enter a valid height: It should be greater than 50 cm and less than 250 cm." );
         }
 
         // Set Date of Birth and handle exceptions
@@ -188,16 +186,16 @@ public class ProfileController {
             DateTime dateOfBirth = new DateTime(yearInt, monthInt, dayInt, 0, 0, 0);
             app.getUsers().get(app.getUsers().indexOf(currentUser)).setBirthdate(dateOfBirth);
         } catch (NullPointerException | IllegalArgumentException exception) {
-            app.createPopUp(Alert.AlertType.ERROR, "Invalid Date of Birth", "Please enter a valid Date: It should be in DD/MM/YYYY format." );
+            app.createPopUp(Alert.AlertType.ERROR, "Invalid Date of Birth", "Please enter a valid date: It should be in DD/MM/YYYY format." );
         }
 
         // Set gender and handle Exceptions
-        List<String> genderList = Arrays.asList("Male", "Female", "Not Specified");
+        List<String> genderList = Arrays.asList("Male", "Female", "Other");
         if (genderList.contains(genderTA.getText())) {
             app.getUsers().get(app.getUsers().indexOf(currentUser)).setGender(genderTA.getText());
         }
         else {
-            app.createPopUp(Alert.AlertType.ERROR, "Invalid Gender", "Please enter a valid Gender: It should be either \"Male\", \"Female\" or \"Not Specified\"." );
+            app.createPopUp(Alert.AlertType.ERROR, "Invalid Gender", "Please enter a valid gender: It should be either \"Male\", \"Female\" or \"Other\"." );
 
         }
         confirmButton.setVisible(false);
