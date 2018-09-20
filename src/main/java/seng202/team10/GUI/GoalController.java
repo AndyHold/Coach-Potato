@@ -124,6 +124,7 @@ public class GoalController implements Controllable{
 //        endDateColumn.setCellValueFactory(new PropertyValueFactory<Goal, String>("endDate"));
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     }
 
     private void populateTable(ObservableList<Goal> entries) {
@@ -165,6 +166,18 @@ public class GoalController implements Controllable{
 //        endDateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
     }
 
+=======
+//
+//
+//        entriesTableView.setItems(getEntries());
+//        nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+//        typeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+//        targetColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+//        startDateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+//        endDateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+    }
+
+>>>>>>> 03dfdb44... Now call addGoalsToTable when profile is set. Added text fields and areas for achieved and failed goals. Implemented addGoalsToTable, updateAchievedListView, updateFailedListView, and printPastGoalsReview functions in GoalController. In review goal methods, now compares current time to target date to see if you have failed your goal. Added achievedGoalNames, failedGoalNames and futureGoalNames ArrayLists to Goals.
 //    public ObservableList<Goal> getEntries() {
 //        this.entries = FXCollections.observableArrayList();
 //        return entries;
@@ -182,7 +195,10 @@ public class GoalController implements Controllable{
         app.getCurrentProfile().getGoals().refreshGoals();
         if (app.getCurrentProfile().getGoals() != null) {
             ObservableList<String> currentGoals = FXCollections.observableArrayList(app.getCurrentProfile().getGoals().getCurrentGoalNames());
+<<<<<<< HEAD
 >>>>>>> 3e145f3c... Now call addGoalsToTable when profile is set. Added text fields and areas for achieved and failed goals. Implemented addGoalsToTable, updateAchievedListView, updateFailedListView, and printPastGoalsReview functions in GoalController. In review goal methods, now compares current time to target date to see if you have failed your goal. Added achievedGoalNames, failedGoalNames and futureGoalNames ArrayLists to Goals.
+=======
+>>>>>>> 03dfdb44... Now call addGoalsToTable when profile is set. Added text fields and areas for achieved and failed goals. Implemented addGoalsToTable, updateAchievedListView, updateFailedListView, and printPastGoalsReview functions in GoalController. In review goal methods, now compares current time to target date to see if you have failed your goal. Added achievedGoalNames, failedGoalNames and futureGoalNames ArrayLists to Goals.
             currentGoalsCombo.setItems(currentGoals);
             currentGoalsCombo.setVisibleRowCount(5);
 

@@ -354,11 +354,18 @@ public class GUIController extends Application{
 >>>>>>> 541edbd0... Saving and loading of profiles to/from folder
 =======
 >>>>>>> 0c1d4e0... Saving and loading of profiles to/from folder
+<<<<<<< HEAD
 >>>>>>> 5f1c6fb1... Saving and loading of profiles to/from folder
 =======
         dataWriter.saveProfile(currentUser);
         goalsController.addGoalsToTable();
 >>>>>>> 3e145f3c... Now call addGoalsToTable when profile is set. Added text fields and areas for achieved and failed goals. Implemented addGoalsToTable, updateAchievedListView, updateFailedListView, and printPastGoalsReview functions in GoalController. In review goal methods, now compares current time to target date to see if you have failed your goal. Added achievedGoalNames, failedGoalNames and futureGoalNames ArrayLists to Goals.
+=======
+=======
+        dataWriter.saveProfile(currentUser);
+        goalsController.addGoalsToTable();
+>>>>>>> 429f29b... Now call addGoalsToTable when profile is set. Added text fields and areas for achieved and failed goals. Implemented addGoalsToTable, updateAchievedListView, updateFailedListView, and printPastGoalsReview functions in GoalController. In review goal methods, now compares current time to target date to see if you have failed your goal. Added achievedGoalNames, failedGoalNames and futureGoalNames ArrayLists to Goals.
+>>>>>>> 03dfdb44... Now call addGoalsToTable when profile is set. Added text fields and areas for achieved and failed goals. Implemented addGoalsToTable, updateAchievedListView, updateFailedListView, and printPastGoalsReview functions in GoalController. In review goal methods, now compares current time to target date to see if you have failed your goal. Added achievedGoalNames, failedGoalNames and futureGoalNames ArrayLists to Goals.
         primaryStage.setScene(goalsScene);
 
     }
