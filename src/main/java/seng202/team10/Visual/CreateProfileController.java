@@ -10,7 +10,11 @@ import javafx.scene.control.*;
 <<<<<<< HEAD
 =======
 import javafx.scene.layout.HBox;
+<<<<<<< HEAD
 >>>>>>> 4e37ab85... Finished Implementing new Login Screen Layout.
+=======
+>>>>>>> 5997e6c... Finished Implementing new Login Screen Layout.
+>>>>>>> 6e249b39... Finished Implementing new Login Screen Layout.
 import org.apache.commons.lang3.ObjectUtils;
 =======
 import javafx.scene.layout.VBox;
@@ -189,7 +193,11 @@ public class CreateProfileController implements Controllable
         } catch (InvalidNameException | IllegalArgumentException exception) {
 =======
         } catch (InvalidNameException | IllegalArgumentException | UserNameException excpetion) {
+<<<<<<< HEAD
 >>>>>>> 4e37ab85... Finished Implementing new Login Screen Layout.
+=======
+>>>>>>> 5997e6c... Finished Implementing new Login Screen Layout.
+>>>>>>> 6e249b39... Finished Implementing new Login Screen Layout.
             nameErrorLabel.setVisible(true);
         }
 

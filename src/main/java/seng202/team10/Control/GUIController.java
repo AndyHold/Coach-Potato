@@ -36,10 +36,14 @@ import seng202.team10.Model.ActivitiesData.Route;
 =======
 import seng202.team10.Model.Exceptions.InvalidUserException;
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 2d5633a2... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
 =======
 import seng202.team10.Model.Exceptions.UserNameException;
 >>>>>>> 4e37ab85... Finished Implementing new Login Screen Layout.
+=======
+import seng202.team10.Model.Exceptions.UserNameException;
+>>>>>>> 6e249b39... Finished Implementing new Login Screen Layout.
 import seng202.team10.Model.FileOperations.FileReader;
 >>>>>>> 88343792... loading existing users from file when logging in, deleted some old test users
 =======
@@ -248,7 +252,11 @@ public class GUIController extends Application{
             //primaryStage.setScene(goalsScene);
             primaryStage.show();
             this.primaryStage = primaryStage;
+<<<<<<< HEAD
 >>>>>>> 4e37ab85... Finished Implementing new Login Screen Layout.
+=======
+>>>>>>> 5997e6c... Finished Implementing new Login Screen Layout.
+>>>>>>> 6e249b39... Finished Implementing new Login Screen Layout.
     }
 
     /**
@@ -347,7 +355,21 @@ public class GUIController extends Application{
 >>>>>>> 5e839bc... Created constructors for userProfile and Added a test user.
 =======
 
+<<<<<<< HEAD
 >>>>>>> dc1460de... Added functionality for the map controller
+=======
+
+    public void checkUniqueName(String userName) throws UserNameException
+    {
+        for (UserProfile userProfile: this.getUsers()) {
+            if (userProfile.getName() == userName) {
+                throw new UserNameException();
+            }
+        }
+    }
+
+
+>>>>>>> 6e249b39... Finished Implementing new Login Screen Layout.
     public void launchMapScene(Activity activity) {
         mapController.setActivity(activity);
         mapController.setUpScene();
