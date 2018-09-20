@@ -14,6 +14,7 @@ import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.Exceptions.InvalidHeightException;
 import seng202.team10.Model.Exceptions.InvalidWeightException;
+import seng202.team10.Model.Exceptions.UserNameException;
 import seng202.team10.Model.UserProfile;
 
 import javax.naming.InvalidNameException;
@@ -161,7 +162,7 @@ public class ProfileController {
         // Set Name and handle Exceptions
         try {
             app.getUsers().get(app.getUsers().indexOf(currentUser)).setName(usernameTA.getText());
-        } catch (InvalidNameException | IllegalArgumentException exception) {
+        } catch (UserNameException | IllegalArgumentException exception) {
             app.createPopUp(Alert.AlertType.ERROR, "Invalid Username", "Please enter a valid Username: It should be lass than 15 characters." );
         }
         // Set weight and handle exceptions

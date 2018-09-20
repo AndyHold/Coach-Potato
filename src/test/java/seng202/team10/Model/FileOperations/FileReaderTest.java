@@ -4,6 +4,7 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import seng202.team10.Model.Exceptions.UserNameException;
 import seng202.team10.Model.UserProfile;
 
 import javax.naming.InvalidNameException;
@@ -44,7 +45,7 @@ public class FileReaderTest {
     }
 
     @Test
-    public void getExistingUsers() throws InvalidNameException
+    public void getExistingUsers() throws UserNameException
     {
         UserProfile secondTestProfile = new UserProfile();
         secondTestProfile.setName("bill");
