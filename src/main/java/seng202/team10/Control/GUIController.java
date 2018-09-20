@@ -176,7 +176,7 @@ public class GUIController extends Application{
     public void launchGoalsScene() {
         //goalsController.setUpScene();
         dataWriter.saveProfile(currentUser);
-        goalsController.updateGoals();
+        goalsController.addGoalsToTable();
         primaryStage.setScene(goalsScene);
     }
 
@@ -333,6 +333,7 @@ public class GUIController extends Application{
      */
     public void setCurrentProfile(UserProfile userProfile) {
         this.currentUser = userProfile;
+        this.goalsController.addGoalsToTable();
     }
 
     /**
