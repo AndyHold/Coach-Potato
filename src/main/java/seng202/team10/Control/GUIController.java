@@ -39,8 +39,12 @@ import seng202.team10.Model.Exceptions.InvalidUserException;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 2d5633a2... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
 =======
+=======
+import seng202.team10.Model.Exceptions.UniqueNameException;
+>>>>>>> dd450156... Fixed up Unique name error and got it completely working so that it catches all errors on Create profile and edit profile.
 import seng202.team10.Model.Exceptions.UserNameException;
 >>>>>>> 4e37ab85... Finished Implementing new Login Screen Layout.
 =======
@@ -373,11 +377,11 @@ public class GUIController extends Application{
 >>>>>>> dc1460de... Added functionality for the map controller
 =======
 
-    public void checkUniqueName(String userName) throws UserNameException
+    public void checkUniqueName(String userName) throws UniqueNameException
     {
         for (UserProfile userProfile: this.getUsers()) {
-            if (userProfile.getName() == userName) {
-                throw new UserNameException();
+            if (userProfile.getName().equals(userName)) {
+                throw new UniqueNameException();
             }
         }
     }

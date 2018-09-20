@@ -141,7 +141,11 @@
                         <Button fx:id="createProfileButton" mnemonicParsing="false" onAction="#createProfile" prefWidth="200.0" text="Create New Profile">
 =======
                         <Button fx:id="createProfileButton" mnemonicParsing="false" onAction="#createProfile" prefHeight="28.0" prefWidth="160.0" text="Create New Profile">
+<<<<<<< HEAD
 >>>>>>> 68814ead... Fixed up Unique name error and got it completely working so that it catches all errors on Create profile and edit profile.
+=======
+>>>>>>> 31fa09e... Fixed up Unique name error and got it completely working so that it catches all errors on Create profile and edit profile.
+>>>>>>> dd450156... Fixed up Unique name error and got it completely working so that it catches all errors on Create profile and edit profile.
                            <font>
                               <Font size="14.0" />
                            </font></Button>

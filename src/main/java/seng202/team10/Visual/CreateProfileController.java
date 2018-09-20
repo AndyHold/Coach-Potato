@@ -208,7 +208,10 @@ public class CreateProfileController implements Controllable
 =======
         } catch (UserNameException | IllegalArgumentException exception) {
 >>>>>>> 798a1f8... fixed invalidNameException bug
+<<<<<<< HEAD
 >>>>>>> cf2a8f58... fixed invalidNameException bug
+=======
+>>>>>>> dd450156... Fixed up Unique name error and got it completely working so that it catches all errors on Create profile and edit profile.
 =======
             try {
                 userProfile.setName(nameString);
@@ -217,7 +220,11 @@ public class CreateProfileController implements Controllable
             }
         } catch (UniqueNameException | IllegalArgumentException exception) {
             nameErrorLabel.setText("This username already exists.");
+<<<<<<< HEAD
 >>>>>>> 68814ead... Fixed up Unique name error and got it completely working so that it catches all errors on Create profile and edit profile.
+=======
+>>>>>>> 31fa09e... Fixed up Unique name error and got it completely working so that it catches all errors on Create profile and edit profile.
+>>>>>>> dd450156... Fixed up Unique name error and got it completely working so that it catches all errors on Create profile and edit profile.
             nameErrorLabel.setVisible(true);
         }
 
