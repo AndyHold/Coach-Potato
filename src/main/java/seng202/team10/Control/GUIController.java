@@ -6,7 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import seng202.team10.GUI.*;
 import seng202.team10.Model.ActivitiesData.Activity;
 <<<<<<< HEAD
 =======
@@ -17,6 +16,7 @@ import seng202.team10.Model.FileOperations.FileReader;
 import seng202.team10.Model.FileOperations.FileWriter;
 import seng202.team10.Model.FileOperations.Parser;
 import seng202.team10.Model.UserProfile;
+import seng202.team10.Visual.*;
 
 import java.util.ArrayList;
 
@@ -57,11 +57,11 @@ public class GUIController extends Application{
 
     private FXMLLoader activityViewerLoader;
     private Scene activityViewerScene;
-    private activityViewerController activityViewerController;
+    private seng202.team10.Visual.activityViewerController activityViewerController;
 
     private FXMLLoader entryViewerLoader;
     private Scene entryViewerScene;
-    private entryViewerController entryViewerController;
+    private seng202.team10.Visual.entryViewerController entryViewerController;
 
     private FXMLLoader mapLoader;
     private Scene mapScene;

@@ -39,6 +39,7 @@ public class FileWriter
         new File("./profiles").mkdirs();
     }
 
+
     /** deletes a specified profile by name
      * @param profileName the name (string) of the profile to be deleted
      * @return true if deletion succeeds, false if deletion fails*/

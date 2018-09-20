@@ -1,4 +1,4 @@
-package seng202.team10.GUI;
+package seng202.team10.Visual;
 
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
@@ -28,6 +28,7 @@ public class DataAnalysisController implements Controllable, Initializable{
     private GUIController guiController;
     private Activity activity;
     private DataAnalysis dataAnalysis;
+    private int currentIndex;
 
     @FXML private Label activityNameLabel;
     @FXML private Label timeTakenLabel;
@@ -85,8 +86,11 @@ public class DataAnalysisController implements Controllable, Initializable{
             activityList.setItems(activityNames);
             if (activityList.getSelectionModel().getSelectedIndex() == -1) {
                 activityList.getSelectionModel().selectFirst();
+                currentIndex = 0;
             }
-            activity = currentProfile.getActivities().get(activityList.getSelectionModel().getSelectedIndex());
+            currentIndex = activityList.getSelectionModel().getSelectedIndex();
+                    activity = currentProfile.getActivities().get(currentIndex);
+
 
             this.displayNoData(false);
 
@@ -132,12 +136,13 @@ public class DataAnalysisController implements Controllable, Initializable{
             }
             stressLevelOverTime.getData().add(stressLevelTimeSeries);
         }
-
     }
 
     @FXML
     private void refresh() {
-        setUpScene();
+        if (activityList.getSelectionModel().getSelectedIndex() != currentIndex) {
+            setUpScene();
+        }
     }
 
     private void setUpGraphs() {

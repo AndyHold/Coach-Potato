@@ -1,4 +1,4 @@
-package seng202.team10.GUI;
+package seng202.team10.Visual;
 
 import seng202.team10.Control.GUIController;
 
