@@ -14,6 +14,7 @@ import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.Exceptions.InvalidHeightException;
 import seng202.team10.Model.Exceptions.InvalidWeightException;
+import seng202.team10.Model.Exceptions.UniqueNameException;
 import seng202.team10.Model.Exceptions.UserNameException;
 import seng202.team10.Model.UserProfile;
 
@@ -159,9 +160,15 @@ public class ProfileController {
 
         // Set Name and handle Exceptions
         try {
-            app.getUsers().get(app.getUsers().indexOf(currentUser)).setName(usernameTA.getText());
-        } catch (UserNameException | IllegalArgumentException exception) {
-            app.createPopUp(Alert.AlertType.ERROR, "Invalid Username", "Please enter a valid username: It should be less than 50 characters and only contain alphanumeric characters." );
+            String nameString = usernameTA.getText();
+            app.checkUniqueName(nameString);
+            try {
+                app.getUsers().get(app.getUsers().indexOf(currentUser)).setName(nameString);
+            } catch (UserNameException | IllegalArgumentException exception) {
+                app.createPopUp(Alert.AlertType.ERROR, "Invalid Username", "Please enter a valid username: It should be less than 50 characters and only contain alphanumeric characters." );
+            }
+        } catch (UniqueNameException | IllegalArgumentException exception) {
+            app.createPopUp(Alert.AlertType.ERROR, "Invalid Username", "Please enter a valid username: This username already exists." );
         }
         // Set weight and handle exceptions
         try {
