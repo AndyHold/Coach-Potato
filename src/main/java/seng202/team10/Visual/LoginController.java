@@ -3,77 +3,220 @@ package seng202.team10.Visual;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.UserProfile;
+
+import java.util.ArrayList;
 
 public class LoginController implements Controllable{
     private GUIController app;
 
-    @FXML private Button loginButton;
-    @FXML private Button newProfileButton;
-    @FXML private ComboBox<String> userComboBox;
-    @FXML private Label userErrorLabel;
-    @FXML private ImageView user1Image;
-    @FXML private ImageView user2Image;
-    @FXML private ImageView user3Image;
-    @FXML private ImageView user4Image;
-    @FXML private ImageView user5Image;
-    @FXML private Button user1Button;
-    @FXML private Button user2Button;
-    @FXML private Button user3Button;
-    @FXML private Button user4Button;
-    @FXML private Button user5Button;
-    @FXML private Label user1Label;
-    @FXML private Label user2Label;
-    @FXML private Label user3Label;
-    @FXML private Label user4Label;
-    @FXML private Label user5Label;
+
+    @FXML private ImageView userOneImage;
+    @FXML private ImageView userTwoImage;
+    @FXML private ImageView userThreeImage;
+    @FXML private ImageView userFourImage;
+    @FXML private ImageView userFiveImage;
+    @FXML private Button userOneButton;
+    @FXML private Button userTwoButton;
+    @FXML private Button userThreeButton;
+    @FXML private Button userFourButton;
+    @FXML private Button userFiveButton;
+    @FXML private Label userOneNameLabel;
+    @FXML private Label userTwoNameLabel;
+    @FXML private Label userThreeNameLabel;
+    @FXML private Label userFourNameLabel;
+    @FXML private Label userFiveNameLabel;
+    @FXML private Button createProfileButton;
+    private boolean deleteMode;
 
 
     public void setApp(GUIController app) {
         this.app = app;
     }
 
+
     /**
      *
      */
     public void setUpScene() {
+        resetButtons();
+        deleteMode = false;
+        disableButtons();
         ObservableList<String> userNames = FXCollections.observableArrayList();
-        for (UserProfile user : app.getUsers()) {
-            userNames.add(user.getName());
+        ArrayList<UserProfile> users = app.getUsers();
+        for (int i = 0; i < users.size(); i++) {
+            UserProfile user = app.getUsers().get(i);
+            setButtonProperties(i, user);
+            userNames.add(user.getName()); // Delete When Finished
         }
-        user1Image.setVisible(true);
-        user2Image.setVisible(true);
-        user3Image.setVisible(true);
-        user4Image.setVisible(true);
-        user5Image.setVisible(true);
-        userComboBox.setItems(userNames);
-        userComboBox.setVisibleRowCount(10);
-        userErrorLabel.setVisible(false);
-        if (!userNames.isEmpty()) {
-            loginButton.setDisable(false);
+        userOneImage.setVisible(true);
+        userTwoImage.setVisible(true);
+        userThreeImage.setVisible(true);
+        userFourImage.setVisible(true);
+        userFiveImage.setVisible(true);
+        if (app.getUsers().size() == 5) {
+            createProfileButton.setDisable(true);
         }
     }
 
-    @FXML
-    public void login() throws Exception {
-        setUpScene();
-        String userName = userComboBox.getValue();
-        if (userName == null) {
-            userErrorLabel.setVisible(true);
-        } else {
-            for (UserProfile user : app.getUsers()) {
-                if (userName == user.getName()) {
-                    app.setCurrentProfile(user);
-                    app.launchProfileScene();
-                }
+
+    private void setButtonProperties(int index, UserProfile user)
+    {
+        try {
+            switch (index) {
+                case 0:
+                    // Set image
+                    userOneImage.setImage(new Image("Images/" + user.getGender() + ".png"));
+                    // Set name
+                    userOneNameLabel.setText(user.getName());
+                    // Set Enabled
+                    userOneButton.setDisable(false);
+                    break;
+                case 1:
+                    // Set image
+                    userTwoImage.setImage(new Image("Images/" + user.getGender() + ".png"));
+                    // Set name
+                    userTwoNameLabel.setText(user.getName());
+                    // Set Enabled
+                    userTwoButton.setDisable(false);
+                    break;
+                case 2:
+                    // Set image
+                    userThreeImage.setImage(new Image("Images/" + user.getGender() + ".png"));
+                    // Set name
+                    userThreeNameLabel.setText(user.getName());
+                    // Set Enabled
+                    userThreeButton.setDisable(false);
+                    break;
+                case 3:
+                    // Set image
+                    userFourImage.setImage(new Image("Images/" + user.getGender() + ".png"));
+                    // Set name
+                    userFourNameLabel.setText(user.getName());
+                    // Set Enabled
+                    userFourButton.setDisable(false);
+                    break;
+                case 4:
+                    // Set image
+                    userFiveImage.setImage(new Image("Images/" + user.getGender() + ".png"));
+                    // Set name
+                    userFiveNameLabel.setText(user.getName());
+                    // Set Enabled
+                    userFiveButton.setDisable(false);
+                    break;
             }
+        } catch (IllegalArgumentException exception) {
+            this.app.createPopUp(Alert.AlertType.ERROR, "Error", "Could not find image");
         }
     }
+
+
+    private void disableButtons()
+    {
+        userOneButton.setDisable(true);
+        userTwoButton.setDisable(true);
+        userThreeButton.setDisable(true);
+        userFourButton.setDisable(true);
+        userFiveButton.setDisable(true);
+    }
+
+
+    @FXML public void userButtonOne()
+    {
+        if (deleteMode) {
+            if (app.getUsers().size() == 5) {
+                createProfileButton.setDisable(false);
+            }
+            app.getDataWriter().deleteProfile(app.getUsers().get(0).getName());
+            app.getUsers().remove(0);
+            deleteProfile();
+            setUpScene();
+            if (app.getUsers().size() == 0) {
+                app.launchCreateProfileScene();
+            }
+        } else {
+            app.setCurrentProfile(app.getUsers().get(0));
+            app.launchProfileScene();
+        }
+    }
+
+
+    @FXML public void userButtonTwo()
+    {
+        if (deleteMode) {
+            if (app.getUsers().size() == 5) {
+                createProfileButton.setDisable(false);
+            }
+            app.getDataWriter().deleteProfile(app.getUsers().get(1).getName());
+            app.getUsers().remove(1);
+            deleteProfile();
+            setUpScene();
+        } else {
+            app.setCurrentProfile(app.getUsers().get(1));
+            app.launchProfileScene();
+        }
+    }
+
+
+    @FXML public void userButtonThree()
+    {
+        if (deleteMode) {
+            if (app.getUsers().size() == 5) {
+                createProfileButton.setDisable(false);
+            }
+            app.getDataWriter().deleteProfile(app.getUsers().get(2).getName());
+            app.getUsers().remove(2);
+            deleteProfile();
+            setUpScene();
+        } else {
+            app.setCurrentProfile(app.getUsers().get(2));
+            app.launchProfileScene();
+        }
+    }
+
+
+    @FXML public void userButtonFour()
+    {
+        if (deleteMode) {
+            if (app.getUsers().size() == 5) {
+                createProfileButton.setDisable(false);
+            }
+            app.getDataWriter().deleteProfile(app.getUsers().get(3).getName());
+            app.getUsers().remove(3);
+            deleteProfile();
+            setUpScene();
+        } else {
+            app.setCurrentProfile(app.getUsers().get(3));
+            app.launchProfileScene();
+        }
+    }
+
+
+    @FXML public void userButtonFive()
+    {
+        if (deleteMode) {
+            if (app.getUsers().size() == 5) {
+                createProfileButton.setDisable(false);
+            }
+            app.getDataWriter().deleteProfile(app.getUsers().get(4).getName());
+            app.getUsers().remove(4);
+            deleteProfile();
+            setUpScene();
+        } else {
+            app.setCurrentProfile(app.getUsers().get(4));
+            app.launchProfileScene();
+        }
+    }
+
 
     @FXML
     public void createProfile() throws Exception {
@@ -81,4 +224,49 @@ public class LoginController implements Controllable{
         app.launchCreateProfileScene();
     }
 
+
+    @FXML
+    public void deleteProfile()
+    {
+        if(deleteMode) {
+            deleteMode = false;
+            toggleRedBorders();
+        } else {
+            deleteMode = true;
+            toggleRedBorders();
+        }
+    }
+
+
+    public void toggleRedBorders()
+    {
+        if (userOneButton.getStyle().length() == 0) {
+            userOneButton.setStyle("-fx-border-color: red");
+            userTwoButton.setStyle("-fx-border-color: red");
+            userThreeButton.setStyle("-fx-border-color: red");
+            userFourButton.setStyle("-fx-border-color: red");
+            userFiveButton.setStyle("-fx-border-color: red");
+        } else {
+            userOneButton.setStyle(null);
+            userTwoButton.setStyle(null);
+            userThreeButton.setStyle(null);
+            userFourButton.setStyle(null);
+            userFiveButton.setStyle(null);
+        }
+    }
+
+
+    private void resetButtons()
+    {
+        userOneImage.setImage(new Image("Images/unknown.png"));
+        userTwoImage.setImage(new Image("Images/unknown.png"));
+        userThreeImage.setImage(new Image("Images/unknown.png"));
+        userFourImage.setImage(new Image("Images/unknown.png"));
+        userFiveImage.setImage(new Image("Images/unknown.png"));
+        userOneNameLabel.setText(null);
+        userTwoNameLabel.setText(null);
+        userThreeNameLabel.setText(null);
+        userFourNameLabel.setText(null);
+        userFiveNameLabel.setText(null);
+    }
 }
