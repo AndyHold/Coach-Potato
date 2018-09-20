@@ -1,6 +1,8 @@
 package seng202.team10.Model;
 
-import org.junit.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.Exceptions.InvalidHeightException;
 import seng202.team10.Model.Exceptions.InvalidWeightException;
@@ -9,12 +11,9 @@ import seng202.team10.Model.FileOperations.FileReader;
 import seng202.team10.Model.FileOperations.FileWriter;
 import seng202.team10.Model.FileOperations.Parser;
 
-import javax.naming.InvalidNameException;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class UserProfileTest {
 
@@ -134,7 +133,7 @@ public class UserProfileTest {
     @Test
     public void obeseBMI() throws InvalidWeightException, InvalidHeightException
     {
-        testProfile.setWeight(100000);
+        testProfile.setWeight(250);
         testProfile.setHeight(200);
         String bmicat = testProfile.getBmiCategory();
         assertEquals("Obese", bmicat);
