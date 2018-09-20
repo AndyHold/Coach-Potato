@@ -10,7 +10,11 @@ import javafx.scene.control.*;
 import org.apache.commons.lang3.ObjectUtils;
 =======
 import javafx.scene.layout.VBox;
+<<<<<<< HEAD
 >>>>>>> a7d12d59... Now the cursor is not focused on the name field on create profile screen.
+=======
+>>>>>>> 472482d... Now the cursor is not focused on the name field on create profile screen.
+>>>>>>> 62550e03... Now the cursor is not focused on the name field on create profile screen.
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.Exceptions.InvalidHeightException;
@@ -53,7 +57,11 @@ public class CreateProfileController implements Controllable
     @FXML
     private VBox wholeProfileVBox;
 
+<<<<<<< HEAD
 >>>>>>> a7d12d59... Now the cursor is not focused on the name field on create profile screen.
+=======
+>>>>>>> 472482d... Now the cursor is not focused on the name field on create profile screen.
+>>>>>>> 62550e03... Now the cursor is not focused on the name field on create profile screen.
     public void setApp(GUIController app)
     {
         this.app = app;
