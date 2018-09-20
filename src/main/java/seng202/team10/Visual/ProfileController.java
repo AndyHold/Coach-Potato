@@ -11,10 +11,15 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import seng202.team10.Control.GUIController;
+import seng202.team10.Model.ActivitiesData.DateTime;
+import seng202.team10.Model.Exceptions.InvalidHeightException;
+import seng202.team10.Model.Exceptions.InvalidWeightException;
 import seng202.team10.Model.UserProfile;
 
+import javax.naming.InvalidNameException;
 import java.text.DecimalFormat;
 import java.time.YearMonth;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,6 +37,7 @@ public class ProfileController {
     @FXML private TextField heightValueTA;
     @FXML private TextField bmiValueTA;
     @FXML private Button editProfileButton;
+    @FXML private Button confirmButton;
     @FXML private Label recentActivitiesLabel;
     @FXML private HBox activity1HBox;
     @FXML private HBox activity2HBox;
@@ -47,6 +53,8 @@ public class ProfileController {
     @FXML private Text heartRateText;
     @FXML private VBox drawer;
     @FXML private ComboBox userNameComboBox;
+    @FXML private VBox wholeProfileVBox;
+    UserProfile currentUser;
     private List<String> quotes = Arrays.asList(
             "To not prepare is to prepare to fail.",
             "Exercise instead of extra fries.",
@@ -83,22 +91,25 @@ public class ProfileController {
         distanceHBox.setVisible(false);
         velocityHBox.setVisible(false);
         heartRateHBox.setVisible(false);
+        confirmButton.setVisible(false);
+        wholeProfileVBox.setVisible(false);
         quotesLabel.setText(quotes.get((int)(Math.random()*(quotes.size()))));
         ObservableList<String> usersList = FXCollections.observableArrayList();
         for (UserProfile user: app.getUsers()) {
             usersList.add(user.getName());
         }
-        userNameComboBox.setItems(usersList);
+        //userNameComboBox.setItems(usersList);
     }
 
 
     public void setUserDetails() {
         DecimalFormat df2 = new DecimalFormat(".##");
         setUpScene();
-        UserProfile currentUser = app.getCurrentProfile();
-        userNameComboBox.setPromptText((currentUser.getName()).toString());
-        usernameTA.setText(currentUser.getName().toString());
-        genderTA.setText(currentUser.getGender().toString());
+        wholeProfileVBox.setVisible(true);
+        currentUser = app.getCurrentProfile();
+        //userNameComboBox.setPromptText(currentUser.getName());
+        usernameTA.setText(currentUser.getName());
+        genderTA.setText(currentUser.getGender());
         dobTA.setText(currentUser.getBirthDate().getDateAsString());
         welcomeProfileLabel.setText("Welcome " + String.valueOf(currentUser.getName()) + ", Let's do it!");
         weightValueTA.setText(df2.format((currentUser.getWeight())));
@@ -128,11 +139,69 @@ public class ProfileController {
     }
 
     @FXML private void editProfile() {
+        editProfileButton.setVisible(false);
+        confirmButton.setVisible(true);
         usernameTA.setEditable(true);
         dobTA.setEditable(true);
         genderTA.setEditable(true);
         weightValueTA.setEditable(true);
         heightValueTA.setEditable(true);
+
+    }
+
+    @FXML private void confirmEdit() {
+        usernameTA.setEditable(false);
+        dobTA.setEditable(false);
+        genderTA.setEditable(false);
+        weightValueTA.setEditable(false);
+        heightValueTA.setEditable(false);
+
+
+
+        // Set Name and handle Exceptions
+        try {
+            app.getUsers().get(app.getUsers().indexOf(currentUser)).setName(usernameTA.getText());
+        } catch (InvalidNameException | IllegalArgumentException exception) {
+            app.createPopUp(Alert.AlertType.ERROR, "Invalid Username", "Please enter a valid Username: It should be lass than 15 characters." );
+        }
+        // Set weight and handle exceptions
+        try {
+            app.getUsers().get(app.getUsers().indexOf(currentUser)).setWeight(Double.valueOf(weightValueTA.getText()));
+        }  catch (InvalidWeightException | IllegalArgumentException exception) {
+            app.createPopUp(Alert.AlertType.ERROR, "Invalid Weight", "Please enter a valid Weight: It should be grater than 30 kg and less than 180 kg." );
+        }
+
+        // Set height and handle Exceptions
+        try {
+            app.getUsers().get(app.getUsers().indexOf(currentUser)).setHeight(Double.valueOf(heightValueTA.getText()));
+        } catch (InvalidHeightException | IllegalArgumentException exception) {
+            app.createPopUp(Alert.AlertType.ERROR, "Invalid Height", "Please enter a valid Height: It should be grater than 50 cm and less than 250 cm." );
+        }
+
+        // Set Date of Birth and handle exceptions
+        try {
+            String dob = dobTA.getText();
+            int yearInt = Integer.valueOf(dob.substring(6));
+            int monthInt = Integer.valueOf(dob.substring(3,5));
+            int dayInt = Integer.valueOf(dob.substring(0,2));
+            DateTime dateOfBirth = new DateTime(yearInt, monthInt, dayInt, 0, 0, 0);
+            app.getUsers().get(app.getUsers().indexOf(currentUser)).setBirthdate(dateOfBirth);
+        } catch (NullPointerException | IllegalArgumentException exception) {
+            app.createPopUp(Alert.AlertType.ERROR, "Invalid Date of Birth", "Please enter a valid Date: It should be in DD/MM/YYYY format." );
+        }
+
+        // Set gender and handle Exceptions
+        List<String> genderList = Arrays.asList("Male", "Female", "Not Specified");
+        if (genderList.contains(genderTA.getText())) {
+            app.getUsers().get(app.getUsers().indexOf(currentUser)).setGender(genderTA.getText());
+        }
+        else {
+            app.createPopUp(Alert.AlertType.ERROR, "Invalid Gender", "Please enter a valid Gender: It should be either \"Male\", \"Female\" or \"Not Specified\"." );
+
+        }
+        confirmButton.setVisible(false);
+        editProfileButton.setVisible(true);
+        setUserDetails();
     }
 
     @FXML private void drawerAction() {

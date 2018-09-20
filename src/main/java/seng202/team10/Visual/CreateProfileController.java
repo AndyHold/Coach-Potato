@@ -170,7 +170,7 @@ public class CreateProfileController implements Controllable
         try {
             String nameString =  getTextFieldString(nameEntry);
             userProfile.setName(nameString);
-        } catch (InvalidNameException | IllegalArgumentException excpetion) {
+        } catch (InvalidNameException | IllegalArgumentException exception) {
             nameErrorLabel.setVisible(true);
         }
 
@@ -216,7 +216,7 @@ public class CreateProfileController implements Controllable
         // Set Max Heart Rate
         try {
             userProfile.setMaxHeartRate(220 - (Calendar.getInstance().get(Calendar.YEAR) - userProfile.getBirthDate().getYear()));
-        } catch (NullPointerException excpetion) { }
+        } catch (NullPointerException exception) { }
 
         // Add the user to the Controller
         try {

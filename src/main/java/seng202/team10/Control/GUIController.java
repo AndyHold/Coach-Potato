@@ -541,7 +541,6 @@ public class GUIController extends Application{
         profileController = profileLoader.getController();
         profileController.setApp(this);
         profileController.setUpScene();
-        //profileController.setUserDetails();
         profileScene = new Scene(PaneP, 1280, 720);
 
 <<<<<<< HEAD
@@ -739,6 +738,7 @@ public class GUIController extends Application{
             throw new InvalidUserException();
         }
     }
+
 
     /**
      * Sets the current user profile.
