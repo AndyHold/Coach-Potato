@@ -1,6 +1,5 @@
 package seng202.team10.Model.FileOperations;
 
-import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.UserProfile;
 
 import java.io.File;
@@ -18,6 +17,7 @@ public class FileWriter
     saves the inputted user profile as a serialized file
      */
     public void saveProfile(UserProfile profile){
+        createProfileFolder();
         activeProfile = profile;
         String filename = "./profiles/" + activeProfile.getName() + ".ser";
         try {
