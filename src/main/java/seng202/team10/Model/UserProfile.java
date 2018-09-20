@@ -30,12 +30,21 @@ import seng202.team10.Model.Exceptions.InvalidWeightException;
 =======
 import seng202.team10.Model.Exceptions.ExistingActivityException;
 import seng202.team10.Model.Exceptions.ExistingElementException;
+import seng202.team10.Model.Exceptions.InvalidHeightException;
+import seng202.team10.Model.Exceptions.InvalidWeightException;
 
+<<<<<<< HEAD
 >>>>>>> 081c071... Created Exceptions Package, Wrote tests for Entry and Activity, they are currently both completely tested apart from getters and setters. did some small code style refactors on various other classes. Also deleted redundant Calendar and Event classes as they are never used.
+<<<<<<< HEAD
 >>>>>>> 59668d96... Created Exceptions Package, Wrote tests for Entry and Activity, they are currently both completely tested apart from getters and setters. did some small code style refactors on various other classes. Also deleted redundant Calendar and Event classes as they are never used.
 =======
 import javax.naming.InvalidNameException;
 >>>>>>> 0e69f208... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
+=======
+=======
+import javax.naming.InvalidNameException;
+>>>>>>> 561798b... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
+>>>>>>> 2d5633a2... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
 import java.util.ArrayList;
 
 /**
@@ -112,6 +121,19 @@ public class UserProfile implements java.io.Serializable {
      * Setter method for the name of the user
      * @param newName: String
      */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    public void setName(String newName) {
+        this.name = newName;
+=======
+>>>>>>> 2d5633a2... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
     public void setName(String newName) throws InvalidNameException
     {
         if (!(newName.length() > 50 || !newName.matches("[a-zA-Z0-9]+ ?[a-zA-Z0-9]+"))) {
@@ -119,6 +141,33 @@ public class UserProfile implements java.io.Serializable {
         } else {
             throw new InvalidNameException();
         }
+<<<<<<< HEAD
+=======
+>>>>>>> 561798b... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
+    }
+=======
+    public void setName(String newName) { this.name = newName; }
+>>>>>>> 7deda61... Implementation of UserProfile class getter and setter methods
+=======
+    public void setName(String newName) {
+        this.name = newName;
+    }
+>>>>>>> eff27ce... Implementation of UserProfile class getter and setter methods
+=======
+    public void setName(String newName) { this.name = newName; }
+>>>>>>> 90c2806... Implementation of UserProfile class getter and setter methods
+=======
+    public void setName(String newName) {
+        this.name = newName;
+    }
+>>>>>>> a85d43e... Implementation of UserProfile class getter and setter methods
+=======
+    public void setName(String newName) { this.name = newName; }
+>>>>>>> 35a851d... Implementation of UserProfile class getter and setter methods
+=======
+    public void setName(String newName) {
+        this.name = newName;
+>>>>>>> 2d5633a2... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
     }
 
 
@@ -224,6 +273,19 @@ public class UserProfile implements java.io.Serializable {
      * @param newWeight double: new weight to be set
      * @throws InvalidWeightException when weight is not in the valid range
      */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    public void setWeight(double newWeight) {
+        this.weight = newWeight;
+=======
+>>>>>>> 2d5633a2... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
     public void setWeight(double newWeight) throws InvalidWeightException
     {
         if (30 <= newWeight && newWeight <= 250) {
@@ -231,6 +293,33 @@ public class UserProfile implements java.io.Serializable {
         } else {
             throw new InvalidWeightException();
         }
+<<<<<<< HEAD
+=======
+>>>>>>> 561798b... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
+    }
+=======
+    public void setWeight(double newWeight) { this.weight = newWeight; }
+>>>>>>> 7deda61... Implementation of UserProfile class getter and setter methods
+=======
+    public void setWeight(double newWeight) {
+        this.weight = newWeight;
+    }
+>>>>>>> eff27ce... Implementation of UserProfile class getter and setter methods
+=======
+    public void setWeight(double newWeight) { this.weight = newWeight; }
+>>>>>>> 90c2806... Implementation of UserProfile class getter and setter methods
+=======
+    public void setWeight(double newWeight) {
+        this.weight = newWeight;
+    }
+>>>>>>> a85d43e... Implementation of UserProfile class getter and setter methods
+=======
+    public void setWeight(double newWeight) { this.weight = newWeight; }
+>>>>>>> 35a851d... Implementation of UserProfile class getter and setter methods
+=======
+    public void setWeight(double newWeight) {
+        this.weight = newWeight;
+>>>>>>> 2d5633a2... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
     }
 
 
@@ -238,6 +327,19 @@ public class UserProfile implements java.io.Serializable {
      * Setter method for the height of the user
      * @param newHeight double
      */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    public void setHeight(double newHeight) {
+        this.height = newHeight;
+=======
+>>>>>>> 2d5633a2... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
     public void setHeight(double newHeight) throws InvalidHeightException
     {
         if (50 <= newHeight && newHeight <= 260) {
@@ -245,6 +347,61 @@ public class UserProfile implements java.io.Serializable {
         } else {
             throw new InvalidHeightException();
         }
+<<<<<<< HEAD
+=======
+>>>>>>> 561798b... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
+    }
+=======
+    public void setHeight(double newHeight) { this.height = newHeight; }
+>>>>>>> 7deda61... Implementation of UserProfile class getter and setter methods
+=======
+    public void setHeight(double newHeight) {
+        this.height = newHeight;
+    }
+>>>>>>> eff27ce... Implementation of UserProfile class getter and setter methods
+=======
+    public void setHeight(double newHeight) { this.height = newHeight; }
+>>>>>>> 90c2806... Implementation of UserProfile class getter and setter methods
+=======
+    public void setHeight(double newHeight) {
+        this.height = newHeight;
+    }
+>>>>>>> a85d43e... Implementation of UserProfile class getter and setter methods
+=======
+    public void setHeight(double newHeight) { this.height = newHeight; }
+>>>>>>> 35a851d... Implementation of UserProfile class getter and setter methods
+=======
+    public void setHeight(double newHeight) {
+        this.height = newHeight;
+    }
+>>>>>>> a40329b... Implementation of UserProfile class getter and setter methods
+
+
+    /**
+     * Setter method for the birthdate of the user
+     * @param newDate DateTime
+     */
+    public void setBirthdate(DateTime newDate) {
+        this.birthdate = newDate;
+    }
+
+
+    /**
+     * Setter method for the birthdate of the user
+     * @param newDate DateTime
+     */
+    public void setBirthdate(DateTime newDate) {
+        this.birthdate = newDate;
+    }
+
+
+    /**
+     * Setter method for the birthdate of the user
+     * @param newDate DateTime
+     */
+    public void setBirthdate(DateTime newDate) {
+        this.birthdate = newDate;
+>>>>>>> 2d5633a2... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
     }
 
 

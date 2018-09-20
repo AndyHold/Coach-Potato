@@ -23,6 +23,7 @@ import seng202.team10.Model.ActivitiesData.Route;
 >>>>>>> 0fbb14ad... Added functionality for the map controller
 =======
 import seng202.team10.Model.ActivitiesData.Route;
+<<<<<<< HEAD
 >>>>>>> dc1460de... Added functionality for the map controller
 =======
 import seng202.team10.Model.ActivitiesData.DateTime;
@@ -32,6 +33,9 @@ import seng202.team10.Model.ActivitiesData.Route;
 <<<<<<< HEAD
 >>>>>>> 874b31ca... Re-added launch mapscene
 =======
+=======
+import seng202.team10.Model.Exceptions.InvalidUserException;
+>>>>>>> 2d5633a2... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
 import seng202.team10.Model.FileOperations.FileReader;
 >>>>>>> 88343792... loading existing users from file when logging in, deleted some old test users
 =======
@@ -616,10 +620,28 @@ public class GUIController extends Application{
         activityViewerController = activityViewerLoader.getController();
         activityViewerController.setApp(this);
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+//        activityViewerController.setUpScene();
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 2d5633a2... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
+<<<<<<< HEAD
 //        activityViewerController.setUpScene();
 <<<<<<< HEAD
         activityViewerScene = new Scene(paneAV, 900, 600);
 =======
+<<<<<<< HEAD
+=======
+        activityViewerScene = new Scene(paneAV, 1280, 720);
+>>>>>>> 9ec6680... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
+=======
+=======
+//        ActivityViewerController.setUpScene();
+>>>>>>> 561798b... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
+        activityViewerScene = new Scene(paneAV, 1280, 720);
+>>>>>>> 410d95e... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
+>>>>>>> 2d5633a2... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
 =======
 //        ActivityViewerController.setUpScene();
 >>>>>>> 0e69f208... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
@@ -630,6 +652,13 @@ public class GUIController extends Application{
         Pane paneEV = entryViewerLoader.load();
         entryViewerController = entryViewerLoader.getController();
         entryViewerController.setApp(this);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+//        entryViewerController.setUpScene();
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 2d5633a2... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
 <<<<<<< HEAD
 //        entryViewerController.setUpScene();
 <<<<<<< HEAD
@@ -651,7 +680,20 @@ public class GUIController extends Application{
 //        EntryViewerController.setUpScene();
 >>>>>>> 0e69f208... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
         entryViewerScene = new Scene(paneEV, 1280, 720);
+<<<<<<< HEAD
 >>>>>>> 663db25d... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
+=======
+>>>>>>> 410d95e... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
+=======
+        entryViewerScene = new Scene(paneEV, 1280, 720);
+>>>>>>> 30ac4eb... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
+=======
+=======
+//        EntryViewerController.setUpScene();
+>>>>>>> 561798b... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
+        entryViewerScene = new Scene(paneEV, 1280, 720);
+>>>>>>> 663db25... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
+>>>>>>> 2d5633a2... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
 
         mapLoader = new FXMLLoader(getClass().getResource("/fxml/mapScreen.fxml"));
         Pane paneMap = mapLoader.load();
