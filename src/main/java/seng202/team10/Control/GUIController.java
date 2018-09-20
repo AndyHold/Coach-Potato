@@ -14,6 +14,7 @@ import seng202.team10.Model.ActivitiesData.DateTime;
 >>>>>>> 81b0c6a... Re-added launch mapscene
 import seng202.team10.Model.ActivitiesData.Route;
 import seng202.team10.Model.Exceptions.InvalidUserException;
+import seng202.team10.Model.Exceptions.UserNameException;
 import seng202.team10.Model.FileOperations.FileReader;
 import seng202.team10.Model.FileOperations.FileWriter;
 import seng202.team10.Model.FileOperations.Parser;
@@ -83,6 +84,7 @@ public class GUIController extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception
     {
+<<<<<<< HEAD
         // Added a test user.
         users.add(new UserProfile("Potato", 75, 180, new DateTime(2000,1,1,1,1,1), "Male"));
         users.get(0).setMaxHeartRate(210);
@@ -182,6 +184,27 @@ public class GUIController extends Application{
         primaryStage.show();
         this.primaryStage = primaryStage;
 
+=======
+        try {
+            // Added a test user.
+            users.add(new UserProfile("Potato", 75, 180, new DateTime(2000, 1, 1, 1, 1, 1), "Male"));
+            users.get(0).setMaxHeartRate(210);
+        } catch (IllegalArgumentException exception) {
+            createPopUp(Alert.AlertType.ERROR, "Error", "Could not find image");
+        }
+            loadAllUsers();
+            loadAllScenes();
+            primaryStage.setTitle("Coach Potato");
+            if (users.isEmpty()) {
+                primaryStage.setScene(createProfileScene);
+            } else {
+                primaryStage.setScene(loginScene);
+            }
+            //        primaryStage.setScene(mainScene);
+            //primaryStage.setScene(goalsScene);
+            primaryStage.show();
+            this.primaryStage = primaryStage;
+>>>>>>> 5997e6c... Finished Implementing new Login Screen Layout.
     }
 
     /**
@@ -290,6 +313,17 @@ public class GUIController extends Application{
 >>>>>>> 5e839bc... Created constructors for userProfile and Added a test user.
 =======
 
+
+    public void checkUniqueName(String userName) throws UserNameException
+    {
+        for (UserProfile userProfile: this.getUsers()) {
+            if (userProfile.getName() == userName) {
+                throw new UserNameException();
+            }
+        }
+    }
+
+
     public void launchMapScene(Activity activity) {
         mapController.setActivity(activity);
         mapController.setUpScene();
@@ -362,6 +396,7 @@ public class GUIController extends Application{
      */
     public void launchCreateProfileScene()
     {
+        createProfileController.toggleBackButton();
         primaryStage.setScene(createProfileScene);
     }
 
