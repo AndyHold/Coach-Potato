@@ -190,6 +190,7 @@ public class CreateProfileController implements Controllable
             this.app.checkUniqueName(nameString);
             userProfile.setName(nameString);
 <<<<<<< HEAD
+<<<<<<< HEAD
         } catch (InvalidNameException | IllegalArgumentException exception) {
 =======
         } catch (InvalidNameException | IllegalArgumentException | UserNameException excpetion) {
@@ -198,6 +199,9 @@ public class CreateProfileController implements Controllable
 =======
 >>>>>>> 5997e6c... Finished Implementing new Login Screen Layout.
 >>>>>>> 6e249b39... Finished Implementing new Login Screen Layout.
+=======
+        } catch (UserNameException | IllegalArgumentException exception) {
+>>>>>>> e05bde75... fixed invalidNameException bug
             nameErrorLabel.setVisible(true);
         }
 

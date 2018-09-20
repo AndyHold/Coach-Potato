@@ -7,6 +7,7 @@ import seng202.team10.Model.ActivitiesData.*;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -23,6 +24,9 @@ import seng202.team10.Model.Exceptions.ExistingActivityException;
 import seng202.team10.Model.Exceptions.ExistingElementException;
 import seng202.team10.Model.Exceptions.InvalidHeightException;
 import seng202.team10.Model.Exceptions.InvalidWeightException;
+=======
+import seng202.team10.Model.Exceptions.*;
+>>>>>>> e05bde75... fixed invalidNameException bug
 
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -87,7 +91,7 @@ public class UserProfile implements java.io.Serializable {
      * @param birthdate: DateTime
      * @param gender: String
      */
-    public UserProfile(String name, double weight, double height, DateTime birthdate, String gender) throws InvalidNameException, InvalidWeightException, InvalidHeightException, IllegalArgumentException
+    public UserProfile(String name, double weight, double height, DateTime birthdate, String gender) throws UserNameException, InvalidWeightException, InvalidHeightException, IllegalArgumentException
     {
         this.setName(name);
         this.setWeight(weight);
@@ -124,6 +128,7 @@ public class UserProfile implements java.io.Serializable {
      * @param newName: String
      */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -137,11 +142,14 @@ public class UserProfile implements java.io.Serializable {
 =======
 >>>>>>> 2d5633a2... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
     public void setName(String newName) throws InvalidNameException
+=======
+    public void setName(String newName) throws UserNameException
+>>>>>>> e05bde75... fixed invalidNameException bug
     {
         if (!(newName.length() > 15 || !newName.matches("[a-zA-Z0-9]+ ?[a-zA-Z0-9]+"))) {
             this.name = newName;
         } else {
-            throw new InvalidNameException();
+            throw new UserNameException();
         }
 <<<<<<< HEAD
 =======
