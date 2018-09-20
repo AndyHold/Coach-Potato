@@ -8,6 +8,11 @@ import seng202.team10.Model.ActivitiesData.*;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> cf2a8f58... fixed invalidNameException bug
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -38,6 +43,9 @@ import seng202.team10.Model.Exceptions.ExistingActivityException;
 import seng202.team10.Model.Exceptions.ExistingElementException;
 import seng202.team10.Model.Exceptions.InvalidHeightException;
 import seng202.team10.Model.Exceptions.InvalidWeightException;
+=======
+import seng202.team10.Model.Exceptions.*;
+>>>>>>> 798a1f8... fixed invalidNameException bug
 
 <<<<<<< HEAD
 >>>>>>> 081c071... Created Exceptions Package, Wrote tests for Entry and Activity, they are currently both completely tested apart from getters and setters. did some small code style refactors on various other classes. Also deleted redundant Calendar and Event classes as they are never used.
@@ -137,6 +145,7 @@ public class UserProfile implements java.io.Serializable {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     public void setName(String newName) {
         this.name = newName;
 =======
@@ -144,7 +153,11 @@ public class UserProfile implements java.io.Serializable {
     public void setName(String newName) throws InvalidNameException
 =======
     public void setName(String newName) throws UserNameException
+<<<<<<< HEAD
 >>>>>>> e05bde75... fixed invalidNameException bug
+=======
+>>>>>>> 798a1f8... fixed invalidNameException bug
+>>>>>>> cf2a8f58... fixed invalidNameException bug
     {
         if (!(newName.length() > 15 || !newName.matches("[a-zA-Z0-9]+ ?[a-zA-Z0-9]+"))) {
             this.name = newName;

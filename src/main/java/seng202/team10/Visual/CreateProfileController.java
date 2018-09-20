@@ -198,10 +198,16 @@ public class CreateProfileController implements Controllable
 >>>>>>> 4e37ab85... Finished Implementing new Login Screen Layout.
 =======
 >>>>>>> 5997e6c... Finished Implementing new Login Screen Layout.
+<<<<<<< HEAD
 >>>>>>> 6e249b39... Finished Implementing new Login Screen Layout.
 =======
         } catch (UserNameException | IllegalArgumentException exception) {
 >>>>>>> e05bde75... fixed invalidNameException bug
+=======
+=======
+        } catch (UserNameException | IllegalArgumentException exception) {
+>>>>>>> 798a1f8... fixed invalidNameException bug
+>>>>>>> cf2a8f58... fixed invalidNameException bug
             nameErrorLabel.setVisible(true);
         }
 
