@@ -1,7 +1,15 @@
 package seng202.team10.Model;
 
 
+import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
 import seng202.team10.Model.ActivitiesData.*;
+import seng202.team10.Model.Exceptions.ExistingActivityException;
+import seng202.team10.Model.Exceptions.ExistingElementException;
+import seng202.team10.Model.Exceptions.InvalidHeightException;
+import seng202.team10.Model.Exceptions.InvalidWeightException;
+
+import javax.naming.InvalidNameException;
 import java.util.ArrayList;
 
 /**
@@ -20,7 +28,6 @@ public class UserProfile implements java.io.Serializable {
     private String gender;
     private int maxHeartrate;
     //private Goals goals;
-    private Calendar calendar;
     private double bmi;
 
 
@@ -29,6 +36,9 @@ public class UserProfile implements java.io.Serializable {
     private Goals goals = new Goals(this);
 
 
+    /**
+     * Constructor method for UserProfile class
+     */
     public UserProfile() {
 
     }
@@ -40,10 +50,11 @@ public class UserProfile implements java.io.Serializable {
      * @param birthdate: DateTime
      * @param gender: String
      */
-    public UserProfile(String name, double weight, double height, DateTime birthdate, String gender) {
-        this.name = name;
-        this.weight = weight;
-        this.height = height;
+    public UserProfile(String name, double weight, double height, DateTime birthdate, String gender) throws InvalidNameException, InvalidWeightException, InvalidHeightException, IllegalArgumentException
+    {
+        this.setName(name);
+        this.setWeight(weight);
+        this.setHeight(height);
         this.birthdate = birthdate;
         this.gender = gender;
     }
@@ -63,8 +74,13 @@ public class UserProfile implements java.io.Serializable {
      * Setter method for the name of the user
      * @param newName: String
      */
-    public void setName(String newName) {
-        this.name = newName;
+    public void setName(String newName) throws InvalidNameException
+    {
+        if (!(newName.length() > 15 || !newName.matches("[a-zA-Z0-9]+ ?[a-zA-Z0-9]+"))) {
+            this.name = newName;
+        } else {
+            throw new InvalidNameException();
+        }
     }
 
 
@@ -86,7 +102,10 @@ public class UserProfile implements java.io.Serializable {
      * Setter method for the maxHeartrate of the user
      * @param maxHeartrate: int
      */
-    public void setMaxHeartrate(int maxHeartrate) { this.maxHeartrate = maxHeartrate; }
+    public void setMaxHeartRate(int maxHeartrate)
+    {
+        this.maxHeartrate = maxHeartrate;
+    }
 
     /**
      * Getter method for the maxHeartrate of the user
@@ -164,10 +183,16 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Setter method for the weight of the user
-     * @param newWeight double
+     * @param newWeight double: new weight to be set
+     * @throws InvalidWeightException when weight is not in the valid range
      */
-    public void setWeight(double newWeight) {
-        this.weight = newWeight;
+    public void setWeight(double newWeight) throws InvalidWeightException
+    {
+        if (30 <= newWeight && newWeight <= 250) {
+            this.weight = newWeight;
+        } else {
+            throw new InvalidWeightException();
+        }
     }
 
 
@@ -175,8 +200,13 @@ public class UserProfile implements java.io.Serializable {
      * Setter method for the height of the user
      * @param newHeight double
      */
-    public void setHeight(double newHeight) {
-        this.height = newHeight;
+    public void setHeight(double newHeight) throws InvalidHeightException
+    {
+        if (50 <= newHeight && newHeight <= 260) {
+            this.height = newHeight;
+        } else {
+            throw new InvalidHeightException();
+        }
     }
 
 
@@ -232,7 +262,6 @@ public class UserProfile implements java.io.Serializable {
                 ", height=" + height +
                 ", birthdate=" + birthdate +
                 ", goals=" + goals +
-                ", calendar=" + calendar +
                 ", bmi=" + bmi +
                 '}';
     }

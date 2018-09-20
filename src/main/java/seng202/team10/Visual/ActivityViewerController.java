@@ -1,4 +1,4 @@
-package seng202.team10.GUI;
+package seng202.team10.Visual;
 
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
@@ -18,7 +18,7 @@ import seng202.team10.Model.UserProfile;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class activityViewerController {
+public class ActivityViewerController {
 
     private GUIController app;
 

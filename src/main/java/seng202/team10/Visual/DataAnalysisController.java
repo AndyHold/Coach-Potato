@@ -1,4 +1,4 @@
-package seng202.team10.GUI;
+package seng202.team10.Visual;
 
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TabPane;
@@ -27,6 +28,7 @@ public class DataAnalysisController implements Controllable, Initializable{
     private GUIController guiController;
     private Activity activity;
     private DataAnalysis dataAnalysis;
+    private int currentIndex;
 
     @FXML private Label activityNameLabel;
     @FXML private Label timeTakenLabel;
@@ -66,8 +68,11 @@ public class DataAnalysisController implements Controllable, Initializable{
             activityList.setItems(activityNames);
             if (activityList.getSelectionModel().getSelectedIndex() == -1) {
                 activityList.getSelectionModel().selectFirst();
+                currentIndex = 0;
             }
-            activity = currentProfile.getActivities().get(activityList.getSelectionModel().getSelectedIndex());
+            currentIndex = activityList.getSelectionModel().getSelectedIndex();
+                    activity = currentProfile.getActivities().get(currentIndex);
+
 
             this.displayNoData(false);
 
@@ -77,7 +82,7 @@ public class DataAnalysisController implements Controllable, Initializable{
             stressLevelTimeSeries = new XYChart.Series();
 
             distanceOverTime.getData().clear();
-            heartRateOverTime.getData().clear();;
+            heartRateOverTime.getData().clear();
             caloriesBurned.getData().clear();
             stressLevelOverTime.getData().clear();
 
@@ -88,10 +93,8 @@ public class DataAnalysisController implements Controllable, Initializable{
             timeTakenLabel.setText("Time Taken: " + dataAnalysis.secondsToTime(timeTaken));
 
             ArrayList<Double> distanceArray = dataAnalysis.getDistanceFromActivity(activity);
-            double totalDistance = 0;
             for (int i = 0; i < timeArray.size(); i++) {
-                totalDistance = totalDistance + distanceArray.get(i);
-                distanceTimeSeries.getData().add(new XYChart.Data(dataAnalysis.secondsToTime(timeArray.get(i)), totalDistance));
+                distanceTimeSeries.getData().add(new XYChart.Data(dataAnalysis.secondsToTime(timeArray.get(i)), distanceArray.get(i)));
             }
             distanceOverTime.getData().add(distanceTimeSeries);
 
@@ -115,12 +118,13 @@ public class DataAnalysisController implements Controllable, Initializable{
             }
             stressLevelOverTime.getData().add(stressLevelTimeSeries);
         }
-
     }
 
     @FXML
     private void refresh() {
-        setUpScene();
+        if (activityList.getSelectionModel().getSelectedIndex() != currentIndex) {
+            setUpScene();
+        }
     }
 
     private void setUpGraphs() {
@@ -146,6 +150,7 @@ public class DataAnalysisController implements Controllable, Initializable{
 //        xAxis.setLowerBound();
         linechart.setCreateSymbols(false);
     }
+
     private void displayNoData(boolean noDataFound) {
         if (noDataFound) {
             tabPane.setVisible(false);
@@ -166,7 +171,21 @@ public class DataAnalysisController implements Controllable, Initializable{
     }
 
     @FXML public void viewMap() {
-        guiController.launchMapScene(activity);
+        if (!(activity == null)) {
+            guiController.launchMapScene(activity);
+        } else {
+            createPopUp(Alert.AlertType.ERROR, "Error", "Please select an activity.");
+        }
+
+    }
+
+    private void createPopUp(Alert.AlertType type, String title, String message)
+    {
+        Alert errorPopUp = new Alert(type);
+        errorPopUp.setTitle(title);
+        errorPopUp.setContentText(message);
+        errorPopUp.setHeaderText(null);
+        errorPopUp.showAndWait();
     }
 
     @Override
@@ -192,12 +211,14 @@ public class DataAnalysisController implements Controllable, Initializable{
         guiController.launchLoginScene();
     }
 
-    @FXML public void openViewProfile() throws Exception {
+    @FXML public void openViewProfile()
+    {
         moveDrawer();
         guiController.launchProfileScene();
     }
 
-    @FXML public void openUploadData() throws Exception {
+    @FXML public void openUploadData()
+    {
         moveDrawer();
         guiController.launchUploadDataScene();
     }
@@ -207,7 +228,8 @@ public class DataAnalysisController implements Controllable, Initializable{
         guiController.launchActivityViewerScene();
     }
 
-    @FXML public void openGoals() throws Exception {
+    @FXML public void openGoals()
+    {
         moveDrawer();
         guiController.launchGoalsScene();
     }

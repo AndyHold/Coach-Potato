@@ -1,10 +1,13 @@
-package seng202.team10.GUI;
+package seng202.team10.Visual;
 
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.VBox;
@@ -12,9 +15,11 @@ import javafx.stage.FileChooser;
 import javafx.util.Duration;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.*;
-import seng202.team10.Model.DuplicateEntryException;
-import seng202.team10.Model.ExistingActivityException;
-import seng202.team10.Model.ExistingElementException;
+import seng202.team10.Model.FileOperations.Parser;
+import seng202.team10.Model.Exceptions.NoDataFoundException;
+import seng202.team10.Model.Exceptions.DuplicateEntryException;
+import seng202.team10.Model.Exceptions.ExistingActivityException;
+import seng202.team10.Model.Exceptions.ExistingElementException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -23,6 +28,7 @@ import java.util.ArrayList;
 public class UploadDataController {
 
     private GUIController app;
+    private Parser parser = new Parser();
 
 
     @FXML private TextField filePathTextField;
@@ -88,10 +94,10 @@ public class UploadDataController {
             Entry entrySelected = manualDataTableView.getSelectionModel().getSelectedItem();
             entrySelected.changeTime(editedCell.getNewValue().toString());
         } catch(NumberFormatException exception) {
-            createPopUp(Alert.AlertType.ERROR, "Error", "Time invalid, must be a valid number");
+            this.app.createPopUp(Alert.AlertType.ERROR, "Error", "Time invalid, must be a valid number");
         } catch(IllegalArgumentException exception) {
             String message = exception.getMessage();
-            createPopUp(Alert.AlertType.ERROR, "Error", message);
+            this.app.createPopUp(Alert.AlertType.ERROR, "Error", message);
         }
     }
 
@@ -106,10 +112,12 @@ public class UploadDataController {
             Entry entrySelected = manualDataTableView.getSelectionModel().getSelectedItem();
             entrySelected.changeDate(editedCell.getNewValue().toString());
         }  catch(NumberFormatException exception) {
-            createPopUp(Alert.AlertType.ERROR, "Error", "Date invalid, must be a valid number");
+            this.app.createPopUp(Alert.AlertType.ERROR, "Error", "Date invalid, must be a valid number");
         } catch(IllegalArgumentException exception) {
             String message = exception.getMessage();
-            createPopUp(Alert.AlertType.ERROR, "Error", message);
+            this.app.createPopUp(Alert.AlertType.ERROR, "Error", message);
+        } catch(ArrayIndexOutOfBoundsException exception) {
+            this.app.createPopUp(Alert.AlertType.ERROR, "Error", "Invalid date, please select a correct date format DD/MM/YYYY in between 1900-2100");
         }
     }
 
@@ -124,10 +132,10 @@ public class UploadDataController {
             Entry entrySelected = manualDataTableView.getSelectionModel().getSelectedItem();
             entrySelected.setHeartRate(Integer.valueOf(editedCell.getNewValue().toString()));
         } catch(NumberFormatException exception) {
-            createPopUp(Alert.AlertType.ERROR, "Error", "HeartRate invalid, must be a valid number");
+            this.app.createPopUp(Alert.AlertType.ERROR, "Error", "HeartRate invalid, must be a valid number");
         } catch(IllegalArgumentException exception) {
             String message = exception.getMessage();
-            createPopUp(Alert.AlertType.ERROR, "Error", message);
+            this.app.createPopUp(Alert.AlertType.ERROR, "Error", message);
         }
     }
 
@@ -142,10 +150,10 @@ public class UploadDataController {
             Entry entrySelected = manualDataTableView.getSelectionModel().getSelectedItem();
             entrySelected.setLatitude(Double.valueOf(editedCell.getNewValue().toString()));
         } catch(NumberFormatException exception) {
-            createPopUp(Alert.AlertType.ERROR, "Error", "Latitude invalid, must be a valid number");
+            this.app.createPopUp(Alert.AlertType.ERROR, "Error", "Latitude invalid, must be a valid number");
         } catch(IllegalArgumentException exception) {
             String message = exception.getMessage();
-            createPopUp(Alert.AlertType.ERROR, "Error", message);
+            this.app.createPopUp(Alert.AlertType.ERROR, "Error", message);
         }
 
     }
@@ -161,10 +169,10 @@ public class UploadDataController {
             Entry entrySelected = manualDataTableView.getSelectionModel().getSelectedItem();
             entrySelected.setLongitude(Double.valueOf(editedCell.getNewValue().toString()));
         } catch(NumberFormatException exception) {
-            createPopUp(Alert.AlertType.ERROR, "Error", "Longitude invalid, must be a valid number");
+            this.app.createPopUp(Alert.AlertType.ERROR, "Error", "Longitude invalid, must be a valid number");
         } catch(IllegalArgumentException exception) {
             String message = exception.getMessage();
-            createPopUp(Alert.AlertType.ERROR, "Error", message);
+            this.app.createPopUp(Alert.AlertType.ERROR, "Error", message);
         }
 
     }
@@ -180,10 +188,10 @@ public class UploadDataController {
             Entry entrySelected = manualDataTableView.getSelectionModel().getSelectedItem();
             entrySelected.setElevation(Double.valueOf(editedCell.getNewValue().toString()));
         } catch(NumberFormatException exception) {
-            createPopUp(Alert.AlertType.ERROR, "Error", "Elevation invalid, must be a valid number");
+            this.app.createPopUp(Alert.AlertType.ERROR, "Error", "Elevation invalid, must be a valid number");
         } catch(IllegalArgumentException exception) {
             String message = exception.getMessage();
-            createPopUp(Alert.AlertType.ERROR, "Error", message);
+            this.app.createPopUp(Alert.AlertType.ERROR, "Error", message);
         }
     }
 
@@ -233,11 +241,9 @@ public class UploadDataController {
                 }
             }
         } catch(NumberFormatException exception) {
-            createPopUp(Alert.AlertType.ERROR, "Error", "Invalid input, please only enter valid numbers");
-        } catch(IllegalArgumentException exception) {
-            createPopUp(Alert.AlertType.ERROR, "Error", exception.getMessage());
-        } catch(DuplicateEntryException exception) {
-            createPopUp(Alert.AlertType.ERROR, "Error", exception.getMessage());
+            this.app.createPopUp(Alert.AlertType.ERROR, "Error", "Invalid input, please only enter valid numbers");
+        } catch(IllegalArgumentException | DuplicateEntryException exception) {
+            this.app.createPopUp(Alert.AlertType.ERROR, "Error", exception.getMessage());
         }
     }
 
@@ -249,21 +255,29 @@ public class UploadDataController {
     {
         String filename = filePathTextField.getText();
         if (filename.length() == 0) {
-            createPopUp(Alert.AlertType.ERROR, "Error", "No file path, please select a csv file");
+            this.app.createPopUp(Alert.AlertType.ERROR, "Error", "No file path, please select a csv file");
         } else {
             try {
-                ArrayList<String> fileContents = app.getParser().getFileContents(filename);
-                ArrayList<ArrayList<String>> formattedFile = app.getParser().formatFileContents(fileContents);
-                ArrayList<Activity> newActivities = app.getParser().processFile(formattedFile);
+                ArrayList<String> fileContents = this.parser.getFileContents(filename);
+                ArrayList<ArrayList<String>> formattedFile = this.parser.formatFileContents(fileContents);
+                ArrayList<Activity> newActivities = this.parser.processFile(formattedFile);
                 app.getCurrentProfile().addActivities(newActivities);
                 app.getDataWriter().saveProfile(app.getCurrentProfile()); // Reserialize profile after adding data
-                createPopUp(Alert.AlertType.INFORMATION, "Success", "Your file has been successfully uploaded to your profile");
+                if (this.parser.getBadActivities() > 0) {
+                    String discardedMessage = String.valueOf(this.parser.getBadActivities()) + " of " + String.valueOf(newActivities.size() + this.parser.getBadActivities()) + " activities found were discarded due to being unparsable";
+                    this.app.createPopUp(Alert.AlertType.WARNING, "Warning", discardedMessage);
+                }
+                else {
+                    this.app.createPopUp(Alert.AlertType.INFORMATION, "Success", String.valueOf(newActivities.size()) +" activities have been successfully uploaded to your profile");
+                }
                 //TODO have an option to cut to Data Viewer or to upload/input another File/Activity when one is submitted.
                 //TODO this will require a custom pop up button (Low Priority).
             } catch (FileNotFoundException exception) {
-                createPopUp(Alert.AlertType.ERROR, "Error", "File not found, please choose a valid csv file");
+                this.app.createPopUp(Alert.AlertType.ERROR, "Error", "File not found, please choose a valid csv file");
             } catch (ExistingElementException exception) {
-                createPopUp(Alert.AlertType.ERROR, "Error", exception.getMessage());
+                this.app.createPopUp(Alert.AlertType.ERROR, "Error", exception.getMessage());
+            } catch (NoDataFoundException exception) {
+                this.app.createPopUp(Alert.AlertType.ERROR, "Error", exception.getMessage());
             }
         }
     }
@@ -279,7 +293,7 @@ public class UploadDataController {
             String activityName = activityNameTextField.getText();
             if (manualDataTableView.getItems().size() < 2) {
                 // If Entry list is empty send error
-                createPopUp(Alert.AlertType.ERROR, "Entry Error", "You have not added enough Entries to the list");
+                this.app.createPopUp(Alert.AlertType.ERROR, "Entry Error", "You have not added enough Entries to the list");
             } else {
                 // Else get date of first Entry
                 ObservableList<Entry> currentEntries = manualDataTableView.getItems();
@@ -296,7 +310,7 @@ public class UploadDataController {
                 // Reserialize profile after adding data
                 app.getDataWriter().saveProfile(app.getCurrentProfile());
                 // Display a success pop up
-                createPopUp(Alert.AlertType.INFORMATION, "Success", "You have successfully created the activity \"" + activityName + "\"");
+                this.app.createPopUp(Alert.AlertType.INFORMATION, "Success", "You have successfully created the activity \"" + activityName + "\"");
                 // Reset table, text field and ComboBox to be blank
                 clearTableView();
                 activityNameTextField.setText("");
@@ -304,11 +318,8 @@ public class UploadDataController {
                 // TODO figure out why these cause errors in the graphs(only did it with one of size 2 though so that could be it)
             }
         } // Catch Exceptions and display error messages
-        catch(IllegalArgumentException exception) {
-            createPopUp(Alert.AlertType.ERROR, "Data Error", exception.getMessage());
-        }
-        catch(ExistingActivityException exception) {
-            createPopUp(Alert.AlertType.ERROR, "Data Error", exception.getMessage());
+        catch(IllegalArgumentException | ExistingActivityException exception) {
+            this.app.createPopUp(Alert.AlertType.ERROR, "Data Error", exception.getMessage());
         }
     }
 
@@ -333,24 +344,8 @@ public class UploadDataController {
             int index = manualDataTableView.getSelectionModel().getSelectedIndex();
             manualDataTableView.getItems().remove(index);
         } catch(ArrayIndexOutOfBoundsException ex) {
-            createPopUp(Alert.AlertType.ERROR, "Entry Table Error", "No Entry was selected from the table");
+            this.app.createPopUp(Alert.AlertType.ERROR, "Entry Table Error", "No Entry was selected from the table");
         }
-    }
-
-
-    /**
-     * Method to display a pop up window with a title a message and a type (depending on if you want an error or information etc)
-     * @param type Alert.AlertType: type of alert
-     * @param title String: Title of pop up window
-     * @param message String: Message to display to user
-     */
-    private void createPopUp(Alert.AlertType type, String title, String message)
-    {
-        Alert errorPopUp = new Alert(type);
-        errorPopUp.setTitle(title);
-        errorPopUp.setContentText(message);
-        errorPopUp.setHeaderText(null);
-        errorPopUp.showAndWait();
     }
 
 
@@ -391,12 +386,12 @@ public class UploadDataController {
         app.launchLoginScene();
     }
 
-    @FXML public void openViewProfile() throws Exception {
+    @FXML public void openViewProfile() {
         moveDrawer();
         app.launchProfileScene();
     }
 
-    @FXML public void openUploadData() throws Exception {
+    @FXML public void openUploadData() {
         moveDrawer();
         app.launchUploadDataScene();
     }
@@ -406,7 +401,7 @@ public class UploadDataController {
         app.launchActivityViewerScene();
     }
 
-    @FXML public void openGoals() throws Exception {
+    @FXML public void openGoals(){
         moveDrawer();
         app.launchGoalsScene();
     }
