@@ -239,23 +239,23 @@ public class Parser {
 
 
     //POSSIBLY AN UNUSED FUNCTION.
-    private int removeDuplicateEntries(Activity activity) {
-        int removeCount = 0;
-        for (int i = 0; i < activity.getEntries().size(); i++) {
-            for (int j = 0; j < activity.getEntries().size(); j++) {
-                if (activity.getEntries().get(i).equals(activity.getEntries().get(j))) {
-                    if (activity.getEntries().get(i) == activity.getEntries().get(j)) {
-                        ;
-                    } else {
-                        activity.getEntries().remove(j);
-                        removeCount += 1;
-                    }
-                }
-
-            }
-        }
-        return removeCount;
-    }
+//    private int removeDuplicateEntries(Activity activity) {
+//        int removeCount = 0;
+//        for (int i = 0; i < activity.getEntries().size(); i++) {
+//            for (int j = 0; j < activity.getEntries().size(); j++) {
+//                if (activity.getEntries().get(i).equals(activity.getEntries().get(j))) {
+//                    if (activity.getEntries().get(i) == activity.getEntries().get(j)) {
+//                        ;
+//                    } else {
+//                        activity.getEntries().remove(j);
+//                        removeCount += 1;
+//                    }
+//                }
+//
+//            }
+//        }
+//        return removeCount;
+//    }
 
     public int getBadActivities() {
         return badActivities;
