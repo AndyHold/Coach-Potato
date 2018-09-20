@@ -4,8 +4,7 @@ import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -24,11 +23,15 @@ public class ProfileController {
     private GUIController app;
 
     @FXML Pane calendarPane;
-    @FXML private javafx.scene.control.Label welcomeProfileLabel;
-    @FXML private javafx.scene.control.Label quotesLabel;
-    @FXML private javafx.scene.control.Label weightValueLabel;
-    @FXML private javafx.scene.control.Label heightValueLabel;
-    @FXML private javafx.scene.control.Label bmiValueLabel;
+    @FXML private Label welcomeProfileLabel;
+    @FXML private Label quotesLabel;
+    @FXML private TextField usernameTA;
+    @FXML private TextField dobTA;
+    @FXML private TextField genderTA;
+    @FXML private TextField weightValueTA;
+    @FXML private TextField heightValueTA;
+    @FXML private TextField bmiValueTA;
+    @FXML private Button editProfileButton;
     @FXML private Label recentActivitiesLabel;
     @FXML private HBox activity1HBox;
     @FXML private HBox activity2HBox;
@@ -94,10 +97,13 @@ public class ProfileController {
         setUpScene();
         UserProfile currentUser = app.getCurrentProfile();
         userNameComboBox.setPromptText((currentUser.getName()).toString());
+        usernameTA.setText(currentUser.getName().toString());
+        genderTA.setText(currentUser.getGender().toString());
+        dobTA.setText(currentUser.getBirthDate().getDateAsString());
         welcomeProfileLabel.setText("Welcome " + String.valueOf(currentUser.getName()) + ", Let's do it!");
-        weightValueLabel.setText(df2.format((currentUser.getWeight())));
-        heightValueLabel.setText(df2.format((currentUser.getHeight())));
-        bmiValueLabel.setText(df2.format((currentUser.calcBmi())) + " - " + currentUser.getBmiCategory());
+        weightValueTA.setText(df2.format((currentUser.getWeight())));
+        heightValueTA.setText(df2.format((currentUser.getHeight())));
+        bmiValueTA.setText(df2.format((currentUser.calcBmi())) + " - " + currentUser.getBmiCategory());
 
         if (currentUser.getActivities().size() > 0) {
             activity1Text.setText(currentUser.getActivities().get(0).getName());
@@ -119,6 +125,14 @@ public class ProfileController {
                 }
             }
         }
+    }
+
+    @FXML private void editProfile() {
+        usernameTA.setEditable(true);
+        dobTA.setEditable(true);
+        genderTA.setEditable(true);
+        weightValueTA.setEditable(true);
+        heightValueTA.setEditable(true);
     }
 
     @FXML private void drawerAction() {
