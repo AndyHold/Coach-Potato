@@ -271,7 +271,6 @@ public class GUIController extends Application{
         profileController = profileLoader.getController();
         profileController.setApp(this);
         profileController.setUpScene();
-        //profileController.setUserDetails();
         profileScene = new Scene(PaneP, 1280, 720);
 
         goalsLoader = new FXMLLoader(getClass().getResource("/fxml/goalsScreen.fxml"));
@@ -339,6 +338,7 @@ public class GUIController extends Application{
             throw new InvalidUserException();
         }
     }
+
 
     /**
      * Sets the current user profile.
