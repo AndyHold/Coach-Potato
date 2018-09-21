@@ -54,6 +54,7 @@ public class UserProfile implements java.io.Serializable {
     private DateTime birthdate;
     private String gender;
     private int maxHeartrate;
+    private int averageHeartRate;
     //private Goals goals;
     private double bmi;
 
@@ -684,5 +685,24 @@ public class UserProfile implements java.io.Serializable {
     }
 
 
+    public int getAverageHeartRate() {
+        return averageHeartRate;
+    }
+
+    public void setAverageHeartRate(int averageHeartRate) {
+        this.averageHeartRate = averageHeartRate;
+    }
+
+    public int getActivitiesHeartRate(DateTime startDate, DateTime endDate) {
+        int sum = 0;
+        int count = 0;
+        for (Activity activity : activities) {
+            if (activity.getStartDateTime().isAfter(startDate) && activity.getEndDateTime().isBefore(endDate)) {
+                sum += activity.getAverageHeartRate();
+                count++;
+            }
+        }
+        return sum/count;
+    }
 
 }
