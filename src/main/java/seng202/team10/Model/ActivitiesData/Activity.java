@@ -416,6 +416,7 @@ public class Activity implements Serializable {
     public String getHeartString()
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 41aa902e... fixing display on viewActivities (why was this changed?)
 =======
 >>>>>>> 4ae853f... fixing display on viewActivities (why was this changed?)
@@ -426,6 +427,9 @@ public class Activity implements Serializable {
 =======
 >>>>>>> ff79906... 1) Changed getHeartString so it displays an int. 2) Added getActivitiesSpeed method to UserProfile. 3) Updated the way recent activities are displayed on profile screen. 4) Fixed the failing tests so that the pipeline works.
 >>>>>>> 9bd0c9a0... 1) Changed getHeartString so it displays an int. 2) Added getActivitiesSpeed method to UserProfile. 3) Updated the way recent activities are displayed on profile screen. 4) Fixed the failing tests so that the pipeline works.
+=======
+        return String.valueOf(this.averageHeartRate);
+>>>>>>> b8dfa7d7... Fixed average heart rate error on Profile screen and added a new method for that in UserProfile.
     }
 
 
