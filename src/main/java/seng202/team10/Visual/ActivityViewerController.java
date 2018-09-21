@@ -59,9 +59,9 @@ public class ActivityViewerController {
         nameColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("name"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("typeString"));
         starttimeColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("timeString"));
-        durationColumn.setCellValueFactory(new PropertyValueFactory<Activity, Integer>("totalDuration"));
-        speedColumn.setCellValueFactory(new PropertyValueFactory<Activity, Double>("averageVelocity"));
-        distanceColumn.setCellValueFactory(new PropertyValueFactory<Activity, Double>("totalDistance"));
+        durationColumn.setCellValueFactory(new PropertyValueFactory<Activity, Integer>("DurationString"));
+        speedColumn.setCellValueFactory(new PropertyValueFactory<Activity, Double>("SpeedString"));
+        distanceColumn.setCellValueFactory(new PropertyValueFactory<Activity, Double>("DistanceString"));
         heartrateColumn.setCellValueFactory(new PropertyValueFactory<Activity, Integer>("averageHeartRate"));
         entrynoColumn.setCellValueFactory(new PropertyValueFactory<Activity, Integer>("entryno"));
         populateTable(activities);
