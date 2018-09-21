@@ -106,7 +106,11 @@ public class ActivityTest {
     public void calculateTotalDistance()
     {
         activity.calculateTotalDistance();
+<<<<<<< HEAD
         assertEquals(177.68, activity.getTotalDistance(), 0.01);
+=======
+        assertEquals("0.18", activity.getDistanceString());
+>>>>>>> 92da298... making units on activityviewer better by changing toString methods, and appropriate tests
     }
 
 
@@ -114,7 +118,11 @@ public class ActivityTest {
     public void calculateTotalDuration()
     {
         activity.calculateTotalDuration();
+<<<<<<< HEAD
         assertEquals(50, activity.getTotalDuration());
+=======
+        assertEquals("0.83", activity.getDurationString());
+>>>>>>> 92da298... making units on activityviewer better by changing toString methods, and appropriate tests
     }
 
     @Test
@@ -123,7 +131,11 @@ public class ActivityTest {
         activity.calculateTotalDistance();
         activity.calculateTotalDuration();
         activity.calculateAverageVelocity();
+<<<<<<< HEAD
         assertEquals(3.55, activity.getAverageVelocity(), 0.01);
+=======
+        assertEquals("12.79", activity.getSpeedString());
+>>>>>>> 92da298... making units on activityviewer better by changing toString methods, and appropriate tests
     }
 
     @Test

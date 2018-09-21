@@ -162,7 +162,7 @@ public class Activity implements Serializable {
 
     /**
      * Setter method for after Entries have been loaded to the Activity
-     * TODO add this method whenever Activities are modified.
+     *
      */
     public void postEntriesSetUp()
     {
@@ -279,33 +279,60 @@ public class Activity implements Serializable {
 
 
     /**
+<<<<<<< HEAD
      * Getter method for the total time taken during the activity in seconds
 >>>>>>> d8e4382... Fixing Calculation of total distance and total duration
      * @return Double
+=======
+     * Getter method for the Duration as a String, in minutes
+     * @return String
+>>>>>>> 92da298... making units on activityviewer better by changing toString methods, and appropriate tests
      */
     public double getAverageHeartRate()
     {
+<<<<<<< HEAD
         return this.averageHeartRate;
+=======
+        return String.format("%.2f", (this.totalDuration / 60.0));
+>>>>>>> 92da298... making units on activityviewer better by changing toString methods, and appropriate tests
     }
 
 
     /**
+<<<<<<< HEAD
      * Getter method for the ArrayList<Entry> entries
      * @return ArrayList<Entry>
+=======
+     * Getter method for the Average Speed as a String, in KM/h
+     * @return String
+>>>>>>> 92da298... making units on activityviewer better by changing toString methods, and appropriate tests
      */
     public ArrayList<Entry> getEntries()
     {
+<<<<<<< HEAD
         return this.entries;
+=======
+        return String.format("%.2f", (this.averageVelocity * 3.6));
+>>>>>>> 92da298... making units on activityviewer better by changing toString methods, and appropriate tests
     }
 
 
     /**
+<<<<<<< HEAD
      * getter method for the type of the activity
      * @return String of the type of the activity
+=======
+     * Getter method for the Distance as a String, in Km
+     * @return String
+>>>>>>> 92da298... making units on activityviewer better by changing toString methods, and appropriate tests
      */
     public ActivityType getType()
     {
+<<<<<<< HEAD
         return this.type;
+=======
+        return String.format("%.2f", (this.totalDistance / 1000.0));
+>>>>>>> 92da298... making units on activityviewer better by changing toString methods, and appropriate tests
     }
 
 
