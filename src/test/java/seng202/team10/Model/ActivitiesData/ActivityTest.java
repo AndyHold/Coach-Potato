@@ -155,6 +155,7 @@ public class ActivityTest {
     {
         activity.calculateAverageHeartRate();
 <<<<<<< HEAD
+<<<<<<< HEAD
         assertEquals(85, activity.getAverageHeartRate());
 =======
         assertEquals("85", activity.getHeartString());
@@ -163,5 +164,8 @@ public class ActivityTest {
 =======
 >>>>>>> ff79906... 1) Changed getHeartString so it displays an int. 2) Added getActivitiesSpeed method to UserProfile. 3) Updated the way recent activities are displayed on profile screen. 4) Fixed the failing tests so that the pipeline works.
 >>>>>>> 9bd0c9a0... 1) Changed getHeartString so it displays an int. 2) Added getActivitiesSpeed method to UserProfile. 3) Updated the way recent activities are displayed on profile screen. 4) Fixed the failing tests so that the pipeline works.
+=======
+        assertEquals(85, activity.getAverageHeartRate(), 0.01);
+>>>>>>> c1f92832... Fixed a test case to fix the pipeline
     }
 }
