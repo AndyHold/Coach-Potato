@@ -133,33 +133,41 @@ public class LoginController implements Controllable{
     @FXML public void userButtonOne()
     {
         if (deleteMode) {
-            if (app.getUsers().size() == 5) {
-                createProfileButton.setDisable(false);
-            }
-            app.getDataWriter().deleteProfile(app.getUsers().get(0).getName());
-            app.getUsers().remove(0);
-            deleteProfile();
-            setUpScene();
-            if (app.getUsers().size() == 0) {
-                app.launchCreateProfileScene();
+            String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "You sure brah", "Are you sure you want to delete \"" + app.getUsers().get(0).getName() + "\"");
+            System.out.println(option.length());
+            if (option.length() == 2) {
+                if (app.getUsers().size() == 5) {
+                    createProfileButton.setDisable(false);
+                }
+                app.getDataWriter().deleteProfile(app.getUsers().get(0).getName());
+                app.getUsers().remove(0);
+                deleteProfile();
+                setUpScene();
+                if (app.getUsers().size() == 0) {
+                    app.launchCreateProfileScene();
+                }
             }
         } else {
             app.setCurrentProfile(app.getUsers().get(0));
             app.launchProfileScene();
         }
+
     }
 
 
     @FXML public void userButtonTwo()
     {
         if (deleteMode) {
-            if (app.getUsers().size() == 5) {
-                createProfileButton.setDisable(false);
+            String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "You sure brah", "Are you sure you want to delete \"" + app.getUsers().get(0).getName() + "\"");
+            if (option.length() == 2) {
+                if (app.getUsers().size() == 5) {
+                    createProfileButton.setDisable(false);
+                }
+                app.getDataWriter().deleteProfile(app.getUsers().get(1).getName());
+                app.getUsers().remove(1);
+                deleteProfile();
+                setUpScene();
             }
-            app.getDataWriter().deleteProfile(app.getUsers().get(1).getName());
-            app.getUsers().remove(1);
-            deleteProfile();
-            setUpScene();
         } else {
             app.setCurrentProfile(app.getUsers().get(1));
             app.launchProfileScene();
@@ -170,13 +178,16 @@ public class LoginController implements Controllable{
     @FXML public void userButtonThree()
     {
         if (deleteMode) {
-            if (app.getUsers().size() == 5) {
-                createProfileButton.setDisable(false);
+            String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "You sure brah", "Are you sure you want to delete \"" + app.getUsers().get(0).getName() + "\"");
+            if (option.length() == 2) {
+                if (app.getUsers().size() == 5) {
+                    createProfileButton.setDisable(false);
+                }
+                app.getDataWriter().deleteProfile(app.getUsers().get(2).getName());
+                app.getUsers().remove(2);
+                deleteProfile();
+                setUpScene();
             }
-            app.getDataWriter().deleteProfile(app.getUsers().get(2).getName());
-            app.getUsers().remove(2);
-            deleteProfile();
-            setUpScene();
         } else {
             app.setCurrentProfile(app.getUsers().get(2));
             app.launchProfileScene();
@@ -187,13 +198,16 @@ public class LoginController implements Controllable{
     @FXML public void userButtonFour()
     {
         if (deleteMode) {
-            if (app.getUsers().size() == 5) {
-                createProfileButton.setDisable(false);
+            String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "You sure brah", "Are you sure you want to delete \"" + app.getUsers().get(0).getName() + "\"");
+            if (option.length() == 2) {
+                if (app.getUsers().size() == 5) {
+                    createProfileButton.setDisable(false);
+                }
+                app.getDataWriter().deleteProfile(app.getUsers().get(3).getName());
+                app.getUsers().remove(3);
+                deleteProfile();
+                setUpScene();
             }
-            app.getDataWriter().deleteProfile(app.getUsers().get(3).getName());
-            app.getUsers().remove(3);
-            deleteProfile();
-            setUpScene();
         } else {
             app.setCurrentProfile(app.getUsers().get(3));
             app.launchProfileScene();
@@ -204,13 +218,16 @@ public class LoginController implements Controllable{
     @FXML public void userButtonFive()
     {
         if (deleteMode) {
-            if (app.getUsers().size() == 5) {
-                createProfileButton.setDisable(false);
+            String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "You sure brah", "Are you sure you want to delete \"" + app.getUsers().get(0).getName() + "\"");
+            if (option.length() == 2) {
+                if (app.getUsers().size() == 5) {
+                    createProfileButton.setDisable(false);
+                }
+                app.getDataWriter().deleteProfile(app.getUsers().get(4).getName());
+                app.getUsers().remove(4);
+                deleteProfile();
+                setUpScene();
             }
-            app.getDataWriter().deleteProfile(app.getUsers().get(4).getName());
-            app.getUsers().remove(4);
-            deleteProfile();
-            setUpScene();
         } else {
             app.setCurrentProfile(app.getUsers().get(4));
             app.launchProfileScene();
