@@ -30,7 +30,7 @@ public class ActivityViewerController {
     @FXML private TableColumn<Activity, String> nameColumn;
     @FXML private TableColumn<Activity, String> typeColumn;
     @FXML private TableColumn<Activity, String> starttimeColumn;
-    @FXML private TableColumn<Activity, Integer> durationColumn;
+    @FXML private TableColumn<Activity, Double> durationColumn;
     @FXML private TableColumn<Activity, Double> speedColumn;
     @FXML private TableColumn<Activity, Double> distanceColumn;
     @FXML private TableColumn<Activity, Integer> heartrateColumn;
@@ -59,9 +59,9 @@ public class ActivityViewerController {
         nameColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("name"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("typeString"));
         starttimeColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("timeString"));
-        durationColumn.setCellValueFactory(new PropertyValueFactory<Activity, Integer>("DurationString"));
-        speedColumn.setCellValueFactory(new PropertyValueFactory<Activity, Double>("SpeedString"));
-        distanceColumn.setCellValueFactory(new PropertyValueFactory<Activity, Double>("DistanceString"));
+        durationColumn.setCellValueFactory(new PropertyValueFactory<Activity, Double>("DurationMins"));
+        speedColumn.setCellValueFactory(new PropertyValueFactory<Activity, Double>("SpeedKMH"));
+        distanceColumn.setCellValueFactory(new PropertyValueFactory<Activity, Double>("DistanceKM"));
         heartrateColumn.setCellValueFactory(new PropertyValueFactory<Activity, Integer>("averageHeartRate"));
         entrynoColumn.setCellValueFactory(new PropertyValueFactory<Activity, Integer>("entryno"));
         populateTable(activities);
