@@ -160,11 +160,15 @@ public class DataAnalysis {
 
 
     /**
-     * Method to convert a number of seconds to a string in the format HH:MM:SS. Returns null if the hours are greater than 23.
+     * Method to convert a number of seconds to a string in the format HH:MM:SS. Returns null if the hours are greater than 23
+     * or if seconds are negative.
      * @param seconds  The time in seconds to be converted.
      * @return  A string in the format HH:MM:SS that describes the time. Null if hours > 23
      */
     public String secondsToTime(int seconds) {
+        if (seconds < 0) {
+            return null;
+        }
         int minutes = 0;
         int hours = 0;
 
@@ -211,7 +215,6 @@ public class DataAnalysis {
             DateTime time2 = activity.getEntries().get(i+1).getTime();
             minutesArray.add(minutesSum);
             minutesSum += time2.subtract(time1)/60.0;
-            System.out.println(minutesSum);
             i++;
         }
         minutesArray.add(minutesSum);

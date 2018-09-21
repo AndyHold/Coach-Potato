@@ -27,7 +27,6 @@ public class DataAnalysisController implements Controllable, Initializable{
 
     private GUIController guiController;
     private Activity activity;
-    private DataAnalysis dataAnalysis;
     private int currentIndex;
 
     @FXML private Label activityNameLabel;
@@ -55,7 +54,7 @@ public class DataAnalysisController implements Controllable, Initializable{
     @Override
     public void setUpScene() {
 
-        dataAnalysis = new DataAnalysis();
+        DataAnalysis dataAnalysis = new DataAnalysis();
         UserProfile currentProfile = guiController.getCurrentProfile();
         if (currentProfile.getActivities().isEmpty()) {
             this.displayNoData(true);
