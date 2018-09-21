@@ -133,8 +133,13 @@ public class UserProfileTest {
     @Test
     public void obeseBMI() throws InvalidWeightException, InvalidHeightException
     {
+<<<<<<< HEAD
         testProfile.setWeight(250);
         testProfile.setHeight(200);
+=======
+        testProfile.setWeight(180);
+        testProfile.setHeight(100);
+>>>>>>> ff79906... 1) Changed getHeartString so it displays an int. 2) Added getActivitiesSpeed method to UserProfile. 3) Updated the way recent activities are displayed on profile screen. 4) Fixed the failing tests so that the pipeline works.
         String bmicat = testProfile.getBmiCategory();
         assertEquals("Obese", bmicat);
     }
