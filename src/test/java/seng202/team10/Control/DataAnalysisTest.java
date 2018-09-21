@@ -32,7 +32,7 @@ public class DataAnalysisTest {
         user.setMaxHeartRate(170);
         DateTime birthday = new DateTime(1996, 12, 04, 0, 0, 0);
         user.setBirthDate(birthday);
-        guiController.uploadDataToUser(user, "/FilesToLoad/testdata.csv");
+        guiController.uploadDataToUser(user, "./FilesToLoad/testdata.csv");
         activities = user.getActivities();
 
     }
