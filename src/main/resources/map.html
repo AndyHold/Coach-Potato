@@ -28,8 +28,8 @@
 <body>
 <div id="map"></div>
 <script>
-    var icon1 = new H.map.Icon('Images/stick-man.jpg');
-    var icon2 = new H.map.Icon('Images/finish-flag.jpg');
+    var icon2 = new H.map.Icon('Images/flag.png');
+    var icon1 = new H.map.Icon('Images/greenPointer.png');
     var marker1;
     var marker2;
     var linestring;
@@ -62,18 +62,20 @@
         }
 
     // CREATE MARKERS AT START AND FINISH
-        marker1 = new H.map.Marker(route[0], {icon: icon1});
         marker2 = new H.map.Marker(route[route.length-1], {icon : icon2});
+        marker1 = new H.map.Marker(route[0], {icon: icon1});
 
-        map.addObject(marker1);
+
         map.addObject(marker2);
+        map.addObject(marker1);
+
 
         linestring = new H.geo.LineString();
         route.forEach(function (point) {
             linestring.pushPoint(point);
         });
 
-        polyLine = new H.map.Polyline(linestring, { style: { lineWidth: 10 }});
+        polyLine = new H.map.Polyline(linestring, { style: { lineWidth: 5 }});
 
         map.addObject(polyLine);
 

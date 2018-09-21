@@ -11,17 +11,17 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.ActivityViewerController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.ActivityViewerController">
    <children>
       <TableView fx:id="activitiesTableView" editable="true" layoutX="15.0" layoutY="101.0" prefHeight="550.0" prefWidth="1250.0">
          <columns>
-            <TableColumn fx:id="nameColumn" editable="false" prefWidth="254.0" text="Name" />
-            <TableColumn fx:id="typeColumn" editable="false" prefWidth="193.0" text="Type" />
-            <TableColumn fx:id="starttimeColumn" editable="false" prefWidth="268.0" text="Start Time" />
-            <TableColumn fx:id="durationColumn" editable="false" prefWidth="118.0" text="Duration (s)" />
-            <TableColumn fx:id="speedColumn" editable="false" prefWidth="127.0" text="Average Speed m/s" />
-            <TableColumn fx:id="distanceColumn" editable="false" prefWidth="84.0" text="Distance (m)" />
-            <TableColumn fx:id="heartrateColumn" editable="false" prefWidth="124.0" text="Average Heartrate" />
+            <TableColumn fx:id="nameColumn" editable="false" prefWidth="274.0" text="Name" />
+            <TableColumn fx:id="typeColumn" editable="false" prefWidth="120.0" text="Type" />
+            <TableColumn fx:id="starttimeColumn" editable="false" prefWidth="220.0" text="Start Time" />
+            <TableColumn fx:id="durationColumn" editable="false" prefWidth="118.0" text="Duration (mins)" />
+            <TableColumn fx:id="speedColumn" editable="false" prefWidth="151.0" text="Average Speed (km/h)" />
+            <TableColumn fx:id="distanceColumn" editable="false" prefWidth="113.0" text="Distance (km)" />
+            <TableColumn fx:id="heartrateColumn" editable="false" prefWidth="172.0" text="Average Heartrate (BPM)" />
             <TableColumn fx:id="entrynoColumn" editable="false" maxWidth="483.0" minWidth="0.0" text="Entries" />
          </columns>
          <columnResizePolicy>
@@ -51,7 +51,7 @@
       </VBox>
       <ComboBox fx:id="typeSelect" layoutX="610.0" layoutY="54.0" prefWidth="150.0" promptText="All" />
       <Label layoutX="567.0" layoutY="58.0" text="Type:" />
-      <Button layoutX="954.0" layoutY="53.0" mnemonicParsing="false" text="Clear Filters" />
+      <Button fx:id="clearFiltersButton" layoutX="928.0" layoutY="54.0" mnemonicParsing="false" onAction="#clearFilters" text="Clear Filters" />
    </children>
    <padding>
       <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />

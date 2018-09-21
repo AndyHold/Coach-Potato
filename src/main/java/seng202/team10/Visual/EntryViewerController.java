@@ -33,7 +33,8 @@ public class EntryViewerController {
     /**
      * Sets up objects that require it prior to showing the scene
      */
-    public void setUpScene(Activity loadActivity){
+    public void setUpScene(Activity loadActivity)
+    {
         loadedActivity = loadActivity;
         activityNameLabel.setText(loadedActivity.getName());
         entries = FXCollections.observableArrayList(loadedActivity.getEntries());
@@ -63,18 +64,17 @@ public class EntryViewerController {
         this.app = app;
     }
 
+
     /**
-     * returns to the activityViewer when the activityReturnButton is pressed
+     * returns to the activityViewer when the activityReturnButton is pressed and saves changes to entries
      */
-    @FXML public void returnToActivities() throws Exception{
+    @FXML public void returnToActivities() throws Exception
+    {
         ArrayList<Entry> savingEntries = new ArrayList<>(this.entries);
         loadedActivity.setEntries(savingEntries);
+        loadedActivity.postEntriesSetUp();
         app.launchActivityViewerScene();
-        //TODO get this saving properly to the activity in the profile
-
     }
-
-
 
 
     /**

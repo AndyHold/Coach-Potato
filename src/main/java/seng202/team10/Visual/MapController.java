@@ -5,6 +5,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Worker;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -20,6 +21,8 @@ public class MapController implements Controllable, Initializable{
 
     private GUIController guiController;
     private WebEngine webEngine;
+    private boolean firstLoad = true;
+    private boolean firstMapView = false;
     private Activity activity;
 
     @FXML private WebView mapWebView;
@@ -49,8 +52,11 @@ public class MapController implements Controllable, Initializable{
                     public void changed(ObservableValue ov, Worker.State oldState, Worker.State newState) {
                         if (newState == Worker.State.SUCCEEDED) {
                             String scriptToExecute = "displayRoute(" + newRoute.toJSONArray() + ");";
-
-                            webEngine.executeScript(scriptToExecute);
+                            try {
+                                webEngine.executeScript(scriptToExecute);
+                            } catch (netscape.javascript.JSException exception) {
+                                guiController.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to the internet. Please connect and try again.");
+                            }
                         }
                     }
                 });
@@ -65,6 +71,15 @@ public class MapController implements Controllable, Initializable{
         webEngine = mapWebView.getEngine();
         webEngine.load(this.getClass().getResource("/map.html").toExternalForm());
 
+        if (firstMapView == true) {
+            firstMapView = false;
+            guiController.refreshMapScene(this.activity);
+        }
+
+        if (firstLoad == true) {
+            firstMapView = true;
+            firstLoad = false;
+        }
 
 //
 //
@@ -101,13 +116,9 @@ public class MapController implements Controllable, Initializable{
         return route;
     }
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        webEngine = mapWebView.getEngine();
-//        webEngine.load(this.getClass().getResource("/map.html").toExternalForm());
-//        this.activity = guiController.getCurrentProfile().getActivities().get(0);
-//        System.out.println(activity.getEntries());
 
-//        this.displayRoute(routeA);
     }
 }

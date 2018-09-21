@@ -288,6 +288,22 @@ public class UserProfile implements java.io.Serializable {
         return sum;
     }
 
+    public double getActivitiesSpeed(DateTime startDate, DateTime endDate) {
+        double averageSpeed = 0;
+        int count = 0;
+        for (Activity activity : activities) {
+            if (activity.getStartDateTime().isAfter(startDate) && activity.getEndDateTime().isBefore(endDate)) {
+                averageSpeed += activity.getAverageVelocity();
+                count++;
+            }
+        }
+        averageSpeed = averageSpeed/count;
+        System.out.println(averageSpeed);
+        System.out.println(count);
+
+        return averageSpeed;
+    }
+
     public int getActivitiesFreq(DateTime startDate, DateTime endDate) {
         int sum = 0;
         for (Activity activity : activities) {
