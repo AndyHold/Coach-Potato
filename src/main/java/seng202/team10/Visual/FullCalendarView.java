@@ -28,6 +28,7 @@ public class FullCalendarView {
     private Label calendarTitle;
     private YearMonth currentYearMonth;
     private GUIController app;
+    private ProfileController profileController;
 
 
     public void setApp(GUIController app)
@@ -35,12 +36,15 @@ public class FullCalendarView {
         this.app = app;
     }
 
+    public void setProfileController(ProfileController profileController) {this.profileController = profileController;}
+
     /**
      * Create a calendar view
      * @param yearMonth year month to create the calendar of
      */
-    public FullCalendarView(YearMonth yearMonth, GUIController app) {
+    public FullCalendarView(YearMonth yearMonth, GUIController app, ProfileController profileController) {
         setApp(app);
+        setProfileController(profileController);
         currentYearMonth = yearMonth;
         // Create the calendar grid pane
         GridPane calendar = new GridPane();
@@ -135,8 +139,11 @@ public class FullCalendarView {
             txt.setFill(Color.BLACK);
             txt.setTextAlignment(TextAlignment.CENTER);
             ap.setDate(calendarDate);
+            ap.setCurrentUser(app.getCurrentProfile());
+            ap.setProfileController(profileController);
             ap.setTopAnchor(txt, 10.0);
             ap.setLeftAnchor(txt, 10.0);
+            ap.setOnMouseClicked(e -> ap.onMouseClicked());
 
             //LocalDate localDate = ap.getDate();
             //DateTime dateTime = new DateTime(localDate.getYear(), localDate.getMonthValue(), localDate.getDayOfMonth(), 0, 0, 0);
@@ -144,7 +151,8 @@ public class FullCalendarView {
                 ArrayList<Activity> userActivities = app.getCurrentProfile().getActivities();
                 ArrayList<Activity> todayActivities = new ArrayList<>();
                 for (Activity activity: userActivities) {
-                    if (activity.getStartDateTime().getDay() == ap.getDate().getDayOfMonth()) {
+                    LocalDate date = ap.getDate();
+                    if (activity.getStartDateTime().getDateAsString().equals((new DateTime(date.getYear(), date.getMonthValue(), date.getDayOfMonth(), 0, 0, 0)).getDateAsString())) {
                         todayActivities.add(activity);
                     }
                 }

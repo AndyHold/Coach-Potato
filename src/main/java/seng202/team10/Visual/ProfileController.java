@@ -10,6 +10,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import seng202.team10.Control.DataAnalysis;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
@@ -28,10 +29,12 @@ import java.util.List;
 public class ProfileController {
 
     private GUIController app;
+    private DataAnalysis dataAnalysis = new DataAnalysis();
 
     @FXML Pane calendarPane;
     @FXML private Label welcomeProfileLabel;
     @FXML private Label quotesLabel;
+    @FXML public Label dailyStatsLabel;
     @FXML private TextField usernameTA;
     @FXML private TextField dobTA;
     @FXML private TextField genderTA;
@@ -41,12 +44,12 @@ public class ProfileController {
     @FXML private Button editProfileButton;
     @FXML private Button confirmButton;
     @FXML private Label recentActivitiesLabel;
-    @FXML private HBox activity1HBox;
-    @FXML private HBox activity2HBox;
-    @FXML private HBox activity3HBox;
-    @FXML private Text activity1Text;
-    @FXML private Text activity2Text;
-    @FXML private Text activity3Text;
+    @FXML public HBox activity1HBox;
+    @FXML public HBox activity2HBox;
+    @FXML public HBox activity3HBox;
+    @FXML public Text activity1Text;
+    @FXML public Text activity2Text;
+    @FXML public Text activity3Text;
     @FXML private HBox distanceHBox;
     @FXML private HBox velocityHBox;
     @FXML private HBox heartRateHBox;
@@ -85,14 +88,14 @@ public class ProfileController {
     }
 
     public void setUpScene() {
-//        calendarPane.getChildren().add(new FullCalendarView(YearMonth.now()).getView());
-        recentActivitiesLabel.setVisible(false);
-        activity1HBox.setVisible(false);
-        activity2HBox.setVisible(false);
-        activity3HBox.setVisible(false);
-        distanceHBox.setVisible(false);
-        velocityHBox.setVisible(false);
-        heartRateHBox.setVisible(false);
+//        recentActivitiesLabel.setVisible(false);
+//        dailyStatsLabel.setVisible(false);
+//        activity1HBox.setVisible(false);
+//        activity2HBox.setVisible(false);
+//        activity3HBox.setVisible(false);
+//        distanceHBox.setVisible(false);
+//        velocityHBox.setVisible(false);
+//        heartRateHBox.setVisible(false);
         confirmButton.setVisible(false);
         wholeProfileVBox.setVisible(false);
         quotesLabel.setText(quotes.get((int)(Math.random()*(quotes.size()))));
@@ -119,34 +122,18 @@ public class ProfileController {
         bmiValueTA.setText(df2.format((currentUser.calcBmi())) + " - " + currentUser.getBmiCategory());
 
         if (currentUser.getActivities().size() > 0) {
-//            TRIED SORTING THE ACTIVITIES BY DATETIME BUT WILL DO IT LATER.
-//            ArrayList<Activity> activities = currentUser.getActivities();
-//            ArrayList<DateTime> startTime = new ArrayList<>();
-//            ArrayList<DateTime> endTime = new ArrayList<>();
-//            for (Activity activity: activities) {
-//                startTime.add(activity.getStartDateTime());
-//                endTime.add(activity.getEndDateTime());
-//            }
-            calendarPane.getChildren().add(new FullCalendarView(YearMonth.now(), app).getView());
-            ArrayList<Activity> activities = currentUser.getActivities();
-            activity1Text.setText(activities.get(0).getName() + ", Average Heart rate: " + activities.get(0).getHeartString() + ", Time taken: " + activities.get(0).getTotalDuration() + " seconds, Calories burned: ");
+            calendarPane.getChildren().add(new FullCalendarView(YearMonth.now(), app, this).getView());
             distanceText.setText("Total Distance Covered: " + df2.format((currentUser.getActivitiesDistance(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0)))/1000) + " km");
-            velocityText.setText("Average Speed: " + df2.format(currentUser.getActivitiesSpeed(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0))) + " m/s");
+            velocityText.setText("Average Speed: " + df2.format(currentUser.getActivitiesSpeed(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0))) + " km/h");
             heartRateText.setText("Average Heart Rate: " + String.valueOf(currentUser.getActivitiesHeartRate(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0))) + " bpm");
             recentActivitiesLabel.setVisible(true);
-            activity1HBox.setVisible(true);
             distanceHBox.setVisible(true);
             velocityHBox.setVisible(true);
             heartRateHBox.setVisible(true);
-
-            if (currentUser.getActivities().size() > 1) {
-                activity2HBox.setVisible(true);
-                activity2Text.setText(activities.get(1).getName() + ", Average Heart rate: " + (activities.get(1).getHeartString()) + ", Time taken: " + activities.get(1).getTotalDuration() + " seconds, Calories burned: ");
-                if (currentUser.getActivities().size() > 2) {
-                    activity3HBox.setVisible(true);
-                    activity3Text.setText(activities.get(2).getName() + ", Average Heart rate: " + activities.get(2).getHeartString() + ", Time taken: " + activities.get(2).getTotalDuration() + " seconds, Calories burned: ");
-                }
-            }
+        } else {
+            distanceText.setText("Total Distance Covered: 0.00 km");
+            velocityText.setText("Average Speed: 0.00 km/h");
+            heartRateText.setText("Average Heart Rate: No Data");
         }
     }
 

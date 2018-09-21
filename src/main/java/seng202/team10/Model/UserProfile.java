@@ -646,7 +646,7 @@ public class UserProfile implements java.io.Serializable {
         int count = 0;
         for (Activity activity : activities) {
             if (activity.getStartDateTime().isAfter(startDate) && activity.getEndDateTime().isBefore(endDate)) {
-                averageSpeed += activity.getAverageVelocity();
+                averageSpeed += activity.getSpeedKMH();
                 count++;
             }
         }
