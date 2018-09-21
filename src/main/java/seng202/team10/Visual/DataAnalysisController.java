@@ -86,7 +86,7 @@ public class DataAnalysisController implements Controllable, Initializable{
             caloriesBurned.getData().clear();
             stressLevelOverTime.getData().clear();
 
-            ArrayList<Integer> timeArray = dataAnalysis.getTimeFromActivity(activity);
+            ArrayList<Double> timeArray = dataAnalysis.getMinutesFromActivity(activity);
             activityNameLabel.setText(activity.getName());
             DateTime startTime = activity.getStartDateTime();
             Integer timeTaken = activity.getTotalDuration();
@@ -94,19 +94,19 @@ public class DataAnalysisController implements Controllable, Initializable{
 
             ArrayList<Double> distanceArray = dataAnalysis.getDistanceFromActivity(activity);
             for (int i = 0; i < timeArray.size(); i++) {
-                distanceTimeSeries.getData().add(new XYChart.Data(dataAnalysis.secondsToTime(timeArray.get(i)), distanceArray.get(i)));
+                distanceTimeSeries.getData().add(new XYChart.Data(timeArray.get(i), distanceArray.get(i)));
             }
             distanceOverTime.getData().add(distanceTimeSeries);
 
             ArrayList<Integer> heartRateArray = dataAnalysis.getHeartRateFromActivity(activity);
             for (int i = 0; i < timeArray.size(); i++) {
-                heartRateSeries.getData().add(new XYChart.Data(dataAnalysis.secondsToTime(timeArray.get(i)), heartRateArray.get(i)));
+                heartRateSeries.getData().add(new XYChart.Data(timeArray.get(i), heartRateArray.get(i)));
             }
             heartRateOverTime.getData().add(heartRateSeries);
 
             ArrayList<Double> calorieArray = dataAnalysis.getCaloriesFromActivity(activity, currentProfile);
             for (int i = 0; i < timeArray.size(); i++) {
-                caloriesBurnedSeries.getData().add(new XYChart.Data(dataAnalysis.secondsToTime(timeArray.get(i)), calorieArray.get(i)));
+                caloriesBurnedSeries.getData().add(new XYChart.Data(timeArray.get(i), calorieArray.get(i)));
             }
             caloriesBurned.getData().add(caloriesBurnedSeries);
 
@@ -114,7 +114,7 @@ public class DataAnalysisController implements Controllable, Initializable{
             for (int i = 0; i < timeArray.size(); i++) {
                 double stressPercent = (double)heartRateArray.get(i)/(double)currentProfile.getMaxHeartrate();
                 stressArray.add(stressPercent);
-                stressLevelTimeSeries.getData().add(new XYChart.Data(dataAnalysis.secondsToTime(timeArray.get(i)), stressArray.get(i)));
+                stressLevelTimeSeries.getData().add(new XYChart.Data(timeArray.get(i), stressArray.get(i)));
             }
             stressLevelOverTime.getData().add(stressLevelTimeSeries);
         }
@@ -146,7 +146,7 @@ public class DataAnalysisController implements Controllable, Initializable{
 
     private void setUpOneGraph(LineChart linechart) {
         linechart.getXAxis().setLabel("Time");
-        linechart.getXAxis().setAnimated(false);
+//        linechart.getXAxis().setAnimated(false);
 //        NumberAxis xAxis = (NumberAxis)linechart.getXAxis();
 //        xAxis.setLowerBound();
         linechart.setCreateSymbols(false);
