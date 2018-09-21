@@ -130,9 +130,8 @@ public class ProfileController {
             ArrayList<Activity> activities = currentUser.getActivities();
             activity1Text.setText(activities.get(0).getName() + ", Average Heart rate: " + activities.get(0).getHeartString() + ", Time taken: " + activities.get(0).getTotalDuration() + " seconds, Calories burned: ");
             distanceText.setText("Total Distance Covered: " + df2.format((currentUser.getActivitiesDistance(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0)))/1000) + " km");
-            //velocityText.setText("Average Speed: " + df2.format(currentUser.getActivities().get(0).getAverageVelocity()) + " m/s");
             velocityText.setText("Average Speed: " + df2.format(currentUser.getActivitiesSpeed(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0))) + " m/s");
-            heartRateText.setText("Average Heart Rate: " + String.valueOf((int)(currentUser.getActivities().get(0).getAverageHeartRate())) + " bpm");
+            heartRateText.setText("Average Heart Rate: " + String.valueOf(currentUser.getActivitiesHeartRate(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0))) + " bpm");
             recentActivitiesLabel.setVisible(true);
             activity1HBox.setVisible(true);
             distanceHBox.setVisible(true);
