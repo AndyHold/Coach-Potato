@@ -256,7 +256,11 @@ public class GUIController extends Application{
         if(!dataReader.checkFileExists("./profiles")){
             dataWriter.createProfileFolder();
         }
+<<<<<<< HEAD
 >>>>>>> d0273878... Checking if profiles folder exists and creating it if it doesn't upon startup
+=======
+>>>>>>> 316efe3... Checking if profiles folder exists and creating it if it doesn't upon startup
+>>>>>>> c8eb71f2... Checking if profiles folder exists and creating it if it doesn't upon startup
         try {
             // Added a test user.
             users.add(new UserProfile("Potato", 75, 180, new DateTime(2000, 1, 1, 1, 1, 1), "Male"));
