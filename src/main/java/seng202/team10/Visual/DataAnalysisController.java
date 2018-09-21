@@ -91,6 +91,7 @@ public class DataAnalysisController implements Controllable, Initializable{
             DateTime startTime = activity.getStartDateTime();
             Integer timeTaken = activity.getTotalDuration();
             timeTakenLabel.setText("Time Taken: " + dataAnalysis.secondsToTime(timeTaken));
+//            System.out.println(timeArray);
 
             ArrayList<Double> distanceArray = dataAnalysis.getDistanceFromActivity(activity);
             for (int i = 0; i < timeArray.size(); i++) {
@@ -145,7 +146,7 @@ public class DataAnalysisController implements Controllable, Initializable{
     }
 
     private void setUpOneGraph(LineChart linechart) {
-        linechart.getXAxis().setLabel("Time");
+        linechart.getXAxis().setLabel("Time (minutes)");
 //        linechart.getXAxis().setAnimated(false);
 //        NumberAxis xAxis = (NumberAxis)linechart.getXAxis();
 //        xAxis.setLowerBound();
