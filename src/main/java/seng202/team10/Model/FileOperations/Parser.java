@@ -1,32 +1,45 @@
 package seng202.team10.Model.FileOperations;
 
+import seng202.team10.Control.InputValidator;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.ActivitiesData.Entry;
 import seng202.team10.Model.ActivitiesData.Position;
+import seng202.team10.Model.Exceptions.BadActivityException;
+import seng202.team10.Model.Exceptions.NoActivityFoundException;
+import seng202.team10.Model.Exceptions.NoDataFoundException;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.IllegalFormatException;
 
 public class Parser {
 
     private int linePosition = 0;
 
 
+
+    private int badActivities;
+    boolean badActivitiesInFile;
+
+
     /**
      * Constructs and uses the methods of a FileReader object to
      * open and read the contents of a file. Must be a csv file.
      *
-     *
      * @return fileContents  An ArrayList containing an ArrayList containing string values.
      */
-    public ArrayList<String> getFileContents(String filePath) throws FileNotFoundException { //handle this with gui message in what calls this
+    public ArrayList<String> getFileContents(String filePath) throws FileNotFoundException
+    { //handle this with gui message in what calls this
         ArrayList<String> fileContents;
         FileReader reader = new FileReader();
+        InputValidator inputValidator = new InputValidator();
 //        if(reader.checkFileExists("./FilesToLoad/" + filePath)) {
         if(reader.checkFileExists(filePath)) {
-            fileContents = reader.openNewFile(filePath);
+            try {
+                fileContents = reader.openNewFile(filePath);
+            } catch (IllegalArgumentException e) {
+                throw new FileNotFoundException();
+            }
         } else {
             throw new FileNotFoundException();
         }
@@ -43,10 +56,10 @@ public class Parser {
      * @return formattedFile  An ArrayList<ArrayList<String>> that contains a list of lines,
      * that are each lists that contain each value in an index.
      */
-    public ArrayList<ArrayList<String>> formatFileContents(ArrayList<String> fileContents) {
+    public ArrayList<ArrayList<String>> formatFileContents(ArrayList<String> fileContents)
+    {
         ArrayList<ArrayList<String>> formattedFile = new ArrayList<>();
         String[] splitLine;
-
         for (int i = 0; i < fileContents.size(); i++) {
             formattedFile.add(new ArrayList<>());
             splitLine = fileContents.get(i).split(",");
@@ -63,15 +76,43 @@ public class Parser {
      *
      * @return activites  An ArrayList<Activity> that contains every activity in the file.
      */
-    public ArrayList<Activity> processFile(ArrayList<ArrayList<String>> formattedFile) {
+    public ArrayList<Activity> processFile(ArrayList<ArrayList<String>> formattedFile) throws NoDataFoundException
+    {
+        badActivities = 0;
         ArrayList<Activity> activities = new ArrayList<>();
-        while (linePosition < formattedFile.size()) {
-            activities.add(processActivity(formattedFile));
+        if (formattedFile.size() == 0) {
+            throw new NoDataFoundException();
+        } else {
+            while (linePosition < formattedFile.size()) {
+                badActivitiesInFile = false;
+                try {
+                    activities.add(processActivity(formattedFile));
+                } catch (BadActivityException exception) {
+                    badActivities += 1;
+                } catch (NoActivityFoundException exception) {
+                    badActivitiesInFile = true;
+                }
+            }
+            this.linePosition = 0;
+
+            if (activities.size() == 0 && badActivities == 0) {
+                throw new NoDataFoundException();
+            }
+            return activities;
         }
-        return activities;
     }
 
 
+    /**
+     * Parses a DateTime object from a date string and a time string.
+     * Checks that there are the correct amount of values in
+     * each, but does not check that the values are valid.
+     *
+     * @param dateString  A string that describes a date, should be in the format "DD/MM/YYYY"
+     * @param timeString  A string that describes a time, should be in the format "HH:MM:SS"
+     * @return  A new DateTime object initialized with the values gotten from the date and time strings.
+     * @throws IllegalArgumentException  When the date or time string are not in the correct format
+     */
     public DateTime parseDateTimeFromStrings(String dateString, String timeString) throws IllegalArgumentException
     {
         String[] dateArray = dateString.split("/");
@@ -99,22 +140,31 @@ public class Parser {
      *
      * @return activity  An Activity object that contains a number of entries.
      */
-    public Activity processActivity(ArrayList<ArrayList<String>> formattedFile) throws IllegalArgumentException
+    public Activity processActivity(ArrayList<ArrayList<String>> formattedFile) throws BadActivityException, NoActivityFoundException
     {
-        // Needs reformatting, uncaught errors in parse date time from string
+        InputValidator inputValidator = new InputValidator();
+        if (!inputValidator.validActivityHeader(formattedFile.get(linePosition))) {
+            while (!inputValidator.validActivityHeader(formattedFile.get(linePosition)) && linePosition < formattedFile.size()-1) {
+                linePosition++;
+            }
+            if (!(inputValidator.validActivityHeader(formattedFile.get(linePosition)))) {
+                this.linePosition++;
+                throw new NoActivityFoundException();
+            }
+
+
+        }
         String name = formattedFile.get(linePosition).get(1);
         linePosition += 1;
 
-        String dateString = (formattedFile.get(linePosition).get(0));
-        String timeString = (formattedFile.get(linePosition).get(1));
-        DateTime dateTime = parseDateTimeFromStrings(dateString, timeString);
-
-        Activity activity = new Activity(name, dateTime);
-
         int badEntries = 0;
         int totalEntries = 0;
+
+        Activity activity = new Activity(name);
+
         while (linePosition < formattedFile.size() && (formattedFile.get(linePosition)).size() != 2) {
-            if(formattedFile.get(linePosition).size() == 6){
+
+            if(inputValidator.isValidEntryLine(formattedFile.get(linePosition))){
                 activity.addEntry(processLine(formattedFile));
             } else {
                 badEntries += 1;
@@ -123,18 +173,21 @@ public class Parser {
             totalEntries += 1;
             linePosition += 1;
         }
-        activity.calculateTotalDistance();
-        activity.calculateTotalDuration();
-        activity.calculateAverageHeartRate();
-        activity.calculateAverageVelocity();
-        activity.determineType();
 
         if((badEntries * 10) > totalEntries) {
-            throw new IllegalArgumentException("Too many bad entries! Activity discarded!");
+            throw new BadActivityException();
         }
+
+        if (activity.getEntries().size() < 2) {
+            throw new BadActivityException();
+        }
+
+        activity.postEntriesSetUp();
+
 //        while (linePosition < formattedFile.size() && formattedFile.get(linePosition).get(0) != "#start"){
 ////            linePosition+=1;
 ////        }
+
         return activity;
     }
 
@@ -164,7 +217,9 @@ public class Parser {
         int heartRate = Integer.valueOf(currentLine.get(2));
         Position position = processPosition(currentLine);
 
-        return new Entry(isFirst, dateTime, heartRate, position);
+        Entry newEntry = new Entry(dateTime, heartRate, position);
+        newEntry.setFirstEntry(isFirst);
+        return newEntry;
     }
 
     /**
@@ -183,6 +238,28 @@ public class Parser {
     }
 
 
+    //POSSIBLY AN UNUSED FUNCTION.
+//    private int removeDuplicateEntries(Activity activity) {
+//        int removeCount = 0;
+//        for (int i = 0; i < activity.getEntries().size(); i++) {
+//            for (int j = 0; j < activity.getEntries().size(); j++) {
+//                if (activity.getEntries().get(i).equals(activity.getEntries().get(j))) {
+//                    if (activity.getEntries().get(i) == activity.getEntries().get(j)) {
+//                        ;
+//                    } else {
+//                        activity.getEntries().remove(j);
+//                        removeCount += 1;
+//                    }
+//                }
+//
+//            }
+//        }
+//        return removeCount;
+//    }
+
+    public int getBadActivities() {
+        return badActivities;
+    }
 
     public int getLineIndex (){
         return linePosition;

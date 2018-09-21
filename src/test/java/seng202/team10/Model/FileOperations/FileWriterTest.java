@@ -1,7 +1,11 @@
 package seng202.team10.Model.FileOperations;
 
 import org.junit.*;
+import seng202.team10.Model.Exceptions.InvalidWeightException;
+import seng202.team10.Model.Exceptions.UserNameException;
 import seng202.team10.Model.UserProfile;
+
+import javax.naming.InvalidNameException;
 
 import static org.junit.Assert.*;
 
@@ -13,7 +17,8 @@ public class FileWriterTest {
 
 
     @BeforeClass
-    public static void setUp(){
+    public static void setUp() throws UserNameException, InvalidWeightException
+    {
         testWriter.createProfileFolder();
         testProfile.setName("jeff");
         testProfile.setWeight(75);
@@ -34,7 +39,8 @@ public class FileWriterTest {
     }
 
     @Test
-    public void deleteProfile() {
+    public void deleteProfile() throws UserNameException
+    {
         UserProfile secondTestProfile = new UserProfile();
         secondTestProfile.setName("bill");
         testWriter.saveProfile(secondTestProfile);
@@ -45,7 +51,8 @@ public class FileWriterTest {
 
 
     @Test
-    public void updateExistingProfile() {
+    public void updateExistingProfile() throws InvalidWeightException
+    {
         testWriter.saveProfile(testProfile);
         testProfile.setWeight(100);
         testWriter.saveProfile(testProfile);

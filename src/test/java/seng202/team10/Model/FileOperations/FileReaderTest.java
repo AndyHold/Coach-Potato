@@ -4,8 +4,10 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import seng202.team10.Model.Exceptions.UserNameException;
 import seng202.team10.Model.UserProfile;
 
+import javax.naming.InvalidNameException;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,14 +45,14 @@ public class FileReaderTest {
     }
 
     @Test
-    public void getExistingUsers(){
+    public void getExistingUsers() throws UserNameException
+    {
         UserProfile secondTestProfile = new UserProfile();
         secondTestProfile.setName("bill");
         testWriter.saveProfile(secondTestProfile);
         ArrayList<String> testFileNames = testReader.getExistingUsers();
         ArrayList<String> expectedNames = new ArrayList<String>(Arrays.asList("bill", "jeff"));
-//        assertEquals(expectedNames , testFileNames);
-        assertTrue(expectedNames.containsAll(testFileNames));
+        assertTrue(testFileNames.containsAll(expectedNames));
     }
 
     @Test

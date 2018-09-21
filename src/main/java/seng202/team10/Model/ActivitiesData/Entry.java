@@ -11,49 +11,126 @@ import java.io.Serializable;
  */
 public class Entry  implements Serializable {
 
+
     private boolean firstEntry;
     private DateTime time;
-    private String timeString;
-    private String dateString;
-    private String heartRateString;
     private int heartRate;
     private Position position;
-    private String longitudeString;
-    private String latitudeString;
-    private String elevationString;
-    private double distance = 0;
-    private double velocity = 0;
-    //private Activity activity;
+    private double distance;
+    private double velocity;
+
 
     /**
      * Constructor for the Entry.
-//     * @param firstEntry: boolean True if first entry.
      * @param time: double Time field of the entry.
      * @param heartRate: double Heart rate field of the entry.
      * @param position: Position Position of the entry.
-     * //@param activity: Activity Activity field of the entry.
      */
-    public Entry(boolean firstEntry, DateTime time, int heartRate, Position position) {
-        this.firstEntry = firstEntry;
-        this.time = time;
-        this.heartRate = heartRate;
-        this.position = position;
-        setStrings();
-        //this.activity = activity;
+    public Entry(DateTime time, int heartRate, Position position)
+    {
+        setTime(time);
+        setHeartRate(heartRate);
+        setPosition(position);
     }
 
 
     /**
-     * Setter method for the string representations for the GUI Table View
+     * Setter method to set user's entry time.
+     * @param time: double
      */
-    private void setStrings()
+    public void setTime(DateTime time)
     {
-        this.dateString = this.time.getDate();
-        this.timeString = this.time.getTime();
-        this.heartRateString = String.valueOf(this.heartRate);
-        this.latitudeString = String.format("%.8f", this.position.getLatitude());
-        this.longitudeString = String.format("%.8f", this.position.getLongitude());
-        this.elevationString = String.valueOf(this.position.getElevation());
+        this.time = time;
+    }
+
+
+    /**
+     * Method to set the current heart rate of the entry
+     * @param newHeartRate int: heart rate int
+     * @throws IllegalArgumentException newHeartRate is not a valid heart rate.
+     */
+    public void setHeartRate(int newHeartRate) throws IllegalArgumentException
+    {
+        if ((0 < newHeartRate) && (newHeartRate <= 300)) {
+            this.heartRate = newHeartRate;
+        } else {
+            throw new IllegalArgumentException("Heart Rate Invalid, must be between 1 & 300");
+        }
+    }
+
+
+    /**
+     * Setter method to set user's position.
+     * @param position: Position
+     */
+    public void setPosition(Position position)
+    {
+        this.position = position;
+    }
+
+
+    /**
+     * Method to set the current latitude of the entry
+     * @param newLatitude double: latitude double
+     * @throws IllegalArgumentException newLatitude does not represent a valid latitude
+     */
+    public void setLatitude(double newLatitude) throws IllegalArgumentException
+    {
+        this.position.setLatitude(newLatitude);
+    }
+
+
+    /**
+     * Method to change the current longitude of the entry
+     * @param newLongitude double: longitude double
+     * @throws IllegalArgumentException newLongitude does not represent a valid longitude
+     */
+    public void setLongitude(double newLongitude) throws IllegalArgumentException
+    {
+        this.position.setLongitude(newLongitude);
+    }
+
+
+    /**
+     * Method to set the current elevation of the entry (for GUI purposes)
+     * @param newElevation double: elevation double
+     * @throws NumberFormatException newElevation does not represent a valid elevation
+     */
+    public void setElevation(double newElevation) throws IllegalArgumentException
+    {
+        this.position.setElevation(newElevation);
+    }
+
+
+    /**
+     * Setter method to set user's first entry.
+     * @param firstEntry: boolean
+     */
+    public void setFirstEntry(boolean firstEntry)
+    {
+        this.firstEntry = firstEntry;
+    }
+
+
+    /**
+     * Method to calculate user's distance.
+     * @param prevEntry: Entry
+     */
+    public void calculateDistance(Entry prevEntry)
+    {
+        Position prevPosition = prevEntry.getPosition();
+        this.distance = prevPosition.subtract(this.position);
+    }
+
+
+    /**
+     * Method to calculate user's velocity.
+     * @param prevEntry: Entry
+     */
+    public void calculateVelocity(Entry prevEntry)
+    {
+        DateTime prevTime = prevEntry.getTime();
+        this.velocity = (this.distance/time.subtract(prevTime));
     }
 
 
@@ -88,50 +165,63 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Method to change the current heart rate of the entry (for GUI purposes)
-     * @param newHeartRate String: String representation of the heart rate double
-     * @throws NumberFormatException String does not represent a number
+     * Getter method to get user's entry time.
+     * @return time: double
      */
-    public void changeHeartRate(String newHeartRate) throws IllegalArgumentException
+    public DateTime getTime()
     {
-        if ((0 < heartRate) && (heartRate <= 300)) {
-            this.heartRate = Integer.valueOf(newHeartRate);
-        } else {
-            throw new IllegalArgumentException("Heart Rate Invalid, must be between 1 & 300");
-        }
+        return time;
     }
 
 
     /**
-     * Method to change the current latitude of the entry (for GUI purposes)
-     * @param newLatitude String: String representation of the heart rate double
-     * @throws NumberFormatException String does not represent a number
+     * Getter method to get user's heart rate.
+     * @return heartRate: double
      */
-    public void changeLatitude(String newLatitude) throws IllegalArgumentException
+    public int getHeartRate()
     {
-        this.position.setLatitude(Double.valueOf(newLatitude));
+        return heartRate;
     }
 
 
     /**
-     * Method to change the current longitude of the entry (for GUI purposes)
-     * @param newLongitude String: String representation of the heart rate double
-     * @throws NumberFormatException String does not represent a number
+     * Getter method to get user's position.
+     * @return position: Position
      */
-    public void changeLongitude(String newLongitude) throws IllegalArgumentException
+    public Position getPosition()
     {
-        this.position.setLongitude(Double.valueOf(newLongitude));
+        return position;
     }
 
 
     /**
-     * Method to change the current elevation of the entry (for GUI purposes)
-     * @param newElevation String: String representation of the heart rate double
-     * @throws NumberFormatException String does not represent a number
+     * Getter method to get user's distance.
+     * @return distance: double
      */
-    public void changeElevation(String newElevation) throws IllegalArgumentException
+    public double getDistance()
     {
-        this.position.setElevation(Double.valueOf(newElevation));
+        return distance;
+    }
+
+
+    /**
+     * Getter method to get user's velocity.
+     * TODO Torben can create a graph for this attribute now.
+     * @return velocity: double
+     */
+    public double getVelocity()
+    {
+        return velocity;
+    }
+
+
+    /**
+     * Getter method to check if it is user's first entry.
+     * @return firstEntry: boolean
+     */
+    public boolean isFirstEntry()
+    {
+        return firstEntry;
     }
 
 
@@ -140,7 +230,7 @@ public class Entry  implements Serializable {
      */
     public String getDateString()
     {
-        return this.dateString;
+        return this.time.getDateAsString();
     }
 
 
@@ -149,7 +239,7 @@ public class Entry  implements Serializable {
      */
     public String getTimeString()
     {
-        return this.timeString;
+        return this.time.getTimeAsString();
     }
 
 
@@ -159,149 +249,70 @@ public class Entry  implements Serializable {
      */
     public String getHeartRateString()
     {
-        return this.heartRateString;
+        return String.valueOf(this.heartRate);
     }
 
 
     /**
      * Getter method for the String representation of the latitude
+     * @return String
      */
     public String getLatitudeString()
     {
-        return this.latitudeString;
+        return String.format("%.6f", this.position.getLatitude());
     }
 
 
     /**
      * Getter method for the String representation of the longitude
+     * @return String
      */
     public String getLongitudeString()
     {
-        return this.longitudeString;
+        return String.format("%.6f", this.position.getLongitude());
     }
 
 
     /**
      * Getter method for the String representation of the elevation
+     * @return String
      */
     public String getElevationString()
     {
-        return this.elevationString;
+        return String.format("%.2f", this.position.getElevation());
     }
 
 
     /**
-     * Getter method to check if it is user's first entry.
-     * @return firstEntry: boolean
+     * Getter method for the String representation of the distance from the previous Entry
+     * @return String
      */
-    public boolean isFirstEntry() {
-        return firstEntry;
-    }
-
-    /**
-     * Setter method to set user's first entry.
-     * @param firstEntry: boolean
-     */
-    public void setFirstEntry(boolean firstEntry) {
-        this.firstEntry = firstEntry;
-    }
-
-    /**
-     * Getter method to get user's entry time.
-     * @return time: double
-     */
-    public DateTime getTime() {
-        return time;
-    }
-
-    /**
-     * Setter method to set user's entry time.
-     * @param time: double
-     */
-    public void setTime(DateTime time) {
-        this.time = time;
-    }
-
-    /**
-     * Getter method to get user's heart rate.
-     * @return heartRate: double
-     */
-    public int getHeartRate() {
-        return heartRate;
-    }
-
-    /**
-     * Setter method to set user's heart rate.
-     * @param heartRate: double
-     */
-    public void setHeartRate(int heartRate) {
-        this.heartRate = heartRate;
-    }
-
-    /**
-     * Getter method to get user's position.
-     * @return position: Position
-     */
-    public Position getPosition() {
-        return position;
-    }
-
-    /**
-     * Setter method to set user's position.
-     * @param position: Position
-     */
-    public void setPosition(Position position) {
-        this.position = position;
-    }
-
-    /**
-     * Getter method to get user's distance.
-     * @return distance: double
-     */
-    public double getDistance() {
-        return distance;
+    public String getDistanceString()
+    {
+        return String.format("%.2f", this.getDistance());
     }
 
 
     /**
-     * Method to calculate user's distance.
-     * @param prevEntry: Entry
+     * Getter method for the String representation of the velocity at this Entry
+     * @return String
      */
-    public void calculateDistance(Entry prevEntry) {
-        Position prevPosition = prevEntry.getPosition();
-        this.distance = prevPosition.subtract(this.position);
-    }
-
-
-    /**
-     * Getter method to get user's velocity.
-     * @return velocity: double
-     */
-    public double getVelocity() {
-        return velocity;
-    }
-
-
-    /**
-     * Method to calculate user's velocity.
-     * @param prevEntry: Entry
-     */
-    public void calculateVelocity(Entry prevEntry) {
-        double prevDistance = prevEntry.getDistance();
-        DateTime prevTime = prevEntry.getTime();
-        this.velocity = (this.distance - prevDistance)/((time.subtract(prevTime)));
+    public String getVelocityString()
+    {
+        return String.format("%.2f", this.getVelocity());
     }
 
 
     //THE FOLLOWING METHOD WAS AN ATTEMPT TO INTERPOLATE, LEAVING IT HERE JUST IN CASE BUT WILL TRY INTERPOLATION IN DATAANALYSIS
-
+    // TODO how did this end up??? Can we use more two or three entries either side if possible???
 
 //    /**
 //     * Method to find the average of two entries. Assumes that the year and the month are the same.
 //     * @param otherEntry  Is the entry directly after this entry.
 //     * @return An entry that will be slotted between this entry and other entry.
 //     */
-//    public Entry getAverageEntry(Entry otherEntry) {
+//    public Entry getAverageEntry(Entry otherEntry)
+//        {
 //
 //        int timeDifference = otherEntry.getTime().subtract(this.time);
 //        DateTime averageTime = this.time.
@@ -317,19 +328,8 @@ public class Entry  implements Serializable {
 
 
     @Override
-    public String toString(){
+    public String toString()
+    {
         return ("First Entry? : " + this.firstEntry + " , " + position.toString());
     }
-
-
-//    /**
-//     * Getter method to get user's activities.
-//     * @return  activity: Activity
-//     */
-//    // Commented out as we don't need it for now but might need it later.
-//    public Activity getActivity() {
-//        return activity;
-//    }
-
-
 }

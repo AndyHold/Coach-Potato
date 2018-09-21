@@ -7,13 +7,17 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.GUI.DataAnalysisController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.DataAnalysisController">
    <children>
       <TabPane fx:id="tabPane" layoutX="471.0" layoutY="122.0" prefHeight="504.0" prefWidth="608.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -21,12 +25,12 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <LineChart fx:id="distanceOverTime" prefHeight="474.0" prefWidth="608.0">
+                        <LineChart fx:id="distanceOverTime" prefHeight="474.0" prefWidth="608.0" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <xAxis>
-                            <CategoryAxis side="BOTTOM" />
+                            <NumberAxis side="BOTTOM" fx:id="xAxisDT" />
                           </xAxis>
                           <yAxis>
-                            <NumberAxis side="LEFT" />
+                            <NumberAxis fx:id="yAxisDT" side="LEFT" />
                           </yAxis>
                         </LineChart>
                      </children></AnchorPane>
@@ -38,7 +42,7 @@
                      <children>
                         <LineChart fx:id="heartRateOverTime" prefHeight="472.0" prefWidth="608.0">
                           <xAxis>
-                            <CategoryAxis side="BOTTOM" />
+                            <NumberAxis side="BOTTOM" />
                           </xAxis>
                           <yAxis>
                             <NumberAxis side="LEFT" />
@@ -53,7 +57,7 @@
                      <children>
                         <LineChart fx:id="caloriesBurned" prefHeight="472.0" prefWidth="608.0">
                           <xAxis>
-                            <CategoryAxis side="BOTTOM" />
+                            <NumberAxis side="BOTTOM" />
                           </xAxis>
                           <yAxis>
                             <NumberAxis side="LEFT" />
@@ -69,7 +73,7 @@
                      <children>
                         <LineChart fx:id="stressLevelOverTime" prefHeight="471.0" prefWidth="614.0">
                           <xAxis>
-                            <CategoryAxis side="BOTTOM" />
+                            <NumberAxis side="BOTTOM" />
                           </xAxis>
                           <yAxis>
                             <NumberAxis side="LEFT" />
@@ -84,7 +88,23 @@
       <Label fx:id="activityNameLabel" layoutX="567.0" layoutY="51.0" text="Name Of Activity" />
       <Label fx:id="timeTakenLabel" layoutX="897.0" layoutY="51.0" text="Total Time Taken" />
       <Label fx:id="noActivitiesLabel" layoutX="379.0" layoutY="292.0" text="No activities found" visible="false" />
-      <ListView fx:id="activityList" layoutX="43.0" layoutY="122.0" prefHeight="504.0" prefWidth="336.0" />
+      <ListView fx:id="activityList" layoutX="43.0" layoutY="122.0" onMouseClicked="#refresh" prefHeight="504.0" prefWidth="336.0" />
       <Label layoutX="168.0" layoutY="87.0" text="Activities" />
+       <ToolBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="1280.0" style="-fx-background-color: #435;">
+           <items>
+               <Button fx:id="menu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#drawerAction" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #435; -fx-border-color: #ffffff;" text="Menu" textFill="WHITE" />
+           </items>
+       </ToolBar>
+      <VBox fx:id="drawer" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="150.0" style="-fx-background-color: #435;" translateX="-150.0">
+         <children>
+            <Button fx:id="selectProfileButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openChooseProfile" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #435; -fx-border-color: #ffffff;" text="Choose Profile" textFill="WHITE" />
+            <Button fx:id="viewProfileButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openViewProfile" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #435; -fx-border-color: #ffffff;" text="View Profile" textFill="WHITE" />
+            <Button fx:id="uploadDataButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openUploadData" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #435; -fx-border-color: #ffffff;" text="Upload Data" textFill="WHITE" />
+            <Button fx:id="viewActivitiesButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openViewActivities" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #435; -fx-border-color: #ffffff;" text="View Activities" textFill="WHITE" />
+            <Button fx:id="goalsButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openGoals" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #435; -fx-border-color: #ffffff;" text="Goals and Progress" textFill="WHITE" />
+            <Button fx:id="analysisButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openAnalysis" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #435; -fx-border-color: #ffffff;" text="Analysis" textFill="WHITE" />
+         </children>
+      </VBox>
+      <Button fx:id="mapButton" layoutX="764.0" layoutY="647.0" mnemonicParsing="false" onAction="#viewMap" text="View Map" />
    </children>
 </Pane>

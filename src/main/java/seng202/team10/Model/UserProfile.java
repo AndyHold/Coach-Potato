@@ -1,7 +1,12 @@
 package seng202.team10.Model;
 
 
+import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
 import seng202.team10.Model.ActivitiesData.*;
+import seng202.team10.Model.Exceptions.*;
+
+import javax.naming.InvalidNameException;
 import java.util.ArrayList;
 
 /**
@@ -19,9 +24,39 @@ public class UserProfile implements java.io.Serializable {
     private DateTime birthdate;
     private String gender;
     private int maxHeartrate;
-    private Goals goals;
-    private Calendar calendar;
+    private int averageHeartRate;
+    //private Goals goals;
     private double bmi;
+
+
+
+
+    private Goals goals = new Goals(this);
+
+
+    /**
+     * Constructor method for UserProfile class
+     */
+    public UserProfile() {
+
+    }
+
+    /**
+     * Constructor method for UserProfile class
+     * @param name: String
+     * @param weight: double
+     * @param birthdate: DateTime
+     * @param gender: String
+     */
+    public UserProfile(String name, double weight, double height, DateTime birthdate, String gender) throws UserNameException, InvalidWeightException, InvalidHeightException, IllegalArgumentException
+    {
+        this.setName(name);
+        this.setWeight(weight);
+        this.setHeight(height);
+        this.birthdate = birthdate;
+        this.gender = gender;
+    }
+
 
 
     /**
@@ -29,7 +64,7 @@ public class UserProfile implements java.io.Serializable {
      * @return String
      */
     public String getName() {
-        return this.name;
+        return name;
     }
 
 
@@ -37,8 +72,13 @@ public class UserProfile implements java.io.Serializable {
      * Setter method for the name of the user
      * @param newName: String
      */
-    public void setName(String newName) {
-        this.name = newName;
+    public void setName(String newName) throws UserNameException
+    {
+        if (!(newName.length() > 15 || !newName.matches("[a-zA-Z0-9]+ ?[a-zA-Z0-9]+"))) {
+            this.name = newName;
+        } else {
+            throw new UserNameException();
+        }
     }
 
 
@@ -60,7 +100,10 @@ public class UserProfile implements java.io.Serializable {
      * Setter method for the maxHeartrate of the user
      * @param maxHeartrate: int
      */
-    public void setMaxHeartrate(int maxHeartrate) { this.maxHeartrate = maxHeartrate; }
+    public void setMaxHeartRate(int maxHeartrate)
+    {
+        this.maxHeartrate = maxHeartrate;
+    }
 
     /**
      * Getter method for the maxHeartrate of the user
@@ -81,10 +124,19 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Method for adding an activity to the list of user's Activities.
-     * @param activity Activity
+     * @param newActivity Activity
      */
-    public void addActivity(Activity activity) {
-        activities.add(activity);
+    public void addActivity(Activity newActivity) throws ExistingActivityException
+    {
+        // TODO fix this it is not working!!!
+        for (Activity existingActivity: activities) {
+            if (!newActivity.getStartDateTime().isAfter(existingActivity.getEndDateTime())) { // If the existing activity's end is not before the new activity's start
+                if (!newActivity.getEndDateTime().isBefore(existingActivity.getStartDateTime())) { // If the existing activity's start is not after the new activity's end
+                    throw new ExistingActivityException("One of the activities you have selected overlaps with an existing activity"); // Throw an exception
+                }
+            }
+        } // Else continue to add the activity.
+        activities.add(newActivity);
     }
 
 
@@ -93,9 +145,18 @@ public class UserProfile implements java.io.Serializable {
      * TODO check for duplicates. seems to many already work natuarally??
      * @param newActivities the arraylist of activity objects
      */
-    public void addActivities(ArrayList<Activity> newActivities){
+    public void addActivities(ArrayList<Activity> newActivities) throws ExistingElementException
+    {
+        int numberOfBadActivities = 0;
         for(Activity newActivity: newActivities){
-            addActivity(newActivity);
+            try {
+                addActivity(newActivity);
+            } catch(ExistingActivityException exception) {
+                numberOfBadActivities++;
+            }
+        }
+        if (numberOfBadActivities > 0) {
+            throw new ExistingElementException(String.valueOf(numberOfBadActivities) + " Activities overlapped with existing activities and were not added");
         }
     }
 
@@ -120,10 +181,16 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Setter method for the weight of the user
-     * @param newWeight double
+     * @param newWeight double: new weight to be set
+     * @throws InvalidWeightException when weight is not in the valid range
      */
-    public void setWeight(double newWeight) {
-        this.weight = newWeight;
+    public void setWeight(double newWeight) throws InvalidWeightException
+    {
+        if (30 <= newWeight && newWeight <= 250) {
+            this.weight = newWeight;
+        } else {
+            throw new InvalidWeightException();
+        }
     }
 
 
@@ -131,8 +198,13 @@ public class UserProfile implements java.io.Serializable {
      * Setter method for the height of the user
      * @param newHeight double
      */
-    public void setHeight(double newHeight) {
-        this.height = newHeight;
+    public void setHeight(double newHeight) throws InvalidHeightException
+    {
+        if (50 <= newHeight && newHeight <= 260) {
+            this.height = newHeight;
+        } else {
+            throw new InvalidHeightException();
+        }
     }
 
 
@@ -188,8 +260,97 @@ public class UserProfile implements java.io.Serializable {
                 ", height=" + height +
                 ", birthdate=" + birthdate +
                 ", goals=" + goals +
-                ", calendar=" + calendar +
                 ", bmi=" + bmi +
                 '}';
     }
+
+
+    public Goals getGoals() {
+        return goals;
+    }
+
+    public void setGoals(Goals goals) {
+        this.goals = goals;
+    }
+
+    public double getActivitiesDistance(DateTime startDate, DateTime endDate) {
+        double sum = 0;
+        for (Activity activity : activities) {
+            System.out.println((activity.getStartDateTime().isAfter(startDate)));
+            if (activity.getStartDateTime().isAfter(startDate) && activity.getEndDateTime().isBefore(endDate)) {
+                System.out.println(activity.getStartDateTime());
+                System.out.println(startDate);
+                sum += activity.getTotalDistance();
+                System.out.println("Added to sum");
+            } else {
+                System.out.println("Not added to sum");
+            }
+        }
+        return sum;
+    }
+
+    public double getActivitiesSpeed(DateTime startDate, DateTime endDate) {
+        double averageSpeed = 0;
+        int count = 0;
+        for (Activity activity : activities) {
+            if (activity.getStartDateTime().isAfter(startDate) && activity.getEndDateTime().isBefore(endDate)) {
+                averageSpeed += activity.getAverageVelocity();
+                count++;
+            }
+        }
+        averageSpeed = averageSpeed/count;
+        System.out.println(averageSpeed);
+        System.out.println(count);
+
+        return averageSpeed;
+    }
+
+    public int getActivitiesFreq(DateTime startDate, DateTime endDate) {
+        int sum = 0;
+        for (Activity activity : activities) {
+            if (activity.getStartDateTime().isAfter(startDate) && activity.getEndDateTime().isBefore(endDate)) {
+                sum ++;
+                System.out.println("Added to sum");
+            } else {
+                System.out.println("Not added to sum");
+            }
+        }
+        return sum;
+    }
+
+
+    public int getActivitiesTime(DateTime startDate, DateTime endDate) {
+        int sum = 0;
+        for (Activity activity : activities) {
+            if (activity.getStartDateTime().isAfter(startDate) && activity.getEndDateTime().isBefore(endDate)) {
+                sum += activity.getTotalDuration();
+                System.out.println("Added to sum");
+            } else {
+                System.out.println("Not added to sum");
+            }
+        }
+        return sum;
+    }
+
+
+    public int getAverageHeartRate() {
+        return averageHeartRate;
+    }
+
+    public void setAverageHeartRate(int averageHeartRate) {
+        this.averageHeartRate = averageHeartRate;
+    }
+
+    public int getActivitiesHeartRate(DateTime startDate, DateTime endDate) {
+        int sum = 0;
+        int count = 0;
+        for (Activity activity : activities) {
+            if (activity.getStartDateTime().isAfter(startDate) && activity.getEndDateTime().isBefore(endDate)) {
+                sum += activity.getAverageHeartRate();
+                count++;
+            }
+        }
+        return sum/count;
+    }
+
 }

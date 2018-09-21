@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Here Map Demo</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        #map {
+            height: 100%;
+        }
+    </style>
+    <script src="http://js.api.here.com/v3/3.0/mapsjs-core.js"
+            type="text/javascript" charset="utf-8">
+    </script>
+    <script src="http://js.api.here.com/v3/3.0/mapsjs-service.js"
+            type="text/javascript" charset="utf-8">
+    </script>
+    <script src="http://js.api.here.com/v3/3.0/mapsjs-ui.js"
+            type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css"
+          href="http://js.api.here.com/v3/3.0/mapsjs-ui.css" />
+</head>
+<body>
+<div id="map"></div>
+<script>
+    var icon2 = new H.map.Icon('Images/flag.png');
+    var icon1 = new H.map.Icon('Images/greenPointer.png');
+    var marker1;
+    var marker2;
+    var linestring;
+    var polyline;
+    var platform = new H.service.Platform({
+        'app_id': 'kXKabsS3C8XY9PPGEZ89',
+        'app_code': 'zlGowN2eF-7IHC2l2nos2Q'
+    });
+
+    // Obtain the default map types from the platform object:
+    var defaultLayers = platform.createDefaultLayers();
+
+    // Instantiate (and display) a map object:
+    var map = new H.Map(
+        document.getElementById('map'),
+        defaultLayers.normal.map,
+        {
+            center: {lat: 52.5276947, lng: 13.4029663}, zoom: 14.5
+        });
+
+    var ui = H.ui.UI.createDefault(map, defaultLayers);
+
+    function displayRoute(route) {
+
+        var mapObjects = map.getObjects();
+        map.removeObjects(mapObjects);
+
+        if (route.length < 2) {
+            return;
+        }
+
+    // CREATE MARKERS AT START AND FINISH
+        marker2 = new H.map.Marker(route[route.length-1], {icon : icon2});
+        marker1 = new H.map.Marker(route[0], {icon: icon1});
+
+
+        map.addObject(marker2);
+        map.addObject(marker1);
+
+
+        linestring = new H.geo.LineString();
+        route.forEach(function (point) {
+            linestring.pushPoint(point);
+        });
+
+        polyLine = new H.map.Polyline(linestring, { style: { lineWidth: 5 }});
+
+        map.addObject(polyLine);
+
+        map.setViewBounds(polyLine.getBounds());
+
+    }
+</script>
+</body>
+</html>
