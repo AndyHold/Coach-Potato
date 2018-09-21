@@ -139,6 +139,7 @@ public class GUIController extends Application{
     public void start(Stage primaryStage) throws Exception
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         // Added a test user.
         users.add(new UserProfile("Potato", 75, 180, new DateTime(2000,1,1,1,1,1), "Male"));
         users.get(0).setMaxHeartRate(210);
@@ -251,6 +252,11 @@ public class GUIController extends Application{
         this.primaryStage = primaryStage;
 
 =======
+=======
+        if(!dataReader.checkFileExists("./profiles")){
+            dataWriter.createProfileFolder();
+        }
+>>>>>>> d0273878... Checking if profiles folder exists and creating it if it doesn't upon startup
         try {
             // Added a test user.
             users.add(new UserProfile("Potato", 75, 180, new DateTime(2000, 1, 1, 1, 1, 1), "Male"));
