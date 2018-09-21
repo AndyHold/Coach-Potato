@@ -63,7 +63,11 @@ import java.util.ArrayList;
 import java.util.Optional;
 =======
 import java.util.concurrent.TimeUnit;
+<<<<<<< HEAD
 >>>>>>> 327730ca... Added a small delay for the map loading the first time
+=======
+>>>>>>> cf34074... Added a small delay for the map loading the first time
+>>>>>>> 3110e544... Added a small delay for the map loading the first time
 
 /**
  * This is the main controller for the application. This class creates and launches scenes,
