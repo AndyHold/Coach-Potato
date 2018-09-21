@@ -157,7 +157,11 @@ public class ActivityViewerController {
         errorPopUp.setHeaderText(null);
         errorPopUp.showAndWait();
     }
+<<<<<<< HEAD
 >>>>>>> 14d13f79... Clear filters button properly reloads the table and clears filter selections
+=======
+>>>>>>> debfc12... Clear filters button properly reloads the table and clears filter selections
+>>>>>>> 304a880b... Clear filters button properly reloads the table and clears filter selections
 
     /**
      * Setter method to set the GUI controller for this Scene
