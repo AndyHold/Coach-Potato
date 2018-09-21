@@ -11,6 +11,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import seng202.team10.Control.GUIController;
+import seng202.team10.Model.ActivitiesData.Activity;
+import seng202.team10.Model.ActivitiesData.DateTime;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -19,18 +22,38 @@ import java.util.ArrayList;
 
 public class FullCalendarView {
 
-
     private ArrayList<AnchorPaneNode> allCalendarDays = new ArrayList<>(42);
     private VBox view;
     private Label calendarTitle;
     private YearMonth currentYearMonth;
+    private GUIController app;
+    private ProfileController profileController;
+
+    /**
+     * Setter method to set the GUI controller for this Scene
+     * @param app GUIController
+     */
+    public void setApp(GUIController app)
+    {
+        this.app = app;
+    }
+
+    /**
+     * Setter method to set the profile controller for this Scene
+     * @param profileController profileController
+     */
+    public void setProfileController(ProfileController profileController) {this.profileController = profileController;}
 
     /**
      * Create a calendar view
-     * @param yearMonth year month to create the calendar of
+     * @param (yearMonth, app, profileController): (year month to create the calendar of, GuiController, ProfileController)
      */
-    public FullCalendarView(YearMonth yearMonth) {
+    public FullCalendarView(YearMonth yearMonth, GUIController app, ProfileController profileController)
+    {
+        setApp(app);
+        setProfileController(profileController);
         currentYearMonth = yearMonth;
+
         // Create the calendar grid pane
         GridPane calendar = new GridPane();
         calendar.setStyle("-fx-background-color: #F06292");
@@ -38,6 +61,7 @@ public class FullCalendarView {
         calendar.setMaxSize(490, 420);
         calendar.setMinSize(490, 420);
         calendar.setGridLinesVisible(true);
+
         // Create rows and columns with anchor panes for the calendar
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 7; j++) {
@@ -49,6 +73,7 @@ public class FullCalendarView {
                 allCalendarDays.add(ap);
             }
         }
+
         // Days of the week labels
         Text[] dayNames = new Text[]{ new Text(" Sun"), new Text(" Mon"), new Text(" Tue"),
                                         new Text(" Wed"), new Text(" Thu"), new Text(" Fri"),
@@ -71,6 +96,7 @@ public class FullCalendarView {
             ap.getChildren().add(txt);
             dayLabels.add(ap, col++, 0);
         }
+
         // Create calendarTitle and buttons to change current month
         calendarTitle = new Label();
         calendarTitle.setStyle("-fx-background-color: #C2185B");
@@ -80,6 +106,7 @@ public class FullCalendarView {
         calendarTitle.setMaxSize(210, 30);
         calendarTitle.setPrefSize(210, 30);
         calendarTitle.setTextAlignment(TextAlignment.CENTER);
+
         Button previousMonth = new Button("<<");
         previousMonth.setTextFill(Color.WHITE);
         previousMonth.setStyle("-fx-background-color: #C2185B");
@@ -88,6 +115,7 @@ public class FullCalendarView {
         previousMonth.setMaxSize(35, 30);
         previousMonth.setPrefSize(35, 30);
         previousMonth.setOnAction(e -> previousMonth());
+
         Button nextMonth = new Button(">>");
         nextMonth.setStyle("-fx-background-color: #C2185B");
         nextMonth.setTextFill(Color.WHITE);
@@ -98,11 +126,13 @@ public class FullCalendarView {
         nextMonth.setOnAction(e -> nextMonth());
         HBox titleBar = new HBox(previousMonth, calendarTitle, nextMonth);
         titleBar.setAlignment(Pos.CENTER);
+
         // Populate calendar with the appropriate day numbers
         populateCalendar(yearMonth);
         // Create the calendar view
         view = new VBox(titleBar, dayLabels, calendar);
     }
+
 
     /**
      * Set the days of the calendar to correspond to the appropriate date
@@ -124,8 +154,23 @@ public class FullCalendarView {
             txt.setFill(Color.BLACK);
             txt.setTextAlignment(TextAlignment.CENTER);
             ap.setDate(calendarDate);
+            ap.setCurrentUser(app.getCurrentProfile());
+            ap.setProfileController(profileController);
             ap.setTopAnchor(txt, 10.0);
             ap.setLeftAnchor(txt, 10.0);
+            ap.setOnMouseClicked(e -> ap.onMouseClicked());
+
+            if (app.getCurrentProfile().getActivities() != null) {
+                ArrayList<Activity> userActivities = app.getCurrentProfile().getActivities();
+                ArrayList<Activity> todayActivities = new ArrayList<>();
+                for (Activity activity: userActivities) {
+                    LocalDate date = ap.getDate();
+                    if (activity.getStartDateTime().getDateAsString().equals((new DateTime(date.getYear(), date.getMonthValue(), date.getDayOfMonth(), 0, 0, 0)).getDateAsString())) {
+                        todayActivities.add(activity);
+                    }
+                }
+                ap.setActivities(todayActivities);
+            }
 
             if (calendarDate.getMonth() == yearMonth.getMonth()) {
                 txt.setFill(Color.WHITE);
@@ -160,6 +205,7 @@ public class FullCalendarView {
     public VBox getView() {
         return view;
     }
+
 
     public ArrayList<AnchorPaneNode> getAllCalendarDays() {
         return allCalendarDays;

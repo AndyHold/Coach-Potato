@@ -21,6 +21,23 @@ public class Entry  implements Serializable {
 
 
     /**
+     * Override Method to get the string representation of an Entry.
+     * @return String
+     */
+    @Override
+    public String toString()
+    {
+        return "Entry{" +
+                "firstEntry=" + firstEntry +
+                ", time=" + time +
+                ", heartRate=" + heartRate +
+                ", position=" + position +
+                ", distance=" + distance +
+                ", velocity=" + velocity +
+                '}';
+    }
+
+    /**
      * Constructor for the Entry.
      * @param time: double Time field of the entry.
      * @param heartRate: double Heart rate field of the entry.
@@ -35,7 +52,7 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Setter method to set user's entry time.
+     * Method to set user's entry time.
      * @param time: double
      */
     public void setTime(DateTime time)
@@ -60,7 +77,7 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Setter method to set user's position.
+     * Method to set user's position.
      * @param position: Position
      */
     public void setPosition(Position position)
@@ -103,7 +120,7 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Setter method to set user's first entry.
+     * Method to set user's first entry.
      * @param firstEntry: boolean
      */
     public void setFirstEntry(boolean firstEntry)
@@ -165,7 +182,7 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Getter method to get user's entry time.
+     * Method to get user's entry time.
      * @return time: double
      */
     public DateTime getTime()
@@ -175,7 +192,7 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Getter method to get user's heart rate.
+     * Method to get user's heart rate.
      * @return heartRate: double
      */
     public int getHeartRate()
@@ -185,7 +202,7 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Getter method to get user's position.
+     * Method to get user's position.
      * @return position: Position
      */
     public Position getPosition()
@@ -195,7 +212,7 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Getter method to get user's distance.
+     * Method to get user's distance.
      * @return distance: double
      */
     public double getDistance()
@@ -205,8 +222,7 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Getter method to get user's velocity.
-     * TODO Torben can create a graph for this attribute now.
+     * Method to get user's velocity.
      * @return velocity: double
      */
     public double getVelocity()
@@ -216,7 +232,7 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Getter method to check if it is user's first entry.
+     * Method to check if it is user's first entry.
      * @return firstEntry: boolean
      */
     public boolean isFirstEntry()
@@ -226,7 +242,8 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Getter method for the String representation of the date
+     * Method to get the string representation of the date.
+     * @return String
      */
     public String getDateString()
     {
@@ -235,7 +252,8 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Getter method for the String representation of the time
+     * Method to get the string representation of the time.
+     * @return String
      */
     public String getTimeString()
     {
@@ -244,7 +262,7 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Getter method for the String representation of the Heart Rate
+     * Method to get the string representation of an entry's heart rate.
      * @return String
      */
     public String getHeartRateString()
@@ -254,7 +272,7 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Getter method for the String representation of the latitude
+     * Method to get the string representation of the latitude.
      * @return String
      */
     public String getLatitudeString()
@@ -264,7 +282,7 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Getter method for the String representation of the longitude
+     * Method to get the string representation of the longitude.
      * @return String
      */
     public String getLongitudeString()
@@ -274,7 +292,7 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Getter method for the String representation of the elevation
+     * Method to get the string representation of the elevation.
      * @return String
      */
     public String getElevationString()
@@ -284,7 +302,7 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Getter method for the String representation of the distance from the previous Entry
+     * Method to get the string representation of the distance from the previous Entry.
      * @return String
      */
     public String getDistanceString()
@@ -294,7 +312,7 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Getter method for the String representation of the velocity at this Entry
+     * Method to get the string representation of the velocity at this Entry.
      * @return String
      */
     public String getVelocityString()
@@ -326,10 +344,4 @@ public class Entry  implements Serializable {
 //        return new Entry(false, averageTime, averageHeartRate, averagePosition);
 //    }
 
-
-    @Override
-    public String toString()
-    {
-        return ("First Entry? : " + this.firstEntry + " , " + position.toString());
-    }
 }

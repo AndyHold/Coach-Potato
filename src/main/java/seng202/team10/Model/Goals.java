@@ -159,9 +159,6 @@ public class Goals implements Serializable {
             currentGoals.remove(goal);
             createdGoals.remove(goal);
         }
-        else {
-            System.out.println("This goal is not one of your current goals");
-        }
 
     }
 
@@ -207,6 +204,7 @@ public class Goals implements Serializable {
                     progress = goal.reviewWeightGoal(goal, user.getWeight());
                     if (user.getWeight() <= goal.getGoalWeight()) {
                         removeCurrentGoal(goalName);
+                        goal.setGoalAchievedStatus(true);
                         achievedGoals.add(goal);
                         achievedGoalNames.add(goalName);
                     } else if (!goal.getGoalTargetDate().isAfter(now2)) {
@@ -220,6 +218,7 @@ public class Goals implements Serializable {
                     progress = goal.reviewBmiGoal(goal, user.getBmi());
                     if (user.getBmi() <= goal.getGoalBmi()) {
                         removeCurrentGoal(goalName);
+                        goal.setGoalAchievedStatus(true);
                         achievedGoals.add(goal);
                         achievedGoalNames.add(goalName);
                     } else if (!goal.getGoalTargetDate().isAfter(now2)) {
@@ -235,6 +234,7 @@ public class Goals implements Serializable {
                     progress = goal.reviewDistanceGoal(goal, totalDistance);
                     if (totalDistance >= goal.getGoalDistance()) {
                         removeCurrentGoal(goalName);
+                        goal.setGoalAchievedStatus(true);
                         achievedGoals.add(goal);
                         achievedGoalNames.add(goalName);
                     } else if (!goal.getGoalTargetDate().isAfter(now2)) {
@@ -250,6 +250,7 @@ public class Goals implements Serializable {
                     progress = goal.reviewFrequencyGoal(goal, numActivities);
                     if (numActivities >= goal.getGoalFrequency()) {
                         removeCurrentGoal(goalName);
+                        goal.setGoalAchievedStatus(true);
                         achievedGoals.add(goal);
                         achievedGoalNames.add(goalName);
                     } else if (!goal.getGoalTargetDate().isAfter(now2)) {
@@ -265,6 +266,7 @@ public class Goals implements Serializable {
                     progress = goal.reviewTimeGoal(goal, timeSumActivities);
                     if (timeSumActivities >= goal.getGoalTime()) {
                         removeCurrentGoal(goalName);
+                        goal.setGoalAchievedStatus(true);
                         achievedGoals.add(goal);
                         achievedGoalNames.add(goalName);
                     } else if (!goal.getGoalTargetDate().isAfter(now2)) {

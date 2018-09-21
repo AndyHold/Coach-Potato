@@ -10,8 +10,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import seng202.team10.Control.DataAnalysis;
 import seng202.team10.Control.GUIController;
-import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.Exceptions.InvalidHeightException;
 import seng202.team10.Model.Exceptions.InvalidWeightException;
@@ -21,17 +21,19 @@ import seng202.team10.Model.UserProfile;
 
 import java.text.DecimalFormat;
 import java.time.YearMonth;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class ProfileController {
 
     private GUIController app;
+    private DataAnalysis dataAnalysis = new DataAnalysis();
+    UserProfile currentUser;
 
     @FXML Pane calendarPane;
     @FXML private Label welcomeProfileLabel;
     @FXML private Label quotesLabel;
+    @FXML public Label dailyStatsLabel;
     @FXML private TextField usernameTA;
     @FXML private TextField dobTA;
     @FXML private TextField genderTA;
@@ -41,12 +43,12 @@ public class ProfileController {
     @FXML private Button editProfileButton;
     @FXML private Button confirmButton;
     @FXML private Label recentActivitiesLabel;
-    @FXML private HBox activity1HBox;
-    @FXML private HBox activity2HBox;
-    @FXML private HBox activity3HBox;
-    @FXML private Text activity1Text;
-    @FXML private Text activity2Text;
-    @FXML private Text activity3Text;
+    @FXML public HBox activity1HBox;
+    @FXML public HBox activity2HBox;
+    @FXML public HBox activity3HBox;
+    @FXML public Text activity1Text;
+    @FXML public Text activity2Text;
+    @FXML public Text activity3Text;
     @FXML private HBox distanceHBox;
     @FXML private HBox velocityHBox;
     @FXML private HBox heartRateHBox;
@@ -56,7 +58,10 @@ public class ProfileController {
     @FXML private VBox drawer;
     @FXML private ComboBox userNameComboBox;
     @FXML private VBox wholeProfileVBox;
-    UserProfile currentUser;
+
+    /**
+     * List of Motivational quotes.
+     */
     private List<String> quotes = Arrays.asList(
             "To not prepare is to prepare to fail.",
             "Exercise instead of extra fries.",
@@ -76,23 +81,21 @@ public class ProfileController {
             "I already know what giving up feels like, I want to see what happens if i don't.",
             "Some days it's hard to find motivation, some days motivation finds you!",
             "Yesterday you said tomorrow, so just do it!"
-
     );
 
-
+    /**
+     * Setter method to set the GUI controller for this Scene
+     * @param app GUIController
+     */
     public void setApp(GUIController app){
         this.app = app;
     }
 
-    public void setUpScene() {
-        calendarPane.getChildren().add(new FullCalendarView(YearMonth.now()).getView());
-        recentActivitiesLabel.setVisible(false);
-        activity1HBox.setVisible(false);
-        activity2HBox.setVisible(false);
-        activity3HBox.setVisible(false);
-        distanceHBox.setVisible(false);
-        velocityHBox.setVisible(false);
-        heartRateHBox.setVisible(false);
+    /**
+     * Sets up objects that require it prior to showing the scene
+     */
+    public void setUpScene()
+    {
         confirmButton.setVisible(false);
         wholeProfileVBox.setVisible(false);
         quotesLabel.setText(quotes.get((int)(Math.random()*(quotes.size()))));
@@ -103,54 +106,48 @@ public class ProfileController {
         //userNameComboBox.setItems(usersList);
     }
 
-
-    public void setUserDetails() {
+    /**
+     * Method to correctly display all user related details for the view profile scene.
+     */
+    public void setUserDetails()
+    {
         DecimalFormat df2 = new DecimalFormat("#.##");
         setUpScene();
         wholeProfileVBox.setVisible(true);
         currentUser = app.getCurrentProfile();
         //userNameComboBox.setPromptText(currentUser.getName());
+
+        // Displays all fields in the view and edit profile area.
+        welcomeProfileLabel.setText("Welcome " + String.valueOf(currentUser.getName()) + ", Let's do it!");
         usernameTA.setText(currentUser.getName());
         genderTA.setText(currentUser.getGender());
         dobTA.setText(currentUser.getBirthDate().getDateAsString());
-        welcomeProfileLabel.setText("Welcome " + String.valueOf(currentUser.getName()) + ", Let's do it!");
         weightValueTA.setText(df2.format((currentUser.getWeight())));
         heightValueTA.setText(df2.format((currentUser.getHeight())));
         bmiValueTA.setText(df2.format((currentUser.calcBmi())) + " - " + currentUser.getBmiCategory());
 
+        // Sets up the calendar and other stats if the user has already uploaded the data to the app else all values are 0 initially.
         if (currentUser.getActivities().size() > 0) {
-//            TRIED SORTING THE ACTIVITIS BY DATETIME BUT WILL DO IT LATER.
-//            ArrayList<Activity> activities = currentUser.getActivities();
-//            ArrayList<DateTime> startTime = new ArrayList<>();
-//            ArrayList<DateTime> endTime = new ArrayList<>();
-//            for (Activity activity: activities) {
-//                startTime.add(activity.getStartDateTime());
-//                endTime.add(activity.getEndDateTime());
-//            }
-            ArrayList<Activity> activities = currentUser.getActivities();
-            activity1Text.setText(activities.get(0).getName() + ", Average Heart rate: " + activities.get(0).getHeartString() + ", Time taken: " + activities.get(0).getTotalDuration() + " seconds, Calories burned: ");
+            calendarPane.getChildren().add(new FullCalendarView(YearMonth.now(), app, this).getView());
             distanceText.setText("Total Distance Covered: " + df2.format((currentUser.getActivitiesDistance(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0)))/1000) + " km");
-            //velocityText.setText("Average Speed: " + df2.format(currentUser.getActivities().get(0).getAverageVelocity()) + " m/s");
-            velocityText.setText("Average Speed: " + df2.format(currentUser.getActivitiesSpeed(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0))) + " m/s");
-            heartRateText.setText("Average Heart Rate: " + String.valueOf((int)(currentUser.getActivities().get(0).getAverageHeartRate())) + " bpm");
+            velocityText.setText("Average Speed: " + df2.format(currentUser.getActivitiesSpeed(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0))) + " km/h");
+            heartRateText.setText("Average Heart Rate: " + String.valueOf(currentUser.getActivitiesHeartRate(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0))) + " bpm");
             recentActivitiesLabel.setVisible(true);
-            activity1HBox.setVisible(true);
             distanceHBox.setVisible(true);
             velocityHBox.setVisible(true);
             heartRateHBox.setVisible(true);
-
-            if (currentUser.getActivities().size() > 1) {
-                activity2HBox.setVisible(true);
-                activity2Text.setText(activities.get(1).getName() + ", Average Heart rate: " + (activities.get(1).getHeartString()) + ", Time taken: " + activities.get(1).getTotalDuration() + " seconds, Calories burned: ");
-                if (currentUser.getActivities().size() > 2) {
-                    activity3HBox.setVisible(true);
-                    activity3Text.setText(activities.get(2).getName() + ", Average Heart rate: " + activities.get(2).getHeartString() + ", Time taken: " + activities.get(2).getTotalDuration() + " seconds, Calories burned: ");
-                }
-            }
+        } else {
+            distanceText.setText("Total Distance Covered: 0.00 km");
+            velocityText.setText("Average Speed: 0.00 km/h");
+            heartRateText.setText("Average Heart Rate: No Data");
         }
     }
 
-    @FXML private void editProfile() {
+    /**
+     * Method to edit user's profile details. User can edit name, DOB, gender, weight and height.
+     */
+    @FXML private void editProfile()
+    {
         editProfileButton.setVisible(false);
         confirmButton.setVisible(true);
         usernameTA.setEditable(true);
@@ -160,15 +157,16 @@ public class ProfileController {
         heightValueTA.setEditable(true);
 
     }
-
-    @FXML private void confirmEdit() {
+    /**
+     * Method to save user's edited profile details. Saves the edited name, DOB, gender, weight and height if valid.
+     */
+    @FXML private void confirmEdit()
+    {
         usernameTA.setEditable(false);
         dobTA.setEditable(false);
         genderTA.setEditable(false);
         weightValueTA.setEditable(false);
         heightValueTA.setEditable(false);
-
-
 
         // Set Name and handle Exceptions
         try {
@@ -203,7 +201,7 @@ public class ProfileController {
             int monthInt = Integer.valueOf(dob.substring(3,5));
             int dayInt = Integer.valueOf(dob.substring(0,2));
             DateTime dateOfBirth = new DateTime(yearInt, monthInt, dayInt, 0, 0, 0);
-            app.getUsers().get(app.getUsers().indexOf(currentUser)).setBirthdate(dateOfBirth);
+            app.getUsers().get(app.getUsers().indexOf(currentUser)).setBirthDate(dateOfBirth);
         } catch (NullPointerException | IllegalArgumentException exception) {
             app.createPopUp(Alert.AlertType.ERROR, "Invalid Date of Birth", "Please enter a valid date: It should be in DD/MM/YYYY format." );
         }
@@ -222,7 +220,11 @@ public class ProfileController {
         setUserDetails();
     }
 
-    @FXML private void drawerAction() {
+    /**
+     * Method to draw the navigation drawer.
+     */
+    @FXML private void drawerAction()
+    {
 
         TranslateTransition openNav = new TranslateTransition(new Duration(350), drawer);
         openNav.setToX(0);
@@ -234,38 +236,65 @@ public class ProfileController {
             closeNav.play();
         }
     }
-
-    @FXML public void openChooseProfile() throws Exception {
+    /**
+     * Method to launch the login scene.
+     */
+    @FXML public void openChooseProfile() throws Exception
+    {
         moveDrawer();
         app.launchLoginScene();
     }
 
-    @FXML public void openViewProfile() throws Exception {
+    /**
+     * Method to launch the view profile scene.
+     */
+    @FXML public void openViewProfile() throws Exception
+    {
         moveDrawer();
         app.launchProfileScene();
     }
 
-    @FXML public void openUploadData() throws Exception {
+    /**
+     * Method to launch the upload data scene.
+     */
+    @FXML public void openUploadData() throws Exception
+    {
         moveDrawer();
         app.launchUploadDataScene();
     }
 
-    @FXML public void openViewActivities() throws Exception {
+    /**
+     * Method to launch the view activities scene.
+     */
+    @FXML public void openViewActivities() throws Exception
+    {
         moveDrawer();
         app.launchActivityViewerScene();
     }
 
-    @FXML public void openGoals() throws Exception {
+    /**
+     * Method to launch the goals scene.
+     */
+    @FXML public void openGoals() throws Exception
+    {
         moveDrawer();
         app.launchGoalsScene();
     }
 
-    @FXML public void openAnalysis() throws Exception {
+    /**
+     * Method to launch the data analysis scene.
+     */
+    @FXML public void openAnalysis() throws Exception
+    {
         moveDrawer();
         app.launchDataAnalysisScene();
     }
 
-    private void moveDrawer() {
+    /**
+     * Method to move the navigation drawer as appropriate.
+     */
+    private void moveDrawer()
+    {
         TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
         closeNav.setToX(-(drawer.getWidth()));
         closeNav.play();

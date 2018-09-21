@@ -13,7 +13,6 @@ import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.ActivitiesData.Route;
 import seng202.team10.Model.Exceptions.InvalidUserException;
 import seng202.team10.Model.Exceptions.UniqueNameException;
-import seng202.team10.Model.Exceptions.UserNameException;
 import seng202.team10.Model.FileOperations.FileReader;
 import seng202.team10.Model.FileOperations.FileWriter;
 import seng202.team10.Model.FileOperations.Parser;
@@ -173,11 +172,10 @@ public class GUIController extends Application{
      * Sets the scene on the primary stage to the profile scene.
      */
     public void launchProfileScene() {
-//        profileController.setUpScene();
-        profileController.setUserDetails();
+        profileController.setUpScene();
         dataWriter.saveProfile(currentUser);
+        profileController.setUserDetails();
         primaryStage.setScene(profileScene);
-
     }
 
 
@@ -365,7 +363,7 @@ public class GUIController extends Application{
     public void createUser(UserProfile newUser) throws InvalidUserException
     {
         //TODO this should be in UserProfile???
-        if (newUser.getName() != null && newUser.getWeight() != 0.0 && newUser.getHeight() != 0.0 && newUser.getBirthDate() != null && newUser.getGender() != null && newUser.getMaxHeartrate() != 0) {
+        if (newUser.getName() != null && newUser.getWeight() != 0.0 && newUser.getHeight() != 0.0 && newUser.getBirthDate() != null && newUser.getGender() != null && newUser.getMaxHeartRate() != 0) {
             users.add(newUser);
         } else {
             throw new InvalidUserException();

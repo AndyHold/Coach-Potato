@@ -30,7 +30,7 @@ public class ActivityViewerController {
     @FXML private TableColumn<Activity, String> nameColumn;
     @FXML private TableColumn<Activity, String> typeColumn;
     @FXML private TableColumn<Activity, String> starttimeColumn;
-    @FXML private TableColumn<Activity, Integer> durationColumn;
+    @FXML private TableColumn<Activity, Double> durationColumn;
     @FXML private TableColumn<Activity, Double> speedColumn;
     @FXML private TableColumn<Activity, Double> distanceColumn;
     @FXML private TableColumn<Activity, Integer> heartrateColumn;
@@ -59,9 +59,9 @@ public class ActivityViewerController {
         nameColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("name"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("typeString"));
         starttimeColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("timeString"));
-        durationColumn.setCellValueFactory(new PropertyValueFactory<Activity, Integer>("DurationString"));
-        speedColumn.setCellValueFactory(new PropertyValueFactory<Activity, Double>("SpeedString"));
-        distanceColumn.setCellValueFactory(new PropertyValueFactory<Activity, Double>("DistanceString"));
+        durationColumn.setCellValueFactory(new PropertyValueFactory<Activity, Double>("DurationMins"));
+        speedColumn.setCellValueFactory(new PropertyValueFactory<Activity, Double>("SpeedKMH"));
+        distanceColumn.setCellValueFactory(new PropertyValueFactory<Activity, Double>("DistanceKM"));
         heartrateColumn.setCellValueFactory(new PropertyValueFactory<Activity, Integer>("averageHeartRate"));
         entrynoColumn.setCellValueFactory(new PropertyValueFactory<Activity, Integer>("entryno"));
         populateTable(activities);
@@ -152,11 +152,8 @@ public class ActivityViewerController {
     }
 
 
-
-
-
     /**
-     * the menu
+     * Method to draw the navigation drawer.
      */
     @FXML private void drawerAction()
     {
@@ -171,43 +168,63 @@ public class ActivityViewerController {
             closeNav.play();
         }
     }
-
+    /**
+     * Method to launch the login scene.
+     */
     @FXML public void openChooseProfile() throws Exception
     {
         moveDrawer();
         app.launchLoginScene();
     }
 
+    /**
+     * Method to launch the view profile scene.
+     */
     @FXML public void openViewProfile() throws Exception
     {
         moveDrawer();
         app.launchProfileScene();
     }
 
+    /**
+     * Method to launch the upload data scene.
+     */
     @FXML public void openUploadData() throws Exception
     {
         moveDrawer();
         app.launchUploadDataScene();
     }
 
+    /**
+     * Method to launch the view activities scene.
+     */
     @FXML public void openViewActivities() throws Exception
     {
         moveDrawer();
         app.launchActivityViewerScene();
     }
 
+    /**
+     * Method to launch the goals scene.
+     */
     @FXML public void openGoals() throws Exception
     {
         moveDrawer();
         app.launchGoalsScene();
     }
 
+    /**
+     * Method to launch the data analysis scene.
+     */
     @FXML public void openAnalysis() throws Exception
     {
         moveDrawer();
         app.launchDataAnalysisScene();
     }
 
+    /**
+     * Method to move the navigation drawer as appropriate.
+     */
     private void moveDrawer()
     {
         TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
