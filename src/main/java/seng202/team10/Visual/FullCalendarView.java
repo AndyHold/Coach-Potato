@@ -11,6 +11,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import seng202.team10.Control.GUIController;
+import seng202.team10.Model.ActivitiesData.Activity;
+import seng202.team10.Model.ActivitiesData.DateTime;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -24,12 +27,20 @@ public class FullCalendarView {
     private VBox view;
     private Label calendarTitle;
     private YearMonth currentYearMonth;
+    private GUIController app;
+
+
+    public void setApp(GUIController app)
+    {
+        this.app = app;
+    }
 
     /**
      * Create a calendar view
      * @param yearMonth year month to create the calendar of
      */
-    public FullCalendarView(YearMonth yearMonth) {
+    public FullCalendarView(YearMonth yearMonth, GUIController app) {
+        setApp(app);
         currentYearMonth = yearMonth;
         // Create the calendar grid pane
         GridPane calendar = new GridPane();
@@ -126,6 +137,19 @@ public class FullCalendarView {
             ap.setDate(calendarDate);
             ap.setTopAnchor(txt, 10.0);
             ap.setLeftAnchor(txt, 10.0);
+
+            //LocalDate localDate = ap.getDate();
+            //DateTime dateTime = new DateTime(localDate.getYear(), localDate.getMonthValue(), localDate.getDayOfMonth(), 0, 0, 0);
+            if (app.getCurrentProfile().getActivities() != null) {
+                ArrayList<Activity> userActivities = app.getCurrentProfile().getActivities();
+                ArrayList<Activity> todayActivities = new ArrayList<>();
+                for (Activity activity: userActivities) {
+                    if (activity.getStartDateTime().getDay() == ap.getDate().getDayOfMonth()) {
+                        todayActivities.add(activity);
+                    }
+                }
+                ap.setActivities(todayActivities);
+            }
 
             if (calendarDate.getMonth() == yearMonth.getMonth()) {
                 txt.setFill(Color.WHITE);
