@@ -130,6 +130,6 @@ public class ActivityTest {
     public void calculateAverageHeartRate()
     {
         activity.calculateAverageHeartRate();
-        assertEquals("85.00", activity.getHeartString());
+        assertEquals("85", activity.getHeartString());
     }
 }
