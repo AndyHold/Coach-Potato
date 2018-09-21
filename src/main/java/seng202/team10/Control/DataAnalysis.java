@@ -152,9 +152,11 @@ public class DataAnalysis {
     /**
      * Method to find the calories burned at each point in an activity. This is based on the gender, weight, age and
      * heart rate of the user. For the not specified gender, an average of the male and female calculations are used.
+     * The total calories burned is the last index of the returned array.
      * @param activity  The activity the calories are being calculated from.
      * @param user  The user being used for the calorie calculations.
      * @return  An ArrayList<Double> that contains a sum of the calories burned at a point in time for an activity.
+     *
      */
     public ArrayList<Double> getCaloriesFromActivity(Activity activity, UserProfile user) {
         ArrayList<Integer> timeArray= getTimeFromActivity(activity);
@@ -164,22 +166,23 @@ public class DataAnalysis {
         if (user.getGender() == "Male") {
             for (int index = 0; index < activity.getEntries().size(); index++) {
                 Entry entry = activity.getEntries().get(index);
-                double calories = ((-55.0969 + (0.6309 * entry.getHeartRate()) + (0.1988 * user.getWeight()) + (0.2017 * userAge))/4.184) * 60 * timeArray.get(index)/3600;
+                double calories = ((-55.0969 + (0.6309 * entry.getHeartRate()) + (0.1988 * user.getWeight()) + (0.2017 * userAge))/4.184) * 60 * timeArray.get(index)/3600.0;
                 calorieArray.add(calories);
             }
         } else if (user.getGender() == "Female") {
             for (int index = 0; index < activity.getEntries().size(); index++) {
                 Entry entry = activity.getEntries().get(index);
-                double calories = ((-20.4022 + (0.4472 * entry.getHeartRate()) + (0.1263 * user.getWeight()) + (0.074 * userAge))/4.184) * 60 * timeArray.get(index)/3600;
+                double calories = ((-20.4022 + (0.4472 * entry.getHeartRate()) + (0.1263 * user.getWeight()) + (0.074 * userAge))/4.184) * 60 * timeArray.get(index)/3600.0;
                 calorieArray.add(calories);
             }
         } else {
             for (int index = 0; index < activity.getEntries().size(); index++) {
                 Entry entry = activity.getEntries().get(index);
-                double calories = ((-37.5 + (0.54 * entry.getHeartRate()) + (0.155 * user.getWeight()) + (0.138 * userAge))/4.184) * 60 * timeArray.get(index)/3600;
+                double calories = ((-37.5 + (0.54 * entry.getHeartRate()) + (0.155 * user.getWeight()) + (0.138 * userAge))/4.184) * 60 * timeArray.get(index)/3600.0;
                 calorieArray.add(calories);
             }
         }
+        //activities.setCaloriesBurned(calorieArray[-1]);
         return calorieArray;
     }
 
@@ -242,6 +245,24 @@ public class DataAnalysis {
 
     }
 
+    public ArrayList<Double> getMinutesFromActivity(Activity activity) {
+
+        ArrayList<Double> minutesArray = new ArrayList<>();
+        Double minutesSum = 0.0;
+        int i = 0;
+        while (i < activity.getEntries().size()-1) {
+            DateTime time1 = activity.getEntries().get(i).getTime();
+            DateTime time2 = activity.getEntries().get(i+1).getTime();
+            minutesArray.add(minutesSum);
+            minutesSum += time2.subtract(time1)/60.0;
+            System.out.println(minutesSum);
+            i++;
+        }
+        minutesArray.add(minutesSum);
+        return minutesArray;
+
+    }
+
 //    /**
 //     * Takes an arraylist of entries and fills in any missing gaps in the data for analysis.
 //     *
@@ -267,11 +288,12 @@ public class DataAnalysis {
 //        user.setHeight(80);
 //        user.setWeight(80);
 //        user.setGender("Male");
-//        user.setMaxHeartrate(170);
+//        user.setMaxHeartRate(170);
 //        DateTime birthday = new DateTime(1996, 12, 04, 0, 0, 0);
 //        user.setBirthdate(birthday);
 //        guiController.uploadDataToUser(user, "/home/cosc/student/tkl34/Desktop/SENG202/SENG202_Project/SENG202_Project/FilesToLoad/testdata.csv");
 //        ArrayList<Activity> activities = user.getActivities();
+//        dataAnalysis.getMinutesFromActivity(activities.get(0));
 //        DataAnalysis dataAnalysis = new DataAnalysis();
 //        ArrayList<Double> stressArray = new ArrayList<>();
 //        ArrayList<Integer> timeArray = dataAnalysis.getTimeFromActivity(activities.get(0));
@@ -282,4 +304,6 @@ public class DataAnalysis {
 //        }
 //        System.out.println(stressArray);
     }
+
+
 }
