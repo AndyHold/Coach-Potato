@@ -164,6 +164,7 @@ public class DataAnalysisController implements Controllable, Initializable{
 
     private void setUpOneGraph(LineChart linechart) {
         linechart.getXAxis().setLabel("Time");
+        linechart.getXAxis().setAnimated(false);
 //        NumberAxis xAxis = (NumberAxis)linechart.getXAxis();
 //        xAxis.setLowerBound();
         linechart.setCreateSymbols(false);
