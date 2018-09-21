@@ -31,7 +31,7 @@ public class DataAnalysisTest {
         user.setGender("Male");
         user.setMaxHeartRate(170);
         DateTime birthday = new DateTime(1996, 12, 04, 0, 0, 0);
-        user.setBirthdate(birthday);
+        user.setBirthDate(birthday);
         guiController.uploadDataToUser(user, "/home/cosc/student/tkl34/Desktop/SENG202/SENG202_Project/SENG202_Project/FilesToLoad/testdata.csv");
         activities = user.getActivities();
 
