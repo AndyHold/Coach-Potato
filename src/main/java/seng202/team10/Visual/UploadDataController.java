@@ -4,10 +4,7 @@ import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.VBox;
@@ -40,9 +37,11 @@ public class UploadDataController {
 
     private GUIController app;
     private Parser parser = new Parser();
+    private boolean firstTime = true;
 
 
     @FXML private TextField filePathTextField;
+    @FXML private Button browseButton;
     @FXML private TableView<Entry> manualDataTableView;
     @FXML private TableColumn<Entry, String> dateColumn;
     @FXML private TableColumn<Entry, String> timeColumn;
@@ -127,6 +126,13 @@ public class UploadDataController {
         latitudeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         longitudeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         elevationColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        filePathTextField.focusedProperty().addListener((observable,  oldValue,  newValue) -> {
+            if(newValue && firstTime){
+                browseButton.requestFocus(); // Delegate the focus to container
+                firstTime = false; // Variable value changed for future references
+            }
+        });
     }
 
 
