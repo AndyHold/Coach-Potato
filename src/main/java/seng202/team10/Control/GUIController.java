@@ -59,7 +59,11 @@ import seng202.team10.Model.UserProfile;
 import seng202.team10.Visual.*;
 
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Optional;
+=======
+import java.util.concurrent.TimeUnit;
+>>>>>>> 327730ca... Added a small delay for the map loading the first time
 
 /**
  * This is the main controller for the application. This class creates and launches scenes,
@@ -499,6 +503,16 @@ public class GUIController extends Application{
         activityViewerController.setUpScene();
         dataWriter.saveProfile(currentUser);
         primaryStage.setScene(activityViewerScene);
+    }
+
+    public void refreshMapScene(Activity activity) {
+        this.launchDataAnalysisScene();
+        try {
+            TimeUnit.MICROSECONDS.sleep(90000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        this.launchMapScene(activity);
     }
 
     /**
