@@ -72,6 +72,12 @@ public class GoalController implements Controllable {
     @FXML
     private TextArea goalTextArea2;
 
+    @FXML
+    private ListView futureGoalsListView;
+
+    @FXML
+    private Label unitsLabel;
+
     @FXML private VBox drawer;
 
 
@@ -146,14 +152,12 @@ public class GoalController implements Controllable {
             currentGoalsCombo.setVisibleRowCount(5);
 
             ObservableList<String> achievedGoalNames = FXCollections.observableArrayList(app.getCurrentProfile().getGoals().getAchievedGoalNames());
-//            ObservableList<String> achievedGoalNames = FXCollections.observableArrayList();
-//            for (String goalName : app.getCurrentProfile().getGoals().getAchievedGoalNames()) {
-//                achievedGoalNames.add(goalName);
-//            }
             achievedListView.setItems(achievedGoalNames);
-
             ObservableList<String> failedGoalNames = FXCollections.observableArrayList(app.getCurrentProfile().getGoals().getFailedGoalNames());
             failedListView.setItems(failedGoalNames);
+            ObservableList<String> futureGoalNames = FXCollections.observableArrayList(app.getCurrentProfile().getGoals().getFutureGoalNames());
+            futureGoalsListView.setItems(futureGoalNames);
+
         }
         ObservableList<String> goalTypes = FXCollections.observableArrayList("Weight", "Distance", "Frequency", "BMI", "Time");
         goalTypeCombo.setItems(goalTypes);
@@ -173,24 +177,40 @@ public class GoalController implements Controllable {
 
         String type = goalTypeCombo.getValue().toString();
         if (type == null) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Not a valid goal type");
-            alert.setContentText("Please choose a goal type");
-            alert.showAndWait();
-            validInput = false;
-        }
-        String name = goalNameEntry.getText();
-        if (!input.validGoalName(name)) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Not a valid goal name");
-            alert.setContentText("Name must be between 2 and 10 characters long");
-            alert.showAndWait();
+            app.createPopUp(Alert.AlertType.ERROR, "Invalid Goal Type", "Please choose a goal type");
             validInput = false;
         }
 
-        int target = Integer.valueOf(targetValueEntry.getText()); //TODO write a valid checking func in inputValidator and call that method from here
+        String name = goalNameEntry.getText();
+        if (!input.validGoalName(name)) {
+            app.createPopUp(Alert.AlertType.ERROR, "Invalid Goal Name", "Name must be between 2 and 10 characters long");
+            validInput = false;
+        }
+
+        int target = 0;
+        try {
+            String target1 = targetValueEntry.getText();
+            target = Integer.parseInt(target1);
+            if (!input.isValidTargetValue(type, target, app.getCurrentProfile())) {
+                app.createPopUp(Alert.AlertType.ERROR, "Invalid target", "Please choose a realistic target value that you have not already achieved");
+                validInput = false;
+            }
+        } catch (NumberFormatException e) {
+            app.createPopUp(Alert.AlertType.ERROR, "Invalid target", "Please choose a realistic target value that you have not already achieved");
+            validInput = false;
+        }
+
+//        int target = Integer.valueOf(targetValueEntry.getText());
+//        if (!input.isValidTargetValue(type, target, app.getCurrentProfile())) {
+//            Alert alert = new Alert(Alert.AlertType.ERROR);
+//            alert.setTitle("Error");
+//            alert.setHeaderText("Not a valid goal target");
+//            alert.setContentText("Please choose a realistic target value that you have not already achieved");
+//            alert.showAndWait();
+//            validInput = false;
+//        }
+
+
 
 
         int startYear = startDatePicker.getValue().getYear();
@@ -198,11 +218,7 @@ public class GoalController implements Controllable {
         int startDay = startDatePicker.getValue().getDayOfMonth();
         DateTime startDate = new DateTime(startYear, startMonth, startDay, 0, 0,0);
         if (!input.validGoalStartDate(startDate)){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Not a valid starting date");
-            alert.setContentText("Start date must be during this year or next year and cannot be in the past.");
-            alert.showAndWait();
+            app.createPopUp(Alert.AlertType.ERROR, "Invalid start date", "Start date must be during this year or next year and cannot be in the past.");
             validInput = false;
         }
 
@@ -211,11 +227,7 @@ public class GoalController implements Controllable {
         int targetDay = targetDatePicker.getValue().getDayOfMonth();
         DateTime targetDate = new DateTime(targetYear, targetMonth, targetDay, 0, 0,0);
         if (!input.validGoalTargetDate(targetDate)){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Not a valid target date");
-            alert.setContentText("Target date must be in the next 5 years and cannot be in the past.");
-            alert.showAndWait();
+            app.createPopUp(Alert.AlertType.ERROR, "Invalid target date", "Target date must be in the next 5 years and cannot be in the past.");
             validInput = false;
         }
 
@@ -228,13 +240,13 @@ public class GoalController implements Controllable {
 //        DateTime startDate = new DateTime(startYear, startMonth, startDay, 0, 0,0);
 
         if (validInput == true) {
-            if (type == "Weight") {
+            if (type.equals("Weight")) {
                 goalsInstance.createGoal(name, startDate, targetDate, type, false, 0,0, target, 0,0);
-            } else if (type == "Frequency") {
+            } else if (type.equals("Frequency")) {
                 goalsInstance.createGoal(name, startDate, targetDate, type, false, target,0, 0, 0,0);
-            } else if (type == "Distance") {
+            } else if (type.equals("Distance")) {
                 goalsInstance.createGoal(name, startDate, targetDate, type, false, 0,0, 0, target,0);
-            } else if (type == "BMI") {
+            } else if (type.equals("BMI")) {
                 goalsInstance.createGoal(name, startDate, targetDate, type, false, 0,0, 0, 0, target);
             } else { //goal must be of type Time
                 goalsInstance.createGoal(name, startDate, targetDate, type, false, 0, target, 0, 0,0);
@@ -306,87 +318,85 @@ public class GoalController implements Controllable {
 
     @FXML
     public void updateAchievedListView() {
-        String item = achievedListView.getSelectionModel().getSelectedItem().toString();
-        Goal goal = null;
-        for (Goal selectedGoal : app.getCurrentProfile().getGoals().getAchievedGoals()) {
-            if (selectedGoal.getGoalName() == item) {
-                goal = selectedGoal;
-                break;
+        if (!app.getCurrentProfile().getGoals().getFailedGoals().isEmpty()) {
+            String item = achievedListView.getSelectionModel().getSelectedItem().toString();
+            Goal goal = null;
+            for (Goal selectedGoal : app.getCurrentProfile().getGoals().getAchievedGoals()) {
+                if (selectedGoal.getGoalName() == item) {
+                    goal = selectedGoal;
+                    break;
+                }
             }
-        }
-        if (goal != null) {
-            String type = goal.getGoalType();
-            System.out.println(type);
-            typeTextField.setVisible(true);
-            startDateTextField.setVisible(true);
-            goalTextArea.setVisible(true);
-            if (type.equals("Weight")) {
-                typeTextField.setText(goal.getGoalType());
-                startDateTextField.setText(goal.getGoalStartDate().toString());
-                goalTextArea.setText("To weigh " + goal.getGoalWeight() + " kgs or less by " + goal.getGoalTargetDate());
-            } else if (type.equals("Frequency")) {
-                typeTextField.setText(goal.getGoalType());
-                startDateTextField.setText(goal.getGoalStartDate().toString());
-                goalTextArea.setText("To participate in " + goal.getGoalFrequency() + " activities by " + goal.getGoalTargetDate());
-            } else if (type.equals("Distance")) {
-                typeTextField.setText(goal.getGoalType());
-                startDateTextField.setText(goal.getGoalStartDate().toString());
-                goalTextArea.setText("To cover " + goal.getGoalDistance() + " km by " + goal.getGoalTargetDate());
-            } else if (type.equals("BMI")) {
-                typeTextField.setText(goal.getGoalType());
-                startDateTextField.setText(goal.getGoalStartDate().toString());
-                goalTextArea.setText("To have a BMI of " + goal.getGoalBmi() + " or less by " + goal.getGoalTargetDate());
-            } else { //goal must be of type Time
-                typeTextField.setText(goal.getGoalType());
-                startDateTextField.setText(goal.getGoalStartDate().toString());
-                goalTextArea.setText("To spend " + goal.getGoalTime() + " minutes exercising by " + goal.getGoalTargetDate());
+            if (goal != null) {
+                //printAchievedListView(goal);
+                printPastGoalsReview(goal, typeTextField, startDateTextField, goalTextArea);
             }
         }
 
+    }
 
+
+    public void updateFailedListView() {
+        if (!app.getCurrentProfile().getGoals().getFailedGoals().isEmpty()) {
+            String item = failedListView.getSelectionModel().getSelectedItem().toString();
+            Goal goal = null;
+            for (Goal selectedGoal : app.getCurrentProfile().getGoals().getFailedGoals()) {
+                if (selectedGoal.getGoalName() == item) {
+                    goal = selectedGoal;
+                    break;
+                }
+            }
+            if (goal != null) {
+                printPastGoalsReview(goal, typeTextField2, startDateTextField2, goalTextArea2);
+            }
+        }
+    }
+
+    public void printPastGoalsReview(Goal goal, TextField typeText, TextField startDateText, TextArea goalText) {
+        String type = goal.getGoalType();
+        typeText.setVisible(true);
+        startDateText.setVisible(true);
+        goalText.setVisible(true);
+        if (type.equals("Weight")) {
+            typeText.setText(type);
+            startDateText.setText(goal.getGoalStartDate().toString());
+            goalText.setText("To weigh " + goal.getGoalWeight() + " kgs or less by " + goal.getGoalTargetDate());
+        } else if (type.equals("Frequency")) {
+            typeText.setText(type);
+            startDateText.setText(goal.getGoalStartDate().toString());
+            goalText.setText("To participate in " + goal.getGoalFrequency() + " activities by " + goal.getGoalTargetDate());
+        } else if (type.equals("Distance")) {
+            typeText.setText(type);
+            startDateText.setText(goal.getGoalStartDate().toString());
+            goalText.setText("To cover " + goal.getGoalDistance() + " metres by " + goal.getGoalTargetDate());
+        } else if (type.equals("BMI")) {
+            typeText.setText(type);
+            startDateText.setText(goal.getGoalStartDate().toString());
+            goalText.setText("To have a BMI of " + goal.getGoalBmi() + " or less by " + goal.getGoalTargetDate());
+        } else { //goal must be of type Time
+            typeText.setText(type);
+            startDateText.setText(goal.getGoalStartDate().toString());
+            goalText.setText("To spend " + goal.getGoalTime() + " minutes exercising by " + goal.getGoalTargetDate());
+        }
     }
 
     @FXML
-    public void updateFailedListView() {
-        String item = failedListView.getSelectionModel().getSelectedItem().toString();
-        Goal goal = null;
-        for (Goal selectedGoal : app.getCurrentProfile().getGoals().getFutureGoals()) {
-            if (selectedGoal.getGoalName() == item) {
-                goal = selectedGoal;
-                break;
+    public void displayUnits() {
+        if (goalTypeCombo.getValue() != null) {
+            String type = goalTypeCombo.getValue().toString();
+            if (type.equals("Weight")) {
+                unitsLabel.setText("kgs");
+            } else if (type.equals("Frequency")) {
+                unitsLabel.setText("activities");
+            } else if (type.equals("Distance")) {
+                unitsLabel.setText("metres");
+            } else if (type.equals("BMI")) {
+                unitsLabel.setText("BMI");
+            } else if (type.equals("Time")){
+                unitsLabel.setText("seconds");
             }
         }
-        if (goal != null) {
-            printPastGoalsReview(goal);
-        }
-    }
 
-    public void printPastGoalsReview(Goal goal) {
-        String type = goal.getGoalType();
-        typeTextField2.setVisible(true);
-        startDateTextField2.setVisible(true);
-        goalTextArea2.setVisible(true);
-        if (type.equals("Weight")) {
-            typeTextField2.setText(type);
-            startDateTextField2.setText(goal.getGoalStartDate().toString());
-            goalTextArea2.setText("To weigh " + goal.getGoalWeight() + " kgs or less by " + goal.getGoalTargetDate());
-        } else if (type.equals("Frequency")) {
-            typeTextField2.setText(type);
-            startDateTextField2.setText(goal.getGoalStartDate().toString());
-            goalTextArea2.setText("To participate in " + goal.getGoalFrequency() + " activities by " + goal.getGoalTargetDate());
-        } else if (type.equals("Distance")) {
-            typeTextField2.setText(type);
-            startDateTextField2.setText(goal.getGoalStartDate().toString());
-            goalTextArea2.setText("To cover " + goal.getGoalDistance() + " km by " + goal.getGoalTargetDate());
-        } else if (type.equals("BMI")) {
-            typeTextField2.setText(type);
-            startDateTextField2.setText(goal.getGoalStartDate().toString());
-            goalTextArea2.setText("To have a BMI of " + goal.getGoalBmi() + " or less by " + goal.getGoalTargetDate());
-        } else { //goal must be of type Time
-            typeTextField2.setText(type);
-            startDateTextField2.setText(goal.getGoalStartDate().toString());
-            goalTextArea2.setText("To spend " + goal.getGoalTime() + " minutes exercising by " + goal.getGoalTargetDate());
-        }
     }
 
     @FXML private void drawerAction()
