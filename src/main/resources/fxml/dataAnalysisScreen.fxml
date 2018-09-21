@@ -27,7 +27,7 @@
                      <children>
                         <LineChart fx:id="distanceOverTime" prefHeight="474.0" prefWidth="608.0" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <xAxis>
-                            <CategoryAxis side="BOTTOM" fx:id="xAxisDT" />
+                            <NumberAxis side="BOTTOM" fx:id="xAxisDT" />
                           </xAxis>
                           <yAxis>
                             <NumberAxis fx:id="yAxisDT" side="LEFT" />
@@ -42,7 +42,7 @@
                      <children>
                         <LineChart fx:id="heartRateOverTime" prefHeight="472.0" prefWidth="608.0">
                           <xAxis>
-                            <CategoryAxis side="BOTTOM" />
+                            <NumberAxis side="BOTTOM" />
                           </xAxis>
                           <yAxis>
                             <NumberAxis side="LEFT" />
@@ -57,7 +57,7 @@
                      <children>
                         <LineChart fx:id="caloriesBurned" prefHeight="472.0" prefWidth="608.0">
                           <xAxis>
-                            <CategoryAxis side="BOTTOM" />
+                            <NumberAxis side="BOTTOM" />
                           </xAxis>
                           <yAxis>
                             <NumberAxis side="LEFT" />
@@ -73,7 +73,7 @@
                      <children>
                         <LineChart fx:id="stressLevelOverTime" prefHeight="471.0" prefWidth="614.0">
                           <xAxis>
-                            <CategoryAxis side="BOTTOM" />
+                            <NumberAxis side="BOTTOM" />
                           </xAxis>
                           <yAxis>
                             <NumberAxis side="LEFT" />
