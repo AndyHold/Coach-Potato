@@ -132,20 +132,26 @@ public class PositionTest {
         assertEquals(-429.999999, testPosition.getElevation(), 1.0E-6);
     }
 
-//    @Test
-//    public void subtract() {
-//        Position position1 = new Position(0,0,0);
-//        Position position2 = new Position(1,2,3);
-//        assertTrue(position2.subtract(position1) == Math.sqrt(14));
-//
-//    }
-//
-//    @Test
-//    public void negSubtract() {
-//
-//        Position position3 = new Position(-1,-2,-3);
-//        Position position4 = new Position(0,0,0);
-//        assertTrue(position4.subtract(position3) == Math.sqrt(14));
-//    }
+    @Test
+    public void subtract() {
+        Position position1 = new Position(30.2553368,-97.83891084,239.5);
+        Position position2 = new Position(30.25499189,-97.83913958,239);
+        assertEquals(0.044,position2.subtract(position1)/1000, 1e-2);
+    }
+
+    @Test
+    public void negSubtract() {
+
+        Position position1 = new Position(30.2553368,-97.83891084,239.5);
+        Position position2 = new Position(30.25499189,-97.83913958,239);
+        assertEquals(0.044, position1.subtract(position2)/1000, 1e-2);
+    }
+
+    @Test
+    public void toStringTest() {
+        Position position1 = new Position(30.2553368,-97.83891084,239.5);
+        String string = "Latitude: 30.2553368, Longitude: -97.83891084, Elevation: 239.5";
+        assertEquals(string, position1.toString());
+    }
 
 }

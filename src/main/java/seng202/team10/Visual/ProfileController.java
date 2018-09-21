@@ -12,7 +12,6 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 import seng202.team10.Control.DataAnalysis;
 import seng202.team10.Control.GUIController;
-import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.Exceptions.InvalidHeightException;
 import seng202.team10.Model.Exceptions.InvalidWeightException;
@@ -22,7 +21,6 @@ import seng202.team10.Model.UserProfile;
 
 import java.text.DecimalFormat;
 import java.time.YearMonth;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -190,7 +188,7 @@ public class ProfileController {
             int monthInt = Integer.valueOf(dob.substring(3,5));
             int dayInt = Integer.valueOf(dob.substring(0,2));
             DateTime dateOfBirth = new DateTime(yearInt, monthInt, dayInt, 0, 0, 0);
-            app.getUsers().get(app.getUsers().indexOf(currentUser)).setBirthdate(dateOfBirth);
+            app.getUsers().get(app.getUsers().indexOf(currentUser)).setBirthDate(dateOfBirth);
         } catch (NullPointerException | IllegalArgumentException exception) {
             app.createPopUp(Alert.AlertType.ERROR, "Invalid Date of Birth", "Please enter a valid date: It should be in DD/MM/YYYY format." );
         }

@@ -6,15 +6,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
-import org.apache.commons.lang3.ObjectUtils;
 import javafx.scene.layout.VBox;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.Exceptions.*;
 import seng202.team10.Model.UserProfile;
 
-import javax.naming.InvalidNameException;
 import java.util.Calendar;
 
 public class CreateProfileController implements Controllable
@@ -201,7 +198,7 @@ public class CreateProfileController implements Controllable
             int monthInt = Integer.valueOf(month);
             int dayInt = Integer.valueOf(day);
             DateTime dateOfBirth = new DateTime(yearInt, monthInt, dayInt, 0, 0, 0);
-            userProfile.setBirthdate(dateOfBirth);
+            userProfile.setBirthDate(dateOfBirth);
         } catch (NullPointerException | IllegalArgumentException exception) {
             dateErrorLabel.setVisible(true);
         }

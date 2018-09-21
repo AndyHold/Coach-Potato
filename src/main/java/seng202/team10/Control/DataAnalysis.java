@@ -290,7 +290,7 @@ public class DataAnalysis {
 //        user.setGender("Male");
 //        user.setMaxHeartRate(170);
 //        DateTime birthday = new DateTime(1996, 12, 04, 0, 0, 0);
-//        user.setBirthdate(birthday);
+//        user.setBirthDate(birthday);
 //        guiController.uploadDataToUser(user, "/home/cosc/student/tkl34/Desktop/SENG202/SENG202_Project/SENG202_Project/FilesToLoad/testdata.csv");
 //        ArrayList<Activity> activities = user.getActivities();
 //        dataAnalysis.getMinutesFromActivity(activities.get(0));
@@ -299,7 +299,7 @@ public class DataAnalysis {
 //        ArrayList<Integer> timeArray = dataAnalysis.getTimeFromActivity(activities.get(0));
 //        ArrayList<Integer> heartRateArray = dataAnalysis.getHeartRateFromActivity(activities.get(0));
 //        for (int i = 0; i < timeArray.size(); i++) {
-//            double stressPercent = (double)heartRateArray.get(i) / (double)user.getMaxHeartrate();
+//            double stressPercent = (double)heartRateArray.get(i) / (double)user.getMaxHeartRate();
 //            stressArray.add(stressPercent);
 //        }
 //        System.out.println(stressArray);
