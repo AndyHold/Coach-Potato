@@ -42,6 +42,7 @@ public class Activity implements Serializable {
     private DateTime endDateTime;
 
 
+
     /**
      * Constructor method for Activity Class
      * @param newName String: Name of the activity
@@ -380,32 +381,35 @@ public class Activity implements Serializable {
 
 
     /**
-     * Getter method for the Duration as a String, in minutes
+     * Getter method for the Duration, in minutes to 2DP
      * @return String
      */
-    public String getDurationString()
+    public double getDurationMins()
     {
-        return String.format("%.2f", (this.totalDuration / 60.0));
+        return Math.round((this.totalDuration / 60.0) * 100.0) / 100.0;
+        //return String.format("%.2f", );
     }
 
 
     /**
-     * Getter method for the Average Speed as a String, in KM/h
+     * Getter method for the Average Speed in KM/h to 2DP
      * @return String
      */
-    public String getSpeedString()
+    public Double getSpeedKMH()
     {
-        return String.format("%.2f", (this.averageVelocity * 3.6));
+        return Math.round((this.averageVelocity * 3.6) * 100.0) / 100.0;
+//        return String.format("%.2f", (this.averageVelocity * 3.6));
     }
 
 
     /**
-     * Getter method for the Distance as a String, in Km
+     * Getter method for the Distance as a String, in Km to 2DP
      * @return String
      */
-    public String getDistanceString()
+    public Double getDistanceKM()
     {
-        return String.format("%.2f", (this.totalDistance / 1000.0));
+        return Math.round((this.totalDistance / 1000.0) * 100.0) / 100.0;
+//        return String.format("%.2f", (this.totalDistance / 1000.0));
     }
 
 
