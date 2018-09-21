@@ -85,7 +85,7 @@ public class ProfileController {
     }
 
     public void setUpScene() {
-        calendarPane.getChildren().add(new FullCalendarView(YearMonth.now()).getView());
+//        calendarPane.getChildren().add(new FullCalendarView(YearMonth.now()).getView());
         recentActivitiesLabel.setVisible(false);
         activity1HBox.setVisible(false);
         activity2HBox.setVisible(false);
@@ -119,7 +119,7 @@ public class ProfileController {
         bmiValueTA.setText(df2.format((currentUser.calcBmi())) + " - " + currentUser.getBmiCategory());
 
         if (currentUser.getActivities().size() > 0) {
-//            TRIED SORTING THE ACTIVITIS BY DATETIME BUT WILL DO IT LATER.
+//            TRIED SORTING THE ACTIVITIES BY DATETIME BUT WILL DO IT LATER.
 //            ArrayList<Activity> activities = currentUser.getActivities();
 //            ArrayList<DateTime> startTime = new ArrayList<>();
 //            ArrayList<DateTime> endTime = new ArrayList<>();
@@ -127,6 +127,7 @@ public class ProfileController {
 //                startTime.add(activity.getStartDateTime());
 //                endTime.add(activity.getEndDateTime());
 //            }
+            calendarPane.getChildren().add(new FullCalendarView(YearMonth.now(), app).getView());
             ArrayList<Activity> activities = currentUser.getActivities();
             activity1Text.setText(activities.get(0).getName() + ", Average Heart rate: " + activities.get(0).getHeartString() + ", Time taken: " + activities.get(0).getTotalDuration() + " seconds, Calories burned: ");
             distanceText.setText("Total Distance Covered: " + df2.format((currentUser.getActivitiesDistance(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0)))/1000) + " km");
