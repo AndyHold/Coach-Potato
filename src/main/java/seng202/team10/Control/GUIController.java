@@ -83,6 +83,9 @@ public class GUIController extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception
     {
+        if(!dataReader.checkFileExists("./profiles")){
+            dataWriter.createProfileFolder();
+        }
         try {
             // Added a test user.
             users.add(new UserProfile("Potato", 75, 180, new DateTime(2000, 1, 1, 1, 1, 1), "Male"));
