@@ -47,13 +47,11 @@ public class MapController implements Controllable, Initializable{
 
     public void displayRoute(Route newRoute) {
         webEngine.getLoadWorker().stateProperty().addListener(
-                new ChangeListener<Worker.State>() {
-                    public void changed(ObservableValue ov, Worker.State oldState, Worker.State newState) {
-                        if (newState == Worker.State.SUCCEEDED) {
-                            String scriptToExecute = "displayRoute(" + newRoute.toJSONArray() + ");";
+                (ov, oldState, newState) -> {
+                    if (newState == Worker.State.SUCCEEDED) {
+                        String scriptToExecute = "displayRoute(" + newRoute.toJSONArray() + ");";
 
-                            webEngine.executeScript(scriptToExecute);
-                        }
+                        webEngine.executeScript(scriptToExecute);
                     }
                 });
 
