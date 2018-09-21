@@ -308,7 +308,7 @@ public class Activity implements Serializable {
      */
     public String getHeartString()
     {
-        return String.format("%.2f", this.averageHeartRate);
+        return String.format("%.0f", this.averageHeartRate);
     }
 
 

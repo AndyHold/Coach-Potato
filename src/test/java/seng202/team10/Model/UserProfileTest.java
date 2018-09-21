@@ -134,8 +134,8 @@ public class UserProfileTest {
     @Test
     public void obeseBMI() throws InvalidWeightException, InvalidHeightException
     {
-        testProfile.setWeight(100000);
-        testProfile.setHeight(200);
+        testProfile.setWeight(180);
+        testProfile.setHeight(100);
         String bmicat = testProfile.getBmiCategory();
         assertEquals("Obese", bmicat);
     }
