@@ -511,11 +511,19 @@ public class UserProfile implements java.io.Serializable {
     }
 
     public double getActivitiesSpeed(DateTime startDate, DateTime endDate) {
-        double sum = 0;
-        double totalDistance = getActivitiesDistance(startDate, endDate);
-        int totalTime = getActivitiesTime(startDate, endDate);
-        sum = totalDistance/totalTime;
-        return sum;
+        double averageSpeed = 0;
+        int count = 0;
+        for (Activity activity : activities) {
+            if (activity.getStartDateTime().isAfter(startDate) && activity.getEndDateTime().isBefore(endDate)) {
+                averageSpeed += activity.getAverageVelocity();
+                count++;
+            }
+        }
+        averageSpeed = averageSpeed/count;
+        System.out.println(averageSpeed);
+        System.out.println(count);
+
+        return averageSpeed;
     }
 
     public int getActivitiesFreq(DateTime startDate, DateTime endDate) {

@@ -48,6 +48,7 @@ public class MapController implements Controllable, Initializable{
 
     public void displayRoute(Route newRoute) {
         webEngine.getLoadWorker().stateProperty().addListener(
+<<<<<<< HEAD
                 new ChangeListener<Worker.State>() {
                     public void changed(ObservableValue ov, Worker.State oldState, Worker.State newState) {
                         if (newState == Worker.State.SUCCEEDED) {
@@ -58,6 +59,13 @@ public class MapController implements Controllable, Initializable{
                                 guiController.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to the internet. Please connect and try again.");
                             }
                         }
+=======
+                (ov, oldState, newState) -> {
+                    if (newState == Worker.State.SUCCEEDED) {
+                        String scriptToExecute = "displayRoute(" + newRoute.toJSONArray() + ");";
+
+                        webEngine.executeScript(scriptToExecute);
+>>>>>>> 216b75b3... 1) Fixed one of the git issues assigned to me - the average speed on the profile screen. 2) Fixed the calendar and made it look bigger, still need to add activities to it and also goals if time permits.
                     }
                 });
 
