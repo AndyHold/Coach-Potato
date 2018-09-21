@@ -348,12 +348,15 @@ public class GUIController extends Application{
      * Sets the scene on the primary stage to the profile scene.
      */
     public void launchProfileScene() {
-//        profileController.setUpScene();
-        profileController.setUserDetails();
+        profileController.setUpScene();
         dataWriter.saveProfile(currentUser);
+        profileController.setUserDetails();
         primaryStage.setScene(profileScene);
+<<<<<<< HEAD
 
 <<<<<<< HEAD
+=======
+>>>>>>> 34b35cb9... Fixed and refactored lot of code to finish the profile screen, calendar implementation. Also fixed couple of GUI errors on profile screen by manual testing.
     }
 <<<<<<< HEAD
 <<<<<<< HEAD
