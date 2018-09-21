@@ -34,17 +34,17 @@ public class FullCalendarView {
         // Create the calendar grid pane
         GridPane calendar = new GridPane();
         calendar.setStyle("-fx-background-color: #F06292");
-        calendar.setPrefSize(280, 240);
-        calendar.setMaxSize(280, 240);
-        calendar.setMinSize(280, 240);
+        calendar.setPrefSize(490, 420);
+        calendar.setMaxSize(490, 420);
+        calendar.setMinSize(490, 420);
         calendar.setGridLinesVisible(true);
         // Create rows and columns with anchor panes for the calendar
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 7; j++) {
                 AnchorPaneNode ap = new AnchorPaneNode();
-                ap.setPrefSize(40, 40);
-                ap.setMaxSize(40, 40);
-                ap.setMinSize(40, 40);
+                ap.setPrefSize(70, 70);
+                ap.setMaxSize(70, 70);
+                ap.setMinSize(70, 70);
                 calendar.add(ap,j,i);
                 allCalendarDays.add(ap);
             }
@@ -55,16 +55,16 @@ public class FullCalendarView {
                                         new Text(" Sat") };
         GridPane dayLabels = new GridPane();
         dayLabels.setStyle("-fx-background-color: #F06292");
-        dayLabels.setPrefWidth(280);
-        dayLabels.setMaxWidth(280);
-        dayLabels.setMinWidth(280);
+        dayLabels.setPrefWidth(490);
+        dayLabels.setMaxWidth(490);
+        dayLabels.setMinWidth(490);
         dayLabels.setGridLinesVisible(true);
         Integer col = 0;
         for (Text txt : dayNames) {
             AnchorPane ap = new AnchorPane();
-            ap.setPrefSize(40, 20);
-            ap.setMaxSize(40, 20);
-            ap.setMinSize(40, 20);
+            ap.setPrefSize(70, 20);
+            ap.setMaxSize(70, 20);
+            ap.setMinSize(70, 20);
             txt.setTextAlignment(TextAlignment.CENTER);
             ap.setTopAnchor(txt, 0.0);
             ap.setLeftAnchor(txt, 0.0);
