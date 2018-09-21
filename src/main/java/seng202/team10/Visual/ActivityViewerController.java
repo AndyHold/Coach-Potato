@@ -25,6 +25,7 @@ public class ActivityViewerController {
     @FXML private DatePicker startDate;
     @FXML private DatePicker endDate;
     @FXML private Button filterApplyButton;
+    @FXML private Button clearFiltersButton;
     @FXML private TableView<Activity> activitiesTableView;
     @FXML private TableColumn<Activity, String> nameColumn;
     @FXML private TableColumn<Activity, String> typeColumn;
@@ -41,7 +42,8 @@ public class ActivityViewerController {
     /**
      * Sets up objects that require it prior to showing the scene
      */
-    public void setUpScene() {
+    public void setUpScene()
+    {
         ObservableList<String> types = FXCollections.observableArrayList();
         types.add("All");
         types.add("Walk");
@@ -67,10 +69,11 @@ public class ActivityViewerController {
     }
 
     /**
-     * fills the table with the activities to display. used by setUpScene as well as applyFilter
+     * method to fill the table with the activities to display. used by setUpScene as well as applyFilter
      * @param displayActivities the arraylist of activity objects to be displayed in the table
      */
-    private void populateTable(ObservableList<Activity> displayActivities){
+    private void populateTable(ObservableList<Activity> displayActivities)
+    {
         activitiesTableView.setItems(displayActivities);
 //        nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 //        starttimeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -85,7 +88,8 @@ public class ActivityViewerController {
     /**
      * Method to update table with activities between the two datepickers and of matching type when the filterApplyButton is pressed
      */
-    @FXML public void applyFilter(){
+    @FXML public void applyFilter()
+    {
         ArrayList<Activity> dateFiltered = new ArrayList<>();
         LocalDate lowerDate = startDate.getValue();
         LocalDate upperDate = endDate.getValue();
@@ -112,15 +116,26 @@ public class ActivityViewerController {
     }
 
 
-    //TODO add a button to clear filters
+    /**
+     * Method to reload the full table and clear filter selection when the clearFiltersButton is pressed
+     */
+    @FXML public void clearFilters()
+    {
+        ObservableList<Activity> activities = FXCollections.observableArrayList(app.getCurrentProfile().getActivities());
+        populateTable(activities);
+        typeSelect.setValue(null);
+        startDate.setValue(null);
+        endDate.setValue(null);
+
+    }
 
     /**
-     * opens the entryViewer screen with the selected activity when the entryViewerButton is pressed
+     * method to open the entryViewer screen with the selected activity when the entryViewerButton is pressed
      */
-    @FXML public void openEntries() throws Exception{
+    @FXML public void openEntries() throws Exception
+    {
         if(activitiesTableView.getSelectionModel().getSelectedItem() != null) {
             app.launchEntryViewerScene(activitiesTableView.getSelectionModel().getSelectedItem());
-//            app.launchEntryViewerScene(app.getCurrentProfile().getActivities().get(activitiesTableView.getSelectionModel().getSelectedIndex())); //wont work with filtered table, change back
         } else {
             app.createPopUp(Alert.AlertType.ERROR, "Error", "Please select an Activity first");
         }
@@ -143,7 +158,8 @@ public class ActivityViewerController {
     /**
      * the menu
      */
-    @FXML private void drawerAction() {
+    @FXML private void drawerAction()
+    {
 
         TranslateTransition openNav = new TranslateTransition(new Duration(350), drawer);
         openNav.setToX(0);
@@ -156,37 +172,44 @@ public class ActivityViewerController {
         }
     }
 
-    @FXML public void openChooseProfile() throws Exception {
+    @FXML public void openChooseProfile() throws Exception
+    {
         moveDrawer();
         app.launchLoginScene();
     }
 
-    @FXML public void openViewProfile() throws Exception {
+    @FXML public void openViewProfile() throws Exception
+    {
         moveDrawer();
         app.launchProfileScene();
     }
 
-    @FXML public void openUploadData() throws Exception {
+    @FXML public void openUploadData() throws Exception
+    {
         moveDrawer();
         app.launchUploadDataScene();
     }
 
-    @FXML public void openViewActivities() throws Exception {
+    @FXML public void openViewActivities() throws Exception
+    {
         moveDrawer();
         app.launchActivityViewerScene();
     }
 
-    @FXML public void openGoals() throws Exception {
+    @FXML public void openGoals() throws Exception
+    {
         moveDrawer();
         app.launchGoalsScene();
     }
 
-    @FXML public void openAnalysis() throws Exception {
+    @FXML public void openAnalysis() throws Exception
+    {
         moveDrawer();
         app.launchDataAnalysisScene();
     }
 
-    private void moveDrawer() {
+    private void moveDrawer()
+    {
         TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
         closeNav.setToX(-(drawer.getWidth()));
         closeNav.play();

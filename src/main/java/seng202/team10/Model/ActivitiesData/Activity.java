@@ -144,7 +144,6 @@ public class Activity implements Serializable {
 
     /**
      * Setter method for after Entries have been loaded to the Activity
-     * TODO add this method whenever Activities are modified.
      */
     public void postEntriesSetUp()
     {
@@ -269,6 +268,46 @@ public class Activity implements Serializable {
     public String getTimeString()
     {
         return this.startDateTime.toString();
+    }
+
+
+//    /**
+//     * Getter method for the Duration as a String, in minutes
+//     * @return String
+//     */
+//    public String getDurationString()
+//    {
+//        return String.format("%.2f", (this.totalDuration / 60.0));
+//    }
+//
+//
+//    /**
+//     * Getter method for the Average Speed as a String, in KM/h
+//     * @return String
+//     */
+//    public String getSpeedString()
+//    {
+//        return String.format("%.2f", (this.averageVelocity * 3.6));
+//    }
+//
+//
+//    /**
+//     * Getter method for the Distance as a String, in Km
+//     * @return String
+//     */
+//    public String getDistanceString()
+//    {
+//        return String.format("%.2f", (this.totalDistance / 1000.0));
+//    }
+
+
+    /**
+     * Getter method for the Average Heart Rate as a String
+     * @return String
+     */
+    public String getHeartString()
+    {
+        return String.format("%.0f", this.averageHeartRate);
     }
 
 

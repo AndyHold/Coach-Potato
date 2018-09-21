@@ -11,14 +11,17 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import seng202.team10.Control.GUIController;
+import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.Exceptions.InvalidHeightException;
 import seng202.team10.Model.Exceptions.InvalidWeightException;
+import seng202.team10.Model.Exceptions.UniqueNameException;
 import seng202.team10.Model.Exceptions.UserNameException;
 import seng202.team10.Model.UserProfile;
 
 import java.text.DecimalFormat;
 import java.time.YearMonth;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -102,7 +105,7 @@ public class ProfileController {
 
 
     public void setUserDetails() {
-        DecimalFormat df2 = new DecimalFormat(".##");
+        DecimalFormat df2 = new DecimalFormat("#.##");
         setUpScene();
         wholeProfileVBox.setVisible(true);
         currentUser = app.getCurrentProfile();
@@ -116,9 +119,19 @@ public class ProfileController {
         bmiValueTA.setText(df2.format((currentUser.calcBmi())) + " - " + currentUser.getBmiCategory());
 
         if (currentUser.getActivities().size() > 0) {
-            activity1Text.setText(currentUser.getActivities().get(0).getName());
-            distanceText.setText("Total Distance Covered: " + df2.format(currentUser.getActivities().get(0).getTotalDistance()/1000) + " km");
-            velocityText.setText("Average Speed: " + df2.format(currentUser.getActivities().get(0).getAverageVelocity()) + " m/s");
+//            TRIED SORTING THE ACTIVITIS BY DATETIME BUT WILL DO IT LATER.
+//            ArrayList<Activity> activities = currentUser.getActivities();
+//            ArrayList<DateTime> startTime = new ArrayList<>();
+//            ArrayList<DateTime> endTime = new ArrayList<>();
+//            for (Activity activity: activities) {
+//                startTime.add(activity.getStartDateTime());
+//                endTime.add(activity.getEndDateTime());
+//            }
+            ArrayList<Activity> activities = currentUser.getActivities();
+            activity1Text.setText(activities.get(0).getName() + ", Average Heart rate: " + activities.get(0).getHeartString() + ", Time taken: " + activities.get(0).getTotalDuration() + " seconds, Calories burned: ");
+            distanceText.setText("Total Distance Covered: " + df2.format((currentUser.getActivitiesDistance(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0)))/1000) + " km");
+            //velocityText.setText("Average Speed: " + df2.format(currentUser.getActivities().get(0).getAverageVelocity()) + " m/s");
+            velocityText.setText("Average Speed: " + df2.format(currentUser.getActivitiesSpeed(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0))) + " m/s");
             heartRateText.setText("Average Heart Rate: " + String.valueOf((int)(currentUser.getActivities().get(0).getAverageHeartRate())) + " bpm");
             recentActivitiesLabel.setVisible(true);
             activity1HBox.setVisible(true);
@@ -128,10 +141,10 @@ public class ProfileController {
 
             if (currentUser.getActivities().size() > 1) {
                 activity2HBox.setVisible(true);
-                activity2Text.setText(currentUser.getActivities().get(1).getName());
+                activity2Text.setText(activities.get(1).getName() + ", Average Heart rate: " + (activities.get(1).getHeartString()) + ", Time taken: " + activities.get(1).getTotalDuration() + " seconds, Calories burned: ");
                 if (currentUser.getActivities().size() > 2) {
                     activity3HBox.setVisible(true);
-                    activity3Text.setText(currentUser.getActivities().get(2).getName());
+                    activity3Text.setText(activities.get(2).getName() + ", Average Heart rate: " + activities.get(2).getHeartString() + ", Time taken: " + activities.get(2).getTotalDuration() + " seconds, Calories burned: ");
                 }
             }
         }
@@ -159,9 +172,15 @@ public class ProfileController {
 
         // Set Name and handle Exceptions
         try {
-            app.getUsers().get(app.getUsers().indexOf(currentUser)).setName(usernameTA.getText());
-        } catch (UserNameException | IllegalArgumentException exception) {
-            app.createPopUp(Alert.AlertType.ERROR, "Invalid Username", "Please enter a valid username: It should be less than 50 characters and only contain alphanumeric characters." );
+            String nameString = usernameTA.getText();
+            app.checkUniqueName(nameString);
+            try {
+                app.getUsers().get(app.getUsers().indexOf(currentUser)).setName(nameString);
+            } catch (UserNameException | IllegalArgumentException exception) {
+                app.createPopUp(Alert.AlertType.ERROR, "Invalid Username", "Please enter a valid username: It should be less than 50 characters and only contain alphanumeric characters." );
+            }
+        } catch (UniqueNameException | IllegalArgumentException exception) {
+            app.createPopUp(Alert.AlertType.ERROR, "Invalid Username", "Please enter a valid username: This username already exists." );
         }
         // Set weight and handle exceptions
         try {

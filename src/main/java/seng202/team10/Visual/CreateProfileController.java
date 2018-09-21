@@ -165,8 +165,13 @@ public class CreateProfileController implements Controllable
         try {
             String nameString =  getTextFieldString(nameEntry);
             this.app.checkUniqueName(nameString);
-            userProfile.setName(nameString);
-        } catch (UserNameException | IllegalArgumentException exception) {
+            try {
+                userProfile.setName(nameString);
+            } catch (UserNameException | IllegalArgumentException exception) {
+                nameErrorLabel.setVisible(true);
+            }
+        } catch (UniqueNameException | IllegalArgumentException exception) {
+            nameErrorLabel.setText("This username already exists.");
             nameErrorLabel.setVisible(true);
         }
 

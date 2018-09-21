@@ -1,8 +1,6 @@
 package seng202.team10.Model;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.Exceptions.InvalidHeightException;
 import seng202.team10.Model.Exceptions.InvalidWeightException;
@@ -133,8 +131,8 @@ public class UserProfileTest {
     @Test
     public void obeseBMI() throws InvalidWeightException, InvalidHeightException
     {
-        testProfile.setWeight(250);
-        testProfile.setHeight(200);
+        testProfile.setWeight(180);
+        testProfile.setHeight(100);
         String bmicat = testProfile.getBmiCategory();
         assertEquals("Obese", bmicat);
     }

@@ -12,6 +12,7 @@ import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.ActivitiesData.Route;
 import seng202.team10.Model.Exceptions.InvalidUserException;
+import seng202.team10.Model.Exceptions.UniqueNameException;
 import seng202.team10.Model.Exceptions.UserNameException;
 import seng202.team10.Model.FileOperations.FileReader;
 import seng202.team10.Model.FileOperations.FileWriter;
@@ -21,6 +22,7 @@ import seng202.team10.Visual.*;
 
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 /**
  * This is the main controller for the application. This class creates and launches scenes,
@@ -83,6 +85,9 @@ public class GUIController extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception
     {
+        if(!dataReader.checkFileExists("./profiles")){
+            dataWriter.createProfileFolder();
+        }
         try {
             // Added a test user.
             users.add(new UserProfile("Potato", 75, 180, new DateTime(2000, 1, 1, 1, 1, 1), "Male"));
@@ -176,11 +181,11 @@ public class GUIController extends Application{
     }
 
 
-    public void checkUniqueName(String userName) throws UserNameException
+    public void checkUniqueName(String userName) throws UniqueNameException
     {
         for (UserProfile userProfile: this.getUsers()) {
-            if (userProfile.getName() == userName) {
-                throw new UserNameException();
+            if (userProfile.getName().equals(userName)) {
+                throw new UniqueNameException();
             }
         }
     }
@@ -248,6 +253,16 @@ public class GUIController extends Application{
         activityViewerController.setUpScene();
         dataWriter.saveProfile(currentUser);
         primaryStage.setScene(activityViewerScene);
+    }
+
+    public void refreshMapScene(Activity activity) {
+        this.launchDataAnalysisScene();
+        try {
+            TimeUnit.MICROSECONDS.sleep(90000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        this.launchMapScene(activity);
     }
 
     /**
