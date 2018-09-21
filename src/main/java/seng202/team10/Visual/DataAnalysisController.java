@@ -183,19 +183,11 @@ public class DataAnalysisController implements Controllable, Initializable{
         if (!(activity == null)) {
             guiController.launchMapScene(activity);
         } else {
-            createPopUp(Alert.AlertType.ERROR, "Error", "Please select an activity.");
+            this.guiController.createPopUp(Alert.AlertType.ERROR, "Error", "Please select an activity.");
         }
 
     }
 
-    private void createPopUp(Alert.AlertType type, String title, String message)
-    {
-        Alert errorPopUp = new Alert(type);
-        errorPopUp.setTitle(title);
-        errorPopUp.setContentText(message);
-        errorPopUp.setHeaderText(null);
-        errorPopUp.showAndWait();
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

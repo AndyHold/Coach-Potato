@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import seng202.team10.Model.ActivitiesData.Activity;
@@ -58,6 +59,7 @@ import seng202.team10.Model.UserProfile;
 import seng202.team10.Visual.*;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 /**
  * This is the main controller for the application. This class creates and launches scenes,
@@ -850,12 +852,13 @@ public class GUIController extends Application{
      * @param title String: Title of pop up window
      * @param message String: Message to display to user
      */
-    public void createPopUp(Alert.AlertType type, String title, String message)
+    public String createPopUp(Alert.AlertType type, String title, String message)
     {
         Alert errorPopUp = new Alert(type);
         errorPopUp.setTitle(title);
         errorPopUp.setContentText(message);
         errorPopUp.setHeaderText(null);
-        errorPopUp.showAndWait();
+        Optional<ButtonType> buttonType = errorPopUp.showAndWait();
+        return buttonType.get().getText();
     }
 }

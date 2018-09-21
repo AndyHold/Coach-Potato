@@ -17,14 +17,18 @@ public class Activity implements Serializable {
     private DateTime startDateTime;
 <<<<<<< HEAD
     private Double averageVelocity = 0.0;
+<<<<<<< HEAD
     private Double averageHeartRate = 0.0;
 =======
     private Double averageVelocity;
     private Double averageHeartRate;
 >>>>>>> f5a854f6... Fixing Calculation of total distance and total duration
+=======
+    private int averageHeartRate;
+>>>>>>> c3a876d4... Implemented a try catch block for no internet access and a pop up to display the error.
     private Double totalDistance = 0.0;
     private ArrayList<Entry> entries = new ArrayList<>();
-    private int totalDuration = 0;
+    private int totalDuration;
     private ActivityType type;
     private DateTime endDateTime;
 
@@ -133,7 +137,7 @@ public class Activity implements Serializable {
             totalHeartRate += entry.getHeartRate();
             count++;
         }
-        this.averageHeartRate = (totalHeartRate / count);
+        this.averageHeartRate = (int) Math.round(totalHeartRate / count);
     }
 
 
@@ -307,52 +311,12 @@ public class Activity implements Serializable {
 
 
     /**
-     * Getter method for the Duration as a String
-     * @return String
-     */
-    public String getDurationString()
-    {
-        return String.valueOf(this.totalDuration);
-    }
-
-
-    /**
-     * Getter method for the Average Speed as a String
-     * @return String
-     */
-    public String getSpeedString()
-    {
-        return String.format("%.2f", this.averageVelocity);
-    }
-
-
-    /**
-     * Getter method for the Distance as a String
-     * @return String
-     */
-    public String getDistanceString()
-    {
-        return String.format("%.2f", this.totalDistance);
-    }
-
-
-    /**
-     * Getter method for the Average Heart Rate as a String
-     * @return String
-     */
-    public String getHeartString()
-    {
-        return String.format("%.2f", this.averageHeartRate);
-    }
-
-
-    /**
      * Getter method for the Number of Entries as a String
      * @return String
      */
-    public String getEntrynoString()
+    public int getEntryno()
     {
-        return String.valueOf(this.entries.size());
+        return this.entries.size();
     }
 
 

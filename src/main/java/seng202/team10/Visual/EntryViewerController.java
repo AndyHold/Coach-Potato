@@ -75,8 +75,6 @@ public class EntryViewerController {
     }
 
 
-
-
     /**
      * Method to change the time of an Entry when it is modified in the TableView
      * @param editedCell TableColumn.CellEditEvent: Cell edited by the user
