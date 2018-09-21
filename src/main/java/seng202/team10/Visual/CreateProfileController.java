@@ -8,11 +8,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import javafx.scene.layout.HBox;
 >>>>>>> 5997e6c... Finished Implementing new Login Screen Layout.
 import org.apache.commons.lang3.ObjectUtils;
 =======
+=======
+>>>>>>> 4d39bd8... Wrote some more tests for Activity, Entry, Position classes and JavaDocs for those classes.
 import javafx.scene.layout.VBox;
 >>>>>>> 472482d... Now the cursor is not focused on the name field on create profile screen.
 import seng202.team10.Control.GUIController;
@@ -20,7 +23,6 @@ import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.Exceptions.*;
 import seng202.team10.Model.UserProfile;
 
-import javax.naming.InvalidNameException;
 import java.util.Calendar;
 
 public class CreateProfileController implements Controllable
@@ -225,7 +227,7 @@ public class CreateProfileController implements Controllable
             int monthInt = Integer.valueOf(month);
             int dayInt = Integer.valueOf(day);
             DateTime dateOfBirth = new DateTime(yearInt, monthInt, dayInt, 0, 0, 0);
-            userProfile.setBirthdate(dateOfBirth);
+            userProfile.setBirthDate(dateOfBirth);
         } catch (NullPointerException | IllegalArgumentException exception) {
             dateErrorLabel.setVisible(true);
         }

@@ -17,7 +17,7 @@ Package::Model
 -activities: Activities
 -weight: Double
 -height: Double
--birthdate: Date
+-birthDate: Date
 -goals: Goals
 -calendar: Calendar
 -bmi: double

@@ -340,6 +340,7 @@ public class Activity implements Serializable {
     /**
      * Getter method for the Time as a String
      * @return String
+     * TODO do you want just time string or Date time string??? If you change it then change the test accordingly.
      */
     public String getTimeString()
     {

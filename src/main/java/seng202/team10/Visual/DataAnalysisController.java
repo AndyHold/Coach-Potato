@@ -131,7 +131,7 @@ public class DataAnalysisController implements Controllable, Initializable{
 
             ArrayList<Double> stressArray = new ArrayList<>();
             for (int i = 0; i < timeArray.size(); i++) {
-                double stressPercent = (double)heartRateArray.get(i)/(double)currentProfile.getMaxHeartrate();
+                double stressPercent = (double)heartRateArray.get(i)/(double)currentProfile.getMaxHeartRate();
                 stressArray.add(stressPercent);
                 stressLevelTimeSeries.getData().add(new XYChart.Data(timeArray.get(i), stressArray.get(i)));
             }

@@ -18,7 +18,7 @@ public class Position  implements Serializable {
     private double elevation;
 
 
-    /** Constructor method for Position Class
+    /** Constructor method for Position Class.
      * @param latitude double: Latitude for this position
      * @param longitude double: Longitude for this position
      * @param elevation double: Elevation for this position
@@ -113,7 +113,6 @@ public class Position  implements Serializable {
      */
     public double subtract(Position position)
     {
-        //TODO Change this to calculate in meters
         final double radiusOfEarth = 6371e3;
         double latitudeDifference = Math.toRadians(position.getLatitude()) - Math.toRadians(this.latitude);
         double longitudeDifference = Math.toRadians(position.getLongitude()) - Math.toRadians(this.longitude);
@@ -129,31 +128,12 @@ public class Position  implements Serializable {
         return realDistance;
     }
 
-//    /**
-//     * Subtract method calculates the distance between two positions.
-//     * @param position: double
-//     * @return distance: double
-//     */
-//    public double subtract(Position position)
-//    {
-//        final double radius = 6376.5 * 1000;
-//
-//        double polarX1 = this.elevation * cos(Math.toRadians(this.latitude)) * sin(Math.toRadians(this.longitude));
-//        double polarY1 = this.elevation * sin(Math.toRadians(this.latitude));
-//        double polarZ1 = this.elevation * cos(Math.toRadians(this.latitude)) * cos(Math.toRadians(this.longitude));
-//
-//        double polarX2 = (position.getElevation()) * cos(Math.toRadians(position.getLatitude())) * sin(Math.toRadians(position.getLongitude()));
-//        double polarY2 = (position.getElevation()) * sin(Math.toRadians(position.getLatitude()));
-//        double polarZ2 = (position.getElevation()) * cos(Math.toRadians(position.getLatitude())) * cos(Math.toRadians(position.getLongitude()));
-//
-//        double polarXDifference = polarX2 - polarX1;
-//        double polarYDifference = polarY2 - polarY1;
-//        double polarZDifference = polarZ2 - polarZ1;
-//        return sqrt(pow(polarXDifference, 2) + pow(polarYDifference, 2) + pow(polarZDifference, 2));
-//    }
-
+    /**
+     * Method to print a Position as a string.
+     * @return string
+     */
     public String toString()
     {
-        return ("Latitude: " + this.latitude + ". Longitude: " + this.longitude + ". Elevation: " + this.elevation);
+        return ("Latitude: " + this.latitude + ", Longitude: " + this.longitude + ", Elevation: " + this.elevation);
     }
 }
