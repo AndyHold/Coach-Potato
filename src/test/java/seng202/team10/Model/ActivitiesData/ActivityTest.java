@@ -110,7 +110,11 @@ public class ActivityTest {
         assertEquals(177.68, activity.getTotalDistance(), 0.01);
 =======
         assertEquals("0.18", activity.getDistanceString());
+<<<<<<< HEAD
 >>>>>>> 5134d2c1... making units on activityviewer better by changing toString methods, and appropriate tests
+=======
+>>>>>>> 92da298... making units on activityviewer better by changing toString methods, and appropriate tests
+>>>>>>> 7a3f71e2... making units on activityviewer better by changing toString methods, and appropriate tests
     }
 
 
@@ -122,7 +126,11 @@ public class ActivityTest {
         assertEquals(50, activity.getTotalDuration());
 =======
         assertEquals("0.83", activity.getDurationString());
+<<<<<<< HEAD
 >>>>>>> 5134d2c1... making units on activityviewer better by changing toString methods, and appropriate tests
+=======
+>>>>>>> 92da298... making units on activityviewer better by changing toString methods, and appropriate tests
+>>>>>>> 7a3f71e2... making units on activityviewer better by changing toString methods, and appropriate tests
     }
 
     @Test
@@ -135,7 +143,11 @@ public class ActivityTest {
         assertEquals(3.55, activity.getAverageVelocity(), 0.01);
 =======
         assertEquals("12.79", activity.getSpeedString());
+<<<<<<< HEAD
 >>>>>>> 5134d2c1... making units on activityviewer better by changing toString methods, and appropriate tests
+=======
+>>>>>>> 92da298... making units on activityviewer better by changing toString methods, and appropriate tests
+>>>>>>> 7a3f71e2... making units on activityviewer better by changing toString methods, and appropriate tests
     }
 
     @Test

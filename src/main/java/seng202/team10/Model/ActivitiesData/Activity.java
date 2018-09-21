@@ -286,7 +286,11 @@ public class Activity implements Serializable {
 =======
      * Getter method for the Duration as a String, in minutes
      * @return String
+<<<<<<< HEAD
 >>>>>>> 5134d2c1... making units on activityviewer better by changing toString methods, and appropriate tests
+=======
+>>>>>>> 92da298... making units on activityviewer better by changing toString methods, and appropriate tests
+>>>>>>> 7a3f71e2... making units on activityviewer better by changing toString methods, and appropriate tests
      */
     public double getAverageHeartRate()
     {
@@ -294,7 +298,11 @@ public class Activity implements Serializable {
         return this.averageHeartRate;
 =======
         return String.format("%.2f", (this.totalDuration / 60.0));
+<<<<<<< HEAD
 >>>>>>> 5134d2c1... making units on activityviewer better by changing toString methods, and appropriate tests
+=======
+>>>>>>> 92da298... making units on activityviewer better by changing toString methods, and appropriate tests
+>>>>>>> 7a3f71e2... making units on activityviewer better by changing toString methods, and appropriate tests
     }
 
 
@@ -305,7 +313,11 @@ public class Activity implements Serializable {
 =======
      * Getter method for the Average Speed as a String, in KM/h
      * @return String
+<<<<<<< HEAD
 >>>>>>> 5134d2c1... making units on activityviewer better by changing toString methods, and appropriate tests
+=======
+>>>>>>> 92da298... making units on activityviewer better by changing toString methods, and appropriate tests
+>>>>>>> 7a3f71e2... making units on activityviewer better by changing toString methods, and appropriate tests
      */
     public ArrayList<Entry> getEntries()
     {
@@ -313,7 +325,11 @@ public class Activity implements Serializable {
         return this.entries;
 =======
         return String.format("%.2f", (this.averageVelocity * 3.6));
+<<<<<<< HEAD
 >>>>>>> 5134d2c1... making units on activityviewer better by changing toString methods, and appropriate tests
+=======
+>>>>>>> 92da298... making units on activityviewer better by changing toString methods, and appropriate tests
+>>>>>>> 7a3f71e2... making units on activityviewer better by changing toString methods, and appropriate tests
     }
 
 
@@ -324,7 +340,11 @@ public class Activity implements Serializable {
 =======
      * Getter method for the Distance as a String, in Km
      * @return String
+<<<<<<< HEAD
 >>>>>>> 5134d2c1... making units on activityviewer better by changing toString methods, and appropriate tests
+=======
+>>>>>>> 92da298... making units on activityviewer better by changing toString methods, and appropriate tests
+>>>>>>> 7a3f71e2... making units on activityviewer better by changing toString methods, and appropriate tests
      */
     public ActivityType getType()
     {
@@ -332,7 +352,11 @@ public class Activity implements Serializable {
         return this.type;
 =======
         return String.format("%.2f", (this.totalDistance / 1000.0));
+<<<<<<< HEAD
 >>>>>>> 5134d2c1... making units on activityviewer better by changing toString methods, and appropriate tests
+=======
+>>>>>>> 92da298... making units on activityviewer better by changing toString methods, and appropriate tests
+>>>>>>> 7a3f71e2... making units on activityviewer better by changing toString methods, and appropriate tests
     }
 
 
