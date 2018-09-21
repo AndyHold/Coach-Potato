@@ -28,6 +28,7 @@ public class ProfileController {
 
     private GUIController app;
     private DataAnalysis dataAnalysis = new DataAnalysis();
+    UserProfile currentUser;
 
     @FXML Pane calendarPane;
     @FXML private Label welcomeProfileLabel;
@@ -57,7 +58,10 @@ public class ProfileController {
     @FXML private VBox drawer;
     @FXML private ComboBox userNameComboBox;
     @FXML private VBox wholeProfileVBox;
-    UserProfile currentUser;
+
+    /**
+     * List of Motivational quotes.
+     */
     private List<String> quotes = Arrays.asList(
             "To not prepare is to prepare to fail.",
             "Exercise instead of extra fries.",
@@ -77,23 +81,21 @@ public class ProfileController {
             "I already know what giving up feels like, I want to see what happens if i don't.",
             "Some days it's hard to find motivation, some days motivation finds you!",
             "Yesterday you said tomorrow, so just do it!"
-
     );
 
-
+    /**
+     * Setter method to set the GUI controller for this Scene
+     * @param app GUIController
+     */
     public void setApp(GUIController app){
         this.app = app;
     }
 
-    public void setUpScene() {
-//        recentActivitiesLabel.setVisible(false);
-//        dailyStatsLabel.setVisible(false);
-//        activity1HBox.setVisible(false);
-//        activity2HBox.setVisible(false);
-//        activity3HBox.setVisible(false);
-//        distanceHBox.setVisible(false);
-//        velocityHBox.setVisible(false);
-//        heartRateHBox.setVisible(false);
+    /**
+     * Sets up objects that require it prior to showing the scene
+     */
+    public void setUpScene()
+    {
         confirmButton.setVisible(false);
         wholeProfileVBox.setVisible(false);
         quotesLabel.setText(quotes.get((int)(Math.random()*(quotes.size()))));
@@ -104,21 +106,27 @@ public class ProfileController {
         //userNameComboBox.setItems(usersList);
     }
 
-
-    public void setUserDetails() {
+    /**
+     * Method to correctly display all user related details for the view profile scene.
+     */
+    public void setUserDetails()
+    {
         DecimalFormat df2 = new DecimalFormat("#.##");
         setUpScene();
         wholeProfileVBox.setVisible(true);
         currentUser = app.getCurrentProfile();
         //userNameComboBox.setPromptText(currentUser.getName());
+
+        // Displays all fields in the view and edit profile area.
+        welcomeProfileLabel.setText("Welcome " + String.valueOf(currentUser.getName()) + ", Let's do it!");
         usernameTA.setText(currentUser.getName());
         genderTA.setText(currentUser.getGender());
         dobTA.setText(currentUser.getBirthDate().getDateAsString());
-        welcomeProfileLabel.setText("Welcome " + String.valueOf(currentUser.getName()) + ", Let's do it!");
         weightValueTA.setText(df2.format((currentUser.getWeight())));
         heightValueTA.setText(df2.format((currentUser.getHeight())));
         bmiValueTA.setText(df2.format((currentUser.calcBmi())) + " - " + currentUser.getBmiCategory());
 
+        // Sets up the calendar and other stats if the user has already uploaded the data to the app else all values are 0 initially.
         if (currentUser.getActivities().size() > 0) {
             calendarPane.getChildren().add(new FullCalendarView(YearMonth.now(), app, this).getView());
             distanceText.setText("Total Distance Covered: " + df2.format((currentUser.getActivitiesDistance(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0)))/1000) + " km");
@@ -135,7 +143,11 @@ public class ProfileController {
         }
     }
 
-    @FXML private void editProfile() {
+    /**
+     * Method to edit user's profile details. User can edit name, DOB, gender, weight and height.
+     */
+    @FXML private void editProfile()
+    {
         editProfileButton.setVisible(false);
         confirmButton.setVisible(true);
         usernameTA.setEditable(true);
@@ -145,15 +157,16 @@ public class ProfileController {
         heightValueTA.setEditable(true);
 
     }
-
-    @FXML private void confirmEdit() {
+    /**
+     * Method to save user's edited profile details. Saves the edited name, DOB, gender, weight and height if valid.
+     */
+    @FXML private void confirmEdit()
+    {
         usernameTA.setEditable(false);
         dobTA.setEditable(false);
         genderTA.setEditable(false);
         weightValueTA.setEditable(false);
         heightValueTA.setEditable(false);
-
-
 
         // Set Name and handle Exceptions
         try {
@@ -207,7 +220,11 @@ public class ProfileController {
         setUserDetails();
     }
 
-    @FXML private void drawerAction() {
+    /**
+     * Method to draw the navigation drawer.
+     */
+    @FXML private void drawerAction()
+    {
 
         TranslateTransition openNav = new TranslateTransition(new Duration(350), drawer);
         openNav.setToX(0);
@@ -219,38 +236,65 @@ public class ProfileController {
             closeNav.play();
         }
     }
-
-    @FXML public void openChooseProfile() throws Exception {
+    /**
+     * Method to launch the login scene.
+     */
+    @FXML public void openChooseProfile() throws Exception
+    {
         moveDrawer();
         app.launchLoginScene();
     }
 
-    @FXML public void openViewProfile() throws Exception {
+    /**
+     * Method to launch the view profile scene.
+     */
+    @FXML public void openViewProfile() throws Exception
+    {
         moveDrawer();
         app.launchProfileScene();
     }
 
-    @FXML public void openUploadData() throws Exception {
+    /**
+     * Method to launch the upload data scene.
+     */
+    @FXML public void openUploadData() throws Exception
+    {
         moveDrawer();
         app.launchUploadDataScene();
     }
 
-    @FXML public void openViewActivities() throws Exception {
+    /**
+     * Method to launch the view activities scene.
+     */
+    @FXML public void openViewActivities() throws Exception
+    {
         moveDrawer();
         app.launchActivityViewerScene();
     }
 
-    @FXML public void openGoals() throws Exception {
+    /**
+     * Method to launch the goals scene.
+     */
+    @FXML public void openGoals() throws Exception
+    {
         moveDrawer();
         app.launchGoalsScene();
     }
 
-    @FXML public void openAnalysis() throws Exception {
+    /**
+     * Method to launch the data analysis scene.
+     */
+    @FXML public void openAnalysis() throws Exception
+    {
         moveDrawer();
         app.launchDataAnalysisScene();
     }
 
-    private void moveDrawer() {
+    /**
+     * Method to move the navigation drawer as appropriate.
+     */
+    private void moveDrawer()
+    {
         TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
         closeNav.setToX(-(drawer.getWidth()));
         closeNav.play();

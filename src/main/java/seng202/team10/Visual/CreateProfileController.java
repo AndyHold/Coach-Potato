@@ -20,7 +20,6 @@ public class CreateProfileController implements Controllable
     private GUIController app;
     ToggleGroup toggleGroup;
 
-
     @FXML private TextField nameEntry;
     @FXML private TextField weightEntry;
     @FXML private TextField heightEntry;
@@ -35,7 +34,6 @@ public class CreateProfileController implements Controllable
     @FXML private RadioButton femaleRad;
     @FXML private RadioButton maleRad;
     @FXML private RadioButton notSpecifiedRad;
-    @FXML private VBox wholeProfileVBox;
     @FXML private Button backButton;
 
 
@@ -65,7 +63,6 @@ public class CreateProfileController implements Controllable
      */
     public void setUpScene()
     {
-        final BooleanProperty firstTime = new SimpleBooleanProperty(true);
         ObservableList<Integer> days = FXCollections.observableArrayList();
         for (int i = 1; i <= 31; i ++) {
             days.add(i);
@@ -86,13 +83,6 @@ public class CreateProfileController implements Controllable
         }
         yearEntry.setItems(years);
         yearEntry.setVisibleRowCount(5);
-
-//        nameEntry.focusedProperty().addListener((observable,  oldValue,  newValue) -> {
-//            if(newValue && firstTime.get()){
-//                wholeProfileVBox.requestFocus(); // Delegate the focus to container
-//                firstTime.setValue(false); // Variable value changed for future references
-//            }
-//        });
 
         toggleGroup = new ToggleGroup();
         femaleRad.setToggleGroup(toggleGroup);
