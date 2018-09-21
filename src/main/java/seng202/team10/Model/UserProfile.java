@@ -510,6 +510,14 @@ public class UserProfile implements java.io.Serializable {
         return sum;
     }
 
+    public double getActivitiesSpeed(DateTime startDate, DateTime endDate) {
+        double sum = 0;
+        double totalDistance = getActivitiesDistance(startDate, endDate);
+        int totalTime = getActivitiesTime(startDate, endDate);
+        sum = totalDistance/totalTime;
+        return sum;
+    }
+
     public int getActivitiesFreq(DateTime startDate, DateTime endDate) {
         int sum = 0;
         for (Activity activity : activities) {
