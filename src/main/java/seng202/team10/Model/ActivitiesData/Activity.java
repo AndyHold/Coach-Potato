@@ -24,8 +24,17 @@ public class Activity implements Serializable {
     private Double averageHeartRate;
 >>>>>>> f5a854f6... Fixing Calculation of total distance and total duration
 =======
+<<<<<<< HEAD
     private int averageHeartRate;
 >>>>>>> c3a876d4... Implemented a try catch block for no internet access and a pop up to display the error.
+=======
+>>>>>>> dc93099... Fixing Calculation of total distance and total duration
+=======
+>>>>>>> f5a854f... Fixing Calculation of total distance and total duration
+=======
+    private int averageHeartRate;
+>>>>>>> a5835c2... Implemented a try catch block for no internet access and a pop up to display the error.
+>>>>>>> 862d9088... Implemented a try catch block for no internet access and a pop up to display the error.
     private Double totalDistance = 0.0;
     private ArrayList<Entry> entries = new ArrayList<>();
     private int totalDuration;
