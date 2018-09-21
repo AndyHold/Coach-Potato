@@ -15,13 +15,13 @@
    <children>
       <TableView fx:id="activitiesTableView" editable="true" layoutX="15.0" layoutY="101.0" prefHeight="550.0" prefWidth="1250.0">
          <columns>
-            <TableColumn fx:id="nameColumn" editable="false" prefWidth="254.0" text="Name" />
-            <TableColumn fx:id="typeColumn" editable="false" prefWidth="193.0" text="Type" />
-            <TableColumn fx:id="starttimeColumn" editable="false" prefWidth="268.0" text="Start Time" />
-            <TableColumn fx:id="durationColumn" editable="false" prefWidth="118.0" text="Duration (s)" />
-            <TableColumn fx:id="speedColumn" editable="false" prefWidth="127.0" text="Average Speed m/s" />
-            <TableColumn fx:id="distanceColumn" editable="false" prefWidth="84.0" text="Distance (m)" />
-            <TableColumn fx:id="heartrateColumn" editable="false" prefWidth="124.0" text="Average Heartrate" />
+            <TableColumn fx:id="nameColumn" editable="false" prefWidth="274.0" text="Name" />
+            <TableColumn fx:id="typeColumn" editable="false" prefWidth="120.0" text="Type" />
+            <TableColumn fx:id="starttimeColumn" editable="false" prefWidth="220.0" text="Start Time" />
+            <TableColumn fx:id="durationColumn" editable="false" prefWidth="118.0" text="Duration (mins)" />
+            <TableColumn fx:id="speedColumn" editable="false" prefWidth="151.0" text="Average Speed (km/h)" />
+            <TableColumn fx:id="distanceColumn" editable="false" prefWidth="113.0" text="Distance (km)" />
+            <TableColumn fx:id="heartrateColumn" editable="false" prefWidth="172.0" text="Average Heartrate (BPM)" />
             <TableColumn fx:id="entrynoColumn" editable="false" maxWidth="483.0" minWidth="0.0" text="Entries" />
          </columns>
          <columnResizePolicy>
