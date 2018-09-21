@@ -84,6 +84,23 @@ public class Entry  implements Serializable {
 >>>>>>> f5029c7... No changes made
 
     /**
+     * Override Method to get the string representation of an Entry.
+     * @return String
+     */
+    @Override
+    public String toString()
+    {
+        return "Entry{" +
+                "firstEntry=" + firstEntry +
+                ", time=" + time +
+                ", heartRate=" + heartRate +
+                ", position=" + position +
+                ", distance=" + distance +
+                ", velocity=" + velocity +
+                '}';
+    }
+
+    /**
      * Constructor for the Entry.
 <<<<<<< HEAD
 >>>>>>> 5a3c8cd... No changes made
@@ -355,7 +372,7 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Setter method to set user's entry time.
+     * Method to set user's entry time.
      * @param time: double
      */
     public void setTime(DateTime time)
@@ -397,6 +414,7 @@ public class Entry  implements Serializable {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Setter method to set user's position.
      * @param position: Position
      */
@@ -430,6 +448,9 @@ public class Entry  implements Serializable {
         this.position.setLatitude(newLatitude);
 =======
      * Setter method to set user's position.
+=======
+     * Method to set user's position.
+>>>>>>> 7f979e0c... Wrote some more tests for Activity, Entry, Position classes and JavaDocs for those classes.
      * @param position: Position
      */
     public void setPosition(Position position)
@@ -519,6 +540,7 @@ public class Entry  implements Serializable {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Method to calculate user's distance.
      * @param prevEntry: Entry
      */
@@ -528,6 +550,9 @@ public class Entry  implements Serializable {
         this.distance = prevPosition.subtract(this.position);
 =======
      * Setter method to set user's first entry.
+=======
+     * Method to set user's first entry.
+>>>>>>> 7f979e0c... Wrote some more tests for Activity, Entry, Position classes and JavaDocs for those classes.
      * @param firstEntry: boolean
      */
     public void setFirstEntry(boolean firstEntry)
@@ -646,6 +671,7 @@ public class Entry  implements Serializable {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Getter method to get user's heart rate.
      * @return heartRate: double
      */
@@ -654,6 +680,9 @@ public class Entry  implements Serializable {
         return heartRate;
 =======
      * Getter method to get user's entry time.
+=======
+     * Method to get user's entry time.
+>>>>>>> 7f979e0c... Wrote some more tests for Activity, Entry, Position classes and JavaDocs for those classes.
      * @return time: double
      */
     public DateTime getTime()
@@ -665,6 +694,7 @@ public class Entry  implements Serializable {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Getter method to get user's position.
      * @return position: Position
      */
@@ -673,6 +703,9 @@ public class Entry  implements Serializable {
         return position;
 =======
      * Getter method to get user's heart rate.
+=======
+     * Method to get user's heart rate.
+>>>>>>> 7f979e0c... Wrote some more tests for Activity, Entry, Position classes and JavaDocs for those classes.
      * @return heartRate: double
      */
     public int getHeartRate()
@@ -683,7 +716,7 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Getter method to get user's position.
+     * Method to get user's position.
      * @return position: Position
      */
     public Position getPosition()
@@ -696,11 +729,15 @@ public class Entry  implements Serializable {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 =======
 >>>>>>> 59668d96... Created Exceptions Package, Wrote tests for Entry and Activity, they are currently both completely tested apart from getters and setters. did some small code style refactors on various other classes. Also deleted redundant Calendar and Event classes as they are never used.
      * Getter method to get user's distance.
+=======
+     * Method to get user's distance.
+>>>>>>> 7f979e0c... Wrote some more tests for Activity, Entry, Position classes and JavaDocs for those classes.
      * @return distance: double
      */
     public double getDistance()
@@ -710,8 +747,7 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Getter method to get user's velocity.
-     * TODO Torben can create a graph for this attribute now.
+     * Method to get user's velocity.
      * @return velocity: double
      */
     public double getVelocity()
@@ -722,10 +758,14 @@ public class Entry  implements Serializable {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9253f1d9... Created Exceptions Package, Wrote tests for Entry and Activity, they are currently both completely tested apart from getters and setters. did some small code style refactors on various other classes. Also deleted redundant Calendar and Event classes as they are never used.
 =======
 >>>>>>> 59668d96... Created Exceptions Package, Wrote tests for Entry and Activity, they are currently both completely tested apart from getters and setters. did some small code style refactors on various other classes. Also deleted redundant Calendar and Event classes as they are never used.
      * Getter method to check if it is user's first entry.
+=======
+     * Method to check if it is user's first entry.
+>>>>>>> 7f979e0c... Wrote some more tests for Activity, Entry, Position classes and JavaDocs for those classes.
      * @return firstEntry: boolean
      */
     public boolean isFirstEntry()
@@ -735,8 +775,13 @@ public class Entry  implements Serializable {
 
 
     /**
+<<<<<<< HEAD
 >>>>>>> 04fec49c... DateTime now has 100% test coverage, refactored Activity and Entry to make them more readable and got rid of unnecessary String attributes and had them be derived when asked for in the getter method instead. This will make it easier when the values are changed. Implemented the calculateVelocity method in Entry and the calculateEntriesVelocity method in Activity properly so that the data can now be used for graphing.
      * Getter method for the String representation of the date
+=======
+     * Method to get the string representation of the date.
+     * @return String
+>>>>>>> 7f979e0c... Wrote some more tests for Activity, Entry, Position classes and JavaDocs for those classes.
      */
     public String getDateString()
     {
@@ -745,7 +790,8 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Getter method for the String representation of the time
+     * Method to get the string representation of the time.
+     * @return String
      */
     public String getTimeString()
     {
@@ -754,7 +800,7 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Getter method for the String representation of the Heart Rate
+     * Method to get the string representation of an entry's heart rate.
      * @return String
      */
     public String getHeartRateString()
@@ -764,7 +810,7 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Getter method for the String representation of the latitude
+     * Method to get the string representation of the latitude.
      * @return String
      */
     public String getLatitudeString()
@@ -774,7 +820,7 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Getter method for the String representation of the longitude
+     * Method to get the string representation of the longitude.
      * @return String
      */
     public String getLongitudeString()
@@ -784,7 +830,7 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Getter method for the String representation of the elevation
+     * Method to get the string representation of the elevation.
      * @return String
      */
     public String getElevationString()
@@ -794,7 +840,7 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Getter method for the String representation of the distance from the previous Entry
+     * Method to get the string representation of the distance from the previous Entry.
      * @return String
      */
     public String getDistanceString()
@@ -804,7 +850,7 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Getter method for the String representation of the velocity at this Entry
+     * Method to get the string representation of the velocity at this Entry.
      * @return String
      */
     public String getVelocityString()
@@ -900,6 +946,7 @@ public class Entry  implements Serializable {
 //        return new Entry(false, averageTime, averageHeartRate, averagePosition);
 //    }
 
+<<<<<<< HEAD
 
     @Override
     public String toString()
@@ -1003,4 +1050,6 @@ public class Entry  implements Serializable {
 =======
 >>>>>>> 173bfae... Refactored Activity Class to delete some redundant code, fixed Activity class created a ActivityTypeTest class and implemented tests for it. Wrote some more tests for DateTime's new change methods, wrote some tests for the Position class.
 >>>>>>> d15fa3f6... Refactored Activity Class to delete some redundant code, fixed Activity class created a ActivityTypeTest class and implemented tests for it. Wrote some more tests for DateTime's new change methods, wrote some tests for the Position class.
+=======
+>>>>>>> 7f979e0c... Wrote some more tests for Activity, Entry, Position classes and JavaDocs for those classes.
 }

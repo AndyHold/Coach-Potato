@@ -174,4 +174,47 @@ public class ActivityTest {
 >>>>>>> 92ee04f... Fixed a test case to fix the pipeline
 >>>>>>> a0057934... Fixed a test case to fix the pipeline
     }
+
+    @Test
+    public void getDurationMinutes()
+    {
+        assertEquals(0.83, activity.getDurationMins(), 1e-20);
+    }
+
+    @Test
+    public void getSpeedKMH()
+    {
+        assertEquals(6.4, activity.getSpeedKMH(), 1e-20);
+    }
+
+    @Test
+    public void getDistanceKM()
+    {
+        assertEquals(0.09, activity.getDistanceKM(), 1e-20);
+    }
+
+    @Test
+    public void getEntryNo()
+    {
+        assertEquals(6, activity.getEntryno(), 1e-20);
+    }
+
+    @Test
+    public void getHeartString()
+    {
+        assertEquals("85", activity.getHeartString());
+    }
+
+    @Test
+    public void getTypeString()
+    {
+        assertEquals("Walk", activity.getTypeString());
+    }
+
+    @Test
+    public void getTimeString()
+    {
+        assertEquals("30th, August, 2018 - 15:01:00", activity.getTimeString());
+    }
+
 }

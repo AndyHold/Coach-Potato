@@ -1,8 +1,6 @@
 package seng202.team10.Model;
 
 
-import javafx.scene.control.Alert;
-import javafx.scene.image.Image;
 import seng202.team10.Model.ActivitiesData.*;
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -48,6 +46,7 @@ import seng202.team10.Model.Exceptions.*;
 >>>>>>> 798a1f8... fixed invalidNameException bug
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 081c071... Created Exceptions Package, Wrote tests for Entry and Activity, they are currently both completely tested apart from getters and setters. did some small code style refactors on various other classes. Also deleted redundant Calendar and Event classes as they are never used.
 <<<<<<< HEAD
 >>>>>>> 59668d96... Created Exceptions Package, Wrote tests for Entry and Activity, they are currently both completely tested apart from getters and setters. did some small code style refactors on various other classes. Also deleted redundant Calendar and Event classes as they are never used.
@@ -59,6 +58,8 @@ import javax.naming.InvalidNameException;
 import javax.naming.InvalidNameException;
 >>>>>>> 561798b... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
 >>>>>>> 2d5633a2... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
+=======
+>>>>>>> 7f979e0c... Wrote some more tests for Activity, Entry, Position classes and JavaDocs for those classes.
 import java.util.ArrayList;
 
 /**
@@ -73,39 +74,34 @@ public class UserProfile implements java.io.Serializable {
     private ArrayList<Activity> activities = new ArrayList<>();
     private double weight;
     private double height;
-    private DateTime birthdate;
+    private DateTime birthDate;
     private String gender;
-    private int maxHeartrate;
+    private int maxHeartRate;
     private int averageHeartRate;
-    //private Goals goals;
     private double bmi;
-
-
-
-
     private Goals goals = new Goals(this);
 
 
     /**
-     * Constructor method for UserProfile class
+     * Empty Constructor method for UserProfile class.
      */
-    public UserProfile() {
-
+    public UserProfile()
+    {
     }
 
     /**
      * Constructor method for UserProfile class
      * @param name: String
      * @param weight: double
-     * @param birthdate: DateTime
+     * @param birthDate: DateTime
      * @param gender: String
      */
-    public UserProfile(String name, double weight, double height, DateTime birthdate, String gender) throws UserNameException, InvalidWeightException, InvalidHeightException, IllegalArgumentException
+    public UserProfile(String name, double weight, double height, DateTime birthDate, String gender) throws UserNameException, InvalidWeightException, InvalidHeightException, IllegalArgumentException
     {
         this.setName(name);
         this.setWeight(weight);
         this.setHeight(height);
-        this.birthdate = birthdate;
+        this.birthDate = birthDate;
         this.gender = gender;
     }
 
@@ -210,19 +206,19 @@ public class UserProfile implements java.io.Serializable {
 
 
     /**
-     * Setter method for the maxHeartrate of the user
+     * Setter method for the maxHeartRate of the user
      * @param maxHeartrate: int
      */
     public void setMaxHeartRate(int maxHeartrate)
     {
-        this.maxHeartrate = maxHeartrate;
+        this.maxHeartRate = maxHeartrate;
     }
 
     /**
-     * Getter method for the maxHeartrate of the user
+     * Getter method for the maxHeartRate of the user
      * @return int
      */
-    public int getMaxHeartrate() { return maxHeartrate; }
+    public int getMaxHeartRate() { return maxHeartRate; }
 
 
 
@@ -256,7 +252,7 @@ public class UserProfile implements java.io.Serializable {
     /**
      * Method for adding a new list of activities (such as when a new CSV file is loaded)
      * TODO check for duplicates. seems to many already work natuarally??
-     * @param newActivities the arraylist of activity objects
+     * @param newActivities: Arraylist of Activity
      */
     public void addActivities(ArrayList<Activity> newActivities) throws ExistingElementException
     {
@@ -294,7 +290,7 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Setter method for the weight of the user
-     * @param newWeight double: new weight to be set
+     * @param newWeight: double
      * @throws InvalidWeightException when weight is not in the valid range
      */
 <<<<<<< HEAD
@@ -349,7 +345,7 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Setter method for the height of the user
-     * @param newHeight double
+     * @param newHeight: double
      */
 <<<<<<< HEAD
 =======
@@ -430,29 +426,39 @@ public class UserProfile implements java.io.Serializable {
 
 
     /**
-     * Setter method for the birthdate of the user
-     * @param newDate DateTime
+     * Setter method for the birthDate of the user
+     * @param newDate: DateTime
      */
-    public void setBirthdate(DateTime newDate) {
-        this.birthdate = newDate;
+    public void setBirthDate(DateTime newDate) {
+        this.birthDate = newDate;
     }
 
 
     /**
-     * Getter method for the birthdate of the user
+     * Getter method for the birthDate of the user
      * @return Date
      */
     public DateTime getBirthDate() {
-        return this.birthdate;
+        return this.birthDate;
     }
 
-
+    /**
+     * Method to calculate user's Body Mass Index (BMI)
+     * @return double
+     */
     public double calcBmi() {
         this.bmi = getWeight() / (Math.pow(getHeight() / 100, 2));
         return this.bmi;
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    /**
+     * Getter method to get user's Body Mass Index (BMI)
+     * @return double
+     */
+>>>>>>> 7f979e0c... Wrote some more tests for Activity, Entry, Position classes and JavaDocs for those classes.
     public double getBmi() {
         return bmi;
 =======
@@ -472,7 +478,10 @@ public class UserProfile implements java.io.Serializable {
 >>>>>>> e3fcb716... Fixing BMI Calculation and adding BMI category check
     }
 
-
+    /**
+     * Override method to get a string representation of an user profile
+     * @return String
+     */
     @Override
     public String toString() {
         return "UserProfile{" +
@@ -480,37 +489,54 @@ public class UserProfile implements java.io.Serializable {
                 ", activities=" + activities +
                 ", weight=" + weight +
                 ", height=" + height +
-                ", birthdate=" + birthdate +
+                ", birthDate=" + birthDate +
                 ", goals=" + goals +
                 ", bmi=" + bmi +
                 '}';
     }
 
-
+    /**
+     * Getter method to get user's goals.
+     * @return Goals
+     */
     public Goals getGoals() {
         return goals;
     }
 
+    /**
+     * Setter method to set user's goals.
+     * @param goals: Goals
+     */
     public void setGoals(Goals goals) {
         this.goals = goals;
     }
 
+    /**
+     * Method to get the total distance of user's activities within two DateTime objects.
+     * @param (startDate, endDate): (DateTime, DateTime)
+     * @return totalDistance: double
+     */
     public double getActivitiesDistance(DateTime startDate, DateTime endDate) {
-        double sum = 0;
+        double totalDistance = 0;
         for (Activity activity : activities) {
             System.out.println((activity.getStartDateTime().isAfter(startDate)));
             if (activity.getStartDateTime().isAfter(startDate) && activity.getEndDateTime().isBefore(endDate)) {
                 System.out.println(activity.getStartDateTime());
                 System.out.println(startDate);
-                sum += activity.getTotalDistance();
-                System.out.println("Added to sum");
+                totalDistance += activity.getTotalDistance();
+                System.out.println("Added to totalDistance");
             } else {
-                System.out.println("Not added to sum");
+                System.out.println("Not added to totalDistance");
             }
         }
-        return sum;
+        return totalDistance;
     }
 
+    /**
+     * Method to get the average speed of user's activities within two DateTime objects.
+     * @param (startDate, endDate): (DateTime, DateTime)
+     * @return averageSpeed: double
+     */
     public double getActivitiesSpeed(DateTime startDate, DateTime endDate) {
         double averageSpeed = 0;
         int count = 0;
@@ -527,52 +553,75 @@ public class UserProfile implements java.io.Serializable {
         return averageSpeed;
     }
 
+    /**
+     * Method to get the number of user's activities within two DateTime objects.
+     * @param (startDate, endDate): (DateTime, DateTime)
+     * @return frequency: int
+     */
     public int getActivitiesFreq(DateTime startDate, DateTime endDate) {
-        int sum = 0;
+        int frequency = 0;
         for (Activity activity : activities) {
             if (activity.getStartDateTime().isAfter(startDate) && activity.getEndDateTime().isBefore(endDate)) {
-                sum ++;
-                System.out.println("Added to sum");
+                frequency ++;
+                System.out.println("Added to frequency");
             } else {
-                System.out.println("Not added to sum");
+                System.out.println("Not added to frequency");
             }
         }
-        return sum;
+        return frequency;
     }
 
-
+    /**
+     * Method to get the total duration in seconds of user's activities within two DateTime objects.
+     * @param (startDate, endDate): (DateTime, DateTime)
+     * @return totalTime: int
+     */
     public int getActivitiesTime(DateTime startDate, DateTime endDate) {
-        int sum = 0;
+        int totalTime = 0;
         for (Activity activity : activities) {
             if (activity.getStartDateTime().isAfter(startDate) && activity.getEndDateTime().isBefore(endDate)) {
-                sum += activity.getTotalDuration();
-                System.out.println("Added to sum");
+                totalTime += activity.getTotalDuration();
+                System.out.println("Added to totalTime");
             } else {
-                System.out.println("Not added to sum");
+                System.out.println("Not added to totalTime");
             }
         }
-        return sum;
+        return totalTime;
     }
 
-
+    /**
+     * Getter method to get user's average heart rate.
+     * @return int
+     */
     public int getAverageHeartRate() {
         return averageHeartRate;
     }
 
+    /**
+     * Setter method to set user's average heart rate.
+     * @param averageHeartRate: int
+     */
     public void setAverageHeartRate(int averageHeartRate) {
         this.averageHeartRate = averageHeartRate;
     }
 
+    /**
+     * Method to get the average heart rate of user's activities within two DateTime objects.
+     * @param (startDate, endDate): (DateTime, DateTime)
+     * @return averageHeartRate: int
+     */
     public int getActivitiesHeartRate(DateTime startDate, DateTime endDate) {
         int sum = 0;
         int count = 0;
+        int averageHeartRate = 0;
         for (Activity activity : activities) {
             if (activity.getStartDateTime().isAfter(startDate) && activity.getEndDateTime().isBefore(endDate)) {
                 sum += activity.getAverageHeartRate();
                 count++;
             }
         }
-        return sum/count;
+        averageHeartRate = sum/count;
+        return averageHeartRate;
     }
 
 }

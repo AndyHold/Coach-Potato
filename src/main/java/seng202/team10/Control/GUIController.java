@@ -44,6 +44,7 @@ import seng202.team10.Model.Exceptions.InvalidUserException;
 =======
 =======
 import seng202.team10.Model.Exceptions.UniqueNameException;
+<<<<<<< HEAD
 >>>>>>> dd450156... Fixed up Unique name error and got it completely working so that it catches all errors on Create profile and edit profile.
 import seng202.team10.Model.Exceptions.UserNameException;
 >>>>>>> 4e37ab85... Finished Implementing new Login Screen Layout.
@@ -59,6 +60,8 @@ import seng202.team10.Model.FileOperations.FileReader;
 =======
 import seng202.team10.Model.Exceptions.InvalidUserException;
 >>>>>>> 0e69f208... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
+=======
+>>>>>>> 7f979e0c... Wrote some more tests for Activity, Entry, Position classes and JavaDocs for those classes.
 import seng202.team10.Model.FileOperations.FileReader;
 >>>>>>> 61ade368... loading existing users from file when logging in, deleted some old test users
 import seng202.team10.Model.FileOperations.FileWriter;
@@ -836,7 +839,7 @@ public class GUIController extends Application{
     public void createUser(UserProfile newUser) throws InvalidUserException
     {
         //TODO this should be in UserProfile???
-        if (newUser.getName() != null && newUser.getWeight() != 0.0 && newUser.getHeight() != 0.0 && newUser.getBirthDate() != null && newUser.getGender() != null && newUser.getMaxHeartrate() != 0) {
+        if (newUser.getName() != null && newUser.getWeight() != 0.0 && newUser.getHeight() != 0.0 && newUser.getBirthDate() != null && newUser.getGender() != null && newUser.getMaxHeartRate() != 0) {
             users.add(newUser);
         } else {
             throw new InvalidUserException();
