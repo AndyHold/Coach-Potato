@@ -211,8 +211,16 @@ public class DataAnalysisController implements Controllable, Initializable{
         setUpGraphs();
     }
 
+<<<<<<< HEAD
 >>>>>>> b13266a... Added a view map button to the controller
     @FXML private void drawerAction() {
+=======
+    /**
+     * Method to draw the navigation drawer.
+     */
+    @FXML private void drawerAction()
+    {
+>>>>>>> 8a6e898... Wrote JavaDoc for the menu button and bar on most of the main controllers and also for few methods that were pending.
 
         TranslateTransition openNav = new TranslateTransition(new Duration(350), drawer);
         openNav.setToX(0);
@@ -224,41 +232,65 @@ public class DataAnalysisController implements Controllable, Initializable{
             closeNav.play();
         }
     }
-
-    @FXML public void openChooseProfile() throws Exception {
+    /**
+     * Method to launch the login scene.
+     */
+    @FXML public void openChooseProfile() throws Exception
+    {
         moveDrawer();
         guiController.launchLoginScene();
     }
 
-    @FXML public void openViewProfile()
+    /**
+     * Method to launch the view profile scene.
+     */
+    @FXML public void openViewProfile() throws Exception
     {
         moveDrawer();
         guiController.launchProfileScene();
     }
 
-    @FXML public void openUploadData()
+    /**
+     * Method to launch the upload data scene.
+     */
+    @FXML public void openUploadData() throws Exception
     {
         moveDrawer();
         guiController.launchUploadDataScene();
     }
 
-    @FXML public void openViewActivities() throws Exception {
+    /**
+     * Method to launch the view activities scene.
+     */
+    @FXML public void openViewActivities() throws Exception
+    {
         moveDrawer();
         guiController.launchActivityViewerScene();
     }
 
-    @FXML public void openGoals()
+    /**
+     * Method to launch the goals scene.
+     */
+    @FXML public void openGoals() throws Exception
     {
         moveDrawer();
         guiController.launchGoalsScene();
     }
 
-    @FXML public void openAnalysis() throws Exception {
+    /**
+     * Method to launch the data analysis scene.
+     */
+    @FXML public void openAnalysis() throws Exception
+    {
         moveDrawer();
         guiController.launchDataAnalysisScene();
     }
 
-    private void moveDrawer() {
+    /**
+     * Method to move the navigation drawer as appropriate.
+     */
+    private void moveDrawer()
+    {
         TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
         closeNav.setToX(-(drawer.getWidth()));
         closeNav.play();

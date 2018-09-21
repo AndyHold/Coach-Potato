@@ -31,8 +31,11 @@ public class CreateProfileController implements Controllable
     private GUIController app;
     ToggleGroup toggleGroup;
 
+<<<<<<< HEAD
 
 <<<<<<< HEAD
+=======
+>>>>>>> 8a6e898... Wrote JavaDoc for the menu button and bar on most of the main controllers and also for few methods that were pending.
     @FXML private TextField nameEntry;
     @FXML private TextField weightEntry;
     @FXML private TextField heightEntry;
@@ -81,7 +84,6 @@ public class CreateProfileController implements Controllable
      */
     public void setUpScene()
     {
-        final BooleanProperty firstTime = new SimpleBooleanProperty(true);
         ObservableList<Integer> days = FXCollections.observableArrayList();
         for (int i = 1; i <= 31; i ++) {
             days.add(i);
@@ -103,6 +105,7 @@ public class CreateProfileController implements Controllable
         yearEntry.setItems(years);
         yearEntry.setVisibleRowCount(5);
 
+<<<<<<< HEAD
         nameEntry.focusedProperty().addListener((observable,  oldValue,  newValue) -> {
             if(newValue && firstTime.get()){
                 wholeProfileVBox.requestFocus(); // Delegate the focus to container
@@ -110,6 +113,8 @@ public class CreateProfileController implements Controllable
             }
         });
 
+=======
+>>>>>>> 8a6e898... Wrote JavaDoc for the menu button and bar on most of the main controllers and also for few methods that were pending.
         toggleGroup = new ToggleGroup();
         femaleRad.setToggleGroup(toggleGroup);
         maleRad.setToggleGroup(toggleGroup);
