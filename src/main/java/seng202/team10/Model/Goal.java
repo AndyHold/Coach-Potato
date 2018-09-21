@@ -51,6 +51,10 @@ public class Goal implements Serializable {
         return this.goalAchievedStatus;
     }
 
+    public void setGoalAchievedStatus(Boolean goalAchievedStatus) {
+        this.goalAchievedStatus = goalAchievedStatus;
+    }
+
     public double getGoalDistance() {
         return this.goalDistance;
     }
@@ -97,7 +101,7 @@ public class Goal implements Serializable {
                 progressDescription += "\n\nYou have failed to complete this goal in time. It has been removed from your current goals and added to your failed goals.";
             } else {
                 double difference = currentWeight - goal.getGoalWeight();
-                progressDescription += "\n\nYou need to lose " + difference + " more kgs to meet your goal.";
+                progressDescription += "\n\nYou need to lose " + String.format("%.1f", difference) + " more kgs to meet your goal.";
             }
         }
         return progressDescription;
@@ -114,7 +118,7 @@ public class Goal implements Serializable {
                 progressDescription += "\n\nYou have failed to complete this goal in time. It has been removed from your current goals and added to your failed goals.";
             } else {
                 double difference = currentBmi - goal.getGoalBmi();
-                progressDescription += "\n\nYou need to decrease your BMI by " + difference + " more to meet your goal.";
+                progressDescription += "\n\nYou need to decrease your BMI by " + String.format("%.1f", difference) + " more to meet your goal.";
             }
         }
         return progressDescription;
@@ -131,7 +135,7 @@ public class Goal implements Serializable {
                 progressDescription += "\n\nYou have failed to complete this goal in time. It has been removed from your current goals and added to your failed goals.";
             } else {
                 double difference = goal.getGoalDistance() - dist;
-                progressDescription += "\n\nYou need to cover " + difference + " more km to meet your goal.";
+                progressDescription += "\n\nYou need to cover " + String.format("%.0f", difference) + " more metres to meet your goal.";
             }
         }
         return progressDescription;
@@ -148,7 +152,7 @@ public class Goal implements Serializable {
                 progressDescription += "\n\nYou have failed to complete this goal in time. It has been removed from your current goals and added to your failed goals.";
             } else {
                 double difference = goal.getGoalFrequency() - freq;
-                progressDescription += "\n\nYou need to complete " + difference + " more activities to meet your goal.";
+                progressDescription += "\n\nYou need to complete " + String.format("%.0f", difference) + " more activities to meet your goal.";
             }
         }
         return progressDescription;
@@ -165,7 +169,7 @@ public class Goal implements Serializable {
                 progressDescription += "\n\nYou have failed to complete this goal in time. It has been removed from your current goals and added to your failed goals.";
             } else {
                 double difference = goal.getGoalTime() - time;
-                progressDescription += "\n\nYou need to complete " + difference + " more minutes? of activities to meet your goal.";
+                progressDescription += "\n\nYou need to complete " + String.format("%.0f", difference) + " more minutes / seconds?? of activities to meet your goal.";
             }
         }
         return progressDescription;
