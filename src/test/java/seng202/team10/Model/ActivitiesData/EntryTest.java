@@ -279,24 +279,24 @@ public class EntryTest {
 
 
 
-//    Position position1 = new Position(0,0,0);
-//    DateTime time1 = new DateTime(2018,1,1, 0,0,0);
-//    Entry entry1 = new Entry(true, time1, 140, position1);
-//
-//    Position position2 = new Position(1,2,3);
-//    DateTime time2 = new DateTime(2018,1,1, 0,1,0);
-//    Entry entry2 = new Entry(false, time2, 140, position2);
-//
-//    @Test
-//    public void calculateDistance() {
-//        entry2.calculateDistance(entry1);
-//        assertTrue(entry2.getDistance() == Math.sqrt(14));
-//    }
-//
-//    @Test
-//    public void calculateVelocity() {
-//        entry2.calculateDistance(entry1);
-//        entry2.calculateVelocity(entry1);
-//        assertEquals(Math.sqrt(14)/60, entry2.getVelocity(), 0.001);
-//    }
+    Position position1 = new Position(30.2553368,-97.83891084,239.5);
+    DateTime time1 = new DateTime(2018,1,1, 0,0,0);
+    Entry entry1 = new Entry(time1, 140, position1);
+
+    Position position2 = new Position(30.25499189,-97.83913958,239);
+    DateTime time2 = new DateTime(2018,1,1, 0,1,0);
+    Entry entry2 = new Entry(time2, 140, position2);
+
+    @Test
+    public void calculateDistanceTest() {
+        entry2.calculateDistance(entry1);
+        assertEquals(0.044, entry2.getDistance()/1000, 1e-2);
+    }
+
+    @Test
+    public void calculateVelocityTest() {
+        entry2.calculateDistance(entry1);
+        entry2.calculateVelocity(entry1);
+        assertEquals(44.0/(entry2.getTime().subtract(entry1.getTime())), entry2.getVelocity(), 1e-2);
+    }
 }
