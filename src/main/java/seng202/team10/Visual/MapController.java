@@ -5,6 +5,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Worker;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -49,8 +50,11 @@ public class MapController implements Controllable, Initializable{
                     public void changed(ObservableValue ov, Worker.State oldState, Worker.State newState) {
                         if (newState == Worker.State.SUCCEEDED) {
                             String scriptToExecute = "displayRoute(" + newRoute.toJSONArray() + ");";
-
-                            webEngine.executeScript(scriptToExecute);
+                            try {
+                                webEngine.executeScript(scriptToExecute);
+                            } catch (netscape.javascript.JSException exception) {
+                                guiController.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to the internet. Please connect and try again.");
+                            }
                         }
                     }
                 });

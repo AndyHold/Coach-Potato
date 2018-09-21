@@ -29,11 +29,11 @@ public class ActivityViewerController {
     @FXML private TableColumn<Activity, String> nameColumn;
     @FXML private TableColumn<Activity, String> typeColumn;
     @FXML private TableColumn<Activity, String> starttimeColumn;
-    @FXML private TableColumn<Activity, String> durationColumn;
-    @FXML private TableColumn<Activity, String> speedColumn;
-    @FXML private TableColumn<Activity, String> distanceColumn;
-    @FXML private TableColumn<Activity, String> heartrateColumn;
-    @FXML private TableColumn<Activity, String> entrynoColumn;
+    @FXML private TableColumn<Activity, Integer> durationColumn;
+    @FXML private TableColumn<Activity, Double> speedColumn;
+    @FXML private TableColumn<Activity, Double> distanceColumn;
+    @FXML private TableColumn<Activity, Integer> heartrateColumn;
+    @FXML private TableColumn<Activity, Integer> entrynoColumn;
     @FXML private Button entryViewerButton;
     @FXML private ComboBox typeSelect;
     @FXML private VBox drawer;
@@ -57,11 +57,11 @@ public class ActivityViewerController {
         nameColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("name"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("typeString"));
         starttimeColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("timeString"));
-        durationColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("durationString"));
-        speedColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("speedString"));
-        distanceColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("distanceString"));
-        heartrateColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("heartString"));
-        entrynoColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("entrynoString"));
+        durationColumn.setCellValueFactory(new PropertyValueFactory<Activity, Integer>("totalDuration"));
+        speedColumn.setCellValueFactory(new PropertyValueFactory<Activity, Double>("averageVelocity"));
+        distanceColumn.setCellValueFactory(new PropertyValueFactory<Activity, Double>("totalDistance"));
+        heartrateColumn.setCellValueFactory(new PropertyValueFactory<Activity, Integer>("averageHeartRate"));
+        entrynoColumn.setCellValueFactory(new PropertyValueFactory<Activity, Integer>("entryno"));
         populateTable(activities);
 
     }
@@ -72,13 +72,13 @@ public class ActivityViewerController {
      */
     private void populateTable(ObservableList<Activity> displayActivities){
         activitiesTableView.setItems(displayActivities);
-        nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        starttimeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        durationColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        speedColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        distanceColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        heartrateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        entrynoColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+//        nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+//        starttimeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+//        durationColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+//        speedColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+////        distanceColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+//        heartrateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+//        entrynoColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
     }
 
@@ -122,18 +122,10 @@ public class ActivityViewerController {
             app.launchEntryViewerScene(activitiesTableView.getSelectionModel().getSelectedItem());
 //            app.launchEntryViewerScene(app.getCurrentProfile().getActivities().get(activitiesTableView.getSelectionModel().getSelectedIndex())); //wont work with filtered table, change back
         } else {
-            createPopUp(Alert.AlertType.ERROR, "Error", "Please select an Activity first");
+            app.createPopUp(Alert.AlertType.ERROR, "Error", "Please select an Activity first");
         }
     }
 
-    private void createPopUp(Alert.AlertType type, String title, String message)
-    {
-        Alert errorPopUp = new Alert(type);
-        errorPopUp.setTitle(title);
-        errorPopUp.setContentText(message);
-        errorPopUp.setHeaderText(null);
-        errorPopUp.showAndWait();
-    }
 
     /**
      * Setter method to set the GUI controller for this Scene

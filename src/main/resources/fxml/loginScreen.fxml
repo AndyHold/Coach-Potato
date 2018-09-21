@@ -131,7 +131,7 @@
                <children>
                   <VBox prefHeight="205.0">
                      <children>
-                        <Button fx:id="createProfileButton" mnemonicParsing="false" onAction="#createProfile" prefWidth="150.0" text="Create New Profile">
+                        <Button fx:id="createProfileButton" mnemonicParsing="false" onAction="#createProfile" prefWidth="200.0" text="Create New Profile">
                            <font>
                               <Font size="14.0" />
                            </font></Button>
@@ -142,7 +142,7 @@
                   </VBox>
                   <VBox alignment="TOP_CENTER">
                      <children>
-                        <Button fx:id="deleteProfileButton" mnemonicParsing="false" onAction="#deleteProfile" prefWidth="150.0" text="Delete Profile">
+                        <Button fx:id="deleteProfileButton" mnemonicParsing="false" onAction="#deleteProfile" prefWidth="200.0" text="Delete Profile">
                            <font>
                               <Font size="14.0" />
                            </font>
