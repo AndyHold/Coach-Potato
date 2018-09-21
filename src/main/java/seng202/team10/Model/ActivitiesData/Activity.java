@@ -16,10 +16,10 @@ public class Activity implements Serializable {
     private String name;
     private DateTime startDateTime;
     private Double averageVelocity = 0.0;
-    private Double averageHeartRate = 0.0;
+    private int averageHeartRate;
     private Double totalDistance = 0.0;
     private ArrayList<Entry> entries = new ArrayList<>();
-    private int totalDuration = 0;
+    private int totalDuration;
     private ActivityType type;
     private DateTime endDateTime;
 
@@ -128,7 +128,7 @@ public class Activity implements Serializable {
             totalHeartRate += entry.getHeartRate();
             count++;
         }
-        this.averageHeartRate = (totalHeartRate / count);
+        this.averageHeartRate = (int) Math.round(totalHeartRate / count);
     }
 
 
@@ -144,7 +144,6 @@ public class Activity implements Serializable {
 
     /**
      * Setter method for after Entries have been loaded to the Activity
-     * TODO add this method whenever Activities are modified.
      */
     public void postEntriesSetUp()
     {
@@ -272,34 +271,34 @@ public class Activity implements Serializable {
     }
 
 
-    /**
-     * Getter method for the Duration as a String
-     * @return String
-     */
-    public String getDurationString()
-    {
-        return String.valueOf(this.totalDuration);
-    }
-
-
-    /**
-     * Getter method for the Average Speed as a String
-     * @return String
-     */
-    public String getSpeedString()
-    {
-        return String.format("%.2f", this.averageVelocity);
-    }
-
-
-    /**
-     * Getter method for the Distance as a String
-     * @return String
-     */
-    public String getDistanceString()
-    {
-        return String.format("%.2f", this.totalDistance);
-    }
+//    /**
+//     * Getter method for the Duration as a String, in minutes
+//     * @return String
+//     */
+//    public String getDurationString()
+//    {
+//        return String.format("%.2f", (this.totalDuration / 60.0));
+//    }
+//
+//
+//    /**
+//     * Getter method for the Average Speed as a String, in KM/h
+//     * @return String
+//     */
+//    public String getSpeedString()
+//    {
+//        return String.format("%.2f", (this.averageVelocity * 3.6));
+//    }
+//
+//
+//    /**
+//     * Getter method for the Distance as a String, in Km
+//     * @return String
+//     */
+//    public String getDistanceString()
+//    {
+//        return String.format("%.2f", (this.totalDistance / 1000.0));
+//    }
 
 
     /**
@@ -316,9 +315,9 @@ public class Activity implements Serializable {
      * Getter method for the Number of Entries as a String
      * @return String
      */
-    public String getEntrynoString()
+    public int getEntryno()
     {
-        return String.valueOf(this.entries.size());
+        return this.entries.size();
     }
 
 

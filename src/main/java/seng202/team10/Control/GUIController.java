@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import seng202.team10.Model.ActivitiesData.Activity;
@@ -20,6 +21,7 @@ import seng202.team10.Model.UserProfile;
 import seng202.team10.Visual.*;
 
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -83,6 +85,9 @@ public class GUIController extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception
     {
+        if(!dataReader.checkFileExists("./profiles")){
+            dataWriter.createProfileFolder();
+        }
         try {
             // Added a test user.
             users.add(new UserProfile("Potato", 75, 180, new DateTime(2000, 1, 1, 1, 1, 1), "Male"));
@@ -415,12 +420,13 @@ public class GUIController extends Application{
      * @param title String: Title of pop up window
      * @param message String: Message to display to user
      */
-    public void createPopUp(Alert.AlertType type, String title, String message)
+    public String createPopUp(Alert.AlertType type, String title, String message)
     {
         Alert errorPopUp = new Alert(type);
         errorPopUp.setTitle(title);
         errorPopUp.setContentText(message);
         errorPopUp.setHeaderText(null);
-        errorPopUp.showAndWait();
+        Optional<ButtonType> buttonType = errorPopUp.showAndWait();
+        return buttonType.get().getText();
     }
 }

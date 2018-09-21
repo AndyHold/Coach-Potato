@@ -86,27 +86,28 @@ public class DataAnalysisController implements Controllable, Initializable{
             caloriesBurned.getData().clear();
             stressLevelOverTime.getData().clear();
 
-            ArrayList<Integer> timeArray = dataAnalysis.getTimeFromActivity(activity);
+            ArrayList<Double> timeArray = dataAnalysis.getMinutesFromActivity(activity);
             activityNameLabel.setText(activity.getName());
             DateTime startTime = activity.getStartDateTime();
             Integer timeTaken = activity.getTotalDuration();
             timeTakenLabel.setText("Time Taken: " + dataAnalysis.secondsToTime(timeTaken));
+//            System.out.println(timeArray);
 
             ArrayList<Double> distanceArray = dataAnalysis.getDistanceFromActivity(activity);
             for (int i = 0; i < timeArray.size(); i++) {
-                distanceTimeSeries.getData().add(new XYChart.Data(dataAnalysis.secondsToTime(timeArray.get(i)), distanceArray.get(i)));
+                distanceTimeSeries.getData().add(new XYChart.Data(timeArray.get(i), distanceArray.get(i)));
             }
             distanceOverTime.getData().add(distanceTimeSeries);
 
             ArrayList<Integer> heartRateArray = dataAnalysis.getHeartRateFromActivity(activity);
             for (int i = 0; i < timeArray.size(); i++) {
-                heartRateSeries.getData().add(new XYChart.Data(dataAnalysis.secondsToTime(timeArray.get(i)), heartRateArray.get(i)));
+                heartRateSeries.getData().add(new XYChart.Data(timeArray.get(i), heartRateArray.get(i)));
             }
             heartRateOverTime.getData().add(heartRateSeries);
 
             ArrayList<Double> calorieArray = dataAnalysis.getCaloriesFromActivity(activity, currentProfile);
             for (int i = 0; i < timeArray.size(); i++) {
-                caloriesBurnedSeries.getData().add(new XYChart.Data(dataAnalysis.secondsToTime(timeArray.get(i)), calorieArray.get(i)));
+                caloriesBurnedSeries.getData().add(new XYChart.Data(timeArray.get(i), calorieArray.get(i)));
             }
             caloriesBurned.getData().add(caloriesBurnedSeries);
 
@@ -114,7 +115,7 @@ public class DataAnalysisController implements Controllable, Initializable{
             for (int i = 0; i < timeArray.size(); i++) {
                 double stressPercent = (double)heartRateArray.get(i)/(double)currentProfile.getMaxHeartrate();
                 stressArray.add(stressPercent);
-                stressLevelTimeSeries.getData().add(new XYChart.Data(dataAnalysis.secondsToTime(timeArray.get(i)), stressArray.get(i)));
+                stressLevelTimeSeries.getData().add(new XYChart.Data(timeArray.get(i), stressArray.get(i)));
             }
             stressLevelOverTime.getData().add(stressLevelTimeSeries);
         }
@@ -145,8 +146,8 @@ public class DataAnalysisController implements Controllable, Initializable{
     }
 
     private void setUpOneGraph(LineChart linechart) {
-        linechart.getXAxis().setLabel("Time");
-        linechart.getXAxis().setAnimated(false);
+        linechart.getXAxis().setLabel("Time (minutes)");
+//        linechart.getXAxis().setAnimated(false);
 //        NumberAxis xAxis = (NumberAxis)linechart.getXAxis();
 //        xAxis.setLowerBound();
         linechart.setCreateSymbols(false);
@@ -175,19 +176,11 @@ public class DataAnalysisController implements Controllable, Initializable{
         if (!(activity == null)) {
             guiController.launchMapScene(activity);
         } else {
-            createPopUp(Alert.AlertType.ERROR, "Error", "Please select an activity.");
+            this.guiController.createPopUp(Alert.AlertType.ERROR, "Error", "Please select an activity.");
         }
 
     }
 
-    private void createPopUp(Alert.AlertType type, String title, String message)
-    {
-        Alert errorPopUp = new Alert(type);
-        errorPopUp.setTitle(title);
-        errorPopUp.setContentText(message);
-        errorPopUp.setHeaderText(null);
-        errorPopUp.showAndWait();
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
