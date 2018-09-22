@@ -3,16 +3,25 @@ package seng202.team10.Visual;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+<<<<<<< HEAD
 import javafx.scene.control.*;
+=======
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+>>>>>>> 37e346b... Javadocced and cleaned up classes
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.UserProfile;
 
 import java.util.ArrayList;
 
+/**
+ * LoginController Class for Coach Potato
+ * SENG202 2018S2
+ * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
+ */
 public class LoginController implements Controllable{
     private GUIController app;
 
@@ -45,7 +54,7 @@ public class LoginController implements Controllable{
 
 
     /**
-     *
+     * Method to initialize the user images and other objects on the screen.
      */
     public void setUpScene() {
         // Set Button tool tips
@@ -108,6 +117,11 @@ public class LoginController implements Controllable{
     }
 
 
+    /**
+     *
+     * @param index
+     * @param user
+     */
     private void setButtonProperties(int index, UserProfile user)
     {
         try {
