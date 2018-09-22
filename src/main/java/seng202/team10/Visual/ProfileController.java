@@ -45,6 +45,7 @@ public class ProfileController {
     @FXML private Button editProfileButton;
     @FXML private Button confirmButton;
     @FXML private Button logoutButton;
+    @FXML private Button quoteButton;
     @FXML private Label recentActivitiesLabel;
     @FXML public HBox activity1HBox;
     @FXML public HBox activity2HBox;
@@ -60,6 +61,7 @@ public class ProfileController {
     @FXML private Text heartRateText;
     @FXML private VBox drawer;
     @FXML private VBox wholeProfileVBox;
+    @FXML private TextArea helpTextArea;
 
     /**
      * List of Motivational quotes.
@@ -98,8 +100,58 @@ public class ProfileController {
      */
     public void setUpScene()
     {
+        // Set tool tips
+        editProfileButton.setTooltip(new Tooltip("Click here to enter edit mode."));
+        confirmButton.setTooltip(new Tooltip("Click here to confirm changes and exit edit mode."));
+        usernameTA.setTooltip(new Tooltip("User name is displayed here."));
+        dobTA.setTooltip(new Tooltip("Date of birth is displayed here."));
+        genderTA.setTooltip(new Tooltip("Gender is displayed here."));
+        weightValueTA.setTooltip(new Tooltip("Weight is displayed here in kg's."));
+        heightValueTA.setTooltip(new Tooltip("Height is displayed here in cm's."));
+        bmiValueTA.setTooltip(new Tooltip("BMI value is displayed here."));
+        quoteButton.setTooltip(new Tooltip("Motivation is key!\nClick here for new quote."));
+
+        // Set up help text area
+        helpTextArea.setText("Welcome to Profile View Screen!\n\n" +
+                "On this screen you can edit your profile details and view brief statistics for today and for all time.\n" +
+                "To edit your profile:\n" +
+                "\t- Click on the Edit button\n" +
+                "\t- Click on the data field you wish to edit\n" +
+                "\t- Enter the new value\n" +
+                "\t- Click the Confirm Changes Button\n" +
+                "If any invalid data is entered you will get a pop up and will need to try again.\n\n" +
+                "Hover the mouse over any field to see what it contains.");
+        helpTextArea.setVisible(false);
+        helpTextArea.setWrapText(true);
+
         confirmButton.setVisible(false);
         wholeProfileVBox.setVisible(false);
+        setQuote();
+
+        // Hide the help text field when focus is lost
+        helpTextArea.focusedProperty().addListener((ov, oldV, newV) -> {
+            if (!newV) {
+                helpTextArea.setVisible(false);
+            }
+        });
+    }
+
+
+    @FXML private void displayHelp()
+    {
+        helpTextArea.setVisible(true);
+        helpTextArea.requestFocus();
+    }
+
+
+    @FXML public void hideHelpTextArea()
+    {
+        helpTextArea.setVisible(false);
+    }
+
+
+    @FXML public void setQuote()
+    {
         quotesLabel.setText(quotes.get((int)(Math.random()*(quotes.size()))));
     }
 
@@ -156,11 +208,15 @@ public class ProfileController {
         editProfileButton.setVisible(false);
         confirmButton.setVisible(true);
         usernameTA.setEditable(true);
+        usernameTA.setStyle(null);
         dobTA.setEditable(true);
+        dobTA.setStyle(null);
         genderTA.setEditable(true);
+        genderTA.setStyle(null);
         weightValueTA.setEditable(true);
+        weightValueTA.setStyle("-fx-text-fill: black");
         heightValueTA.setEditable(true);
-
+        heightValueTA.setStyle("-fx-text-fill: black");
     }
     /**
      * Method to save user's edited profile details. Saves the edited name, DOB, gender, weight and height if valid.
@@ -168,10 +224,17 @@ public class ProfileController {
     @FXML private void confirmEdit()
     {
         usernameTA.setEditable(false);
+        usernameTA.setStyle("-fx-background-color: transparent");
         dobTA.setEditable(false);
+        dobTA.setStyle("-fx-background-color: transparent");
         genderTA.setEditable(false);
+        genderTA.setStyle("-fx-background-color: transparent");
         weightValueTA.setEditable(false);
+        weightValueTA.setStyle("-fx-text-fill: black; " +
+                "-fx-background-color: transparent");
         heightValueTA.setEditable(false);
+        heightValueTA.setStyle("-fx-text-fill: black; " +
+                "-fx-background-color: transparent");
 
         // Set Name and handle Exceptions
         try {
