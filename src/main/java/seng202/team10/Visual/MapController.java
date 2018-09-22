@@ -5,8 +5,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Worker;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import seng202.team10.Control.GUIController;
@@ -26,8 +25,10 @@ public class MapController implements Controllable, Initializable{
     private Activity activity;
 
     @FXML private WebView mapWebView;
-
     @FXML private Label activityLabel;
+    @FXML private TextArea helpTextArea;
+    @FXML private Button helpButton;
+    @FXML private Button backButton;
 
     @Override
     public void setApp(GUIController guiController) {
@@ -67,6 +68,21 @@ public class MapController implements Controllable, Initializable{
 
     @Override
     public void setUpScene() {
+        // Set tool tips
+        backButton.setTooltip(new Tooltip("Click here to return to the Analysis Screen."));
+        helpButton.setTooltip(new Tooltip("Need Help?"));
+        //Set up help text area
+        helpTextArea.setText("Welcome to the Map View Screen!\n\n" +
+                "On this screen you can view a map of the route taken in the activity selected in the previous screen.\n\n" +
+                "- To Zoom in and out select the + and - buttons on the\n" +
+                "  right side of the map.\n" +
+                "- To add satelite view or terrain view select the layers icon\n" +
+                "  in the bottom right of the map and choose the desired\n" +
+                "  view.\n" +
+                "- To return to the Analysis Screen select the Back button.\n\n" +
+                "The start of your activity is marked by the green pin and the end is marked by the finish flag.");
+        helpTextArea.setWrapText(true);
+        helpTextArea.setVisible(false);
 
         webEngine = mapWebView.getEngine();
         webEngine.load(this.getClass().getResource("/map.html").toExternalForm());
@@ -81,6 +97,13 @@ public class MapController implements Controllable, Initializable{
             firstLoad = false;
         }
 
+        // Hide the help text field when focus is lost
+        helpTextArea.focusedProperty().addListener((ov, oldV, newV) -> {
+            if (!newV) {
+                helpTextArea.setVisible(false);
+            }
+        });
+
 //
 //
 //        webEngine = mapWebView.getEngine();
@@ -91,6 +114,23 @@ public class MapController implements Controllable, Initializable{
 //        this.displayRoute(route);
 //        System.out.println("Howdy");
     }
+
+
+    @FXML private void displayHelp()
+    {
+        helpTextArea.setVisible(true);
+        helpTextArea.requestFocus();
+    }
+
+
+    @FXML public void hideHelpTextArea()
+    {
+        helpTextArea.setVisible(false);
+        helpButton.requestFocus();
+    }
+
+
+
 //    }
 
 //    static { // use system proxy settings when standalone application
