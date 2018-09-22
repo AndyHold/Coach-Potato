@@ -46,7 +46,15 @@ public class UploadDataController {
     @FXML private TextField longitudeTextField;
     @FXML private TextField elevationTextField;
     @FXML private VBox drawer;
-
+    @FXML private Button helpButtonManualActivity;
+    @FXML private Button helpButtonUploadFile;
+    @FXML private Button uploadButton;
+    @FXML private Button clearTableButton;
+    @FXML private Button deleteEntryButton;
+    @FXML private Button addEntryButton;
+    @FXML private Button submitDataButton;
+    @FXML private TextArea manualEntryHelpTextArea;
+    @FXML private TextArea uploadFileHelpTextArea;
 
     /**
      * Setter method to set the GUI controller for this Scene
@@ -63,6 +71,30 @@ public class UploadDataController {
      */
     public void setUpScene()
     {
+        manualEntryHelpTextArea.setVisible(false);
+        uploadFileHelpTextArea.setVisible(false);
+        manualEntryHelpTextArea.setText("Welcome to the Manual Activity Entry Section!\n\nIn this section, you can manually enter each entry point of an activity along with the name of the activity. Each new entry will be entered in chronological order and prompts will be given for invalid data formats.\n\nHover the mouse over each button or field to see a brief discription of what it does.");
+        uploadFileHelpTextArea.setText("Welcome to the Upload File Section!\n\nIn this section, you can select a .csv file to be uploaded. Simply type in the file path or click on the browse button (the button with the little picture of a folder on it) and navigate to your desired file. Then click the Upload File button and your file will be uploaded. A pop up will then be displayed to tell you how many Activities were succesfully uploaded to your profile.\n\nHover the mouse over each button or field to see a brief discription of what it does.");
+        manualEntryHelpTextArea.setWrapText(true);
+        uploadFileHelpTextArea.setWrapText(true);
+        // Set tool tips for buttons
+        browseButton.setTooltip(new Tooltip("Open a browser window to select your .csv file from"));
+        helpButtonManualActivity.setTooltip(new Tooltip("Need Help?"));
+        helpButtonUploadFile.setTooltip(new Tooltip("Need Help?"));
+        uploadButton.setTooltip(new Tooltip("Upload the data from the selected file"));
+        clearTableButton.setTooltip(new Tooltip("Clear the table of values to start again"));
+        deleteEntryButton.setTooltip(new Tooltip("Delete the selected entry"));
+        addEntryButton.setTooltip(new Tooltip("Add the entry you have input into the text fields"));
+        submitDataButton.setTooltip(new Tooltip("Create the activity from the data in the table and add it to your profile"));
+        // Set tool tips for text fields
+        filePathTextField.setTooltip(new Tooltip("Please enter the file path of the file you wish to upload,\nE.g. \"Walk in the woods\""));
+        activityNameTextField.setTooltip(new Tooltip("Please enter a name that describes your activity,\nE.g. \"Walk in the woods\""));
+        dateTextField.setTooltip(new Tooltip("Please enter the date that your entry point was taken on,\nUsing the format DD/MM/YYYY"));
+        timeTextField.setTooltip(new Tooltip("Please enter the time that your entry point was taken on,\nUsing the format HH:MM:SS in 24 hour time"));
+        heartRateTextField.setTooltip(new Tooltip("Please enter your heart rate at the time of this entry point\nMust be an integer in the range 1 to 300"));
+        latitudeTextField.setTooltip(new Tooltip("Please enter your latitude at the time of this entry\nMust be in the range -90.0 to 90.0\nPreferred accuracy is 6 decimal places"));
+        longitudeTextField.setTooltip(new Tooltip("Please enter your latitude at the time of this entry\nMust be in the range -180.0 to 180.0\nPreferred accuracy is 6 decimal places"));
+        elevationTextField.setTooltip(new Tooltip("Please enter your elevation at the time of this entry\nMust be in the range -430.0 to 8850.0\nPreferred accuracy is 2 decimal places"));
         // Set up the columns in the table.
         dateColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("dateString"));
         timeColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("timeString"));
@@ -81,12 +113,40 @@ public class UploadDataController {
         longitudeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         elevationColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
+        // Set the focus to the browse button on entry
         filePathTextField.focusedProperty().addListener((observable,  oldValue,  newValue) -> {
             if(newValue && firstTime){
                 browseButton.requestFocus(); // Delegate the focus to container
                 firstTime = false; // Variable value changed for future references
             }
         });
+
+        // Hide the help text fields when focus is lost
+        manualEntryHelpTextArea.focusedProperty().addListener((ov, oldV, newV) -> {
+            if (!newV) {
+                manualEntryHelpTextArea.setVisible(false);
+            }
+        });
+
+        uploadFileHelpTextArea.focusedProperty().addListener((ov, oldV, newV) -> {
+            if (!newV) {
+                uploadFileHelpTextArea.setVisible(false);
+            }
+        });
+    }
+
+
+    @FXML public void manualActivityHelp()
+    {
+        manualEntryHelpTextArea.setVisible(true);
+        manualEntryHelpTextArea.requestFocus();
+    }
+
+
+    @FXML public void uploadFileHelp()
+    {
+        uploadFileHelpTextArea.setVisible(true);
+        uploadFileHelpTextArea.requestFocus();
     }
 
 
