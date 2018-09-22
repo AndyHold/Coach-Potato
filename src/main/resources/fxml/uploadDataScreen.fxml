@@ -304,7 +304,7 @@
                               <Font size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="helpButtonUploadFile" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" onAction="#uploadFileHelp" prefHeight="28.0" prefWidth="25.0">
+                        <Button fx:id="helpButtonUploadFile" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" onAction="#displayUploadFileHelp" prefHeight="35.0" prefWidth="43.0">
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -334,7 +334,7 @@
                               <Font size="14.0" />
                            </font>
                         </TextField>
-                        <Button fx:id="helpButtonManualActivity" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" onAction="#manualActivityHelp" prefHeight="28.0" prefWidth="25.0">
+                        <Button fx:id="helpButtonManualActivity" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" onAction="#displayManualActivityHelp" prefHeight="35.0" prefWidth="43.0">
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
