@@ -99,7 +99,7 @@ public class CreateProfileController implements Controllable
      */
     public void toggleBackButton()
     {
-        backButton.requestFocus();
+        helpButton.requestFocus();
         if (this.app.getUsers().size() == 0) {
             backButton.setDisable(true);
         } else {
@@ -205,7 +205,7 @@ public class CreateProfileController implements Controllable
     @FXML public void hideHelpTextArea()
     {
         helpTextArea.setVisible(false);
-        backButton.requestFocus();
+        helpButton.requestFocus();
     }
 
 
