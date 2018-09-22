@@ -73,8 +73,19 @@ public class UploadDataController {
     {
         manualEntryHelpTextArea.setVisible(false);
         uploadFileHelpTextArea.setVisible(false);
-        manualEntryHelpTextArea.setText("Welcome to the Manual Activity Entry Section!\n\nIn this section, you can manually enter each entry point of an activity along with the name of the activity. Each new entry will be added to the table in chronological order and prompts will be given for invalid data formats. If you wish to edit an existing entry just double click on it and enter the new value. Please remember to use the correct format when editing entries.\n\nHover the mouse over each button or field to see a brief discription of what it does.");
-        uploadFileHelpTextArea.setText("Welcome to the Upload File Section!\n\nIn this section, you can select a .csv file to be uploaded. Simply type in the file path or click on the browse button (the button with the little picture of a folder on it) and navigate to your desired file. Then click the Upload File button and your file will be uploaded. A pop up will then be displayed to tell you how many Activities were succesfully uploaded to your profile.\n\nHover the mouse over each button or field to see a brief discription of what it does.");
+        manualEntryHelpTextArea.setText("Welcome to the Manual Activity Entry Section!\n\n" +
+                "In this section, you can manually enter each entry point of an activity along with the name of the activity. " +
+                "Each new entry will be added to the table in chronological order and prompts will be given for invalid data formats. " +
+                "If you wish to edit an existing entry just double click on it and enter the new value. " +
+                "Please remember to use the correct format when editing entries.\n\n" +
+                "Hover the mouse over each button or field to see a brief discription of what it does.");
+        uploadFileHelpTextArea.setText("Welcome to the Upload File Section!\n\n" +
+                "In this section, you can select a .csv file to be uploaded. " +
+                "Simply type in the file path or click on the browse button " +
+                "(the button with the little picture of a folder on it) " +
+                "and navigate to your desired file. Then click the Upload File button and your file will be uploaded. " +
+                "A pop up will then be displayed to tell you how many Activities were succesfully uploaded to your profile.\n\n" +
+                "Hover the mouse over each button or field to see a brief discription of what it does.");
         manualEntryHelpTextArea.setWrapText(true);
         uploadFileHelpTextArea.setWrapText(true);
         // Set tool tips for buttons
@@ -87,16 +98,29 @@ public class UploadDataController {
         addEntryButton.setTooltip(new Tooltip("Add the entry you have input into the text fields"));
         submitDataButton.setTooltip(new Tooltip("Create the activity from the data in the table and add it to your profile"));
         // Set tool tips for text fields
-        filePathTextField.setTooltip(new Tooltip("Please enter the file path of the file you wish to upload,\nE.g. \"Walk in the woods\""));
-        activityNameTextField.setTooltip(new Tooltip("Please enter a name that describes your activity,\nE.g. \"Walk in the woods\""));
-        dateTextField.setTooltip(new Tooltip("Please enter the date that your entry point was taken on,\nUsing the format DD/MM/YYYY"));
-        timeTextField.setTooltip(new Tooltip("Please enter the time that your entry point was taken on,\nUsing the format HH:MM:SS in 24 hour time"));
-        heartRateTextField.setTooltip(new Tooltip("Please enter your heart rate at the time of this entry point\nMust be an integer in the range 1 to 300"));
-        latitudeTextField.setTooltip(new Tooltip("Please enter your latitude at the time of this entry\nMust be in the range -90.0 to 90.0\nPreferred accuracy is 6 decimal places"));
-        longitudeTextField.setTooltip(new Tooltip("Please enter your latitude at the time of this entry\nMust be in the range -180.0 to 180.0\nPreferred accuracy is 6 decimal places"));
-        elevationTextField.setTooltip(new Tooltip("Please enter your elevation at the time of this entry\nMust be in the range -430.0 to 8850.0\nPreferred accuracy is 2 decimal places"));
+        filePathTextField.setTooltip(new Tooltip("Please enter the file path of the file you wish to upload,\n" +
+                "E.g. \"Walk in the woods\""));
+        activityNameTextField.setTooltip(new Tooltip("Please enter a name that describes your activity,\n" +
+                "E.g. \"Walk in the woods\""));
+        dateTextField.setTooltip(new Tooltip("Please enter the date that your entry point was taken on,\n" +
+                "Using the format DD/MM/YYYY"));
+        timeTextField.setTooltip(new Tooltip("Please enter the time that your entry point was taken on,\n" +
+                "Using the format HH:MM:SS in 24 hour time"));
+        heartRateTextField.setTooltip(new Tooltip("Please enter your heart rate at the time of this entry point\n" +
+                "Must be an integer in the range 1 to 300"));
+        latitudeTextField.setTooltip(new Tooltip("Please enter your latitude at the time of this entry\n" +
+                "Must be in the range -90.0 to 90.0\n" +
+                "Preferred accuracy is 6 decimal places"));
+        longitudeTextField.setTooltip(new Tooltip("Please enter your latitude at the time of this entry\n" +
+                "Must be in the range -180.0 to 180.0\n" +
+                "Preferred accuracy is 6 decimal places"));
+        elevationTextField.setTooltip(new Tooltip("Please enter your elevation at the time of this entry\n" +
+                "Must be in the range -430.0 to 8850.0\n" +
+                "Preferred accuracy is 2 decimal places"));
         // Set tool tip for the table view.
-        manualDataTableView.setTooltip(new Tooltip("This table shows the Entries you have already entered in chronological order.\nYou can double click on a value if you wish to edit it.\nPlease remember to use the correct format when editting values"));
+        manualDataTableView.setTooltip(new Tooltip("This table shows the Entries you have already entered in chronological order.\n" +
+                "You can double click on a value if you wish to edit it.\n" +
+                "Please remember to use the correct format when editting values"));
         // Set up the columns in the table.
         dateColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("dateString"));
         timeColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("timeString"));
@@ -146,14 +170,14 @@ public class UploadDataController {
     }
 
 
-    @FXML public void manualActivityHelp()
+    @FXML public void displayManualActivityHelp()
     {
         manualEntryHelpTextArea.setVisible(true);
         manualEntryHelpTextArea.requestFocus();
     }
 
 
-    @FXML public void uploadFileHelp()
+    @FXML public void displayUploadFileHelp()
     {
         uploadFileHelpTextArea.setVisible(true);
         uploadFileHelpTextArea.requestFocus();
