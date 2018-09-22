@@ -47,7 +47,16 @@ public class ActivityViewerController {
     public void setUpScene()
     {
         // Set tool tips for all elements
-
+        startDate.setTooltip(new Tooltip("Please select the date you wish to filter from."));
+        endDate.setTooltip(new Tooltip("Please select the date you wish to filter to."));
+        typeSelect.setTooltip(new Tooltip("Please select the type of activity you wish to view."));
+        filterApplyButton.setTooltip(new Tooltip("Click here to apply the selected filters."));
+        clearFiltersButton.setTooltip(new Tooltip("Click here to clear the filters and view all activities in your profile."));
+        helpButton.setTooltip(new Tooltip("Need Halp?"));
+        activitiesTableView.setTooltip(new Tooltip("Your activities are listed in this table\n" +
+                "Please click a title to sort the activities by that value."));
+        entryViewerButton.setTooltip(new Tooltip("Click here to view the Entries in the selected activity.\n" +
+                "Note: You must have clicked on an activity in the table for this button to be used."));
         // Set up help text area
         helpTextArea.setText("Welcome to the Activity View Screen!\n\n" +
                 "On this screen you can sort your activities by different values, view activities between selected dates, " +
