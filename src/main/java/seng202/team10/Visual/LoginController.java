@@ -199,7 +199,7 @@ public class LoginController implements Controllable{
     @FXML public void hideHelpTextArea()
     {
         helpTextArea.setVisible(false);
-        userOneButton.requestFocus();
+        helpButton.requestFocus();
     }
 
 
