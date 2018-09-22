@@ -10,8 +10,12 @@ import java.util.ArrayList;
 
 public class InputValidator {
 
-    public boolean validGoalName(String name) {
-        return name.length() <= 10 && name.length() >= 2;
+    public boolean validGoalName(String name, Goals goalInst) {
+        if (goalInst.getCreatedGoalNames().contains(name)) {
+            return false;
+        } else {
+            return name.length() <= 10 && name.length() >= 2;
+        }
     }
 
     public boolean validGoalStartDate(DateTime startDate) {
@@ -30,6 +34,10 @@ public class InputValidator {
         int day = now.getDayOfMonth();
         DateTime today = new DateTime(year, month, day, 0,0,0);
         return !targetDate.isBefore(today) && (targetDate.getYear() <= (today.getYear() + 5));
+    }
+
+    public boolean checkStartVsTargetDates(DateTime start, DateTime target) {
+        return (start.isBefore(target));
     }
 
     public boolean intValueInRange(String value, int lowerBound, int upperBound) {
