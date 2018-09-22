@@ -16,17 +16,23 @@ import javafx.util.Duration;
 import seng202.team10.Control.DataAnalysis;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.Activity;
-import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.UserProfile;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * DataAnalysisController Class for Coach Potato
+ * SENG202 2018S2
+ * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
+ */
 public class DataAnalysisController implements Controllable, Initializable{
 
     private GUIController guiController;
     private Activity activity;
+    private UserProfile currentProfile;
+    private DataAnalysis dataAnalysis;
     private int currentIndex;
 
     @FXML private Label activityNameLabel;
@@ -46,80 +52,149 @@ public class DataAnalysisController implements Controllable, Initializable{
     private XYChart.Series stressLevelTimeSeries;
 
 
+    /**
+     * Method to pass the guiController into this class.
+     * @param guiController  The main controller class that contains most information
+     */
     @Override
     public void setApp(GUIController guiController) {
         this.guiController = guiController;
     }
 
+    /**
+     *Method to set up the scene. This is run whenever a new activity is selected or this scene is loaded.
+     * This method calls methods to initialize the graphs and populate them with data. It also initializes the
+     * ListView that contains a list of activities.
+     */
     @Override
     public void setUpScene() {
 
-        DataAnalysis dataAnalysis = new DataAnalysis();
-        UserProfile currentProfile = guiController.getCurrentProfile();
+        dataAnalysis = new DataAnalysis();
+        currentProfile = guiController.getCurrentProfile();
         if (currentProfile.getActivities().isEmpty()) {
             this.displayNoData(true);
         } else {
-            ObservableList<String> activityNames = FXCollections.observableArrayList();
-            for (Activity activity : currentProfile.getActivities()) {
-                String activityString = activity.getStartDateTime().toString() + " : " + activity.getName();
-                activityNames.add(activityString);
-            }
-            activityList.setItems(activityNames);
-            if (activityList.getSelectionModel().getSelectedIndex() == -1) {
-                activityList.getSelectionModel().selectFirst();
-                currentIndex = 0;
-            }
-            currentIndex = activityList.getSelectionModel().getSelectedIndex();
-                    activity = currentProfile.getActivities().get(currentIndex);
 
+            this.setUpListView();
 
             this.displayNoData(false);
 
-            distanceTimeSeries = new XYChart.Series();
-            heartRateSeries = new XYChart.Series();
-            caloriesBurnedSeries = new XYChart.Series();
-            stressLevelTimeSeries = new XYChart.Series();
+            this.initializeSeries();
 
-            distanceOverTime.getData().clear();
-            heartRateOverTime.getData().clear();
-            caloriesBurned.getData().clear();
-            stressLevelOverTime.getData().clear();
+            this.clearGraphs();
 
             ArrayList<Double> timeArray = dataAnalysis.getMinutesFromActivity(activity);
-            activityNameLabel.setText(activity.getName());
-            DateTime startTime = activity.getStartDateTime();
-            Integer timeTaken = activity.getTotalDuration();
-            timeTakenLabel.setText("Time Taken: " + dataAnalysis.secondsToTime(timeTaken));
-//            System.out.println(timeArray);
-
-            ArrayList<Double> distanceArray = dataAnalysis.getDistanceFromActivity(activity);
-            for (int i = 0; i < timeArray.size(); i++) {
-                distanceTimeSeries.getData().add(new XYChart.Data(timeArray.get(i), distanceArray.get(i)));
-            }
-            distanceOverTime.getData().add(distanceTimeSeries);
-
             ArrayList<Integer> heartRateArray = dataAnalysis.getHeartRateFromActivity(activity);
-            for (int i = 0; i < timeArray.size(); i++) {
-                heartRateSeries.getData().add(new XYChart.Data(timeArray.get(i), heartRateArray.get(i)));
-            }
-            heartRateOverTime.getData().add(heartRateSeries);
+            Integer timeTaken = activity.getTotalDuration();
 
-            ArrayList<Double> calorieArray = dataAnalysis.getCaloriesFromActivity(activity, currentProfile);
-            for (int i = 0; i < timeArray.size(); i++) {
-                caloriesBurnedSeries.getData().add(new XYChart.Data(timeArray.get(i), calorieArray.get(i)));
-            }
-            caloriesBurned.getData().add(caloriesBurnedSeries);
+            activityNameLabel.setText(activity.getName());
+            timeTakenLabel.setText("Time Taken: " + dataAnalysis.secondsToTime(timeTaken));
 
-            ArrayList<Double> stressArray = new ArrayList<>();
-            for (int i = 0; i < timeArray.size(); i++) {
-                double stressPercent = (double)heartRateArray.get(i)/(double)currentProfile.getMaxHeartRate();
-                stressArray.add(stressPercent);
-                stressLevelTimeSeries.getData().add(new XYChart.Data(timeArray.get(i), stressArray.get(i)));
-            }
-            stressLevelOverTime.getData().add(stressLevelTimeSeries);
+
+            this.populateDistanceTimeGraph(timeArray);
+
+            this.populateHeartRateTimeGraph(timeArray, heartRateArray);
+
+            this.populateCaloriesBurnedGraph(timeArray);
+
+            this.populateStressTimeGraph(timeArray, heartRateArray);
         }
     }
 
+    /**
+     * Method to set up the ListView that contains a list of activities for the user to view. It displays the activity
+     * name and date.
+     */
+    private void setUpListView() {
+        ObservableList<String> activityNames = FXCollections.observableArrayList();
+        for (Activity activity : currentProfile.getActivities()) {
+            String activityString = activity.getName() + " : " + activity.getStartDateTime().toString();
+            activityNames.add(activityString);
+        }
+        activityList.setItems(activityNames);
+        if (activityList.getSelectionModel().getSelectedIndex() == -1) {
+            activityList.getSelectionModel().selectFirst();
+            currentIndex = 0;
+        }
+        currentIndex = activityList.getSelectionModel().getSelectedIndex();
+        activity = currentProfile.getActivities().get(currentIndex);
+    }
+
+    /**
+     * Method to populate the distance over time graph with data.
+     * @param timeArray  An ArrayList<Double> that contains the total time that has passed at each point in the activity.
+     */
+    private void populateDistanceTimeGraph(ArrayList<Double> timeArray) {
+        ArrayList<Double> distanceArray = dataAnalysis.getDistanceFromActivity(activity);
+        for (int i = 0; i < timeArray.size(); i++) {
+            distanceTimeSeries.getData().add(new XYChart.Data(timeArray.get(i), distanceArray.get(i)));
+        }
+        distanceOverTime.getData().add(distanceTimeSeries);
+    }
+
+    /**
+     * Method to populate the heart rate over time graph with data.
+     * @param timeArray  An ArrayList<Double> that contains the total time that has passed at each point in the activity.
+     * @param heartRateArray  An ArrayList<Integer> that contains a list of heartrates at each point in the activity.
+     */
+    private void populateHeartRateTimeGraph(ArrayList<Double> timeArray, ArrayList<Integer> heartRateArray) {
+        for (int i = 0; i < timeArray.size(); i++) {
+            heartRateSeries.getData().add(new XYChart.Data(timeArray.get(i), heartRateArray.get(i)));
+        }
+        heartRateOverTime.getData().add(heartRateSeries);
+    }
+
+    /**
+     * Method to populate the calories burned over time graph with data.
+     * @param timeArray  An ArrayList<Double> that contains the total time that has passed at each point in the activity.
+     */
+    private void populateCaloriesBurnedGraph(ArrayList<Double> timeArray) {
+        ArrayList<Double> calorieArray = dataAnalysis.getCaloriesFromActivity(activity, currentProfile);
+        for (int i = 0; i < timeArray.size(); i++) {
+            caloriesBurnedSeries.getData().add(new XYChart.Data(timeArray.get(i), calorieArray.get(i)));
+        }
+        caloriesBurned.getData().add(caloriesBurnedSeries);
+    }
+
+    /**
+     * Method to populate the stress level over time graph with data.
+     * @param timeArray  An ArrayList<Double> that contains the total time that has passed at each point in the activity.
+     * @param heartRateArray  An ArrayList<Integer> that contains a list of heartrates at each point in the activity.
+     */
+    private void populateStressTimeGraph(ArrayList<Double> timeArray, ArrayList<Integer> heartRateArray) {
+        ArrayList<Double> stressArray = new ArrayList<>();
+        for (int i = 0; i < timeArray.size(); i++) {
+            double stressPercent = (double)heartRateArray.get(i)/(double)currentProfile.getMaxHeartRate();
+            stressArray.add(stressPercent);
+            stressLevelTimeSeries.getData().add(new XYChart.Data(timeArray.get(i), stressArray.get(i)));
+        }
+        stressLevelOverTime.getData().add(stressLevelTimeSeries);
+    }
+
+    /**
+     * Method to initialize the series in the graphs.
+     */
+    private void initializeSeries() {
+        distanceTimeSeries = new XYChart.Series();
+        heartRateSeries = new XYChart.Series();
+        caloriesBurnedSeries = new XYChart.Series();
+        stressLevelTimeSeries = new XYChart.Series();
+    }
+
+    /**
+     * Method to remove all data currently in the graphs.
+     */
+    private void clearGraphs() {
+        distanceOverTime.getData().clear();
+        heartRateOverTime.getData().clear();
+        caloriesBurned.getData().clear();
+        stressLevelOverTime.getData().clear();
+    }
+
+    /**
+     * Method to set up the scene if a different index than the currently selected one is chosen. Called when any
+     * actvity in the list view is clicked.
+     */
     @FXML
     private void refresh() {
         if (activityList.getSelectionModel().getSelectedIndex() != currentIndex) {
@@ -127,11 +202,11 @@ public class DataAnalysisController implements Controllable, Initializable{
         }
     }
 
+    /**
+     * Method to set up the graphs by initializing them and setting labels.
+     */
     private void setUpGraphs() {
-        distanceTimeSeries = new XYChart.Series();
-        heartRateSeries = new XYChart.Series();
-        caloriesBurnedSeries = new XYChart.Series();
-        stressLevelTimeSeries = new XYChart.Series();
+        this.initializeSeries();
 
         setUpOneGraph(distanceOverTime);
         setUpOneGraph(heartRateOverTime);
@@ -144,14 +219,19 @@ public class DataAnalysisController implements Controllable, Initializable{
         stressLevelOverTime.getYAxis().setLabel("Stress level");
     }
 
+    /**
+     * Method to set up a graph by setting its label and disabling symbols.
+     * @param linechart  The graph being set up.
+     */
     private void setUpOneGraph(LineChart linechart) {
         linechart.getXAxis().setLabel("Time (minutes)");
-//        linechart.getXAxis().setAnimated(false);
-//        NumberAxis xAxis = (NumberAxis)linechart.getXAxis();
-//        xAxis.setLowerBound();
         linechart.setCreateSymbols(false);
     }
 
+    /**
+     * Method to display a message if there is no data to display, or to disable the message if there is data.
+     * @param noDataFound True if there is no data to display. False if there is.
+     */
     private void displayNoData(boolean noDataFound) {
         if (noDataFound) {
             tabPane.setVisible(false);
@@ -167,10 +247,15 @@ public class DataAnalysisController implements Controllable, Initializable{
     }
 
 
+    /**
+     * Method to set the activity attribute.
+     * @param activity  The activity that the local value is being set to.
+     */
     public void setActivity(Activity activity) {
         this.activity = activity;
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -180,6 +265,11 @@ public class DataAnalysisController implements Controllable, Initializable{
 <<<<<<< HEAD
 >>>>>>> 93aee887... Added a view map button to the controller
 =======
+=======
+    /**
+     *Method to launch the map for the currently selected activity.
+     */
+>>>>>>> d2b01f18... Refactored, javadocced and cleaned up classes
     @FXML public void viewMap() {
         if (!(activity == null)) {
             guiController.launchMapScene(activity);
@@ -189,7 +279,9 @@ public class DataAnalysisController implements Controllable, Initializable{
 
     }
 
-
+    /**
+     * Method to initialize the class. Calls the setUpScene method when called. Called when the class is constructed.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setUpGraphs();
