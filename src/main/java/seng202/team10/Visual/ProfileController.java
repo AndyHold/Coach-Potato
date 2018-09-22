@@ -1,6 +1,8 @@
 package seng202.team10.Visual;
 
 import javafx.animation.TranslateTransition;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -42,6 +44,7 @@ public class ProfileController {
     @FXML private TextField bmiValueTA;
     @FXML private Button editProfileButton;
     @FXML private Button confirmButton;
+    @FXML private Button logoutButton;
     @FXML private Label recentActivitiesLabel;
     @FXML public HBox activity1HBox;
     @FXML public HBox activity2HBox;
@@ -56,7 +59,6 @@ public class ProfileController {
     @FXML private Text velocityText;
     @FXML private Text heartRateText;
     @FXML private VBox drawer;
-    @FXML private ComboBox userNameComboBox;
     @FXML private VBox wholeProfileVBox;
 
     /**
@@ -99,12 +101,8 @@ public class ProfileController {
         confirmButton.setVisible(false);
         wholeProfileVBox.setVisible(false);
         quotesLabel.setText(quotes.get((int)(Math.random()*(quotes.size()))));
-        ObservableList<String> usersList = FXCollections.observableArrayList();
-        for (UserProfile user: app.getUsers()) {
-            usersList.add(user.getName());
-        }
-        //userNameComboBox.setItems(usersList);
     }
+
 
     /**
      * Method to correctly display all user related details for the view profile scene.
@@ -115,7 +113,10 @@ public class ProfileController {
         setUpScene();
         wholeProfileVBox.setVisible(true);
         currentUser = app.getCurrentProfile();
-        //userNameComboBox.setPromptText(currentUser.getName());
+//        ObservableList<String> usersList = FXCollections.observableArrayList();
+//        for (UserProfile user: app.getUsers()) {
+//            usersList.add(user.getName());
+//        }
 
         // Displays all fields in the view and edit profile area.
         welcomeProfileLabel.setText("Welcome " + String.valueOf(currentUser.getName()) + ", Let's do it!");
@@ -141,6 +142,10 @@ public class ProfileController {
             velocityText.setText("Average Speed: 0.00 km/h");
             heartRateText.setText("Average Heart Rate: No Data");
         }
+    }
+
+    @FXML private void logout() {
+        app.launchLoginScene();
     }
 
     /**
