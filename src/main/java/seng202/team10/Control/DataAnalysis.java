@@ -8,7 +8,6 @@ import seng202.team10.Model.UserProfile;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Comparator;
 
 /**
  * Class that contains methods for processing activities for data analysis, mostly used by the DataAnalysisController class.
@@ -21,74 +20,23 @@ public class DataAnalysis {
      * Method to sort a list of activities by their date.
      * @return  A sorted list of activities.
      */
-    public ArrayList<Activity> sortByDate() {
-
-        activities.sort(new Comparator<Activity>() {
-            @Override
-            public int compare(Activity a1, Activity a2) {
-                if(a2.getStartDateTime().isAfter(a1.getStartDateTime())) {
-                    return -1;
-                } else if ((a2.getStartDateTime().isBefore(a1.getStartDateTime()))) {
-                    return 1;
-                } else {
-                    return 0;
-                }
-            }
-        });
-        return activities;
-    }
-
-    /**
-     * Method to sort a list of activities by their intensity.
-     * @return  A sorted list of activities.
-     */
-    public ArrayList<Activity> sortByIntensity() {
-
+//    public ArrayList<Activity> sortByDate() {
+//
 //        activities.sort(new Comparator<Activity>() {
 //            @Override
 //            public int compare(Activity a1, Activity a2) {
-//                if (a2.getIntensity() == LOW) {
-//                    if (a1.getIntensity() == LOW) {
-//                        return 0;
-//                    } else {
-//                        return 1;
-//                    }
-//                } else if (a2.getIntensity() == MEDIUM) {
-//                    if (a1.getIntensity() == LOW) {
-//                        return -1;
-//                    } else if (a1.getIntensity() == HIGH) {
-//                        return 1;
-//                    } else {
-//                        return 0;
-//                    }
+//                if(a2.getStartDateTime().isAfter(a1.getStartDateTime())) {
+//                    return -1;
+//                } else if ((a2.getStartDateTime().isBefore(a1.getStartDateTime()))) {
+//                    return 1;
 //                } else {
-//                    if (a1.getIntensity() == HIGH) {
-//                        return 0;
-//                    } else {
-//                        return -1;
-//                    }
+//                    return 0;
 //                }
 //            }
-//
 //        });
 //        return activities;
-        return null;
-    }
+//    }
 
-    public ArrayList<Activity> showDateRange(DateTime dateTime) {
-//        if (!activities.isEmpty()) {
-//            DateTime minDateTime = activities.get(0).getStartDateTime();
-//            DateTime maxDateTime = activities.get(0).getStartDateTime();
-//            for (Activity activity: activities) {
-//                if (minDateTime.isAfter(activity.getStartDateTime())) {
-//                    minDateTime = activity.getStartDateTime();
-//                }
-//            }
-//        }
-
-
-        return null;
-    }
 
     /**
      * Method to calculate the cumulative time spent in an activity, with each array index holding a sum of the time
@@ -148,6 +96,7 @@ public class DataAnalysis {
         }
         return heartRateArray;
     }
+
 
     /**
      * Method to find the calories burned at each point in an activity. This is based on the gender, weight, age and
@@ -209,12 +158,17 @@ public class DataAnalysis {
         this.activities = activities;
     }
 
+
     /**
-     * Method to convert a number of seconds to a string in the format HH:MM:SS
+     * Method to convert a number of seconds to a string in the format HH:MM:SS. Returns null if the hours are greater than 23
+     * or if seconds are negative.
      * @param seconds  The time in seconds to be converted.
-     * @return  A string in the format HH:MM:SS that describes the time.
+     * @return  A string in the format HH:MM:SS that describes the time. Null if hours > 23
      */
     public String secondsToTime(int seconds) {
+        if (seconds < 0) {
+            return null;
+        }
         int minutes = 0;
         int hours = 0;
 
@@ -245,6 +199,12 @@ public class DataAnalysis {
 
     }
 
+    /**
+     * Method to calculate the cumulative time spent in an activity in minutes, with each array index holding a sum of the time
+     * spent before it. The final index holds the total time in minutes.
+     * @param activity  The activity the time spent is gotten from.
+     * @return  An array of Doubles, each index holding a sum of the time spent before it.
+     */
     public ArrayList<Double> getMinutesFromActivity(Activity activity) {
 
         ArrayList<Double> minutesArray = new ArrayList<>();
@@ -255,7 +215,6 @@ public class DataAnalysis {
             DateTime time2 = activity.getEntries().get(i+1).getTime();
             minutesArray.add(minutesSum);
             minutesSum += time2.subtract(time1)/60.0;
-            System.out.println(minutesSum);
             i++;
         }
         minutesArray.add(minutesSum);
@@ -279,31 +238,5 @@ public class DataAnalysis {
 //        }
 //
 //    }
-
-    public static void main(String[] args) throws Exception {
-//        DataAnalysis dataAnalysis = new DataAnalysis();
-//        System.out.println(dataAnalysis.secondsToTime(800));
-//        GUIController guiController = new GUIController();
-//        UserProfile user = new UserProfile();
-//        user.setHeight(80);
-//        user.setWeight(80);
-//        user.setGender("Male");
-//        user.setMaxHeartRate(170);
-//        DateTime birthday = new DateTime(1996, 12, 04, 0, 0, 0);
-//        user.setBirthDate(birthday);
-//        guiController.uploadDataToUser(user, "/home/cosc/student/tkl34/Desktop/SENG202/SENG202_Project/SENG202_Project/FilesToLoad/testdata.csv");
-//        ArrayList<Activity> activities = user.getActivities();
-//        dataAnalysis.getMinutesFromActivity(activities.get(0));
-//        DataAnalysis dataAnalysis = new DataAnalysis();
-//        ArrayList<Double> stressArray = new ArrayList<>();
-//        ArrayList<Integer> timeArray = dataAnalysis.getTimeFromActivity(activities.get(0));
-//        ArrayList<Integer> heartRateArray = dataAnalysis.getHeartRateFromActivity(activities.get(0));
-//        for (int i = 0; i < timeArray.size(); i++) {
-//            double stressPercent = (double)heartRateArray.get(i) / (double)user.getMaxHeartRate();
-//            stressArray.add(stressPercent);
-//        }
-//        System.out.println(stressArray);
-    }
-
 
 }
