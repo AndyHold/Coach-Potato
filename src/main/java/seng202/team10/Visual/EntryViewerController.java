@@ -12,7 +12,11 @@ import seng202.team10.Model.ActivitiesData.Entry;
 
 import java.util.ArrayList;
 
-
+/**
+ * EntryViewerController Class for Coach Potato
+ * SENG202 2018S2
+ * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
+ */
 public class EntryViewerController {
 
     private GUIController app;
@@ -31,7 +35,7 @@ public class EntryViewerController {
 
 
     /**
-     * Sets up objects that require it prior to showing the scene
+     * Method to set up objects that require it prior to showing the scene
      */
     public void setUpScene(Activity loadActivity)
     {
@@ -66,7 +70,7 @@ public class EntryViewerController {
 
 
     /**
-     * returns to the activityViewer when the activityReturnButton is pressed and saves changes to entries
+     * Method to return to the activityViewer when the activityReturnButton is pressed and saves changes to entries
      */
     @FXML public void returnToActivities() throws Exception
     {
