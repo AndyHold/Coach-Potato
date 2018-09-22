@@ -119,7 +119,7 @@ public class UploadDataController {
 =======
         manualEntryHelpTextArea.setVisible(false);
         uploadFileHelpTextArea.setVisible(false);
-        manualEntryHelpTextArea.setText("Welcome to the Manual Activity Entry Section!\n\nIn this section, you can manually enter each entry point of an activity along with the name of the activity. Each new entry will be entered in chronological order and prompts will be given for invalid data formats.\n\nHover the mouse over each button or field to see a brief discription of what it does.");
+        manualEntryHelpTextArea.setText("Welcome to the Manual Activity Entry Section!\n\nIn this section, you can manually enter each entry point of an activity along with the name of the activity. Each new entry will be added to the table in chronological order and prompts will be given for invalid data formats. If you wish to edit an existing entry just double click on it and enter the new value. Please remember to use the correct format when editing entries.\n\nHover the mouse over each button or field to see a brief discription of what it does.");
         uploadFileHelpTextArea.setText("Welcome to the Upload File Section!\n\nIn this section, you can select a .csv file to be uploaded. Simply type in the file path or click on the browse button (the button with the little picture of a folder on it) and navigate to your desired file. Then click the Upload File button and your file will be uploaded. A pop up will then be displayed to tell you how many Activities were succesfully uploaded to your profile.\n\nHover the mouse over each button or field to see a brief discription of what it does.");
         manualEntryHelpTextArea.setWrapText(true);
         uploadFileHelpTextArea.setWrapText(true);
@@ -141,7 +141,12 @@ public class UploadDataController {
         latitudeTextField.setTooltip(new Tooltip("Please enter your latitude at the time of this entry\nMust be in the range -90.0 to 90.0\nPreferred accuracy is 6 decimal places"));
         longitudeTextField.setTooltip(new Tooltip("Please enter your latitude at the time of this entry\nMust be in the range -180.0 to 180.0\nPreferred accuracy is 6 decimal places"));
         elevationTextField.setTooltip(new Tooltip("Please enter your elevation at the time of this entry\nMust be in the range -430.0 to 8850.0\nPreferred accuracy is 2 decimal places"));
+<<<<<<< HEAD
 >>>>>>> 303fface... Added help button and tool tip functionality to the Upload Data screen
+=======
+        // Set tool tip for the table view.
+        manualDataTableView.setTooltip(new Tooltip("This table shows the Entries you have already entered in chronological order.\nYou can double click on a value if you wish to edit it.\nPlease remember to use the correct format when editting values"));
+>>>>>>> 19c5c5ea... Modified the text of one of the help text areas and made it so if clicked anywhere outside the text area it is hiden.
         // Set up the columns in the table.
 <<<<<<< HEAD
 >>>>>>> 72a43850... Renamed ActivityIntensity to be ActivityType, fixed all methods and attributes of Activity to be directed to this and moved the determine type method into the ActivityType Enum. Also got rid of the ComboBox in the upload Data screen as the type is now determined from the name. Fixed a few bugs that this process created and found another unrelated bug in the process which i have created an issue for in git and put a TODO in the code for it.
@@ -185,6 +190,14 @@ public class UploadDataController {
                 uploadFileHelpTextArea.setVisible(false);
             }
         });
+    }
+
+
+    @FXML public void hideHelpTextAreas()
+    {
+        manualEntryHelpTextArea.setVisible(false);
+        uploadFileHelpTextArea.setVisible(false);
+        browseButton.requestFocus();
     }
 
 
@@ -392,9 +405,7 @@ public class UploadDataController {
                 //TODO this will require a custom pop up button (Low Priority).
             } catch (FileNotFoundException exception) {
                 this.app.createPopUp(Alert.AlertType.ERROR, "Error", "File not found, please choose a valid csv file");
-            } catch (ExistingElementException exception) {
-                this.app.createPopUp(Alert.AlertType.ERROR, "Error", exception.getMessage());
-            } catch (NoDataFoundException exception) {
+            } catch (ExistingElementException | NoDataFoundException exception) {
                 this.app.createPopUp(Alert.AlertType.ERROR, "Error", exception.getMessage());
             }
         }
