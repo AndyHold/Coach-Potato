@@ -16,78 +16,36 @@ import seng202.team10.Model.Goals;
 
 public class GoalController implements Controllable {
 
+
     private GUIController app;
 
-    @FXML
-    private ComboBox goalTypeCombo;
 
-    @FXML
-    private ComboBox currentGoalsCombo;
-
-    @FXML
-    private TextField goalNameEntry;
-
-    @FXML
-    private DatePicker startDatePicker;
-
-    @FXML
-    private DatePicker targetDatePicker;
-
-    @FXML
-    private TextField targetValueEntry;
-
-    @FXML
-    private Button createButton;
-
-    @FXML
-    private Button removeGoalButton;
-
-    @FXML
-    private Button reviewButton;
-
-    @FXML
-    private ListView achievedListView;
-
-    @FXML
-    private ListView failedListView;
-
-    @FXML
-    private TextArea progressText;
-
-    @FXML
-    private TextField typeTextField;
-
-    @FXML
-    private TextField startDateTextField;
-
-    @FXML
-    private TextArea goalTextArea;
-
-    @FXML
-    private TextField typeTextField2;
-
-    @FXML
-    private TextField startDateTextField2;
-
-    @FXML
-    private TextArea goalTextArea2;
-
-    @FXML
-    private ListView futureGoalsListView;
-
-    @FXML
-    private TextField futureTypeTextField;
-
-    @FXML
-    private TextField futureDateTextField;
-
-    @FXML
-    private TextArea futureGoalTextArea;
-
-    @FXML
-    private Label unitsLabel;
-
+    @FXML private ComboBox goalTypeCombo;
+    @FXML private ComboBox currentGoalsCombo;
+    @FXML private TextField goalNameEntry;
+    @FXML private DatePicker startDatePicker;
+    @FXML private DatePicker targetDatePicker;
+    @FXML private TextField targetValueEntry;
+    @FXML private Button createButton;
+    @FXML private Button removeGoalButton;
+    @FXML private Button reviewButton;
+    @FXML private ListView achievedListView;
+    @FXML private ListView failedListView;
+    @FXML private TextArea progressText;
+    @FXML private TextField typeTextField;
+    @FXML private TextField startDateTextField;
+    @FXML private TextArea goalTextArea;
+    @FXML private TextField typeTextField2;
+    @FXML private TextField startDateTextField2;
+    @FXML private TextArea goalTextArea2;
+    @FXML private ListView futureGoalsListView;
+    @FXML private TextField futureTypeTextField;
+    @FXML private TextField futureDateTextField;
+    @FXML private TextArea futureGoalTextArea;
+    @FXML private Label unitsLabel;
     @FXML private VBox drawer;
+    @FXML private TextArea currentHelpTextArea;
+    @FXML private Button currentHelpButton;
 
 
 
@@ -97,6 +55,13 @@ public class GoalController implements Controllable {
 
 
     public void setUpScene() {
+        // Set up tool tips
+        currentHelpButton.setTooltip(new Tooltip("Need Help?"));
+        // Set up help text areas
+        currentHelpTextArea.setText("");
+        currentHelpTextArea.setVisible(false);
+        currentHelpTextArea.setWrapText(true);
+
 
         typeTextField.setVisible(false);
         startDateTextField.setVisible(false);
@@ -110,6 +75,26 @@ public class GoalController implements Controllable {
         futureDateTextField.setVisible(false);
         futureGoalTextArea.setVisible(false);
 
+        // Hide the current help text field when focus is lost
+        currentHelpTextArea.focusedProperty().addListener((ov, oldV, newV) -> {
+            if (!newV) {
+                currentHelpTextArea.setVisible(false);
+            }
+        });
+    }
+
+
+    @FXML private void displayCurrentHelp()
+    {
+        currentHelpTextArea.setVisible(true);
+        currentHelpTextArea.requestFocus();
+    }
+
+
+    @FXML public void hideHelpTextAreas()
+    {
+        currentHelpTextArea.setVisible(false);
+        currentHelpButton.requestFocus();
     }
 
     /**
