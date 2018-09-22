@@ -519,14 +519,8 @@ public class UserProfile implements java.io.Serializable {
     public double getActivitiesDistance(DateTime startDate, DateTime endDate) {
         double totalDistance = 0;
         for (Activity activity : activities) {
-            System.out.println((activity.getStartDateTime().isAfter(startDate)));
             if (activity.getStartDateTime().isAfter(startDate) && activity.getEndDateTime().isBefore(endDate)) {
-                System.out.println(activity.getStartDateTime());
-                System.out.println(startDate);
                 totalDistance += activity.getTotalDistance();
-                System.out.println("Added to totalDistance");
-            } else {
-                System.out.println("Not added to totalDistance");
             }
         }
         return totalDistance;
@@ -547,8 +541,6 @@ public class UserProfile implements java.io.Serializable {
             }
         }
         averageSpeed = averageSpeed/count;
-        System.out.println(averageSpeed);
-        System.out.println(count);
 
         return averageSpeed;
     }
@@ -563,9 +555,6 @@ public class UserProfile implements java.io.Serializable {
         for (Activity activity : activities) {
             if (activity.getStartDateTime().isAfter(startDate) && activity.getEndDateTime().isBefore(endDate)) {
                 frequency ++;
-                System.out.println("Added to frequency");
-            } else {
-                System.out.println("Not added to frequency");
             }
         }
         return frequency;
@@ -576,14 +565,11 @@ public class UserProfile implements java.io.Serializable {
      * @param (startDate, endDate): (DateTime, DateTime)
      * @return totalTime: int
      */
-    public int getActivitiesTime(DateTime startDate, DateTime endDate) {
-        int totalTime = 0;
+    public double getActivitiesTime(DateTime startDate, DateTime endDate) {
+        double totalTime = 0;
         for (Activity activity : activities) {
             if (activity.getStartDateTime().isAfter(startDate) && activity.getEndDateTime().isBefore(endDate)) {
-                totalTime += activity.getTotalDuration();
-                System.out.println("Added to totalTime");
-            } else {
-                System.out.println("Not added to totalTime");
+                totalTime += activity.getTotalDuration() / 60.0;
             }
         }
         return totalTime;
