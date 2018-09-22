@@ -19,7 +19,11 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.ArrayList;
 
-
+/**
+ * FullCalendarView Class for Coach Potato
+ * SENG202 2018S2
+ * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
+ */
 public class FullCalendarView {
 
     private ArrayList<AnchorPaneNode> allCalendarDays = new ArrayList<>(42);
@@ -45,7 +49,7 @@ public class FullCalendarView {
     public void setProfileController(ProfileController profileController) {this.profileController = profileController;}
 
     /**
-     * Create a calendar view
+     * Method to create a calendar view
      * @param (yearMonth, app, profileController): (year month to create the calendar of, GuiController, ProfileController)
      */
     public FullCalendarView(YearMonth yearMonth, GUIController app, ProfileController profileController)
@@ -202,6 +206,10 @@ public class FullCalendarView {
         populateCalendar(currentYearMonth);
     }
 
+    /**
+     * Method to return the view of the VBox.
+     * @return  The view of the vBox
+     */
     public VBox getView() {
         return view;
     }
