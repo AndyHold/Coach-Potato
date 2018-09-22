@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import org.apache.commons.lang3.StringUtils;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.Exceptions.*;
@@ -37,6 +38,9 @@ public class CreateProfileController implements Controllable
     @FXML private RadioButton maleRad;
     @FXML private RadioButton notSpecifiedRad;
     @FXML private Button backButton;
+    @FXML private Button createProfileButton;
+    @FXML private Button helpButton;
+    @FXML private TextArea helpTextArea;
 
 
     /**
@@ -69,7 +73,37 @@ public class CreateProfileController implements Controllable
      */
     public void setUpScene()
     {
-        //Set up days comboBox
+        // Set tool tips for text fields and text fields
+        nameEntry.setTooltip(new Tooltip("Please enter a user name.\nUser name must be between 1 to 15 characters long.\nUser name must be unique\nUser name is not case sensitive."));
+        weightEntry.setTooltip(new Tooltip("Please enter your weight in kg's.\nWeight must be between 30kg to 250kg.\nYou do not need to put kg at the end."));
+        heightEntry.setTooltip(new Tooltip("Please enter your height in cm's\nHeight must be between 50cm to 260cm.\nYou do not need to put cm at the end."));
+        // Set tool tip for Combo Box's
+        dayEntry.setTooltip(new Tooltip("Please select a day of the month from the drop down list."));
+        monthEntry.setTooltip(new Tooltip("Please select a month of the year from the drop down list."));
+        yearEntry.setTooltip(new Tooltip("Please select a year from the drop down list."));
+        // Set tool tips for radio buttons
+        maleRad.setTooltip(new Tooltip("Please select a gender from these options."));
+        femaleRad.setTooltip(new Tooltip("Please select a gender from these options."));
+        notSpecifiedRad.setTooltip(new Tooltip("Please select a gender from these options."));
+        // Set tool tips for buttons
+        backButton.setTooltip(new Tooltip("Navigates back to Login Screen"));
+        helpButton.setTooltip(new Tooltip("Need Help?"));
+        createProfileButton.setTooltip(new Tooltip("Checks the input data and displays errors in red where necessary.\nCreates a new profile if all input data is valid and navigates to the login screen."));
+        // Set up help text area
+        helpTextArea.setText("Welcome to the Create Profile Screen!\n\n" +
+                "On this screen you can create a new profile or navigate back to the Login Screen.\n\n" +
+                "To create a new profile:\n" +
+                "\t- Choose and input a new user name.\n" +
+                "\t- Select your date of birth from the drop down box's.\n" +
+                "\t- Enter your weight in kg's and your height in cm's.\n" +
+                "\t- Select your gender from the options displayed.\n" +
+                "\t- Click the Create Profile button\n" +
+                "Any missing fields or errors in the data you have input will then be displayed in red. " +
+                "Otherwise your profile will be created and you will be taken to the Login Screen.\n\n" +
+                "Hover the mouse over each item to see a brief description of what is required or what it does.");
+        helpTextArea.setWrapText(true);
+        helpTextArea.setVisible(false);
+        // Set up days comboBox
         ObservableList<Integer> days = FXCollections.observableArrayList();
         for (int i = 1; i <= 31; i ++) {
             days.add(i);
@@ -98,6 +132,27 @@ public class CreateProfileController implements Controllable
         femaleRad.setToggleGroup(toggleGroup);
         maleRad.setToggleGroup(toggleGroup);
         notSpecifiedRad.setToggleGroup(toggleGroup);
+
+        // Hide the help text field when focus is lost
+        helpTextArea.focusedProperty().addListener((ov, oldV, newV) -> {
+            if (!newV) {
+                helpTextArea.setVisible(false);
+            }
+        });
+    }
+
+
+    @FXML private void displayHelp()
+    {
+        helpTextArea.setVisible(true);
+        helpTextArea.requestFocus();
+    }
+
+
+    @FXML public void hideHelpTextArea()
+    {
+        helpTextArea.setVisible(false);
+        backButton.requestFocus();
     }
 
 
@@ -272,11 +327,13 @@ public class CreateProfileController implements Controllable
      */
     private void setUserName(UserProfile userProfile) {
         try {
-            String nameString =  getTextFieldString(nameEntry);
+            String nameString = StringUtils.capitalize(getTextFieldString(nameEntry).toLowerCase());
+            System.out.print(nameString);
             this.app.checkUniqueName(nameString);
             try {
                 userProfile.setName(nameString);
             } catch (UserNameException | IllegalArgumentException exception) {
+                nameErrorLabel.setText("Please enter a valid user name between 1 - 15 characters");
                 nameErrorLabel.setVisible(true);
             }
         } catch (UniqueNameException | IllegalArgumentException exception) {
