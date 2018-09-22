@@ -7,10 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import seng202.team10.Control.DataAnalysis;
@@ -45,6 +42,9 @@ public class DataAnalysisController implements Controllable, Initializable{
     @FXML private Label noActivitiesLabel;
     @FXML private ListView activityList;
     @FXML private VBox drawer;
+    @FXML private TextArea helpTextArea;
+    @FXML private Button helpButton;
+    @FXML private Button mapButton;
 
     private XYChart.Series distanceTimeSeries;
     private XYChart.Series heartRateSeries;
@@ -67,7 +67,32 @@ public class DataAnalysisController implements Controllable, Initializable{
      * ListView that contains a list of activities.
      */
     @Override
-    public void setUpScene() {
+    public void setUpScene()
+    {
+        // Set Button tool tips
+        activityList.setTooltip(new Tooltip("Select an activity from the list to update the graphs with that activity."));
+        tabPane.setTooltip(new Tooltip("Select the tab of the graph you wish to see."));
+        mapButton.setTooltip(new Tooltip("Click here to view a map of the selected Activity."));
+        helpButton.setTooltip(new Tooltip("Need Help?"));
+
+        // Set help text
+        helpTextArea.setText("Welcome to the Analysis Screen!\n\n" +
+                "On this screen you can view graphs of an activity or select to view a map of the route taken.\n\n" +
+                "- To view graphs of an activity:\n" +
+                "\t- Select the activity you wish to view by clicking on\n" +
+                "\t  it in the list.\n" +
+                "\t- The graph will now be updated automatically\n" +
+                "\t  with the data from that activity.\n" +
+                "\t- Now you can select a different graph to view by\n" +
+                "\t  clicking on the tabs above the graph.\n" +
+                "- To view a map:\n" +
+                "\t- Select the activity you wish to view by clicking on\n" +
+                "\t  it in the list.\n" +
+                "\t- Click the View Map button to view the map.\n" +
+                "\t- You will now be taken to the map view screen\n\n" +
+                "Hover the mouse over each button to see a brief discription of what it does.");
+        helpTextArea.setWrapText(true);
+        helpTextArea.setVisible(false);
 
         dataAnalysis = new DataAnalysis();
         currentProfile = guiController.getCurrentProfile();
@@ -99,6 +124,27 @@ public class DataAnalysisController implements Controllable, Initializable{
 
             this.populateStressTimeGraph(timeArray, heartRateArray);
         }
+
+        // Hide the help text field when focus is lost
+        helpTextArea.focusedProperty().addListener((ov, oldV, newV) -> {
+            if (!newV) {
+                helpTextArea.setVisible(false);
+            }
+        });
+    }
+
+
+    @FXML private void displayHelp()
+    {
+        helpTextArea.setVisible(true);
+        helpTextArea.requestFocus();
+    }
+
+
+    @FXML public void hideHelpTextArea()
+    {
+        helpTextArea.setVisible(false);
+        helpButton.requestFocus();
     }
 
     /**

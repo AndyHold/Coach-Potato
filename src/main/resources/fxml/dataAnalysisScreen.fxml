@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.chart.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
@@ -12,12 +7,15 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.DataAnalysisController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextArea" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.DataAnalysisController">
    <children>
       <TabPane fx:id="tabPane" layoutX="471.0" layoutY="122.0" prefHeight="504.0" prefWidth="608.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -149,6 +147,7 @@
          </children>
       </VBox>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       <Button fx:id="refreshButton" layoutX="166.0" layoutY="647.0" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
 >>>>>>> 19e7af00... Added a refresh button to view other activities
@@ -163,5 +162,17 @@
       <Button fx:id="mapButton" layoutX="764.0" layoutY="647.0" mnemonicParsing="false" onAction="#viewMap" text="View Map" />
 >>>>>>> 497d568... Added a buton to go to maps
 >>>>>>> 8d56fd19... Added a buton to go to maps
+=======
+      <Button fx:id="mapButton" layoutX="764.0" layoutY="647.0" mnemonicParsing="false" onAction="#viewMap" prefHeight="35.0" prefWidth="100.0" text="View Map" />
+      <Button fx:id="helpButton" layoutX="1218.0" layoutY="671.0" mnemonicParsing="false" onAction="#displayHelp" prefHeight="35.0" prefWidth="48.0" style="-fx-background-color: transparent;">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/help.png" />
+               </image></ImageView>
+         </graphic>
+      </Button>
+      <TextArea fx:id="helpTextArea" editable="false" layoutX="817.0" layoutY="337.0" prefHeight="335.0" prefWidth="400.0" />
+>>>>>>> 11feeabf... Added tool tips and help button to Data Analysis Screen
    </children>
 </Pane>
