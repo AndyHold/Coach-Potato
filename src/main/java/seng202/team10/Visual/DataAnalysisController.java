@@ -224,6 +224,7 @@ public class DataAnalysisController implements Controllable, Initializable{
      * @param linechart  The graph being set up.
      */
     private void setUpOneGraph(LineChart linechart) {
+        linechart.setLegendVisible(false);
         linechart.getXAxis().setLabel("Time (minutes)");
         linechart.setCreateSymbols(false);
     }
