@@ -36,6 +36,8 @@ public class ActivityViewerController {
     @FXML private TableColumn<Activity, Integer> heartrateColumn;
     @FXML private TableColumn<Activity, Integer> entrynoColumn;
     @FXML private Button entryViewerButton;
+    @FXML private Button helpButton;
+    @FXML private TextArea helpTextArea;
     @FXML private ComboBox typeSelect;
     @FXML private VBox drawer;
 
@@ -44,6 +46,43 @@ public class ActivityViewerController {
      */
     public void setUpScene()
     {
+        // Set tool tips for all elements
+        startDate.setTooltip(new Tooltip("Please select the date you wish to filter from."));
+        endDate.setTooltip(new Tooltip("Please select the date you wish to filter to."));
+        typeSelect.setTooltip(new Tooltip("Please select the type of activity you wish to view."));
+        filterApplyButton.setTooltip(new Tooltip("Click here to apply the selected filters."));
+        clearFiltersButton.setTooltip(new Tooltip("Click here to clear the filters and view all activities in your profile."));
+        helpButton.setTooltip(new Tooltip("Need Halp?"));
+        activitiesTableView.setTooltip(new Tooltip("Your activities are listed in this table\n" +
+                "Please click a title to sort the activities by that value."));
+        entryViewerButton.setTooltip(new Tooltip("Click here to view the Entries in the selected activity.\n" +
+                "Note: You must have clicked on an activity in the table for this button to be used."));
+        // Set up help text area
+        helpTextArea.setText("Welcome to the Activity View Screen!\n\n" +
+                "On this screen you can sort your activities by different values, view activities between selected dates, " +
+                "and view/edit the entries in an activity\n\n" +
+                "- To sort your activities simply click on the title of the\n" +
+                "  value you wish to sort by. Hint: Try clicking multiple\n" +
+                "  times.\n" +
+                "- To View activities between selected dates:\n" +
+                "\t- Click the \"From\" date selector and choose the date\n" +
+                "\t  to start from.\n" +
+                "\t- Click the \"To\" date selector and choose the date to\n" +
+                "\t  end on.\n" +
+                "\t- Click the \"Type\" Drop down and select a type of\n" +
+                "\t  activity to filter.\n" +
+                "\t- Click the Apply Filters button and the activities in\n" +
+                "\t  the table will be updated.\n" +
+                "\t- If you wish to return to viewing al activities simply\n" +
+                "\t  click the Clear Filters button.\n" +
+                "- To view/edit the entries in an activity:\n" +
+                "\t- Click the activity you wish to view/edit.\n" +
+                "\t- Click the View Entries button and you will be\n" +
+                "\t  navigated to the Entry View Screen.\n\n" +
+                "Hover the mouse over each button item to see what it is for.");
+        helpTextArea.setWrapText(true);
+        helpTextArea.setVisible(false);
+
         ObservableList<String> types = FXCollections.observableArrayList();
         types.add("All");
         types.add("Walk");
@@ -66,6 +105,12 @@ public class ActivityViewerController {
         entrynoColumn.setCellValueFactory(new PropertyValueFactory<Activity, Integer>("entryno"));
         populateTable(activities);
 
+        // Hide the help text field when focus is lost
+        helpTextArea.focusedProperty().addListener((ov, oldV, newV) -> {
+            if (!newV) {
+                helpTextArea.setVisible(false);
+            }
+        });
     }
 
     /**
@@ -113,6 +158,20 @@ public class ActivityViewerController {
         }
         ObservableList<Activity> newActivities = FXCollections.observableArrayList(typeFiltered);
         populateTable(newActivities);
+    }
+
+
+    @FXML private void displayHelp()
+    {
+        helpTextArea.setVisible(true);
+        helpTextArea.requestFocus();
+    }
+
+
+    @FXML public void hideHelpTextArea()
+    {
+        helpTextArea.setVisible(false);
+        helpButton.requestFocus();
     }
 
 
