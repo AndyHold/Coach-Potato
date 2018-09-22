@@ -267,6 +267,7 @@ public class GUIController extends Application{
      */
     public void launchLoginScene()
     {
+        currentUser = null;
         loginController.setUpScene();
         primaryStage.setScene(loginScene);
     }
@@ -331,11 +332,14 @@ public class GUIController extends Application{
 
     public void checkUniqueName(String userName) throws UniqueNameException
     {
-        for (UserProfile userProfile: this.getUsers()) {
-            if (userProfile.getName().equals(userName)) {
-                throw new UniqueNameException();
+        if (currentUser == null || !userName.contentEquals(currentUser.getName())) {
+            for (UserProfile userProfile : this.getUsers()) {
+                if (userProfile.getName().equals(userName)) {
+                    throw new UniqueNameException();
+                }
             }
         }
+
     }
 
 
@@ -943,7 +947,12 @@ public class GUIController extends Application{
     public void createUser(UserProfile newUser) throws InvalidUserException
     {
         //TODO this should be in UserProfile???
-        if (newUser.getName() != null && newUser.getWeight() != 0.0 && newUser.getHeight() != 0.0 && newUser.getBirthDate() != null && newUser.getGender() != null && newUser.getMaxHeartRate() != 0) {
+        if (newUser.getName() != null &&
+                newUser.getWeight() != 0.0 &&
+                newUser.getHeight() != 0.0 &&
+                newUser.getBirthDate() != null &&
+                newUser.getGender() != null &&
+                newUser.getMaxHeartRate() != 0) {
             users.add(newUser);
         } else {
             throw new InvalidUserException();
