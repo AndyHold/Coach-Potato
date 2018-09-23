@@ -317,6 +317,7 @@ public class DataAnalysisController implements Controllable, Initializable{
     private void displayNoData(boolean noDataFound)
     {
         if (noDataFound) {
+            activityList.setItems(null);
             tabPane.setVisible(false);
             activityNameLabel.setVisible(false);
             timeTakenLabel.setVisible(false);
