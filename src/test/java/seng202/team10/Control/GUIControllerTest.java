@@ -55,7 +55,7 @@ public class GUIControllerTest {
     @Test
     public void uploadDataToUser() throws Exception
     {
-        testGuiController.uploadDataToUser(testUser, "/home/cosc/student/ash102/SENG202/SENG202_Project/FilesToLoad/testdata.csv");
+        testGuiController.uploadDataToUser(testUser, "FilesToLoad/testdata.csv");
         assertEquals(12, testUser.getActivities().size());
     }
 
