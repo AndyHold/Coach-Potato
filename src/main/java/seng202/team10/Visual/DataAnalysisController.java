@@ -113,7 +113,7 @@ public class DataAnalysisController implements Controllable, Initializable{
             Integer timeTaken = activity.getTotalDuration();
             // Set the name
             activityNameLabel.setText(activity.getName());
-            timeTakenLabel.setText("Time Taken: " + dataAnalysis.secondsToTime(timeTaken));
+            timeTakenLabel.setText("Time Taken: " + activity.secondsToTime(timeTaken));
             // Populate the graphs
             this.populateDistanceTimeGraph(timeArray);
             this.populateHeartRateTimeGraph(timeArray, heartRateArray);
