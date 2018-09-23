@@ -5,7 +5,7 @@ import javafx.scene.layout.AnchorPane;
 import seng202.team10.Control.DataAnalysis;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
-import seng202.team10.Model.Goals.UserProfile;
+import seng202.team10.Model.UserProfile;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

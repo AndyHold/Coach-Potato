@@ -2,64 +2,9 @@ package seng202.team10.Model;
 
 
 import seng202.team10.Model.ActivitiesData.*;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> cf2a8f58... fixed invalidNameException bug
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 59668d96... Created Exceptions Package, Wrote tests for Entry and Activity, they are currently both completely tested apart from getters and setters. did some small code style refactors on various other classes. Also deleted redundant Calendar and Event classes as they are never used.
-=======
-
-
->>>>>>> f5a854f6... Fixing Calculation of total distance and total duration
-=======
-import seng202.team10.Model.Exceptions.ExistingActivityException;
-import seng202.team10.Model.Exceptions.ExistingElementException;
-import seng202.team10.Model.Exceptions.InvalidHeightException;
-import seng202.team10.Model.Exceptions.InvalidWeightException;
-=======
 import seng202.team10.Model.Exceptions.*;
->>>>>>> e05bde75... fixed invalidNameException bug
+import seng202.team10.Model.Goals.Goals;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 9253f1d9... Created Exceptions Package, Wrote tests for Entry and Activity, they are currently both completely tested apart from getters and setters. did some small code style refactors on various other classes. Also deleted redundant Calendar and Event classes as they are never used.
-=======
->>>>>>> d8e4382... Fixing Calculation of total distance and total duration
-=======
-import seng202.team10.Model.Exceptions.ExistingActivityException;
-import seng202.team10.Model.Exceptions.ExistingElementException;
-import seng202.team10.Model.Exceptions.InvalidHeightException;
-import seng202.team10.Model.Exceptions.InvalidWeightException;
-=======
-import seng202.team10.Model.Exceptions.*;
->>>>>>> 798a1f8... fixed invalidNameException bug
-
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 081c071... Created Exceptions Package, Wrote tests for Entry and Activity, they are currently both completely tested apart from getters and setters. did some small code style refactors on various other classes. Also deleted redundant Calendar and Event classes as they are never used.
-<<<<<<< HEAD
->>>>>>> 59668d96... Created Exceptions Package, Wrote tests for Entry and Activity, they are currently both completely tested apart from getters and setters. did some small code style refactors on various other classes. Also deleted redundant Calendar and Event classes as they are never used.
-=======
-import javax.naming.InvalidNameException;
->>>>>>> 0e69f208... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
-=======
-=======
-import javax.naming.InvalidNameException;
->>>>>>> 561798b... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
->>>>>>> 2d5633a2... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
-=======
->>>>>>> 7f979e0c... Wrote some more tests for Activity, Entry, Position classes and JavaDocs for those classes.
 import java.util.ArrayList;
 
 /**
@@ -114,80 +59,19 @@ public class UserProfile implements java.io.Serializable {
     public String getName() {
         return name;
     }
-<<<<<<< HEAD
-=======
->>>>>>> a85d43e... Implementation of UserProfile class getter and setter methods
-=======
-    public String getName() { return this.name; }
->>>>>>> 35a851d... Implementation of UserProfile class getter and setter methods
-=======
-    public String getName() {
-        return name;
-    }
->>>>>>> a40329b... Implementation of UserProfile class getter and setter methods
->>>>>>> 5998348f... Added a ComboBox for User names to be displayed on the profile screen.
 
 
     /**
      * Setter method for the name of the user
      * @param newName: String
      */
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    public void setName(String newName) {
-        this.name = newName;
-=======
->>>>>>> 2d5633a2... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
-    public void setName(String newName) throws InvalidNameException
-=======
     public void setName(String newName) throws UserNameException
-<<<<<<< HEAD
->>>>>>> e05bde75... fixed invalidNameException bug
-=======
->>>>>>> 798a1f8... fixed invalidNameException bug
->>>>>>> cf2a8f58... fixed invalidNameException bug
     {
         if (!(newName.length() > 15 || !newName.matches("[a-zA-Z0-9]+ ?[a-zA-Z0-9]+"))) {
             this.name = newName;
         } else {
             throw new UserNameException();
         }
-<<<<<<< HEAD
-=======
->>>>>>> 561798b... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
-    }
-=======
-    public void setName(String newName) { this.name = newName; }
->>>>>>> 7deda61... Implementation of UserProfile class getter and setter methods
-=======
-    public void setName(String newName) {
-        this.name = newName;
-    }
->>>>>>> eff27ce... Implementation of UserProfile class getter and setter methods
-=======
-    public void setName(String newName) { this.name = newName; }
->>>>>>> 90c2806... Implementation of UserProfile class getter and setter methods
-=======
-    public void setName(String newName) {
-        this.name = newName;
-    }
->>>>>>> a85d43e... Implementation of UserProfile class getter and setter methods
-=======
-    public void setName(String newName) { this.name = newName; }
->>>>>>> 35a851d... Implementation of UserProfile class getter and setter methods
-=======
-    public void setName(String newName) {
-        this.name = newName;
->>>>>>> 2d5633a2... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
     }
 
 
@@ -293,19 +177,6 @@ public class UserProfile implements java.io.Serializable {
      * @param newWeight: double
      * @throws InvalidWeightException when weight is not in the valid range
      */
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    public void setWeight(double newWeight) {
-        this.weight = newWeight;
-=======
->>>>>>> 2d5633a2... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
     public void setWeight(double newWeight) throws InvalidWeightException
     {
         if (30 <= newWeight && newWeight <= 250) {
@@ -313,33 +184,6 @@ public class UserProfile implements java.io.Serializable {
         } else {
             throw new InvalidWeightException();
         }
-<<<<<<< HEAD
-=======
->>>>>>> 561798b... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
-    }
-=======
-    public void setWeight(double newWeight) { this.weight = newWeight; }
->>>>>>> 7deda61... Implementation of UserProfile class getter and setter methods
-=======
-    public void setWeight(double newWeight) {
-        this.weight = newWeight;
-    }
->>>>>>> eff27ce... Implementation of UserProfile class getter and setter methods
-=======
-    public void setWeight(double newWeight) { this.weight = newWeight; }
->>>>>>> 90c2806... Implementation of UserProfile class getter and setter methods
-=======
-    public void setWeight(double newWeight) {
-        this.weight = newWeight;
-    }
->>>>>>> a85d43e... Implementation of UserProfile class getter and setter methods
-=======
-    public void setWeight(double newWeight) { this.weight = newWeight; }
->>>>>>> 35a851d... Implementation of UserProfile class getter and setter methods
-=======
-    public void setWeight(double newWeight) {
-        this.weight = newWeight;
->>>>>>> 2d5633a2... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
     }
 
 
@@ -347,19 +191,6 @@ public class UserProfile implements java.io.Serializable {
      * Setter method for the height of the user
      * @param newHeight: double
      */
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    public void setHeight(double newHeight) {
-        this.height = newHeight;
-=======
->>>>>>> 2d5633a2... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
     public void setHeight(double newHeight) throws InvalidHeightException
     {
         if (50 <= newHeight && newHeight <= 260) {
@@ -367,61 +198,6 @@ public class UserProfile implements java.io.Serializable {
         } else {
             throw new InvalidHeightException();
         }
-<<<<<<< HEAD
-=======
->>>>>>> 561798b... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
-    }
-=======
-    public void setHeight(double newHeight) { this.height = newHeight; }
->>>>>>> 7deda61... Implementation of UserProfile class getter and setter methods
-=======
-    public void setHeight(double newHeight) {
-        this.height = newHeight;
-    }
->>>>>>> eff27ce... Implementation of UserProfile class getter and setter methods
-=======
-    public void setHeight(double newHeight) { this.height = newHeight; }
->>>>>>> 90c2806... Implementation of UserProfile class getter and setter methods
-=======
-    public void setHeight(double newHeight) {
-        this.height = newHeight;
-    }
->>>>>>> a85d43e... Implementation of UserProfile class getter and setter methods
-=======
-    public void setHeight(double newHeight) { this.height = newHeight; }
->>>>>>> 35a851d... Implementation of UserProfile class getter and setter methods
-=======
-    public void setHeight(double newHeight) {
-        this.height = newHeight;
-    }
->>>>>>> a40329b... Implementation of UserProfile class getter and setter methods
-
-
-    /**
-     * Setter method for the birthdate of the user
-     * @param newDate DateTime
-     */
-    public void setBirthdate(DateTime newDate) {
-        this.birthdate = newDate;
-    }
-
-
-    /**
-     * Setter method for the birthdate of the user
-     * @param newDate DateTime
-     */
-    public void setBirthdate(DateTime newDate) {
-        this.birthdate = newDate;
-    }
-
-
-    /**
-     * Setter method for the birthdate of the user
-     * @param newDate DateTime
-     */
-    public void setBirthdate(DateTime newDate) {
-        this.birthdate = newDate;
->>>>>>> 2d5633a2... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
     }
 
 
@@ -451,21 +227,7 @@ public class UserProfile implements java.io.Serializable {
         return this.bmi;
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    /**
-     * Getter method to get user's Body Mass Index (BMI)
-     * @return double
-     */
->>>>>>> 7f979e0c... Wrote some more tests for Activity, Entry, Position classes and JavaDocs for those classes.
-    public double getBmi() {
-        return bmi;
-=======
-=======
 
->>>>>>> 831a7d65... Got rid of getBmi func and replaced all usages with calls to calcBmi. Wrote more tests for Goals class.
     public String getBmiCategory() {
         calcBmi();
         String category;
@@ -479,7 +241,6 @@ public class UserProfile implements java.io.Serializable {
             category = "Obese";
         }
         return category;
->>>>>>> e3fcb716... Fixing BMI Calculation and adding BMI category check
     }
 
     /**

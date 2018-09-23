@@ -2,7 +2,7 @@ package seng202.team10.Control;
 
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.Goals.Goals;
-import seng202.team10.Model.Goals.UserProfile;
+import seng202.team10.Model.UserProfile;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

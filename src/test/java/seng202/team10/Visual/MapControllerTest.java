@@ -6,7 +6,7 @@ import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.ActivitiesData.Position;
 import seng202.team10.Model.ActivitiesData.Route;
-import seng202.team10.Model.Goals.UserProfile;
+import seng202.team10.Model.UserProfile;
 
 import static org.junit.Assert.assertEquals;
 

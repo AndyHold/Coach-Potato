@@ -5,7 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.Exceptions.*;
-import seng202.team10.Model.Goals.UserProfile;
+import seng202.team10.Model.UserProfile;
 
 import java.util.ArrayList;
 
