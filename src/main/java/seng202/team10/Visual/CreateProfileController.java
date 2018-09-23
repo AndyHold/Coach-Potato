@@ -34,7 +34,7 @@ import org.apache.commons.lang3.StringUtils;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.Exceptions.*;
-import seng202.team10.Model.UserProfile;
+import seng202.team10.Model.Goals.UserProfile;
 
 import java.util.Calendar;
 

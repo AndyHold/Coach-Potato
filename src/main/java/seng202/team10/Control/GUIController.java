@@ -72,7 +72,7 @@ import seng202.team10.Model.FileOperations.FileReader;
 >>>>>>> 61ade368... loading existing users from file when logging in, deleted some old test users
 import seng202.team10.Model.FileOperations.FileWriter;
 import seng202.team10.Model.FileOperations.Parser;
-import seng202.team10.Model.UserProfile;
+import seng202.team10.Model.Goals.UserProfile;
 import seng202.team10.Visual.*;
 
 import java.io.FileNotFoundException;

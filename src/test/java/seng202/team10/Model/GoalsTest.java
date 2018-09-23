@@ -1,17 +1,18 @@
 package seng202.team10.Model;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 import com.sun.xml.internal.bind.v2.TODO;
 import javafx.geometry.Pos;
 >>>>>>> 831a7d65... Got rid of getBmi func and replaced all usages with calls to calcBmi. Wrote more tests for Goals class.
+=======
+>>>>>>> f4a09959... Made Goals package and refactored goal classes into it
 import org.junit.Before;
 import org.junit.Test;
-import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
-import seng202.team10.Model.ActivitiesData.Entry;
-import seng202.team10.Model.ActivitiesData.Position;
+import seng202.team10.Model.Goals.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -37,7 +38,6 @@ public class GoalsTest {
     private ArrayList<Goal> achievedGoals = new ArrayList<Goal>();
     private ArrayList<String> achievedGoalNames = new ArrayList<String>();
 
-    private ArrayList<Activity> activities = new ArrayList<>();
     private Goals goalsInstance;
     private UserProfile user;
 

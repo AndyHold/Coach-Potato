@@ -13,7 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import seng202.team10.Control.GUIController;
-import seng202.team10.Model.UserProfile;
+import seng202.team10.Model.Goals.UserProfile;
 
 import java.util.ArrayList;
 
