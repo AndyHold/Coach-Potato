@@ -156,8 +156,8 @@
                                                 </VBox>
                                                 <VBox prefHeight="365.0" prefWidth="200.0" spacing="85.0">
                                                    <children>
-                                                      <TextField fx:id="futureTypeTextField" />
                                                       <TextField fx:id="futureDateTextField" />
+                                                      <TextField fx:id="futureTypeTextField" />
                                                       <TextArea fx:id="futureGoalTextArea" editable="false" prefHeight="150.0" prefWidth="200.0" wrapText="true" />
                                                    </children>
                                                 </VBox>
@@ -232,7 +232,7 @@
              </Tab>
          </tabs>
        </TabPane>
-      <Button fx:id="helpButton" layoutX="1212.0" layoutY="665.0" mnemonicParsing="false" onAction="#displayCurrentHelp" prefHeight="35.0" prefWidth="48.0" style="-fx-background-color: transparent;">
+      <Button fx:id="helpButton" layoutX="1212.0" layoutY="665.0" mnemonicParsing="false" onAction="#displayHelp" prefHeight="35.0" prefWidth="48.0" style="-fx-background-color: transparent;">
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>

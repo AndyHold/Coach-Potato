@@ -1,6 +1,7 @@
 package seng202.team10.Model.Exceptions;
 
 
+
 /**
  * ExistingActivityException Class for Coach Potato
  * SENG202 2018S2
@@ -8,11 +9,13 @@ package seng202.team10.Model.Exceptions;
  */
 public class ExistingActivityException extends Exception {
 
+
     /**
      * Constructor method for ExistingElementException
      * @param newMessage String: Message to be displayed on exception.
      */
-    public ExistingActivityException(String newMessage) {
+    public ExistingActivityException(String newMessage)
+    {
         super(newMessage);
     }
 }

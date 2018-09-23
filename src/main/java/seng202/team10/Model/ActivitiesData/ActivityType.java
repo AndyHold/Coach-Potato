@@ -35,20 +35,20 @@ public enum ActivityType implements Serializable {
     {
         String lowerName = name.toLowerCase();
         ActivityType type;
-        if (lowerName.contains("hike") || lowerName.contains("hiking")){
+        if (lowerName.contains("hike") || lowerName.contains("hiking")) {
             type = ActivityType.HIKE;
-        } else if (lowerName.contains("swim")){
+        } else if (lowerName.contains("swim")) {
             type = ActivityType.SWIM;
-        } else if (lowerName.contains("run") || lowerName.contains("jog")){
-        type = ActivityType.RUN;
+        } else if (lowerName.contains("run") || lowerName.contains("jog")) {
+            type = ActivityType.RUN;
         } else if (lowerName.contains("cycle") || lowerName.contains("cycling") || lowerName.contains("bike") ||
-                lowerName.contains("biking")){
+                   lowerName.contains("biking")) {
             type = ActivityType.CYCLE;
-        } else if (lowerName.contains("workout") || lowerName.contains("work out") || lowerName.contains("working out")){
+        } else if (lowerName.contains("workout") || lowerName.contains("work out") || lowerName.contains("working out")) {
             type = ActivityType.WORKOUT;
-        } else if (lowerName.contains("walk")){
+        } else if (lowerName.contains("walk")) {
             type = ActivityType.WALK;
-        } else{
+        } else {
             type = ActivityType.OTHER;
         }
         return type;
