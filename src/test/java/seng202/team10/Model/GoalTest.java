@@ -40,8 +40,8 @@ public class GoalTest {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() - 1, now1.getHour(), now1.getMinute(), now1.getSecond());
-        testGoal = new Goal(name, currentTime, target, "Weight", false, 0, 0, targetWeight, 0,0);
-        String message = testGoal.reviewWeightGoal(101);
+        testGoal = new WeightGoal(name, currentTime, target, targetWeight);
+        String message = ((WeightGoal) testGoal).reviewWeightGoal(101.0);
         assertEquals("Your target for this goal was to weigh 100.0 or less by " + target + "\n" +
                 "\n" +
                 "You have failed to complete this goal in time. It has been removed from your current goals and added to your failed goals.", message);
@@ -52,8 +52,8 @@ public class GoalTest {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() - 1, now1.getHour(), now1.getMinute(), now1.getSecond());
-        testGoal = new Goal(name, currentTime, target, "Weight", false, 0, 0, targetWeight, 0,0);
-        String message = testGoal.reviewWeightGoal(500);
+        testGoal = new WeightGoal(name, currentTime, target, targetWeight);
+        String message = ((WeightGoal) testGoal).reviewWeightGoal(500);
         assertEquals("Your target for this goal was to weigh 100.0 or less by " + target + "\n" +
                 "\n" +
                 "You have failed to complete this goal in time. It has been removed from your current goals and added to your failed goals.", message);
@@ -64,8 +64,8 @@ public class GoalTest {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() + 2, now1.getHour(), now1.getMinute(), now1.getSecond());
-        testGoal = new Goal(name, currentTime, target, "Weight", false, 0, 0, targetWeight, 0,0);
-        String message = testGoal.reviewWeightGoal(101);
+        testGoal = new WeightGoal(name, currentTime, target, targetWeight);
+        String message = ((WeightGoal) testGoal).reviewWeightGoal(101);
         assertEquals("Your target for this goal was to weigh 100.0 or less by " + target + "\n" +
                 "\n" +
                 "You need to lose 1.0 more kgs to meet your goal.", message);
@@ -76,8 +76,8 @@ public class GoalTest {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() + 2, now1.getHour(), now1.getMinute(), now1.getSecond());
-        testGoal = new Goal(name, currentTime, target, "Weight", false, 0, 0, targetWeight, 0,0);
-        String message = testGoal.reviewWeightGoal(500);
+        testGoal = new WeightGoal(name, currentTime, target, targetWeight);
+        String message = ((WeightGoal) testGoal).reviewWeightGoal(500);
         assertEquals("Your target for this goal was to weigh 100.0 or less by " + target + "\n" +
                 "\n" +
                 "You need to lose 400.0 more kgs to meet your goal.", message);
@@ -88,8 +88,8 @@ public class GoalTest {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
-        testGoal = new Goal(name, currentTime, target, "Weight", false, 0, 0, targetWeight, 0,0);
-        String message = testGoal.reviewWeightGoal(100);
+        testGoal = new WeightGoal(name, currentTime, target, targetWeight);
+        String message = ((WeightGoal) testGoal).reviewWeightGoal(100);
         assertEquals("Your target for this goal was to weigh 100.0 or less by " + target + "\n" +
                 "Congratulations you have completed this goal! It has been removed from your current goals and added to your achieved goals.", message);
     }
@@ -99,8 +99,8 @@ public class GoalTest {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
-        testGoal = new Goal(name, currentTime, target, "Weight", false, 0, 0, targetWeight, 0,0);
-        String message = testGoal.reviewWeightGoal(50);
+        testGoal = new WeightGoal(name, currentTime, target, targetWeight);
+        String message = ((WeightGoal) testGoal).reviewWeightGoal(50);
         assertEquals("Your target for this goal was to weigh 100.0 or less by " + target + "\n" +
                 "Congratulations you have completed this goal! It has been removed from your current goals and added to your achieved goals.", message);
     }
@@ -120,8 +120,8 @@ public class GoalTest {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() - 1, now1.getHour(), now1.getMinute(), now1.getSecond());
-        testGoal = new Goal(name, currentTime, target, "BMI", false, 0, 0, 0, 0, targetBMI);
-        String message = testGoal.reviewBmiGoal(20.1);
+        testGoal = new BmiGoal(name, currentTime, target, targetBMI);
+        String message = ((BmiGoal) testGoal).reviewBmiGoal(20.1);
         assertEquals("Your target for this goal was to have a BMI less than or equal to 20.0 by " + target + "\n" +
                 "\n" +
                 "You have failed to complete this goal in time. It has been removed from your current goals and added to your failed goals.", message);
@@ -132,8 +132,8 @@ public class GoalTest {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() - 1, now1.getHour(), now1.getMinute(), now1.getSecond());
-        testGoal = new Goal(name, currentTime, target, "BMI", false, 0, 0, 0, 0, targetBMI);
-        String message = testGoal.reviewBmiGoal(2000);
+        testGoal = new BmiGoal(name, currentTime, target, targetBMI);
+        String message = ((BmiGoal) testGoal).reviewBmiGoal(2000);
         assertEquals("Your target for this goal was to have a BMI less than or equal to 20.0 by " + target + "\n" +
                 "\n" +
                 "You have failed to complete this goal in time. It has been removed from your current goals and added to your failed goals.", message);
@@ -144,8 +144,8 @@ public class GoalTest {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() + 2, now1.getHour(), now1.getMinute(), now1.getSecond());
-        testGoal = new Goal(name, currentTime, target, "BMI", false, 0, 0, 0, 0, targetBMI);
-        String message = testGoal.reviewBmiGoal(20.1);
+        testGoal = new BmiGoal(name, currentTime, target, targetBMI);
+        String message = ((BmiGoal) testGoal).reviewBmiGoal(20.1);
         assertEquals("Your target for this goal was to have a BMI less than or equal to 20.0 by " + target + "\n" +
                 "\n" +
                 "You need to decrease your BMI by 0.1 more to meet your goal.", message);
@@ -156,8 +156,8 @@ public class GoalTest {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() + 2, now1.getHour(), now1.getMinute(), now1.getSecond());
-        testGoal = new Goal(name, currentTime, target, "BMI", false, 0, 0, 0, 0, targetBMI);
-        String message = testGoal.reviewBmiGoal(2000);
+        testGoal = new BmiGoal(name, currentTime, target, targetBMI);
+        String message = ((BmiGoal) testGoal).reviewBmiGoal(2000);
         assertEquals("Your target for this goal was to have a BMI less than or equal to 20.0 by " + target + "\n" +
                 "\n" +
                 "You need to decrease your BMI by 1980.0 more to meet your goal.", message);
@@ -168,8 +168,8 @@ public class GoalTest {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
-        testGoal = new Goal(name, currentTime, target, "BMI", false, 0, 0, 0, 0, targetBMI);
-        String message = testGoal.reviewBmiGoal(20.0);
+        testGoal = new BmiGoal(name, currentTime, target, targetBMI);
+        String message = ((BmiGoal) testGoal).reviewBmiGoal(20.0);
         assertEquals("Your target for this goal was to have a BMI less than or equal to 20.0 by " + target + "\n" +
                 "Congratulations you have completed this goal! It has been removed from your current goals and added to your achieved goals.", message);
     }
@@ -179,8 +179,8 @@ public class GoalTest {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
-        testGoal = new Goal(name, currentTime, target, "BMI", false, 0, 0, 0, 0, targetBMI);
-        String message = testGoal.reviewBmiGoal(15.0);
+        testGoal = new BmiGoal(name, currentTime, target, targetBMI);
+        String message = ((BmiGoal) testGoal).reviewBmiGoal(15.0);
         assertEquals("Your target for this goal was to have a BMI less than or equal to 20.0 by " + target + "\n" +
                 "Congratulations you have completed this goal! It has been removed from your current goals and added to your achieved goals.", message);
     }
@@ -195,8 +195,8 @@ public class GoalTest {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() - 1, now1.getHour(), now1.getMinute(), now1.getSecond());
-        testGoal = new Goal(name, currentTime, target, "Distance", false, 0, 0, 0, targetDist, 0);
-        String message = testGoal.reviewDistanceGoal(999.9);
+        testGoal = new DistanceGoal(name, currentTime, target, targetDist);
+        String message = ((DistanceGoal) testGoal).reviewDistanceGoal(999.9);
         assertEquals("Your target for this goal was to cover 1000.0 km in distance by " + target + "\n" +
                 "\n" +
                 "You have failed to complete this goal in time. It has been removed from your current goals and added to your failed goals.", message);
@@ -207,8 +207,8 @@ public class GoalTest {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() - 1, now1.getHour(), now1.getMinute(), now1.getSecond());
-        testGoal = new Goal(name, currentTime, target, "Distance", false, 0, 0, 0, targetDist, 0);
-        String message = testGoal.reviewDistanceGoal(0.0);
+        testGoal = new DistanceGoal(name, currentTime, target, targetDist);
+        String message = ((DistanceGoal) testGoal).reviewDistanceGoal(0.0);
         assertEquals("Your target for this goal was to cover 1000.0 km in distance by " + target + "\n" +
                 "\n" +
                 "You have failed to complete this goal in time. It has been removed from your current goals and added to your failed goals.", message);
@@ -219,8 +219,8 @@ public class GoalTest {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() + 2, now1.getHour(), now1.getMinute(), now1.getSecond());
-        testGoal = new Goal(name, currentTime, target, "Distance", false, 0, 0, 0, targetDist, 0);
-        String message = testGoal.reviewDistanceGoal(0.0);
+        testGoal = new DistanceGoal(name, currentTime, target, targetDist);
+        String message = ((DistanceGoal) testGoal).reviewDistanceGoal(0.0);
         assertEquals("Your target for this goal was to cover 1000.0 km in distance by " + target + "\n" +
                 "\n" +
                 "You need to cover 1000.0 more metres to meet your goal.", message);
@@ -231,8 +231,8 @@ public class GoalTest {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() + 2, now1.getHour(), now1.getMinute(), now1.getSecond());
-        testGoal = new Goal(name, currentTime, target, "Distance", false, 0, 0, 0, targetDist, 0);
-        String message = testGoal.reviewDistanceGoal(999.9);
+        testGoal = new DistanceGoal(name, currentTime, target, targetDist);
+        String message = ((DistanceGoal) testGoal).reviewDistanceGoal(999.9);
         assertEquals("Your target for this goal was to cover 1000.0 km in distance by " + target + "\n" +
                 "\n" +
                 "You need to cover 0.1 more metres to meet your goal.", message);
@@ -243,8 +243,8 @@ public class GoalTest {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
-        testGoal = new Goal(name, currentTime, target, "Distance", false, 0, 0, 0, targetDist, 0);
-        String message = testGoal.reviewDistanceGoal(1000.0);
+        testGoal = new DistanceGoal(name, currentTime, target, targetDist);
+        String message = ((DistanceGoal) testGoal).reviewDistanceGoal(1000.0);
         assertEquals("Your target for this goal was to cover 1000.0 km in distance by " + target + "\n" +
                 "Congratulations you have completed this goal! It has been removed from your current goals and added to your achieved goals.", message);
     }
@@ -254,8 +254,8 @@ public class GoalTest {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
-        testGoal = new Goal(name, currentTime, target, "Distance", false, 0, 0, 0, targetDist, 0);
-        String message = testGoal.reviewDistanceGoal(5000);
+        testGoal = new DistanceGoal(name, currentTime, target, targetDist);
+        String message = ((DistanceGoal) testGoal).reviewDistanceGoal(5000);
         assertEquals("Your target for this goal was to cover 1000.0 km in distance by " + target + "\n" +
                 "Congratulations you have completed this goal! It has been removed from your current goals and added to your achieved goals.", message);
     }
@@ -273,8 +273,8 @@ public class GoalTest {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() - 1, now1.getHour(), now1.getMinute(), now1.getSecond());
-        testGoal = new Goal(name, currentTime, target, "Frequency", false, targetFreq, 0, 0, 0, 0);
-        String message = testGoal.reviewFrequencyGoal(9);
+        testGoal = new FrequencyGoal(name, currentTime, target, targetFreq);
+        String message = ((FrequencyGoal) testGoal).reviewFrequencyGoal(9);
         assertEquals("Your target for this goal was to excersize 10 times by " + target + "\n" +
                 "\n" +
                 "You have failed to complete this goal in time. It has been removed from your current goals and added to your failed goals.", message);
@@ -285,8 +285,8 @@ public class GoalTest {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() - 1, now1.getHour(), now1.getMinute(), now1.getSecond());
-        testGoal = new Goal(name, currentTime, target, "Frequency", false, targetFreq, 0, 0, 0, 0);
-        String message = testGoal.reviewFrequencyGoal(0);
+        testGoal = new FrequencyGoal(name, currentTime, target, targetFreq);
+        String message = ((FrequencyGoal) testGoal).reviewFrequencyGoal(0);
         assertEquals("Your target for this goal was to excersize 10 times by " + target + "\n" +
                 "\n" +
                 "You have failed to complete this goal in time. It has been removed from your current goals and added to your failed goals.", message);
@@ -297,8 +297,8 @@ public class GoalTest {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() + 2, now1.getHour(), now1.getMinute(), now1.getSecond());
-        testGoal = new Goal(name, currentTime, target, "Frequency", false, targetFreq, 0, 0, 0, 0);
-        String message = testGoal.reviewFrequencyGoal(0);
+        testGoal = new FrequencyGoal(name, currentTime, target, targetFreq);
+        String message = ((FrequencyGoal) testGoal).reviewFrequencyGoal(0);
         assertEquals("Your target for this goal was to excersize 10 times by " + target + "\n" +
                 "\n" +
                 "You need to complete 10 more activities to meet your goal.", message);
@@ -309,8 +309,8 @@ public class GoalTest {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() + 2, now1.getHour(), now1.getMinute(), now1.getSecond());
-        testGoal = new Goal(name, currentTime, target, "Frequency", false, targetFreq, 0, 0, 0, 0);
-        String message = testGoal.reviewFrequencyGoal(9);
+        testGoal = new FrequencyGoal(name, currentTime, target, targetFreq);
+        String message = ((FrequencyGoal) testGoal).reviewFrequencyGoal(9);
         assertEquals("Your target for this goal was to excersize 10 times by " + target + "\n" +
                 "\n" +
                 "You need to complete 1 more activities to meet your goal.", message);
@@ -321,8 +321,8 @@ public class GoalTest {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
-        testGoal = new Goal(name, currentTime, target, "Frequency", false, targetFreq, 0, 0, 0, 0);
-        String message = testGoal.reviewFrequencyGoal(10);
+        testGoal = new FrequencyGoal(name, currentTime, target, targetFreq);
+        String message = ((FrequencyGoal) testGoal).reviewFrequencyGoal(10);
         assertEquals("Your target for this goal was to excersize 10 times by " + target + "\n" +
                 "Congratulations you have completed this goal! It has been removed from your current goals and added to your achieved goals.", message);
     }
@@ -332,8 +332,8 @@ public class GoalTest {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
-        testGoal = new Goal(name, currentTime, target, "Frequency", false, targetFreq, 0, 0, 0, 0);
-        String message = testGoal.reviewFrequencyGoal(1000);
+        testGoal = new FrequencyGoal(name, currentTime, target, targetFreq);
+        String message = ((FrequencyGoal) testGoal).reviewFrequencyGoal(1000);
         assertEquals("Your target for this goal was to excersize 10 times by " + target + "\n" +
                 "Congratulations you have completed this goal! It has been removed from your current goals and added to your achieved goals.", message);
     }
@@ -348,8 +348,8 @@ public class GoalTest {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() - 1, now1.getHour(), now1.getMinute(), now1.getSecond());
-        testGoal = new Goal(name, currentTime, target, "Distance", false, 0, targetTime, 0, 0, 0);
-        String message = testGoal.reviewTimeGoal(199.9);
+        testGoal = new TimeGoal(name, currentTime, target, targetTime);
+        String message = ((TimeGoal) testGoal).reviewTimeGoal(199.9);
         assertEquals("Your target for this goal was to excersize for 200.0 minutes by " + target + "\n" +
                 "\n" +
                 "You have failed to complete this goal in time. It has been removed from your current goals and added to your failed goals.", message);
@@ -360,8 +360,8 @@ public class GoalTest {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() - 1, now1.getHour(), now1.getMinute(), now1.getSecond());
-        testGoal = new Goal(name, currentTime, target, "Distance", false, 0, targetTime, 0, 0, 0);
-        String message = testGoal.reviewTimeGoal(0.0);
+        testGoal = new TimeGoal(name, currentTime, target, targetTime);
+        String message = ((TimeGoal) testGoal).reviewTimeGoal(0.0);
         assertEquals("Your target for this goal was to excersize for 200.0 minutes by " + target + "\n" +
                 "\n" +
                 "You have failed to complete this goal in time. It has been removed from your current goals and added to your failed goals.", message);
@@ -372,8 +372,8 @@ public class GoalTest {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() + 2, now1.getHour(), now1.getMinute(), now1.getSecond());
-        testGoal = new Goal(name, currentTime, target, "Distance", false, 0, targetTime, 0, 0, 0);
-        String message = testGoal.reviewTimeGoal(0.0);
+        testGoal = new TimeGoal(name, currentTime, target, targetTime);
+        String message = ((TimeGoal) testGoal).reviewTimeGoal(0.0);
         assertEquals("Your target for this goal was to excersize for 200.0 minutes by " + target + "\n" +
                 "\n" +
                 "You need to complete 200.0 more minutes of activities to meet your goal.", message);
@@ -384,9 +384,8 @@ public class GoalTest {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() + 2, now1.getHour(), now1.getMinute(), now1.getSecond());
-        testGoal = new Goal(name, currentTime, target, "Distance", false, 0, 0, 0, targetDist, 0);
-        testGoal = new Goal(name, currentTime, target, "Distance", false, 0, targetTime, 0, 0, 0);
-        String message = testGoal.reviewTimeGoal(199.9);
+        testGoal = new TimeGoal(name, currentTime, target, targetTime);
+        String message = ((TimeGoal) testGoal).reviewTimeGoal(199.9);
         assertEquals("Your target for this goal was to excersize for 200.0 minutes by " + target + "\n" +
                 "\n" +
                 "You need to complete 0.1 more minutes of activities to meet your goal.", message);
@@ -397,8 +396,8 @@ public class GoalTest {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
-        testGoal = new Goal(name, currentTime, target, "Distance", false, 0, targetTime, 0, 0, 0);
-        String message = testGoal.reviewTimeGoal(200.0);
+        testGoal = new TimeGoal(name, currentTime, target, targetTime);
+        String message = ((TimeGoal) testGoal).reviewTimeGoal(200.0);
         assertEquals("Your target for this goal was to excersize for 200.0 minutes by " + target + "\n" +
                 "Congratulations you have completed this goal! It has been removed from your current goals and added to your achieved goals.", message);
     }
@@ -408,8 +407,8 @@ public class GoalTest {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
-        testGoal = new Goal(name, currentTime, target, "Distance", false, 0, targetTime, 0, 0, 0);
-        String message = testGoal.reviewTimeGoal(1000.0);
+        testGoal = new TimeGoal(name, currentTime, target, targetTime);
+        String message = ((TimeGoal) testGoal).reviewTimeGoal(1000.0);
         assertEquals("Your target for this goal was to excersize for 200.0 minutes by " + target + "\n" +
                 "Congratulations you have completed this goal! It has been removed from your current goals and added to your achieved goals.", message);
     }
