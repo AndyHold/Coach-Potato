@@ -218,7 +218,7 @@ public class ProfileController {
         weightValueTA.setText(df2.format((currentUser.getWeight())));
         heightValueTA.setText(df2.format((currentUser.getHeight())));
         bmiValueTA.setText(df2.format((currentUser.calcBmi())) + " - " + currentUser.getBmiCategory());
-        calendarPane.getChildren().add(new FullCalendarView(YearMonth.now(), app, this).getView());
+        calendarPane.getChildren().add(new CallenderPaneController(YearMonth.now(), app, this).getView());
 
         // Sets up the calendar and other stats if the user has already uploaded the data to the app else all values are 0 initially.
         if (currentUser.getActivities().size() > 0) {
