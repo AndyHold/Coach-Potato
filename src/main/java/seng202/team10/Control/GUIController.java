@@ -32,6 +32,7 @@ import seng202.team10.Model.ActivitiesData.Route;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 874b31ca... Re-added launch mapscene
 =======
 =======
@@ -43,6 +44,11 @@ import seng202.team10.Model.Exceptions.InvalidUserException;
 >>>>>>> 2d5633a2... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
 =======
 =======
+=======
+import seng202.team10.Model.Exceptions.ExistingElementException;
+import seng202.team10.Model.Exceptions.InvalidUserException;
+import seng202.team10.Model.Exceptions.NoDataFoundException;
+>>>>>>> 8ec9ce7d... Wrote some tests for GUIController and added some dependencies for when we test the JavaFX controllers (Not this deliverable)
 import seng202.team10.Model.Exceptions.UniqueNameException;
 <<<<<<< HEAD
 >>>>>>> dd450156... Fixed up Unique name error and got it completely working so that it catches all errors on Create profile and edit profile.
@@ -69,6 +75,7 @@ import seng202.team10.Model.FileOperations.Parser;
 import seng202.team10.Model.UserProfile;
 import seng202.team10.Visual.*;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 <<<<<<< HEAD
 import java.util.Optional;
@@ -293,7 +300,8 @@ public class GUIController extends Application{
     /**
      * loads all the users in the profiles folder and adds them to the users arraylist
      */
-    private void loadAllUsers() {
+    private void loadAllUsers()
+    {
         ArrayList<String> userNames = dataReader.getExistingUsers();
         for(String username: userNames){
             users.add(dataReader.loadExistingProfile(username));
@@ -322,9 +330,9 @@ public class GUIController extends Application{
      *
      * @param user  The user profile that the data is uploaded to.
      * @param filePath The file path the data is stored at.
-     * @throws Exception Not implemented yet.
      */
-    public void uploadDataToUser(UserProfile user, String filePath) throws Exception{
+    public void uploadDataToUser(UserProfile user, String filePath) throws FileNotFoundException, NoDataFoundException, ExistingElementException
+    {
         ArrayList<String> fileContents = parser.getFileContents(filePath);
         ArrayList<ArrayList<String>> formattedFileContents = parser.formatFileContents(fileContents);
         ArrayList<Activity> activities = parser.processFile(formattedFileContents);
@@ -334,7 +342,6 @@ public class GUIController extends Application{
 
     /**
      * Sets the scene on the primary stage to the login scene.
-     * @throws Exception Not implemented.
      */
     public void launchLoginScene()
     {
@@ -351,7 +358,8 @@ public class GUIController extends Application{
         uploadDataScene
      * Sets the scene on the primary stage to the profile scene.
      */
-    public void launchProfileScene() {
+    public void launchProfileScene()
+    {
         profileController.setUpScene();
         dataWriter.saveProfile(currentUser);
         profileController.setUserDetails();
@@ -440,8 +448,13 @@ public class GUIController extends Application{
     }
 
 
+<<<<<<< HEAD
 >>>>>>> 4e37ab85... Finished Implementing new Login Screen Layout.
     public void launchMapScene(Activity activity) {
+=======
+    public void launchMapScene(Activity activity)
+    {
+>>>>>>> 8ec9ce7d... Wrote some tests for GUIController and added some dependencies for when we test the JavaFX controllers (Not this deliverable)
         mapController.setActivity(activity);
         mapController.setUpScene();
         Route newRoute = mapController.makeRoute(activity);
@@ -450,11 +463,16 @@ public class GUIController extends Application{
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 874b31ca... Re-added launch mapscene
 =======
 >>>>>>> 81b0c6a... Re-added launch mapscene
 >>>>>>> fa48cc98... Re-added launch mapscene
     public void launchGoalsScene() {
+=======
+    public void launchGoalsScene()
+    {
+>>>>>>> 8ec9ce7d... Wrote some tests for GUIController and added some dependencies for when we test the JavaFX controllers (Not this deliverable)
         //goalsController.setUpScene();
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -491,7 +509,8 @@ public class GUIController extends Application{
     /**
      * Sets the scene on the primary stage to the upload data scene.
      */
-    public void launchUploadDataScene() {
+    public void launchUploadDataScene()
+    {
         uploadDataController.setUpScene();
         dataWriter.saveProfile(currentUser);
         primaryStage.setScene(uploadDataScene);
@@ -537,7 +556,8 @@ public class GUIController extends Application{
         primaryStage.setScene(activityViewerScene);
     }
 
-    public void refreshMapScene(Activity activity) {
+    public void refreshMapScene(Activity activity)
+    {
         this.launchDataAnalysisScene();
         try {
             TimeUnit.MICROSECONDS.sleep(90000);
@@ -552,6 +572,7 @@ public class GUIController extends Application{
      * setUpScene methods for each.
      * @throws Exception Not implemented.
      */
+<<<<<<< HEAD
     public void loadAllScenes() throws Exception{
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -566,6 +587,10 @@ public class GUIController extends Application{
 
 
 >>>>>>> 879a82d8... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
+=======
+    public void loadAllScenes() throws Exception
+    {
+>>>>>>> 8ec9ce7d... Wrote some tests for GUIController and added some dependencies for when we test the JavaFX controllers (Not this deliverable)
 //        loginScene = loadNewScene("/fxml/loginScreen.fxml");
 //        createProfileScene = loadNewScene("/fxml/createProfileScreen.fxml");
 //        profileScene = loadNewScene("/fxml/profileScreen.fxml");
@@ -869,7 +894,8 @@ public class GUIController extends Application{
      * Gets the currently logged in user.
      * @return  a UserProfile object of the currently logged in user.
      */
-    public UserProfile getCurrentProfile() {
+    public UserProfile getCurrentProfile()
+    {
         return this.currentUser;
     }
 
@@ -877,7 +903,8 @@ public class GUIController extends Application{
      * Gets the list of user profiles.
      * @return  a ArrayList<UserProfile> object of the user profiles.
      */
-    public ArrayList<UserProfile> getUsers() {
+    public ArrayList<UserProfile> getUsers()
+    {
         return users;
     }
 
@@ -885,14 +912,16 @@ public class GUIController extends Application{
      * Sets the user profiles.
      * @param users  The list of users stored in the app.
      */
-    public void setUsers(ArrayList<UserProfile> users) {
+    public void setUsers(ArrayList<UserProfile> users)
+    {
         this.users = users;
     }
 
 
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         launch(args);
     }
 
