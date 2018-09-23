@@ -154,27 +154,6 @@ public class DataAnalysisTest {
     }
 
     @Test
-    public void secondsToTimeAddsZeros() {
-        assertEquals(dataAnalysis.secondsToTime(7748), "02:09:08");
-    }
-
-    @Test
-    public void secondsToTimeDoesntAddZeros() {
-        assertEquals(dataAnalysis.secondsToTime(38970), "10:49:30");
-    }
-
-    @Test
-    public void secondsToTimeReturnsNullWhenOver23() {
-        //24 hours in seconds
-        assertEquals(dataAnalysis.secondsToTime(86400), null);
-    }
-
-    @Test
-    public void secondsToTimeReturnsNullWhenNegative() {
-        assertEquals(dataAnalysis.secondsToTime(-1), null);
-    }
-
-    @Test
     public void getMinutesFromActivity() {
         ArrayList<Double> minutes = dataAnalysis.getMinutesFromActivity(activities.get(1));
         ArrayList<Double> actualMinutes = new ArrayList<>();

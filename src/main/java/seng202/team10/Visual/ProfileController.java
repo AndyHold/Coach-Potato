@@ -26,7 +26,6 @@ public class ProfileController {
 
     private GUIController app;
     private DataAnalysis dataAnalysis = new DataAnalysis();
-    private UserProfile currentUser;
     private List<String> quotes;
 
     @FXML Pane calendarPane;
@@ -144,8 +143,7 @@ public class ProfileController {
                              "\t- Navigate to the month and year of your desired\n" +
                              "\t  activity using the controls at the top of the\n" +
                              "\t  calender.\n" +
-                             "\t- Dates with activities in them will be a darker colour\n" +
-                             "\t  than the other dates.\n" +
+                             "\t- Dates with activities in them will have an A in them.\n" +
                              "\t- Click on the date of your activity.\n" +
                              "\t- Your statistics for that day will now be displayed in\n" +
                              "\t  the information box below the calender.\n\n" +
@@ -210,22 +208,22 @@ public class ProfileController {
         DecimalFormat df2 = new DecimalFormat("#.##");
         setUpScene();
         wholeProfileVBox.setVisible(true);
-        currentUser = app.getCurrentProfile();
-        welcomeProfileLabel.setText("Welcome " + String.valueOf(currentUser.getName()) + ", Let's do it!");
-        usernameTA.setText(currentUser.getName());
-        genderTA.setText(currentUser.getGender());
-        dobTA.setText(currentUser.getBirthDate().getDateAsString());
-        weightValueTA.setText(df2.format((currentUser.getWeight())));
-        heightValueTA.setText(df2.format((currentUser.getHeight())));
-        bmiValueTA.setText(df2.format((currentUser.calcBmi())) + " - " + currentUser.getBmiCategory());
-        calendarPane.getChildren().add(new FullCalendarView(YearMonth.now(), app, this).getView());
+        app.getCurrentProfile();
+        welcomeProfileLabel.setText("Welcome " + String.valueOf(app.getCurrentProfile().getName()) + ", Let's do it!");
+        usernameTA.setText(app.getCurrentProfile().getName());
+        genderTA.setText(app.getCurrentProfile().getGender());
+        dobTA.setText(app.getCurrentProfile().getBirthDate().getDateAsString());
+        weightValueTA.setText(df2.format((app.getCurrentProfile().getWeight())));
+        heightValueTA.setText(df2.format((app.getCurrentProfile().getHeight())));
+        bmiValueTA.setText(df2.format((app.getCurrentProfile().calcBmi())) + " - " + app.getCurrentProfile().getBmiCategory());
+        calendarPane.getChildren().add(new CallenderPaneController(YearMonth.now(), app, this).getView());
 
         // Sets up the calendar and other stats if the user has already uploaded the data to the app else all values are 0 initially.
-        if (currentUser.getActivities().size() > 0) {
+        if (app.getCurrentProfile().getActivities().size() > 0) {
 
-            distanceText.setText("Total Distance Covered: " + df2.format((currentUser.getActivitiesDistance(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0)))/1000) + " km");
-            velocityText.setText("Average Speed: " + df2.format(currentUser.getActivitiesSpeed(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0))) + " km/h");
-            heartRateText.setText("Average Heart Rate: " + String.valueOf(currentUser.getActivitiesHeartRate(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0))) + " bpm");
+            distanceText.setText("Total Distance Covered: " + df2.format((app.getCurrentProfile().getActivitiesDistance(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0)))/1000) + " km");
+            velocityText.setText("Average Speed: " + df2.format(app.getCurrentProfile().getActivitiesSpeed(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0))) + " km/h");
+            heartRateText.setText("Average Heart Rate: " + String.valueOf(app.getCurrentProfile().getActivitiesHeartRate(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0))) + " bpm");
             recentActivitiesLabel.setVisible(true);
             distanceHBox.setVisible(true);
             velocityHBox.setVisible(true);
@@ -291,7 +289,7 @@ public class ProfileController {
             String nameString = usernameTA.getText();
             app.checkUniqueName(nameString);
             try {
-                app.getUsers().get(app.getUsers().indexOf(currentUser)).setName(nameString);
+                app.getUsers().get(app.getUsers().indexOf(app.getCurrentProfile())).setName(nameString);
             } catch (UserNameException | IllegalArgumentException exception) {
                 app.createPopUp(Alert.AlertType.ERROR, "Invalid Username", "Please enter a valid username: It should be less than 50 characters and only contain alphanumeric characters." );
             }
@@ -300,14 +298,14 @@ public class ProfileController {
         }
         // Set weight and handle exceptions
         try {
-            app.getUsers().get(app.getUsers().indexOf(currentUser)).setWeight(Double.valueOf(weightValueTA.getText()));
+            app.getUsers().get(app.getUsers().indexOf(app.getCurrentProfile())).setWeight(Double.valueOf(weightValueTA.getText()));
         }  catch (InvalidWeightException | IllegalArgumentException exception) {
             app.createPopUp(Alert.AlertType.ERROR, "Invalid Weight", "Please enter a valid weight: It should be greater than 30 kg and less than 500 kg." );
         }
 
         // Set height and handle Exceptions
         try {
-            app.getUsers().get(app.getUsers().indexOf(currentUser)).setHeight(Double.valueOf(heightValueTA.getText()));
+            app.getUsers().get(app.getUsers().indexOf(app.getCurrentProfile())).setHeight(Double.valueOf(heightValueTA.getText()));
         } catch (InvalidHeightException | IllegalArgumentException exception) {
             app.createPopUp(Alert.AlertType.ERROR, "Invalid Height", "Please enter a valid height: It should be greater than 50 cm and less than 250 cm." );
         }
@@ -319,7 +317,7 @@ public class ProfileController {
             int monthInt = Integer.valueOf(dob.substring(3,5));
             int dayInt = Integer.valueOf(dob.substring(0,2));
             DateTime dateOfBirth = new DateTime(yearInt, monthInt, dayInt, 0, 0, 0);
-            app.getUsers().get(app.getUsers().indexOf(currentUser)).setBirthDate(dateOfBirth);
+            app.getUsers().get(app.getUsers().indexOf(app.getCurrentProfile())).setBirthDate(dateOfBirth);
         } catch (NullPointerException | IllegalArgumentException exception) {
             app.createPopUp(Alert.AlertType.ERROR, "Invalid Date of Birth", "Please enter a valid date: It should be in DD/MM/YYYY format." );
         }
@@ -327,7 +325,7 @@ public class ProfileController {
         // Set gender and handle Exceptions
         List<String> genderList = Arrays.asList("Male", "Female", "Other");
         if (genderList.contains(genderTA.getText())) {
-            app.getUsers().get(app.getUsers().indexOf(currentUser)).setGender(genderTA.getText());
+            app.getUsers().get(app.getUsers().indexOf(app.getCurrentProfile())).setGender(genderTA.getText());
         }
         else {
             app.createPopUp(Alert.AlertType.ERROR, "Invalid Gender", "Please enter a valid gender: It should be either \"Male\", \"Female\" or \"Other\"." );

@@ -9,7 +9,7 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import seng202.team10.Control.GUIController;
 
-public class MainScreenController implements Controllable {
+public class MenuBarController implements Controllable {
 
     private GUIController app;
     @FXML private Button menu;
