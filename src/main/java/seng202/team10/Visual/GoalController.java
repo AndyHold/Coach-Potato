@@ -10,9 +10,8 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Control.InputValidator;
+import seng202.team10.Model.*;
 import seng202.team10.Model.ActivitiesData.DateTime;
-import seng202.team10.Model.Goal;
-import seng202.team10.Model.Goals;
 
 <<<<<<< HEAD
 public class GoalController implements Controllable {
@@ -434,23 +433,23 @@ public class GoalController implements Controllable{
         if (type.equals("Weight")) {
             typeText.setText(type);
             startDateText.setText(goal.getGoalStartDate().toString());
-            goalText.setText("To weigh " + goal.getGoalWeight() + " kgs or less by " + goal.getGoalTargetDate());
+            goalText.setText("To weigh " + ((WeightGoal) goal).getGoalWeight() + " kgs or less by " + goal.getGoalTargetDate());
         } else if (type.equals("Frequency")) {
             typeText.setText(type);
             startDateText.setText(goal.getGoalStartDate().toString());
-            goalText.setText("To participate in " + goal.getGoalFrequency() + " activities by " + goal.getGoalTargetDate());
+            goalText.setText("To participate in " + ((FrequencyGoal) goal).getGoalFrequency() + " activities by " + goal.getGoalTargetDate());
         } else if (type.equals("Distance")) {
             typeText.setText(type);
             startDateText.setText(goal.getGoalStartDate().toString());
-            goalText.setText("To cover " + goal.getGoalDistance() + " metres by " + goal.getGoalTargetDate());
+            goalText.setText("To cover " + ((DistanceGoal) goal).getGoalDistance() + " metres by " + goal.getGoalTargetDate());
         } else if (type.equals("BMI")) {
             typeText.setText(type);
             startDateText.setText(goal.getGoalStartDate().toString());
-            goalText.setText("To have a BMI of " + goal.getGoalBmi() + " or less by " + goal.getGoalTargetDate());
+            goalText.setText("To have a BMI of " + ((BmiGoal) goal).getGoalBmi() + " or less by " + goal.getGoalTargetDate());
         } else { //goal must be of type Time
             typeText.setText(type);
             startDateText.setText(goal.getGoalStartDate().toString());
-            goalText.setText("To spend " + goal.getGoalTime() + " minutes exercising by " + goal.getGoalTargetDate());
+            goalText.setText("To spend " + ((TimeGoal) goal).getGoalTime() + " minutes exercising by " + goal.getGoalTargetDate());
         }
     }
 
