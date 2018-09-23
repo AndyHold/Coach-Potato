@@ -403,19 +403,19 @@ public class GoalController implements Controllable{
         if (validInput) {
             switch (type) {
                 case "Weight":
-                    goalsInstance.createGoal(name, startDate, targetDate, type, false, doubleTarget);
+                    goalsInstance.createGoal(name, startDate, targetDate, type, doubleTarget);
                     break;
                 case "Frequency":
-                    goalsInstance.createGoal(name, startDate, targetDate, type, false, target);
+                    goalsInstance.createGoal(name, startDate, targetDate, target);
                     break;
                 case "Distance":
-                    goalsInstance.createGoal(name, startDate, targetDate, type, false, doubleTarget);
+                    goalsInstance.createGoal(name, startDate, targetDate, type, doubleTarget);
                     break;
                 case "BMI":
-                    goalsInstance.createGoal(name, startDate, targetDate, type, false, doubleTarget);
+                    goalsInstance.createGoal(name, startDate, targetDate, type, doubleTarget);
                     break;
                 default:  //goal must be of type Time
-                    goalsInstance.createGoal(name, startDate, targetDate, type, false, doubleTarget);
+                    goalsInstance.createGoal(name, startDate, targetDate, type, doubleTarget);
                     break;
             }
 
