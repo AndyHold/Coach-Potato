@@ -73,36 +73,40 @@ public class CreateProfileController implements Controllable
      */
     public void setUpScene()
     {
-        // Set tool tips for text fields and text fields
-        nameEntry.setTooltip(new Tooltip("Please enter a user name.\nUser name must be between 1 to 15 characters long.\nUser name must be unique\nUser name is not case sensitive."));
-        weightEntry.setTooltip(new Tooltip("Please enter your weight in kg's.\nWeight must be between 30kg to 250kg.\nYou do not need to put kg at the end."));
-        heightEntry.setTooltip(new Tooltip("Please enter your height in cm's\nHeight must be between 50cm to 260cm.\nYou do not need to put cm at the end."));
-        // Set tool tip for Combo Box's
-        dayEntry.setTooltip(new Tooltip("Please select a day of the month from the drop down list."));
-        monthEntry.setTooltip(new Tooltip("Please select a month of the year from the drop down list."));
-        yearEntry.setTooltip(new Tooltip("Please select a year from the drop down list."));
-        // Set tool tips for radio buttons
-        maleRad.setTooltip(new Tooltip("Please select a gender from these options."));
-        femaleRad.setTooltip(new Tooltip("Please select a gender from these options."));
-        notSpecifiedRad.setTooltip(new Tooltip("Please select a gender from these options."));
-        // Set tool tips for buttons
-        backButton.setTooltip(new Tooltip("Navigates back to Login Screen"));
-        helpButton.setTooltip(new Tooltip("Need Help?"));
-        createProfileButton.setTooltip(new Tooltip("Checks the input data and displays errors in red where necessary.\nCreates a new profile if all input data is valid and navigates to the login screen."));
+        //Set tool tips
+        setToolTips();
         // Set up help text area
-        helpTextArea.setText("Welcome to the Create Profile Screen!\n\n" +
-                "On this screen you can create a new profile or navigate back to the Login Screen.\n\n" +
-                "To create a new profile:\n" +
-                "\t- Choose and input a new user name.\n" +
-                "\t- Select your date of birth from the drop down box's.\n" +
-                "\t- Enter your weight in kg's and your height in cm's.\n" +
-                "\t- Select your gender from the options displayed.\n" +
-                "\t- Click the Create Profile button\n" +
-                "Any missing fields or errors in the data you have input will then be displayed in red. " +
-                "Otherwise your profile will be created and you will be taken to the Login Screen.\n\n" +
-                "Hover the mouse over each item to see a brief description of what is required or what it does.");
-        helpTextArea.setWrapText(true);
-        helpTextArea.setVisible(false);
+        setUpHelpTextArea();
+        //Set up combo box's
+        setUpDateComboBoxs();
+        //Set gender toggle buttons
+        setUpGenderToggles();
+        // Hide the help text field when focus is lost
+        helpTextArea.focusedProperty().addListener((ov, oldV, newV) -> {
+            if (!newV) {
+                helpTextArea.setVisible(false);
+            }
+        });
+    }
+
+
+    /**
+     * Set up method for the gender toggle buttons
+     */
+    private void setUpGenderToggles()
+    {
+        toggleGroup = new ToggleGroup();
+        femaleRad.setToggleGroup(toggleGroup);
+        maleRad.setToggleGroup(toggleGroup);
+        notSpecifiedRad.setToggleGroup(toggleGroup);
+    }
+
+
+    /**
+     * Set up method for the date combo boxs
+     */
+    private void setUpDateComboBoxs()
+    {
         // Set up days comboBox
         ObservableList<Integer> days = FXCollections.observableArrayList();
         for (int i = 1; i <= 31; i ++) {
@@ -126,22 +130,66 @@ public class CreateProfileController implements Controllable
         }
         yearEntry.setItems(years);
         yearEntry.setVisibleRowCount(5);
-
-        //Set gender toggle buttons
-        toggleGroup = new ToggleGroup();
-        femaleRad.setToggleGroup(toggleGroup);
-        maleRad.setToggleGroup(toggleGroup);
-        notSpecifiedRad.setToggleGroup(toggleGroup);
-
-        // Hide the help text field when focus is lost
-        helpTextArea.focusedProperty().addListener((ov, oldV, newV) -> {
-            if (!newV) {
-                helpTextArea.setVisible(false);
-            }
-        });
     }
 
 
+    /**
+     * Set up method for the help text area
+     */
+    private void setUpHelpTextArea()
+    {
+        helpTextArea.setText("Welcome to the Create Profile Screen!\n\n" +
+                             "On this screen you can create a new profile or navigate back to the Login Screen.\n\n" +
+                             "To create a new profile:\n" +
+                             "\t- Choose and input a new user name.\n" +
+                             "\t- Select your date of birth from the drop down box's.\n" +
+                             "\t- Enter your weight in kg's and your height in cm's.\n" +
+                             "\t- Select your gender from the options displayed.\n" +
+                             "\t- Click the Create Profile button\n" +
+                             "Any missing fields or errors in the data you have input will then be displayed in red. " +
+                             "Otherwise your profile will be created and you will be taken to the Login Screen.\n\n" +
+                             "Hover the mouse over each item to see a brief description of what is required or what it does.");
+        helpTextArea.setWrapText(true);
+        helpTextArea.setVisible(false);
+    }
+
+
+    /**
+     * Set up method for tool tips
+     */
+    private void setToolTips()
+    {
+        // Set tool tips for text fields and text fields
+        nameEntry.setTooltip(new Tooltip("Please enter a user name.\n" +
+                                         "User name must be between 1 to 15 characters long.\n" +
+                                         "User name must be unique\n" +
+                                         "User name is not case sensitive."));
+        weightEntry.setTooltip(new Tooltip("Please enter your weight in kg's.\n" +
+                                           "Weight must be between 30kg to 250kg.\n" +
+                                           "You do not need to put kg at the end."));
+        heightEntry.setTooltip(new Tooltip("Please enter your height in cm's\n" +
+                                           "Height must be between 50cm to 260cm.\n" +
+                                           "You do not need to put cm at the end."));
+        // Set tool tip for Combo Box's
+        dayEntry.setTooltip(new Tooltip("Please select a day of the month from the drop down list."));
+        monthEntry.setTooltip(new Tooltip("Please select a month of the year from the drop down list."));
+        yearEntry.setTooltip(new Tooltip("Please select a year from the drop down list."));
+        // Set tool tips for radio buttons
+        maleRad.setTooltip(new Tooltip("Please select a gender from these options."));
+        femaleRad.setTooltip(new Tooltip("Please select a gender from these options."));
+        notSpecifiedRad.setTooltip(new Tooltip("Please select a gender from these options."));
+        // Set tool tips for buttons
+        backButton.setTooltip(new Tooltip("Navigates back to Login Screen"));
+        helpButton.setTooltip(new Tooltip("Need Help?"));
+        createProfileButton.setTooltip(new Tooltip("Checks the input data and displays errors in red where necessary.\n" +
+                                                   "Creates a new profile if all input data is valid and navigates to the login screen."));
+    }
+
+
+    /**
+     * Method called when the help button is pushed.
+     * Displays the help text area.
+     */
     @FXML private void displayHelp()
     {
         helpTextArea.setVisible(true);
@@ -149,6 +197,10 @@ public class CreateProfileController implements Controllable
     }
 
 
+    /**
+     * Method called when focus to the help text area is lost or when the pane is clicked on.
+     * Hides the help text area.
+     */
     @FXML public void hideHelpTextArea()
     {
         helpTextArea.setVisible(false);
@@ -210,37 +262,31 @@ public class CreateProfileController implements Controllable
     {
         // Set error labels invisible
         setErrorsInvisible();
-
         // Create new User Profile
         UserProfile userProfile = new UserProfile();
-
         // Set Name and handle Exceptions
         this.setUserName(userProfile);
-
         // Set weight and handle exceptions
         this.setUserWeight(userProfile);
-
         // Set height and handle Exceptions
         this.setUserHeight(userProfile);
-
         // Set Date of Birth and handle exceptions
         this.setUserDOB(userProfile);
-
         // Set gender and handle Exceptions
         this.setUserGender(userProfile);
-
         // Set Max Heart Rate
         this.setUserMaxHeartRate(userProfile);
-
         // Add the user to the Controller
         this.saveUserProfile(userProfile);
     }
+
 
     /**
      * Method to save the user profile. This serializes the profile and adds it to the list of users in the main controller.
      * @param userProfile A UserProfile with the entered information of the user in it.
      */
-    private void saveUserProfile(UserProfile userProfile) {
+    private void saveUserProfile(UserProfile userProfile)
+    {
         try {
             app.createUser(userProfile);
             setErrorsInvisible();
@@ -250,21 +296,25 @@ public class CreateProfileController implements Controllable
         } catch (InvalidUserException exception) { }
     }
 
+
     /**
      * Method to set the max heart rate of the user. This is calculated from the user's birth date.
      * @param userProfile  A UserProfile that is being created.
      */
-    private void setUserMaxHeartRate(UserProfile userProfile) {
+    private void setUserMaxHeartRate(UserProfile userProfile)
+    {
         try {
             userProfile.setMaxHeartRate(220 - (Calendar.getInstance().get(Calendar.YEAR) - userProfile.getBirthDate().getYear()));
         } catch (NullPointerException exception) { }
     }
 
+
     /**
      * Method to set the gender of the user. This is taken from the currently selected toggle button.
      * @param userProfile  A UserProfile that is being created.
      */
-    private void setUserGender(UserProfile userProfile) {
+    private void setUserGender(UserProfile userProfile)
+    {
         try {
             String genderString = getSelectedGender();
             userProfile.setGender(genderString);
@@ -275,11 +325,13 @@ public class CreateProfileController implements Controllable
         }
     }
 
+
     /**
      * Method to set the date of birth of the user. This is taken from the values of the date combo boxes.
      * @param userProfile  A UserProfile that is being created.
      */
-    private void setUserDOB(UserProfile userProfile) {
+    private void setUserDOB(UserProfile userProfile)
+    {
         try {
             String day = dayEntry.getValue().toString();
             String month = monthEntry.getValue().toString();
@@ -295,11 +347,13 @@ public class CreateProfileController implements Controllable
         }
     }
 
+
     /**
      * Method to set the height of the user. This is taken from the relevant text field.
      * @param userProfile  A UserProfile that is being created.
      */
-    private void setUserHeight(UserProfile userProfile) {
+    private void setUserHeight(UserProfile userProfile)
+    {
         try {
             String heightString = getTextFieldString(heightEntry);
             userProfile.setHeight(Double.valueOf(heightString));
@@ -312,7 +366,8 @@ public class CreateProfileController implements Controllable
      * Method to set the weight of the user. This is taken from the relevant text field.
      * @param userProfile  A UserProfile that is being created.
      */
-    private void setUserWeight(UserProfile userProfile) {
+    private void setUserWeight(UserProfile userProfile)
+    {
         try {
             String weightString = getTextFieldString(weightEntry);
             userProfile.setWeight(Double.valueOf(weightString));
@@ -325,7 +380,8 @@ public class CreateProfileController implements Controllable
      * Method to set the user name of the user. This is taken from the relevant text field.
      * @param userProfile  A UserProfile that is being created.
      */
-    private void setUserName(UserProfile userProfile) {
+    private void setUserName(UserProfile userProfile)
+    {
         try {
             String nameString = StringUtils.capitalize(getTextFieldString(nameEntry).toLowerCase());
             System.out.print(nameString);
