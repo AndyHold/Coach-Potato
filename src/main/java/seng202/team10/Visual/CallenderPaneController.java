@@ -177,7 +177,7 @@ public class CallenderPaneController {
                     LocalDate date = ap.getDate();
                     if (activity.getStartDateTime().getDateAsString().equals((new DateTime(date.getYear(), date.getMonthValue(), date.getDayOfMonth(), 0, 0, 0)).getDateAsString())) {
                         todayActivities.add(activity);
-                        txt.setText(txt.getText() + "\n Activity");
+                        txt.setText(txt.getText() + "\n A");
 
                     }
                 }
