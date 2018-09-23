@@ -76,7 +76,7 @@ public class FrequencyGoalTest {
         String message = ((FrequencyGoal) testGoal).reviewFrequencyGoal(9);
         assertEquals("Your target for this goal was to excersize 10 times by " + target + "\n" +
                 "\n" +
-                "You need to complete 1 more activities to meet your goal.", message);
+                "You need to complete 1 more activity to meet your goal.", message);
     }
 
     @Test
