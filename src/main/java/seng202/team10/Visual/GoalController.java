@@ -34,6 +34,10 @@ public class GoalController implements Controllable{
 
 
     private GUIController app;
+    private String currentHelpText;
+    private String futureHelpText;
+    private String pastHelpText;
+    private String createHelpText;
 
 
     @FXML private ComboBox goalTypeCombo;
@@ -48,10 +52,10 @@ public class GoalController implements Controllable{
     @FXML private ListView achievedListView;
     @FXML private ListView failedListView;
     @FXML private TextArea progressText;
-    @FXML private TextField typeTextField;
+    @FXML private TextField achievedTypeTextField;
     @FXML private TextField startDateTextField;
     @FXML private TextArea goalTextArea;
-    @FXML private TextField typeTextField2;
+    @FXML private TextField failedTypeTextField;
     @FXML private TextField startDateTextField2;
     @FXML private TextArea goalTextArea2;
     @FXML private ListView futureGoalsListView;
@@ -60,8 +64,13 @@ public class GoalController implements Controllable{
     @FXML private TextArea futureGoalTextArea;
     @FXML private Label unitsLabel;
     @FXML private VBox drawer;
-    @FXML private TextArea currentHelpTextArea;
-    @FXML private Button currentHelpButton;
+    @FXML private TextArea helpTextArea;
+    @FXML private Button helpButton;
+    @FXML private Tab currentTab;
+    @FXML private Tab futureTab;
+    @FXML private Tab pastTab;
+    @FXML private Tab createTab;
+
 
 
 
@@ -71,19 +80,28 @@ public class GoalController implements Controllable{
 
 
     public void setUpScene() {
-        // Set up tool tips
-        currentHelpButton.setTooltip(new Tooltip("Need Help?"));
+        // Set up tool tips for current
+        helpButton.setTooltip(new Tooltip("Need Help?"));
+        // Current Tab
+        currentGoalsCombo.setTooltip(new Tooltip("Click here to select the current goal you would like to either view or remove."));
+        reviewButton.setTooltip(new Tooltip("Click here to review the progress of the selected goal."));
+        removeGoalButton.setTooltip(new Tooltip("Click here to remove the selected goal from your profile."));
+        // Past Tab
+        achievedListView.setTooltip(new Tooltip("This is a list of your past goals that were achieved.\n" +
+                "Click on a goal to review it."));
+        achievedTypeTextField.setTooltip(new Tooltip("What up?"));
+
         // Set up help text areas
-        currentHelpTextArea.setText("");
-        currentHelpTextArea.setVisible(false);
-        currentHelpTextArea.setWrapText(true);
+        setHelpTexts();
+        helpTextArea.setVisible(false);
+        helpTextArea.setWrapText(true);
 
 
-        typeTextField.setVisible(false);
+        achievedTypeTextField.setVisible(false);
         startDateTextField.setVisible(false);
         goalTextArea.setVisible(false);
 
-        typeTextField2.setVisible(false);
+        failedTypeTextField.setVisible(false);
         startDateTextField2.setVisible(false);
         goalTextArea2.setVisible(false);
 
@@ -92,25 +110,69 @@ public class GoalController implements Controllable{
         futureGoalTextArea.setVisible(false);
 
         // Hide the current help text field when focus is lost
-        currentHelpTextArea.focusedProperty().addListener((ov, oldV, newV) -> {
+        helpTextArea.focusedProperty().addListener((ov, oldV, newV) -> {
             if (!newV) {
-                currentHelpTextArea.setVisible(false);
+                helpTextArea.setVisible(false);
             }
         });
     }
 
 
-    @FXML private void displayCurrentHelp()
+    private void setHelpTexts()
     {
-        currentHelpTextArea.setVisible(true);
-        currentHelpTextArea.requestFocus();
+        currentHelpText = "Welcome to the Goals Screen!\n\n" +
+                "You are currently on the Current Goals Tab.\n\n" +
+                "On this tab you can view your current goals that are in progress, remove your current goals that are in progress or navigate to another tab.\n" +
+                "- To view your current goals:\n" +
+                "\t- Select your goal from the drop down menu.\n" +
+                "\t- Click the Review Progress Button.\n" +
+                "\t- A description of your goal and what you need to\n" +
+                "\t  achieve it will be displayed in the Description\n" +
+                "\t  Window.\n" +
+                "- To delete your current goals that are in progress:\n" +
+                "\t- Select the goal you would like to delete from the\n" +
+                "\t  drop down menu.\n" +
+                "\t- Click the Remove Goal button.\n" +
+                "\t- A pop up will notify you when your goal is\n" +
+                "\t  successfully removed from your profile.\n" +
+                "- To navigate to another tab simply click on the tab you\n" +
+                "  wish to see at the top of the screen.\n\n" +
+                "Hover over each item to see a brief description of what it does.";
+        pastHelpText = "Welcome to the Goals Screen!\n\n";
+        futureHelpText = "Welcome to the Goals Screen!\n\n";
+        createHelpText = "Welcome to the Goals Screen!\n\n";
     }
 
 
-    @FXML public void hideHelpTextAreas()
+    @FXML private void displayCurrentHelp()
     {
-        currentHelpTextArea.setVisible(false);
-        currentHelpButton.requestFocus();
+        helpTextArea.setVisible(true);
+        helpTextArea.requestFocus();
+        if (currentTab.isSelected()) {
+            setHelpTextArea(currentHelpText, 825, 270, 400);
+        } else if (futureTab.isSelected()) {
+            setHelpTextArea(futureHelpText, 825, 370, 300);
+        } else if (createTab.isSelected()) {
+            setHelpTextArea(createHelpText, 825, 370, 300);
+        } else if (pastTab.isSelected()) {
+            setHelpTextArea(pastHelpText, 825, 370, 300);
+        }
+    }
+
+
+    private void setHelpTextArea(String text, double xCoOrdinate, double yCoOrdinate, double height)
+    {
+        helpTextArea.setText(text);
+        helpTextArea.setLayoutY(yCoOrdinate);
+        helpTextArea.setLayoutX(xCoOrdinate);
+        helpTextArea.setPrefHeight(height);
+    }
+
+
+    @FXML public void hideHelpTextArea()
+    {
+        helpTextArea.setVisible(false);
+        helpButton.requestFocus();
     }
 
     /**
@@ -261,7 +323,7 @@ public class GoalController implements Controllable{
                 }
             }
             if (goal != null) {
-                printGoalsReview(goal, typeTextField, startDateTextField, goalTextArea);
+                printGoalsReview(goal, achievedTypeTextField, startDateTextField, goalTextArea);
             }
         }
 
@@ -279,7 +341,7 @@ public class GoalController implements Controllable{
                 }
             }
             if (goal != null) {
-                printGoalsReview(goal, typeTextField2, startDateTextField2, goalTextArea2);
+                printGoalsReview(goal, failedTypeTextField, startDateTextField2, goalTextArea2);
             }
         }
     }
@@ -328,6 +390,7 @@ public class GoalController implements Controllable{
             goalText.setText("To spend " + goal.getGoalTime() + " minutes exercising by " + goal.getGoalTargetDate());
         }
     }
+
 
     @FXML
     public void displayUnits() {
