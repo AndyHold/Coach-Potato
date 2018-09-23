@@ -156,8 +156,8 @@
                                                 </VBox>
                                                 <VBox prefHeight="365.0" prefWidth="200.0" spacing="85.0">
                                                    <children>
-                                                      <TextField fx:id="futureDateTextField" />
                                                       <TextField fx:id="futureTypeTextField" />
+                                                      <TextField fx:id="futureDateTextField" />
                                                       <TextArea fx:id="futureGoalTextArea" editable="false" prefHeight="150.0" prefWidth="200.0" wrapText="true" />
                                                    </children>
                                                 </VBox>
