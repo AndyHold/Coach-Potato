@@ -151,10 +151,6 @@ public class InputValidator {
             if (user.getWeight() <= target || target <= 30) {
                 return false;
             }
-        } else if (type.equals("Frequency")) {
-            if (target <= 0 || target > 10000) {
-                return false;
-            }
         } else if (type.equals("Distance")) {
             if (target < 100) {
                 return  false;
@@ -172,6 +168,6 @@ public class InputValidator {
     }
 
     public boolean isValidIntTargetValue (int target) {
-        return (target <= 0 || target > 10000);
+        return (target >= 0 || target < 10000);
     }
 }
