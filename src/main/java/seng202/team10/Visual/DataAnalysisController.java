@@ -57,7 +57,8 @@ public class DataAnalysisController implements Controllable, Initializable{
      * @param guiController  The main controller class that contains most information
      */
     @Override
-    public void setApp(GUIController guiController) {
+    public void setApp(GUIController guiController)
+    {
         this.guiController = guiController;
     }
 
@@ -70,61 +71,34 @@ public class DataAnalysisController implements Controllable, Initializable{
     public void setUpScene()
     {
         // Set Button tool tips
-        activityList.setTooltip(new Tooltip("Select an activity from the list to update the graphs with that activity."));
-        tabPane.setTooltip(new Tooltip("Select the tab of the graph you wish to see."));
-        mapButton.setTooltip(new Tooltip("Click here to view a map of the selected Activity."));
-        helpButton.setTooltip(new Tooltip("Need Help?"));
-
+        setUpToolTips();
         // Set help text
-        helpTextArea.setText("Welcome to the Analysis Screen!\n\n" +
-                "On this screen you can view graphs of an activity or select to view a map of the route taken.\n\n" +
-                "- To view graphs of an activity:\n" +
-                "\t- Select the activity you wish to view by clicking on\n" +
-                "\t  it in the list.\n" +
-                "\t- The graph will now be updated automatically\n" +
-                "\t  with the data from that activity.\n" +
-                "\t- Now you can select a different graph to view by\n" +
-                "\t  clicking on the tabs above the graph.\n" +
-                "- To view a map:\n" +
-                "\t- Select the activity you wish to view by clicking on\n" +
-                "\t  it in the list.\n" +
-                "\t- Click the View Map button to view the map.\n" +
-                "\t- You will now be taken to the map view screen\n\n" +
-                "Hover the mouse over each button to see a brief discription of what it does.");
-        helpTextArea.setWrapText(true);
-        helpTextArea.setVisible(false);
-
+        setUpHelpTextArea();
+        // Create a new data analysis
         dataAnalysis = new DataAnalysis();
+        // Set the current profile
         currentProfile = guiController.getCurrentProfile();
+        // Check for activities in the profile
         if (currentProfile.getActivities().isEmpty()) {
             this.displayNoData(true);
         } else {
-
             this.setUpListView();
-
             this.displayNoData(false);
-
             this.initializeSeries();
-
             this.clearGraphs();
-
+            // Get arrays
             ArrayList<Double> timeArray = dataAnalysis.getMinutesFromActivity(activity);
             ArrayList<Integer> heartRateArray = dataAnalysis.getHeartRateFromActivity(activity);
             Integer timeTaken = activity.getTotalDuration();
-
+            // Set the name
             activityNameLabel.setText(activity.getName());
             timeTakenLabel.setText("Time Taken: " + dataAnalysis.secondsToTime(timeTaken));
-
-
+            // Populate the graphs
             this.populateDistanceTimeGraph(timeArray);
-
             this.populateHeartRateTimeGraph(timeArray, heartRateArray);
-
             this.populateCaloriesBurnedGraph(timeArray);
-
             this.populateStressTimeGraph(timeArray, heartRateArray);
         }
-
         // Hide the help text field when focus is lost
         helpTextArea.focusedProperty().addListener((ov, oldV, newV) -> {
             if (!newV) {
@@ -133,7 +107,47 @@ public class DataAnalysisController implements Controllable, Initializable{
         });
     }
 
+    /**
+     * Set up method for the help text area
+     */
+    private void setUpHelpTextArea()
+    {
+        helpTextArea.setText("Welcome to the Analysis Screen!\n\n" +
+                             "On this screen you can view graphs of an activity or select to view a map of the route taken.\n\n" +
+                             "- To view graphs of an activity:\n" +
+                             "\t- Select the activity you wish to view by clicking on\n" +
+                             "\t  it in the list.\n" +
+                             "\t- The graph will now be updated automatically\n" +
+                             "\t  with the data from that activity.\n" +
+                             "\t- Now you can select a different graph to view by\n" +
+                             "\t  clicking on the tabs above the graph.\n" +
+                             "- To view a map:\n" +
+                             "\t- Select the activity you wish to view by clicking on\n" +
+                             "\t  it in the list.\n" +
+                             "\t- Click the View Map button to view the map.\n" +
+                             "\t- You will now be taken to the map view screen\n\n" +
+                             "Hover the mouse over each button to see a brief discription of what it does.");
+        helpTextArea.setWrapText(true);
+        helpTextArea.setVisible(false);
+    }
 
+
+    /**
+     * Set up method for the tool tips
+     */
+    private void setUpToolTips()
+    {
+        activityList.setTooltip(new Tooltip("Select an activity from the list to update the graphs with that activity."));
+        tabPane.setTooltip(new Tooltip("Select the tab of the graph you wish to see."));
+        mapButton.setTooltip(new Tooltip("Click here to view a map of the selected Activity."));
+        helpButton.setTooltip(new Tooltip("Need Help?"));
+    }
+
+
+    /**
+     * Method called when the help button is pushed.
+     * Displays the help text area.
+     */
     @FXML private void displayHelp()
     {
         helpTextArea.setVisible(true);
@@ -141,17 +155,23 @@ public class DataAnalysisController implements Controllable, Initializable{
     }
 
 
+    /**
+     * Method called when focus to the help text area is lost or when the pane is clicked on.
+     * Hides the help text area.
+     */
     @FXML public void hideHelpTextArea()
     {
         helpTextArea.setVisible(false);
         helpButton.requestFocus();
     }
 
+
     /**
      * Method to set up the ListView that contains a list of activities for the user to view. It displays the activity
      * name and date.
      */
-    private void setUpListView() {
+    private void setUpListView()
+    {
         ObservableList<String> activityNames = FXCollections.observableArrayList();
         for (Activity activity : currentProfile.getActivities()) {
             String activityString = activity.getName() + " : " + activity.getStartDateTime().toString();
@@ -166,11 +186,13 @@ public class DataAnalysisController implements Controllable, Initializable{
         activity = currentProfile.getActivities().get(currentIndex);
     }
 
+
     /**
      * Method to populate the distance over time graph with data.
      * @param timeArray  An ArrayList<Double> that contains the total time that has passed at each point in the activity.
      */
-    private void populateDistanceTimeGraph(ArrayList<Double> timeArray) {
+    private void populateDistanceTimeGraph(ArrayList<Double> timeArray)
+    {
         ArrayList<Double> distanceArray = dataAnalysis.getDistanceFromActivity(activity);
         for (int i = 0; i < timeArray.size(); i++) {
             distanceTimeSeries.getData().add(new XYChart.Data(timeArray.get(i), distanceArray.get(i)));
@@ -178,23 +200,27 @@ public class DataAnalysisController implements Controllable, Initializable{
         distanceOverTime.getData().add(distanceTimeSeries);
     }
 
+
     /**
      * Method to populate the heart rate over time graph with data.
      * @param timeArray  An ArrayList<Double> that contains the total time that has passed at each point in the activity.
      * @param heartRateArray  An ArrayList<Integer> that contains a list of heartrates at each point in the activity.
      */
-    private void populateHeartRateTimeGraph(ArrayList<Double> timeArray, ArrayList<Integer> heartRateArray) {
+    private void populateHeartRateTimeGraph(ArrayList<Double> timeArray, ArrayList<Integer> heartRateArray)
+    {
         for (int i = 0; i < timeArray.size(); i++) {
             heartRateSeries.getData().add(new XYChart.Data(timeArray.get(i), heartRateArray.get(i)));
         }
         heartRateOverTime.getData().add(heartRateSeries);
     }
 
+
     /**
      * Method to populate the calories burned over time graph with data.
      * @param timeArray  An ArrayList<Double> that contains the total time that has passed at each point in the activity.
      */
-    private void populateCaloriesBurnedGraph(ArrayList<Double> timeArray) {
+    private void populateCaloriesBurnedGraph(ArrayList<Double> timeArray)
+    {
         ArrayList<Double> calorieArray = dataAnalysis.getCaloriesFromActivity(activity, currentProfile);
         for (int i = 0; i < timeArray.size(); i++) {
             caloriesBurnedSeries.getData().add(new XYChart.Data(timeArray.get(i), calorieArray.get(i)));
@@ -202,12 +228,14 @@ public class DataAnalysisController implements Controllable, Initializable{
         caloriesBurned.getData().add(caloriesBurnedSeries);
     }
 
+
     /**
      * Method to populate the stress level over time graph with data.
      * @param timeArray  An ArrayList<Double> that contains the total time that has passed at each point in the activity.
      * @param heartRateArray  An ArrayList<Integer> that contains a list of heartrates at each point in the activity.
      */
-    private void populateStressTimeGraph(ArrayList<Double> timeArray, ArrayList<Integer> heartRateArray) {
+    private void populateStressTimeGraph(ArrayList<Double> timeArray, ArrayList<Integer> heartRateArray)
+    {
         ArrayList<Double> stressArray = new ArrayList<>();
         for (int i = 0; i < timeArray.size(); i++) {
             double stressPercent = (double)heartRateArray.get(i)/(double)currentProfile.getMaxHeartRate();
@@ -217,41 +245,48 @@ public class DataAnalysisController implements Controllable, Initializable{
         stressLevelOverTime.getData().add(stressLevelTimeSeries);
     }
 
+
     /**
      * Method to initialize the series in the graphs.
      */
-    private void initializeSeries() {
+    private void initializeSeries()
+    {
         distanceTimeSeries = new XYChart.Series();
         heartRateSeries = new XYChart.Series();
         caloriesBurnedSeries = new XYChart.Series();
         stressLevelTimeSeries = new XYChart.Series();
     }
 
+
     /**
      * Method to remove all data currently in the graphs.
      */
-    private void clearGraphs() {
+    private void clearGraphs()
+    {
         distanceOverTime.getData().clear();
         heartRateOverTime.getData().clear();
         caloriesBurned.getData().clear();
         stressLevelOverTime.getData().clear();
     }
 
+
     /**
      * Method to set up the scene if a different index than the currently selected one is chosen. Called when any
      * actvity in the list view is clicked.
      */
-    @FXML
-    private void refresh() {
+    @FXML private void refresh()
+    {
         if (activityList.getSelectionModel().getSelectedIndex() != currentIndex) {
             setUpScene();
         }
     }
 
+
     /**
      * Method to set up the graphs by initializing them and setting labels.
      */
-    private void setUpGraphs() {
+    private void setUpGraphs()
+    {
         this.initializeSeries();
 
         setUpOneGraph(distanceOverTime);
@@ -265,21 +300,25 @@ public class DataAnalysisController implements Controllable, Initializable{
         stressLevelOverTime.getYAxis().setLabel("Stress level");
     }
 
+
     /**
      * Method to set up a graph by setting its label and disabling symbols.
      * @param linechart  The graph being set up.
      */
-    private void setUpOneGraph(LineChart linechart) {
+    private void setUpOneGraph(LineChart linechart)
+    {
         linechart.setLegendVisible(false);
         linechart.getXAxis().setLabel("Time (minutes)");
         linechart.setCreateSymbols(false);
     }
 
+
     /**
      * Method to display a message if there is no data to display, or to disable the message if there is data.
      * @param noDataFound True if there is no data to display. False if there is.
      */
-    private void displayNoData(boolean noDataFound) {
+    private void displayNoData(boolean noDataFound)
+    {
         if (noDataFound) {
             tabPane.setVisible(false);
             activityNameLabel.setVisible(false);
@@ -298,10 +337,12 @@ public class DataAnalysisController implements Controllable, Initializable{
      * Method to set the activity attribute.
      * @param activity  The activity that the local value is being set to.
      */
-    public void setActivity(Activity activity) {
+    public void setActivity(Activity activity)
+    {
         this.activity = activity;
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -318,6 +359,14 @@ public class DataAnalysisController implements Controllable, Initializable{
      */
 >>>>>>> d2b01f18... Refactored, javadocced and cleaned up classes
     @FXML public void viewMap() {
+=======
+
+    /**
+     *Method to launch the map for the currently selected activity.
+     */
+    @FXML public void viewMap()
+    {
+>>>>>>> 517b3e8c... Refactored Classes in the Visual, Exceptions and ActivitiesData packages to meet style guidlines and java doc specs. Also refactored some methods that were particularly large. Also dealt with some warnings and refactored a bit because of it.
         if (!(activity == null)) {
             guiController.launchMapScene(activity);
         } else {
@@ -330,7 +379,8 @@ public class DataAnalysisController implements Controllable, Initializable{
      * Method to initialize the class. Calls the setUpScene method when called. Called when the class is constructed.
      */
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources)
+    {
         setUpGraphs();
     }
 
@@ -359,59 +409,67 @@ public class DataAnalysisController implements Controllable, Initializable{
             closeNav.play();
         }
     }
+
+
     /**
      * Method to launch the login scene.
      */
-    @FXML public void openChooseProfile() throws Exception
+    @FXML public void openChooseProfile()
     {
         moveDrawer();
         guiController.launchLoginScene();
     }
 
+
     /**
      * Method to launch the view profile scene.
      */
-    @FXML public void openViewProfile() throws Exception
+    @FXML public void openViewProfile()
     {
         moveDrawer();
         guiController.launchProfileScene();
     }
 
+
     /**
      * Method to launch the upload data scene.
      */
-    @FXML public void openUploadData() throws Exception
+    @FXML public void openUploadData()
     {
         moveDrawer();
         guiController.launchUploadDataScene();
     }
 
+
     /**
      * Method to launch the view activities scene.
      */
-    @FXML public void openViewActivities() throws Exception
+    @FXML public void openViewActivities()
     {
         moveDrawer();
         guiController.launchActivityViewerScene();
     }
 
+
     /**
      * Method to launch the goals scene.
      */
-    @FXML public void openGoals() throws Exception
+    @FXML public void openGoals()
     {
         moveDrawer();
         guiController.launchGoalsScene();
     }
 
+
     /**
      * Method to launch the data analysis scene.
      */
-    @FXML public void openAnalysis() throws Exception
+    @FXML public void openAnalysis()
     {
         moveDrawer();
         guiController.launchDataAnalysisScene();
     }
+
 
     /**
      * Method to move the navigation drawer as appropriate.

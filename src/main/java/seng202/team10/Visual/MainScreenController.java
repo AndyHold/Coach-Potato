@@ -23,17 +23,26 @@ public class MainScreenController implements Controllable {
     @FXML private Button goalsButton;
     @FXML private Button analysisButton;
 
-    public void setApp(GUIController app) {
+
+    /**
+     * Setter method for the GUIController
+     * @param app GUIController: the gui controller for this program.
+     */
+    public void setApp(GUIController app)
+    {
         this.app = app;
     }
 
-    //@Override
-    public void setUpScene(){
+
+    @Override
+    public void setUpScene()
+    {
         //(URL url, ResourceBundle rb)
         //drawerHBox.setVisible(false);
         drawerAction();
 
     }
+
 
     /**
      * Method to draw the navigation drawer.
@@ -51,59 +60,67 @@ public class MainScreenController implements Controllable {
             closeNav.play();
         }
     }
+
+
     /**
      * Method to launch the login scene.
      */
-    @FXML public void openChooseProfile() throws Exception
+    @FXML public void openChooseProfile()
     {
         moveDrawer();
         app.launchLoginScene();
     }
 
+
     /**
      * Method to launch the view profile scene.
      */
-    @FXML public void openViewProfile() throws Exception
+    @FXML public void openViewProfile()
     {
         moveDrawer();
         app.launchProfileScene();
     }
 
+
     /**
      * Method to launch the upload data scene.
      */
-    @FXML public void openUploadData() throws Exception
+    @FXML public void openUploadData()
     {
         moveDrawer();
         app.launchUploadDataScene();
     }
 
+
     /**
      * Method to launch the view activities scene.
      */
-    @FXML public void openViewActivities() throws Exception
+    @FXML public void openViewActivities()
     {
         moveDrawer();
         app.launchActivityViewerScene();
     }
 
+
     /**
      * Method to launch the goals scene.
      */
-    @FXML public void openGoals() throws Exception
+    @FXML public void openGoals()
     {
         moveDrawer();
         app.launchGoalsScene();
     }
 
+
     /**
      * Method to launch the data analysis scene.
      */
-    @FXML public void openAnalysis() throws Exception
+    @FXML public void openAnalysis()
     {
         moveDrawer();
         app.launchDataAnalysisScene();
     }
+
 
     /**
      * Method to move the navigation drawer as appropriate.
