@@ -124,8 +124,8 @@ public class Goals implements Serializable {
             String type = goal.getGoalType();
             switch (type) {
                 case "Weight":
-                    progress = goal.reviewWeightGoal(user.getWeight());
-                    if (user.getWeight() <= goal.getGoalWeight()) {
+                    progress = ((WeightGoal) goal).reviewWeightGoal(user.getWeight());
+                    if (user.getWeight() <= ((WeightGoal) goal).getGoalWeight()) {
                         removeCurrentGoal(goalName);
                         goal.setGoalAchievedStatus(true);
                         achievedGoals.add(goal);
@@ -137,8 +137,8 @@ public class Goals implements Serializable {
                     }
                     break;
                 case "BMI":
-                    progress = goal.reviewBmiGoal(user.getBmi());
-                    if (user.getBmi() <= goal.getGoalBmi()) {
+                    progress = ((BmiGoal) goal).reviewBmiGoal(user.getBmi());
+                    if (user.getBmi() <= ((BmiGoal) goal).getGoalBmi()) {
                         removeCurrentGoal(goalName);
                         goal.setGoalAchievedStatus(true);
                         achievedGoals.add(goal);
@@ -151,8 +151,8 @@ public class Goals implements Serializable {
                     break;
                 case "Distance":
                     double totalDistance = user.getActivitiesDistance(goal.getGoalStartDate(), goal.getGoalTargetDate());
-                    progress = goal.reviewDistanceGoal(totalDistance);
-                    if (totalDistance >= goal.getGoalDistance()) {
+                    progress = ((DistanceGoal) goal).reviewDistanceGoal(totalDistance);
+                    if (totalDistance >= ((DistanceGoal) goal).getGoalDistance()) {
                         removeCurrentGoal(goalName);
                         goal.setGoalAchievedStatus(true);
                         achievedGoals.add(goal);
@@ -165,8 +165,8 @@ public class Goals implements Serializable {
                     break;
                 case "Frequency":
                     int numActivities = user.getActivitiesFreq(goal.getGoalStartDate(), goal.getGoalTargetDate());
-                    progress = goal.reviewFrequencyGoal(numActivities);
-                    if (numActivities >= goal.getGoalFrequency()) {
+                    progress = ((FrequencyGoal) goal).reviewFrequencyGoal(numActivities);
+                    if (numActivities >= ((FrequencyGoal) goal).getGoalFrequency()) {
                         removeCurrentGoal(goalName);
                         goal.setGoalAchievedStatus(true);
                         achievedGoals.add(goal);
@@ -179,8 +179,8 @@ public class Goals implements Serializable {
                     break;
                 case "Time":
                     double timeSumActivities = user.getActivitiesTime(goal.getGoalStartDate(), goal.getGoalTargetDate());
-                    progress = goal.reviewTimeGoal(timeSumActivities);
-                    if (timeSumActivities >= goal.getGoalTime()) {
+                    progress = ((TimeGoal) goal).reviewTimeGoal(timeSumActivities);
+                    if (timeSumActivities >= ((TimeGoal) goal).getGoalTime()) {
                         removeCurrentGoal(goalName);
                         goal.setGoalAchievedStatus(true);
                         achievedGoals.add(goal);
