@@ -30,6 +30,8 @@ public class EntryViewerController {
     @FXML private TableColumn<Entry, String> latitudeColumn;
     @FXML private TableColumn<Entry, String> longitudeColumn;
     @FXML private TableColumn<Entry, String> elevationColumn;
+    @FXML private TableColumn<Entry, String> distanceColumn;
+    @FXML private TableColumn<Entry, String> speedColumn;
     @FXML private Button activityReturnButton;
     @FXML private Button helpButton;
     @FXML private TextArea helpTextArea;
@@ -73,6 +75,8 @@ public class EntryViewerController {
         latitudeColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("latitudeString"));
         longitudeColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("longitudeString"));
         elevationColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("elevationString"));
+        distanceColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("distanceString"));
+        speedColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("velocityString"));
         // Load entries array
         entriesTableView.setItems(entries);
         entriesTableView.setEditable(true);
@@ -118,7 +122,7 @@ public class EntryViewerController {
     /**
      * Method to return to the activityViewer when the activityReturnButton is pressed and saves changes to entries
      */
-    @FXML public void returnToActivities() throws Exception
+    @FXML public void returnToActivities()
     {
         ArrayList<Entry> savingEntries = new ArrayList<>(this.entries);
         loadedActivity.setEntries(savingEntries);
