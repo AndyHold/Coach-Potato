@@ -37,83 +37,62 @@ public class Goals implements Serializable {
         this.user = user;
     }
 
-    /**
-     * Method to create a goal for a user to work towards.
-     * @param name: String
-     * @param startDate: DateTime
-     * @param targetDate: DateTime
-     * @param type: String
-     * @param achieved: Boolean
-     * @param frequency: int
-     * @param time: double
-     * @param weight: double
-     * @param distance: double
-     * @param bmi: double
-     */
-    public void createGoal(String name, DateTime startDate, DateTime targetDate, String type, Boolean achieved, int frequency, double time, double weight, double distance, double bmi) {
+
+
+    private void placeGoal(Goal newGoal, DateTime startDate, DateTime today)
+    {
+        if (!startDate.isAfter(today)) {
+            currentGoals.add(newGoal);
+            currentGoalNames.add(newGoal.getGoalName());
+        } else {
+            futureGoals.add(newGoal);
+            futureGoalNames.add(newGoal.getGoalName());
+        }
+        createdGoals.add(newGoal);
+        createdGoalNames.add(newGoal.getGoalName());
+    }
+
+
+    public void createGoal(String name, DateTime startDate, DateTime targetDate, String type, Boolean achieved, Double value)
+    {
+        GoalType goalType = GoalType.getTypeFromString(type);
         LocalDateTime now = LocalDateTime.now();
         int year = now.getYear();
         int month = now.getMonthValue();
         int day = now.getDayOfMonth();
         DateTime today = new DateTime(year, month, day, 0,0,0);
-
-        if (type.equals("Weight")) {
-            WeightGoal newGoal = new WeightGoal(name, startDate, targetDate, weight);
-            if (!startDate.isAfter(today)) {
-                currentGoals.add(newGoal);
-                currentGoalNames.add(newGoal.getGoalName());
-            } else {
-                futureGoals.add(newGoal);
-                futureGoalNames.add(newGoal.getGoalName());
-            }
-            createdGoals.add(newGoal);
-            createdGoalNames.add(newGoal.getGoalName());
-        } else if (type.equals("Frequency")) {
-            FrequencyGoal newGoal = new FrequencyGoal(name, startDate, targetDate, frequency);
-            if (!startDate.isAfter(today)) {
-                currentGoals.add(newGoal);
-                currentGoalNames.add(newGoal.getGoalName());
-            } else {
-                futureGoals.add(newGoal);
-                futureGoalNames.add(newGoal.getGoalName());
-            }
-            createdGoals.add(newGoal);
-            createdGoalNames.add(newGoal.getGoalName());
-        } else if (type.equals("Distance")) {
-            DistanceGoal newGoal = new DistanceGoal(name, startDate, targetDate, distance);
-            if (!startDate.isAfter(today)) {
-                currentGoals.add(newGoal);
-                currentGoalNames.add(newGoal.getGoalName());
-            } else {
-                futureGoals.add(newGoal);
-                futureGoalNames.add(newGoal.getGoalName());
-            }
-            createdGoals.add(newGoal);
-            createdGoalNames.add(newGoal.getGoalName());
-        } else if (type.equals("BMI")) {
-            BmiGoal newGoal = new BmiGoal(name, startDate, targetDate, bmi);
-            if (!startDate.isAfter(today)) {
-                currentGoals.add(newGoal);
-                currentGoalNames.add(newGoal.getGoalName());
-            } else {
-                futureGoals.add(newGoal);
-                futureGoalNames.add(newGoal.getGoalName());
-            }
-            createdGoals.add(newGoal);
-            createdGoalNames.add(newGoal.getGoalName());
-        } else { //goal must be of type Time
-            TimeGoal newGoal = new TimeGoal(name, startDate, targetDate, time);
-            if (!startDate.isAfter(today)) {
-                currentGoals.add(newGoal);
-                currentGoalNames.add(newGoal.getGoalName());
-            } else {
-                futureGoals.add(newGoal);
-                futureGoalNames.add(newGoal.getGoalName());
-            }
-            createdGoals.add(newGoal);
-            createdGoalNames.add(newGoal.getGoalName());
+        switch(goalType)
+        {
+            case WEIGHT:
+                WeightGoal newWeightGoal = new WeightGoal(name, startDate, targetDate, value);
+                placeGoal(newWeightGoal, startDate, today);
+                break;
+            case DISTANCE:
+                DistanceGoal newDistGoal = new DistanceGoal(name, startDate, targetDate, value);
+                placeGoal(newDistGoal, startDate, today);
+                break;
+            case TIME:
+                TimeGoal newTimeGoal = new TimeGoal(name, startDate, targetDate, value);
+                placeGoal(newTimeGoal, startDate, today);
+                break;
+            case BMI:
+                BmiGoal newBmiGoal = new BmiGoal(name, startDate, targetDate, value);
+                placeGoal(newBmiGoal, startDate, today);
+                break;
         }
     }
+
+    public void createGoal(String name, DateTime startDate, DateTime targetDate, String type, Boolean achieved, int freq) {
+        LocalDateTime now = LocalDateTime.now();
+        int year = now.getYear();
+        int month = now.getMonthValue();
+        int day = now.getDayOfMonth();
+        DateTime today = new DateTime(year, month, day, 0, 0, 0);
+        FrequencyGoal newFrequencyGoal = new FrequencyGoal(name, startDate, targetDate, freq);
+        placeGoal(newFrequencyGoal, startDate, today);
+    }
+
+
 
 
     /**
