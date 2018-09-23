@@ -150,6 +150,7 @@ public class GoalController implements Controllable{
         String type = goalTypeCombo.getValue().toString();
         String name = goalNameEntry.getText();
         int target = 0;
+        double doubleTarget = 0.0;
         int startYear = startDatePicker.getValue().getYear();
         int startMonth = startDatePicker.getValue().getMonthValue();
         int startDay = startDatePicker.getValue().getDayOfMonth();
@@ -176,11 +177,21 @@ public class GoalController implements Controllable{
         } else {
             try {
                 String target1 = targetValueEntry.getText();
-                target = Integer.parseInt(target1);
-                if (!input.isValidTargetValue(type, target, app.getCurrentProfile())) {
-                    app.createPopUp(Alert.AlertType.ERROR, "Invalid target", "Please choose a numeric and realistic target value that you have not already achieved");
-                    validInput = false;
+                if (type.equals("Frequency")) {
+                    target = Integer.parseInt(target1);
+                    if (!input.isValidIntTargetValue(target)) {
+                        app.createPopUp(Alert.AlertType.ERROR, "Invalid target", "Please choose a numeric and realistic target value that you have not already achieved");
+                        validInput = false;
+                    }
+                } else {
+                    doubleTarget = Double.valueOf(target1);
+                    if (!input.isValidTargetValue(type, doubleTarget, app.getCurrentProfile())) {
+                        app.createPopUp(Alert.AlertType.ERROR, "Invalid target", "Please choose a numeric and realistic target value that you have not already achieved");
+                        validInput = false;
+                    }
                 }
+
+
             } catch (NumberFormatException e) {
                 app.createPopUp(Alert.AlertType.ERROR, "Invalid target", "Please choose a realistic target value that you have not already achieved");
                 validInput = false;
@@ -189,15 +200,15 @@ public class GoalController implements Controllable{
 
         if (validInput) {
             if (type.equals("Weight")) {
-                goalsInstance.createGoal(name, startDate, targetDate, type, false, 0,0, target, 0,0);
+                goalsInstance.createGoal(name, startDate, targetDate, type, false, doubleTarget);
             } else if (type.equals("Frequency")) {
-                goalsInstance.createGoal(name, startDate, targetDate, type, false, target,0, 0, 0,0);
+                goalsInstance.createGoal(name, startDate, targetDate, type, false, target);
             } else if (type.equals("Distance")) {
-                goalsInstance.createGoal(name, startDate, targetDate, type, false, 0,0, 0, target,0);
+                goalsInstance.createGoal(name, startDate, targetDate, type, false, doubleTarget);
             } else if (type.equals("BMI")) {
-                goalsInstance.createGoal(name, startDate, targetDate, type, false, 0,0, 0, 0, target);
+                goalsInstance.createGoal(name, startDate, targetDate, type, false, doubleTarget);
             } else { //goal must be of type Time
-                goalsInstance.createGoal(name, startDate, targetDate, type, false, 0, target, 0, 0,0);
+                goalsInstance.createGoal(name, startDate, targetDate, type, false, doubleTarget);
             }
 
             app.createPopUp(Alert.AlertType.INFORMATION, "Information", "Goal successfully created!");
