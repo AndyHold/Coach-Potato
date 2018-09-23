@@ -124,9 +124,9 @@ public class Position  implements Serializable {
 
         double answer2 = 2 * atan2(sqrt(answer), sqrt(1-answer));
         double dist = (radiusOfEarth * answer2);
-        double realDistance = sqrt(pow(dist, 2) + pow(elevationDifference, 2));
-        return realDistance;
+        return sqrt(pow(dist, 2) + pow(elevationDifference, 2));
     }
+
 
     /**
      * Method to print a Position as a string.
