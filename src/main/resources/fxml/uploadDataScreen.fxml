@@ -16,7 +16,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<<<<<<< HEAD
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextAreas" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: mediumpurple;" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.UploadDataController">
+=======
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextAreas" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: mediumpurple;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.UploadDataController">
+>>>>>>> 7959376... GUI changes and changed colors for the calendar and also the word "Activities" is added to a data selected has activities starting from.
    <children>
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -447,17 +451,17 @@
             </TableView>
             <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="1250.0" spacing="50.0" style="-fx-background-color: mediumpurple;">
                <children>
-                  <Button fx:id="deleteEntryButton" maxHeight="35.0" minHeight="35.0" mnemonicParsing="false" onAction="#deleteEntryFromTableView" prefHeight="35.0" prefWidth="120.0" text="Delete Entry">
+                  <Button fx:id="deleteEntryButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteEntryFromTableView" prefHeight="35.0" prefWidth="120.0" text="Delete Entry">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="clearTableButton" maxHeight="35.0" minHeight="35.0" mnemonicParsing="false" onAction="#clearTableView" prefHeight="35.0" prefWidth="120.0" text="Clear Table">
+                  <Button fx:id="clearTableButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clearTableView" prefHeight="35.0" prefWidth="120.0" text="Clear Table">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="submitDataButton" maxHeight="35.0" minHeight="35.0" mnemonicParsing="false" onAction="#submitData" prefHeight="35.0" prefWidth="120.0" text="Submit Activity">
+                  <Button fx:id="submitDataButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#submitData" prefHeight="35.0" prefWidth="130.0" text="Submit Activity">
                      <font>
                         <Font size="14.0" />
                      </font>
