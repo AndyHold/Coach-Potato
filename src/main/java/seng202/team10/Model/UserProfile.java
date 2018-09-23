@@ -226,13 +226,6 @@ public class UserProfile implements java.io.Serializable {
         return this.bmi;
     }
 
-    /**
-     * Getter method to get user's Body Mass Index (BMI)
-     * @return double
-     */
-    public double getBmi() {
-        return bmi;
-    }
 
     public String getBmiCategory() {
         calcBmi();
@@ -381,5 +374,6 @@ public class UserProfile implements java.io.Serializable {
         averageHeartRate = sum/count;
         return averageHeartRate;
     }
+
 
 }
