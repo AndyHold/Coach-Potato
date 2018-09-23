@@ -123,7 +123,7 @@
             <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="380.0">
                <children>
                   <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="100.0" text="Name: " />
-                  <TextField fx:id="usernameTA" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="280.0" style="-fx-background-color: transparent;" text="User name">
+                  <TextField fx:id="usernameTA" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="280.0" style="-fx-background-color: transparent; -fx-text-fill: black;" text="User name">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -140,7 +140,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="dobTA" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="280.0" style="-fx-background-color: transparent;" text="User DOB">
+                  <TextField fx:id="dobTA" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="280.0" style="-fx-background-color: transparent; -fx-text-fill: black;" text="User DOB">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -157,7 +157,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="genderTA" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="280.0" style="-fx-background-color: transparent;" text="Male">
+                  <TextField fx:id="genderTA" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="280.0" style="-fx-background-color: transparent; -fx-text-fill: black;" text="Male">
                      <font>
                         <Font size="16.0" />
                      </font>
