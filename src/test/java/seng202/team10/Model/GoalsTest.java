@@ -1,14 +1,5 @@
 package seng202.team10.Model;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
-import com.sun.xml.internal.bind.v2.TODO;
-import javafx.geometry.Pos;
->>>>>>> 43899e5... Got rid of getBmi func and replaced all usages with calls to calcBmi. Wrote more tests for Goals class.
-=======
->>>>>>> 5b708aa... Made Goals package and refactored goal classes into it
 import org.junit.Before;
 import org.junit.Test;
 import seng202.team10.Model.ActivitiesData.DateTime;
@@ -296,7 +287,6 @@ public class GoalsTest {
                 "Congratulations you have completed this goal! It has been removed from your current goals and added to your achieved goals.", message);
     }
 
-<<<<<<< HEAD
     @Test
     public void checkWeightGoalFailed()
     {
@@ -385,28 +375,5 @@ public class GoalsTest {
                 "\n" +
                 "You have failed to complete this goal in time. It has been removed from your current goals and added to your failed goals.", message);
     }
-<<<<<<< HEAD
-=======
 
-
-
-
-
-
-
-
-
-
-
-//    @Test
-//    public void checkGoal() {
-//    }
-//
-//    @Test
-//    public void refreshGoals() {
-//    }
->>>>>>> d9188b7... commented out an import to fix pipeline
-=======
-
->>>>>>> 43899e5... Got rid of getBmi func and replaced all usages with calls to calcBmi. Wrote more tests for Goals class.
 }

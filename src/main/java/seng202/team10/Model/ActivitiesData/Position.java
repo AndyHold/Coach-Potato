@@ -93,7 +93,6 @@ public class Position  implements Serializable {
     }
 
 
-<<<<<<< HEAD
     /**
      * Getter method to get user's elevation.
      * @return elevation: double
@@ -104,8 +103,6 @@ public class Position  implements Serializable {
     }
 
 
-=======
->>>>>>> ad6d5c5... Got the correct Distance formula working and all good to go.
     /**
      * Subtract method calculates the distance between two positions.
      * @param position: double

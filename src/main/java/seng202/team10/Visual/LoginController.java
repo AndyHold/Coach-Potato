@@ -3,13 +3,8 @@ package seng202.team10.Visual;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-<<<<<<< HEAD
 import javafx.scene.control.*;
-=======
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
->>>>>>> 37e346b... Javadocced and cleaned up classes
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import seng202.team10.Control.GUIController;

@@ -127,15 +127,7 @@ public class ActivityTest {
     public void calculateTotalDistance()
     {
         activity.calculateTotalDistance();
-<<<<<<< HEAD
-<<<<<<< HEAD
-        assertEquals(177.68, activity.getTotalDistance(), 0.01);
-=======
-        assertEquals("0.18", activity.getDistanceString());
->>>>>>> 92da298... making units on activityviewer better by changing toString methods, and appropriate tests
-=======
         assertEquals(88.84, activity.getTotalDistance(), 0.01);
->>>>>>> 0607e34... fixed 2 tests in ActivityTest
     }
 
 
@@ -143,11 +135,7 @@ public class ActivityTest {
     public void calculateTotalDuration()
     {
         activity.calculateTotalDuration();
-<<<<<<< HEAD
         assertEquals(50, activity.getTotalDuration());
-=======
-        assertEquals("0.83", activity.getDurationString());
->>>>>>> 92da298... making units on activityviewer better by changing toString methods, and appropriate tests
     }
 
     @Test
@@ -156,30 +144,14 @@ public class ActivityTest {
         activity.calculateTotalDistance();
         activity.calculateTotalDuration();
         activity.calculateAverageVelocity();
-<<<<<<< HEAD
-<<<<<<< HEAD
-        assertEquals(3.55, activity.getAverageVelocity(), 0.01);
-=======
-        assertEquals("12.79", activity.getSpeedString());
->>>>>>> 92da298... making units on activityviewer better by changing toString methods, and appropriate tests
-=======
         assertEquals(1.78, activity.getAverageVelocity(), 0.01);
->>>>>>> 0607e34... fixed 2 tests in ActivityTest
     }
 
     @Test
     public void calculateAverageHeartRate()
     {
         activity.calculateAverageHeartRate();
-<<<<<<< HEAD
-<<<<<<< HEAD
-        assertEquals(85, activity.getAverageHeartRate());
-=======
-        assertEquals("85", activity.getHeartString());
->>>>>>> ff79906... 1) Changed getHeartString so it displays an int. 2) Added getActivitiesSpeed method to UserProfile. 3) Updated the way recent activities are displayed on profile screen. 4) Fixed the failing tests so that the pipeline works.
-=======
         assertEquals(85, activity.getAverageHeartRate(), 0.01);
->>>>>>> 92ee04f... Fixed a test case to fix the pipeline
     }
 
     @Test

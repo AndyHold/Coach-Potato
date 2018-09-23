@@ -12,23 +12,7 @@ import seng202.team10.Control.InputValidator;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.Goals.*;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 public class GoalController implements Controllable {
-=======
-public class GoalController implements Controllable{
->>>>>>> 483c3e6... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
-=======
-public class GoalController implements Controllable{
->>>>>>> 3b7cb94... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
-=======
-public class GoalController implements Controllable{
->>>>>>> 1990352... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
-=======
-public class GoalController implements Controllable{
->>>>>>> ef5ea11... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
 
 
     private GUIController app;
@@ -489,79 +473,32 @@ public class GoalController implements Controllable{
         typeText.setVisible(true);
         startDateText.setVisible(true);
         goalText.setVisible(true);
-<<<<<<< HEAD
-<<<<<<< HEAD
-        if (type.equals("Weight")) {
-            typeText.setText(type);
-            startDateText.setText(goal.getGoalStartDate().toString());
-            goalText.setText("To weigh " + ((WeightGoal) goal).getGoalWeight() + " kgs or less by " + goal.getGoalTargetDate());
-        } else if (type.equals("Frequency")) {
-            typeText.setText(type);
-            startDateText.setText(goal.getGoalStartDate().toString());
-            goalText.setText("To participate in " + ((FrequencyGoal) goal).getGoalFrequency() + " activities by " + goal.getGoalTargetDate());
-        } else if (type.equals("Distance")) {
-            typeText.setText(type);
-            startDateText.setText(goal.getGoalStartDate().toString());
-            goalText.setText("To cover " + ((DistanceGoal) goal).getGoalDistance() + " metres by " + goal.getGoalTargetDate());
-        } else if (type.equals("BMI")) {
-            typeText.setText(type);
-            startDateText.setText(goal.getGoalStartDate().toString());
-            goalText.setText("To have a BMI of " + ((BmiGoal) goal).getGoalBmi() + " or less by " + goal.getGoalTargetDate());
-        } else { //goal must be of type Time
-            typeText.setText(type);
-            startDateText.setText(goal.getGoalStartDate().toString());
-            goalText.setText("To spend " + ((TimeGoal) goal).getGoalTime() + " minutes exercising by " + goal.getGoalTargetDate());
-=======
-=======
->>>>>>> f2314b3... Refactored Classes in the Visual, Exceptions and ActivitiesData packages to meet style guidlines and java doc specs. Also refactored some methods that were particularly large. Also dealt with some warnings and refactored a bit because of it.
         switch (type) {
             case "Weight":
                 typeText.setText(type);
                 startDateText.setText(goal.getGoalStartDate().toString());
-<<<<<<< HEAD
-                goalText.setText("To weigh " + goal.getGoalWeight() + " kgs or less by " + goal.getGoalTargetDate());
-=======
                 goalText.setText("To weigh " + ((WeightGoal) goal).getGoalWeight() + " kgs or less by " + goal.getGoalTargetDate());
->>>>>>> f2314b3... Refactored Classes in the Visual, Exceptions and ActivitiesData packages to meet style guidlines and java doc specs. Also refactored some methods that were particularly large. Also dealt with some warnings and refactored a bit because of it.
                 break;
             case "Frequency":
                 typeText.setText(type);
                 startDateText.setText(goal.getGoalStartDate().toString());
-<<<<<<< HEAD
-                goalText.setText("To participate in " + goal.getGoalFrequency() + " activities by " + goal.getGoalTargetDate());
-=======
                 goalText.setText("To participate in " + ((FrequencyGoal) goal).getGoalFrequency() + " activities by " + goal.getGoalTargetDate());
->>>>>>> f2314b3... Refactored Classes in the Visual, Exceptions and ActivitiesData packages to meet style guidlines and java doc specs. Also refactored some methods that were particularly large. Also dealt with some warnings and refactored a bit because of it.
                 break;
             case "Distance":
                 typeText.setText(type);
                 startDateText.setText(goal.getGoalStartDate().toString());
-<<<<<<< HEAD
-                goalText.setText("To cover " + goal.getGoalDistance() + " metres by " + goal.getGoalTargetDate());
-=======
                 goalText.setText("To cover " + ((DistanceGoal) goal).getGoalDistance() + " metres by " + goal.getGoalTargetDate());
->>>>>>> f2314b3... Refactored Classes in the Visual, Exceptions and ActivitiesData packages to meet style guidlines and java doc specs. Also refactored some methods that were particularly large. Also dealt with some warnings and refactored a bit because of it.
                 break;
             case "BMI":
                 typeText.setText(type);
                 startDateText.setText(goal.getGoalStartDate().toString());
-<<<<<<< HEAD
-                goalText.setText("To have a BMI of " + goal.getGoalBmi() + " or less by " + goal.getGoalTargetDate());
-=======
                 goalText.setText("To have a BMI of " + ((BmiGoal) goal).getGoalBmi() + " or less by " + goal.getGoalTargetDate());
->>>>>>> f2314b3... Refactored Classes in the Visual, Exceptions and ActivitiesData packages to meet style guidlines and java doc specs. Also refactored some methods that were particularly large. Also dealt with some warnings and refactored a bit because of it.
                 break;
             default:  //goal must be of type Time
                 typeText.setText(type);
                 startDateText.setText(goal.getGoalStartDate().toString());
-<<<<<<< HEAD
-                goalText.setText("To spend " + goal.getGoalTime() + " minutes exercising by " + goal.getGoalTargetDate());
-                break;
->>>>>>> f3d6a2e... Finished implementing help buttons and tool tips in the goals Screen.
-=======
                 goalText.setText("To spend " + ((TimeGoal) goal).getGoalTime() + " minutes exercising by " + goal.getGoalTargetDate());
                 break;
->>>>>>> f2314b3... Refactored Classes in the Visual, Exceptions and ActivitiesData packages to meet style guidlines and java doc specs. Also refactored some methods that were particularly large. Also dealt with some warnings and refactored a bit because of it.
         }
     }
 

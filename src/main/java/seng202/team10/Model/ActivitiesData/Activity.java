@@ -15,26 +15,8 @@ public class Activity implements Serializable {
 
     private String name;
     private DateTime startDateTime;
-<<<<<<< HEAD
     private Double averageVelocity = 0.0;
-<<<<<<< HEAD
-    private Double averageHeartRate = 0.0;
-=======
-    private Double averageVelocity;
-    private Double averageHeartRate;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> d8e4382... Fixing Calculation of total distance and total duration
-=======
->>>>>>> 9b15fef... Fixing Calculation of total distance and total duration
-=======
->>>>>>> dc93099... Fixing Calculation of total distance and total duration
-=======
->>>>>>> f5a854f... Fixing Calculation of total distance and total duration
-=======
     private int averageHeartRate;
->>>>>>> a5835c2... Implemented a try catch block for no internet access and a pop up to display the error.
     private Double totalDistance = 0.0;
     private ArrayList<Entry> entries = new ArrayList<>();
     private int totalDuration;
@@ -205,7 +187,6 @@ public class Activity implements Serializable {
 
     /**
      * Setter method for after Entries have been loaded to the Activity
-     *
      */
     public void postEntriesSetUp()
     {
@@ -294,88 +275,32 @@ public class Activity implements Serializable {
 
 
     /**
-<<<<<<< HEAD
      * Getter method for the average heart rate during the activity
-=======
-     * Getter method for the ArrayList<Entry> entries
-     * @return ArrayList<Entry>
-     */
-    public ArrayList<Entry> getEntries() {
-        return this.entries;
-    }
-
-
-    /**
-     * Setter method for the start time of the activity
-     */
-    public void setStartTime() {
-        this.startDateTime = this.entries.get(0).getTime();
-    }
-
-
-    /**
-     * Method to calculate and set the total time taken during the activity
-     */
-    public void calculateTotalDuration() {
-        this.totalDuration = this.entries.get(this.entries.size()-1).getTime().subtract(this.startDateTime);
-    }
-
-
-    /**
-<<<<<<< HEAD
-     * Getter method for the total time taken during the activity in seconds
->>>>>>> d8e4382... Fixing Calculation of total distance and total duration
      * @return Double
-=======
-     * Getter method for the Duration as a String, in minutes
-     * @return String
->>>>>>> 92da298... making units on activityviewer better by changing toString methods, and appropriate tests
      */
     public double getAverageHeartRate()
     {
-<<<<<<< HEAD
         return this.averageHeartRate;
-=======
-        return String.format("%.2f", (this.totalDuration / 60.0));
->>>>>>> 92da298... making units on activityviewer better by changing toString methods, and appropriate tests
     }
 
 
     /**
-<<<<<<< HEAD
      * Getter method for the ArrayList<Entry> entries
      * @return ArrayList<Entry>
-=======
-     * Getter method for the Average Speed as a String, in KM/h
-     * @return String
->>>>>>> 92da298... making units on activityviewer better by changing toString methods, and appropriate tests
      */
     public ArrayList<Entry> getEntries()
     {
-<<<<<<< HEAD
         return this.entries;
-=======
-        return String.format("%.2f", (this.averageVelocity * 3.6));
->>>>>>> 92da298... making units on activityviewer better by changing toString methods, and appropriate tests
     }
 
 
     /**
-<<<<<<< HEAD
      * getter method for the type of the activity
      * @return String of the type of the activity
-=======
-     * Getter method for the Distance as a String, in Km
-     * @return String
->>>>>>> 92da298... making units on activityviewer better by changing toString methods, and appropriate tests
      */
     public ActivityType getType()
     {
-<<<<<<< HEAD
         return this.type;
-=======
-        return String.format("%.2f", (this.totalDistance / 1000.0));
->>>>>>> 92da298... making units on activityviewer better by changing toString methods, and appropriate tests
     }
 
 
@@ -385,11 +310,7 @@ public class Activity implements Serializable {
      */
     public String getTimeString()
     {
-<<<<<<< HEAD
         return this.startDateTime.toString();
-<<<<<<< HEAD
-=======
-=======
     }
 
 
@@ -430,13 +351,7 @@ public class Activity implements Serializable {
      */
     public String getHeartString()
     {
-<<<<<<< HEAD
->>>>>>> 4ae853f... fixing display on viewActivities (why was this changed?)
-        return String.format("%.0f", this.averageHeartRate);
->>>>>>> ff79906... 1) Changed getHeartString so it displays an int. 2) Added getActivitiesSpeed method to UserProfile. 3) Updated the way recent activities are displayed on profile screen. 4) Fixed the failing tests so that the pipeline works.
-=======
         return String.valueOf(this.averageHeartRate);
->>>>>>> ace36df... Fixed average heart rate error on Profile screen and added a new method for that in UserProfile.
     }
 
 

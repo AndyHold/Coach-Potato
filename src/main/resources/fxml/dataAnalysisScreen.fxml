@@ -86,49 +86,13 @@
       <Label fx:id="activityNameLabel" layoutX="607.0" layoutY="51.0" text="Name Of Activity" />
       <Label fx:id="timeTakenLabel" layoutX="937.0" layoutY="51.0" text="Total Time Taken" />
       <Label fx:id="noActivitiesLabel" layoutX="379.0" layoutY="292.0" text="No activities found" visible="false" />
-<<<<<<< HEAD
-      <ListView fx:id="activityList" layoutX="43.0" layoutY="122.0" onMouseClicked="#refresh" prefHeight="504.0" prefWidth="336.0" />
-      <Label layoutX="168.0" layoutY="87.0" text="Activities" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      <Button fx:id="refreshButton" layoutX="166.0" layoutY="647.0" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
->>>>>>> 2570070... Resolved conflicts.
-=======
-      <Button fx:id="refreshButton" layoutX="166.0" layoutY="647.0" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
->>>>>>> 04bf37f... Resolved conflicts.
-=======
-      <Button fx:id="refreshButton" layoutX="166.0" layoutY="647.0" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
->>>>>>> bb7c2d3... Resolved conflicts.
-=======
-      <Button fx:id="refreshButton" layoutX="166.0" layoutY="647.0" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
->>>>>>> 474015e... Resolved conflicts.
-=======
->>>>>>> 57b0159... Added FXIDs for the axes
-      <ToolBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="1280.0" style="-fx-background-color: #435;">
-         <items>
-            <Button fx:id="menu" mnemonicParsing="false" onAction="#drawerAction" style="-fx-background-color: #435; -fx-border-color: #ffffff;" text="Menu" textFill="WHITE" />
-         </items>
-      </ToolBar>
-=======
-=======
       <ListView fx:id="activityList" layoutX="43.0" layoutY="122.0" onMouseClicked="#refresh" prefHeight="504.0" prefWidth="400.0" style="-fx-background-color: mediumpurple; -fx-border-color: #435;" />
       <Label layoutX="208.0" layoutY="87.0" text="Activities" />
->>>>>>> c37a331... GUI changes - changed colour scheme to make it not look ugy for now, will make it better for deliverable 3.
        <ToolBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="1280.0" style="-fx-background-color: #435;">
            <items>
                <Button fx:id="menu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#drawerAction" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #435; -fx-border-color: #ffffff;" text="Menu" textFill="WHITE" />
            </items>
        </ToolBar>
->>>>>>> c9a8e0d... Updated the menu toolbar on most screens
       <VBox fx:id="drawer" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="150.0" style="-fx-background-color: #435;" translateX="-150.0">
          <children>
             <Button fx:id="selectProfileButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openChooseProfile" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #435; -fx-border-color: #ffffff;" text="Choose Profile" textFill="WHITE" />
@@ -139,33 +103,7 @@
             <Button fx:id="analysisButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openAnalysis" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #435; -fx-border-color: #ffffff;" text="Analysis" textFill="WHITE" />
          </children>
       </VBox>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      <Button fx:id="refreshButton" layoutX="166.0" layoutY="647.0" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
->>>>>>> d7f57e2... Added a refresh button to view other activities
-=======
-      <Button fx:id="refreshButton" layoutX="166.0" layoutY="647.0" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
->>>>>>> 6401c75... Added a refresh button to view other activities
-=======
-      <Button fx:id="refreshButton" layoutX="166.0" layoutY="647.0" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
->>>>>>> ba62535... Added a refresh button to view other activities
-=======
-      <Button fx:id="refreshButton" layoutX="166.0" layoutY="647.0" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
->>>>>>> 19e7af0... Added a refresh button to view other activities
-=======
-      <Button fx:id="mapButton" layoutX="764.0" layoutY="647.0" mnemonicParsing="false" onAction="#viewMap" text="View Map" />
->>>>>>> 497d568... Added a buton to go to maps
-=======
-      <Button fx:id="mapButton" layoutX="764.0" layoutY="647.0" mnemonicParsing="false" onAction="#viewMap" prefHeight="35.0" prefWidth="100.0" text="View Map" />
-=======
-      <Button fx:id="mapButton" layoutX="804.0" layoutY="647.0" mnemonicParsing="false" onAction="#viewMap" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: ;" text="View Map" />
->>>>>>> c37a331... GUI changes - changed colour scheme to make it not look ugy for now, will make it better for deliverable 3.
-=======
       <Button fx:id="mapButton" layoutX="804.0" layoutY="647.0" mnemonicParsing="false" onAction="#viewMap" prefHeight="35.0" prefWidth="100.0" text="View Map" />
->>>>>>> fb57f25... Fixed a Warning message by the FXML Loaders caused by a rouge bit of code
       <Button fx:id="helpButton" layoutX="1218.0" layoutY="671.0" mnemonicParsing="false" onAction="#displayHelp" prefHeight="35.0" prefWidth="48.0" style="-fx-background-color: transparent;">
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
@@ -175,6 +113,5 @@
          </graphic>
       </Button>
       <TextArea fx:id="helpTextArea" editable="false" layoutX="817.0" layoutY="337.0" prefHeight="335.0" prefWidth="400.0" />
->>>>>>> c0d0b31... Added tool tips and help button to Data Analysis Screen
    </children>
 </Pane>

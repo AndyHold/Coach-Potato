@@ -132,11 +132,7 @@
                <children>
                   <VBox prefHeight="205.0">
                      <children>
-<<<<<<< HEAD
-                        <Button fx:id="createProfileButton" mnemonicParsing="false" onAction="#createProfile" prefWidth="200.0" text="Create New Profile">
-=======
-                        <Button fx:id="createProfileButton" mnemonicParsing="false" onAction="#createProfile" prefHeight="28.0" prefWidth="160.0" text="Create New Profile">
->>>>>>> 31fa09e... Fixed up Unique name error and got it completely working so that it catches all errors on Create profile and edit profile.
+                        <Button fx:id="createProfileButton" mnemonicParsing="false" onAction="#createProfile" prefHeight="28.0" prefWidth="200.0" text="Create New Profile">
                            <font>
                               <Font size="14.0" />
                            </font></Button>

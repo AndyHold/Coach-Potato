@@ -12,22 +12,11 @@ import javafx.stage.FileChooser;
 import javafx.util.Duration;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.*;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 import seng202.team10.Model.FileOperations.Parser;
 import seng202.team10.Model.Exceptions.NoDataFoundException;
->>>>>>> 3418f00... Merge remote-tracking branch 'origin/master'
 import seng202.team10.Model.Exceptions.DuplicateEntryException;
 import seng202.team10.Model.Exceptions.ExistingActivityException;
 import seng202.team10.Model.Exceptions.ExistingElementException;
-=======
-import seng202.team10.Model.DuplicateEntryException;
-import seng202.team10.Model.ExistingActivityException;
-import seng202.team10.Model.ExistingElementException;
-import seng202.team10.Model.FileOperations.Parser;
-import seng202.team10.Model.NoDataFoundException;
->>>>>>> fa9df04... Added several alerts and pop up windows for different cases of parsing data
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -56,20 +45,7 @@ public class UploadDataController {
     @FXML private TextField latitudeTextField;
     @FXML private TextField longitudeTextField;
     @FXML private TextField elevationTextField;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-
     @FXML private VBox drawer;
-<<<<<<< HEAD
-=======
->>>>>>> c64d7f7... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
-=======
->>>>>>> 40229ad... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
-=======
->>>>>>> 73cd156... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
-
-=======
     @FXML private Button helpButtonManualActivity;
     @FXML private Button helpButtonUploadFile;
     @FXML private Button uploadButton;
@@ -79,7 +55,6 @@ public class UploadDataController {
     @FXML private Button submitDataButton;
     @FXML private TextArea manualEntryHelpTextArea;
     @FXML private TextArea uploadFileHelpTextArea;
->>>>>>> c55beac... Added help button and tool tip functionality to the Upload Data screen
 
 
     /**
@@ -97,54 +72,8 @@ public class UploadDataController {
      */
     public void setUpScene()
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        //Set the values in the intensity ComboBox
-        ObservableList<String> intensities = FXCollections.observableArrayList();
-        intensities.add("Low");
-        intensities.add("Medium");
-        intensities.add("High");
-        intensityComboBox.setItems(intensities);
-        intensityComboBox.setVisibleRowCount(3);
-        //Set up the columns in the table.
-=======
-        // Set the values in the intensity ComboBox
-//        ObservableList<String> intensities = FXCollections.observableArrayList();
-//        intensities.add("Walk");
-//        intensities.add("Run");
-//        intensities.add("Hike");
-//        intensities.add("Cycle");
-//        intensities.add("Swim");
-//        intensities.add("Workout");
-//        intensities.add("Other");
-//        intensityComboBox.setItems(intensities);
-//        intensityComboBox.setVisibleRowCount(3);
-=======
->>>>>>> d6582a5... refactored Activity to have start date time not set in the constructor but after the entries have been added. Changed all code using this functionality to make it a lot simpler. Also fixed the issue where data was not being saved properly after being uploaded, simply called to re serialize after each submission of manual data or file ulpoaded.
-=======
-        manualEntryHelpTextArea.setVisible(false);
-        uploadFileHelpTextArea.setVisible(false);
-        manualEntryHelpTextArea.setText("Welcome to the Manual Activity Entry Section!\n\n" +
-                "In this section, you can manually enter each entry point of an activity along with the name of the activity. " +
-                "Each new entry will be added to the table in chronological order and prompts will be given for invalid data formats. " +
-                "If you wish to edit an existing entry just double click on it and enter the new value. " +
-                "Please remember to use the correct format when editing entries.\n\n" +
-                "Hover the mouse over each button or field to see a brief discription of what it does.");
-        uploadFileHelpTextArea.setText("Welcome to the Upload File Section!\n\n" +
-                "In this section, you can select a .csv file to be uploaded. " +
-                "Simply type in the file path or click on the browse button " +
-                "(the button with the little picture of a folder on it) " +
-                "and navigate to your desired file. Then click the Upload File button and your file will be uploaded. " +
-                "A pop up will then be displayed to tell you how many Activities were succesfully uploaded to your profile.\n\n" +
-                "Hover the mouse over each button or field to see a brief discription of what it does.");
-        manualEntryHelpTextArea.setWrapText(true);
-        uploadFileHelpTextArea.setWrapText(true);
-=======
         // Set up help text areas
         setUpHelpTextAreas();
->>>>>>> f2314b3... Refactored Classes in the Visual, Exceptions and ActivitiesData packages to meet style guidlines and java doc specs. Also refactored some methods that were particularly large. Also dealt with some warnings and refactored a bit because of it.
         // Set tool tips for buttons
         setUpToolTips();
         // Set up the table view
@@ -219,22 +148,6 @@ public class UploadDataController {
         addEntryButton.setTooltip(new Tooltip("Add the entry you have input into the text fields"));
         submitDataButton.setTooltip(new Tooltip("Create the activity from the data in the table and add it to your profile"));
         // Set tool tips for text fields
-<<<<<<< HEAD
-        filePathTextField.setTooltip(new Tooltip("Please enter the file path of the file you wish to upload,\nE.g. \"Walk in the woods\""));
-        activityNameTextField.setTooltip(new Tooltip("Please enter a name that describes your activity,\nE.g. \"Walk in the woods\""));
-        dateTextField.setTooltip(new Tooltip("Please enter the date that your entry point was taken on,\nUsing the format DD/MM/YYYY"));
-        timeTextField.setTooltip(new Tooltip("Please enter the time that your entry point was taken on,\nUsing the format HH:MM:SS in 24 hour time"));
-        heartRateTextField.setTooltip(new Tooltip("Please enter your heart rate at the time of this entry point\nMust be an integer in the range 1 to 300"));
-        latitudeTextField.setTooltip(new Tooltip("Please enter your latitude at the time of this entry\nMust be in the range -90.0 to 90.0\nPreferred accuracy is 6 decimal places"));
-        longitudeTextField.setTooltip(new Tooltip("Please enter your latitude at the time of this entry\nMust be in the range -180.0 to 180.0\nPreferred accuracy is 6 decimal places"));
-        elevationTextField.setTooltip(new Tooltip("Please enter your elevation at the time of this entry\nMust be in the range -430.0 to 8850.0\nPreferred accuracy is 2 decimal places"));
-<<<<<<< HEAD
->>>>>>> c55beac... Added help button and tool tip functionality to the Upload Data screen
-=======
-        // Set tool tip for the table view.
-        manualDataTableView.setTooltip(new Tooltip("This table shows the Entries you have already entered in chronological order.\nYou can double click on a value if you wish to edit it.\nPlease remember to use the correct format when editting values"));
->>>>>>> 7673868... Modified the text of one of the help text areas and made it so if clicked anywhere outside the text area it is hiden.
-=======
         filePathTextField.setTooltip(new Tooltip("Please enter the file path of the file you wish to upload,\n" +
                                                  "E.g. \"Walk in the woods\""));
         activityNameTextField.setTooltip(new Tooltip("Please enter a name that describes your activity,\n" +
@@ -256,41 +169,9 @@ public class UploadDataController {
                                                   "Preferred accuracy is 2 decimal places"));
         // Set tool tip for the table view.
         manualDataTableView.setTooltip(new Tooltip("This table shows the Entries you have already entered in chronological order.\n" +
-<<<<<<< HEAD
-                "You can double click on a value if you wish to edit it.\n" +
-                "Please remember to use the correct format when editting values"));
->>>>>>> 519bf16... Added Help Button functionality to Login screen
-        // Set up the columns in the table.
->>>>>>> ca7698b... Renamed ActivityIntensity to be ActivityType, fixed all methods and attributes of Activity to be directed to this and moved the determine type method into the ActivityType Enum. Also got rid of the ComboBox in the upload Data screen as the type is now determined from the name. Fixed a few bugs that this process created and found another unrelated bug in the process which i have created an issue for in git and put a TODO in the code for it.
-        dateColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("dateString"));
-        timeColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("timeString"));
-        heartRateColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("heartRateString"));
-        latitudeColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("latitudeString"));
-        longitudeColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("longitudeString"));
-        elevationColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("elevationString"));
-        //load dummy data
-        manualDataTableView.setItems(getEntries());
-        // Update the table to allow the columns to be editable
-        manualDataTableView.setEditable(true);
-        dateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        timeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        heartRateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        latitudeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        longitudeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        elevationColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-
-        // Set the focus to the browse button on entry
-        filePathTextField.focusedProperty().addListener((observable,  oldValue,  newValue) -> {
-            if(newValue && firstTime){
-                browseButton.requestFocus(); // Delegate the focus to container
-                firstTime = false; // Variable value changed for future references
-            }
-        });
-=======
                                                    "You can double click on a value if you wish to edit it.\n" +
                                                    "Please remember to use the correct format when editting values"));
     }
->>>>>>> f2314b3... Refactored Classes in the Visual, Exceptions and ActivitiesData packages to meet style guidlines and java doc specs. Also refactored some methods that were particularly large. Also dealt with some warnings and refactored a bit because of it.
 
 
     /**
@@ -548,22 +429,10 @@ public class UploadDataController {
         }
     }
 
-<<<<<<< HEAD
-=======
 
     /**
      * Method to create an Activity object from the entries input by the user and add it to the User Profile when the Submit Data button is pushed
      */
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> b21c354... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
-=======
->>>>>>> c64d7f7... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
-=======
->>>>>>> 40229ad... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
-=======
->>>>>>> 73cd156... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
     @FXML public void submitData()
     {
         try {
@@ -642,22 +511,15 @@ public class UploadDataController {
         if (selectedFile != null) {
             filePathTextField.setText(selectedFile.getAbsolutePath());
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     }
 
-    @FXML private void drawerAction() {
 
-<<<<<<< HEAD
-=======
     /**
      * Method to draw the navigation drawer.
      */
     @FXML private void drawerAction()
     {
 
->>>>>>> 8a6e898... Wrote JavaDoc for the menu button and bar on most of the main controllers and also for few methods that were pending.
         TranslateTransition openNav = new TranslateTransition(new Duration(350), drawer);
         openNav.setToX(0);
         TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
@@ -738,29 +600,6 @@ public class UploadDataController {
         TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
         closeNav.setToX(-(drawer.getWidth()));
         closeNav.play();
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        //setUpScene();
-        //app.launchAnalysisScene();
-=======
->>>>>>> c64d7f7... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
-=======
->>>>>>> 40229ad... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
-=======
->>>>>>> 73cd156... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
-=======
         setUpScene();
->>>>>>> 63c2d62... Uncommented the launchDataAnalysis method and refactored some duplicate code into a method.
-=======
-        setUpScene();
->>>>>>> 82bc121... Uncommented the launchDataAnalysis method and refactored some duplicate code into a method.
-=======
-        setUpScene();
->>>>>>> ee3e10f... Uncommented the launchDataAnalysis method and refactored some duplicate code into a method.
-=======
-        setUpScene();
->>>>>>> 54f11f8... Uncommented the launchDataAnalysis method and refactored some duplicate code into a method.
     }
 }

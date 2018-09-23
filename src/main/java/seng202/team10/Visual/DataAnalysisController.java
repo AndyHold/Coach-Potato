@@ -51,31 +51,10 @@ public class DataAnalysisController implements Controllable, Initializable{
     private XYChart.Series stressLevelTimeSeries;
 
 
-<<<<<<< HEAD
-    private XYChart.Series distanceTimeSeries;
-    private XYChart.Series heartRateSeries;
-    private XYChart.Series caloriesBurnedSeries;
-    private XYChart.Series stressLevelTimeSeries;
-
-
-    private XYChart.Series distanceTimeSeries;
-    private XYChart.Series heartRateSeries;
-    private XYChart.Series caloriesBurnedSeries;
-    private XYChart.Series stressLevelTimeSeries;
-
-
-    private XYChart.Series distanceTimeSeries;
-    private XYChart.Series heartRateSeries;
-    private XYChart.Series caloriesBurnedSeries;
-    private XYChart.Series stressLevelTimeSeries;
-
-
-=======
     /**
      * Method to pass the guiController into this class.
      * @param guiController  The main controller class that contains most information
      */
->>>>>>> 05b3b8e... Refactored, javadocced and cleaned up classes
     @Override
     public void setApp(GUIController guiController)
     {
@@ -360,28 +339,12 @@ public class DataAnalysisController implements Controllable, Initializable{
         this.activity = activity;
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
-    /**
-     *Method to launch the map for the currently selected activity.
-     */
->>>>>>> 05b3b8e... Refactored, javadocced and cleaned up classes
-    @FXML public void viewMap() {
-=======
 
     /**
      *Method to launch the map for the currently selected activity.
      */
     @FXML public void viewMap()
     {
->>>>>>> f2314b3... Refactored Classes in the Visual, Exceptions and ActivitiesData packages to meet style guidlines and java doc specs. Also refactored some methods that were particularly large. Also dealt with some warnings and refactored a bit because of it.
         if (!(activity == null)) {
             guiController.launchMapScene(activity);
         } else {
@@ -399,16 +362,11 @@ public class DataAnalysisController implements Controllable, Initializable{
         setUpGraphs();
     }
 
-<<<<<<< HEAD
->>>>>>> b13266a... Added a view map button to the controller
-    @FXML private void drawerAction() {
-=======
     /**
      * Method to draw the navigation drawer.
      */
     @FXML private void drawerAction()
     {
->>>>>>> 8a6e898... Wrote JavaDoc for the menu button and bar on most of the main controllers and also for few methods that were pending.
 
         TranslateTransition openNav = new TranslateTransition(new Duration(350), drawer);
         openNav.setToX(0);
@@ -491,25 +449,5 @@ public class DataAnalysisController implements Controllable, Initializable{
         closeNav.setToX(-(drawer.getWidth()));
         closeNav.play();
         setUpScene();
-=======
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        setUpGraphs();
->>>>>>> 6525b75... Can now view graphs from different activities. Formatting is bad however.
-=======
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        setUpGraphs();
->>>>>>> 6d3b4aa... Can now view graphs from different activities. Formatting is bad however.
-=======
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        setUpGraphs();
->>>>>>> fe7703d... Can now view graphs from different activities. Formatting is bad however.
-=======
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        setUpGraphs();
->>>>>>> 677c7c0... Can now view graphs from different activities. Formatting is bad however.
     }
 }

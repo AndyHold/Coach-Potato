@@ -4,25 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-import javafx.scene.layout.HBox;
->>>>>>> 5997e6c... Finished Implementing new Login Screen Layout.
-import org.apache.commons.lang3.ObjectUtils;
-=======
-=======
->>>>>>> 4d39bd8... Wrote some more tests for Activity, Entry, Position classes and JavaDocs for those classes.
-import javafx.scene.layout.VBox;
->>>>>>> 472482d... Now the cursor is not focused on the name field on create profile screen.
-=======
->>>>>>> b7ca092... Refactored a large method into many small methods and javadocced
-=======
 import org.apache.commons.lang3.StringUtils;
->>>>>>> 571a3a4... Added Help Button functionality to Create Profile Screen
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.Exceptions.*;
@@ -41,11 +23,6 @@ public class CreateProfileController implements Controllable
     private GUIController app;
     ToggleGroup toggleGroup;
 
-<<<<<<< HEAD
-
-<<<<<<< HEAD
-=======
->>>>>>> 8a6e898... Wrote JavaDoc for the menu button and bar on most of the main controllers and also for few methods that were pending.
     @FXML private TextField nameEntry;
     @FXML private TextField weightEntry;
     @FXML private TextField heightEntry;
@@ -70,11 +47,6 @@ public class CreateProfileController implements Controllable
      * Setter method to set the GUI controller for this Scene
      * @param app GUIController
      */
-=======
-    @FXML
-    private VBox wholeProfileVBox;
-
->>>>>>> 472482d... Now the cursor is not focused on the name field on create profile screen.
     public void setApp(GUIController app)
     {
         this.app = app;
@@ -160,27 +132,6 @@ public class CreateProfileController implements Controllable
         yearEntry.setVisibleRowCount(5);
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        nameEntry.focusedProperty().addListener((observable,  oldValue,  newValue) -> {
-            if(newValue && firstTime.get()){
-                wholeProfileVBox.requestFocus(); // Delegate the focus to container
-                firstTime.setValue(false); // Variable value changed for future references
-            }
-        });
-
-=======
->>>>>>> 8a6e898... Wrote JavaDoc for the menu button and bar on most of the main controllers and also for few methods that were pending.
-=======
-        //Set gender toggle buttons
->>>>>>> b7ca092... Refactored a large method into many small methods and javadocced
-        toggleGroup = new ToggleGroup();
-        femaleRad.setToggleGroup(toggleGroup);
-        maleRad.setToggleGroup(toggleGroup);
-        notSpecifiedRad.setToggleGroup(toggleGroup);
-=======
->>>>>>> f2314b3... Refactored Classes in the Visual, Exceptions and ActivitiesData packages to meet style guidlines and java doc specs. Also refactored some methods that were particularly large. Also dealt with some warnings and refactored a bit because of it.
 
     /**
      * Set up method for the help text area
@@ -314,39 +265,7 @@ public class CreateProfileController implements Controllable
         // Create new User Profile
         UserProfile userProfile = new UserProfile();
         // Set Name and handle Exceptions
-<<<<<<< HEAD
-        try {
-            String nameString =  getTextFieldString(nameEntry);
-            this.app.checkUniqueName(nameString);
-<<<<<<< HEAD
-            userProfile.setName(nameString);
-<<<<<<< HEAD
-<<<<<<< HEAD
-        } catch (InvalidNameException | IllegalArgumentException exception) {
-=======
-        } catch (InvalidNameException | IllegalArgumentException | UserNameException excpetion) {
->>>>>>> 5997e6c... Finished Implementing new Login Screen Layout.
-=======
-        } catch (UserNameException | IllegalArgumentException exception) {
->>>>>>> 798a1f8... fixed invalidNameException bug
-=======
-            try {
-                userProfile.setName(nameString);
-            } catch (UserNameException | IllegalArgumentException exception) {
-                nameErrorLabel.setVisible(true);
-            }
-        } catch (UniqueNameException | IllegalArgumentException exception) {
-            nameErrorLabel.setText("This username already exists.");
->>>>>>> 31fa09e... Fixed up Unique name error and got it completely working so that it catches all errors on Create profile and edit profile.
-            nameErrorLabel.setVisible(true);
-        }
-=======
         this.setUserName(userProfile);
-<<<<<<< HEAD
->>>>>>> b7ca092... Refactored a large method into many small methods and javadocced
-
-=======
->>>>>>> f2314b3... Refactored Classes in the Visual, Exceptions and ActivitiesData packages to meet style guidlines and java doc specs. Also refactored some methods that were particularly large. Also dealt with some warnings and refactored a bit because of it.
         // Set weight and handle exceptions
         this.setUserWeight(userProfile);
         // Set height and handle Exceptions

@@ -158,45 +158,8 @@ public class Parser {
         int badEntries = 0;
         int totalEntries = 0;
 
-<<<<<<< HEAD
-//        boolean dateIsParsable = false;
-//
-//        String dateString = (formattedFile.get(linePosition).get(0));
-//        String timeString = (formattedFile.get(linePosition).get(1));
-//        DateTime dateTime = null;
-//        while (!dateIsParsable && linePosition < formattedFile.size()) {
-//            try {
-//                dateTime = parseDateTimeFromStrings(dateString, timeString);
-//                dateIsParsable = true;
-//            } catch (IllegalArgumentException e) {
-//                badEntries += 1;
-//                totalEntries += 1;
-//                linePosition += 1;
-//            }
-//        }
-//
-//        if((badEntries * 10) > totalEntries || !dateIsParsable) {
-//            throw new IllegalArgumentException("Too many bad entries! Activity discarded!");
-//        }
-
-<<<<<<< HEAD
-//        if (!inputValidator.isValidDateString(dateString) || !inputValidator.isValidTimeString(timeString)) {
-//            badEntries += 1;
-//        }
-
-
         Activity activity = new Activity(name);
 
-
-
-=======
-        //TODO get rid of dateTime in constructor
-        Activity activity = new Activity(name, dateTime);
->>>>>>> 59ccd0b... Javadocced a function
-=======
-        Activity activity = new Activity(name);
-
->>>>>>> f72fa75... Added several cases to check for bad activities and bad entries, throwing exceptions where necessary
         while (linePosition < formattedFile.size() && (formattedFile.get(linePosition)).size() != 2) {
 
             if(inputValidator.isValidEntryLine(formattedFile.get(linePosition))){
@@ -213,24 +176,9 @@ public class Parser {
             throw new BadActivityException();
         }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-        activity.postEntriesSetUp();
-=======
-        //todo move these to activity
-        activity.calculateTotalDistance();
-        activity.calculateTotalDuration();
-        activity.calculateAverageHeartRate();
-        activity.calculateAverageVelocity();
-        activity.determineType();
-        activity.setEndDateTime();
-        activity.setStrings();
->>>>>>> 59ccd0b... Javadocced a function
-=======
         if (activity.getEntries().size() < 2) {
             throw new BadActivityException();
         }
->>>>>>> f72fa75... Added several cases to check for bad activities and bad entries, throwing exceptions where necessary
 
         activity.postEntriesSetUp();
 

@@ -9,10 +9,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import seng202.team10.Model.ActivitiesData.Activity;
-<<<<<<< HEAD
-=======
 import seng202.team10.Model.ActivitiesData.DateTime;
->>>>>>> 81b0c6a... Re-added launch mapscene
 import seng202.team10.Model.ActivitiesData.Route;
 import seng202.team10.Model.Exceptions.ExistingElementException;
 import seng202.team10.Model.Exceptions.InvalidUserException;
@@ -26,11 +23,8 @@ import seng202.team10.Visual.*;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-<<<<<<< HEAD
 import java.util.Optional;
-=======
 import java.util.concurrent.TimeUnit;
->>>>>>> cf34074... Added a small delay for the map loading the first time
 
 /**
  * This is the main controller for the application. This class creates and launches scenes,
@@ -93,113 +87,9 @@ public class GUIController extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
-        // Added a test user.
-        users.add(new UserProfile("Potato", 75, 180, new DateTime(2000,1,1,1,1,1), "Male"));
-        users.get(0).setMaxHeartRate(210);
-        loadAllUsers();
-        loadAllScenes();
-        primaryStage.setTitle("Coach Potato");
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        primaryStage.setScene(loginScene);
-=======
-        primaryStage.setScene(goalsScene);
->>>>>>> a590442... Create new Goals instance in GUIController. Added various buttons, entry boxes and labels to the create goal tab. Implemented an action handler for the create button that creates a goal that is store either as a current goal or future goal. Added arraylist for createdGoals into Goals class and getter method. Edited create goal method to establish whether a goal is current or for the future.
-=======
-        primaryStage.setScene(goalsScene);
->>>>>>> f0140c6... Create new Goals instance in GUIController. Added various buttons, entry boxes and labels to the create goal tab. Implemented an action handler for the create button that creates a goal that is store either as a current goal or future goal. Added arraylist for createdGoals into Goals class and getter method. Edited create goal method to establish whether a goal is current or for the future.
-=======
-        primaryStage.setScene(goalsScene);
->>>>>>> b7d8c0b... Create new Goals instance in GUIController. Added various buttons, entry boxes and labels to the create goal tab. Implemented an action handler for the create button that creates a goal that is store either as a current goal or future goal. Added arraylist for createdGoals into Goals class and getter method. Edited create goal method to establish whether a goal is current or for the future.
-=======
-        primaryStage.setScene(goalsScene);
->>>>>>> 9358b9e... Create new Goals instance in GUIController. Added various buttons, entry boxes and labels to the create goal tab. Implemented an action handler for the create button that creates a goal that is store either as a current goal or future goal. Added arraylist for createdGoals into Goals class and getter method. Edited create goal method to establish whether a goal is current or for the future.
-=======
-=======
->>>>>>> 2f5af1f... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
-=======
->>>>>>> 438a3e8... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
-=======
->>>>>>> 879a82d... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
-        primaryStage.setScene(goalsScene);
-=======
-        primaryStage.setScene(uploadDataScene);
->>>>>>> b21c354... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
-=======
-        primaryStage.setScene(uploadDataScene);
->>>>>>> c64d7f7... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
-=======
-        primaryStage.setScene(uploadDataScene);
->>>>>>> 40229ad... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
-=======
-        primaryStage.setScene(uploadDataScene);
->>>>>>> 73cd156... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
-=======
-        primaryStage.setScene(mainScene);
->>>>>>> f3f8025... Modified tests to fix pipeline, (Main change was to parser so complete url's could be accepted not just files from one directory)
-=======
-        primaryStage.setScene(mainScene);
->>>>>>> 0c713de... Modified tests to fix pipeline, (Main change was to parser so complete url's could be accepted not just files from one directory)
-=======
-        primaryStage.setScene(mainScene);
->>>>>>> 896c223... Modified tests to fix pipeline, (Main change was to parser so complete url's could be accepted not just files from one directory)
-=======
-        primaryStage.setScene(mainScene);
->>>>>>> 6d5417b... Modified tests to fix pipeline, (Main change was to parser so complete url's could be accepted not just files from one directory)
-=======
-=======
->>>>>>> 6d929aa... Now starts on the createProfile scene if no users are found, otherwise starts on login screen.
-=======
->>>>>>> 4022cc1... Now starts on the createProfile scene if no users are found, otherwise starts on login screen.
-=======
->>>>>>> 1b1f8a0... Now starts on the createProfile scene if no users are found, otherwise starts on login screen.
-        if (users.isEmpty()) {
-            primaryStage.setScene(createProfileScene);
-        } else {
-            primaryStage.setScene(loginScene);
-        }
-//        primaryStage.setScene(mainScene);
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 76138f6... Now starts on the createProfile scene if no users are found, otherwise starts on login screen.
-=======
->>>>>>> 6d929aa... Now starts on the createProfile scene if no users are found, otherwise starts on login screen.
-=======
->>>>>>> 4022cc1... Now starts on the createProfile scene if no users are found, otherwise starts on login screen.
-=======
->>>>>>> 1b1f8a0... Now starts on the createProfile scene if no users are found, otherwise starts on login screen.
-        //primaryStage.setScene(goalsScene);
->>>>>>> 9a77444... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
-        primaryStage.show();
-        this.primaryStage = primaryStage;
-
-=======
-=======
         if(!dataReader.checkFileExists("./profiles")){
             dataWriter.createProfileFolder();
         }
->>>>>>> 316efe3... Checking if profiles folder exists and creating it if it doesn't upon startup
         try {
             // Added a test user.
             users.add(new UserProfile("Potato", 75, 180, new DateTime(2000, 1, 1, 1, 1, 1), "Male"));
@@ -220,7 +110,6 @@ public class GUIController extends Application{
             //primaryStage.setScene(goalsScene);
             primaryStage.show();
             this.primaryStage = primaryStage;
->>>>>>> 5997e6c... Finished Implementing new Login Screen Layout.
     }
 
     /**
@@ -235,6 +124,10 @@ public class GUIController extends Application{
     }
 
 
+    /**
+     * Getter method for the Parser
+     * @return Parser
+     */
     public Parser getParser()
     {
         return this.parser;
@@ -276,7 +169,6 @@ public class GUIController extends Application{
         primaryStage.setScene(loginScene);
     }
 
-<<<<<<< HEAD
     /**dNewScene("/fxml/loginScreen.fxml");
         createProfileScene = loadNewScene("/fxml/createProfileScreen.fxml");
         profileScene = loadNewScene("/fxml/profileScreen.fxml");
@@ -290,49 +182,7 @@ public class GUIController extends Application{
         dataWriter.saveProfile(currentUser);
         profileController.setUserDetails();
         primaryStage.setScene(profileScene);
-<<<<<<< HEAD
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 6c32771... Fixed and refactored lot of code to finish the profile screen, calendar implementation. Also fixed couple of GUI errors on profile screen by manual testing.
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-//    public void launchProfileScene() {
-//      profileController.setUpScene();
-//      primaryStage.setScene(profileScene);
-//    }roo
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> a590442... Create new Goals instance in GUIController. Added various buttons, entry boxes and labels to the create goal tab. Implemented an action handler for the create button that creates a goal that is store either as a current goal or future goal. Added arraylist for createdGoals into Goals class and getter method. Edited create goal method to establish whether a goal is current or for the future.
-=======
->>>>>>> f0140c6... Create new Goals instance in GUIController. Added various buttons, entry boxes and labels to the create goal tab. Implemented an action handler for the create button that creates a goal that is store either as a current goal or future goal. Added arraylist for createdGoals into Goals class and getter method. Edited create goal method to establish whether a goal is current or for the future.
-=======
->>>>>>> b7d8c0b... Create new Goals instance in GUIController. Added various buttons, entry boxes and labels to the create goal tab. Implemented an action handler for the create button that creates a goal that is store either as a current goal or future goal. Added arraylist for createdGoals into Goals class and getter method. Edited create goal method to establish whether a goal is current or for the future.
-=======
->>>>>>> 9358b9e... Create new Goals instance in GUIController. Added various buttons, entry boxes and labels to the create goal tab. Implemented an action handler for the create button that creates a goal that is store either as a current goal or future goal. Added arraylist for createdGoals into Goals class and getter method. Edited create goal method to establish whether a goal is current or for the future.
-
-=======
->>>>>>> 9a77444... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
-=======
->>>>>>> 2f5af1f... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
-=======
->>>>>>> 438a3e8... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
-=======
->>>>>>> 879a82d... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
-=======
-
->>>>>>> 5e839bc... Created constructors for userProfile and Added a test user.
-=======
 
 
     public void checkUniqueName(String userName) throws UniqueNameException
@@ -357,60 +207,13 @@ public class GUIController extends Application{
         primaryStage.setScene(mapScene);
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 431c3ad... Added functionality for the map controller
-=======
-    public void launchMapScene(Activity activity) {
-        mapController.setActivity(activity);
-        mapController.setUpScene();
-        Route newRoute = mapController.makeRoute(activity);
-        mapController.displayRoute(newRoute);
-        primaryStage.setScene(mapScene);
-    }
-
->>>>>>> 81b0c6a... Re-added launch mapscene
-    public void launchGoalsScene() {
-=======
     public void launchGoalsScene()
     {
->>>>>>> a6cd806... Wrote some tests for GUIController and added some dependencies for when we test the JavaFX controllers (Not this deliverable)
         //goalsController.setUpScene();
-<<<<<<< HEAD
-<<<<<<< HEAD
-        goalsController.updateGoals();
-=======
-        dataWriter.saveProfile(currentUser);
->>>>>>> 0c1d4e0... Saving and loading of profiles to/from folder
-=======
         dataWriter.saveProfile(currentUser);
         goalsController.addGoalsToTable();
->>>>>>> 429f29b... Now call addGoalsToTable when profile is set. Added text fields and areas for achieved and failed goals. Implemented addGoalsToTable, updateAchievedListView, updateFailedListView, and printPastGoalsReview functions in GoalController. In review goal methods, now compares current time to target date to see if you have failed your goal. Added achievedGoalNames, failedGoalNames and futureGoalNames ArrayLists to Goals.
         primaryStage.setScene(goalsScene);
-
     }
-=======
-=======
->>>>>>> c64d7f7... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
-=======
->>>>>>> 40229ad... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
-=======
->>>>>>> 73cd156... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
-
-//    public void launchGoalsScene() {
-//      goalsController.setUpScene();
-//      primaryStage.setScene(goalsScene);
-//    }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> b21c354... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
-=======
->>>>>>> c64d7f7... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
-=======
->>>>>>> 40229ad... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
-=======
->>>>>>> 73cd156... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
 
     /**
      * Sets the scene on the primary stage to the upload data scene.
@@ -478,247 +281,28 @@ public class GUIController extends Application{
      * setUpScene methods for each.
      * @throws Exception Not implemented.
      */
-<<<<<<< HEAD
-    public void loadAllScenes() throws Exception{
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 2f5af1f... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
-=======
->>>>>>> 438a3e8... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
-=======
->>>>>>> 879a82d... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
-=======
->>>>>>> 40229ad... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
-=======
->>>>>>> 73cd156... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
-
-//        goalsLoader = new FXMLLoader(getClass().getResource("/fxml/goalsScreen.fxml"));
-//        Parent root = goalsLoader.load();
-//        goalsController = goalsLoader.getController();
-//        goalsController.setApp(this);
-//        goalsController.setUpScene();
-//        goalsScene = new Scene(root, 900, 600);
-
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 9a77444... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
-=======
->>>>>>> 2f5af1f... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
-=======
->>>>>>> 438a3e8... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
-=======
->>>>>>> 879a82d... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
-=======
->>>>>>> 40229ad... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
-=======
->>>>>>> 73cd156... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
-=======
     public void loadAllScenes() throws Exception
     {
->>>>>>> a6cd806... Wrote some tests for GUIController and added some dependencies for when we test the JavaFX controllers (Not this deliverable)
 //        loginScene = loadNewScene("/fxml/loginScreen.fxml");
 //        createProfileScene = loadNewScene("/fxml/createProfileScreen.fxml");
 //        profileScene = loadNewScene("/fxml/profileScreen.fxml");
 //        goalsScene = loadNewScene("/fxml/goalsScreen.fxml");
 //        uploadDataScene = loadNewScene("/fxml/uploadDataScreen.fxml");
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 
         loginLoader = new FXMLLoader(getClass().getResource("/fxml/loginScreen.fxml"));
         Parent root = loginLoader.load();
         loginController = loginLoader.getController();
         loginController.setApp(this);
         loginController.setUpScene();
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        loginScene = new Scene(root, 800, 400);
-=======
-=======
->>>>>>> f0140c6... Create new Goals instance in GUIController. Added various buttons, entry boxes and labels to the create goal tab. Implemented an action handler for the create button that creates a goal that is store either as a current goal or future goal. Added arraylist for createdGoals into Goals class and getter method. Edited create goal method to establish whether a goal is current or for the future.
-=======
->>>>>>> b7d8c0b... Create new Goals instance in GUIController. Added various buttons, entry boxes and labels to the create goal tab. Implemented an action handler for the create button that creates a goal that is store either as a current goal or future goal. Added arraylist for createdGoals into Goals class and getter method. Edited create goal method to establish whether a goal is current or for the future.
-=======
->>>>>>> 9358b9e... Create new Goals instance in GUIController. Added various buttons, entry boxes and labels to the create goal tab. Implemented an action handler for the create button that creates a goal that is store either as a current goal or future goal. Added arraylist for createdGoals into Goals class and getter method. Edited create goal method to establish whether a goal is current or for the future.
-
-
-//        goalsLoader = new FXMLLoader(getClass().getResource("/fxml/goalsScreen.fxml"));
-//        Parent root = goalsLoader.load();
-//        goalsController = goalsLoader.getController();
-//        goalsController.setApp(this);
-//        goalsController.setUpScene();
-//        goalsScene = new Scene(root, 900, 600);
-
-=======
->>>>>>> 9a77444... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
-=======
->>>>>>> 2f5af1f... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
-=======
->>>>>>> 438a3e8... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
-=======
->>>>>>> 879a82d... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
-//        loginLoader = new FXMLLoader(getClass().getResource("/fxml/loginScreen.fxml"));
-//        Parent root = loginLoader.load();
-//        loginController = loginLoader.getController();
-//        loginController.setApp(this);
-//        loginController.setUpScene();
-//        loginScene = new Scene(root, 800, 400);
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> a590442... Create new Goals instance in GUIController. Added various buttons, entry boxes and labels to the create goal tab. Implemented an action handler for the create button that creates a goal that is store either as a current goal or future goal. Added arraylist for createdGoals into Goals class and getter method. Edited create goal method to establish whether a goal is current or for the future.
-=======
->>>>>>> f0140c6... Create new Goals instance in GUIController. Added various buttons, entry boxes and labels to the create goal tab. Implemented an action handler for the create button that creates a goal that is store either as a current goal or future goal. Added arraylist for createdGoals into Goals class and getter method. Edited create goal method to establish whether a goal is current or for the future.
-=======
->>>>>>> b7d8c0b... Create new Goals instance in GUIController. Added various buttons, entry boxes and labels to the create goal tab. Implemented an action handler for the create button that creates a goal that is store either as a current goal or future goal. Added arraylist for createdGoals into Goals class and getter method. Edited create goal method to establish whether a goal is current or for the future.
-=======
->>>>>>> 9358b9e... Create new Goals instance in GUIController. Added various buttons, entry boxes and labels to the create goal tab. Implemented an action handler for the create button that creates a goal that is store either as a current goal or future goal. Added arraylist for createdGoals into Goals class and getter method. Edited create goal method to establish whether a goal is current or for the future.
-=======
-=======
->>>>>>> f47d49d... Implemented the main Screen and merged all screens together, still have to do more on it to get it done properly.
-=======
->>>>>>> 9852212... Implemented the main Screen and merged all screens together, still have to do more on it to get it done properly.
-=======
->>>>>>> a215ecb... Implemented the main Screen and merged all screens together, still have to do more on it to get it done properly.
-        loginScene = new Scene(root, 900, 600);
-=======
-        loginScene = new Scene(root, 900, 630);
->>>>>>> 483c3e6... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
-=======
-        loginScene = new Scene(root, 900, 630);
->>>>>>> 3b7cb94... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
-=======
-        loginScene = new Scene(root, 900, 630);
->>>>>>> 1990352... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
-=======
-        loginScene = new Scene(root, 900, 630);
->>>>>>> ef5ea11... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
-=======
         loginScene = new Scene(root, 1280, 720);
->>>>>>> 9ec6680... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
-=======
-        loginScene = new Scene(root, 1280, 720);
->>>>>>> 410d95e... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
-=======
-        loginScene = new Scene(root, 1280, 720);
->>>>>>> 30ac4eb... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
-=======
-        loginScene = new Scene(root, 1280, 720);
->>>>>>> 663db25... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        mainLoader = new FXMLLoader(getClass().getResource("/fxml/mainScreen.fxml"));
-        VBox mainVBox = mainLoader.load();
-        mainController = mainLoader.getController();
-        mainController.setApp(this);
-        mainController.setUpScene();
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        mainScene = new Scene(mainVBox, 900, 600);
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 668e9dc... Implemented the main Screen and merged all screens together, still have to do more on it to get it done properly.
-=======
->>>>>>> f47d49d... Implemented the main Screen and merged all screens together, still have to do more on it to get it done properly.
-=======
->>>>>>> 9852212... Implemented the main Screen and merged all screens together, still have to do more on it to get it done properly.
-=======
->>>>>>> a215ecb... Implemented the main Screen and merged all screens together, still have to do more on it to get it done properly.
-=======
->>>>>>> 9a77444... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
-=======
->>>>>>> 2f5af1f... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
-=======
->>>>>>> 438a3e8... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
-=======
->>>>>>> 879a82d... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
-=======
-        mainScene = new Scene(mainVBox, 900, 630);
->>>>>>> 483c3e6... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
-=======
-        mainScene = new Scene(mainVBox, 900, 630);
->>>>>>> 3b7cb94... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
-=======
-        mainScene = new Scene(mainVBox, 900, 630);
->>>>>>> 1990352... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
-=======
-        mainScene = new Scene(mainVBox, 900, 630);
->>>>>>> ef5ea11... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
-=======
-        mainScene = new Scene(mainVBox, 1280, 720);
->>>>>>> 9ec6680... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
-=======
-        mainScene = new Scene(mainVBox, 1280, 720);
->>>>>>> 410d95e... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
-=======
-        mainScene = new Scene(mainVBox, 1280, 720);
->>>>>>> 30ac4eb... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
-=======
-        mainScene = new Scene(mainVBox, 1280, 720);
->>>>>>> 663db25... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
-=======
-=======
->>>>>>> 1862dba... 1)Linked all the screens together so that we can go to any screen from any screen. 2)deleted unused files. 3)Fixed calendar. 4) Gui improvement on all screens.
-=======
->>>>>>> 6e92841... 1)Linked all the screens together so that we can go to any screen from any screen. 2)deleted unused files. 3)Fixed calendar. 4) Gui improvement on all screens.
-=======
->>>>>>> 240eba1... 1)Linked all the screens together so that we can go to any screen from any screen. 2)deleted unused files. 3)Fixed calendar. 4) Gui improvement on all screens.
 //        mainLoader = new FXMLLoader(getClass().getResource("/fxml/mainScreen.fxml"));
 //        VBox mainVBox = mainLoader.load();
 //        mainController = mainLoader.getController();
 //        mainController.setApp(this);
 //        mainController.setUpScene();
 //        mainScene = new Scene(mainVBox, 1280, 720);
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 8e53f9b... 1)Linked all the screens together so that we can go to any screen from any screen. 2)deleted unused files. 3)Fixed calendar. 4) Gui improvement on all screens.
-=======
->>>>>>> 1862dba... 1)Linked all the screens together so that we can go to any screen from any screen. 2)deleted unused files. 3)Fixed calendar. 4) Gui improvement on all screens.
-=======
->>>>>>> 6e92841... 1)Linked all the screens together so that we can go to any screen from any screen. 2)deleted unused files. 3)Fixed calendar. 4) Gui improvement on all screens.
-=======
->>>>>>> 240eba1... 1)Linked all the screens together so that we can go to any screen from any screen. 2)deleted unused files. 3)Fixed calendar. 4) Gui improvement on all screens.
 
         createProfileLoader = new FXMLLoader(getClass().getResource("/fxml/createProfileScreen.fxml"));
         Pane paneCP = createProfileLoader.load();
@@ -728,208 +312,46 @@ public class GUIController extends Application{
         createProfileScene = new Scene(paneCP, 1280, 720);
 
         profileLoader = new FXMLLoader(getClass().getResource("/fxml/profileScreen.fxml"));
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         Pane PaneP = profileLoader.load();
         profileController = profileLoader.getController();
         profileController.setApp(this);
         profileController.setUpScene();
         profileScene = new Scene(PaneP, 1280, 720);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-//        goalsLoader = new FXMLLoader(getClass().getResource("/fxml/goalsScreen.fxml"));
-//        Pane paneG = goalsLoader.load();
-//        goalsController = goalsLoader.getController();
-//        goalsController.setApp(this);
-//        goalsController.setUpScene();
-//        goalsScene = new Scene(paneG, 900, 600);
-=======
-
->>>>>>> a590442... Create new Goals instance in GUIController. Added various buttons, entry boxes and labels to the create goal tab. Implemented an action handler for the create button that creates a goal that is store either as a current goal or future goal. Added arraylist for createdGoals into Goals class and getter method. Edited create goal method to establish whether a goal is current or for the future.
-=======
-
->>>>>>> f0140c6... Create new Goals instance in GUIController. Added various buttons, entry boxes and labels to the create goal tab. Implemented an action handler for the create button that creates a goal that is store either as a current goal or future goal. Added arraylist for createdGoals into Goals class and getter method. Edited create goal method to establish whether a goal is current or for the future.
-=======
-
->>>>>>> b7d8c0b... Create new Goals instance in GUIController. Added various buttons, entry boxes and labels to the create goal tab. Implemented an action handler for the create button that creates a goal that is store either as a current goal or future goal. Added arraylist for createdGoals into Goals class and getter method. Edited create goal method to establish whether a goal is current or for the future.
-=======
-
->>>>>>> 9358b9e... Create new Goals instance in GUIController. Added various buttons, entry boxes and labels to the create goal tab. Implemented an action handler for the create button that creates a goal that is store either as a current goal or future goal. Added arraylist for createdGoals into Goals class and getter method. Edited create goal method to establish whether a goal is current or for the future.
-=======
-=======
->>>>>>> 2f5af1f... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
-=======
->>>>>>> 438a3e8... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
-=======
->>>>>>> 879a82d... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
-        GridPane gridPaneP = profileLoader.load();
-        ProfileController profileController = profileLoader.getController();
-//        profileController.setApp(this);
-//        profileController.setUpScene();
-        profileScene = new Scene(gridPaneP, 900, 600);
-
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 9a77444... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
-=======
->>>>>>> 2f5af1f... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
-=======
->>>>>>> 438a3e8... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
-=======
->>>>>>> 879a82d... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
-=======
-=======
->>>>>>> 1862dba... 1)Linked all the screens together so that we can go to any screen from any screen. 2)deleted unused files. 3)Fixed calendar. 4) Gui improvement on all screens.
-=======
->>>>>>> 6e92841... 1)Linked all the screens together so that we can go to any screen from any screen. 2)deleted unused files. 3)Fixed calendar. 4) Gui improvement on all screens.
-=======
->>>>>>> 240eba1... 1)Linked all the screens together so that we can go to any screen from any screen. 2)deleted unused files. 3)Fixed calendar. 4) Gui improvement on all screens.
         goalsLoader = new FXMLLoader(getClass().getResource("/fxml/goalsScreen.fxml"));
         Pane paneG = goalsLoader.load();
         goalsController = goalsLoader.getController();
         goalsController.setApp(this);
         goalsController.setUpScene();
         goalsScene = new Scene(paneG, 1280, 720);
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 8e53f9b... 1)Linked all the screens together so that we can go to any screen from any screen. 2)deleted unused files. 3)Fixed calendar. 4) Gui improvement on all screens.
-=======
->>>>>>> 1862dba... 1)Linked all the screens together so that we can go to any screen from any screen. 2)deleted unused files. 3)Fixed calendar. 4) Gui improvement on all screens.
-=======
->>>>>>> 6e92841... 1)Linked all the screens together so that we can go to any screen from any screen. 2)deleted unused files. 3)Fixed calendar. 4) Gui improvement on all screens.
-=======
->>>>>>> 240eba1... 1)Linked all the screens together so that we can go to any screen from any screen. 2)deleted unused files. 3)Fixed calendar. 4) Gui improvement on all screens.
 
         uploadDataLoader = new FXMLLoader(getClass().getResource("/fxml/uploadDataScreen.fxml"));
         Pane paneUD = uploadDataLoader.load();
         uploadDataController = uploadDataLoader.getController();
         uploadDataController.setApp(this);
         uploadDataController.setUpScene();
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        uploadDataScene = new Scene(paneUD, 900, 600);
-=======
         uploadDataScene = new Scene(paneUD, 1280, 720);
->>>>>>> 9ec6680... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
-=======
-        uploadDataScene = new Scene(paneUD, 1280, 720);
->>>>>>> 410d95e... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
-=======
-        uploadDataScene = new Scene(paneUD, 1280, 720);
->>>>>>> 30ac4eb... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
-=======
-        uploadDataScene = new Scene(paneUD, 1280, 720);
->>>>>>> 663db25... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
 
         dataAnalysisLoader = new FXMLLoader(getClass().getResource("/fxml/dataAnalysisScreen.fxml"));
         Pane paneDA = dataAnalysisLoader.load();
         dataAnalysisController = dataAnalysisLoader.getController();
         dataAnalysisController.setApp(this);
 //        dataAnalysisController.setUpScene();
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        dataAnalysisScene = new Scene(paneDA, 900, 600);
-=======
         dataAnalysisScene = new Scene(paneDA, 1280, 720);
->>>>>>> 8c1f178... Added map Controller
-=======
-        dataAnalysisScene = new Scene(paneDA, 1280, 720);
->>>>>>> 3940c8a... Added map Controller
-=======
-        dataAnalysisScene = new Scene(paneDA, 1280, 720);
->>>>>>> 661d1cc... Added map Controller
-=======
-        dataAnalysisScene = new Scene(paneDA, 1280, 720);
->>>>>>> d7480a7... Added map Controller
 
         activityViewerLoader = new FXMLLoader(getClass().getResource("/fxml/activityViewerScreen.fxml"));
         Pane paneAV = activityViewerLoader.load();
         activityViewerController = activityViewerLoader.getController();
         activityViewerController.setApp(this);
-<<<<<<< HEAD
-//        activityViewerController.setUpScene();
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        activityViewerScene = new Scene(paneAV, 900, 600);
-=======
-        activityViewerScene = new Scene(paneAV, 1280, 720);
->>>>>>> 9ec6680... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
-=======
-=======
 //        ActivityViewerController.setUpScene();
->>>>>>> 561798b... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
         activityViewerScene = new Scene(paneAV, 1280, 720);
->>>>>>> 410d95e... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
-=======
-        activityViewerScene = new Scene(paneAV, 1280, 720);
->>>>>>> 30ac4eb... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
-=======
-        activityViewerScene = new Scene(paneAV, 1280, 720);
->>>>>>> 663db25... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
 
         entryViewerLoader = new FXMLLoader(getClass().getResource("/fxml/entryViewerScreen.fxml"));
         Pane paneEV = entryViewerLoader.load();
         entryViewerController = entryViewerLoader.getController();
         entryViewerController.setApp(this);
-<<<<<<< HEAD
-//        entryViewerController.setUpScene();
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        entryViewerScene = new Scene(paneEV, 900, 600);
-=======
-        uploadDataScene = new Scene(paneUD, 900, 630);
->>>>>>> 483c3e6... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
-=======
-        uploadDataScene = new Scene(paneUD, 900, 630);
->>>>>>> 3b7cb94... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
-=======
-        uploadDataScene = new Scene(paneUD, 900, 630);
->>>>>>> 1990352... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
-=======
-        uploadDataScene = new Scene(paneUD, 900, 630);
->>>>>>> ef5ea11... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
-=======
-        entryViewerScene = new Scene(paneEV, 900, 630);
-=======
-        entryViewerScene = new Scene(paneEV, 1280, 720);
->>>>>>> 9ec6680... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
-=======
-        entryViewerScene = new Scene(paneEV, 1280, 720);
->>>>>>> 410d95e... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
-=======
-        entryViewerScene = new Scene(paneEV, 1280, 720);
->>>>>>> 30ac4eb... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
-=======
-=======
 //        EntryViewerController.setUpScene();
->>>>>>> 561798b... Refactored createPopUp method in uploadData to be in GUIController so it can be used by all other screens.
         entryViewerScene = new Scene(paneEV, 1280, 720);
->>>>>>> 663db25... Changes to GUI controller to link all the screens together, changed the size of the screens and still need to link goals and view activities screen.
 
         mapLoader = new FXMLLoader(getClass().getResource("/fxml/mapScreen.fxml"));
         Pane paneMap = mapLoader.load();
@@ -937,16 +359,6 @@ public class GUIController extends Application{
         mapController.setApp(this);
         mapController.setUpScene();
         mapScene = new Scene(paneMap, 1280, 720);
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 8c1f178... Added map Controller
-=======
->>>>>>> 3940c8a... Added map Controller
-=======
->>>>>>> 661d1cc... Added map Controller
-=======
->>>>>>> d7480a7... Added map Controller
     }
 
 //    public Pair<Scene, Controllable> loadNewScene(String fxmlPath) throws Exception{

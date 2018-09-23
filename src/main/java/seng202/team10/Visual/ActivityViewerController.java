@@ -237,23 +237,6 @@ public class ActivityViewerController {
         }
     }
 
-<<<<<<< HEAD
-=======
-    /**
-     * method to create a popup to display a message
-     * @param type the type of alert (often error)
-     * @param title the title of the popup box
-     * @param message the text in the popup
-     */
-    private void createPopUp(Alert.AlertType type, String title, String message)
-    {
-        Alert errorPopUp = new Alert(type);
-        errorPopUp.setTitle(title);
-        errorPopUp.setContentText(message);
-        errorPopUp.setHeaderText(null);
-        errorPopUp.showAndWait();
-    }
->>>>>>> debfc12... Clear filters button properly reloads the table and clears filter selections
 
     /**
      * Setter method to set the GUI controller for this Scene
