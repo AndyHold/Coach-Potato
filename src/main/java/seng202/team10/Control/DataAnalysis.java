@@ -160,46 +160,6 @@ public class DataAnalysis {
 
 
     /**
-     * Method to convert a number of seconds to a string in the format HH:MM:SS. Returns null if the hours are greater than 23
-     * or if seconds are negative.
-     * @param seconds  The time in seconds to be converted.
-     * @return  A string in the format HH:MM:SS that describes the time. Null if hours > 23
-     */
-    public String secondsToTime(int seconds) {
-        if (seconds < 0) {
-            return null;
-        }
-        int minutes = 0;
-        int hours = 0;
-
-        while (seconds > 59) {
-            seconds = seconds - 60;
-            minutes++;
-            if (minutes == 60) {
-                minutes = 0;
-                hours++;
-            }
-        }
-        String strSeconds = String.valueOf(seconds);
-        String strMinutes = String.valueOf(minutes);
-        String strHours = String.valueOf(hours);
-        if (strSeconds.length() == 1) {
-            strSeconds = "0" + strSeconds;
-        }
-        if (strMinutes.length() == 1) {
-            strMinutes = "0" + strMinutes;
-        }
-        if (strHours.length() == 1) {
-            strHours = "0" + strHours;
-        }
-        if (hours > 23) {
-            return null;
-        }
-        return strHours + ":" + strMinutes + ":" + strSeconds;
-
-    }
-
-    /**
      * Method to calculate the cumulative time spent in an activity in minutes, with each array index holding a sum of the time
      * spent before it. The final index holds the total time in minutes.
      * @param activity  The activity the time spent is gotten from.
