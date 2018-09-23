@@ -1,6 +1,6 @@
 package seng202.team10.Model.FileOperations;
 
-import seng202.team10.Model.Goals.UserProfile;
+import seng202.team10.Model.UserProfile;
 
 import java.io.File;
 import java.io.FileOutputStream;

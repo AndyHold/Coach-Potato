@@ -1,8 +1,9 @@
-package seng202.team10.Model.Goals;
+package seng202.team10.Model;
 
 
 import seng202.team10.Model.ActivitiesData.*;
 import seng202.team10.Model.Exceptions.*;
+import seng202.team10.Model.Goals.Goals;
 
 import java.util.ArrayList;
 
