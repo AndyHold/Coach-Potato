@@ -112,6 +112,7 @@ public class Activity implements Serializable {
      */
     public void calculateTotalDistance()
     {
+        this.totalDistance = 0.0;
         for(int i = 1; i < this.entries.size(); i++) {
             this.totalDistance += (this.entries.get(i).getPosition().subtract(this.entries.get(i - 1).getPosition()));
         }
@@ -364,7 +365,6 @@ public class Activity implements Serializable {
     /**
      * Getter method for the Time as a String
      * @return String
-     * TODO do you want just time string or Date time string??? If you change it then change the test accordingly.
      */
     public String getTimeString()
     {
@@ -398,8 +398,7 @@ public class Activity implements Serializable {
      */
     public Double getSpeedKMH()
     {
-        return Math.round((this.averageVelocity * 3.6) * 100.0) / 100.0;
-//        return String.format("%.2f", (this.averageVelocity * 3.6));
+        return Math.round(this.averageVelocity * 360.0) / 100.0;
     }
 
 
@@ -409,8 +408,7 @@ public class Activity implements Serializable {
      */
     public Double getDistanceKM()
     {
-        return Math.round((this.totalDistance / 1000.0) * 100.0) / 100.0;
-//        return String.format("%.2f", (this.totalDistance / 1000.0));
+        return Math.round(this.totalDistance / 10.0) / 100.0;
     }
 
 
