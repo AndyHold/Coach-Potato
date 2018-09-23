@@ -83,11 +83,16 @@
             </Tab>
         </tabs>
       </TabPane>
+<<<<<<< HEAD
       <Label fx:id="activityNameLabel" layoutX="607.0" layoutY="51.0" text="Name Of Activity" />
       <Label fx:id="timeTakenLabel" layoutX="937.0" layoutY="51.0" text="Total Time Taken" />
 <<<<<<< HEAD
       <Label fx:id="noActivitiesLabel" layoutX="379.0" layoutY="292.0" text="No activities found" visible="false" />
 <<<<<<< HEAD
+=======
+      <Label fx:id="activityNameLabel" layoutX="567.0" layoutY="51.0" text="Name Of Activity" />
+      <Label fx:id="timeTakenLabel" layoutX="897.0" layoutY="51.0" text="Total Time Taken" />
+>>>>>>> f1d865ae... Moved one of the labels
       <ListView fx:id="activityList" layoutX="43.0" layoutY="122.0" onMouseClicked="#refresh" prefHeight="504.0" prefWidth="336.0" />
       <Label layoutX="168.0" layoutY="87.0" text="Activities" />
 <<<<<<< HEAD
@@ -197,6 +202,10 @@
          </graphic>
       </Button>
       <TextArea fx:id="helpTextArea" editable="false" layoutX="817.0" layoutY="337.0" prefHeight="335.0" prefWidth="400.0" />
+<<<<<<< HEAD
 >>>>>>> 11feeabf... Added tool tips and help button to Data Analysis Screen
+=======
+      <Label fx:id="noActivitiesLabel" layoutX="410.0" layoutY="344.0" text="No activities found" translateX="300.0" visible="false" />
+>>>>>>> f1d865ae... Moved one of the labels
    </children>
 </Pane>
