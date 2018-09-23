@@ -1,10 +1,6 @@
 package seng202.team10.Visual;
 
 import javafx.animation.TranslateTransition;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
@@ -30,7 +26,8 @@ public class ProfileController {
 
     private GUIController app;
     private DataAnalysis dataAnalysis = new DataAnalysis();
-    UserProfile currentUser;
+    private UserProfile currentUser;
+    private List<String> quotes;
 
     @FXML Pane calendarPane;
     @FXML private Label welcomeProfileLabel;
@@ -45,6 +42,7 @@ public class ProfileController {
     @FXML private Button editProfileButton;
     @FXML private Button confirmButton;
     @FXML private Button logoutButton;
+    @FXML private Button quoteButton;
     @FXML private Label recentActivitiesLabel;
     @FXML public HBox activity1HBox;
     @FXML public HBox activity2HBox;
@@ -60,46 +58,146 @@ public class ProfileController {
     @FXML private Text heartRateText;
     @FXML private VBox drawer;
     @FXML private VBox wholeProfileVBox;
+    @FXML private TextArea helpTextArea;
+
 
     /**
      * List of Motivational quotes.
      */
-    private List<String> quotes = Arrays.asList(
-            "To not prepare is to prepare to fail.",
-            "Exercise instead of extra fries.",
-            "It starts in the kitchen and continues on the pavement.",
-            "People say nothing is impossible, but I do nothing everyday.",
-            "If you cannot do great things, do small things in a great way.",
-            "You are what you repeatedly do.",
-            "It is our choices, Harry that show what we truly are, far more than our abilities.",
-            "People often say that motivation doesn't last. Well, neither does bathing - that's why we recommend it daily.",
-            "I didn't get there by wishing for it or hoping for it, but by working for it.",
-            "Be patient with yourself. Self-growth is tender; it’s holy ground. There’s no greater investment.",
-            "You can waste your life drawing lines. Or you can live your life crossing them.",
-            "Action is the foundational key to all success.",
-            "Obstacles are those frightful things you see when you take your eyes off your goal.",
-            "Someday is not a day of the week.",
-            "Challenges are what make life interesting and overcoming them is what makes life meaningful.",
-            "I already know what giving up feels like, I want to see what happens if i don't.",
-            "Some days it's hard to find motivation, some days motivation finds you!",
-            "Yesterday you said tomorrow, so just do it!"
-    );
+    private void setQuotes()
+    {
+        quotes = Arrays.asList(
+                "To not prepare is to prepare to fail.",
+                "Exercise instead of extra fries.",
+                "It starts in the kitchen and continues on the pavement.",
+                "People say nothing is impossible, but I do nothing everyday.",
+                "If you cannot do great things, do small things in a great way.",
+                "You are what you repeatedly do.",
+                "It is our choices, Harry that show what we truly are, far more than our abilities.",
+                "People often say that motivation doesn't last. Well, neither does bathing - that's why we recommend it daily.",
+                "I didn't get there by wishing for it or hoping for it, but by working for it.",
+                "Be patient with yourself. Self-growth is tender; it’s holy ground. There’s no greater investment.",
+                "You can waste your life drawing lines. Or you can live your life crossing them.",
+                "Action is the foundational key to all success.",
+                "Obstacles are those frightful things you see when you take your eyes off your goal.",
+                "Someday is not a day of the week.",
+                "Challenges are what make life interesting and overcoming them is what makes life meaningful.",
+                "I already know what giving up feels like, I want to see what happens if i don't.",
+                "Some days it's hard to find motivation, some days motivation finds you!",
+                "Yesterday you said tomorrow, so just do it!"
+        );
+    }
+
 
     /**
      * Setter method to set the GUI controller for this Scene
      * @param app GUIController
      */
-    public void setApp(GUIController app){
+    public void setApp(GUIController app)
+    {
         this.app = app;
     }
+
 
     /**
      * Sets up objects that require it prior to showing the scene
      */
     public void setUpScene()
     {
+        // Set quotes list
+        setQuotes();
+        // Set tool tips
+        setUpToolTips();
+        // Set up help text area
+        setUpHelpTextArea();
+        // Hide buttons that are hidden
         confirmButton.setVisible(false);
         wholeProfileVBox.setVisible(false);
+        //Set quotes
+        setQuote();
+        // Hide the help text field when focus is lost
+        helpTextArea.focusedProperty().addListener((ov, oldV, newV) -> {
+            if (!newV) {
+                helpTextArea.setVisible(false);
+            }
+        });
+    }
+
+
+    /**
+     * Set up method for the help text area
+     */
+    private void setUpHelpTextArea()
+    {
+        helpTextArea.setText("Welcome to Profile View Screen!\n\n" +
+                             "On this screen you can edit your profile details, view brief statistics, and view activities in a calender format.\n" +
+                             "- To edit your profile:\n" +
+                             "\t- Click on the Edit button\n" +
+                             "\t- Click on the data field you wish to edit\n" +
+                             "\t- Enter the new value\n" +
+                             "\t- Click the Confirm Changes Button\n" +
+                             "\tIf any invalid data is entered you will get a pop up\n" +
+                             "\tand will need to try again.\n" +
+                             "- Your brief statistics are displayed in the two information\n" +
+                             "  boxes on the bottom of the screen.\n" +
+                             "- To view activities in the calender:\n" +
+                             "\t- Navigate to the month and year of your desired\n" +
+                             "\t  activity using the controls at the top of the\n" +
+                             "\t  calender.\n" +
+                             "\t- Dates with activities in them will be a darker colour\n" +
+                             "\t  than the other dates.\n" +
+                             "\t- Click on the date of your activity.\n" +
+                             "\t- Your statistics for that day will now be displayed in\n" +
+                             "\t  the information box below the calender.\n\n" +
+                             "Hover the mouse over any field to see what it contains.");
+        helpTextArea.setVisible(false);
+        helpTextArea.setWrapText(true);
+    }
+
+
+    /**
+     * Set up method for the tool tips
+     */
+    private void setUpToolTips()
+    {
+        editProfileButton.setTooltip(new Tooltip("Click here to enter edit mode."));
+        confirmButton.setTooltip(new Tooltip("Click here to confirm changes and exit edit mode."));
+        usernameTA.setTooltip(new Tooltip("User name is displayed here."));
+        dobTA.setTooltip(new Tooltip("Date of birth is displayed here."));
+        genderTA.setTooltip(new Tooltip("Gender is displayed here."));
+        weightValueTA.setTooltip(new Tooltip("Weight is displayed here in kg's."));
+        heightValueTA.setTooltip(new Tooltip("Height is displayed here in cm's."));
+        bmiValueTA.setTooltip(new Tooltip("BMI value is displayed here."));
+        quoteButton.setTooltip(new Tooltip("Motivation is key!\nClick here for new quote."));
+    }
+
+
+    /**
+     * Method called when the help button is pushed.
+     * Displays the help text area.
+     */
+    @FXML private void displayHelp()
+    {
+        helpTextArea.setVisible(true);
+        helpTextArea.requestFocus();
+    }
+
+
+    /**
+     * Method called when focus to the help text area is lost or when the pane is clicked on.
+     * Hides the help text area.
+     */
+    @FXML public void hideHelpTextArea()
+    {
+        helpTextArea.setVisible(false);
+    }
+
+
+    /**
+     * Method to sets a new random quote in the quotes label
+     */
+    @FXML public void setQuote()
+    {
         quotesLabel.setText(quotes.get((int)(Math.random()*(quotes.size()))));
     }
 
@@ -113,12 +211,6 @@ public class ProfileController {
         setUpScene();
         wholeProfileVBox.setVisible(true);
         currentUser = app.getCurrentProfile();
-//        ObservableList<String> usersList = FXCollections.observableArrayList();
-//        for (UserProfile user: app.getUsers()) {
-//            usersList.add(user.getName());
-//        }
-
-        // Displays all fields in the view and edit profile area.
         welcomeProfileLabel.setText("Welcome " + String.valueOf(currentUser.getName()) + ", Let's do it!");
         usernameTA.setText(currentUser.getName());
         genderTA.setText(currentUser.getGender());
@@ -126,10 +218,11 @@ public class ProfileController {
         weightValueTA.setText(df2.format((currentUser.getWeight())));
         heightValueTA.setText(df2.format((currentUser.getHeight())));
         bmiValueTA.setText(df2.format((currentUser.calcBmi())) + " - " + currentUser.getBmiCategory());
+        calendarPane.getChildren().add(new FullCalendarView(YearMonth.now(), app, this).getView());
 
         // Sets up the calendar and other stats if the user has already uploaded the data to the app else all values are 0 initially.
         if (currentUser.getActivities().size() > 0) {
-            calendarPane.getChildren().add(new FullCalendarView(YearMonth.now(), app, this).getView());
+
             distanceText.setText("Total Distance Covered: " + df2.format((currentUser.getActivitiesDistance(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0)))/1000) + " km");
             velocityText.setText("Average Speed: " + df2.format(currentUser.getActivitiesSpeed(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0))) + " km/h");
             heartRateText.setText("Average Heart Rate: " + String.valueOf(currentUser.getActivitiesHeartRate(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0))) + " bpm");
@@ -144,9 +237,16 @@ public class ProfileController {
         }
     }
 
-    @FXML private void logout() {
+
+    /**
+     * Method called when the logout button is clicked
+     * Returns to the Login Screen
+     */
+    @FXML private void logout()
+    {
         app.launchLoginScene();
     }
+
 
     /**
      * Method to edit user's profile details. User can edit name, DOB, gender, weight and height.
@@ -156,22 +256,35 @@ public class ProfileController {
         editProfileButton.setVisible(false);
         confirmButton.setVisible(true);
         usernameTA.setEditable(true);
+        usernameTA.setStyle(null);
         dobTA.setEditable(true);
+        dobTA.setStyle(null);
         genderTA.setEditable(true);
+        genderTA.setStyle(null);
         weightValueTA.setEditable(true);
+        weightValueTA.setStyle("-fx-text-fill: black");
         heightValueTA.setEditable(true);
-
+        heightValueTA.setStyle("-fx-text-fill: black");
     }
+
+
     /**
      * Method to save user's edited profile details. Saves the edited name, DOB, gender, weight and height if valid.
      */
     @FXML private void confirmEdit()
     {
         usernameTA.setEditable(false);
+        usernameTA.setStyle("-fx-background-color: transparent");
         dobTA.setEditable(false);
+        dobTA.setStyle("-fx-background-color: transparent");
         genderTA.setEditable(false);
+        genderTA.setStyle("-fx-background-color: transparent");
         weightValueTA.setEditable(false);
+        weightValueTA.setStyle("-fx-text-fill: black; " +
+                "-fx-background-color: transparent");
         heightValueTA.setEditable(false);
+        heightValueTA.setStyle("-fx-text-fill: black; " +
+                "-fx-background-color: transparent");
 
         // Set Name and handle Exceptions
         try {
@@ -225,6 +338,7 @@ public class ProfileController {
         setUserDetails();
     }
 
+
     /**
      * Method to draw the navigation drawer.
      */
@@ -241,59 +355,67 @@ public class ProfileController {
             closeNav.play();
         }
     }
+
+
     /**
      * Method to launch the login scene.
      */
-    @FXML public void openChooseProfile() throws Exception
+    @FXML public void openChooseProfile()
     {
         moveDrawer();
         app.launchLoginScene();
     }
 
+
     /**
      * Method to launch the view profile scene.
      */
-    @FXML public void openViewProfile() throws Exception
+    @FXML public void openViewProfile()
     {
         moveDrawer();
         app.launchProfileScene();
     }
 
+
     /**
      * Method to launch the upload data scene.
      */
-    @FXML public void openUploadData() throws Exception
+    @FXML public void openUploadData()
     {
         moveDrawer();
         app.launchUploadDataScene();
     }
 
+
     /**
      * Method to launch the view activities scene.
      */
-    @FXML public void openViewActivities() throws Exception
+    @FXML public void openViewActivities()
     {
         moveDrawer();
         app.launchActivityViewerScene();
     }
 
+
     /**
      * Method to launch the goals scene.
      */
-    @FXML public void openGoals() throws Exception
+    @FXML public void openGoals()
     {
         moveDrawer();
         app.launchGoalsScene();
     }
 
+
     /**
      * Method to launch the data analysis scene.
      */
-    @FXML public void openAnalysis() throws Exception
+    @FXML public void openAnalysis()
     {
         moveDrawer();
         app.launchDataAnalysisScene();
     }
+
 
     /**
      * Method to move the navigation drawer as appropriate.

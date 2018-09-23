@@ -1,8 +1,7 @@
 package seng202.team10.Control;
 
 import seng202.team10.Model.ActivitiesData.DateTime;
-import seng202.team10.Model.Goal;
-import seng202.team10.Model.Goals;
+import seng202.team10.Model.Goals.Goals;
 import seng202.team10.Model.UserProfile;
 
 import java.time.LocalDateTime;
@@ -146,13 +145,9 @@ public class InputValidator {
         return false;
     }
 
-    public boolean isValidTargetValue (String type, int target, UserProfile user) {
+    public boolean isValidTargetValue (String type, double target, UserProfile user) {
         if (type.equals("Weight")) {
             if (user.getWeight() <= target || target <= 30) {
-                return false;
-            }
-        } else if (type.equals("Frequency")) {
-            if (target <= 0 || target > 10000) {
                 return false;
             }
         } else if (type.equals("Distance")) {
@@ -160,7 +155,7 @@ public class InputValidator {
                 return  false;
             }
         } else if (type.equals("BMI")) {
-            if (user.getBmi() <= target || target <= 10) {
+            if (user.calcBmi() <= target || target <= 10) {
                 return false;
             }
         } else { //goal must be of type Time
@@ -171,4 +166,7 @@ public class InputValidator {
         return true;
     }
 
+    public boolean isValidIntTargetValue (int target) {
+        return (target >= 0 || target < 10000);
+    }
 }

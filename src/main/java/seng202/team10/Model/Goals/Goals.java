@@ -1,11 +1,10 @@
-package seng202.team10.Model;
+package seng202.team10.Model.Goals;
 
 
-import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
+import seng202.team10.Model.UserProfile;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
 
@@ -18,7 +17,12 @@ import java.time.LocalDateTime;
 public class Goals implements Serializable {
 
     private UserProfile user;
+
+
+
     private ArrayList<Goal> currentGoals = new ArrayList<Goal>();
+
+
     private ArrayList<String> currentGoalNames = new ArrayList<String>();
     private ArrayList<Goal> achievedGoals = new ArrayList<Goal>();
     private ArrayList<String> achievedGoalNames = new ArrayList<String>();
@@ -37,83 +41,62 @@ public class Goals implements Serializable {
         this.user = user;
     }
 
-    /**
-     * Method to create a goal for a user to work towards.
-     * @param name: String
-     * @param startDate: DateTime
-     * @param targetDate: DateTime
-     * @param type: String
-     * @param achieved: Boolean
-     * @param frequency: int
-     * @param time: double
-     * @param weight: double
-     * @param distance: double
-     * @param bmi: double
-     */
-    public void createGoal(String name, DateTime startDate, DateTime targetDate, String type, Boolean achieved, int frequency, double time, double weight, double distance, double bmi) {
+
+
+    private void placeGoal(Goal newGoal, DateTime startDate, DateTime today)
+    {
+        if (!startDate.isAfter(today)) {
+            currentGoals.add(newGoal);
+            currentGoalNames.add(newGoal.getGoalName());
+        } else {
+            futureGoals.add(newGoal);
+            futureGoalNames.add(newGoal.getGoalName());
+        }
+        createdGoals.add(newGoal);
+        createdGoalNames.add(newGoal.getGoalName());
+    }
+
+
+    public void createGoal(String name, DateTime startDate, DateTime targetDate, String type, Double value)
+    {
+        GoalType goalType = GoalType.getTypeFromString(type);
         LocalDateTime now = LocalDateTime.now();
         int year = now.getYear();
         int month = now.getMonthValue();
         int day = now.getDayOfMonth();
         DateTime today = new DateTime(year, month, day, 0,0,0);
-
-        if (type.equals("Weight")) {
-            WeightGoal newGoal = new WeightGoal(name, startDate, targetDate, weight);
-            if (!startDate.isAfter(today)) {
-                currentGoals.add(newGoal);
-                currentGoalNames.add(newGoal.getGoalName());
-            } else {
-                futureGoals.add(newGoal);
-                futureGoalNames.add(newGoal.getGoalName());
-            }
-            createdGoals.add(newGoal);
-            createdGoalNames.add(newGoal.getGoalName());
-        } else if (type.equals("Frequency")) {
-            FrequencyGoal newGoal = new FrequencyGoal(name, startDate, targetDate, frequency);
-            if (!startDate.isAfter(today)) {
-                currentGoals.add(newGoal);
-                currentGoalNames.add(newGoal.getGoalName());
-            } else {
-                futureGoals.add(newGoal);
-                futureGoalNames.add(newGoal.getGoalName());
-            }
-            createdGoals.add(newGoal);
-            createdGoalNames.add(newGoal.getGoalName());
-        } else if (type.equals("Distance")) {
-            DistanceGoal newGoal = new DistanceGoal(name, startDate, targetDate, distance);
-            if (!startDate.isAfter(today)) {
-                currentGoals.add(newGoal);
-                currentGoalNames.add(newGoal.getGoalName());
-            } else {
-                futureGoals.add(newGoal);
-                futureGoalNames.add(newGoal.getGoalName());
-            }
-            createdGoals.add(newGoal);
-            createdGoalNames.add(newGoal.getGoalName());
-        } else if (type.equals("BMI")) {
-            BmiGoal newGoal = new BmiGoal(name, startDate, targetDate, bmi);
-            if (!startDate.isAfter(today)) {
-                currentGoals.add(newGoal);
-                currentGoalNames.add(newGoal.getGoalName());
-            } else {
-                futureGoals.add(newGoal);
-                futureGoalNames.add(newGoal.getGoalName());
-            }
-            createdGoals.add(newGoal);
-            createdGoalNames.add(newGoal.getGoalName());
-        } else { //goal must be of type Time
-            TimeGoal newGoal = new TimeGoal(name, startDate, targetDate, time);
-            if (!startDate.isAfter(today)) {
-                currentGoals.add(newGoal);
-                currentGoalNames.add(newGoal.getGoalName());
-            } else {
-                futureGoals.add(newGoal);
-                futureGoalNames.add(newGoal.getGoalName());
-            }
-            createdGoals.add(newGoal);
-            createdGoalNames.add(newGoal.getGoalName());
+        switch(goalType)
+        {
+            case WEIGHT:
+                WeightGoal newWeightGoal = new WeightGoal(name, startDate, targetDate, value);
+                placeGoal(newWeightGoal, startDate, today);
+                break;
+            case DISTANCE:
+                DistanceGoal newDistGoal = new DistanceGoal(name, startDate, targetDate, value);
+                placeGoal(newDistGoal, startDate, today);
+                break;
+            case TIME:
+                TimeGoal newTimeGoal = new TimeGoal(name, startDate, targetDate, value);
+                placeGoal(newTimeGoal, startDate, today);
+                break;
+            case BMI:
+                BmiGoal newBmiGoal = new BmiGoal(name, startDate, targetDate, value);
+                placeGoal(newBmiGoal, startDate, today);
+                break;
         }
     }
+
+    public void createGoal(String name, DateTime startDate, DateTime targetDate, int freq) {
+        LocalDateTime now = LocalDateTime.now();
+        int year = now.getYear();
+        int month = now.getMonthValue();
+        int day = now.getDayOfMonth();
+        DateTime today = new DateTime(year, month, day, 0, 0, 0);
+        FrequencyGoal newFrequencyGoal = new FrequencyGoal(name, startDate, targetDate, freq);
+        placeGoal(newFrequencyGoal, startDate, today);
+    }
+
+
 
 
     /**
@@ -122,9 +105,9 @@ public class Goals implements Serializable {
      */
     public void removeCurrentGoal(String goalName) {
         if (currentGoalNames.contains(goalName)) {
+            Goal goal = getGoalObject(goalName);
             currentGoalNames.remove(goalName);
             createdGoalNames.remove(goalName);
-            Goal goal = getGoalObject(goalName);
             currentGoals.remove(goal);
             createdGoals.remove(goal);
         }
@@ -138,15 +121,15 @@ public class Goals implements Serializable {
      */
     public String checkGoal(String goalName) {
         LocalDateTime now1 = LocalDateTime.now();
-        DateTime now2 = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth()+2, now1.getHour(), now1.getMinute(), now1.getSecond());
+        DateTime now2 = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         Goal goal = getGoalObject(goalName);
         String progress = "";
         if (currentGoals.contains(goal)) {
             String type = goal.getGoalType();
             switch (type) {
                 case "Weight":
-                    progress = goal.reviewWeightGoal(user.getWeight());
-                    if (user.getWeight() <= goal.getGoalWeight()) {
+                    progress = ((WeightGoal) goal).reviewWeightGoal(user.getWeight());
+                    if (user.getWeight() <= ((WeightGoal) goal).getGoalWeight()) {
                         removeCurrentGoal(goalName);
                         goal.setGoalAchievedStatus(true);
                         achievedGoals.add(goal);
@@ -158,8 +141,8 @@ public class Goals implements Serializable {
                     }
                     break;
                 case "BMI":
-                    progress = goal.reviewBmiGoal(user.getBmi());
-                    if (user.getBmi() <= goal.getGoalBmi()) {
+                    progress = ((BmiGoal) goal).reviewBmiGoal(user.calcBmi());
+                    if (user.calcBmi() <= ((BmiGoal) goal).getGoalBmi()) {
                         removeCurrentGoal(goalName);
                         goal.setGoalAchievedStatus(true);
                         achievedGoals.add(goal);
@@ -172,8 +155,8 @@ public class Goals implements Serializable {
                     break;
                 case "Distance":
                     double totalDistance = user.getActivitiesDistance(goal.getGoalStartDate(), goal.getGoalTargetDate());
-                    progress = goal.reviewDistanceGoal(totalDistance);
-                    if (totalDistance >= goal.getGoalDistance()) {
+                    progress = ((DistanceGoal) goal).reviewDistanceGoal(totalDistance);
+                    if (totalDistance >= ((DistanceGoal) goal).getGoalDistance()) {
                         removeCurrentGoal(goalName);
                         goal.setGoalAchievedStatus(true);
                         achievedGoals.add(goal);
@@ -186,8 +169,8 @@ public class Goals implements Serializable {
                     break;
                 case "Frequency":
                     int numActivities = user.getActivitiesFreq(goal.getGoalStartDate(), goal.getGoalTargetDate());
-                    progress = goal.reviewFrequencyGoal(numActivities);
-                    if (numActivities >= goal.getGoalFrequency()) {
+                    progress = ((FrequencyGoal) goal).reviewFrequencyGoal(numActivities);
+                    if (numActivities >= ((FrequencyGoal) goal).getGoalFrequency()) {
                         removeCurrentGoal(goalName);
                         goal.setGoalAchievedStatus(true);
                         achievedGoals.add(goal);
@@ -200,8 +183,8 @@ public class Goals implements Serializable {
                     break;
                 case "Time":
                     double timeSumActivities = user.getActivitiesTime(goal.getGoalStartDate(), goal.getGoalTargetDate());
-                    progress = goal.reviewTimeGoal(timeSumActivities);
-                    if (timeSumActivities >= goal.getGoalTime()) {
+                    progress = ((TimeGoal) goal).reviewTimeGoal(timeSumActivities);
+                    if (timeSumActivities >= ((TimeGoal) goal).getGoalTime()) {
                         removeCurrentGoal(goalName);
                         goal.setGoalAchievedStatus(true);
                         achievedGoals.add(goal);
@@ -215,6 +198,34 @@ public class Goals implements Serializable {
             }
         }
         return progress;
+    }
+
+    /**
+     * Setter method for the currentGoalNames of the user
+     */
+    public void setCurrentGoals(ArrayList<Goal> currentGoals) {
+        this.currentGoals = currentGoals;
+    }
+
+    /**
+     * Setter method for the currentGoalNames of the user
+     */
+    public void setCurrentGoalNames(ArrayList<String> currentGoalNames) {
+        this.currentGoalNames = currentGoalNames;
+    }
+
+    /**
+     * Setter method for the createdGoals of the user
+     */
+    public void setCreatedGoals(ArrayList<Goal> createdGoals) {
+        this.createdGoals = createdGoals;
+    }
+
+    /**
+     * Setter method for the createdGoalNames of the user
+     */
+    public void setCreatedGoalNames(ArrayList<String> createdGoalNames) {
+        this.createdGoalNames = createdGoalNames;
     }
 
     /**
@@ -241,9 +252,6 @@ public class Goals implements Serializable {
         return currentGoals;
     }
 
-//    public ArrayList<Goal> getAvailableGoals() {
-//        return availableGoals;
-//    }
 
     /**
      * Getter method for the failed goals of the user
@@ -298,13 +306,10 @@ public class Goals implements Serializable {
      * Getter method for the goal instance of the user
      * @return Goal
      */
-    public Goal getGoalObject(String goalName) {
-        for (Goal goal : currentGoals) {
-            if (goal.getGoalName().equals(goalName)) {
-                return goal;
-            }
-        }
-        return null;
+    private Goal getGoalObject(String goalName)
+    {
+        int index = currentGoalNames.indexOf(goalName);
+        return currentGoals.get(index);
     }
 
     /**

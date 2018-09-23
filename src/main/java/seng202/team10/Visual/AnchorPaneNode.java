@@ -1,6 +1,5 @@
 package seng202.team10.Visual;
 
-import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import seng202.team10.Control.DataAnalysis;
