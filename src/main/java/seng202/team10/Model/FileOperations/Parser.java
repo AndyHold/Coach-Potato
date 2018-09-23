@@ -15,11 +15,9 @@ import java.util.ArrayList;
 public class Parser {
 
     private int linePosition = 0;
-
-
-
     private int badActivities;
-    boolean badActivitiesInFile;
+    private boolean badActivitiesInFile;
+
 
 
     /**

@@ -1,4 +1,4 @@
-package seng202.team10;
+package seng202.team10.Visual;
 
 import org.junit.Before;
 import org.junit.Test;
