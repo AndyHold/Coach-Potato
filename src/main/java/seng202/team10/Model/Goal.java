@@ -47,11 +47,14 @@ public class Goal implements Serializable {
 
     }
 
+
+
     /**
      * Getter method for a goal's start date
      * @return DateTime
      */
-    public DateTime getGoalStartDate() {
+    public DateTime getGoalStartDate()
+    {
         return this.goalStartDate;
     }
 
@@ -59,7 +62,8 @@ public class Goal implements Serializable {
      * Getter method for a goal's target date
      * @return DateTime
      */
-    public DateTime getGoalTargetDate() {
+    public DateTime getGoalTargetDate()
+    {
         return this.goalTargetDate;
     }
 
@@ -67,7 +71,8 @@ public class Goal implements Serializable {
      * Getter method for a goal's type
      * @return String
      */
-    public String getGoalType() {
+    public String getGoalType()
+    {
         return this.goalType;
     }
 
@@ -75,14 +80,16 @@ public class Goal implements Serializable {
      * Getter method for the achieved boolean which determines whether a goals has been achieved or not
      * @return Boolean
      */
-    public Boolean getGoalAchieved() {
+    public Boolean getGoalAchieved()
+    {
         return this.goalAchievedStatus;
     }
 
     /**
      * Setter method for the achieved boolean which determines whether a goals has been achieved or not
      */
-    public void setGoalAchievedStatus(Boolean goalAchievedStatus) {
+    public void setGoalAchievedStatus(Boolean goalAchievedStatus)
+    {
         this.goalAchievedStatus = goalAchievedStatus;
     }
 
@@ -90,7 +97,8 @@ public class Goal implements Serializable {
      * Getter method for the goal distance
      * @return double
      */
-    public double getGoalDistance() {
+    public double getGoalDistance()
+    {
         return this.goalDistance;
     }
 
@@ -98,7 +106,8 @@ public class Goal implements Serializable {
      * Getter method for the goal time
      * @return double
      */
-    public double getGoalTime() {
+    public double getGoalTime()
+    {
         return this.goalTime;
     }
 
@@ -106,7 +115,8 @@ public class Goal implements Serializable {
      * Getter method for the goal weight
      * @return double
      */
-    public double getGoalWeight() {
+    public double getGoalWeight()
+    {
         return this.goalWeight;
     }
 
@@ -114,7 +124,8 @@ public class Goal implements Serializable {
      * Getter method for the goal frequency
      * @return int
      */
-    public int getGoalFrequency() {
+    public int getGoalFrequency()
+    {
         return this.goalFrequency;
     }
 
@@ -122,7 +133,8 @@ public class Goal implements Serializable {
      * Getter method for the goal name
      * @return String
      */
-    public String getGoalName() {
+    public String getGoalName()
+    {
         return this.goalName;
     }
 
@@ -130,12 +142,14 @@ public class Goal implements Serializable {
      * Getter method for the goal BMI
      * @return double
      */
-    public double getGoalBmi() {
+    public double getGoalBmi()
+    {
         return this.goalBmi;
     }
 
 
-    public String reviewWeightGoal(double currentWeight) {
+    public String reviewWeightGoal(double currentWeight)
+    {
         String progressDescription = "Your target for this goal was to weigh " + this.getGoalWeight() + " or less by " + this.getGoalTargetDate();
         if (currentWeight <= this.getGoalWeight()) {
             progressDescription += "\nCongratulations you have completed this goal! It has been removed from your current goals and added to your achieved goals.";
@@ -152,7 +166,8 @@ public class Goal implements Serializable {
         return progressDescription;
     }
 
-    public String reviewBmiGoal(double currentBmi) {
+    public String reviewBmiGoal(double currentBmi)
+    {
         String progressDescription = "Your target for this goal was to have a BMI less than or equal to " + this.getGoalBmi() + " by " + this.getGoalTargetDate();
         if (currentBmi <= this.getGoalBmi()) {
             progressDescription += "\nCongratulations you have completed this goal! It has been removed from your current goals and added to your achieved goals.";
@@ -169,7 +184,8 @@ public class Goal implements Serializable {
         return progressDescription;
     }
 
-    public String reviewDistanceGoal(double dist) {
+    public String reviewDistanceGoal(double dist)
+    {
         String progressDescription = "Your target for this goal was to cover " + this.getGoalDistance() + " km in distance by " + this.getGoalTargetDate();
         if (dist >= this.getGoalDistance()) {
             progressDescription += "\nCongratulations you have completed this goal! It has been removed from your current goals and added to your achieved goals.";
@@ -186,7 +202,8 @@ public class Goal implements Serializable {
         return progressDescription;
     }
 
-    public String reviewFrequencyGoal(int freq) {
+    public String reviewFrequencyGoal(int freq)
+    {
         String progressDescription = "Your target for this goal was to excersize " + this.getGoalFrequency() + " times by " + this.getGoalTargetDate();
         if (freq >= this.getGoalFrequency()) {
             progressDescription += "\nCongratulations you have completed this goal! It has been removed from your current goals and added to your achieved goals.";
@@ -203,7 +220,8 @@ public class Goal implements Serializable {
         return progressDescription;
     }
 
-    public String reviewTimeGoal(double time) {
+    public String reviewTimeGoal(double time)
+    {
         String progressDescription = "Your target for this goal was to excersize for " + this.getGoalTime() + " minutes by " + this.getGoalTargetDate();
         if (time >= this.getGoalTime()) {
             progressDescription += "\nCongratulations you have completed this goal! It has been removed from your current goals and added to your achieved goals.";
