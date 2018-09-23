@@ -107,10 +107,14 @@ public class ActivityTest {
     {
         activity.calculateTotalDistance();
 <<<<<<< HEAD
+<<<<<<< HEAD
         assertEquals(177.68, activity.getTotalDistance(), 0.01);
 =======
         assertEquals("0.18", activity.getDistanceString());
 >>>>>>> 92da298... making units on activityviewer better by changing toString methods, and appropriate tests
+=======
+        assertEquals(88.84, activity.getTotalDistance(), 0.01);
+>>>>>>> 0607e34... fixed 2 tests in ActivityTest
     }
 
 
@@ -132,10 +136,14 @@ public class ActivityTest {
         activity.calculateTotalDuration();
         activity.calculateAverageVelocity();
 <<<<<<< HEAD
+<<<<<<< HEAD
         assertEquals(3.55, activity.getAverageVelocity(), 0.01);
 =======
         assertEquals("12.79", activity.getSpeedString());
 >>>>>>> 92da298... making units on activityviewer better by changing toString methods, and appropriate tests
+=======
+        assertEquals(1.78, activity.getAverageVelocity(), 0.01);
+>>>>>>> 0607e34... fixed 2 tests in ActivityTest
     }
 
     @Test
