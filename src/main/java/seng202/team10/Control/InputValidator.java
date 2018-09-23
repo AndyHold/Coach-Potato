@@ -1,9 +1,8 @@
 package seng202.team10.Control;
 
 import seng202.team10.Model.ActivitiesData.DateTime;
-import seng202.team10.Model.Goal;
-import seng202.team10.Model.Goals;
-import seng202.team10.Model.UserProfile;
+import seng202.team10.Model.Goals.Goals;
+import seng202.team10.Model.Goals.UserProfile;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

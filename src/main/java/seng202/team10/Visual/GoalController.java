@@ -5,13 +5,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Control.InputValidator;
-import seng202.team10.Model.*;
 import seng202.team10.Model.ActivitiesData.DateTime;
+import seng202.team10.Model.Goals.*;
 
 public class GoalController implements Controllable {
 

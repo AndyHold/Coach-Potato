@@ -8,6 +8,7 @@ import seng202.team10.Model.Exceptions.UserNameException;
 import seng202.team10.Model.FileOperations.FileReader;
 import seng202.team10.Model.FileOperations.FileWriter;
 import seng202.team10.Model.FileOperations.Parser;
+import seng202.team10.Model.Goals.UserProfile;
 
 import java.util.ArrayList;
 
