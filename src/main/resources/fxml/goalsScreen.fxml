@@ -78,8 +78,8 @@
                                     <VBox prefHeight="320.0" prefWidth="180.0" spacing="65.0">
                                        <children>
                                           <TextField fx:id="achievedTypeTextField" editable="false" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" />
-                                          <TextField fx:id="startDateTextField" editable="false" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" />
-                                          <TextArea fx:id="goalTextArea" editable="false" maxHeight="140.0" minHeight="140.0" prefHeight="140.0" prefWidth="177.0" wrapText="true" />
+                                          <TextField fx:id="achievedStartDateTextField" editable="false" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" />
+                                          <TextArea fx:id="achievedGoalTextArea" editable="false" maxHeight="140.0" minHeight="140.0" prefHeight="140.0" prefWidth="177.0" wrapText="true" />
                                        </children>
                                     </VBox>
                                  </children>
@@ -113,8 +113,8 @@
                                     <VBox prefHeight="320.0" prefWidth="180.0" spacing="65.0">
                                        <children>
                                           <TextField fx:id="failedTypeTextField" editable="false" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" />
-                                          <TextField fx:id="startDateTextField2" editable="false" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" />
-                                          <TextArea fx:id="goalTextArea2" editable="false" prefHeight="140.0" prefWidth="180.0" wrapText="true" />
+                                          <TextField fx:id="failedStartDateTextField" editable="false" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" />
+                                          <TextArea fx:id="failedGoalTextArea" editable="false" prefHeight="140.0" prefWidth="180.0" wrapText="true" />
                                        </children></VBox>
                                  </children>
                               </HBox>
