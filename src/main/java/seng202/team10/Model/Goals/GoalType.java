@@ -21,17 +21,24 @@ public enum GoalType {
 
     public static GoalType getTypeFromString(String typeName)
     {
-        if (typeName.equals("Weight")) {
-            return GoalType.WEIGHT;
-        } else if (typeName.equals("Distance")) {
-            return GoalType.DISTANCE;
-        } else if (typeName.equals("BMI")) {
-            return GoalType.BMI;
-        } else if (typeName.equals("Frequency")) {
-            return GoalType.FREQUENCY;
-        } else {
-            return GoalType.TIME;
+        switch (typeName) {
+            case "Weight":
+                return GoalType.WEIGHT;
+            case "Distance":
+                return GoalType.DISTANCE;
+            case "BMI":
+                return GoalType.BMI;
+            case "Frequency":
+                return GoalType.FREQUENCY;
+            default:
+                return GoalType.TIME;
         }
+    }
 
+
+    @Override
+    public String toString()
+    {
+        return name;
     }
 }
