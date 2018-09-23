@@ -21,8 +21,6 @@ public class Goals implements Serializable {
 
 
     private ArrayList<Goal> currentGoals = new ArrayList<Goal>();
-
-
     private ArrayList<String> currentGoalNames = new ArrayList<String>();
     private ArrayList<Goal> achievedGoals = new ArrayList<Goal>();
     private ArrayList<String> achievedGoalNames = new ArrayList<String>();
@@ -37,12 +35,18 @@ public class Goals implements Serializable {
      * Constructor method for Goals Class
      * @param user: UserProfile
      */
-    public Goals(UserProfile user) {
+    public Goals(UserProfile user)
+    {
         this.user = user;
     }
 
 
-
+    /**
+     * Method to place the given goal in the correct ArrayList
+     * @param newGoal Goal: goal to be placed
+     * @param startDate DateTime: Start date of the goal
+     * @param today DateTime: Todays Date
+     */
     private void placeGoal(Goal newGoal, DateTime startDate, DateTime today)
     {
         if (!startDate.isAfter(today)) {
@@ -56,7 +60,14 @@ public class Goals implements Serializable {
         createdGoalNames.add(newGoal.getGoalName());
     }
 
-
+    /**
+     * Method to create a frequency goal and place it in the correct ArrayList
+     * @param name String: name of the goal
+     * @param startDate DateTime: date the goal starts on
+     * @param targetDate DateTime: target date for the goal
+     * @param type String: String representation of the type of goal
+     * @param value double: goal value
+     */
     public void createGoal(String name, DateTime startDate, DateTime targetDate, String type, Double value)
     {
         GoalType goalType = GoalType.getTypeFromString(type);
@@ -86,7 +97,16 @@ public class Goals implements Serializable {
         }
     }
 
-    public void createGoal(String name, DateTime startDate, DateTime targetDate, int freq) {
+
+    /**
+     * Method to create a frequency goal and place it in the correct ArrayList
+     * @param name String: name of the goal
+     * @param startDate DateTime: date the goal starts on
+     * @param targetDate DateTime: target date for the goal
+     * @param freq int: goal number of activities
+     */
+    public void createGoal(String name, DateTime startDate, DateTime targetDate, int freq)
+    {
         LocalDateTime now = LocalDateTime.now();
         int year = now.getYear();
         int month = now.getMonthValue();
@@ -103,7 +123,8 @@ public class Goals implements Serializable {
      * Method to remove a current goal from the currentGoals and currentGoalNames array lists
      * @param goalName: String
      */
-    public void removeCurrentGoal(String goalName) {
+    public void removeCurrentGoal(String goalName)
+    {
         if (currentGoalNames.contains(goalName)) {
             Goal goal = getGoalObject(goalName);
             currentGoalNames.remove(goalName);
@@ -119,7 +140,8 @@ public class Goals implements Serializable {
      * @param goalName: String
      * @return String: a textual description of the user progress towards meeting the goal
      */
-    public String checkGoal(String goalName) {
+    public String checkGoal(String goalName)
+    {
         LocalDateTime now1 = LocalDateTime.now();
         DateTime now2 = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         Goal goal = getGoalObject(goalName);
@@ -200,55 +222,69 @@ public class Goals implements Serializable {
         return progress;
     }
 
-    /**
-     * Setter method for the currentGoalNames of the user
-     */
-    public void setCurrentGoals(ArrayList<Goal> currentGoals) {
-        this.currentGoals = currentGoals;
-    }
 
     /**
      * Setter method for the currentGoalNames of the user
      */
-    public void setCurrentGoalNames(ArrayList<String> currentGoalNames) {
+    public void setCurrentGoals(ArrayList<Goal> currentGoals)
+    {
+        this.currentGoals = currentGoals;
+    }
+
+
+    /**
+     * Setter method for the currentGoalNames of the user
+     */
+    public void setCurrentGoalNames(ArrayList<String> currentGoalNames)
+    {
         this.currentGoalNames = currentGoalNames;
     }
+
 
     /**
      * Setter method for the createdGoals of the user
      */
-    public void setCreatedGoals(ArrayList<Goal> createdGoals) {
+    public void setCreatedGoals(ArrayList<Goal> createdGoals)
+    {
         this.createdGoals = createdGoals;
     }
+
 
     /**
      * Setter method for the createdGoalNames of the user
      */
-    public void setCreatedGoalNames(ArrayList<String> createdGoalNames) {
+    public void setCreatedGoalNames(ArrayList<String> createdGoalNames)
+    {
         this.createdGoalNames = createdGoalNames;
     }
+
 
     /**
      * Getter method for the currentGoalNames of the user
      * @return ArrayList<String>
      */
-    public ArrayList<String> getCurrentGoalNames() {
+    public ArrayList<String> getCurrentGoalNames()
+    {
         return currentGoalNames;
     }
+
 
     /**
      * Getter method for the achieved goals of the user
      * @return ArrayList<Goal>
      */
-    public ArrayList<Goal> getAchievedGoals() {
+    public ArrayList<Goal> getAchievedGoals()
+    {
         return achievedGoals;
     }
+
 
     /**
      * Getter method for the current goals of the user
      * @return ArrayList<Goal>
      */
-    public ArrayList<Goal> getCurrentGoals() {
+    public ArrayList<Goal> getCurrentGoals()
+    {
         return currentGoals;
     }
 
@@ -257,15 +293,18 @@ public class Goals implements Serializable {
      * Getter method for the failed goals of the user
      * @return ArrayList<Goal>
      */
-    public ArrayList<Goal> getFailedGoals() {
+    public ArrayList<Goal> getFailedGoals()
+    {
         return failedGoals;
     }
+
 
     /**
      * Getter method for the failed goal names of the user
      * @return ArrayList<String>
      */
-    public ArrayList<String> getFailedGoalNames() {
+    public ArrayList<String> getFailedGoalNames()
+    {
         return failedGoalNames;
     }
 
@@ -274,33 +313,41 @@ public class Goals implements Serializable {
      * Getter method for the created goals of the user (current, past and future)
      * @return ArrayList<Goal>
      */
-    public ArrayList<Goal> getCreatedGoals() {
+    public ArrayList<Goal> getCreatedGoals()
+    {
         return createdGoals;
     }
+
 
     /**
      * Getter method for the created goal names of the user
      * @return ArrayList<String>
      */
-    public ArrayList<String> getCreatedGoalNames() {
+    public ArrayList<String> getCreatedGoalNames()
+    {
         return createdGoalNames;
     }
+
 
     /**
      * Getter method for the future goals of the user
      * @return ArrayList<Goal>
      */
-    public ArrayList<Goal> getFutureGoals() {
+    public ArrayList<Goal> getFutureGoals()
+    {
         return futureGoals;
     }
+
 
     /**
      * Getter method for the future goal names of the user
      * @return ArrayList<String>
      */
-    public ArrayList<String> getFutureGoalNames() {
+    public ArrayList<String> getFutureGoalNames()
+    {
         return futureGoalNames;
     }
+
 
     /**
      * Getter method for the goal instance of the user
@@ -316,14 +363,17 @@ public class Goals implements Serializable {
      * Getter method for the achieved goal names of the user
      * @return ArrayList<String>
      */
-    public ArrayList<String> getAchievedGoalNames() {
+    public ArrayList<String> getAchievedGoalNames()
+    {
         return achievedGoalNames;
     }
+
 
     /**
      * Method to refresh the goals to check whether any future goals have become current goals
      */
-    public void refreshGoals() {
+    public void refreshGoals()
+    {
         LocalDateTime now1 = LocalDateTime.now();
         DateTime now2 = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         ArrayList<Goal>futureGoalsCopy = (ArrayList<Goal>) futureGoals.clone();
