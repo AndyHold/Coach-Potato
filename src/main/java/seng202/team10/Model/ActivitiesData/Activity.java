@@ -114,7 +114,8 @@ public class Activity implements Serializable {
     {
         this.totalDistance = 0.0;
         for(int i = 1; i < this.entries.size(); i++) {
-            this.totalDistance += (this.entries.get(i).getPosition().subtract(this.entries.get(i - 1).getPosition()));
+            this.entries.get(i).calculateDistance(this.entries.get(i - 1));
+            this.totalDistance += this.entries.get(i).getDistance();
         }
     }
 
