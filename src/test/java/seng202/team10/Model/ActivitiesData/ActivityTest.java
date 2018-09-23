@@ -106,7 +106,7 @@ public class ActivityTest {
     public void calculateTotalDistance()
     {
         activity.calculateTotalDistance();
-        assertEquals(177.68, activity.getTotalDistance(), 0.01);
+        assertEquals(88.84, activity.getTotalDistance(), 0.01);
     }
 
 
@@ -123,7 +123,7 @@ public class ActivityTest {
         activity.calculateTotalDistance();
         activity.calculateTotalDuration();
         activity.calculateAverageVelocity();
-        assertEquals(3.55, activity.getAverageVelocity(), 0.01);
+        assertEquals(1.78, activity.getAverageVelocity(), 0.01);
     }
 
     @Test
