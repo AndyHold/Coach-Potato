@@ -28,7 +28,6 @@ public class DataAnalysisController implements Controllable, Initializable{
 
     private GUIController guiController;
     private Activity activity;
-    private UserProfile currentProfile;
     private DataAnalysis dataAnalysis;
     private int currentIndex;
 
@@ -97,10 +96,8 @@ public class DataAnalysisController implements Controllable, Initializable{
         setUpHelpTextArea();
         // Create a new data analysis
         dataAnalysis = new DataAnalysis();
-        // Set the current profile
-        currentProfile = guiController.getCurrentProfile();
         // Check for activities in the profile
-        if (currentProfile.getActivities().isEmpty()) {
+        if (guiController.getCurrentProfile().getActivities().isEmpty()) {
             this.displayNoData(true);
         } else {
             this.setUpListView();
@@ -194,7 +191,7 @@ public class DataAnalysisController implements Controllable, Initializable{
     private void setUpListView()
     {
         ObservableList<String> activityNames = FXCollections.observableArrayList();
-        for (Activity activity : currentProfile.getActivities()) {
+        for (Activity activity : guiController.getCurrentProfile().getActivities()) {
             String activityString = activity.getName() + " : " + activity.getStartDateTime().toString();
             activityNames.add(activityString);
         }
@@ -204,7 +201,7 @@ public class DataAnalysisController implements Controllable, Initializable{
             currentIndex = 0;
         }
         currentIndex = activityList.getSelectionModel().getSelectedIndex();
-        activity = currentProfile.getActivities().get(currentIndex);
+        activity = guiController.getCurrentProfile().getActivities().get(currentIndex);
     }
 
 
@@ -242,7 +239,7 @@ public class DataAnalysisController implements Controllable, Initializable{
      */
     private void populateCaloriesBurnedGraph(ArrayList<Double> timeArray)
     {
-        ArrayList<Double> calorieArray = dataAnalysis.getCaloriesFromActivity(activity, currentProfile);
+        ArrayList<Double> calorieArray = dataAnalysis.getCaloriesFromActivity(activity, guiController.getCurrentProfile());
         for (int i = 0; i < timeArray.size(); i++) {
             caloriesBurnedSeries.getData().add(new XYChart.Data(timeArray.get(i), calorieArray.get(i)));
         }
@@ -259,7 +256,7 @@ public class DataAnalysisController implements Controllable, Initializable{
     {
         ArrayList<Double> stressArray = new ArrayList<>();
         for (int i = 0; i < timeArray.size(); i++) {
-            double stressPercent = (double)heartRateArray.get(i)/(double)currentProfile.getMaxHeartRate();
+            double stressPercent = (double)heartRateArray.get(i)/(double)guiController.getCurrentProfile().getMaxHeartRate();
             stressArray.add(stressPercent);
             stressLevelTimeSeries.getData().add(new XYChart.Data(timeArray.get(i), stressArray.get(i)));
         }
