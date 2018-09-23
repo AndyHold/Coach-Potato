@@ -113,13 +113,25 @@ public class ProfileController {
 
         // Set up help text area
         helpTextArea.setText("Welcome to Profile View Screen!\n\n" +
-                "On this screen you can edit your profile details and view brief statistics for today and for all time.\n" +
-                "To edit your profile:\n" +
+                "On this screen you can edit your profile details, view brief statistics, and view activities in a calender format.\n" +
+                "- To edit your profile:\n" +
                 "\t- Click on the Edit button\n" +
                 "\t- Click on the data field you wish to edit\n" +
                 "\t- Enter the new value\n" +
                 "\t- Click the Confirm Changes Button\n" +
-                "If any invalid data is entered you will get a pop up and will need to try again.\n\n" +
+                "\tIf any invalid data is entered you will get a pop up\n" +
+                "\tand will need to try again.\n" +
+                "- Your brief statistics are displayed in the two information\n" +
+                "  boxes on the bottom of the screen.\n" +
+                "- To view activities in the calender:\n" +
+                "\t- Navigate to the month and year of your desired\n" +
+                "\t  activity using the controls at the top of the\n" +
+                "\t  calender.\n" +
+                "\t- Dates with activities in them will be a darker colour\n" +
+                "\t  than the other dates.\n" +
+                "\t- Click on the date of your activity.\n" +
+                "\t- Your statistics for that day will now be displayed in\n" +
+                "\t  the information box below the calender.\n\n" +
                 "Hover the mouse over any field to see what it contains.");
         helpTextArea.setVisible(false);
         helpTextArea.setWrapText(true);
