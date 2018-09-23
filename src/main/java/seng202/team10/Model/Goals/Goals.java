@@ -2,6 +2,7 @@ package seng202.team10.Model.Goals;
 
 
 import seng202.team10.Model.ActivitiesData.DateTime;
+import seng202.team10.Model.UserProfile;
 
 import java.io.Serializable;
 import java.util.ArrayList;
