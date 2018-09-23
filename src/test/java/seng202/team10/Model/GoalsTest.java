@@ -1,6 +1,6 @@
 package seng202.team10.Model;
 
-import com.sun.xml.internal.bind.v2.TODO;
+
 import org.junit.Before;
 import org.junit.Test;
 import seng202.team10.Model.ActivitiesData.DateTime;
@@ -253,6 +253,7 @@ public class GoalsTest {
 
 
 
+<<<<<<< HEAD
     @Test
     public void checkGoal() {
     }
@@ -260,4 +261,24 @@ public class GoalsTest {
     @Test
     public void refreshGoals() {
     }
+=======
+
+
+
+
+
+
+
+
+
+
+
+//    @Test
+//    public void checkGoal() {
+//    }
+//
+//    @Test
+//    public void refreshGoals() {
+//    }
+>>>>>>> d9188b7... commented out an import to fix pipeline
 }
