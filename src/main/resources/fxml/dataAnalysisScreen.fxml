@@ -142,6 +142,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       <Button fx:id="refreshButton" layoutX="166.0" layoutY="647.0" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
 >>>>>>> d7f57e2... Added a refresh button to view other activities
@@ -162,6 +163,9 @@
 =======
       <Button fx:id="mapButton" layoutX="804.0" layoutY="647.0" mnemonicParsing="false" onAction="#viewMap" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: ;" text="View Map" />
 >>>>>>> c37a331... GUI changes - changed colour scheme to make it not look ugy for now, will make it better for deliverable 3.
+=======
+      <Button fx:id="mapButton" layoutX="804.0" layoutY="647.0" mnemonicParsing="false" onAction="#viewMap" prefHeight="35.0" prefWidth="100.0" text="View Map" />
+>>>>>>> fb57f25... Fixed a Warning message by the FXML Loaders caused by a rouge bit of code
       <Button fx:id="helpButton" layoutX="1218.0" layoutY="671.0" mnemonicParsing="false" onAction="#displayHelp" prefHeight="35.0" prefWidth="48.0" style="-fx-background-color: transparent;">
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
