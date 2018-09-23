@@ -26,7 +26,8 @@ public class ProfileController {
 
     private GUIController app;
     private DataAnalysis dataAnalysis = new DataAnalysis();
-    UserProfile currentUser;
+    private UserProfile currentUser;
+    private List<String> quotes;
 
     @FXML Pane calendarPane;
     @FXML private Label welcomeProfileLabel;
@@ -63,26 +64,29 @@ public class ProfileController {
     /**
      * List of Motivational quotes.
      */
-    private List<String> quotes = Arrays.asList(
-            "To not prepare is to prepare to fail.",
-            "Exercise instead of extra fries.",
-            "It starts in the kitchen and continues on the pavement.",
-            "People say nothing is impossible, but I do nothing everyday.",
-            "If you cannot do great things, do small things in a great way.",
-            "You are what you repeatedly do.",
-            "It is our choices, Harry that show what we truly are, far more than our abilities.",
-            "People often say that motivation doesn't last. Well, neither does bathing - that's why we recommend it daily.",
-            "I didn't get there by wishing for it or hoping for it, but by working for it.",
-            "Be patient with yourself. Self-growth is tender; it’s holy ground. There’s no greater investment.",
-            "You can waste your life drawing lines. Or you can live your life crossing them.",
-            "Action is the foundational key to all success.",
-            "Obstacles are those frightful things you see when you take your eyes off your goal.",
-            "Someday is not a day of the week.",
-            "Challenges are what make life interesting and overcoming them is what makes life meaningful.",
-            "I already know what giving up feels like, I want to see what happens if i don't.",
-            "Some days it's hard to find motivation, some days motivation finds you!",
-            "Yesterday you said tomorrow, so just do it!"
-    );
+    private void setQuotes()
+    {
+        quotes = Arrays.asList(
+                "To not prepare is to prepare to fail.",
+                "Exercise instead of extra fries.",
+                "It starts in the kitchen and continues on the pavement.",
+                "People say nothing is impossible, but I do nothing everyday.",
+                "If you cannot do great things, do small things in a great way.",
+                "You are what you repeatedly do.",
+                "It is our choices, Harry that show what we truly are, far more than our abilities.",
+                "People often say that motivation doesn't last. Well, neither does bathing - that's why we recommend it daily.",
+                "I didn't get there by wishing for it or hoping for it, but by working for it.",
+                "Be patient with yourself. Self-growth is tender; it’s holy ground. There’s no greater investment.",
+                "You can waste your life drawing lines. Or you can live your life crossing them.",
+                "Action is the foundational key to all success.",
+                "Obstacles are those frightful things you see when you take your eyes off your goal.",
+                "Someday is not a day of the week.",
+                "Challenges are what make life interesting and overcoming them is what makes life meaningful.",
+                "I already know what giving up feels like, I want to see what happens if i don't.",
+                "Some days it's hard to find motivation, some days motivation finds you!",
+                "Yesterday you said tomorrow, so just do it!"
+        );
+    }
 
 
     /**
@@ -100,6 +104,8 @@ public class ProfileController {
      */
     public void setUpScene()
     {
+        // Set quotes list
+        setQuotes();
         // Set tool tips
         setUpToolTips();
         // Set up help text area
