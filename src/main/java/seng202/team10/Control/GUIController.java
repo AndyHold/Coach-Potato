@@ -96,7 +96,7 @@ public class GUIController extends Application{
 
     private FXMLLoader mainLoader;
     private Scene mainScene;
-    private MainScreenController mainController;
+    private MenuBarController mainController;
 
     private FXMLLoader loginLoader;
     private Scene loginScene;

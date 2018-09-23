@@ -81,6 +81,27 @@ public class ActivityTest {
         assertEquals("a", testActivity.getName());
     }
 
+    @Test
+    public void secondsToTimeAddsZeros() {
+        assertEquals(activity.secondsToTime(7748), "02:09:08");
+    }
+
+    @Test
+    public void secondsToTimeDoesntAddZeros() {
+        assertEquals(activity.secondsToTime(38970), "10:49:30");
+    }
+
+    @Test
+    public void secondsToTimeReturnsNullWhenOver23() {
+        //24 hours in seconds
+        assertEquals(activity.secondsToTime(86400), null);
+    }
+
+    @Test
+    public void secondsToTimeReturnsNullWhenNegative() {
+        assertEquals(activity.secondsToTime(-1), null);
+    }
+
 
     @Test
     public void goodNameLong()
