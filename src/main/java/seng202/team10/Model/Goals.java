@@ -142,8 +142,8 @@ public class Goals implements Serializable {
                     }
                     break;
                 case "BMI":
-                    progress = ((BmiGoal) goal).reviewBmiGoal(user.getBmi());
-                    if (user.getBmi() <= ((BmiGoal) goal).getGoalBmi()) {
+                    progress = ((BmiGoal) goal).reviewBmiGoal(user.calcBmi());
+                    if (user.calcBmi() <= ((BmiGoal) goal).getGoalBmi()) {
                         removeCurrentGoal(goalName);
                         goal.setGoalAchievedStatus(true);
                         achievedGoals.add(goal);
