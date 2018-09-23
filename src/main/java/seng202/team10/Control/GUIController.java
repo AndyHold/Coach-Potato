@@ -281,6 +281,7 @@ public class GUIController extends Application{
             loadAllUsers();
             loadAllScenes();
             primaryStage.setTitle("Coach Potato");
+            primaryStage.setResizable(false);
             if (users.isEmpty()) {
                 primaryStage.setScene(createProfileScene);
             } else {
