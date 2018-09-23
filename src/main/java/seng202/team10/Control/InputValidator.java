@@ -146,7 +146,7 @@ public class InputValidator {
         return false;
     }
 
-    public boolean isValidTargetValue (String type, int target, UserProfile user) {
+    public boolean isValidTargetValue (String type, double target, UserProfile user) {
         if (type.equals("Weight")) {
             if (user.getWeight() <= target || target <= 30) {
                 return false;
@@ -171,4 +171,7 @@ public class InputValidator {
         return true;
     }
 
+    public boolean isValidIntTargetValue (int target) {
+        return (target <= 0 || target > 10000);
+    }
 }
