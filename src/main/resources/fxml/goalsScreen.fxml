@@ -20,9 +20,9 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextArea" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.GoalController">
    <children>
-       <TabPane layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE">
+       <TabPane layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="1280.0" style="-fx-background-color: mediumpurple;" tabClosingPolicy="UNAVAILABLE">
          <tabs>
-             <Tab fx:id="currentTab" text="Current Goals">
+             <Tab fx:id="currentTab" style="-fx-background-color: mediumpurple;" text="Current Goals">
                <content>
                   <Pane>
                      <children>
@@ -39,7 +39,7 @@
                   </Pane>
                </content>
              </Tab>
-           <Tab fx:id="pastTab" onSelectionChanged="#addGoalsToTable" text="Past Goals">
+           <Tab fx:id="pastTab" onSelectionChanged="#addGoalsToTable" style="-fx-background-color: mediumpurple;" text="Past Goals">
              <content>
                   <Pane>
                      <children>
@@ -124,7 +124,7 @@
                   </Pane>
              </content>
            </Tab>
-             <Tab fx:id="futureTab" onSelectionChanged="#addGoalsToTable" text="Future Goals">
+             <Tab fx:id="futureTab" onSelectionChanged="#addGoalsToTable" style="-fx-background-color: mediumpurple;" text="Future Goals">
                <content>
                   <Pane>
                      <children>
@@ -156,8 +156,8 @@
                                                 </VBox>
                                                 <VBox prefHeight="365.0" prefWidth="200.0" spacing="85.0">
                                                    <children>
-                                                      <TextField fx:id="futureTypeTextField" />
                                                       <TextField fx:id="futureDateTextField" />
+                                                      <TextField fx:id="futureTypeTextField" />
                                                       <TextArea fx:id="futureGoalTextArea" editable="false" prefHeight="150.0" prefWidth="200.0" wrapText="true" />
                                                    </children>
                                                 </VBox>
@@ -173,7 +173,7 @@
                   </Pane>
                </content>
              </Tab>
-             <Tab fx:id="createTab" onSelectionChanged="#addGoalsToTable" text="Create Goal">
+             <Tab fx:id="createTab" onSelectionChanged="#addGoalsToTable" style="-fx-background-color: mediumpurple;" text="Create Goal">
                <content>
                   <Pane>
                      <children>
@@ -232,7 +232,7 @@
              </Tab>
          </tabs>
        </TabPane>
-      <Button fx:id="helpButton" layoutX="1212.0" layoutY="665.0" mnemonicParsing="false" onAction="#displayCurrentHelp" prefHeight="35.0" prefWidth="48.0" style="-fx-background-color: transparent;">
+      <Button fx:id="helpButton" layoutX="1212.0" layoutY="665.0" mnemonicParsing="false" onAction="#displayHelp" prefHeight="35.0" prefWidth="48.0" style="-fx-background-color: transparent;">
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>

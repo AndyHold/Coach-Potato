@@ -33,6 +33,7 @@ public class FullCalendarView {
     private GUIController app;
     private ProfileController profileController;
 
+
     /**
      * Setter method to set the GUI controller for this Scene
      * @param app GUIController
@@ -42,11 +43,16 @@ public class FullCalendarView {
         this.app = app;
     }
 
+
     /**
      * Setter method to set the profile controller for this Scene
      * @param profileController profileController
      */
-    public void setProfileController(ProfileController profileController) {this.profileController = profileController;}
+    public void setProfileController(ProfileController profileController)
+    {
+        this.profileController = profileController;
+    }
+
 
     /**
      * Method to create a calendar view
@@ -190,6 +196,7 @@ public class FullCalendarView {
         calendarTitle.setText(yearMonth.getMonth().toString() + " " + String.valueOf(yearMonth.getYear()));
     }
 
+
     /**
      * Move the month back by one. Repopulate the calendar with the correct dates.
      */
@@ -197,6 +204,7 @@ public class FullCalendarView {
         currentYearMonth = currentYearMonth.minusMonths(1);
         populateCalendar(currentYearMonth);
     }
+
 
     /**
      * Move the month forward by one. Repopulate the calendar with the correct dates.
@@ -206,20 +214,24 @@ public class FullCalendarView {
         populateCalendar(currentYearMonth);
     }
 
+
     /**
      * Method to return the view of the VBox.
      * @return  The view of the vBox
      */
-    public VBox getView() {
+    public VBox getView()
+    {
         return view;
     }
 
 
-    public ArrayList<AnchorPaneNode> getAllCalendarDays() {
+    public ArrayList<AnchorPaneNode> getAllCalendarDays()
+    {
         return allCalendarDays;
     }
 
-    public void setAllCalendarDays(ArrayList<AnchorPaneNode> allCalendarDays) {
+    public void setAllCalendarDays(ArrayList<AnchorPaneNode> allCalendarDays)
+    {
         this.allCalendarDays = allCalendarDays;
     }
 }
