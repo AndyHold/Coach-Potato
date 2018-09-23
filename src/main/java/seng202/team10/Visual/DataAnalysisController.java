@@ -13,7 +13,7 @@ import javafx.util.Duration;
 import seng202.team10.Control.DataAnalysis;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.Activity;
-import seng202.team10.Model.Goals.UserProfile;
+import seng202.team10.Model.UserProfile;
 
 import java.net.URL;
 import java.util.ArrayList;

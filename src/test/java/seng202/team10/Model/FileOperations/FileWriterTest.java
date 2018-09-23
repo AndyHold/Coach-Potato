@@ -3,7 +3,7 @@ package seng202.team10.Model.FileOperations;
 import org.junit.*;
 import seng202.team10.Model.Exceptions.InvalidWeightException;
 import seng202.team10.Model.Exceptions.UserNameException;
-import seng202.team10.Model.Goals.UserProfile;
+import seng202.team10.Model.UserProfile;
 
 import static org.junit.Assert.*;
 
