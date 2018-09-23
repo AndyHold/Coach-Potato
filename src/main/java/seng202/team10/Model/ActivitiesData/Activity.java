@@ -37,6 +37,46 @@ public class Activity implements Serializable {
 
 
     /**
+     * Method to convert a number of seconds to a string in the format HH:MM:SS. Returns null if the hours are greater than 23
+     * or if seconds are negative.
+     * @param seconds  The time in seconds to be converted.
+     * @return  A string in the format HH:MM:SS that describes the time. Null if hours > 23
+     */
+    public String secondsToTime(int seconds) {
+        if (seconds < 0) {
+            return null;
+        }
+        int minutes = 0;
+        int hours = 0;
+
+        while (seconds > 59) {
+            seconds = seconds - 60;
+            minutes++;
+            if (minutes == 60) {
+                minutes = 0;
+                hours++;
+            }
+        }
+        String strSeconds = String.valueOf(seconds);
+        String strMinutes = String.valueOf(minutes);
+        String strHours = String.valueOf(hours);
+        if (strSeconds.length() == 1) {
+            strSeconds = "0" + strSeconds;
+        }
+        if (strMinutes.length() == 1) {
+            strMinutes = "0" + strMinutes;
+        }
+        if (strHours.length() == 1) {
+            strHours = "0" + strHours;
+        }
+        if (hours > 23) {
+            return null;
+        }
+        return strHours + ":" + strMinutes + ":" + strSeconds;
+    }
+
+
+    /**
      * Setter method for name of the activity
      * @param newName: String
      */
@@ -94,8 +134,10 @@ public class Activity implements Serializable {
      */
     public void calculateTotalDistance()
     {
+        this.totalDistance = 0.0;
         for(int i = 1; i < this.entries.size(); i++) {
-            this.totalDistance += (this.entries.get(i).getPosition().subtract(this.entries.get(i - 1).getPosition()));
+            this.entries.get(i).calculateDistance(this.entries.get(i - 1));
+            this.totalDistance += this.entries.get(i).getDistance();
         }
     }
 
@@ -265,7 +307,6 @@ public class Activity implements Serializable {
     /**
      * Getter method for the Time as a String
      * @return String
-     * TODO do you want just time string or Date time string??? If you change it then change the test accordingly.
      */
     public String getTimeString()
     {
@@ -290,8 +331,7 @@ public class Activity implements Serializable {
      */
     public Double getSpeedKMH()
     {
-        return Math.round((this.averageVelocity * 3.6) * 100.0) / 100.0;
-//        return String.format("%.2f", (this.averageVelocity * 3.6));
+        return Math.round(this.averageVelocity * 360.0) / 100.0;
     }
 
 
@@ -301,8 +341,7 @@ public class Activity implements Serializable {
      */
     public Double getDistanceKM()
     {
-        return Math.round((this.totalDistance / 1000.0) * 100.0) / 100.0;
-//        return String.format("%.2f", (this.totalDistance / 1000.0));
+        return Math.round(this.totalDistance / 10.0) / 100.0;
     }
 
 

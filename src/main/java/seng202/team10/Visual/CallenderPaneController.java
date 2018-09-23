@@ -20,11 +20,11 @@ import java.time.YearMonth;
 import java.util.ArrayList;
 
 /**
- * FullCalendarView Class for Coach Potato
+ * CallenderPaneController Class for Coach Potato
  * SENG202 2018S2
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
-public class FullCalendarView {
+public class CallenderPaneController {
 
     private ArrayList<AnchorPaneNode> allCalendarDays = new ArrayList<>(42);
     private VBox view;
@@ -32,6 +32,7 @@ public class FullCalendarView {
     private YearMonth currentYearMonth;
     private GUIController app;
     private ProfileController profileController;
+
 
     /**
      * Setter method to set the GUI controller for this Scene
@@ -42,17 +43,22 @@ public class FullCalendarView {
         this.app = app;
     }
 
+
     /**
      * Setter method to set the profile controller for this Scene
      * @param profileController profileController
      */
-    public void setProfileController(ProfileController profileController) {this.profileController = profileController;}
+    public void setProfileController(ProfileController profileController)
+    {
+        this.profileController = profileController;
+    }
+
 
     /**
      * Method to create a calendar view
      * @param (yearMonth, app, profileController): (year month to create the calendar of, GuiController, ProfileController)
      */
-    public FullCalendarView(YearMonth yearMonth, GUIController app, ProfileController profileController)
+    public CallenderPaneController(YearMonth yearMonth, GUIController app, ProfileController profileController)
     {
         setApp(app);
         setProfileController(profileController);
@@ -60,7 +66,7 @@ public class FullCalendarView {
 
         // Create the calendar grid pane
         GridPane calendar = new GridPane();
-        calendar.setStyle("-fx-background-color: #F06292");
+        calendar.setStyle("-fx-background-color: #f48fb1");
         calendar.setPrefSize(490, 420);
         calendar.setMaxSize(490, 420);
         calendar.setMinSize(490, 420);
@@ -83,7 +89,7 @@ public class FullCalendarView {
                                         new Text(" Wed"), new Text(" Thu"), new Text(" Fri"),
                                         new Text(" Sat") };
         GridPane dayLabels = new GridPane();
-        dayLabels.setStyle("-fx-background-color: #F06292");
+        dayLabels.setStyle("-fx-background-color: #f48fb1");
         dayLabels.setPrefWidth(490);
         dayLabels.setMaxWidth(490);
         dayLabels.setMinWidth(490);
@@ -103,7 +109,7 @@ public class FullCalendarView {
 
         // Create calendarTitle and buttons to change current month
         calendarTitle = new Label();
-        calendarTitle.setStyle("-fx-background-color: #C2185B");
+        calendarTitle.setStyle("-fx-background-color: #f48fb1");
         calendarTitle.setTextFill(Color.WHITE);
         calendarTitle.setPadding(new Insets(5, 5, 5, 5));
         calendarTitle.setMinSize(210, 30);
@@ -113,7 +119,7 @@ public class FullCalendarView {
 
         Button previousMonth = new Button("<<");
         previousMonth.setTextFill(Color.WHITE);
-        previousMonth.setStyle("-fx-background-color: #C2185B");
+        previousMonth.setStyle("-fx-background-color: #f48fb1");
         previousMonth.setPadding(new Insets(5, 5, 5, 5));
         previousMonth.setMinSize(35, 30);
         previousMonth.setMaxSize(35, 30);
@@ -121,7 +127,7 @@ public class FullCalendarView {
         previousMonth.setOnAction(e -> previousMonth());
 
         Button nextMonth = new Button(">>");
-        nextMonth.setStyle("-fx-background-color: #C2185B");
+        nextMonth.setStyle("-fx-background-color: #f48fb1");
         nextMonth.setTextFill(Color.WHITE);
         nextMonth.setPadding(new Insets(5, 5, 5, 5));
         nextMonth.setMinSize(35, 30);
@@ -171,6 +177,8 @@ public class FullCalendarView {
                     LocalDate date = ap.getDate();
                     if (activity.getStartDateTime().getDateAsString().equals((new DateTime(date.getYear(), date.getMonthValue(), date.getDayOfMonth(), 0, 0, 0)).getDateAsString())) {
                         todayActivities.add(activity);
+                        txt.setText(txt.getText() + "\n A");
+
                     }
                 }
                 ap.setActivities(todayActivities);
@@ -182,13 +190,13 @@ public class FullCalendarView {
             } else {
                 ap.getChildren().add(txt);
             }
-
             calendarDate = calendarDate.plusDays(1);
         }
 
         // Change the title of the calendar
         calendarTitle.setText(yearMonth.getMonth().toString() + " " + String.valueOf(yearMonth.getYear()));
     }
+
 
     /**
      * Move the month back by one. Repopulate the calendar with the correct dates.
@@ -198,6 +206,7 @@ public class FullCalendarView {
         populateCalendar(currentYearMonth);
     }
 
+
     /**
      * Move the month forward by one. Repopulate the calendar with the correct dates.
      */
@@ -206,20 +215,24 @@ public class FullCalendarView {
         populateCalendar(currentYearMonth);
     }
 
+
     /**
      * Method to return the view of the VBox.
      * @return  The view of the vBox
      */
-    public VBox getView() {
+    public VBox getView()
+    {
         return view;
     }
 
 
-    public ArrayList<AnchorPaneNode> getAllCalendarDays() {
+    public ArrayList<AnchorPaneNode> getAllCalendarDays()
+    {
         return allCalendarDays;
     }
 
-    public void setAllCalendarDays(ArrayList<AnchorPaneNode> allCalendarDays) {
+    public void setAllCalendarDays(ArrayList<AnchorPaneNode> allCalendarDays)
+    {
         this.allCalendarDays = allCalendarDays;
     }
 }

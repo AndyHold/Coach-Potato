@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextArea" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.LoginController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextArea" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: mediumpurple;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.LoginController">
    <children>
-      <VBox alignment="CENTER" prefHeight="720.0" prefWidth="1280.0">
+      <VBox alignment="CENTER" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: mediumpurple;">
          <children>
-            <HBox alignment="TOP_CENTER" prefHeight="205.0" prefWidth="1280.0">
+            <HBox alignment="TOP_CENTER" prefHeight="205.0" prefWidth="1280.0" style="-fx-background-color: mediumpurple;">
                <children>
                   <VBox prefHeight="205.0">
                      <children>
@@ -44,9 +44,9 @@
                   <Insets />
                </VBox.margin>
             </HBox>
-            <HBox prefHeight="190.0" prefWidth="1280.0">
+            <HBox prefHeight="190.0" prefWidth="1280.0" style="-fx-background-color: mediumpurple;">
                <children>
-                  <VBox alignment="CENTER" prefHeight="185.0" prefWidth="256.0" spacing="15.0">
+                  <VBox alignment="CENTER" prefHeight="185.0" prefWidth="256.0" spacing="15.0" style="-fx-background-color: mediumpurple;">
                      <children>
                         <Button fx:id="userOneButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#userButtonOne" prefHeight="150.0" prefWidth="150.0">
                            <graphic>
@@ -62,7 +62,7 @@
                               <Font size="19.0" />
                            </font></Label>
                      </children></VBox>
-                  <VBox alignment="CENTER" prefHeight="185.0" prefWidth="256.0" spacing="15.0">
+                  <VBox alignment="CENTER" prefHeight="185.0" prefWidth="256.0" spacing="15.0" style="-fx-background-color: mediumpurple;">
                      <children>
                         <Button fx:id="userTwoButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#userButtonTwo" prefHeight="150.0" prefWidth="150.0">
                            <graphic>
@@ -78,7 +78,7 @@
                               <Font size="19.0" />
                            </font></Label>
                      </children></VBox>
-                  <VBox alignment="CENTER" prefHeight="185.0" prefWidth="256.0" spacing="15.0">
+                  <VBox alignment="CENTER" prefHeight="185.0" prefWidth="256.0" spacing="15.0" style="-fx-background-color: mediumpurple;">
                      <children>
                         <Button fx:id="userThreeButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#userButtonThree" prefHeight="150.0" prefWidth="150.0">
                            <graphic>
@@ -94,7 +94,7 @@
                               <Font size="19.0" />
                            </font></Label>
                      </children></VBox>
-                  <VBox alignment="CENTER" prefHeight="185.0" prefWidth="256.0" spacing="15.0">
+                  <VBox alignment="CENTER" prefHeight="185.0" prefWidth="256.0" spacing="15.0" style="-fx-background-color: mediumpurple;">
                      <children>
                         <Button fx:id="userFourButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#userButtonFour" prefHeight="150.0" prefWidth="150.0">
                            <graphic>
@@ -110,7 +110,7 @@
                               <Font size="19.0" />
                            </font></Label>
                      </children></VBox>
-                  <VBox alignment="CENTER" prefHeight="185.0" prefWidth="256.0" spacing="15.0">
+                  <VBox alignment="CENTER" prefHeight="185.0" prefWidth="256.0" spacing="15.0" style="-fx-background-color: mediumpurple;">
                      <children>
                         <Button fx:id="userFiveButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#userButtonFive" prefHeight="150.0" prefWidth="150.0">
                            <graphic>
@@ -128,7 +128,7 @@
                      </children></VBox>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="205.0" prefWidth="1280.0">
+            <HBox alignment="CENTER" prefHeight="205.0" prefWidth="1280.0" style="-fx-background-color: mediumpurple;">
                <children>
                   <VBox prefHeight="205.0">
                      <children>
@@ -154,7 +154,7 @@
                      </padding></VBox>
                </children>
             </HBox>
-            <HBox alignment="TOP_RIGHT" prefHeight="45.0" prefWidth="1280.0">
+            <HBox alignment="TOP_RIGHT" prefHeight="45.0" prefWidth="1280.0" style="-fx-background-color: mediumpurple;">
                <children>
                   <Button fx:id="helpButton" mnemonicParsing="false" onAction="#displayHelp" prefHeight="35.0" prefWidth="48.0" style="-fx-background-color: transparent;">
                      <graphic>

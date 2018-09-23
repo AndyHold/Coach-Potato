@@ -6,14 +6,11 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
-import seng202.team10.Model.ActivitiesData.Entry;
-import seng202.team10.Model.UserProfile;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -21,6 +18,8 @@ import java.util.ArrayList;
 public class ActivityViewerController {
 
     private GUIController app;
+    private ObservableList<String> types;
+    private ObservableList<Activity> activities;
 
     @FXML private DatePicker startDate;
     @FXML private DatePicker endDate;
@@ -41,60 +40,37 @@ public class ActivityViewerController {
     @FXML private ComboBox typeSelect;
     @FXML private VBox drawer;
 
+
     /**
      * Sets up objects that require it prior to showing the scene
      */
     public void setUpScene()
     {
         // Set tool tips for all elements
-        startDate.setTooltip(new Tooltip("Please select the date you wish to filter from."));
-        endDate.setTooltip(new Tooltip("Please select the date you wish to filter until."));
-        typeSelect.setTooltip(new Tooltip("Please select the type of activity you wish to view."));
-        filterApplyButton.setTooltip(new Tooltip("Click here to apply the selected filters."));
-        clearFiltersButton.setTooltip(new Tooltip("Click here to clear the filters and view all activities in your profile."));
-        helpButton.setTooltip(new Tooltip("Need Help?"));
-        activitiesTableView.setTooltip(new Tooltip("Your activities are listed in this table\n" +
-                "Please click a title to sort the activities by that value."));
-        entryViewerButton.setTooltip(new Tooltip("Click here to view the Entries in the selected activity.\n" +
-                "Note: You must have clicked on an activity in the table for this button to be used."));
+        setToolTips();
         // Set up help text area
-        helpTextArea.setText("Welcome to the Activity View Screen!\n\n" +
-                "On this screen you can sort your activities by different values, view activities between selected dates, " +
-                "and view/edit the entries in an activity\n\n" +
-                "- To sort your activities simply click on the title of the\n" +
-                "  value you wish to sort by. Hint: Try clicking multiple\n" +
-                "  times.\n" +
-                "- To View activities between selected dates:\n" +
-                "\t- Click the \"From\" date selector and choose the date\n" +
-                "\t  to start from.\n" +
-                "\t- Click the \"To\" date selector and choose the date to\n" +
-                "\t  end on.\n" +
-                "\t- Click the \"Type\" Drop down and select a type of\n" +
-                "\t  activity to filter.\n" +
-                "\t- Click the Apply Filters button and the activities in\n" +
-                "\t  the table will be updated.\n" +
-                "\t- If you wish to return to viewing al activities simply\n" +
-                "\t  click the Clear Filters button.\n" +
-                "- To view/edit the entries in an activity:\n" +
-                "\t- Click the activity you wish to view/edit.\n" +
-                "\t- Click the View Entries button and you will be\n" +
-                "\t  navigated to the Entry View Screen.\n\n" +
-                "Hover the mouse over each button item to see what it is for.");
-        helpTextArea.setWrapText(true);
-        helpTextArea.setVisible(false);
-
-        ObservableList<String> types = FXCollections.observableArrayList();
-        types.add("All");
-        types.add("Walk");
-        types.add("Run");
-        types.add("Hike");
-        types.add("Cycle");
-        types.add("Swim");
-        types.add("Workout");
-        types.add("Other");
+        setUpHelpArea();
+        // Set up type combo box
+        createTypesList();
         typeSelect.setItems(types);
         typeSelect.setVisibleRowCount(8);
-        ObservableList<Activity> activities = FXCollections.observableArrayList(app.getCurrentProfile().getActivities());
+        // Set up table view
+        setUpTableView();
+        // Hide the help text field when focus is lost
+        helpTextArea.focusedProperty().addListener((ov, oldV, newV) -> {
+            if (!newV) {
+                helpTextArea.setVisible(false);
+            }
+        });
+    }
+
+
+    /**
+     * Set up method for the elements in the table view.
+     */
+    private void setUpTableView()
+    {
+        activities = FXCollections.observableArrayList(app.getCurrentProfile().getActivities());
         nameColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("name"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("typeString"));
         starttimeColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("timeString"));
@@ -104,14 +80,75 @@ public class ActivityViewerController {
         heartrateColumn.setCellValueFactory(new PropertyValueFactory<Activity, Integer>("averageHeartRate"));
         entrynoColumn.setCellValueFactory(new PropertyValueFactory<Activity, Integer>("entryno"));
         populateTable(activities);
-
-        // Hide the help text field when focus is lost
-        helpTextArea.focusedProperty().addListener((ov, oldV, newV) -> {
-            if (!newV) {
-                helpTextArea.setVisible(false);
-            }
-        });
     }
+
+
+    /**
+     * Method to create the types list for the types combo box
+     */
+    private void createTypesList()
+    {
+        types = FXCollections.observableArrayList();
+        types.add("All");
+        types.add("Walk");
+        types.add("Run");
+        types.add("Hike");
+        types.add("Cycle");
+        types.add("Swim");
+        types.add("Workout");
+        types.add("Other");
+    }
+
+
+    /**
+     * Set up method for the help text area
+     */
+    private void setUpHelpArea()
+    {
+        helpTextArea.setText("Welcome to the Activity View Screen!\n\n" +
+                             "On this screen you can sort your activities by different values, view activities between selected dates, " +
+                             "and view/edit the entries in an activity\n\n" +
+                             "- To sort your activities simply click on the title of the\n" +
+                             "  value you wish to sort by. Hint: Try clicking multiple\n" +
+                             "  times.\n" +
+                             "- To View activities between selected dates:\n" +
+                             "\t- Click the \"From\" date selector and choose the date\n" +
+                             "\t  to start from.\n" +
+                             "\t- Click the \"To\" date selector and choose the date to\n" +
+                             "\t  end on.\n" +
+                             "\t- Click the \"Type\" Drop down and select a type of\n" +
+                             "\t  activity to filter.\n" +
+                             "\t- Click the Apply Filters button and the activities in\n" +
+                             "\t  the table will be updated.\n" +
+                             "\t- If you wish to return to viewing al activities simply\n" +
+                             "\t  click the Clear Filters button.\n" +
+                             "- To view/edit the entries in an activity:\n" +
+                             "\t- Click the activity you wish to view/edit.\n" +
+                             "\t- Click the View Entries button and you will be\n" +
+                             "\t  navigated to the Entry View Screen.\n\n" +
+                             "Hover the mouse over each button item to see what it is for.");
+        helpTextArea.setWrapText(true);
+        helpTextArea.setVisible(false);
+    }
+
+
+    /**
+     * Set up method for the tool tips
+     */
+    private void setToolTips()
+    {
+        startDate.setTooltip(new Tooltip("Please select the date you wish to filter from."));
+        endDate.setTooltip(new Tooltip("Please select the date you wish to filter until."));
+        typeSelect.setTooltip(new Tooltip("Please select the type of activity you wish to view."));
+        filterApplyButton.setTooltip(new Tooltip("Click here to apply the selected filters."));
+        clearFiltersButton.setTooltip(new Tooltip("Click here to clear the filters and view all activities in your profile."));
+        helpButton.setTooltip(new Tooltip("Need Help?"));
+        activitiesTableView.setTooltip(new Tooltip("Your activities are listed in this table\n" +
+                                                   "Please click a title to sort the activities by that value."));
+        entryViewerButton.setTooltip(new Tooltip("Click here to view the Entries in the selected activity.\n" +
+                                                 "Note: You must have clicked on an activity in the table for this button to be used."));
+    }
+
 
     /**
      * method to fill the table with the activities to display. used by setUpScene as well as applyFilter
@@ -120,14 +157,6 @@ public class ActivityViewerController {
     private void populateTable(ObservableList<Activity> displayActivities)
     {
         activitiesTableView.setItems(displayActivities);
-//        nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-//        starttimeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-//        durationColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-//        speedColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-////        distanceColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-//        heartrateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-//        entrynoColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-
     }
 
     /**
@@ -152,7 +181,7 @@ public class ActivityViewerController {
         }
         ArrayList<Activity> typeFiltered = new ArrayList<>();
         for (Activity eachActivity : dateFiltered) {
-            if (typeSelected == null || typeSelected == "All" || typeSelected == eachActivity.getTypeString()) {
+            if (typeSelected == null || typeSelected.equals("All") || typeSelected.equals(eachActivity.getTypeString())) {
                 typeFiltered.add(eachActivity);
             }
         }
@@ -161,6 +190,10 @@ public class ActivityViewerController {
     }
 
 
+    /**
+     * Method called when the help button is pushed.
+     * Displays the help text area.
+     */
     @FXML private void displayHelp()
     {
         helpTextArea.setVisible(true);
@@ -168,6 +201,10 @@ public class ActivityViewerController {
     }
 
 
+    /**
+     * Method called when focus to the help text area is lost or when the pane is clicked on.
+     * Hides the help text area.
+     */
     @FXML public void hideHelpTextArea()
     {
         helpTextArea.setVisible(false);
@@ -191,7 +228,7 @@ public class ActivityViewerController {
     /**
      * method to open the entryViewer screen with the selected activity when the entryViewerButton is pressed
      */
-    @FXML public void openEntries() throws Exception
+    @FXML public void openEntries()
     {
         if(activitiesTableView.getSelectionModel().getSelectedItem() != null) {
             app.launchEntryViewerScene(activitiesTableView.getSelectionModel().getSelectedItem());
@@ -230,7 +267,7 @@ public class ActivityViewerController {
     /**
      * Method to launch the login scene.
      */
-    @FXML public void openChooseProfile() throws Exception
+    @FXML public void openChooseProfile()
     {
         moveDrawer();
         app.launchLoginScene();
@@ -239,7 +276,7 @@ public class ActivityViewerController {
     /**
      * Method to launch the view profile scene.
      */
-    @FXML public void openViewProfile() throws Exception
+    @FXML public void openViewProfile()
     {
         moveDrawer();
         app.launchProfileScene();
@@ -248,7 +285,7 @@ public class ActivityViewerController {
     /**
      * Method to launch the upload data scene.
      */
-    @FXML public void openUploadData() throws Exception
+    @FXML public void openUploadData()
     {
         moveDrawer();
         app.launchUploadDataScene();
@@ -257,7 +294,7 @@ public class ActivityViewerController {
     /**
      * Method to launch the view activities scene.
      */
-    @FXML public void openViewActivities() throws Exception
+    @FXML public void openViewActivities()
     {
         moveDrawer();
         app.launchActivityViewerScene();
@@ -266,7 +303,7 @@ public class ActivityViewerController {
     /**
      * Method to launch the goals scene.
      */
-    @FXML public void openGoals() throws Exception
+    @FXML public void openGoals()
     {
         moveDrawer();
         app.launchGoalsScene();
@@ -275,7 +312,7 @@ public class ActivityViewerController {
     /**
      * Method to launch the data analysis scene.
      */
-    @FXML public void openAnalysis() throws Exception
+    @FXML public void openAnalysis()
     {
         moveDrawer();
         app.launchDataAnalysisScene();

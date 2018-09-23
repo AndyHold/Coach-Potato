@@ -1,31 +1,35 @@
-package seng202.team10.Model;
+package seng202.team10.Model.Goals;
+
 
 import seng202.team10.Model.ActivitiesData.DateTime;
 
 import java.time.LocalDateTime;
 
-public class BmiGoal extends Goal {
-    private double goalBmi;
 
-    public BmiGoal(String name, DateTime start, DateTime target, double bmi)
+public class WeightGoal extends Goal {
+    private double goalWeight;
+
+    public WeightGoal(String name, DateTime start, DateTime target, double weight)
     {
-        super(name, start, target, "BMI", false);
-        goalBmi = bmi;
+        super(name, start, target, "Weight", false);
+        goalWeight = weight;
     }
 
     /**
-     * Getter method for the goal BMI
+     * Getter method for the goal weight
      * @return double
      */
-    public double getGoalBmi()
+    public double getGoalWeight()
     {
-        return this.goalBmi;
+        return this.goalWeight;
     }
 
-    public String reviewBmiGoal(double currentBmi)
+
+
+    public String reviewWeightGoal(double currentWeight)
     {
-        String progressDescription = "Your target for this goal was to have a BMI less than or equal to " + this.getGoalBmi() + " by " + this.getGoalTargetDate();
-        if (currentBmi <= this.getGoalBmi()) {
+        String progressDescription = "Your target for this goal was to weigh " + this.getGoalWeight() + " or less by " + this.getGoalTargetDate();
+        if (currentWeight <= this.getGoalWeight()) {
             progressDescription += "\nCongratulations you have completed this goal! It has been removed from your current goals and added to your achieved goals.";
         } else {
             LocalDateTime now1 = LocalDateTime.now();
@@ -33,11 +37,12 @@ public class BmiGoal extends Goal {
             if (!this.getGoalTargetDate().isAfter(now2)) {
                 progressDescription += "\n\nYou have failed to complete this goal in time. It has been removed from your current goals and added to your failed goals.";
             } else {
-                double difference = currentBmi - this.getGoalBmi();
-                progressDescription += "\n\nYou need to decrease your BMI by " + String.format("%.1f", difference) + " more to meet your goal.";
+                double difference = currentWeight - this.getGoalWeight();
+                progressDescription += "\n\nYou need to lose " + String.format("%.1f", difference) + " more kgs to meet your goal.";
             }
         }
         return progressDescription;
     }
+
 
 }

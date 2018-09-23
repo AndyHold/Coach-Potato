@@ -1,34 +1,31 @@
-package seng202.team10.Model;
-
+package seng202.team10.Model.Goals;
 
 import seng202.team10.Model.ActivitiesData.DateTime;
 
 import java.time.LocalDateTime;
 
+public class TimeGoal extends Goal {
+    private double goalTime;
 
-public class DistanceGoal extends Goal {
-    private double goalDistance;
-
-    public DistanceGoal(String name, DateTime start, DateTime target, double distance)
-    {
-        super(name, start, target, "Distance", false);
-        goalDistance = distance;
+    public TimeGoal(String name, DateTime start, DateTime target, double time) {
+        super(name, start, target, "Time", false);
+        goalTime = time;
     }
-
 
     /**
-     * Getter method for the goal distance
+     * Getter method for the goal time
      * @return double
      */
-    public double getGoalDistance()
+    public double getGoalTime()
     {
-        return this.goalDistance;
+        return this.goalTime;
     }
 
-    public String reviewDistanceGoal(double dist)
+
+    public String reviewTimeGoal(double time)
     {
-        String progressDescription = "Your target for this goal was to cover " + this.getGoalDistance() + " km in distance by " + this.getGoalTargetDate();
-        if (dist >= this.getGoalDistance()) {
+        String progressDescription = "Your target for this goal was to excersize for " + this.getGoalTime() + " minutes by " + this.getGoalTargetDate();
+        if (time >= this.getGoalTime()) {
             progressDescription += "\nCongratulations you have completed this goal! It has been removed from your current goals and added to your achieved goals.";
         } else {
             LocalDateTime now1 = LocalDateTime.now();
@@ -36,12 +33,11 @@ public class DistanceGoal extends Goal {
             if (!this.getGoalTargetDate().isAfter(now2)) {
                 progressDescription += "\n\nYou have failed to complete this goal in time. It has been removed from your current goals and added to your failed goals.";
             } else {
-                double difference = this.getGoalDistance() - dist;
-                progressDescription += "\n\nYou need to cover " + String.format("%.1f", difference) + " more metres to meet your goal.";
+                double difference = this.getGoalTime() - time;
+                progressDescription += "\n\nYou need to complete " + String.format("%.1f", difference) + " more minutes of activities to meet your goal.";
             }
         }
         return progressDescription;
     }
-
 
 }

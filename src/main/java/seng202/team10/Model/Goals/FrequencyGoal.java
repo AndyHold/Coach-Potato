@@ -1,4 +1,4 @@
-package seng202.team10.Model;
+package seng202.team10.Model.Goals;
 
 
 import seng202.team10.Model.ActivitiesData.DateTime;
@@ -39,7 +39,12 @@ public class FrequencyGoal extends Goal {
                 progressDescription += "\n\nYou have failed to complete this goal in time. It has been removed from your current goals and added to your failed goals.";
             } else {
                 double difference = this.getGoalFrequency() - freq;
-                progressDescription += "\n\nYou need to complete " + String.format("%.0f", difference) + " more activities to meet your goal.";
+                if (difference == 1) {
+                    progressDescription += "\n\nYou need to complete 1 more activity to meet your goal.";
+                } else {
+                    progressDescription += "\n\nYou need to complete " + String.format("%.0f", difference) + " more activities to meet your goal.";
+                }
+
             }
         }
         return progressDescription;

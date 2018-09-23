@@ -1,8 +1,7 @@
 package seng202.team10.Control;
 
 import seng202.team10.Model.ActivitiesData.DateTime;
-import seng202.team10.Model.Goal;
-import seng202.team10.Model.Goals;
+import seng202.team10.Model.Goals.Goals;
 import seng202.team10.Model.UserProfile;
 
 import java.time.LocalDateTime;
@@ -156,7 +155,7 @@ public class InputValidator {
                 return  false;
             }
         } else if (type.equals("BMI")) {
-            if (user.getBmi() <= target || target <= 10) {
+            if (user.calcBmi() <= target || target <= 10) {
                 return false;
             }
         } else { //goal must be of type Time

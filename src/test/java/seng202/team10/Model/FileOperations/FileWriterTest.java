@@ -5,8 +5,6 @@ import seng202.team10.Model.Exceptions.InvalidWeightException;
 import seng202.team10.Model.Exceptions.UserNameException;
 import seng202.team10.Model.UserProfile;
 
-import javax.naming.InvalidNameException;
-
 import static org.junit.Assert.*;
 
 public class FileWriterTest {

@@ -11,7 +11,9 @@ import javafx.stage.Stage;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.ActivitiesData.Route;
+import seng202.team10.Model.Exceptions.ExistingElementException;
 import seng202.team10.Model.Exceptions.InvalidUserException;
+import seng202.team10.Model.Exceptions.NoDataFoundException;
 import seng202.team10.Model.Exceptions.UniqueNameException;
 import seng202.team10.Model.FileOperations.FileReader;
 import seng202.team10.Model.FileOperations.FileWriter;
@@ -19,6 +21,7 @@ import seng202.team10.Model.FileOperations.Parser;
 import seng202.team10.Model.UserProfile;
 import seng202.team10.Visual.*;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
@@ -32,7 +35,7 @@ public class GUIController extends Application{
 
     private FXMLLoader mainLoader;
     private Scene mainScene;
-    private MainScreenController mainController;
+    private MenuBarController mainController;
 
     private FXMLLoader loginLoader;
     private Scene loginScene;
@@ -97,6 +100,7 @@ public class GUIController extends Application{
             loadAllUsers();
             loadAllScenes();
             primaryStage.setTitle("Coach Potato");
+            primaryStage.setResizable(false);
             if (users.isEmpty()) {
                 primaryStage.setScene(createProfileScene);
             } else {
@@ -111,7 +115,8 @@ public class GUIController extends Application{
     /**
      * loads all the users in the profiles folder and adds them to the users arraylist
      */
-    private void loadAllUsers() {
+    private void loadAllUsers()
+    {
         ArrayList<String> userNames = dataReader.getExistingUsers();
         for(String username: userNames){
             users.add(dataReader.loadExistingProfile(username));
@@ -144,9 +149,9 @@ public class GUIController extends Application{
      *
      * @param user  The user profile that the data is uploaded to.
      * @param filePath The file path the data is stored at.
-     * @throws Exception Not implemented yet.
      */
-    public void uploadDataToUser(UserProfile user, String filePath) throws Exception{
+    public void uploadDataToUser(UserProfile user, String filePath) throws FileNotFoundException, NoDataFoundException, ExistingElementException
+    {
         ArrayList<String> fileContents = parser.getFileContents(filePath);
         ArrayList<ArrayList<String>> formattedFileContents = parser.formatFileContents(fileContents);
         ArrayList<Activity> activities = parser.processFile(formattedFileContents);
@@ -156,7 +161,6 @@ public class GUIController extends Application{
 
     /**
      * Sets the scene on the primary stage to the login scene.
-     * @throws Exception Not implemented.
      */
     public void launchLoginScene()
     {
@@ -172,7 +176,8 @@ public class GUIController extends Application{
         uploadDataScene
      * Sets the scene on the primary stage to the profile scene.
      */
-    public void launchProfileScene() {
+    public void launchProfileScene()
+    {
         profileController.setUpScene();
         dataWriter.saveProfile(currentUser);
         profileController.setUserDetails();
@@ -193,7 +198,8 @@ public class GUIController extends Application{
     }
 
 
-    public void launchMapScene(Activity activity) {
+    public void launchMapScene(Activity activity)
+    {
         mapController.setActivity(activity);
         mapController.setUpScene();
         Route newRoute = mapController.makeRoute(activity);
@@ -201,7 +207,8 @@ public class GUIController extends Application{
         primaryStage.setScene(mapScene);
     }
 
-    public void launchGoalsScene() {
+    public void launchGoalsScene()
+    {
         //goalsController.setUpScene();
         dataWriter.saveProfile(currentUser);
         goalsController.addGoalsToTable();
@@ -211,7 +218,8 @@ public class GUIController extends Application{
     /**
      * Sets the scene on the primary stage to the upload data scene.
      */
-    public void launchUploadDataScene() {
+    public void launchUploadDataScene()
+    {
         uploadDataController.setUpScene();
         dataWriter.saveProfile(currentUser);
         primaryStage.setScene(uploadDataScene);
@@ -257,7 +265,8 @@ public class GUIController extends Application{
         primaryStage.setScene(activityViewerScene);
     }
 
-    public void refreshMapScene(Activity activity) {
+    public void refreshMapScene(Activity activity)
+    {
         this.launchDataAnalysisScene();
         try {
             TimeUnit.MICROSECONDS.sleep(90000);
@@ -272,7 +281,8 @@ public class GUIController extends Application{
      * setUpScene methods for each.
      * @throws Exception Not implemented.
      */
-    public void loadAllScenes() throws Exception{
+    public void loadAllScenes() throws Exception
+    {
 //        loginScene = loadNewScene("/fxml/loginScreen.fxml");
 //        createProfileScene = loadNewScene("/fxml/createProfileScreen.fxml");
 //        profileScene = loadNewScene("/fxml/profileScreen.fxml");
@@ -393,7 +403,8 @@ public class GUIController extends Application{
      * Gets the currently logged in user.
      * @return  a UserProfile object of the currently logged in user.
      */
-    public UserProfile getCurrentProfile() {
+    public UserProfile getCurrentProfile()
+    {
         return this.currentUser;
     }
 
@@ -401,7 +412,8 @@ public class GUIController extends Application{
      * Gets the list of user profiles.
      * @return  a ArrayList<UserProfile> object of the user profiles.
      */
-    public ArrayList<UserProfile> getUsers() {
+    public ArrayList<UserProfile> getUsers()
+    {
         return users;
     }
 
@@ -409,14 +421,16 @@ public class GUIController extends Application{
      * Sets the user profiles.
      * @param users  The list of users stored in the app.
      */
-    public void setUsers(ArrayList<UserProfile> users) {
+    public void setUsers(ArrayList<UserProfile> users)
+    {
         this.users = users;
     }
 
 
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         launch(args);
     }
 

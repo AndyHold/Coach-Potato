@@ -30,6 +30,8 @@ public class EntryViewerController {
     @FXML private TableColumn<Entry, String> latitudeColumn;
     @FXML private TableColumn<Entry, String> longitudeColumn;
     @FXML private TableColumn<Entry, String> elevationColumn;
+    @FXML private TableColumn<Entry, String> distanceColumn;
+    @FXML private TableColumn<Entry, String> speedColumn;
     @FXML private Button activityReturnButton;
     @FXML private Button helpButton;
     @FXML private TextArea helpTextArea;
@@ -42,47 +44,14 @@ public class EntryViewerController {
     public void setUpScene(Activity loadActivity)
     {
         // Set tool tips
-        entriesTableView.setTooltip(new Tooltip("The entries for this activity are listed in this table\n" +
-                "Double click on a cell to edit that value.\n" +
-                "Note: A pop up will occur if an invalid value is used."));
-        activityReturnButton.setTooltip(new Tooltip("Click here to return to the Activity View Screen."));
-        helpButton.setTooltip(new Tooltip("Need Help?"));
+        setToolTips();
         // Set up help text area
-        helpTextArea.setText("Welcome to the Entry View Screen!\n\n" +
-                "On this screen you can view and edit the entries in the activity displayed or return to the Activity View Screen.\n" +
-                "To edit an entry:\n" +
-                "\t- Locate the entry and field to be edited in the table.\n" +
-                "\t- Double click on that cell in the table.\n" +
-                "\t- You should now be able to edit that values in the\n" +
-                "\t  table.\n" +
-                "\t- When you are finished push enter and the value will\n" +
-                "\t  be updated.\n" +
-                "\tIf you enter an invalid value a pop up will appear to\n" +
-                "\tlet you know where you went wrong.\n" +
-                "To return to the Activity View Screen simply click the Back to Activity View button.\n\n" +
-                "Hover over each item for a brief description of what it does.");
-        helpTextArea.setVisible(false);
-        helpTextArea.setWrapText(true);
-
+        setUpHelpTextArea();
+        // Set the activity
         loadedActivity = loadActivity;
         activityNameLabel.setText(loadedActivity.getName());
-        entries = FXCollections.observableArrayList(loadedActivity.getEntries());
-        dateColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("dateString"));
-        timeColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("timeString"));
-        heartRateColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("heartRateString"));
-        latitudeColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("latitudeString"));
-        longitudeColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("longitudeString"));
-        elevationColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("elevationString"));
-        // Load entries array
-        entriesTableView.setItems(entries);
-        entriesTableView.setEditable(true);
-        dateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        timeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        heartRateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        latitudeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        longitudeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        elevationColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-
+        // Set up the content for the table view
+        setUpTableView();
         // Hide the help text field when focus is lost
         helpTextArea.focusedProperty().addListener((ov, oldV, newV) -> {
             if (!newV) {
@@ -92,6 +61,73 @@ public class EntryViewerController {
     }
 
 
+    /**
+     * Method to set up the table view with the entries from the activity
+     */
+    private void setUpTableView()
+    {
+        // Create and set property values
+        entries = FXCollections.observableArrayList(loadedActivity.getEntries());
+        dateColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("dateString"));
+        timeColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("timeString"));
+        heartRateColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("heartRateString"));
+        latitudeColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("latitudeString"));
+        longitudeColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("longitudeString"));
+        elevationColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("elevationString"));
+        distanceColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("distanceString"));
+        speedColumn.setCellValueFactory(new PropertyValueFactory<Entry, String>("velocityString"));
+        // Load entries array
+        entriesTableView.setItems(entries);
+        entriesTableView.setEditable(true);
+        dateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        timeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        heartRateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        latitudeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        longitudeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        elevationColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+    }
+
+
+    /**
+     * Set up method for the help text area
+     */
+    private void setUpHelpTextArea()
+    {
+        helpTextArea.setText("Welcome to the Entry View Screen!\n\n" +
+                             "On this screen you can view and edit the entries in the activity displayed or return to the Activity View Screen.\n" +
+                             "To edit an entry:\n" +
+                             "\t- Locate the entry and field to be edited in the table.\n" +
+                             "\t- Double click on that cell in the table.\n" +
+                             "\t- You should now be able to edit that values in the\n" +
+                             "\t  table.\n" +
+                             "\t- When you are finished push enter and the value will\n" +
+                             "\t  be updated.\n" +
+                             "\tIf you enter an invalid value a pop up will appear to\n" +
+                             "\tlet you know where you went wrong.\n" +
+                             "To return to the Activity View Screen simply click the Back to Activity View button.\n\n" +
+                             "Hover over each item for a brief description of what it does.");
+        helpTextArea.setVisible(false);
+        helpTextArea.setWrapText(true);
+    }
+
+
+    /**
+     * Set up method for the tool tips
+     */
+    private void setToolTips()
+    {
+        entriesTableView.setTooltip(new Tooltip("The entries for this activity are listed in this table\n" +
+                                                "Double click on a cell to edit that value.\n" +
+                                                "Note: A pop up will occur if an invalid value is used."));
+        activityReturnButton.setTooltip(new Tooltip("Click here to return to the Activity View Screen."));
+        helpButton.setTooltip(new Tooltip("Need Help?"));
+    }
+
+
+    /**
+     * Method called when the help button is pushed.
+     * Displays the help text area.
+     */
     @FXML private void displayHelp()
     {
         helpTextArea.setVisible(true);
@@ -99,11 +135,16 @@ public class EntryViewerController {
     }
 
 
+    /**
+     * Method called when focus to the help text area is lost or when the pane is clicked on.
+     * Hides the help text area.
+     */
     @FXML public void hideHelpTextArea()
     {
         helpTextArea.setVisible(false);
         helpButton.requestFocus();
     }
+
 
     /**
      * Setter method to set the GUI controller for this Scene
@@ -118,7 +159,7 @@ public class EntryViewerController {
     /**
      * Method to return to the activityViewer when the activityReturnButton is pressed and saves changes to entries
      */
-    @FXML public void returnToActivities() throws Exception
+    @FXML public void returnToActivities()
     {
         ArrayList<Entry> savingEntries = new ArrayList<>(this.entries);
         loadedActivity.setEntries(savingEntries);

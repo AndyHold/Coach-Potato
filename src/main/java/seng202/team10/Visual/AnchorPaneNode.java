@@ -1,6 +1,5 @@
 package seng202.team10.Visual;
 
-import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import seng202.team10.Control.DataAnalysis;
@@ -89,7 +88,7 @@ public class AnchorPaneNode extends AnchorPane {
     public AnchorPaneNode(Node... children) {
         super(children);
         // Add action handler for mouse clicked
-        this.setOnMouseEntered(e -> this.setStyle("-fx-background-color: #C2185B"));
+        this.setOnMouseEntered(e -> this.setStyle("-fx-background-color: #E91E63"));
         this.setOnMouseExited(e -> this.setStyle("-fx-background-color: null"));
     }
 
