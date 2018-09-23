@@ -85,6 +85,7 @@
       </TabPane>
       <Label fx:id="activityNameLabel" layoutX="607.0" layoutY="51.0" text="Name Of Activity" />
       <Label fx:id="timeTakenLabel" layoutX="937.0" layoutY="51.0" text="Total Time Taken" />
+<<<<<<< HEAD
       <Label fx:id="noActivitiesLabel" layoutX="379.0" layoutY="292.0" text="No activities found" visible="false" />
 <<<<<<< HEAD
       <ListView fx:id="activityList" layoutX="43.0" layoutY="122.0" onMouseClicked="#refresh" prefHeight="504.0" prefWidth="336.0" />
@@ -128,7 +129,10 @@
       </ToolBar>
 =======
 =======
+=======
+>>>>>>> c81adc8f... placed the no activities found label to the right place on data analysis screen.
       <ListView fx:id="activityList" layoutX="43.0" layoutY="122.0" onMouseClicked="#refresh" prefHeight="504.0" prefWidth="400.0" style="-fx-background-color: mediumpurple; -fx-border-color: #435;" />
+      <Label fx:id="noActivitiesLabel" layoutX="180.0" layoutY="350.0" text="No activities found" visible="false" />
       <Label layoutX="208.0" layoutY="87.0" text="Activities" />
 >>>>>>> 46edd0eb... GUI changes - changed colour scheme to make it not look ugy for now, will make it better for deliverable 3.
        <ToolBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="1280.0" style="-fx-background-color: #435;">
