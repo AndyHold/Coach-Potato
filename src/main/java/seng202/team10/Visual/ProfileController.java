@@ -1,10 +1,6 @@
 package seng202.team10.Visual;
 
 import javafx.animation.TranslateTransition;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
@@ -19,7 +15,7 @@ import seng202.team10.Model.Exceptions.InvalidHeightException;
 import seng202.team10.Model.Exceptions.InvalidWeightException;
 import seng202.team10.Model.Exceptions.UniqueNameException;
 import seng202.team10.Model.Exceptions.UserNameException;
-import seng202.team10.Model.UserProfile;
+import seng202.team10.Model.Goals.UserProfile;
 
 import java.text.DecimalFormat;
 import java.time.YearMonth;

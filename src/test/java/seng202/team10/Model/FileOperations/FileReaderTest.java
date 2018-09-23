@@ -1,13 +1,11 @@
 package seng202.team10.Model.FileOperations;
 
-import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import seng202.team10.Model.Exceptions.UserNameException;
-import seng202.team10.Model.UserProfile;
+import seng202.team10.Model.Goals.UserProfile;
 
-import javax.naming.InvalidNameException;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;

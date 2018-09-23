@@ -1,12 +1,11 @@
 package seng202.team10.Visual;
 
-import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import seng202.team10.Control.DataAnalysis;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
-import seng202.team10.Model.UserProfile;
+import seng202.team10.Model.Goals.UserProfile;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
