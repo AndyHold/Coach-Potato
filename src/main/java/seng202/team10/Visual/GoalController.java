@@ -40,11 +40,11 @@ public class GoalController implements Controllable{
     @FXML private ListView failedListView;
     @FXML private TextArea progressText;
     @FXML private TextField achievedTypeTextField;
-    @FXML private TextField startDateTextField;
-    @FXML private TextArea goalTextArea;
+    @FXML private TextField achievedStartDateTextField;
+    @FXML private TextArea achievedGoalTextArea;
     @FXML private TextField failedTypeTextField;
-    @FXML private TextField startDateTextField2;
-    @FXML private TextArea goalTextArea2;
+    @FXML private TextField failedStartDateTextField;
+    @FXML private TextArea failedGoalTextArea;
     @FXML private ListView futureGoalsListView;
     @FXML private TextField futureTypeTextField;
     @FXML private TextField futureDateTextField;
@@ -73,11 +73,35 @@ public class GoalController implements Controllable{
         currentGoalsCombo.setTooltip(new Tooltip("Click here to select the current goal you would like to either view or remove."));
         reviewButton.setTooltip(new Tooltip("Click here to review the progress of the selected goal."));
         removeGoalButton.setTooltip(new Tooltip("Click here to remove the selected goal from your profile."));
+        progressText.setTooltip(new Tooltip("This is the description window.\n" +
+                "The description of your selected goal is displayed here."));
         // Past Tab
         achievedListView.setTooltip(new Tooltip("This is a list of your past goals that were achieved.\n" +
                 "Click on a goal to review it."));
-        achievedTypeTextField.setTooltip(new Tooltip("What up?"));
-
+        achievedTypeTextField.setTooltip(new Tooltip("This is where the goal type is displayed."));
+        achievedStartDateTextField.setTooltip(new Tooltip("This is where the start date of the goal is displayed."));
+        achievedGoalTextArea.setTooltip(new Tooltip("This is where the description of the selected achieved goal is displayed."));
+        failedListView.setTooltip(new Tooltip("This is a list of your past goals that were failed.\n" +
+                "Click on a goal to review it."));
+        failedTypeTextField.setTooltip(new Tooltip("This is where the goal type is displayed."));
+        failedStartDateTextField.setTooltip(new Tooltip("This is where the start date of the goal is displayed."));
+        failedGoalTextArea.setTooltip(new Tooltip("This is where the description of the selected failed goal is displayed."));
+        // Future Tab
+        futureGoalsListView.setTooltip(new Tooltip("This is a list of your future goals.\n" +
+                "Click on a goal to review it."));
+        futureTypeTextField.setTooltip(new Tooltip("This is where the goal type is displayed."));
+        futureTypeTextField.setTooltip(new Tooltip("This is where the start date of the goal is displayed."));
+        futureGoalTextArea.setTooltip(new Tooltip("This is where the description of the selected future goal is displayed."));
+        // Create Tab
+        goalTypeCombo.setTooltip(new Tooltip("Click here to select a goal type to create."));
+        startDatePicker.setTooltip(new Tooltip("Click here to select a date to start your goal on.\n" +
+                "Note: Goals cannot be started in the past."));
+        targetValueEntry.setTooltip(new Tooltip("Please enter a target value for your goal."));
+        goalNameEntry.setTooltip(new Tooltip("Please enter a unique name for your goal."));
+        targetDatePicker.setTooltip(new Tooltip("Click here to select a target date for your goal.\n" +
+                "Note: Your target date cannot be before your start date."));
+        createButton.setTooltip(new Tooltip("Click here to create your goal!\n" +
+                "If you have invalid or empty data fields a pop up will notify you what you need to fix."));
         // Set up help text areas
         setHelpTexts();
         helpTextArea.setVisible(false);
@@ -85,12 +109,12 @@ public class GoalController implements Controllable{
 
 
         achievedTypeTextField.setVisible(false);
-        startDateTextField.setVisible(false);
-        goalTextArea.setVisible(false);
+        achievedStartDateTextField.setVisible(false);
+        achievedGoalTextArea.setVisible(false);
 
         failedTypeTextField.setVisible(false);
-        startDateTextField2.setVisible(false);
-        goalTextArea2.setVisible(false);
+        failedStartDateTextField.setVisible(false);
+        failedGoalTextArea.setVisible(false);
 
 <<<<<<< HEAD
 //        String item = achievedListView.getSelectionModel().getSelectedItem().toString();
@@ -196,9 +220,60 @@ public class GoalController implements Controllable{
                 "- To navigate to another tab simply click on the tab you\n" +
                 "  wish to see at the top of the screen.\n\n" +
                 "Hover over each item to see a brief description of what it does.";
-        pastHelpText = "Welcome to the Goals Screen!\n\n";
-        futureHelpText = "Welcome to the Goals Screen!\n\n";
-        createHelpText = "Welcome to the Goals Screen!\n\n";
+        pastHelpText = "Welcome to the Goals Screen!\n\n" +
+                "You are currently on the Past Goals Tab.\n\n" +
+                "On this tab you can review your achieved goals, review your failed goals and navigate to another tab.\n" +
+                "- To review your achieved goals:\n" +
+                "\t- Select the goal you wish to review from the\n" +
+                "\t  Achieved Goals list.\n" +
+                "\t- Description fields will now appear with the details\n" +
+                "\t  of your selected goal.\n" +
+                "- To review your failed goals:\n" +
+                "\t- Select the goal you wish to review from the Failed\n" +
+                "\t  Goals list.\n" +
+                "\t- Description fields will now appear with the details\n" +
+                "\t  of your selected goal.\n" +
+                "- To navigate to another tab simply click on the tab you\n" +
+                "  wish to see at the top of the screen.\n\n" +
+                "Hover over each item to see a brief description of what it does.";
+        futureHelpText = "Welcome to the Goals Screen!\n\n" +
+                "You are currently on the Future Goals Tab.\n\n" +
+                "On this tab you can review your future goals and navigate to another tab.\n" +
+                "- To review your future goals:\n" +
+                "\t- Select the goal you wish to review from the\n" +
+                "\t  Future Goals list.\n" +
+                "\t- Description fields will now appear with the details\n" +
+                "\t  of your selected goal.\n" +
+                "- To navigate to another tab simply click on the tab you\n" +
+                "  wish to see at the top of the screen.\n\n" +
+                "Hover over each item to see a brief description of what it does.";
+        createHelpText = "Welcome to the Goals Screen!\n\n" +
+                "You are currently on the Create Goals Tab.\n\n" +
+                "On this tab you can create a new goal or navigate to a different tab.\n" +
+                "- To Create a new goal:\n" +
+                "\t- Click on the Goal Type drop down list and select a\n" +
+                "\t  goal type from the options.\n" +
+                "\t- Enter a name for your goal in the Enter Name text\n" +
+                "\t  box.\n" +
+                "\t- Name must be a unique goal name between 2 - 10\n" +
+                "\t  characters long.\n" +
+                "\t- Click on the Goal Start date picker and select a\n" +
+                "\t  date to start your goal on.\n" +
+                "\t- You cannot start a goal in the past.\n" +
+                "\t- Click on the Goal Target date picker and select a\n" +
+                "\t  target date for your goal to be achieved by.\n" +
+                "\t- You cannot select a target date before the start\n" +
+                "\t  date.\n" +
+                "\t- Enter a target value for your chosen goal type.\n" +
+                "\t- You cannot choose a target value that has already\n" +
+                "\t  been achieved.\n" +
+                "\t- Click on the Create button.\n" +
+                "\tYour new goal will be created and added to your\n" +
+                "\tprofile. you can review your created goals by\n" +
+                "\tnavigating to the current or future goals tabs.\n" +
+                "- To navigate to another tab simply click on the tab you\n" +
+                "  wish to see at the top of the screen.\n\n" +
+                "Hover over each item to see a brief description of what it does.";
     }
 
 
@@ -207,22 +282,25 @@ public class GoalController implements Controllable{
         helpTextArea.setVisible(true);
         helpTextArea.requestFocus();
         if (currentTab.isSelected()) {
-            setHelpTextArea(currentHelpText, 825, 270, 400);
+            setHelpTextArea(currentHelpText, 270, 400);
+            System.out.println("Current");
         } else if (futureTab.isSelected()) {
-            setHelpTextArea(futureHelpText, 825, 370, 300);
+            setHelpTextArea(futureHelpText,400, 270);
+            System.out.println("Future");
         } else if (createTab.isSelected()) {
-            setHelpTextArea(createHelpText, 825, 370, 300);
+            setHelpTextArea(createHelpText, 140, 530);
+            System.out.println("Create");
         } else if (pastTab.isSelected()) {
-            setHelpTextArea(pastHelpText, 825, 370, 300);
+            setHelpTextArea(pastHelpText,320, 350);
+            System.out.println("Past");
         }
     }
 
 
-    private void setHelpTextArea(String text, double xCoOrdinate, double yCoOrdinate, double height)
+    private void setHelpTextArea(String text, double yCoOrdinate, double height)
     {
         helpTextArea.setText(text);
         helpTextArea.setLayoutY(yCoOrdinate);
-        helpTextArea.setLayoutX(xCoOrdinate);
         helpTextArea.setPrefHeight(height);
     }
 
@@ -323,16 +401,22 @@ public class GoalController implements Controllable{
         }
 
         if (validInput) {
-            if (type.equals("Weight")) {
-                goalsInstance.createGoal(name, startDate, targetDate, type, false, doubleTarget);
-            } else if (type.equals("Frequency")) {
-                goalsInstance.createGoal(name, startDate, targetDate, type, false, target);
-            } else if (type.equals("Distance")) {
-                goalsInstance.createGoal(name, startDate, targetDate, type, false, doubleTarget);
-            } else if (type.equals("BMI")) {
-                goalsInstance.createGoal(name, startDate, targetDate, type, false, doubleTarget);
-            } else { //goal must be of type Time
-                goalsInstance.createGoal(name, startDate, targetDate, type, false, doubleTarget);
+            switch (type) {
+                case "Weight":
+                    goalsInstance.createGoal(name, startDate, targetDate, type, false, doubleTarget);
+                    break;
+                case "Frequency":
+                    goalsInstance.createGoal(name, startDate, targetDate, type, false, target);
+                    break;
+                case "Distance":
+                    goalsInstance.createGoal(name, startDate, targetDate, type, false, doubleTarget);
+                    break;
+                case "BMI":
+                    goalsInstance.createGoal(name, startDate, targetDate, type, false, doubleTarget);
+                    break;
+                default:  //goal must be of type Time
+                    goalsInstance.createGoal(name, startDate, targetDate, type, false, doubleTarget);
+                    break;
             }
 
             app.createPopUp(Alert.AlertType.INFORMATION, "Information", "Goal successfully created!");
@@ -385,7 +469,7 @@ public class GoalController implements Controllable{
                 }
             }
             if (goal != null) {
-                printGoalsReview(goal, achievedTypeTextField, startDateTextField, goalTextArea);
+                printGoalsReview(goal, achievedTypeTextField, achievedStartDateTextField, achievedGoalTextArea);
             }
         }
 
@@ -403,7 +487,7 @@ public class GoalController implements Controllable{
                 }
             }
             if (goal != null) {
-                printGoalsReview(goal, failedTypeTextField, startDateTextField2, goalTextArea2);
+                printGoalsReview(goal, failedTypeTextField, failedStartDateTextField, failedGoalTextArea);
             }
         }
     }
@@ -430,6 +514,7 @@ public class GoalController implements Controllable{
         typeText.setVisible(true);
         startDateText.setVisible(true);
         goalText.setVisible(true);
+<<<<<<< HEAD
         if (type.equals("Weight")) {
             typeText.setText(type);
             startDateText.setText(goal.getGoalStartDate().toString());
@@ -450,6 +535,34 @@ public class GoalController implements Controllable{
             typeText.setText(type);
             startDateText.setText(goal.getGoalStartDate().toString());
             goalText.setText("To spend " + ((TimeGoal) goal).getGoalTime() + " minutes exercising by " + goal.getGoalTargetDate());
+=======
+        switch (type) {
+            case "Weight":
+                typeText.setText(type);
+                startDateText.setText(goal.getGoalStartDate().toString());
+                goalText.setText("To weigh " + goal.getGoalWeight() + " kgs or less by " + goal.getGoalTargetDate());
+                break;
+            case "Frequency":
+                typeText.setText(type);
+                startDateText.setText(goal.getGoalStartDate().toString());
+                goalText.setText("To participate in " + goal.getGoalFrequency() + " activities by " + goal.getGoalTargetDate());
+                break;
+            case "Distance":
+                typeText.setText(type);
+                startDateText.setText(goal.getGoalStartDate().toString());
+                goalText.setText("To cover " + goal.getGoalDistance() + " metres by " + goal.getGoalTargetDate());
+                break;
+            case "BMI":
+                typeText.setText(type);
+                startDateText.setText(goal.getGoalStartDate().toString());
+                goalText.setText("To have a BMI of " + goal.getGoalBmi() + " or less by " + goal.getGoalTargetDate());
+                break;
+            default:  //goal must be of type Time
+                typeText.setText(type);
+                startDateText.setText(goal.getGoalStartDate().toString());
+                goalText.setText("To spend " + goal.getGoalTime() + " minutes exercising by " + goal.getGoalTargetDate());
+                break;
+>>>>>>> b24b217c... Finished implementing help buttons and tool tips in the goals Screen.
         }
     }
 
@@ -458,16 +571,22 @@ public class GoalController implements Controllable{
     public void displayUnits() {
         if (goalTypeCombo.getValue() != null) {
             String type = goalTypeCombo.getValue().toString();
-            if (type.equals("Weight")) {
-                unitsLabel.setText("kgs");
-            } else if (type.equals("Frequency")) {
-                unitsLabel.setText("activities");
-            } else if (type.equals("Distance")) {
-                unitsLabel.setText("metres");
-            } else if (type.equals("BMI")) {
-                unitsLabel.setText("BMI");
-            } else if (type.equals("Time")){
-                unitsLabel.setText("minutes");
+            switch (type) {
+                case "Weight":
+                    unitsLabel.setText("kgs");
+                    break;
+                case "Frequency":
+                    unitsLabel.setText("activities");
+                    break;
+                case "Distance":
+                    unitsLabel.setText("metres");
+                    break;
+                case "BMI":
+                    unitsLabel.setText("BMI");
+                    break;
+                case "Time":
+                    unitsLabel.setText("minutes");
+                    break;
             }
         }
     }
@@ -490,7 +609,7 @@ public class GoalController implements Controllable{
     /**
      * Method to launch the login scene.
      */
-    @FXML public void openChooseProfile() throws Exception
+    @FXML public void openChooseProfile()
     {
         moveDrawer();
         app.launchLoginScene();
@@ -499,7 +618,7 @@ public class GoalController implements Controllable{
     /**
      * Method to launch the view profile scene.
      */
-    @FXML public void openViewProfile() throws Exception
+    @FXML public void openViewProfile()
     {
         moveDrawer();
         app.launchProfileScene();
@@ -508,7 +627,7 @@ public class GoalController implements Controllable{
     /**
      * Method to launch the upload data scene.
      */
-    @FXML public void openUploadData() throws Exception
+    @FXML public void openUploadData()
     {
         moveDrawer();
         app.launchUploadDataScene();
@@ -517,7 +636,7 @@ public class GoalController implements Controllable{
     /**
      * Method to launch the view activities scene.
      */
-    @FXML public void openViewActivities() throws Exception
+    @FXML public void openViewActivities()
     {
         moveDrawer();
         app.launchActivityViewerScene();
@@ -526,7 +645,7 @@ public class GoalController implements Controllable{
     /**
      * Method to launch the goals scene.
      */
-    @FXML public void openGoals() throws Exception
+    @FXML public void openGoals()
     {
         moveDrawer();
         app.launchGoalsScene();
@@ -535,7 +654,7 @@ public class GoalController implements Controllable{
     /**
      * Method to launch the data analysis scene.
      */
-    @FXML public void openAnalysis() throws Exception
+    @FXML public void openAnalysis()
     {
         moveDrawer();
         app.launchDataAnalysisScene();
