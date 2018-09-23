@@ -453,6 +453,7 @@ public class UserProfile implements java.io.Serializable {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     /**
      * Getter method to get user's Body Mass Index (BMI)
@@ -462,6 +463,9 @@ public class UserProfile implements java.io.Serializable {
     public double getBmi() {
         return bmi;
 =======
+=======
+
+>>>>>>> 831a7d65... Got rid of getBmi func and replaced all usages with calls to calcBmi. Wrote more tests for Goals class.
     public String getBmiCategory() {
         calcBmi();
         String category;
@@ -610,5 +614,6 @@ public class UserProfile implements java.io.Serializable {
         averageHeartRate = sum/count;
         return averageHeartRate;
     }
+
 
 }

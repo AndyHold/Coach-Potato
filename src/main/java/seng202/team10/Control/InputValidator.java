@@ -156,7 +156,7 @@ public class InputValidator {
                 return  false;
             }
         } else if (type.equals("BMI")) {
-            if (user.getBmi() <= target || target <= 10) {
+            if (user.calcBmi() <= target || target <= 10) {
                 return false;
             }
         } else { //goal must be of type Time
