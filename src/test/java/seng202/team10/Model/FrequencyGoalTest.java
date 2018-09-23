@@ -3,6 +3,8 @@ package seng202.team10.Model;
 import org.junit.Before;
 import org.junit.Test;
 import seng202.team10.Model.ActivitiesData.DateTime;
+import seng202.team10.Model.Goals.FrequencyGoal;
+import seng202.team10.Model.Goals.Goal;
 
 import java.time.LocalDateTime;
 

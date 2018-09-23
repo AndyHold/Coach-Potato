@@ -5,9 +5,8 @@ import org.junit.Test;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.Exceptions.InvalidHeightException;
 import seng202.team10.Model.Exceptions.InvalidWeightException;
-import seng202.team10.Model.Exceptions.UniqueNameException;
 import seng202.team10.Model.Exceptions.UserNameException;
-import seng202.team10.Model.UserProfile;
+import seng202.team10.Model.Goals.UserProfile;
 
 import java.util.ArrayList;
 
