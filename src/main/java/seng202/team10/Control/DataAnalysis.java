@@ -14,7 +14,9 @@ import java.util.Calendar;
  */
 public class DataAnalysis {
 
+
     private ArrayList<Activity> activities;
+
 
     /**
      * Method to sort a list of activities by their date.
