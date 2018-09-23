@@ -523,6 +523,7 @@ public class UserProfile implements java.io.Serializable {
                 totalDistance += activity.getTotalDistance();
             }
         }
+
         return totalDistance;
     }
 
