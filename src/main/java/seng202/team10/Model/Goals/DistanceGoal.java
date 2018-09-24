@@ -25,6 +25,12 @@ public class DistanceGoal extends Goal {
         return this.goalDistance;
     }
 
+
+    /**
+     * Method to review a distance goal of the user. Determines whether the user has achieved, failed, or is still working towards a particular distance goal
+     * @param dist: double
+     * @return String
+     */
     public String reviewDistanceGoal(double dist)
     {
         String progressDescription = "Your target for this goal was to cover " + this.getGoalDistance() + " km in distance by " + this.getGoalTargetDate();
