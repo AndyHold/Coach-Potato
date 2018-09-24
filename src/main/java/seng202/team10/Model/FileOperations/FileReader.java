@@ -38,6 +38,7 @@ public class FileReader {
 
     /** opens a csv file and returns its contents as an arraylist of strings of each line
      * @param filename : the string of the filename being opened, eg. blablabla.csv (path is appended in function)
+     * @throws FileNotFoundException when there is no file at the file path
      * @return fileContents : ArrayList of strings, each is a line of the file*/
     public ArrayList openNewFile(String filename) throws FileNotFoundException{
 //        filename = "./FilesToLoad/" + filename;
@@ -52,7 +53,10 @@ public class FileReader {
     }
 
     /** checks whether the specified file exists. returns true if file is found, false if not
-     * @param filename : the string of the filename/path being checked*/
+     * @param filename : the string of the filename/path being checked
+     * @return boolean true if file exists, false if it doesn't
+     */
+
     public boolean checkFileExists(String filename){
         File tmpDir = new File(filename);
         return tmpDir.exists();
@@ -96,12 +100,14 @@ public class FileReader {
 
 
 
-    /** sets the local profile for the filereader to use. likely useless */
+    /** sets the local profile for the filereader to use
+     * @param activeProfile  A UserProfile being set as the local profile*/
     public void setLocalProfile(UserProfile activeProfile) {
         localProfile = activeProfile;
     }
 
-    /** returns the  profile the filereader last loaded */
+    /** returns the  profile the filereader last loaded
+     * @return Userprofile the local profile*/
     public UserProfile getLocalProfile(){
         return localProfile;
     }

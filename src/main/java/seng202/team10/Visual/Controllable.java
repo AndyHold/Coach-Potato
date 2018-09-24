@@ -11,7 +11,7 @@ public interface Controllable {
 
     /**
      * method to set the currently active scene to this one
-     * @param guiController
+     * @param guiController The main controller
      */
     public void setApp(GUIController guiController);
 
