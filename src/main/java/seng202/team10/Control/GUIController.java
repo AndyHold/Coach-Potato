@@ -251,6 +251,7 @@ public class GUIController extends Application {
         }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> d0273878... Checking if profiles folder exists and creating it if it doesn't upon startup
 =======
 >>>>>>> 316efe3... Checking if profiles folder exists and creating it if it doesn't upon startup
@@ -277,6 +278,15 @@ public class GUIController extends Application {
         }
 <<<<<<< HEAD
 >>>>>>> e7a69fc0... Worked extensively on the GUI. now have a working custom title bar, a new colour theme which has been implemented on login, profile, and createprofile screens.
+=======
+//        try {
+//            Added a test user.
+//            users.add(new UserProfile("Potato", 75, 180, new DateTime(2000, 1, 1, 1, 1, 1), "Male"));
+//            users.get(0).setMaxHeartRate(210);
+//        } catch (IllegalArgumentException exception) {
+//            createPopUp(Alert.AlertType.ERROR, "Error", "Could not find image");
+//        }
+>>>>>>> b3cd6623... last minute changes
             loadAllUsers();
             loadTitleBar();
             allowDrag(root, primaryStage);

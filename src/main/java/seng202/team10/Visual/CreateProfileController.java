@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import javafx.scene.layout.HBox;
 <<<<<<< HEAD
@@ -31,6 +32,8 @@ import javafx.scene.layout.VBox;
 =======
 import org.apache.commons.lang3.StringUtils;
 >>>>>>> ecba8978... Added Help Button functionality to Create Profile Screen
+=======
+>>>>>>> b3cd6623... last minute changes
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.Exceptions.*;
@@ -477,7 +480,7 @@ public class CreateProfileController implements Controllable
     private void setUserName(UserProfile userProfile)
     {
         try {
-            String nameString = StringUtils.capitalize(getTextFieldString(nameEntry).toLowerCase());
+            String nameString = getTextFieldString(nameEntry).substring(0,1).toUpperCase() + getTextFieldString(nameEntry).substring(1).toLowerCase();
             this.app.checkUniqueName(nameString);
             try {
                 userProfile.setName(nameString);
