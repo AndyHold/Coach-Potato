@@ -19,9 +19,15 @@ public enum GoalType {
     }
 
     /**
+<<<<<<< HEAD
      * Converts a type from a string to an enum
      * @param typeName
      * @return
+=======
+     * Method to get the goal type from the string typeName
+     * @param typeName: String
+     * @return GoalType
+>>>>>>> 44795a96... Found incomplete JavaDoc in goal subclasses and ActivityType and GoalType Enums. Finshed writing these
      */
     public static GoalType getTypeFromString(String typeName)
     {

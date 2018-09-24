@@ -29,6 +29,7 @@ public enum ActivityType implements Serializable {
     /**
      * determines and returns the type of the activity based on the name string.
      * possible types are walk, run, hike, cycle, swim, workout, other
+     * @param name: String
      * @return ActivityType
      * */
     public static ActivityType determineType(String name)
