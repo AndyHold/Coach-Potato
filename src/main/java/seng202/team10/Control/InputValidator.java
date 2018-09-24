@@ -7,6 +7,9 @@ import seng202.team10.Model.UserProfile;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+/**
+ * Input Validator Class for Coach Potato SENG202 2018S2
+ */
 public class InputValidator {
 
     /**
