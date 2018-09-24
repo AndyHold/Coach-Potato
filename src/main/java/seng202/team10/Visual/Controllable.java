@@ -9,7 +9,14 @@ import seng202.team10.Control.GUIController;
  */
 public interface Controllable {
 
+    /**
+     * method to set the currently active scene to this one
+     * @param guiController The main controller
+     */
     public void setApp(GUIController guiController);
 
+    /**
+     * method to run the initial setup of the scene
+     */
     public void setUpScene();
 }

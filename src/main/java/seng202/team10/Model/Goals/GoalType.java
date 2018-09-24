@@ -19,7 +19,7 @@ public enum GoalType {
     }
 
     /**
-     * Method to get the goal type from the string typeName
+     * Method to convert a goal type from a string to an enum
      * @param typeName: String
      * @return GoalType
      */

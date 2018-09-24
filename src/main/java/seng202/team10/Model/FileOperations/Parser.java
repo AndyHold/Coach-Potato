@@ -23,7 +23,8 @@ public class Parser {
     /**
      * Constructs and uses the methods of a FileReader object to
      * open and read the contents of a file. Must be a csv file.
-     *
+     * @param filePath  the location of the file.
+     * @throws  FileNotFoundException when there is no file at the location.
      * @return fileContents  An ArrayList containing an ArrayList containing string values.
      */
     public ArrayList<String> getFileContents(String filePath) throws FileNotFoundException
@@ -51,7 +52,7 @@ public class Parser {
      *
      * @param fileContents The unparsed contents of the file, in arraylist form with values
      *                     seperated with commas.
-     * @return formattedFile  An ArrayList<ArrayList<String>> that contains a list of lines,
+     * @return formattedFile  An ArrayList&gtArrayList&gtString&lt&lt that contains a list of lines,
      * that are each lists that contain each value in an index.
      */
     public ArrayList<ArrayList<String>> formatFileContents(ArrayList<String> fileContents)
@@ -71,8 +72,9 @@ public class Parser {
     /**
      *Processes a list of activities from the contents of a file.
      *Calls processActivity() in a loop.
-     *
-     * @return activites  An ArrayList<Activity> that contains every activity in the file.
+     * @param formattedFile  The formatted file to be processed.
+     * @throws NoDataFoundException when there is no data in the formatted file.
+     * @return activites  An ArrayList&gtActivity&lt that contains every activity in the file.
      */
     public ArrayList<Activity> processFile(ArrayList<ArrayList<String>> formattedFile) throws NoDataFoundException
     {
@@ -135,7 +137,9 @@ public class Parser {
      * Processes an activity in the file contents, called by the processFile() function.
      * Sets the name and date of the activity, then loops through the file
      * calling processLine() on each line, which is added to the activity object.
-     *
+     * @param formattedFile  The formatted file to be processed for one activity.
+     * @throws BadActivityException  when the activity cannot be parsed.
+     * @throws NoActivityFoundException when there is no activity in the file to process.
      * @return activity  An Activity object that contains a number of entries.
      */
     public Activity processActivity(ArrayList<ArrayList<String>> formattedFile) throws BadActivityException, NoActivityFoundException
@@ -193,7 +197,7 @@ public class Parser {
      * Processes an entry in the file contents, called by the processActivity() function.
      * Sets the time, heart rate and position of the entry, converting to int for time and
      * heart rate, and to a Position object for position.
-     *
+     * @param formattedFile  The formatted file to be processed.
      * @return entry  An entry which details a moment in time in an activity .
      */
     public Entry processLine(ArrayList<ArrayList<String>> formattedFile){
@@ -255,14 +259,26 @@ public class Parser {
 //        return removeCount;
 //    }
 
+    /**
+     * returns the number of activities that were not imported for various reasons
+     * @return int count of bad activities
+     */
     public int getBadActivities() {
         return badActivities;
     }
 
+    /**
+     * returns the current line index that the parser is working at
+     * @return index of line
+     */
     public int getLineIndex (){
         return linePosition;
     }
 
+    /**
+     * manually sets the parser to move to a specific line
+     * @param linePosition the line number to move to
+     */
     public void setLinePosition(int linePosition) {
         this.linePosition = linePosition;
     }

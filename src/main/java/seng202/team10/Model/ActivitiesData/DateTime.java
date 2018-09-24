@@ -423,7 +423,10 @@ public class DateTime implements Serializable {
         }};
     }
 
-
+    /**
+     * string representation of date and time
+     * @return
+     */
     @Override
     public String toString()
     {

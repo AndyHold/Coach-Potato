@@ -55,16 +55,16 @@
                   </Button>
                </children>
             </HBox>
-            <TableView fx:id="activitiesTableView" editable="true" prefHeight="550.0" prefWidth="1250.0" style="-fx-background-color: mediumpurple; -fx-border-color: #435;">
+            <TableView fx:id="activitiesTableView" editable="true" prefHeight="550.0" prefWidth="1250.0" maxHeight="550.0" maxWidth="1250.0" style="-fx-background-color: mediumpurple; -fx-border-color: #435;">
                <columns>
-                  <TableColumn fx:id="nameColumn" editable="false" prefWidth="274.0" style="-fx-background-color: mediumpurple; -fx-border-color: #435;" text="Name" />
-                  <TableColumn fx:id="typeColumn" editable="false" prefWidth="62.0" style="-fx-background-color: mediumpurple; -fx-border-color: #435;" text="Type" />
-                  <TableColumn fx:id="starttimeColumn" editable="false" prefWidth="234.0" style="-fx-background-color: mediumpurple; -fx-border-color: #435;" text="Start Time" />
-                  <TableColumn fx:id="durationColumn" editable="false" prefWidth="122.0" style="-fx-background-color: mediumpurple; -fx-border-color: #435;" text="Duration (mins)" />
-                  <TableColumn fx:id="speedColumn" editable="false" prefWidth="174.0" style="-fx-background-color: mediumpurple; -fx-border-color: #435;" text="Average Speed (km/h)" />
-                  <TableColumn fx:id="distanceColumn" editable="false" prefWidth="111.0" style="-fx-background-color: mediumpurple; -fx-border-color: #435;" text="Distance (km)" />
-                  <TableColumn fx:id="heartrateColumn" editable="false" prefWidth="195.0" style="-fx-background-color: mediumpurple; -fx-border-color: #435;" text="Average Heartrate (BPM)" />
-                  <TableColumn fx:id="entrynoColumn" editable="false" maxWidth="483.0" minWidth="0.0" prefWidth="76.0" style="-fx-background-color: mediumpurple; -fx-border-color: #435;" text="Entries" />
+                  <TableColumn fx:id="nameColumn" editable="false"      prefWidth="180.0" minWidth="180.0" maxWidth="180.0" style="-fx-background-color: mediumpurple; -fx-border-color: #435;" text="Name" />
+                  <TableColumn fx:id="typeColumn" editable="false"      prefWidth="60.0"  minWidth="60.0"  maxWidth="060.0" style="-fx-background-color: mediumpurple; -fx-border-color: #435;" text="Type" />
+                  <TableColumn fx:id="starttimeColumn" editable="false" prefWidth="220.0" minWidth="220.0" maxWidth="220.0" style="-fx-background-color: mediumpurple; -fx-border-color: #435;" text="Start Time" />
+                  <TableColumn fx:id="durationColumn" editable="false"  prefWidth="150.0" minWidth="150.0" maxWidth="150.0" style="-fx-background-color: mediumpurple; -fx-border-color: #435;" text="Duration (mins)" />
+                  <TableColumn fx:id="speedColumn" editable="false"     prefWidth="170.0" minWidth="200.0" maxWidth="170.0" style="-fx-background-color: mediumpurple; -fx-border-color: #435;" text="Average Speed (km/h)" />
+                  <TableColumn fx:id="distanceColumn" editable="false"  prefWidth="140.0" minWidth="140.0" maxWidth="140.0" style="-fx-background-color: mediumpurple; -fx-border-color: #435;" text="Distance (km)" />
+                  <TableColumn fx:id="heartrateColumn" editable="false" prefWidth="200.0" minWidth="200.0" maxWidth="200.0" style="-fx-background-color: mediumpurple; -fx-border-color: #435;" text="Average Heartrate (BPM)" />
+                  <TableColumn fx:id="entrynoColumn" editable="false"   prefWidth="130.0" minWidth="100.0" maxWidth="130.0" style="-fx-background-color: mediumpurple; -fx-border-color: #435;" text="Entries" />
                </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

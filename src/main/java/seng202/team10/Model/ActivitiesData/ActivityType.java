@@ -56,6 +56,10 @@ public enum ActivityType implements Serializable {
     }
 
 
+    /**
+     * returns the type as a string
+     * @return string
+     */
     @Override
     public String toString()
     {

@@ -84,6 +84,11 @@ public class GUIController extends Application{
 
     //private Goals goals = new Goals(currentUser);
 
+    /**
+     * A lot of the initial setup when the program is launched. loads profiles and scenes to the stage
+     * @param primaryStage
+     * @throws Exception
+     */
     @Override
     public void start(Stage primaryStage) throws Exception
     {
@@ -169,11 +174,12 @@ public class GUIController extends Application{
         primaryStage.setScene(loginScene);
     }
 
-    /**dNewScene("/fxml/loginScreen.fxml");
+    /*dNewScene("/fxml/loginScreen.fxml");
         createProfileScene = loadNewScene("/fxml/createProfileScreen.fxml");
         profileScene = loadNewScene("/fxml/profileScreen.fxml");
-//        goalsScene = loadNewScene("/fxml/goalsScreen.fxml");
-        uploadDataScene
+        goalsScene = loadNewScene("/fxml/goalsScreen.fxml");
+        uploadDataScene */
+     /**
      * Sets the scene on the primary stage to the profile scene.
      */
     public void launchProfileScene()
@@ -184,7 +190,11 @@ public class GUIController extends Application{
         primaryStage.setScene(profileScene);
     }
 
-
+    /**
+     * checks to see if a profile already exists with a specific username
+     * @param userName the username being checked
+     * @throws UniqueNameException
+     */
     public void checkUniqueName(String userName) throws UniqueNameException
     {
         if (currentUser == null || !userName.contentEquals(currentUser.getName())) {
@@ -197,7 +207,10 @@ public class GUIController extends Application{
 
     }
 
-
+    /**
+     * sets up and launches the map scene for a specific activity
+     * @param activity the activity being mapped
+     */
     public void launchMapScene(Activity activity)
     {
         mapController.setActivity(activity);
@@ -207,6 +220,9 @@ public class GUIController extends Application{
         primaryStage.setScene(mapScene);
     }
 
+    /**
+     * sets up the goals screen and loads it onto the primary stage
+     */
     public void launchGoalsScene()
     {
         //goalsController.setUpScene();
@@ -260,11 +276,15 @@ public class GUIController extends Application{
      */
     public void launchActivityViewerScene()
     {
-        activityViewerController.setUpScene();
         dataWriter.saveProfile(currentUser);
+        activityViewerController.setUpScene();
         primaryStage.setScene(activityViewerScene);
     }
 
+    /**
+     * updates the map scene with a specific activity
+     * @param activity the activity being mapped
+     */
     public void refreshMapScene(Activity activity)
     {
         this.launchDataAnalysisScene();
@@ -376,7 +396,6 @@ public class GUIController extends Application{
      */
     public void createUser(UserProfile newUser) throws InvalidUserException
     {
-        //TODO this should be in UserProfile???
         if (newUser.getName() != null &&
                 newUser.getWeight() != 0.0 &&
                 newUser.getHeight() != 0.0 &&
@@ -427,8 +446,10 @@ public class GUIController extends Application{
     }
 
 
-
-
+    /**
+     * obligatory main method. launches the thing
+     * @param args
+     */
     public static void main(String[] args)
     {
         launch(args);

@@ -233,7 +233,6 @@ public class Activity implements Serializable {
 
     /**
      * Setter method for the velocity at each Entry in the Activity
-     * TODO test this method.
      */
     public void calculateEntriesVelocity()
     {
@@ -286,7 +285,7 @@ public class Activity implements Serializable {
 
     /**
      * Getter method for the ArrayList<Entry> entries
-     * @return ArrayList<Entry>
+     * @return ArrayList&gtEntry&lt
      */
     public ArrayList<Entry> getEntries()
     {
