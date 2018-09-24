@@ -56,7 +56,10 @@ public class CalenderPaneController {
 
     /**
      * Method to create a calendar view
-     * @param (yearMonth, app, profileController): (year month to create the calendar of, GuiController, ProfileController)
+     * @param yearMonth year month to create the calendar of
+     * @param app  The GUIController that controls the controllers.
+     * @param profileController  The profile controller that controls the profile screen
+     *
      */
     public CalenderPaneController(YearMonth yearMonth, GUIController app, ProfileController profileController)
     {
