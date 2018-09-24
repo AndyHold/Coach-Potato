@@ -4,7 +4,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import org.apache.commons.lang3.StringUtils;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.Exceptions.*;
@@ -383,7 +382,7 @@ public class CreateProfileController implements Controllable
     private void setUserName(UserProfile userProfile)
     {
         try {
-            String nameString = StringUtils.capitalize(getTextFieldString(nameEntry).toLowerCase());
+            String nameString = getTextFieldString(nameEntry).substring(0,1).toUpperCase() + getTextFieldString(nameEntry).substring(1).toLowerCase();
             this.app.checkUniqueName(nameString);
             try {
                 userProfile.setName(nameString);

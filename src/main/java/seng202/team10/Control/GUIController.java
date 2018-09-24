@@ -95,13 +95,13 @@ public class GUIController extends Application{
         if(!dataReader.checkFileExists("./profiles")){
             dataWriter.createProfileFolder();
         }
-        try {
-            // Added a test user.
-            users.add(new UserProfile("Potato", 75, 180, new DateTime(2000, 1, 1, 1, 1, 1), "Male"));
-            users.get(0).setMaxHeartRate(210);
-        } catch (IllegalArgumentException exception) {
-            createPopUp(Alert.AlertType.ERROR, "Error", "Could not find image");
-        }
+//        try {
+//            Added a test user.
+//            users.add(new UserProfile("Potato", 75, 180, new DateTime(2000, 1, 1, 1, 1, 1), "Male"));
+//            users.get(0).setMaxHeartRate(210);
+//        } catch (IllegalArgumentException exception) {
+//            createPopUp(Alert.AlertType.ERROR, "Error", "Could not find image");
+//        }
             loadAllUsers();
             loadAllScenes();
             primaryStage.setTitle("Coach Potato");
