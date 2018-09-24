@@ -40,6 +40,7 @@ public class EntryViewerController {
 
     /**
      * Method to set up objects that require it prior to showing the scene
+     * @param loadActivity  salfds
      */
     public void setUpScene(Activity loadActivity)
     {
