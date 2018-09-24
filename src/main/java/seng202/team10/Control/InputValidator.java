@@ -25,7 +25,7 @@ public class InputValidator {
 
     /**
      * checks if the startdate is valid
-     * @param startDate
+     * @param startDate The start date being checked
      * @return true if valid, false if not
      */
     public boolean validGoalStartDate(DateTime startDate) {
@@ -39,7 +39,7 @@ public class InputValidator {
 
     /**
      * checks if the end date of a goal is valid
-     * @param targetDate
+     * @param targetDate The date being checked
      * @return true if valid, false if not
      */
     public boolean validGoalTargetDate(DateTime targetDate) {
@@ -53,8 +53,8 @@ public class InputValidator {
 
     /**
      * makes sure the start date isn't after the enddate
-     * @param start
-     * @param target
+     * @param start  The start date being checked
+     * @param target  The target date being checked
      * @return true if valid, false if not
      */
     public boolean checkStartVsTargetDates(DateTime start, DateTime target) {
@@ -63,9 +63,9 @@ public class InputValidator {
 
     /**
      * checks if an int value is between two set bounds
-     * @param value
-     * @param lowerBound
-     * @param upperBound
+     * @param value  The value being checked
+     * @param lowerBound  What the value must be above.
+     * @param upperBound  What the value must be below
      * @return true if valid, false if not
      */
     public boolean intValueInRange(String value, int lowerBound, int upperBound) {
@@ -78,9 +78,9 @@ public class InputValidator {
 
     /**
      * checks if a float value is between two set bounds
-     * @param value
-     * @param lowerBound
-     * @param upperBound
+     * @param value  The value being checked
+     * @param lowerBound  What the value must be above.
+     * @param upperBound  What the value must be below
      * @return true if valid, false if not
      */
     public boolean floatValueInRange(String value, float lowerBound, float upperBound) {
@@ -109,7 +109,7 @@ public class InputValidator {
 
     /**
      * checks if the name of an activity is valid
-     * @param activityName
+     * @param activityName The activity name being checked
      * @return true if valid, false if not
      */
     public boolean isValidActivityName(String activityName) {
@@ -118,7 +118,7 @@ public class InputValidator {
 
     /**
      * checks if a date string is valid
-     * @param date
+     * @param date The date being checked
      * @return true if valid, false if not
      */
     public boolean isValidDateString(String date) {
@@ -140,7 +140,7 @@ public class InputValidator {
 
     /**
      * checks if a time string is valid to be converted to datetime
-     * @param time
+     * @param time The time being checked
      * @return true if valid, false if not
      */
     public boolean isValidTimeString(String time) {
@@ -162,7 +162,7 @@ public class InputValidator {
 
     /**
      * checks if the header line of an activity is of a valid format
-     * @param header
+     * @param header The header line being checked
      * @return true if valid, false if not
      */
     public boolean validActivityHeader(ArrayList<String> header) {
@@ -176,7 +176,7 @@ public class InputValidator {
 
     /**
      * checks if a line of input is a valid entry
-     * @param entryLine
+     * @param entryLine The entry line being checked
      * @return true if valid, false if not
      */
     public boolean isValidEntryLine(ArrayList<String> entryLine) {
@@ -208,9 +208,9 @@ public class InputValidator {
 
     /**
      * checks if the target type of a goal is valid
-     * @param type
-     * @param target
-     * @param user
+     * @param type The type of the goal being checked
+     * @param target The target of the goal being checked
+     * @param user The user being used for checking
      * @return true if valid, false if not
      */
     public boolean isValidTargetValue (String type, double target, UserProfile user) {
@@ -236,7 +236,7 @@ public class InputValidator {
 
     /**
      * checks if an integer is a valid target value (0-10,000)
-     * @param target
+     * @param target The integer being checked
      * @return true if valid, false if not
      */
     public boolean isValidIntTargetValue (int target) {

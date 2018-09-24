@@ -28,6 +28,9 @@ public class DateTime implements Serializable {
      * @param day int: day of the month
      * @param month int: month of the year
      * @param year: year between 2000 and 2100
+     * @param hour: hour between 0 and 23
+     * @param minute: minute between 0 and 59
+     * @param second: second between 0 and 59
      */
     public DateTime(int year, int month, int day, int hour, int minute, int second)
     {
@@ -192,6 +195,7 @@ public class DateTime implements Serializable {
 
     /**
      * Getter method for string of the time
+     * @return String
      */
     public String getTimeAsString()
     {
@@ -425,7 +429,7 @@ public class DateTime implements Serializable {
 
     /**
      * string representation of date and time
-     * @return
+     * @return String
      */
     @Override
     public String toString()

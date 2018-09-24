@@ -77,6 +77,7 @@ public class Goal implements Serializable {
 
     /**
      * Setter method for the achieved boolean which determines whether a goals has been achieved or not
+     * @param goalAchievedStatus  Boolean, true when the goal is achieved, false otherwise
      */
     public void setGoalAchievedStatus(Boolean goalAchievedStatus)
     {

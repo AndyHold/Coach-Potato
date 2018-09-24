@@ -225,7 +225,7 @@ public class Goals implements Serializable {
 
     /**
      * Setter method for the currentGoalNames of the user
-     * @param currentGoals ArrayList&gtGoal&lt
+     * @param currentGoals ArrayList&gt;Goal&lt;
      */
     public void setCurrentGoals(ArrayList<Goal> currentGoals)
     {
@@ -235,7 +235,7 @@ public class Goals implements Serializable {
 
     /**
      * Setter method for the currentGoalNames of the user
-     * @param currentGoalNames ArrayList&gtString&lt
+     * @param currentGoalNames ArrayList&gt;String&lt;
      */
     public void setCurrentGoalNames(ArrayList<String> currentGoalNames)
     {
@@ -245,7 +245,7 @@ public class Goals implements Serializable {
 
     /**
      * Setter method for the createdGoals of the user
-     * @param createdGoals ArrayList&gtGoal&lt
+     * @param createdGoals ArrayList&gt;Goal&lt;
      */
     public void setCreatedGoals(ArrayList<Goal> createdGoals)
     {
@@ -255,7 +255,7 @@ public class Goals implements Serializable {
 
     /**
      * Setter method for the createdGoalNames of the user
-     * @param createdGoalNames ArrayList&gtString&lt
+     * @param createdGoalNames ArrayList&gt;String&lt;
      */
     public void setCreatedGoalNames(ArrayList<String> createdGoalNames)
     {
@@ -265,7 +265,7 @@ public class Goals implements Serializable {
 
     /**
      * Getter method for the currentGoalNames of the user
-     * @return ArrayList&gtString&lt
+     * @return ArrayList&gt;String&lt;
      */
     public ArrayList<String> getCurrentGoalNames()
     {
@@ -275,7 +275,7 @@ public class Goals implements Serializable {
 
     /**
      * Getter method for the achieved goals of the user
-     * @return ArrayList&gtGoal&lt
+     * @return ArrayList&gt;Goal&lt;
      */
     public ArrayList<Goal> getAchievedGoals()
     {
@@ -285,7 +285,7 @@ public class Goals implements Serializable {
 
     /**
      * Getter method for the current goals of the user
-     * @return ArrayList&gtGoal&lt
+     * @return ArrayList&gt;Goal&lt;
      */
     public ArrayList<Goal> getCurrentGoals()
     {
@@ -295,7 +295,7 @@ public class Goals implements Serializable {
 
     /**
      * Getter method for the failed goals of the user
-     * @return ArrayList&gtGoal&lt
+     * @return ArrayList&gt;Goal&lt;
      */
     public ArrayList<Goal> getFailedGoals()
     {
@@ -305,7 +305,7 @@ public class Goals implements Serializable {
 
     /**
      * Getter method for the failed goal names of the user
-     * @return ArrayList&gtString&lt
+     * @return ArrayList&gt;String&lt;
      */
     public ArrayList<String> getFailedGoalNames()
     {
@@ -315,7 +315,7 @@ public class Goals implements Serializable {
 
     /**
      * Getter method for the created goals of the user (current, past and future)
-     * @return ArrayList&gtGoal&lt
+     * @return ArrayList&gt;Goal&lt;
      */
     public ArrayList<Goal> getCreatedGoals()
     {
@@ -325,7 +325,7 @@ public class Goals implements Serializable {
 
     /**
      * Getter method for the created goal names of the user
-     * @return ArrayList&gtString&lt
+     * @return ArrayList&gt;String&lt;
      */
     public ArrayList<String> getCreatedGoalNames()
     {
@@ -335,7 +335,7 @@ public class Goals implements Serializable {
 
     /**
      * Getter method for the future goals of the user
-     * @return ArrayList&gtGoal&lt
+     * @return ArrayList&gt;Goal&lt;
      */
     public ArrayList<Goal> getFutureGoals()
     {
@@ -345,7 +345,7 @@ public class Goals implements Serializable {
 
     /**
      * Getter method for the future goal names of the user
-     * @return ArrayList&gtString&lt
+     * @return ArrayList&gt;String&lt;
      */
     public ArrayList<String> getFutureGoalNames()
     {
@@ -365,7 +365,7 @@ public class Goals implements Serializable {
 
     /**
      * Getter method for the achieved goal names of the user
-     * @return ArrayList&gtString&lt
+     * @return ArrayList&gt;String&lt;
      */
     public ArrayList<String> getAchievedGoalNames()
     {
