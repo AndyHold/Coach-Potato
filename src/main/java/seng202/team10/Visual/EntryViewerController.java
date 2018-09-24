@@ -162,11 +162,31 @@ public class EntryViewerController {
     @FXML public void returnToActivities()
     {
         ArrayList<Entry> savingEntries = new ArrayList<>(this.entries);
-        loadedActivity.setEntries(savingEntries);
-        loadedActivity.postEntriesSetUp();
+        if(checkContinuity(savingEntries)) {
+            loadedActivity.setEntries(savingEntries);
+            loadedActivity.postEntriesSetUp();
+        } else {
+            this.app.createPopUp(Alert.AlertType.ERROR, "Error", "Entries are no longer in time order, changes not saved!");
+        }
         app.launchActivityViewerScene();
     }
 
+    /**
+     * method to check if a list of entries are in time sequence
+     * @param checkingEntries the arraylist of entries being checked
+     * @return true if the order is correct, false if not
+     */
+    private boolean checkContinuity(ArrayList<Entry> checkingEntries){
+        boolean checkStatus = true;
+        if (checkingEntries.size() > 1) {
+            for(int i = 0; i < checkingEntries.size() - 1; i++){
+                if (checkingEntries.get(i).getTime().isAfter(checkingEntries.get(i+1).getTime())){
+                    checkStatus = false;
+                }
+            }
+        }
+        return checkStatus;
+    }
 
     /**
      * Method to change the time of an Entry when it is modified in the TableView
