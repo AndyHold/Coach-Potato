@@ -494,7 +494,6 @@ public class CreateProfileController implements Controllable
     {
         try {
             String nameString = StringUtils.capitalize(getTextFieldString(nameEntry).toLowerCase());
-            System.out.print(nameString);
             this.app.checkUniqueName(nameString);
             try {
                 userProfile.setName(nameString);
