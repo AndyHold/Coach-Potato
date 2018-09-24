@@ -8,7 +8,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.Activity;
+import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.ActivitiesData.Entry;
+import seng202.team10.Model.Exceptions.EntryOutOfSequenceException;
 
 import java.util.ArrayList;
 
@@ -40,7 +42,7 @@ public class EntryViewerController {
 
     /**
      * Method to set up objects that require it prior to showing the scene
-     * @param loadActivity  salfds
+     * @param loadActivity The activity to be loaded
      */
     public void setUpScene(Activity loadActivity)
     {
@@ -163,12 +165,8 @@ public class EntryViewerController {
     @FXML public void returnToActivities()
     {
         ArrayList<Entry> savingEntries = new ArrayList<>(this.entries);
-        if(checkContinuity(savingEntries)) {
-            loadedActivity.setEntries(savingEntries);
-            loadedActivity.postEntriesSetUp();
-        } else {
-            this.app.createPopUp(Alert.AlertType.ERROR, "Error", "Entries are no longer in time order, changes not saved!");
-        }
+        loadedActivity.setEntries(savingEntries);
+        loadedActivity.postEntriesSetUp();
         app.launchActivityViewerScene();
     }
 
@@ -177,16 +175,14 @@ public class EntryViewerController {
      * @param checkingEntries the arraylist of entries being checked
      * @return true if the order is correct, false if not
      */
-    private boolean checkContinuity(ArrayList<Entry> checkingEntries){
-        boolean checkStatus = true;
+    private void checkContinuity(ArrayList<Entry> checkingEntries) throws EntryOutOfSequenceException {
         if (checkingEntries.size() > 1) {
             for(int i = 0; i < checkingEntries.size() - 1; i++){
                 if (checkingEntries.get(i).getTime().isAfter(checkingEntries.get(i+1).getTime())){
-                    checkStatus = false;
+                    throw new EntryOutOfSequenceException();
                 }
             }
         }
-        return checkStatus;
     }
 
     /**
@@ -195,15 +191,20 @@ public class EntryViewerController {
      */
     @FXML public void changeTimeCellEvent(TableColumn.CellEditEvent editedCell)
     {
-
+        Entry entrySelected = entriesTableView.getSelectionModel().getSelectedItem();
+        String oldTime = entrySelected.getTimeString();
         try {
-            Entry entrySelected = entriesTableView.getSelectionModel().getSelectedItem();
+            ArrayList<Entry> checkingEntries = new ArrayList<>(this.entries);
             entrySelected.changeTime(editedCell.getNewValue().toString());
+            checkContinuity(checkingEntries);
         } catch(NumberFormatException exception) {
             this.app.createPopUp(Alert.AlertType.ERROR, "Error", "Time invalid, must be a valid number");
         } catch(IllegalArgumentException exception) {
             String message = exception.getMessage();
             this.app.createPopUp(Alert.AlertType.ERROR, "Error", message);
+        } catch (EntryOutOfSequenceException exception) {
+            this.app.createPopUp(Alert.AlertType.ERROR, "Error", "Invalid time, entries not in sequence");
+            entrySelected.changeTime(oldTime);
         }
         entriesTableView.refresh();
     }
@@ -215,14 +216,20 @@ public class EntryViewerController {
      */
     @FXML public void changeDateCellEvent(TableColumn.CellEditEvent editedCell)
     {
+        Entry entrySelected = entriesTableView.getSelectionModel().getSelectedItem();
+        String oldDate = entrySelected.getDateString();
         try {
-            Entry entrySelected = entriesTableView.getSelectionModel().getSelectedItem();
+            ArrayList<Entry> checkingEntries = new ArrayList<>(this.entries);
             entrySelected.changeDate(editedCell.getNewValue().toString());
+            checkContinuity(checkingEntries);
         }  catch(NumberFormatException exception) {
             this.app.createPopUp(Alert.AlertType.ERROR, "Error", "Date invalid, must be a valid number");
         } catch(IllegalArgumentException exception) {
             String message = exception.getMessage();
             this.app.createPopUp(Alert.AlertType.ERROR, "Error", message);
+        } catch (EntryOutOfSequenceException exception) {
+            this.app.createPopUp(Alert.AlertType.ERROR, "Error", "Invalid date, entries not in sequence");
+            entrySelected.changeDate(oldDate);
         }
         entriesTableView.refresh();
     }
