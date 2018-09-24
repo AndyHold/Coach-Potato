@@ -6,7 +6,8 @@ import java.util.List;
 
 /**
  * Created by brad on 9/09/16.
- * TODO Who is brad???!!!
+ * route of points for mapping purposes
+ * material used from provided tutorials
  */
 public class Route {
     private List<Position> route = new ArrayList<>();

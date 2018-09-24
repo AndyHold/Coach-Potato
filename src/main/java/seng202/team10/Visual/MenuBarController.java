@@ -34,6 +34,9 @@ public class MenuBarController implements Controllable {
     }
 
 
+    /**
+     * starts the menu setup
+     */
     @Override
     public void setUpScene()
     {

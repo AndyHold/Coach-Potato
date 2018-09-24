@@ -255,14 +255,26 @@ public class Parser {
 //        return removeCount;
 //    }
 
+    /**
+     * returns the number of activities that were not imported for various reasons
+     * @return int count of bad activities
+     */
     public int getBadActivities() {
         return badActivities;
     }
 
+    /**
+     * returns the current line index that the parser is working at
+     * @return index of line
+     */
     public int getLineIndex (){
         return linePosition;
     }
 
+    /**
+     * manually sets the parser to move to a specific line
+     * @param linePosition the line number to move to
+     */
     public void setLinePosition(int linePosition) {
         this.linePosition = linePosition;
     }

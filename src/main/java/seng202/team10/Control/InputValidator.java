@@ -9,6 +9,12 @@ import java.util.ArrayList;
 
 public class InputValidator {
 
+    /**
+     * checks if a goal name is valid (length and duplicate)
+     * @param name the name being checked
+     * @param goalInst the existing goals
+     * @return true if valid, false if not
+     */
     public boolean validGoalName(String name, Goals goalInst) {
         if (goalInst.getCreatedGoalNames().contains(name)) {
             return false;
@@ -17,6 +23,11 @@ public class InputValidator {
         }
     }
 
+    /**
+     * checks if the startdate is valid
+     * @param startDate
+     * @return true if valid, false if not
+     */
     public boolean validGoalStartDate(DateTime startDate) {
         LocalDateTime now = LocalDateTime.now();
         int year = now.getYear();
@@ -26,6 +37,11 @@ public class InputValidator {
         return !startDate.isBefore(today) && (startDate.getYear() <= (today.getYear() + 1));
     }
 
+    /**
+     * checks if the end date of a goal is valid
+     * @param targetDate
+     * @return true if valid, false if not
+     */
     public boolean validGoalTargetDate(DateTime targetDate) {
         LocalDateTime now = LocalDateTime.now();
         int year = now.getYear();
@@ -35,10 +51,23 @@ public class InputValidator {
         return !targetDate.isBefore(today) && (targetDate.getYear() <= (today.getYear() + 5));
     }
 
+    /**
+     * makes sure the start date isn't after the enddate
+     * @param start
+     * @param target
+     * @return true if valid, false if not
+     */
     public boolean checkStartVsTargetDates(DateTime start, DateTime target) {
         return (start.isBefore(target));
     }
 
+    /**
+     * checks if an int value is between two set bounds
+     * @param value
+     * @param lowerBound
+     * @param upperBound
+     * @return true if valid, false if not
+     */
     public boolean intValueInRange(String value, int lowerBound, int upperBound) {
         try {
             return Integer.valueOf(value) >= lowerBound && Integer.valueOf(value) <= upperBound;
@@ -47,6 +76,13 @@ public class InputValidator {
         }
     }
 
+    /**
+     * checks if a float value is between two set bounds
+     * @param value
+     * @param lowerBound
+     * @param upperBound
+     * @return true if valid, false if not
+     */
     public boolean floatValueInRange(String value, float lowerBound, float upperBound) {
         try {
             return Float.valueOf(value) >= lowerBound && Float.valueOf(value) <= upperBound;
@@ -71,10 +107,20 @@ public class InputValidator {
 //        return true;
 //    }
 
+    /**
+     * checks if the name of an activity is valid
+     * @param activityName
+     * @return true if valid, false if not
+     */
     public boolean isValidActivityName(String activityName) {
         return ((activityName.length() <= 50) && (activityName.matches("[a-zA-Z0-9]+[a-zA-Z0-9 ]*")));
     }
 
+    /**
+     * checks if a date string is valid
+     * @param date
+     * @return true if valid, false if not
+     */
     public boolean isValidDateString(String date) {
         if (date.matches("[0-3][0-9]/[0-1][0-9]/[0-9]{4}")) {
             String[] dateArray = (date.split("/"));
@@ -92,6 +138,11 @@ public class InputValidator {
         }
     }
 
+    /**
+     * checks if a time string is valid to be converted to datetime
+     * @param time
+     * @return true if valid, false if not
+     */
     public boolean isValidTimeString(String time) {
         if (time.matches("[0-2][0-9]:[0-6][0-9]:[0-6][0-9]")) {
             String[] dateArray = (time.split(":"));
@@ -109,6 +160,11 @@ public class InputValidator {
         }
     }
 
+    /**
+     * checks if the header line of an activity is of a valid format
+     * @param header
+     * @return true if valid, false if not
+     */
     public boolean validActivityHeader(ArrayList<String> header) {
         if (header.size() >= 2) {
             if (header.get(0).equals("#start")) {
@@ -118,6 +174,11 @@ public class InputValidator {
         return false;
     }
 
+    /**
+     * checks if a line of input is a valid entry
+     * @param entryLine
+     * @return true if valid, false if not
+     */
     public boolean isValidEntryLine(ArrayList<String> entryLine) {
         if (entryLine.size() == 6) {
             for (String point : entryLine) {
@@ -145,6 +206,13 @@ public class InputValidator {
         return false;
     }
 
+    /**
+     * checks if the target type of a goal is valid
+     * @param type
+     * @param target
+     * @param user
+     * @return true if valid, false if not
+     */
     public boolean isValidTargetValue (String type, double target, UserProfile user) {
         if (type.equals("Weight")) {
             if (user.getWeight() <= target || target <= 30) {
@@ -166,6 +234,11 @@ public class InputValidator {
         return true;
     }
 
+    /**
+     * checks if an integer is a valid target value (0-10,000)
+     * @param target
+     * @return true if valid, false if not
+     */
     public boolean isValidIntTargetValue (int target) {
         return (target >= 0 || target < 10000);
     }

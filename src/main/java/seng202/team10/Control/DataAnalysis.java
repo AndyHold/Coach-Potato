@@ -18,10 +18,10 @@ public class DataAnalysis {
     private ArrayList<Activity> activities;
 
 
-    /**
-     * Method to sort a list of activities by their date.
-     * @return  A sorted list of activities.
-     */
+//    /**
+//     * Method to sort a list of activities by their date.
+//     * @return  A sorted list of activities.
+//     */
 //    public ArrayList<Activity> sortByDate() {
 //
 //        activities.sort(new Comparator<Activity>() {
