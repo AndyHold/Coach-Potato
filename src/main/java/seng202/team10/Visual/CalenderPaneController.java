@@ -24,7 +24,7 @@ import java.util.ArrayList;
  * SENG202 2018S2
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
-public class CallenderPaneController {
+public class CalenderPaneController {
 
     private ArrayList<AnchorPaneNode> allCalendarDays = new ArrayList<>(42);
     private VBox view;
@@ -58,7 +58,7 @@ public class CallenderPaneController {
      * Method to create a calendar view
      * @param (yearMonth, app, profileController): (year month to create the calendar of, GuiController, ProfileController)
      */
-    public CallenderPaneController(YearMonth yearMonth, GUIController app, ProfileController profileController)
+    public CalenderPaneController(YearMonth yearMonth, GUIController app, ProfileController profileController)
     {
         setApp(app);
         setProfileController(profileController);
@@ -199,7 +199,7 @@ public class CallenderPaneController {
 
 
     /**
-     * Move the month back by one. Repopulate the calendar with the correct dates.
+     * Method to move the month back by one. Repopulate the calendar with the correct dates.
      */
     private void previousMonth() {
         currentYearMonth = currentYearMonth.minusMonths(1);
@@ -208,7 +208,7 @@ public class CallenderPaneController {
 
 
     /**
-     * Move the month forward by one. Repopulate the calendar with the correct dates.
+     * Method to move the month forward by one. Repopulate the calendar with the correct dates.
      */
     private void nextMonth() {
         currentYearMonth = currentYearMonth.plusMonths(1);
@@ -225,6 +225,7 @@ public class CallenderPaneController {
         return view;
     }
 
+<<<<<<< HEAD:src/main/java/seng202/team10/Visual/CallenderPaneController.java
 
     /**
      * returns arraylist of AnchorPaneNodes that are the calendar days
@@ -243,4 +244,6 @@ public class CallenderPaneController {
     {
         this.allCalendarDays = allCalendarDays;
     }
+=======
+>>>>>>> 661a4902... Refactored CalendarPaneController and wrote java doc for Anchor pane Node.:src/main/java/seng202/team10/Visual/CalenderPaneController.java
 }

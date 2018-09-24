@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
- * Create an anchor pane that can store additional data.
+ * Subclass of an anchor pane that can store additional data.
  */
 public class AnchorPaneNode extends AnchorPane {
 
@@ -19,14 +19,24 @@ public class AnchorPaneNode extends AnchorPane {
     private LocalDate date;
     private DataAnalysis dataAnalysis = new DataAnalysis();
     private UserProfile currentUser;
+    private ProfileController profileController;
+    private ArrayList<Activity> activities = new ArrayList<>();
 
-    public void setProfileController(ProfileController profileController) {
+    /**
+     * Setter method to set the profile controller for this Scene.
+     * @param profileController profileController
+     */
+    public void setProfileController(ProfileController profileController)
+    {
         this.profileController = profileController;
     }
 
-    private ProfileController profileController;
-
-    public String printDistance() {
+    /**
+     * Method to calculate the total distance for this pane's date and returns it as a string.
+     * @return distanceCovered String
+     */
+    public String printDistance()
+    {
         double distance = 0.0;
         String distanceCovered = "Distance Covered: ";
         for (Activity activity: activities) {
@@ -36,7 +46,12 @@ public class AnchorPaneNode extends AnchorPane {
         return distanceCovered;
     }
 
-    public String printSpeed() {
+    /**
+     * Method to calculate the average speed for this pane's date and returns it as a string.
+     * @return averageSpeed String
+     */
+    public String printSpeed()
+    {
         double speed = 0.0;
         String averageSpeed = "Average speed: ";
         for (Activity activity: activities) {
@@ -46,7 +61,12 @@ public class AnchorPaneNode extends AnchorPane {
         return averageSpeed;
     }
 
-    public String printCalories() {
+    /**
+     * Method to calculate the calories burned for this pane's date and returns it as a string.
+     * @return caloriesBurned String
+     */
+    public String printCalories()
+    {
         double calories = 0.0;
         for (Activity activity: activities) {
             calories += (dataAnalysis.getCaloriesFromActivity(activity, currentUser)).get(activity.getEntries().size()-1);
@@ -55,7 +75,12 @@ public class AnchorPaneNode extends AnchorPane {
         return caloriesBurned;
     }
 
-    public String printTimeSpent() {
+    /**
+     * Method to calculate the total time spent for this pane's date and returns it as a string.
+     * @return timeSpent String
+     */
+    public String printTimeSpent()
+    {
         int time = 0;
         for (Activity activity: activities) {
             time += activity.getTotalDuration();
@@ -67,7 +92,11 @@ public class AnchorPaneNode extends AnchorPane {
         return timeSpent;
     }
 
-    public void onMouseClicked() {
+    /**
+     * Method to update the statistics on the profile screen when the pane is clicked.
+     */
+    public void onMouseClicked()
+    {
         DateTime dateToday = new DateTime(date.getYear(), date.getMonthValue(), date.getDayOfMonth(),0,0,0);
         this.profileController.dailyStatsLabel.setText("Daily Statistics for " + dateToday.getDateAsString());
         this.profileController.activity1Text.setText(this.printDistance());
@@ -79,34 +108,60 @@ public class AnchorPaneNode extends AnchorPane {
         this.profileController.dailyStatsLabel.setVisible(true);
     }
 
-    private ArrayList<Activity> activities = new ArrayList<>();
-
     /**
      * Create a anchor pane node. Date is not assigned in the constructor.
      * @param children children of the anchor pane
      */
-    public AnchorPaneNode(Node... children) {
+    public AnchorPaneNode(Node... children)
+    {
         super(children);
         // Add action handler for mouse clicked
         this.setOnMouseEntered(e -> this.setStyle("-fx-background-color: #E91E63"));
         this.setOnMouseExited(e -> this.setStyle("-fx-background-color: null"));
     }
 
-    public LocalDate getDate() {
+    /**
+     * Getter method to get the pane's date.
+     * @return date LocalDate
+     */
+    public LocalDate getDate()
+    {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    /**
+     * Setter method to set the pane's date.
+     * @param date LocalDate
+     */
+    public void setDate(LocalDate date)
+    {
         this.date = date;
     }
 
-    public ArrayList<Activity> getActivities() {
+    /**
+     * Getter method to get the pane's activities.
+     * @return activities ArrayList of Activity.
+     */
+    public ArrayList<Activity> getActivities()
+    {
         return activities;
     }
 
-    public void setActivities(ArrayList<Activity> activities) {
+    /**
+     * Setter method to set the pane's activities.
+     * @param activities ArrayList of Activity.
+     */
+    public void setActivities(ArrayList<Activity> activities)
+    {
         this.activities = activities;
     }
 
-    public void setCurrentUser(UserProfile currentUser) {this.currentUser = currentUser;}
+    /**
+     * Setter method to set the current user profile.
+     * @param currentUser UserProfile
+     */
+    public void setCurrentUser(UserProfile currentUser)
+    {
+        this.currentUser = currentUser;
+    }
 }
