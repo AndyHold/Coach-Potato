@@ -145,6 +145,11 @@ public class GUIController extends Application{
 
     //private Goals goals = new Goals(currentUser);
 
+    /**
+     * A lot of the initial setup when the program is launched. loads profiles and scenes to the stage
+     * @param primaryStage
+     * @throws Exception
+     */
     @Override
     public void start(Stage primaryStage) throws Exception
     {
@@ -352,11 +357,16 @@ public class GUIController extends Application{
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     /**dNewScene("/fxml/loginScreen.fxml");
+=======
+    /*dNewScene("/fxml/loginScreen.fxml");
+>>>>>>> 37d12d4e... Added a load of missing javadoc all over the place
         createProfileScene = loadNewScene("/fxml/createProfileScreen.fxml");
         profileScene = loadNewScene("/fxml/profileScreen.fxml");
-//        goalsScene = loadNewScene("/fxml/goalsScreen.fxml");
-        uploadDataScene
+        goalsScene = loadNewScene("/fxml/goalsScreen.fxml");
+        uploadDataScene */
+     /**
      * Sets the scene on the primary stage to the profile scene.
      */
     public void launchProfileScene()
@@ -426,6 +436,7 @@ public class GUIController extends Application{
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 0fbb14ad... Added functionality for the map controller
 =======
 >>>>>>> 431c3ad... Added functionality for the map controller
@@ -436,6 +447,13 @@ public class GUIController extends Application{
 =======
 =======
 
+=======
+    /**
+     * checks to see if a profile already exists with a specific username
+     * @param userName the username being checked
+     * @throws UniqueNameException
+     */
+>>>>>>> 37d12d4e... Added a load of missing javadoc all over the place
     public void checkUniqueName(String userName) throws UniqueNameException
     {
         if (currentUser == null || !userName.contentEquals(currentUser.getName())) {
@@ -448,11 +466,18 @@ public class GUIController extends Application{
 
     }
 
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 >>>>>>> 4e37ab85... Finished Implementing new Login Screen Layout.
     public void launchMapScene(Activity activity) {
 =======
+=======
+    /**
+     * sets up and launches the map scene for a specific activity
+     * @param activity the activity being mapped
+     */
+>>>>>>> 37d12d4e... Added a load of missing javadoc all over the place
     public void launchMapScene(Activity activity)
     {
 >>>>>>> 8ec9ce7d... Wrote some tests for GUIController and added some dependencies for when we test the JavaFX controllers (Not this deliverable)
@@ -465,12 +490,18 @@ public class GUIController extends Application{
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 874b31ca... Re-added launch mapscene
 =======
 >>>>>>> 81b0c6a... Re-added launch mapscene
 >>>>>>> fa48cc98... Re-added launch mapscene
     public void launchGoalsScene() {
 =======
+=======
+    /**
+     * sets up the goals screen and loads it onto the primary stage
+     */
+>>>>>>> 37d12d4e... Added a load of missing javadoc all over the place
     public void launchGoalsScene()
     {
 >>>>>>> 8ec9ce7d... Wrote some tests for GUIController and added some dependencies for when we test the JavaFX controllers (Not this deliverable)
@@ -557,6 +588,10 @@ public class GUIController extends Application{
         primaryStage.setScene(activityViewerScene);
     }
 
+    /**
+     * updates the map scene with a specific activity
+     * @param activity the activity being mapped
+     */
     public void refreshMapScene(Activity activity)
     {
         this.launchDataAnalysisScene();
@@ -868,7 +903,6 @@ public class GUIController extends Application{
      */
     public void createUser(UserProfile newUser) throws InvalidUserException
     {
-        //TODO this should be in UserProfile???
         if (newUser.getName() != null &&
                 newUser.getWeight() != 0.0 &&
                 newUser.getHeight() != 0.0 &&
@@ -919,8 +953,10 @@ public class GUIController extends Application{
     }
 
 
-
-
+    /**
+     * obligatory main method. launches the thing
+     * @param args
+     */
     public static void main(String[] args)
     {
         launch(args);

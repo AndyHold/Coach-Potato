@@ -135,7 +135,6 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Method for adding a new list of activities (such as when a new CSV file is loaded)
-     * TODO check for duplicates. seems to many already work natuarally??
      * @param newActivities: Arraylist of Activity
      */
     public void addActivities(ArrayList<Activity> newActivities) throws ExistingElementException

@@ -32,6 +32,10 @@ public class MapController implements Controllable, Initializable{
     @FXML private Button backButton;
 
 
+    /**
+     * sets this scene to be the currently active one
+     * @param guiController
+     */
     @Override
     public void setApp(GUIController guiController)
     {
@@ -39,7 +43,10 @@ public class MapController implements Controllable, Initializable{
     }
 
 
-
+    /**
+     * displays the route on the map
+     * @param newRoute the Route being displayed
+     */
     public void displayRoute(Route newRoute)
     {
         webEngine.getLoadWorker().stateProperty().addListener(
@@ -66,6 +73,9 @@ public class MapController implements Controllable, Initializable{
     }
 
 
+    /**
+     * sets up the initial scene with all the areas
+     */
     @Override
     public void setUpScene()
     {
@@ -157,7 +167,7 @@ public class MapController implements Controllable, Initializable{
 
 
     /**
-     * TODO: What does this do? it's very unclear...
+     * goes back to the data analysis screen
      */
     @FXML public void goToActivityViewer()
     {
@@ -166,7 +176,11 @@ public class MapController implements Controllable, Initializable{
     }
 
 
-
+    /**
+     * creates a new Route from an activity
+     * @param activity the activity being mapped
+     * @return the Route opject of the activity
+     */
     public Route makeRoute(Activity activity)
     {
         Route route = new Route();

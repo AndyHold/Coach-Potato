@@ -58,13 +58,18 @@ public class GoalController implements Controllable{
     @FXML private Tab createTab;
 
 
-
-
+    /**
+     * sets this scene to be the active one
+     * @param app
+     */
     public void setApp(GUIController app){
         this.app = app;
     }
 
 
+    /**
+     * sets up the scene with all the fields and help things
+     */
     public void setUpScene() {
         // Set tool tips
         setUpToolTips();
@@ -389,6 +394,9 @@ public class GoalController implements Controllable{
     }
 
 
+    /**
+     * creates a new goal
+     */
     @FXML
     public void createGoal()
     {

@@ -18,7 +18,11 @@ public enum GoalType {
         this.name = newName;
     }
 
-
+    /**
+     * Converts a type from a string to an enum
+     * @param typeName
+     * @return
+     */
     public static GoalType getTypeFromString(String typeName)
     {
         switch (typeName) {
@@ -35,7 +39,10 @@ public enum GoalType {
         }
     }
 
-
+    /**
+     * returns the enum goal type as a string
+     * @return
+     */
     @Override
     public String toString()
     {
