@@ -552,8 +552,8 @@ public class GUIController extends Application{
      */
     public void launchActivityViewerScene()
     {
-        activityViewerController.setUpScene();
         dataWriter.saveProfile(currentUser);
+        activityViewerController.setUpScene();
         primaryStage.setScene(activityViewerScene);
     }
 
