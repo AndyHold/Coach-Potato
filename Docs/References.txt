@@ -1,3 +1,7 @@
 https://icons8.com/
 
 https://www.freeiconspng.com/img/17019
+
+Calendar on Profile screen - https://github.com/SirGoose3432/javafx-calendar
+
+Menu bar - http://www.genuinecoder.com/javafx-navigation-drawer-side-panel-html/
