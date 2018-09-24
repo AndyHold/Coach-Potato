@@ -170,11 +170,16 @@ public class ActivityViewerController {
         LocalDate upperDate = endDate.getValue();
         String typeSelected = (String) typeSelect.getValue();
         if (lowerDate != null && upperDate != null) {
-            DateTime lowerDateTime = new DateTime(lowerDate.getYear(), lowerDate.getMonthValue(), lowerDate.getDayOfMonth(), 0, 0, 1);
-            DateTime upperDateTime = new DateTime(upperDate.getYear(), upperDate.getMonthValue(), upperDate.getDayOfMonth(), 23, 59, 59);
-            for (Activity eachActivity : app.getCurrentProfile().getActivities()) {
-                if (lowerDateTime.isBefore(eachActivity.getStartDateTime()) && upperDateTime.isAfter(eachActivity.getStartDateTime())) {
-                    dateFiltered.add(eachActivity);
+            if(lowerDate.getYear() < 1900 || lowerDate.getYear() > 2100 || upperDate.getYear() > 2100 || upperDate.getYear() < 1900 || lowerDate.getYear() > upperDate.getYear()){
+                app.createPopUp(Alert.AlertType.ERROR, "Error", "Please choose dates between 1900 and 2100, and make sure the first date is earlier than the second");
+                dateFiltered = app.getCurrentProfile().getActivities();
+            } else {
+                DateTime lowerDateTime = new DateTime(lowerDate.getYear(), lowerDate.getMonthValue(), lowerDate.getDayOfMonth(), 0, 0, 1);
+                DateTime upperDateTime = new DateTime(upperDate.getYear(), upperDate.getMonthValue(), upperDate.getDayOfMonth(), 23, 59, 59);
+                for (Activity eachActivity : app.getCurrentProfile().getActivities()) {
+                    if (lowerDateTime.isBefore(eachActivity.getStartDateTime()) && upperDateTime.isAfter(eachActivity.getStartDateTime())) {
+                        dateFiltered.add(eachActivity);
+                    }
                 }
             }
         } else {
