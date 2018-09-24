@@ -15,7 +15,6 @@ import seng202.team10.Model.Exceptions.InvalidHeightException;
 import seng202.team10.Model.Exceptions.InvalidWeightException;
 import seng202.team10.Model.Exceptions.UniqueNameException;
 import seng202.team10.Model.Exceptions.UserNameException;
-import seng202.team10.Model.UserProfile;
 
 import java.text.DecimalFormat;
 import java.time.YearMonth;
@@ -216,7 +215,7 @@ public class ProfileController {
         weightValueTA.setText(df2.format((app.getCurrentProfile().getWeight())));
         heightValueTA.setText(df2.format((app.getCurrentProfile().getHeight())));
         bmiValueTA.setText(df2.format((app.getCurrentProfile().calcBmi())) + " - " + app.getCurrentProfile().getBmiCategory());
-        calendarPane.getChildren().add(new CallenderPaneController(YearMonth.now(), app, this).getView());
+        calendarPane.getChildren().add(new CalenderPaneController(YearMonth.now(), app, this).getView());
 
         // Sets up the calendar and other stats if the user has already uploaded the data to the app else all values are 0 initially.
         if (app.getCurrentProfile().getActivities().size() > 0) {
