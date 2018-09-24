@@ -59,7 +59,7 @@ public class UploadDataController {
 
     /**
      * Setter method to set the GUI controller for this Scene
-     * @param app GUIController
+     * @param app The main controller being passed in
      */
     public void setApp(GUIController app)
     {
@@ -346,8 +346,8 @@ public class UploadDataController {
 
 
     /**
-     * Method to create an ObservableList<Entry> object for the TableView
-     * @return ObservableList<Entry>
+     * Method to create an ObservableList&gt;Entry&lt; object for the TableView
+     * @return ObservableList&gt;Entry&lt;
      */
     public ObservableList<Entry> getEntries()
     {

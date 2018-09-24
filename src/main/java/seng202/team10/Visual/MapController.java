@@ -34,7 +34,7 @@ public class MapController implements Controllable, Initializable{
 
     /**
      * sets this scene to be the currently active one
-     * @param guiController
+     * @param guiController  The main controller being passed in
      */
     @Override
     public void setApp(GUIController guiController)

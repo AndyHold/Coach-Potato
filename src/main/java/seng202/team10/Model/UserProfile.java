@@ -40,6 +40,11 @@ public class UserProfile implements java.io.Serializable {
      * @param weight: double
      * @param birthDate: DateTime
      * @param gender: String
+     * @param height : double
+     * @throws UserNameException When the user name is invalid
+     * @throws InvalidWeightException When the weight is invalid
+     * @throws InvalidHeightException When the height is invalid
+     * @throws IllegalArgumentException When another value is invalid
      */
     public UserProfile(String name, double weight, double height, DateTime birthDate, String gender) throws UserNameException, InvalidWeightException, InvalidHeightException, IllegalArgumentException
     {
@@ -64,6 +69,7 @@ public class UserProfile implements java.io.Serializable {
     /**
      * Setter method for the name of the user
      * @param newName: String
+     * @throws  UserNameException when the user name is invalid
      */
     public void setName(String newName) throws UserNameException
     {
@@ -118,6 +124,7 @@ public class UserProfile implements java.io.Serializable {
     /**
      * Method for adding an activity to the list of user's Activities.
      * @param newActivity Activity
+     * @throws ExistingActivityException If the activity already exists in the application
      */
     public void addActivity(Activity newActivity) throws ExistingActivityException
     {
@@ -136,6 +143,7 @@ public class UserProfile implements java.io.Serializable {
     /**
      * Method for adding a new list of activities (such as when a new CSV file is loaded)
      * @param newActivities: Arraylist of Activity
+     * @throws  ExistingElementException When the activity already exists in the application
      */
     public void addActivities(ArrayList<Activity> newActivities) throws ExistingElementException
     {
@@ -189,6 +197,7 @@ public class UserProfile implements java.io.Serializable {
     /**
      * Setter method for the height of the user
      * @param newHeight: double
+     * @throws  InvalidHeightException when the height is invalid
      */
     public void setHeight(double newHeight) throws InvalidHeightException
     {
@@ -277,7 +286,8 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Method to get the total distance of user's activities within two DateTime objects.
-     * @param (startDate, endDate): (DateTime, DateTime)
+     * @param startDate The start date of the activity
+     * @param endDate The end date of the activity
      * @return totalDistance: double
      */
     public double getActivitiesDistance(DateTime startDate, DateTime endDate) {
@@ -293,7 +303,8 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Method to get the average speed of user's activities within two DateTime objects.
-     * @param (startDate, endDate): (DateTime, DateTime)
+     * @param startDate The start date of the activity
+     * @param endDate The end date of the activity
      * @return averageSpeed: double
      */
     public double getActivitiesSpeed(DateTime startDate, DateTime endDate) {
@@ -312,7 +323,8 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Method to get the number of user's activities within two DateTime objects.
-     * @param (startDate, endDate): (DateTime, DateTime)
+     * @param startDate The start date of the activity
+     * @param endDate The end date of the activity
      * @return frequency: int
      */
     public int getActivitiesFreq(DateTime startDate, DateTime endDate) {
@@ -327,7 +339,8 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Method to get the total duration in seconds of user's activities within two DateTime objects.
-     * @param (startDate, endDate): (DateTime, DateTime)
+     * @param startDate The start date of the activity
+     * @param endDate The end date of the activity
      * @return totalTime: int
      */
     public double getActivitiesTime(DateTime startDate, DateTime endDate) {
@@ -358,7 +371,8 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Method to get the average heart rate of user's activities within two DateTime objects.
-     * @param (startDate, endDate): (DateTime, DateTime)
+     * @param startDate The start date of the activity
+     * @param endDate The end date of the activity
      * @return averageHeartRate: int
      */
     public int getActivitiesHeartRate(DateTime startDate, DateTime endDate) {

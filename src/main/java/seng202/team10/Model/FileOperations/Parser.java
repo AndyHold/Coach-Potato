@@ -52,7 +52,7 @@ public class Parser {
      *
      * @param fileContents The unparsed contents of the file, in arraylist form with values
      *                     seperated with commas.
-     * @return formattedFile  An ArrayList&gtArrayList&gtString&lt&lt that contains a list of lines,
+     * @return formattedFile  An ArrayList&gt;ArrayList&gt;String&lt;&lt; that contains a list of lines,
      * that are each lists that contain each value in an index.
      */
     public ArrayList<ArrayList<String>> formatFileContents(ArrayList<String> fileContents)
@@ -74,7 +74,7 @@ public class Parser {
      *Calls processActivity() in a loop.
      * @param formattedFile  The formatted file to be processed.
      * @throws NoDataFoundException when there is no data in the formatted file.
-     * @return activites  An ArrayList&gtActivity&lt that contains every activity in the file.
+     * @return activites  An ArrayList&gt;Activity&lt; that contains every activity in the file.
      */
     public ArrayList<Activity> processFile(ArrayList<ArrayList<String>> formattedFile) throws NoDataFoundException
     {

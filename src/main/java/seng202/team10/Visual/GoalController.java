@@ -56,7 +56,7 @@ public class GoalController implements Controllable {
 
     /**
      * sets this scene to be the active one
-     * @param app
+     * @param app  The main controller being passed in
      */
     public void setApp(GUIController app){
         this.app = app;

@@ -86,8 +86,8 @@ public class GUIController extends Application{
 
     /**
      * A lot of the initial setup when the program is launched. loads profiles and scenes to the stage
-     * @param primaryStage
-     * @throws Exception
+     * @param primaryStage The main stage of the application that all scenes will be set to.
+     * @throws Exception When the stage is null
      */
     @Override
     public void start(Stage primaryStage) throws Exception
@@ -154,6 +154,9 @@ public class GUIController extends Application{
      *
      * @param user  The user profile that the data is uploaded to.
      * @param filePath The file path the data is stored at.
+     * @throws FileNotFoundException When theres no file to be found
+     * @throws NoDataFoundException When theres no data to be found in the file
+     * @throws ExistingElementException When the data in the file has already been uploaded
      */
     public void uploadDataToUser(UserProfile user, String filePath) throws FileNotFoundException, NoDataFoundException, ExistingElementException
     {
@@ -193,7 +196,7 @@ public class GUIController extends Application{
     /**
      * checks to see if a profile already exists with a specific username
      * @param userName the username being checked
-     * @throws UniqueNameException
+     * @throws UniqueNameException When a profile already exists with that name.
      */
     public void checkUniqueName(String userName) throws UniqueNameException
     {
@@ -263,6 +266,7 @@ public class GUIController extends Application{
 
     /**
      * Sets the scene on the primary stage to the entry viewer scene.
+     * @param activity  The activity being viewed
      */
     public void launchEntryViewerScene(Activity activity)
     {
@@ -393,6 +397,7 @@ public class GUIController extends Application{
     /**
      * Creates a new profile (and adds the test data to it for now).
      * @param newUser  The profile being created.
+     * @throws InvalidUserException when the user is invalid
      */
     public void createUser(UserProfile newUser) throws InvalidUserException
     {
@@ -429,7 +434,7 @@ public class GUIController extends Application{
 
     /**
      * Gets the list of user profiles.
-     * @return  a ArrayList<UserProfile> object of the user profiles.
+     * @return  a ArrayList&gt;UserProfile&lt; object of the user profiles.
      */
     public ArrayList<UserProfile> getUsers()
     {
@@ -447,8 +452,8 @@ public class GUIController extends Application{
 
 
     /**
-     * obligatory main method. launches the thing
-     * @param args
+     * obligatory main method. launches the program
+     * @param args Not implemented
      */
     public static void main(String[] args)
     {
@@ -461,6 +466,7 @@ public class GUIController extends Application{
      * @param type Alert.AlertType: type of alert
      * @param title String: Title of pop up window
      * @param message String: Message to display to user
+     * @return  String
      */
     public String createPopUp(Alert.AlertType type, String title, String message)
     {

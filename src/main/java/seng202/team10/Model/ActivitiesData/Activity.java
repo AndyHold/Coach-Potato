@@ -40,7 +40,7 @@ public class Activity implements Serializable {
      * Method to convert a number of seconds to a string in the format HH:MM:SS. Returns null if the hours are greater than 23
      * or if seconds are negative.
      * @param seconds  The time in seconds to be converted.
-     * @return  A string in the format HH:MM:SS that describes the time. Null if hours > 23
+     * @return  A string in the format HH:MM:SS that describes the time. Null if hours &lt; 23
      */
     public String secondsToTime(int seconds) {
         if (seconds < 0) {
@@ -120,7 +120,7 @@ public class Activity implements Serializable {
 
     /**
      * Setter method for a list of activities
-     * @param newEntries ArrayList<Entry>
+     * @param newEntries ArrayList&gt;Entry&lt;
      *                   TODO speak to Cam about this, is this really the best way to do this? - Andy
      */
     public void setEntries(ArrayList<Entry> newEntries)
@@ -284,8 +284,8 @@ public class Activity implements Serializable {
 
 
     /**
-     * Getter method for the ArrayList<Entry> entries
-     * @return ArrayList&gtEntry&lt
+     * Getter method for the ArrayList&gt;Entry&lt; entries
+     * @return ArrayList&gt;Entry&lt;
      */
     public ArrayList<Entry> getEntries()
     {
