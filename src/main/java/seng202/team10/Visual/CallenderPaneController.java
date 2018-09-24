@@ -226,11 +226,19 @@ public class CallenderPaneController {
     }
 
 
+    /**
+     * returns arraylist of AnchorPaneNodes that are the calendar days
+     * @return
+     */
     public ArrayList<AnchorPaneNode> getAllCalendarDays()
     {
         return allCalendarDays;
     }
 
+    /**
+     * sets all the calender days to a specified arraylist
+     * @param allCalendarDays
+     */
     public void setAllCalendarDays(ArrayList<AnchorPaneNode> allCalendarDays)
     {
         this.allCalendarDays = allCalendarDays;

@@ -233,7 +233,6 @@ public class Activity implements Serializable {
 
     /**
      * Setter method for the velocity at each Entry in the Activity
-     * TODO test this method.
      */
     public void calculateEntriesVelocity()
     {
