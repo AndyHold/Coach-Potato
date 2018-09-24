@@ -18,7 +18,11 @@ public enum GoalType {
         this.name = newName;
     }
 
-
+    /**
+     * Method to get the goal type from the string typeName
+     * @param typeName: String
+     * @return GoalType
+     */
     public static GoalType getTypeFromString(String typeName)
     {
         switch (typeName) {

@@ -17,9 +17,6 @@ import java.time.LocalDateTime;
 public class Goals implements Serializable {
 
     private UserProfile user;
-
-
-
     private ArrayList<Goal> currentGoals = new ArrayList<Goal>();
     private ArrayList<String> currentGoalNames = new ArrayList<String>();
     private ArrayList<Goal> achievedGoals = new ArrayList<Goal>();
