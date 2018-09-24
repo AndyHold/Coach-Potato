@@ -14,7 +14,8 @@ public class FileWriter
 
 
     /**
-    saves the inputted user profile as a serialized file
+     *saves the inputted user profile as a serialized file
+     *@param profile  the UserProfile being saved.
      */
     public void saveProfile(UserProfile profile){
         createProfileFolder();
@@ -49,7 +50,8 @@ public class FileWriter
         return success;
     }
 
-    /** returns the last profile that was saved */
+    /** returns the last profile that was saved
+     * @return  A UserProfile, the active profile*/
     public UserProfile getActiveProfile() {
         return activeProfile;
     }
