@@ -96,9 +96,9 @@ public class GUIController extends Application{
             dataWriter.createProfileFolder();
         }
         try {
-            // Added a test user.
-            users.add(new UserProfile("Potato", 75, 180, new DateTime(2000, 1, 1, 1, 1, 1), "Male"));
-            users.get(0).setMaxHeartRate(210);
+//            Added a test user.
+//            users.add(new UserProfile("Potato", 75, 180, new DateTime(2000, 1, 1, 1, 1, 1), "Male"));
+//            users.get(0).setMaxHeartRate(210);
         } catch (IllegalArgumentException exception) {
             createPopUp(Alert.AlertType.ERROR, "Error", "Could not find image");
         }
