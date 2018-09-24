@@ -27,7 +27,11 @@ public class WeightGoal extends Goal {
     }
 
 
-
+    /**
+     * Method to review a weight goal of the user. Determines whether the user has achieved, failed, or is still working towards a particular weight goal
+     * @param currentWeight: double
+     * @return String
+     */
     public String reviewWeightGoal(double currentWeight)
     {
         String progressDescription = "Your target for this goal was to weigh " + this.getGoalWeight() + " or less by " + this.getGoalTargetDate();

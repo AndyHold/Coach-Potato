@@ -25,6 +25,11 @@ public class BmiGoal extends Goal {
         return this.goalBmi;
     }
 
+    /**
+     * Method to review a BMI goal of the user. Determines whether the user has achieved, failed, or is still working towards a particular BMI goal
+     * @param currentBmi: double
+     * @return String
+     */
     public String reviewBmiGoal(double currentBmi)
     {
         String progressDescription = "Your target for this goal was to have a BMI less than or equal to " + this.getGoalBmi() + " by " + this.getGoalTargetDate();

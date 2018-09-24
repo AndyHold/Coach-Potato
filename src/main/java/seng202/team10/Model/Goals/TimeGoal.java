@@ -25,6 +25,11 @@ public class TimeGoal extends Goal {
     }
 
 
+    /**
+     * Method to review a time goal of the user. Determines whether the user has achieved, failed, or is still working towards a particular time goal
+     * @param time: double
+     * @return String
+     */
     public String reviewTimeGoal(double time)
     {
         String progressDescription = "Your target for this goal was to excersize for " + this.getGoalTime() + " minutes by " + this.getGoalTargetDate();

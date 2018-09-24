@@ -29,6 +29,11 @@ public class FrequencyGoal extends Goal {
         return this.goalFrequency;
     }
 
+    /**
+     * Method to review a frequency goal of the user. Determines whether the user has achieved, failed, or is still working towards a particular frequency goal
+     * @param freq: double
+     * @return String
+     */
     public String reviewFrequencyGoal(int freq)
     {
         String progressDescription = "Your target for this goal was to excersize " + this.getGoalFrequency() + " times by " + this.getGoalTargetDate();
