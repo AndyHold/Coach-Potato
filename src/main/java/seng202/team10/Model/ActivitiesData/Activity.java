@@ -351,6 +351,7 @@ public class Activity implements Serializable {
     /**
 <<<<<<< HEAD
      * Getter method for the ArrayList<Entry> entries
+<<<<<<< HEAD
      * @return ArrayList<Entry>
 =======
      * Getter method for the Average Speed as a String, in KM/h
@@ -360,6 +361,9 @@ public class Activity implements Serializable {
 =======
 >>>>>>> 92da298... making units on activityviewer better by changing toString methods, and appropriate tests
 >>>>>>> 7a3f71e2... making units on activityviewer better by changing toString methods, and appropriate tests
+=======
+     * @return ArrayList&gtEntry&lt
+>>>>>>> 3b88f7f9... Fixed Javadoc
      */
     public ArrayList<Entry> getEntries()
     {
