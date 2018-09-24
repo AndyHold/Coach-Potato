@@ -80,6 +80,7 @@ public class ActivityViewerController {
         heartrateColumn.setCellValueFactory(new PropertyValueFactory<Activity, Integer>("averageHeartRate"));
         entrynoColumn.setCellValueFactory(new PropertyValueFactory<Activity, Integer>("entryno"));
         populateTable(activities);
+        activitiesTableView.refresh();
     }
 
 

@@ -174,6 +174,7 @@ public class EntryViewerController {
      */
     @FXML public void changeTimeCellEvent(TableColumn.CellEditEvent editedCell)
     {
+
         try {
             Entry entrySelected = entriesTableView.getSelectionModel().getSelectedItem();
             entrySelected.changeTime(editedCell.getNewValue().toString());
@@ -183,6 +184,7 @@ public class EntryViewerController {
             String message = exception.getMessage();
             this.app.createPopUp(Alert.AlertType.ERROR, "Error", message);
         }
+        entriesTableView.refresh();
     }
 
 
@@ -201,6 +203,7 @@ public class EntryViewerController {
             String message = exception.getMessage();
             this.app.createPopUp(Alert.AlertType.ERROR, "Error", message);
         }
+        entriesTableView.refresh();
     }
 
 
@@ -219,6 +222,7 @@ public class EntryViewerController {
             String message = exception.getMessage();
             this.app.createPopUp(Alert.AlertType.ERROR, "Error", message);
         }
+        entriesTableView.refresh();
     }
 
 
@@ -237,6 +241,7 @@ public class EntryViewerController {
             String message = exception.getMessage();
             this.app.createPopUp(Alert.AlertType.ERROR, "Error", message);
         }
+        entriesTableView.refresh();
 
     }
 
@@ -256,6 +261,7 @@ public class EntryViewerController {
             String message = exception.getMessage();
             this.app.createPopUp(Alert.AlertType.ERROR, "Error", message);
         }
+        entriesTableView.refresh();
 
     }
 
@@ -275,5 +281,6 @@ public class EntryViewerController {
             String message = exception.getMessage();
             this.app.createPopUp(Alert.AlertType.ERROR, "Error", message);
         }
+        entriesTableView.refresh();
     }
 }
