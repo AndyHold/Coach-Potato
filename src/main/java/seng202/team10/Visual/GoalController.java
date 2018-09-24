@@ -12,6 +12,9 @@ import seng202.team10.Control.InputValidator;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.Goals.*;
 
+/**
+ * Goal Controller Class for Coach Potato SENG202 2018S2
+ */
 public class GoalController implements Controllable {
 
 

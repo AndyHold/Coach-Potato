@@ -12,6 +12,9 @@ import seng202.team10.Model.Exceptions.NoDataFoundException;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
+/**
+ * Parser Class for Coach Potato SENG202 2018S2
+ */
 public class Parser {
 
     private int linePosition = 0;

@@ -7,6 +7,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
+/**
+ * File Writer Class for Coach Potato SENG202 2018S2
+ */
 public class FileWriter
 {
 

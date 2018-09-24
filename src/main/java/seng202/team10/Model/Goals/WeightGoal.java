@@ -5,7 +5,9 @@ import seng202.team10.Model.ActivitiesData.DateTime;
 
 import java.time.LocalDateTime;
 
-
+/**
+ * Weight Goal Class for Coach Potato SENG202 2018S2
+ */
 public class WeightGoal extends Goal {
     private double goalWeight;
 

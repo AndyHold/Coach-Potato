@@ -7,7 +7,9 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
+/**
+ * File Reader Class for Coach Potato SENG202 2018S2
+ */
 public class FileReader {
 
     private UserProfile localProfile;

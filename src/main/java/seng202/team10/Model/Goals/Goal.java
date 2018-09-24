@@ -6,7 +6,9 @@ import seng202.team10.Model.ActivitiesData.DateTime;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-
+/**
+ * Goal Class for Coach Potato SENG202 2018S2
+ */
 public class Goal implements Serializable {
 
     private String goalName;

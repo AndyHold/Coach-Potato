@@ -9,6 +9,9 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import seng202.team10.Control.GUIController;
 
+/**
+ * Menu Bar Controller Class for Coach Potato SENG202 2018S2
+ */
 public class MenuBarController implements Controllable {
 
     private GUIController app;

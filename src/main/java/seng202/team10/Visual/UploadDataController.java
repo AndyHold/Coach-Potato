@@ -22,6 +22,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
+/**
+ * Upload Data Controller Class for Coach Potato SENG202 2018S2
+ */
 public class UploadDataController {
 
     private GUIController app;

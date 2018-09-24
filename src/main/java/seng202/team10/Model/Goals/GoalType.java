@@ -19,8 +19,8 @@ public enum GoalType {
     }
 
     /**
-     * Converts a type from a string to an enum
-     * @param typeName  The type name being converted
+     * Method to convert a goal type from a string to an enum
+     * @param typeName: String
      * @return GoalType
      */
     public static GoalType getTypeFromString(String typeName)

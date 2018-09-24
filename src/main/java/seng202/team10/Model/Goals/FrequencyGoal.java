@@ -5,7 +5,9 @@ import seng202.team10.Model.ActivitiesData.DateTime;
 
 import java.time.LocalDateTime;
 
-
+/**
+ * Frequency Goals Class for Coach Potato SENG202 2018S2
+ */
 public class FrequencyGoal extends Goal {
     private int goalFrequency;
 

@@ -16,6 +16,9 @@ import seng202.team10.Model.ActivitiesData.Route;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Map Controller Class for Coach Potato SENG202 2018S2
+ */
 public class MapController implements Controllable, Initializable{
 
     private GUIController guiController;

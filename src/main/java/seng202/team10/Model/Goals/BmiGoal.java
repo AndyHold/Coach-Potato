@@ -4,6 +4,9 @@ import seng202.team10.Model.ActivitiesData.DateTime;
 
 import java.time.LocalDateTime;
 
+/**
+ * BMI Goals Class for Coach Potato SENG202 2018S2
+ */
 public class BmiGoal extends Goal {
     private double goalBmi;
 

@@ -21,6 +21,9 @@ import java.time.YearMonth;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Profile Controller Class for Coach Potato SENG202 2018S2
+ */
 public class ProfileController {
 
     private GUIController app;
