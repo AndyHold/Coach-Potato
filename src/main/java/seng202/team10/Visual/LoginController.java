@@ -41,11 +41,15 @@ public class LoginController implements Controllable{
     @FXML private Label userThreeNameLabel;
     @FXML private Label userFourNameLabel;
     @FXML private Label userFiveNameLabel;
+    @FXML private Label deleteModeLabel;
     @FXML private Button createProfileButton;
     @FXML private Button deleteProfileButton;
     @FXML private TextArea helpTextArea;
     @FXML private Button helpButton;
+    private String userButtonStyle;
+    private String userButtonBorderStyle;
     private boolean deleteMode;
+
 
 
     /**
@@ -62,6 +66,8 @@ public class LoginController implements Controllable{
      * Method to initialize the user images and other objects on the screen.
      */
     public void setUpScene() {
+        // Set user button style string
+        setUserButtonStyle();
         // Set up Button tool tips
         setUpToolTips();
         // Set help text
@@ -84,6 +90,23 @@ public class LoginController implements Controllable{
                 helpTextArea.setVisible(false);
             }
         });
+    }
+
+
+    /**
+     * Set the css style for the User Buttons as a string
+     */
+    private void setUserButtonStyle()
+    {
+        userButtonStyle = "-fx-background-radius: 8em; " +
+                          "-fx-max-height: 200px; " +
+                          "-fx-max-width: 200px; " +
+                          "-fx-min-height: 200px; " +
+                          "-fx-min-width: 200px; " +
+                          "-fx-background-color: blueviolet;";
+        userButtonBorderStyle = "-fx-border-color: indigo; " +
+                                "-fx-border-radius: 8em; " +
+                                "-fx-border-width: 4px; ";
     }
 
 
@@ -414,11 +437,13 @@ public class LoginController implements Controllable{
     {
         if(deleteMode) {
             deleteMode = false;
+            deleteModeLabel.setVisible(false);
             setUpUserButtons();
             toggleRedBorders();
 
         } else {
             deleteMode = true;
+            deleteModeLabel.setVisible(true);
             setUpUserButtons();
             toggleRedBorders();
         }
@@ -430,18 +455,18 @@ public class LoginController implements Controllable{
      */
     public void toggleRedBorders()
     {
-        if (userOneButton.getStyle().length() == 0) {
-            userOneButton.setStyle("-fx-border-color: red");
-            userTwoButton.setStyle("-fx-border-color: red");
-            userThreeButton.setStyle("-fx-border-color: red");
-            userFourButton.setStyle("-fx-border-color: red");
-            userFiveButton.setStyle("-fx-border-color: red");
+        if (userOneButton.getStyle().equals(userButtonStyle)) {
+            userOneButton.setStyle(userButtonBorderStyle + userButtonStyle);
+            userTwoButton.setStyle(userButtonBorderStyle + userButtonStyle);
+            userThreeButton.setStyle(userButtonBorderStyle + userButtonStyle);
+            userFourButton.setStyle(userButtonBorderStyle + userButtonStyle);
+            userFiveButton.setStyle(userButtonBorderStyle + userButtonStyle);
         } else {
-            userOneButton.setStyle(null);
-            userTwoButton.setStyle(null);
-            userThreeButton.setStyle(null);
-            userFourButton.setStyle(null);
-            userFiveButton.setStyle(null);
+            userOneButton.setStyle(userButtonStyle);
+            userTwoButton.setStyle(userButtonStyle);
+            userThreeButton.setStyle(userButtonStyle);
+            userFourButton.setStyle(userButtonStyle);
+            userFiveButton.setStyle(userButtonStyle);
         }
     }
 
