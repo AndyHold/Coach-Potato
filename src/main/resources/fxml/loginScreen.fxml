@@ -15,11 +15,11 @@
    <children>
       <VBox alignment="CENTER" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: mediumpurple;">
          <children>
-            <HBox alignment="TOP_CENTER" prefHeight="205.0" prefWidth="1280.0" style="-fx-background-color: mediumpurple;">
+            <HBox alignment="TOP_CENTER" prefHeight="180.0" prefWidth="1280.0" style="-fx-background-color: mediumpurple;">
                <children>
-                  <VBox prefHeight="205.0">
+                  <VBox prefHeight="180.0">
                      <children>
-                        <Label alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="205.0" prefWidth="400.0">
+                        <Label alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="400.0">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
@@ -44,43 +44,43 @@
                   <Insets />
                </VBox.margin>
             </HBox>
-            <HBox prefHeight="190.0" prefWidth="1280.0" style="-fx-background-color: mediumpurple;">
+            <HBox prefHeight="240.0" prefWidth="1280.0" style="-fx-background-color: mediumpurple;">
                <children>
                   <VBox alignment="CENTER" prefHeight="185.0" prefWidth="256.0" spacing="15.0" style="-fx-background-color: mediumpurple;">
                      <children>
-                        <Button fx:id="userOneButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#userButtonOne" prefHeight="150.0" prefWidth="150.0">
+                        <Button fx:id="userOneButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#userButtonOne" prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 8em; -fx-max-height: 200px; -fx-max-width: 200px; -fx-min-height: 200px; -fx-min-width: 200px; -fx-background-color: blueviolet;">
                            <graphic>
-                              <ImageView fx:id="userOneImage" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="userOneImage" blendMode="SRC_ATOP" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-radius: 5em;">
                                  <image>
                                     <Image url="@../Images/unknown.png" />
                                  </image>
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Label fx:id="userOneNameLabel" prefHeight="25.0">
+                        <Label fx:id="userOneNameLabel" prefHeight="25.0" textFill="INDIGO">
                            <font>
-                              <Font size="19.0" />
+                              <Font name="Noto Serif Georgian Bold" size="19.0" />
                            </font></Label>
                      </children></VBox>
                   <VBox alignment="CENTER" prefHeight="185.0" prefWidth="256.0" spacing="15.0" style="-fx-background-color: mediumpurple;">
                      <children>
-                        <Button fx:id="userTwoButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#userButtonTwo" prefHeight="150.0" prefWidth="150.0">
+                        <Button fx:id="userTwoButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#userButtonTwo" prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 8em; -fx-max-height: 200px; -fx-max-width: 200px; -fx-min-height: 200px; -fx-min-width: 200px; -fx-background-color: blueviolet;">
                            <graphic>
-                              <ImageView fx:id="userTwoImage" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="userTwoImage" blendMode="SRC_ATOP" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Images/unknown.png" />
                                  </image>
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Label fx:id="userTwoNameLabel" prefHeight="25.0">
+                        <Label fx:id="userTwoNameLabel" prefHeight="25.0" textFill="INDIGO">
                            <font>
-                              <Font size="19.0" />
+                              <Font name="Noto Sans Georgian Bold" size="19.0" />
                            </font></Label>
                      </children></VBox>
                   <VBox alignment="CENTER" prefHeight="185.0" prefWidth="256.0" spacing="15.0" style="-fx-background-color: mediumpurple;">
                      <children>
-                        <Button fx:id="userThreeButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#userButtonThree" prefHeight="150.0" prefWidth="150.0">
+                        <Button fx:id="userThreeButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#userButtonThree" prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 8em; -fx-max-height: 200px; -fx-max-width: 200px; -fx-min-height: 200px; -fx-min-width: 200px; -fx-background-color: blueviolet;">
                            <graphic>
                               <ImageView fx:id="userThreeImage" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -89,14 +89,14 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Label fx:id="userThreeNameLabel" prefHeight="25.0">
+                        <Label fx:id="userThreeNameLabel" prefHeight="25.0" textFill="INDIGO">
                            <font>
-                              <Font size="19.0" />
+                              <Font name="Noto Serif Georgian Bold" size="19.0" />
                            </font></Label>
                      </children></VBox>
                   <VBox alignment="CENTER" prefHeight="185.0" prefWidth="256.0" spacing="15.0" style="-fx-background-color: mediumpurple;">
                      <children>
-                        <Button fx:id="userFourButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#userButtonFour" prefHeight="150.0" prefWidth="150.0">
+                        <Button fx:id="userFourButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#userButtonFour" prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 8em; -fx-max-height: 200px; -fx-max-width: 200px; -fx-min-height: 200px; -fx-min-width: 200px; -fx-background-color: blueviolet;">
                            <graphic>
                               <ImageView fx:id="userFourImage" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -105,14 +105,14 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Label fx:id="userFourNameLabel" prefHeight="25.0">
+                        <Label fx:id="userFourNameLabel" prefHeight="25.0" textFill="INDIGO">
                            <font>
-                              <Font size="19.0" />
+                              <Font name="Noto Serif Georgian Bold" size="19.0" />
                            </font></Label>
                      </children></VBox>
                   <VBox alignment="CENTER" prefHeight="185.0" prefWidth="256.0" spacing="15.0" style="-fx-background-color: mediumpurple;">
                      <children>
-                        <Button fx:id="userFiveButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#userButtonFive" prefHeight="150.0" prefWidth="150.0">
+                        <Button fx:id="userFiveButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#userButtonFive" prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 8em; -fx-max-height: 200px; -fx-max-width: 200px; -fx-min-height: 200px; -fx-min-width: 200px; -fx-background-color: blueviolet;">
                            <graphic>
                               <ImageView fx:id="userFiveImage" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -121,36 +121,48 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Label fx:id="userFiveNameLabel" prefHeight="25.0">
+                        <Label fx:id="userFiveNameLabel" prefHeight="25.0" textFill="INDIGO">
                            <font>
-                              <Font size="19.0" />
+                              <Font name="Noto Serif Georgian Bold" size="19.0" />
                            </font></Label>
                      </children></VBox>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="205.0" prefWidth="1280.0" style="-fx-background-color: mediumpurple;">
+            <HBox alignment="TOP_RIGHT" prefHeight="30.0" prefWidth="1280.0">
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
                <children>
-                  <VBox prefHeight="205.0">
+                  <Label fx:id="deleteModeLabel" prefHeight="30.0" style="-fx-text-fill: indigo;" text="You are now in Delete Mode" underline="true" visible="false">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="150.0" prefWidth="1280.0" style="-fx-background-color: mediumpurple;">
+               <children>
+                  <VBox>
                      <children>
-                        <Button fx:id="createProfileButton" mnemonicParsing="false" onAction="#createProfile" prefHeight="28.0" prefWidth="200.0" text="Create New Profile">
+                        <Button fx:id="createProfileButton" mnemonicParsing="false" onAction="#createProfile" prefHeight="28.0" prefWidth="200.0" style="-fx-background-color: blueviolet;" text="Create New Profile" textFill="INDIGO">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="Noto Serif Georgian Bold" size="14.0" />
                            </font></Button>
                      </children>
                      <padding>
-                        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                        <Insets bottom="30.0" left="30.0" right="30.0" />
                      </padding>
                   </VBox>
                   <VBox alignment="TOP_CENTER">
                      <children>
-                        <Button fx:id="deleteProfileButton" mnemonicParsing="false" onAction="#deleteProfile" prefWidth="200.0" text="Delete Profile">
+                        <Button fx:id="deleteProfileButton" mnemonicParsing="false" onAction="#deleteProfile" prefWidth="200.0" style="-fx-background-color: blueviolet;" text="Delete Profile" textFill="INDIGO">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="Noto Serif Georgian Bold" size="14.0" />
                            </font>
                         </Button>
                      </children>
                      <padding>
-                        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                        <Insets bottom="30.0" left="30.0" right="30.0" />
                      </padding></VBox>
                </children>
             </HBox>
@@ -167,7 +179,7 @@
                   </Button>
                </children>
                <padding>
-                  <Insets right="20.0" />
+                  <Insets left="20.0" right="20.0" />
                </padding></HBox>
          </children>
       </VBox>
