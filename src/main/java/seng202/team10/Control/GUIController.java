@@ -1,13 +1,19 @@
 package seng202.team10.Control;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import seng202.team10.Model.ActivitiesData.Activity;
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -87,12 +93,20 @@ import java.util.concurrent.TimeUnit;
 >>>>>>> cf34074... Added a small delay for the map loading the first time
 >>>>>>> 3110e544... Added a small delay for the map loading the first time
 
+
+class Delta { double x, y; }
+
+
+
 /**
  * This is the main controller for the application. This class creates and launches scenes,
  * stores all data needed and functions as the general controller. It passes itself into
  * controllers so they can access any information they need.
  */
 public class GUIController extends Application{
+
+
+    private final Delta dragDelta = new Delta();
 
     private FXMLLoader mainLoader;
     private Scene mainScene;
@@ -272,6 +286,7 @@ public class GUIController extends Application{
             dataWriter.createProfileFolder();
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> d0273878... Checking if profiles folder exists and creating it if it doesn't upon startup
 =======
 >>>>>>> 316efe3... Checking if profiles folder exists and creating it if it doesn't upon startup
@@ -283,10 +298,22 @@ public class GUIController extends Application{
         } catch (IllegalArgumentException exception) {
             createPopUp(Alert.AlertType.ERROR, "Error", "Could not find image");
         }
+=======
+//        try {
+////            Added a test user.
+////            users.add(new UserProfile("Potato", 75, 180, new DateTime(2000, 1, 1, 1, 1, 1), "Male"));
+////            users.get(0).setMaxHeartRate(210);
+//        } catch (IllegalArgumentException exception) {
+//            createPopUp(Alert.AlertType.ERROR, "Error", "Could not find image");
+//        }
+>>>>>>> b2c438da... Played around with the GUI a bit further and created a new branch for it in case I break everything.
             loadAllUsers();
             loadAllScenes();
             primaryStage.setTitle("Coach Potato");
             primaryStage.setResizable(false);
+            primaryStage.initStyle(StageStyle.UNDECORATED);
+            primaryStage.setOpacity(0.9);
+
             if (users.isEmpty()) {
                 primaryStage.setScene(createProfileScene);
             } else {
@@ -315,6 +342,37 @@ public class GUIController extends Application{
     }
 
 
+<<<<<<< HEAD
+=======
+
+//    public void titleClicked()
+//    {
+//        dragDelta.x = primaryStage.getX();
+//        dragDelta.y = primaryStage.getY();
+//    }
+//
+//
+//
+//    public void titleReleased()
+//    {
+//        primaryStage.setX()
+//    }
+
+
+    /**
+     * Method to minimise the window to the task bar.
+     */
+    public void minimise()
+    {
+        primaryStage.setIconified(true);
+    }
+
+
+    /**
+     * Getter method for the Parser
+     * @return Parser
+     */
+>>>>>>> b2c438da... Played around with the GUI a bit further and created a new branch for it in case I break everything.
     public Parser getParser()
     {
         return this.parser;

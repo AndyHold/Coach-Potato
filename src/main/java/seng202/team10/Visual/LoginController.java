@@ -1,5 +1,6 @@
 package seng202.team10.Visual;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,6 +17,7 @@ import seng202.team10.Control.GUIController;
 import seng202.team10.Model.UserProfile;
 
 import java.util.ArrayList;
+
 
 /**
  * LoginController Class for Coach Potato
@@ -90,6 +92,30 @@ public class LoginController implements Controllable{
                 helpTextArea.setVisible(false);
             }
         });
+    }
+
+
+
+    @FXML public void titleClicked()
+    {
+//        app.titleClicked();
+    }
+
+
+
+    @FXML public void titleReleased()
+    {
+
+    }
+
+
+    /**
+     * Method called when the close button is selected.
+     * closes the application.
+     */
+    @FXML public void close()
+    {
+        Platform.exit();
     }
 
 

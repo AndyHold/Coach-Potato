@@ -1,6 +1,7 @@
 package seng202.team10.Visual;
 
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
@@ -351,6 +352,25 @@ public class ProfileController {
             closeNav.setToX(-(drawer.getWidth()));
             closeNav.play();
         }
+    }
+
+    /**
+     * Method called when close button is selected.
+     * Exits the application.
+     */
+    @FXML private void close()
+    {
+        Platform.exit();
+    }
+
+
+    /**
+     * Method called when the minimise button is selected.
+     * Minimises the application to the task bar.
+     */
+    @FXML private void minimise()
+    {
+        app.minimise();
     }
 
 
