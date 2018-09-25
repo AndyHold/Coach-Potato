@@ -1,13 +1,19 @@
 package seng202.team10.Control;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.ActivitiesData.Route;
@@ -26,12 +32,20 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
+
+class Delta { double x, y; }
+
+
+
 /**
  * This is the main controller for the application. This class creates and launches scenes,
  * stores all data needed and functions as the general controller. It passes itself into
  * controllers so they can access any information they need.
  */
 public class GUIController extends Application{
+
+
+    private final Delta dragDelta = new Delta();
 
     private FXMLLoader mainLoader;
     private Scene mainScene;
@@ -95,17 +109,20 @@ public class GUIController extends Application{
         if(!dataReader.checkFileExists("./profiles")){
             dataWriter.createProfileFolder();
         }
-        try {
-//            Added a test user.
-//            users.add(new UserProfile("Potato", 75, 180, new DateTime(2000, 1, 1, 1, 1, 1), "Male"));
-//            users.get(0).setMaxHeartRate(210);
-        } catch (IllegalArgumentException exception) {
-            createPopUp(Alert.AlertType.ERROR, "Error", "Could not find image");
-        }
+//        try {
+////            Added a test user.
+////            users.add(new UserProfile("Potato", 75, 180, new DateTime(2000, 1, 1, 1, 1, 1), "Male"));
+////            users.get(0).setMaxHeartRate(210);
+//        } catch (IllegalArgumentException exception) {
+//            createPopUp(Alert.AlertType.ERROR, "Error", "Could not find image");
+//        }
             loadAllUsers();
             loadAllScenes();
             primaryStage.setTitle("Coach Potato");
             primaryStage.setResizable(false);
+            primaryStage.initStyle(StageStyle.UNDECORATED);
+            primaryStage.setOpacity(0.9);
+
             if (users.isEmpty()) {
                 primaryStage.setScene(createProfileScene);
             } else {
@@ -126,6 +143,30 @@ public class GUIController extends Application{
         for(String username: userNames){
             users.add(dataReader.loadExistingProfile(username));
         }
+    }
+
+
+
+//    public void titleClicked()
+//    {
+//        dragDelta.x = primaryStage.getX();
+//        dragDelta.y = primaryStage.getY();
+//    }
+//
+//
+//
+//    public void titleReleased()
+//    {
+//        primaryStage.setX()
+//    }
+
+
+    /**
+     * Method to minimise the window to the task bar.
+     */
+    public void minimise()
+    {
+        primaryStage.setIconified(true);
     }
 
 
