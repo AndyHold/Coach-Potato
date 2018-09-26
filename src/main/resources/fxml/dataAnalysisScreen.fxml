@@ -8,12 +8,10 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextArea" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: mediumpurple;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.DataAnalysisController">
    <children>
@@ -139,6 +137,7 @@
       <ListView fx:id="activityList" layoutX="43.0" layoutY="122.0" onMouseClicked="#refresh" prefHeight="504.0" prefWidth="400.0" style="-fx-background-color: mediumpurple; -fx-border-color: #435;" />
       <Label fx:id="noActivitiesLabel" layoutX="180.0" layoutY="350.0" text="No activities found" visible="false" />
       <Label layoutX="208.0" layoutY="87.0" text="Activities" />
+<<<<<<< HEAD
 >>>>>>> 46edd0eb... GUI changes - changed colour scheme to make it not look ugy for now, will make it better for deliverable 3.
        <ToolBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="1280.0" style="-fx-background-color: #435;">
            <items>
@@ -185,6 +184,8 @@
 <<<<<<< HEAD
 >>>>>>> 46edd0eb... GUI changes - changed colour scheme to make it not look ugy for now, will make it better for deliverable 3.
 =======
+=======
+>>>>>>> e7a69fc0... Worked extensively on the GUI. now have a working custom title bar, a new colour theme which has been implemented on login, profile, and createprofile screens.
       <Button fx:id="mapButton" layoutX="804.0" layoutY="647.0" mnemonicParsing="false" onAction="#viewMap" prefHeight="35.0" prefWidth="100.0" text="View Map" />
 >>>>>>> 3b6dd4fd... Fixed the FXML loader warning due to a bad line in dataAnalysisScreen.fxml and changed the distance to metres and speed to m/s on view entries.
 =======

@@ -5,13 +5,16 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import seng202.team10.Model.ActivitiesData.Activity;
@@ -96,6 +99,59 @@ import java.util.concurrent.TimeUnit;
 
 class Delta { double x, y; }
 
+class WindowStyle {
+    private static final Rectangle2D SCREEN_BOUNDS= Screen.getPrimary()
+            .getVisualBounds();
+    private static double[] pref_WH, offset_XY;
+    private static String styleSheet;
+
+    private WindowStyle(String css) {
+        styleSheet= getClass().getResource(css).toString();
+    }
+
+    protected static void allowDrag(Parent root, Stage stage) {
+        root.setOnMousePressed((MouseEvent p) -> {
+            offset_XY= new double[]{p.getSceneX(), p.getSceneY()};
+        });
+
+        root.setOnMouseDragged((MouseEvent d) -> {
+            //Ensures the stage is not dragged past the taskbar
+            if (d.getScreenY()<(SCREEN_BOUNDS.getMaxY()-20))
+                stage.setY(d.getScreenY() - offset_XY[1]);
+            stage.setX(d.getScreenX() - offset_XY[0]);
+        });
+
+        root.setOnMouseReleased((MouseEvent r)-> {
+            //Ensures the stage is not dragged past top of screen
+            if (stage.getY()<0.0) stage.setY(0.0);
+        });
+    }
+
+    //Sets the default stage prefered width and height.
+    protected static void stageDimension(Double width, Double height) {
+        pref_WH= new double[]{width, height};
+    }
+
+    protected static void fullScreen(Stage stage) {
+        stage.setX(SCREEN_BOUNDS.getMinX());
+        stage.setY(SCREEN_BOUNDS.getMinY());
+        stage.setWidth(SCREEN_BOUNDS.getWidth());
+        stage.setHeight(SCREEN_BOUNDS.getHeight());
+    }
+
+    protected static void restoreScreen(Stage stage) {
+        stage.setX((SCREEN_BOUNDS.getMaxX() - pref_WH[0])/2);
+        stage.setY((SCREEN_BOUNDS.getMaxY() - pref_WH[1])/2);
+        stage.setWidth(pref_WH[0]);
+        stage.setHeight(pref_WH[1]);
+    }
+
+    protected static String addStyleSheet(String css) {
+        new WindowStyle(css);
+        return styleSheet;
+    }
+}
+
 
 
 /**
@@ -103,50 +159,13 @@ class Delta { double x, y; }
  * stores all data needed and functions as the general controller. It passes itself into
  * controllers so they can access any information they need.
  */
-public class GUIController extends Application{
+public class GUIController extends Application {
 
 
     private final Delta dragDelta = new Delta();
 
-    private FXMLLoader mainLoader;
-    private Scene mainScene;
-    private MenuBarController mainController;
-
-    private FXMLLoader loginLoader;
-    private Scene loginScene;
-    private LoginController loginController;
-
-    private FXMLLoader createProfileLoader;
-    private Scene createProfileScene;
-    private CreateProfileController createProfileController;
-
-    private FXMLLoader profileLoader;
-    private Scene profileScene;
-    private ProfileController profileController;
-
-    private FXMLLoader goalsLoader;
-    private Scene goalsScene;
-    private GoalController goalsController;
-
-    private FXMLLoader uploadDataLoader;
-    private Scene uploadDataScene;
-    private UploadDataController uploadDataController;
-
-    private FXMLLoader dataAnalysisLoader;
-    private Scene dataAnalysisScene;
-    private DataAnalysisController dataAnalysisController;
-
-    private FXMLLoader activityViewerLoader;
-    private Scene activityViewerScene;
-    private ActivityViewerController activityViewerController;
-
-    private FXMLLoader entryViewerLoader;
-    private Scene entryViewerScene;
-    private EntryViewerController entryViewerController;
-
-    private FXMLLoader mapLoader;
-    private Scene mapScene;
-    private MapController mapController;
+    private Scene titleBarScene;
+    private TitleBarController titleBarController;
 
     private Stage primaryStage;
     private ArrayList<UserProfile> users = new ArrayList<>();
@@ -156,6 +175,8 @@ public class GUIController extends Application{
     private Parser parser = new Parser();
     private FileWriter dataWriter = new FileWriter();
     private FileReader dataReader = new FileReader();
+    private Pane loginPane;
+    private ArrayList<String> userNames;
 
     //private Goals goals = new Goals(currentUser);
 
@@ -167,6 +188,7 @@ public class GUIController extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception
     {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         // Added a test user.
@@ -307,18 +329,29 @@ public class GUIController extends Application{
 //            createPopUp(Alert.AlertType.ERROR, "Error", "Could not find image");
 //        }
 >>>>>>> b2c438da... Played around with the GUI a bit further and created a new branch for it in case I break everything.
+=======
+        if(!dataReader.checkFileExists("./profiles")) {
+            dataWriter.createProfileFolder();
+        }
+>>>>>>> e7a69fc0... Worked extensively on the GUI. now have a working custom title bar, a new colour theme which has been implemented on login, profile, and createprofile screens.
             loadAllUsers();
-            loadAllScenes();
+            loadTitleBar();
             primaryStage.setTitle("Coach Potato");
             primaryStage.setResizable(false);
-            primaryStage.initStyle(StageStyle.UNDECORATED);
+//            primaryStage.initStyle(StageStyle.UNDECORATED);
             primaryStage.setOpacity(0.9);
 
-            if (users.isEmpty()) {
-                primaryStage.setScene(createProfileScene);
-            } else {
-                primaryStage.setScene(loginScene);
-            }
+            Parent root = new Pane();
+            primaryStage.setScene(titleBarScene);
+//            if (userNames.isEmpty()) {
+//                primaryStage.setScene(createProfileScene);
+//                WindowStyle.allowDrag(root, primaryStage);
+//                WindowStyle.stageDimension(primaryStage.getWidth(), primaryStage.getHeight());
+//            } else {
+//                primaryStage.setScene(loginScene);
+//                WindowStyle.allowDrag(root, primaryStage);
+//                WindowStyle.stageDimension(primaryStage.getWidth(), primaryStage.getHeight());
+//            }
             //        primaryStage.setScene(mainScene);
             //primaryStage.setScene(goalsScene);
             primaryStage.show();
@@ -330,12 +363,30 @@ public class GUIController extends Application{
 >>>>>>> 6e249b39... Finished Implementing new Login Screen Layout.
     }
 
+
+    /**
+     * Getter Method for the usernames arraylist
+     * @return ArrayList: User Names
+     */
+    public ArrayList getUserNames() {
+        return userNames;
+    }
+
+    /**
+     * Getter Method for the primary stage
+     * @return Stage: the primary stage of the application
+     */
+    public Stage getPrimaryStage()
+    {
+        return primaryStage;
+    }
+
     /**
      * loads all the users in the profiles folder and adds them to the users arraylist
      */
     private void loadAllUsers()
     {
-        ArrayList<String> userNames = dataReader.getExistingUsers();
+        userNames = dataReader.getExistingUsers();
         for(String username: userNames){
             users.add(dataReader.loadExistingProfile(username));
         }
@@ -403,6 +454,7 @@ public class GUIController extends Application{
         user.addActivities(activities);
     }
 
+<<<<<<< HEAD
 
     /**
      * Sets the scene on the primary stage to the login scene.
@@ -418,12 +470,15 @@ public class GUIController extends Application{
 <<<<<<< HEAD
     /**dNewScene("/fxml/loginScreen.fxml");
 =======
+=======
+>>>>>>> e7a69fc0... Worked extensively on the GUI. now have a working custom title bar, a new colour theme which has been implemented on login, profile, and createprofile screens.
     /*dNewScene("/fxml/loginScreen.fxml");
 >>>>>>> 37d12d4e... Added a load of missing javadoc all over the place
         createProfileScene = loadNewScene("/fxml/createProfileScreen.fxml");
         profileScene = loadNewScene("/fxml/profileScreen.fxml");
         goalsScene = loadNewScene("/fxml/goalsScreen.fxml");
         uploadDataScene */
+<<<<<<< HEAD
      /**
      * Sets the scene on the primary stage to the profile scene.
      */
@@ -470,6 +525,8 @@ public class GUIController extends Application{
 <<<<<<< HEAD
 >>>>>>> dc1460de... Added functionality for the map controller
 =======
+=======
+>>>>>>> e7a69fc0... Worked extensively on the GUI. now have a working custom title bar, a new colour theme which has been implemented on login, profile, and createprofile screens.
 
     public void checkUniqueName(String userName) throws UniqueNameException
     {
@@ -514,13 +571,14 @@ public class GUIController extends Application{
 >>>>>>> 37d12d4e... Added a load of missing javadoc all over the place
     public void checkUniqueName(String userName) throws UniqueNameException
     {
-        if (currentUser == null || !userName.contentEquals(currentUser.getName())) {
+        if (titleBarController.getCurrentProfile() == null || !userName.contentEquals(titleBarController.getCurrentProfile().getName())) {
             for (UserProfile userProfile : this.getUsers()) {
                 if (userProfile.getName().equals(userName)) {
                     throw new UniqueNameException();
                 }
             }
         }
+<<<<<<< HEAD
 
     }
 
@@ -634,17 +692,10 @@ public class GUIController extends Application{
         entryViewerController.setUpScene(activity);
         dataWriter.saveProfile(currentUser);
         primaryStage.setScene(entryViewerScene);
+=======
+>>>>>>> e7a69fc0... Worked extensively on the GUI. now have a working custom title bar, a new colour theme which has been implemented on login, profile, and createprofile screens.
     }
 
-    /**
-     * Sets the scene on the primary stage to the activity viewer scene.
-     */
-    public void launchActivityViewerScene()
-    {
-        dataWriter.saveProfile(currentUser);
-        activityViewerController.setUpScene();
-        primaryStage.setScene(activityViewerScene);
-    }
 
     /**
      * updates the map scene with a specific activity
@@ -652,20 +703,22 @@ public class GUIController extends Application{
      */
     public void refreshMapScene(Activity activity)
     {
-        this.launchDataAnalysisScene();
+        this.getTitleBar().openAnalysis();
         try {
             TimeUnit.MICROSECONDS.sleep(90000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        this.launchMapScene(activity);
+        this.getTitleBar().openMap(activity);
     }
+
 
     /**
      * Initalizes every loader, controller and scene for each scene. Also runs the setApp(this) and
      * setUpScene methods for each.
      * @throws Exception Not implemented.
      */
+<<<<<<< HEAD
 <<<<<<< HEAD
     public void loadAllScenes() throws Exception{
 <<<<<<< HEAD
@@ -944,16 +997,17 @@ public class GUIController extends Application{
 =======
 >>>>>>> d7480a7... Added map Controller
 >>>>>>> e4a580e1... Added map Controller
+=======
+    public void loadTitleBar() throws Exception
+    {
+        FXMLLoader titleBarLoader = new FXMLLoader(getClass().getResource("/fxml/titleBar.fxml"));
+        Parent root = titleBarLoader.load();
+        titleBarController = titleBarLoader.getController();
+        titleBarController.setApp(this);
+        titleBarController.setUpScene();
+        titleBarScene = new Scene(root, 1280, 750);
+>>>>>>> e7a69fc0... Worked extensively on the GUI. now have a working custom title bar, a new colour theme which has been implemented on login, profile, and createprofile screens.
     }
-
-//    public Pair<Scene, Controllable> loadNewScene(String fxmlPath) throws Exception{
-//           FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-//           Pane pane = loader.load();
-//           Controllable controller = loader.getController();
-//           controller.setApp(this);
-//           controller.setUpScene();
-//           return new Scene(pane, 900, 600);
-//    }
 
     /**
      * Creates a new profile (and adds the test data to it for now).
@@ -980,16 +1034,7 @@ public class GUIController extends Application{
      */
     public void setCurrentProfile(UserProfile userProfile) {
         this.currentUser = userProfile;
-        this.goalsController.addGoalsToTable();
-    }
-
-    /**
-     * Gets the currently logged in user.
-     * @return  a UserProfile object of the currently logged in user.
-     */
-    public UserProfile getCurrentProfile()
-    {
-        return this.currentUser;
+        this.titleBarController.getGoalController().addGoalsToTable();
     }
 
     /**
@@ -1035,5 +1080,18 @@ public class GUIController extends Application{
         errorPopUp.setHeaderText(null);
         Optional<ButtonType> buttonType = errorPopUp.showAndWait();
         return buttonType.get().getText();
+    }
+
+    public TitleBarController getTitleBar() {
+        return titleBarController;
+    }
+
+
+    /**
+     * Setter Method for current user
+     * @param currentUser UserProfile: Current logged in user.
+     */
+    public void setCurrentUser(UserProfile currentUser) {
+        this.currentUser = currentUser;
     }
 }

@@ -171,10 +171,10 @@ public class MapController implements Controllable, Initializable{
     /**
      * goes back to the data analysis screen
      */
-    @FXML public void goToActivityViewer()
+    @FXML public void goToDataAnalysis()
     {
 //        guiController.launchActivityViewerScene();
-        guiController.launchDataAnalysisScene();
+        guiController.getTitleBar().openAnalysis();
     }
 
 

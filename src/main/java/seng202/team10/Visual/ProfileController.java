@@ -40,7 +40,6 @@ public class ProfileController {
     @FXML private TextField bmiValueTA;
     @FXML private Button editProfileButton;
     @FXML private Button confirmButton;
-    @FXML private Button logoutButton;
     @FXML private Button quoteButton;
     @FXML private Label recentActivitiesLabel;
     @FXML public HBox activity1HBox;
@@ -55,7 +54,6 @@ public class ProfileController {
     @FXML private Text distanceText;
     @FXML private Text velocityText;
     @FXML private Text heartRateText;
-    @FXML private VBox drawer;
     @FXML private VBox wholeProfileVBox;
     @FXML private TextArea helpTextArea;
 
@@ -208,22 +206,22 @@ public class ProfileController {
         DecimalFormat df2 = new DecimalFormat("#.##");
         setUpScene();
         wholeProfileVBox.setVisible(true);
-        app.getCurrentProfile();
-        welcomeProfileLabel.setText("Welcome " + String.valueOf(app.getCurrentProfile().getName()) + ", Let's do it!");
-        usernameTA.setText(app.getCurrentProfile().getName());
-        genderTA.setText(app.getCurrentProfile().getGender());
-        dobTA.setText(app.getCurrentProfile().getBirthDate().getDateAsString());
-        weightValueTA.setText(df2.format((app.getCurrentProfile().getWeight())));
-        heightValueTA.setText(df2.format((app.getCurrentProfile().getHeight())));
-        bmiValueTA.setText(df2.format((app.getCurrentProfile().calcBmi())) + " - " + app.getCurrentProfile().getBmiCategory());
+        app.getTitleBar().getCurrentProfile();
+        welcomeProfileLabel.setText("Welcome " + String.valueOf(app.getTitleBar().getCurrentProfile().getName()) + ", Let's do it!");
+        usernameTA.setText(app.getTitleBar().getCurrentProfile().getName());
+        genderTA.setText(app.getTitleBar().getCurrentProfile().getGender());
+        dobTA.setText(app.getTitleBar().getCurrentProfile().getBirthDate().getDateAsString());
+        weightValueTA.setText(df2.format((app.getTitleBar().getCurrentProfile().getWeight())));
+        heightValueTA.setText(df2.format((app.getTitleBar().getCurrentProfile().getHeight())));
+        bmiValueTA.setText(df2.format((app.getTitleBar().getCurrentProfile().calcBmi())) + " - " + app.getTitleBar().getCurrentProfile().getBmiCategory());
         calendarPane.getChildren().add(new CalenderPaneController(YearMonth.now(), app, this).getView());
 
         // Sets up the calendar and other stats if the user has already uploaded the data to the app else all values are 0 initially.
-        if (app.getCurrentProfile().getActivities().size() > 0) {
+        if (app.getTitleBar().getCurrentProfile().getActivities().size() > 0) {
 
-            distanceText.setText("Total Distance Covered: " + df2.format((app.getCurrentProfile().getActivitiesDistance(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0)))/1000) + " km");
-            velocityText.setText("Average Speed: " + df2.format(app.getCurrentProfile().getActivitiesSpeed(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0))) + " km/h");
-            heartRateText.setText("Average Heart Rate: " + String.valueOf(app.getCurrentProfile().getActivitiesHeartRate(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0))) + " bpm");
+            distanceText.setText("Total Distance Covered: " + df2.format((app.getTitleBar().getCurrentProfile().getActivitiesDistance(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0)))/1000) + " km");
+            velocityText.setText("Average Speed: " + df2.format(app.getTitleBar().getCurrentProfile().getActivitiesSpeed(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0))) + " km/h");
+            heartRateText.setText("Average Heart Rate: " + String.valueOf(app.getTitleBar().getCurrentProfile().getActivitiesHeartRate(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0))) + " bpm");
             recentActivitiesLabel.setVisible(true);
             distanceHBox.setVisible(true);
             velocityHBox.setVisible(true);
@@ -233,16 +231,6 @@ public class ProfileController {
             velocityText.setText("Average Speed: 0.00 km/h");
             heartRateText.setText("Average Heart Rate: No Data");
         }
-    }
-
-
-    /**
-     * Method called when the logout button is clicked
-     * Returns to the Login Screen
-     */
-    @FXML private void logout()
-    {
-        app.launchLoginScene();
     }
 
 
@@ -289,7 +277,7 @@ public class ProfileController {
             String nameString = usernameTA.getText();
             app.checkUniqueName(nameString);
             try {
-                app.getUsers().get(app.getUsers().indexOf(app.getCurrentProfile())).setName(nameString);
+                app.getUsers().get(app.getUsers().indexOf(app.getTitleBar().getCurrentProfile())).setName(nameString);
             } catch (UserNameException | IllegalArgumentException exception) {
                 app.createPopUp(Alert.AlertType.ERROR, "Invalid Username", "Please enter a valid username: It should be less than 50 characters and only contain alphanumeric characters." );
             }
@@ -298,14 +286,14 @@ public class ProfileController {
         }
         // Set weight and handle exceptions
         try {
-            app.getUsers().get(app.getUsers().indexOf(app.getCurrentProfile())).setWeight(Double.valueOf(weightValueTA.getText()));
+            app.getUsers().get(app.getUsers().indexOf(app.getTitleBar().getCurrentProfile())).setWeight(Double.valueOf(weightValueTA.getText()));
         }  catch (InvalidWeightException | IllegalArgumentException exception) {
             app.createPopUp(Alert.AlertType.ERROR, "Invalid Weight", "Please enter a valid weight: It should be greater than 30 kg and less than 500 kg." );
         }
 
         // Set height and handle Exceptions
         try {
-            app.getUsers().get(app.getUsers().indexOf(app.getCurrentProfile())).setHeight(Double.valueOf(heightValueTA.getText()));
+            app.getUsers().get(app.getUsers().indexOf(app.getTitleBar().getCurrentProfile())).setHeight(Double.valueOf(heightValueTA.getText()));
         } catch (InvalidHeightException | IllegalArgumentException exception) {
             app.createPopUp(Alert.AlertType.ERROR, "Invalid Height", "Please enter a valid height: It should be greater than 50 cm and less than 250 cm." );
         }
@@ -317,7 +305,7 @@ public class ProfileController {
             int monthInt = Integer.valueOf(dob.substring(3,5));
             int dayInt = Integer.valueOf(dob.substring(0,2));
             DateTime dateOfBirth = new DateTime(yearInt, monthInt, dayInt, 0, 0, 0);
-            app.getUsers().get(app.getUsers().indexOf(app.getCurrentProfile())).setBirthDate(dateOfBirth);
+            app.getUsers().get(app.getUsers().indexOf(app.getTitleBar().getCurrentProfile())).setBirthDate(dateOfBirth);
         } catch (NullPointerException | IllegalArgumentException exception) {
             app.createPopUp(Alert.AlertType.ERROR, "Invalid Date of Birth", "Please enter a valid date: It should be in DD/MM/YYYY format." );
         }
@@ -325,7 +313,7 @@ public class ProfileController {
         // Set gender and handle Exceptions
         List<String> genderList = Arrays.asList("Male", "Female", "Other");
         if (genderList.contains(genderTA.getText())) {
-            app.getUsers().get(app.getUsers().indexOf(app.getCurrentProfile())).setGender(genderTA.getText());
+            app.getUsers().get(app.getUsers().indexOf(app.getTitleBar().getCurrentProfile())).setGender(genderTA.getText());
         }
         else {
             app.createPopUp(Alert.AlertType.ERROR, "Invalid Gender", "Please enter a valid gender: It should be either \"Male\", \"Female\" or \"Other\"." );
@@ -334,24 +322,6 @@ public class ProfileController {
         confirmButton.setVisible(false);
         editProfileButton.setVisible(true);
         setUserDetails();
-    }
-
-
-    /**
-     * Method to draw the navigation drawer.
-     */
-    @FXML private void drawerAction()
-    {
-
-        TranslateTransition openNav = new TranslateTransition(new Duration(350), drawer);
-        openNav.setToX(0);
-        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
-        if (drawer.getTranslateX() != 0) {
-            openNav.play();
-        } else {
-            closeNav.setToX(-(drawer.getWidth()));
-            closeNav.play();
-        }
     }
 
     /**
@@ -371,77 +341,5 @@ public class ProfileController {
     @FXML private void minimise()
     {
         app.minimise();
-    }
-
-
-    /**
-     * Method to launch the login scene.
-     */
-    @FXML public void openChooseProfile()
-    {
-        moveDrawer();
-        app.launchLoginScene();
-    }
-
-
-    /**
-     * Method to launch the view profile scene.
-     */
-    @FXML public void openViewProfile()
-    {
-        moveDrawer();
-        app.launchProfileScene();
-    }
-
-
-    /**
-     * Method to launch the upload data scene.
-     */
-    @FXML public void openUploadData()
-    {
-        moveDrawer();
-        app.launchUploadDataScene();
-    }
-
-
-    /**
-     * Method to launch the view activities scene.
-     */
-    @FXML public void openViewActivities()
-    {
-        moveDrawer();
-        app.launchActivityViewerScene();
-    }
-
-
-    /**
-     * Method to launch the goals scene.
-     */
-    @FXML public void openGoals()
-    {
-        moveDrawer();
-        app.launchGoalsScene();
-    }
-
-
-    /**
-     * Method to launch the data analysis scene.
-     */
-    @FXML public void openAnalysis()
-    {
-        moveDrawer();
-        app.launchDataAnalysisScene();
-    }
-
-
-    /**
-     * Method to move the navigation drawer as appropriate.
-     */
-    private void moveDrawer()
-    {
-        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
-        closeNav.setToX(-(drawer.getWidth()));
-        closeNav.play();
-        setUpScene();
     }
 }

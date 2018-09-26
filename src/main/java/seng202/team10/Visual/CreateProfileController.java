@@ -306,12 +306,10 @@ public class CreateProfileController implements Controllable
     {
         // Set all error labels to invisible
         setErrorsInvisible();
-
         // Set all Text fields etc to null
         setInputsToNull();
-
         // Launch login screen
-        app.launchLoginScene();
+        app.getTitleBar().openLogin();
     }
 
 
@@ -402,7 +400,7 @@ public class CreateProfileController implements Controllable
             setErrorsInvisible();
             setInputsToNull();
             this.app.getDataWriter().saveProfile(userProfile);
-            app.launchLoginScene();
+            app.getTitleBar().openLogin();
         } catch (InvalidUserException exception) { }
     }
 

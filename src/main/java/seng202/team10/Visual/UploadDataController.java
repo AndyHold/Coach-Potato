@@ -528,8 +528,8 @@ public class UploadDataController {
                 ArrayList<String> fileContents = this.parser.getFileContents(filename);
                 ArrayList<ArrayList<String>> formattedFile = this.parser.formatFileContents(fileContents);
                 ArrayList<Activity> newActivities = this.parser.processFile(formattedFile);
-                app.getCurrentProfile().addActivities(newActivities);
-                app.getDataWriter().saveProfile(app.getCurrentProfile()); // Reserialize profile after adding data
+                app.getTitleBar().getCurrentProfile().addActivities(newActivities);
+                app.getDataWriter().saveProfile(app.getTitleBar().getCurrentProfile()); // Reserialize profile after adding data
                 if (this.parser.getBadActivities() > 0) {
                     String discardedMessage = String.valueOf(this.parser.getBadActivities()) + " of " + String.valueOf(newActivities.size() + this.parser.getBadActivities()) + " activities found were discarded due to being unparsable";
                     this.app.createPopUp(Alert.AlertType.WARNING, "Warning", discardedMessage);
@@ -574,9 +574,9 @@ public class UploadDataController {
                 }
                 newActivity.postEntriesSetUp();
                 // Add Activity to user profile.
-                app.getCurrentProfile().addActivity(newActivity);
+                app.getTitleBar().getCurrentProfile().addActivity(newActivity);
                 // Reserialize profile after adding data
-                app.getDataWriter().saveProfile(app.getCurrentProfile());
+                app.getDataWriter().saveProfile(app.getTitleBar().getCurrentProfile());
                 // Display a success pop up
                 this.app.createPopUp(Alert.AlertType.INFORMATION, "Success", "You have successfully created the activity \"" + activityName + "\"");
                 // Reset table, text field and ComboBox to be blank
@@ -633,6 +633,7 @@ public class UploadDataController {
             filePathTextField.setText(selectedFile.getAbsolutePath());
         }
     }
+<<<<<<< HEAD
 
     @FXML private void drawerAction() {
 
@@ -727,4 +728,6 @@ public class UploadDataController {
         closeNav.play();
         setUpScene();
     }
+=======
+>>>>>>> e7a69fc0... Worked extensively on the GUI. now have a working custom title bar, a new colour theme which has been implemented on login, profile, and createprofile screens.
 }

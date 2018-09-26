@@ -76,7 +76,7 @@ public class DataAnalysisController implements Controllable, Initializable{
         // Create a new data analysis
         dataAnalysis = new DataAnalysis();
         // Check for activities in the profile
-        if (guiController.getCurrentProfile().getActivities().isEmpty()) {
+        if (guiController.getTitleBar().getCurrentProfile().getActivities().isEmpty()) {
             this.displayNoData(true);
         } else {
             this.setUpListView();
@@ -170,7 +170,7 @@ public class DataAnalysisController implements Controllable, Initializable{
     private void setUpListView()
     {
         ObservableList<String> activityNames = FXCollections.observableArrayList();
-        for (Activity activity : guiController.getCurrentProfile().getActivities()) {
+        for (Activity activity : guiController.getTitleBar().getCurrentProfile().getActivities()) {
             String activityString = activity.getName() + " : " + activity.getStartDateTime().toString();
             activityNames.add(activityString);
         }
@@ -180,7 +180,7 @@ public class DataAnalysisController implements Controllable, Initializable{
             currentIndex = 0;
         }
         currentIndex = activityList.getSelectionModel().getSelectedIndex();
-        activity = guiController.getCurrentProfile().getActivities().get(currentIndex);
+        activity = guiController.getTitleBar().getCurrentProfile().getActivities().get(currentIndex);
     }
 
 
@@ -218,7 +218,7 @@ public class DataAnalysisController implements Controllable, Initializable{
      */
     private void populateCaloriesBurnedGraph(ArrayList<Double> timeArray)
     {
-        ArrayList<Double> calorieArray = dataAnalysis.getCaloriesFromActivity(activity, guiController.getCurrentProfile());
+        ArrayList<Double> calorieArray = dataAnalysis.getCaloriesFromActivity(activity, guiController.getTitleBar().getCurrentProfile());
         for (int i = 0; i < timeArray.size(); i++) {
             caloriesBurnedSeries.getData().add(new XYChart.Data(timeArray.get(i), calorieArray.get(i)));
         }
@@ -235,7 +235,7 @@ public class DataAnalysisController implements Controllable, Initializable{
     {
         ArrayList<Double> stressArray = new ArrayList<>();
         for (int i = 0; i < timeArray.size(); i++) {
-            double stressPercent = (double)heartRateArray.get(i)/(double)guiController.getCurrentProfile().getMaxHeartRate();
+            double stressPercent = (double)heartRateArray.get(i)/(double)guiController.getTitleBar().getCurrentProfile().getMaxHeartRate();
             stressArray.add(stressPercent);
             stressLevelTimeSeries.getData().add(new XYChart.Data(timeArray.get(i), stressArray.get(i)));
         }
@@ -366,7 +366,7 @@ public class DataAnalysisController implements Controllable, Initializable{
     {
 >>>>>>> 517b3e8c... Refactored Classes in the Visual, Exceptions and ActivitiesData packages to meet style guidlines and java doc specs. Also refactored some methods that were particularly large. Also dealt with some warnings and refactored a bit because of it.
         if (!(activity == null)) {
-            guiController.launchMapScene(activity);
+            guiController.getTitleBar().openMap(activity);
         } else {
             this.guiController.createPopUp(Alert.AlertType.ERROR, "Error", "Please select an activity.");
         }
@@ -381,6 +381,7 @@ public class DataAnalysisController implements Controllable, Initializable{
     {
         setUpGraphs();
     }
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -484,4 +485,6 @@ public class DataAnalysisController implements Controllable, Initializable{
         setUpGraphs();
 >>>>>>> 677c7c0b... Can now view graphs from different activities. Formatting is bad however.
     }
+=======
+>>>>>>> e7a69fc0... Worked extensively on the GUI. now have a working custom title bar, a new colour theme which has been implemented on login, profile, and createprofile screens.
 }
