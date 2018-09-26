@@ -1,0 +1,147 @@
+#quoteButton
+{
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 1em;
+    -fx-border-radius: 1em;
+}
+
+#quotesLabel
+{
+    -fx-font-family: System;
+    -fx-font-size: 19px;
+    -fx-font-style: italic;
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 1em;
+    -fx-border-radius: 1em;
+}
+
+#helpButton
+{
+    -fx-border-width: 0;
+}
+
+#welcomeProfileLabel
+{
+    -fx-font-size: 22px;
+}
+
+#yourProfileLabel
+{
+    -fx-font-family: System;
+    -fx-font-style: italic;
+    -fx-font-size: 18px;
+}
+
+#measurementsLabel
+{
+    -fx-font-family: System;
+    -fx-font-style: italic;
+    -fx-font-size: 18px;
+}
+
+#recentActivitiesLabel
+{
+    -fx-font-family: System;
+    -fx-font-style: italic;
+    -fx-font-size: 18px;
+}
+
+#dailyStatsLabel
+{
+    -fx-font-family: System;
+    -fx-font-style: italic;
+    -fx-font-size: 18px;
+}
+
+#distanceHBox
+{
+    -fx-background-color: #b3b3ff;
+    -fx-background-radius: 1em;
+    -fx-border-width: 2px;
+    -fx-border-color: blue;
+    -fx-border-radius: 1em;
+}
+
+#distanceText
+{
+    -fx-text-fill: blue;
+}
+
+#velocityHBox
+{
+    -fx-background-color: #b3b3ff;
+    -fx-background-radius: 1em;
+    -fx-border-width: 2px;
+    -fx-border-color: blue;
+    -fx-border-radius: 1em;
+}
+
+#velocityText
+{
+    -fx-text-fill: blue;
+}
+
+#heartRateHBox
+{
+    -fx-background-color: #b3b3ff;
+    -fx-background-radius: 1em;
+    -fx-border-width: 2px;
+    -fx-border-color: blue;
+    -fx-border-radius: 1em;
+}
+
+#heartRateText
+{
+    -fx-text-fill: blue;
+}
+
+#activity1HBox
+{
+    -fx-background-color: #b3b3ff;
+    -fx-background-radius: 1em;
+    -fx-border-width: 2px;
+    -fx-border-color: blue;
+    -fx-border-radius: 1em;
+}
+
+#activity1Text
+{
+    -fx-text-fill: blue;
+}
+
+#activity2HBox
+{
+    -fx-background-color: #b3b3ff;
+    -fx-background-radius: 1em;
+    -fx-border-width: 2px;
+    -fx-border-color: blue;
+    -fx-border-radius: 1em;
+}
+
+#activity2Text
+{
+    -fx-text-fill: blue;
+}
+
+#activity3HBox
+{
+    -fx-background-color: #b3b3ff;
+    -fx-background-radius: 1em;
+    -fx-border-width: 2px;
+    -fx-border-color: blue;
+    -fx-border-radius: 1em;
+}
+
+#activity3Text
+{
+    -fx-text-fill: blue;
+}
+
+#calendarPane:previousMonth
+{
+
+
+
+}

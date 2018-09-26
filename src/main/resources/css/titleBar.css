@@ -1,0 +1,176 @@
+.button
+{
+    -fx-font-family: "Noto Serif Georgian";
+    -fx-font-size: 14px;
+    -fx-background-radius: 1em;
+    -fx-border-radius: 1em;
+    -fx-background-color:  #b3b3ff;
+    -fx-border-color: blue;
+    -fx-border-width: 2px;
+    -fx-text-fill: blue;
+}
+
+.button:focused
+{
+    -fx-font-family: "Noto Serif Georgian";
+    -fx-font-size: 14px;
+    -fx-background-color: blueviolet;
+    -fx-border-color: indigo;
+    -fx-border-width: 4px;
+}
+
+.combo-box
+{
+    -fx-font-size: 11px;
+    -fx-background-radius: 1em;
+    -fx-border-radius: 1em;
+    -fx-border-width: 2px;
+    -fx-background-color:  #b3b3ff;
+    -fx-border-color: blue;
+    -fx-border-width: 2px;
+    -fx-text-fill: blue;
+}
+
+.label
+{
+    -fx-font-family: "Noto Serif Georgian";
+    -fx-font-size: 14px;
+    -fx-text-fill: blue;
+}
+
+.text-field
+{
+    -fx-font-family: "Noto Serif Georgian";
+    -fx-font-size: 14px;
+}
+
+#closeButton
+{
+    -fx-min-width: 30;
+    -fx-max-width: 30;
+    -fx-min-height: 30;
+    -fx-max-height: 30;
+
+}
+
+#minimiseButton
+{
+    -fx-min-width: 30;
+    -fx-max-width: 30;
+    -fx-min-height: 30;
+    -fx-max-height: 30;
+
+}
+
+#menuButton
+{
+    -fx-font-family: System;
+    -fx-font-size: 12px;
+    -fx-min-width: 70;
+    -fx-max-width: 70;
+    -fx-min-height: 30;
+    -fx-max-height: 30;
+}
+
+#mainPane
+{
+    -fx-background-color: #8080ff;
+}
+
+#menuBar
+{
+    -fx-min-width: 150;
+    -fx-max-width: 150;
+    -fx-min-height: 720;
+    -fx-max-height: 720;
+}
+
+#logOutButton
+{
+    -fx-background-radius: 0 1em 0 0;
+    -fx-border-radius: 0 1em 0 0;
+    -fx-min-width: 150;
+    -fx-max-width: 150;
+    -fx-min-height: 60;
+    -fx-max-height: 60;
+}
+
+#viewProfileButton
+{
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-background-color:  #b3b3ff;
+    -fx-border-color: blue;
+    -fx-border-width: 2px;
+    -fx-text-fill: blue;
+    -fx-min-width: 150;
+    -fx-max-width: 150;
+    -fx-min-height: 60;
+    -fx-max-height: 60;
+}
+
+#uploadDataButton
+{
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-background-color:  #b3b3ff;
+    -fx-border-color: blue;
+    -fx-border-width: 2px;
+    -fx-text-fill: blue;
+    -fx-min-width: 150;
+    -fx-max-width: 150;
+    -fx-min-height: 60;
+    -fx-max-height: 60;
+}
+
+#viewActivitiesButton
+{
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-background-color:  #b3b3ff;
+    -fx-border-color: blue;
+    -fx-border-width: 2px;
+    -fx-text-fill: blue;
+    -fx-min-width: 150;
+    -fx-max-width: 150;
+    -fx-min-height: 60;
+    -fx-max-height: 60;
+}
+
+#goalsButton
+{
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-background-color:  #b3b3ff;
+    -fx-border-color: blue;
+    -fx-border-width: 2px;
+    -fx-text-fill: blue;
+    -fx-min-width: 150;
+    -fx-max-width: 150;
+    -fx-min-height: 60;
+    -fx-max-height: 60;
+}
+
+#analysisButton
+{
+    -fx-background-radius: 0 0 1em 0;
+    -fx-border-radius: 0 0 1em 0;
+    -fx-background-color:  #b3b3ff;
+    -fx-border-color: blue;
+    -fx-border-width: 2px;
+    -fx-text-fill: blue;
+    -fx-min-width: 150;
+    -fx-max-width: 150;
+    -fx-min-height: 60;
+    -fx-max-height: 60;
+}
+
+#closeButton
+{
+    -fx-font-size: 12px;
+}
+
+#minimiseButton
+{
+    -fx-font-size: 14px;
+}
