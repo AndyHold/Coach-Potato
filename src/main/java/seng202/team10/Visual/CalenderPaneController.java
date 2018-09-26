@@ -112,7 +112,13 @@ public class CalenderPaneController {
 
         // Create calendarTitle and buttons to change current month
         calendarTitle = new Label();
-        calendarTitle.setStyle("-fx-background-color: #f48fb1");
+        calendarTitle.setStyle("-fx-background-color: #f48fb1; " +
+                               "-fx-background-radius: 0; " +
+                               "-fx-border-radius: 0; " +
+                               "-fx-border-width: 1px;" +
+                               "-fx-border-color: black; " +
+                               "-fx-text-fill: black; " +
+                               "-fx-font-size: 12px");
         calendarTitle.setTextFill(Color.WHITE);
         calendarTitle.setPadding(new Insets(5, 5, 5, 5));
         calendarTitle.setMinSize(210, 30);
@@ -122,7 +128,13 @@ public class CalenderPaneController {
 
         Button previousMonth = new Button("<<");
         previousMonth.setTextFill(Color.WHITE);
-        previousMonth.setStyle("-fx-background-color: #f48fb1");
+        previousMonth.setStyle("-fx-background-color: #f48fb1; " +
+                               "-fx-background-radius: 1em 0 0 0; " +
+                               "-fx-border-radius: 1em 0 0 0; " +
+                               "-fx-border-width: 1px; " +
+                               "-fx-border-color: black; " +
+                               "-fx-text-fill: black;" +
+                               "-fx-font-size: 12px");
         previousMonth.setPadding(new Insets(5, 5, 5, 5));
         previousMonth.setMinSize(35, 30);
         previousMonth.setMaxSize(35, 30);
@@ -130,7 +142,13 @@ public class CalenderPaneController {
         previousMonth.setOnAction(e -> previousMonth());
 
         Button nextMonth = new Button(">>");
-        nextMonth.setStyle("-fx-background-color: #f48fb1");
+        nextMonth.setStyle("-fx-background-color: #f48fb1; " +
+                           "-fx-background-radius: 0 1em 0 0; " +
+                           "-fx-border-radius: 0 1em 0 0; " +
+                           "-fx-border-width: 1px;" +
+                           "-fx-border-color: black; " +
+                           "-fx-text-fill: black; " +
+                           "-fx-font-size: 12px");
         nextMonth.setTextFill(Color.WHITE);
         nextMonth.setPadding(new Insets(5, 5, 5, 5));
         nextMonth.setMinSize(35, 30);
@@ -167,14 +185,14 @@ public class CalenderPaneController {
             txt.setFill(Color.BLACK);
             txt.setTextAlignment(TextAlignment.CENTER);
             ap.setDate(calendarDate);
-            ap.setCurrentUser(app.getCurrentProfile());
+            ap.setCurrentUser(app.getTitleBar().getCurrentProfile());
             ap.setProfileController(profileController);
             ap.setTopAnchor(txt, 10.0);
             ap.setLeftAnchor(txt, 10.0);
             ap.setOnMouseClicked(e -> ap.onMouseClicked());
 
-            if (app.getCurrentProfile().getActivities() != null) {
-                ArrayList<Activity> userActivities = app.getCurrentProfile().getActivities();
+            if (app.getTitleBar().getCurrentProfile().getActivities() != null) {
+                ArrayList<Activity> userActivities = app.getTitleBar().getCurrentProfile().getActivities();
                 ArrayList<Activity> todayActivities = new ArrayList<>();
                 for (Activity activity: userActivities) {
                     LocalDate date = ap.getDate();

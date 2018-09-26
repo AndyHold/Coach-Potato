@@ -269,17 +269,17 @@ public class GoalController implements Controllable {
      * Method to initialise the goal tables each time the user logs in, enters goals screen or switches tabs within goals.
      */
     public void addGoalsToTable() {
-        app.getCurrentProfile().getGoals().refreshGoals();
-        if (app.getCurrentProfile().getGoals() != null) {
-            ObservableList<String> currentGoals = FXCollections.observableArrayList(app.getCurrentProfile().getGoals().getCurrentGoalNames());
+        app.getTitleBar().getCurrentProfile().getGoals().refreshGoals();
+        if (app.getTitleBar().getCurrentProfile().getGoals() != null) {
+            ObservableList<String> currentGoals = FXCollections.observableArrayList(app.getTitleBar().getCurrentProfile().getGoals().getCurrentGoalNames());
             currentGoalsCombo.setItems(currentGoals);
             currentGoalsCombo.setVisibleRowCount(5);
 
-            ObservableList<String> achievedGoalNames = FXCollections.observableArrayList(app.getCurrentProfile().getGoals().getAchievedGoalNames());
+            ObservableList<String> achievedGoalNames = FXCollections.observableArrayList(app.getTitleBar().getCurrentProfile().getGoals().getAchievedGoalNames());
             achievedListView.setItems(achievedGoalNames);
-            ObservableList<String> failedGoalNames = FXCollections.observableArrayList(app.getCurrentProfile().getGoals().getFailedGoalNames());
+            ObservableList<String> failedGoalNames = FXCollections.observableArrayList(app.getTitleBar().getCurrentProfile().getGoals().getFailedGoalNames());
             failedListView.setItems(failedGoalNames);
-            ObservableList<String> futureGoalNames = FXCollections.observableArrayList(app.getCurrentProfile().getGoals().getFutureGoalNames());
+            ObservableList<String> futureGoalNames = FXCollections.observableArrayList(app.getTitleBar().getCurrentProfile().getGoals().getFutureGoalNames());
             futureGoalsListView.setItems(futureGoalNames);
 
         }
@@ -297,7 +297,7 @@ public class GoalController implements Controllable {
     public void createGoal()
     {
         boolean validInput = true;
-        Goals goalsInstance = app.getCurrentProfile().getGoals();
+        Goals goalsInstance = app.getTitleBar().getCurrentProfile().getGoals();
         InputValidator input = new InputValidator();
 
         String type = goalTypeCombo.getValue().toString();
@@ -338,7 +338,7 @@ public class GoalController implements Controllable {
                     }
                 } else {
                     doubleTarget = Double.valueOf(target1);
-                    if (!input.isValidTargetValue(type, doubleTarget, app.getCurrentProfile())) {
+                    if (!input.isValidTargetValue(type, doubleTarget, app.getTitleBar().getCurrentProfile())) {
                         app.createPopUp(Alert.AlertType.ERROR, "Invalid target", "Please choose a numeric and realistic target value that you have not already achieved");
                         validInput = false;
                     }
@@ -382,7 +382,7 @@ public class GoalController implements Controllable {
         if (currentGoalsCombo.getValue() == null) {
             app.createPopUp(Alert.AlertType.ERROR, "You have not selected a goal", "Please choose a goal to remove");
         } else {
-            Goals goalsInstance = app.getCurrentProfile().getGoals();
+            Goals goalsInstance = app.getTitleBar().getCurrentProfile().getGoals();
             String name = currentGoalsCombo.getValue().toString();
             goalsInstance.removeCurrentGoal(name);
             ObservableList<String> currentGoals = FXCollections.observableArrayList(goalsInstance.getCurrentGoalNames());
@@ -402,7 +402,7 @@ public class GoalController implements Controllable {
         if (currentGoalsCombo.getValue() == null){
             app.createPopUp(Alert.AlertType.ERROR, "No goal selected", "Please choose a goal to review");
         } else {
-            Goals goalsInstance = app.getCurrentProfile().getGoals();
+            Goals goalsInstance = app.getTitleBar().getCurrentProfile().getGoals();
             String goalName = currentGoalsCombo.getValue().toString();
             progressText.setText(goalsInstance.checkGoal(goalName));
             ObservableList<String> currentGoals = FXCollections.observableArrayList(goalsInstance.getCurrentGoalNames());
@@ -415,10 +415,10 @@ public class GoalController implements Controllable {
      * Method to update the achieved goal list view
      */
     @FXML public void updateAchievedListView() {
-        if (!app.getCurrentProfile().getGoals().getAchievedGoals().isEmpty()) {
+        if (!app.getTitleBar().getCurrentProfile().getGoals().getAchievedGoals().isEmpty()) {
             String item = achievedListView.getSelectionModel().getSelectedItem().toString();
             Goal goal = null;
-            for (Goal selectedGoal : app.getCurrentProfile().getGoals().getAchievedGoals()) {
+            for (Goal selectedGoal : app.getTitleBar().getCurrentProfile().getGoals().getAchievedGoals()) {
                 if (selectedGoal.getGoalName().equals(item)) {
                     goal = selectedGoal;
                     break;
@@ -436,10 +436,10 @@ public class GoalController implements Controllable {
      * Method to update the failed goal list view
      */
     @FXML public void updateFailedListView() {
-        if (!app.getCurrentProfile().getGoals().getFailedGoals().isEmpty()) {
+        if (!app.getTitleBar().getCurrentProfile().getGoals().getFailedGoals().isEmpty()) {
             String item = failedListView.getSelectionModel().getSelectedItem().toString();
             Goal goal = null;
-            for (Goal selectedGoal : app.getCurrentProfile().getGoals().getFailedGoals()) {
+            for (Goal selectedGoal : app.getTitleBar().getCurrentProfile().getGoals().getFailedGoals()) {
                 if (selectedGoal.getGoalName().equals(item)) {
                     goal = selectedGoal;
                     break;
@@ -456,10 +456,10 @@ public class GoalController implements Controllable {
      * Method to update the future goal list view
      */
     @FXML public void updateFutureListView() {
-        if (!app.getCurrentProfile().getGoals().getFutureGoals().isEmpty()) {
+        if (!app.getTitleBar().getCurrentProfile().getGoals().getFutureGoals().isEmpty()) {
             String item = futureGoalsListView.getSelectionModel().getSelectedItem().toString();
             Goal goal = null;
-            for (Goal selectedGoal : app.getCurrentProfile().getGoals().getFutureGoals()) {
+            for (Goal selectedGoal : app.getTitleBar().getCurrentProfile().getGoals().getFutureGoals()) {
                 if (selectedGoal.getGoalName().equals(item)) {
                     goal = selectedGoal;
                     break;
@@ -538,94 +538,5 @@ public class GoalController implements Controllable {
                     break;
             }
         }
-    }
-
-
-    /**
-     * Method to draw the navigation drawer.
-     */
-    @FXML private void drawerAction()
-    {
-        TranslateTransition openNav = new TranslateTransition(new Duration(350), drawer);
-        openNav.setToX(0);
-        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
-        if (drawer.getTranslateX() != 0) {
-            openNav.play();
-        } else {
-            closeNav.setToX(-(drawer.getWidth()));
-            closeNav.play();
-        }
-    }
-
-
-    /**
-     * Method to launch the login scene.
-     */
-    @FXML public void openChooseProfile()
-    {
-        moveDrawer();
-        app.launchLoginScene();
-    }
-
-
-    /**
-     * Method to launch the view profile scene.
-     */
-    @FXML public void openViewProfile()
-    {
-        moveDrawer();
-        app.launchProfileScene();
-    }
-
-
-    /**
-     * Method to launch the upload data scene.
-     */
-    @FXML public void openUploadData()
-    {
-        moveDrawer();
-        app.launchUploadDataScene();
-    }
-
-
-    /**
-     * Method to launch the view activities scene.
-     */
-    @FXML public void openViewActivities()
-    {
-        moveDrawer();
-        app.launchActivityViewerScene();
-    }
-
-
-    /**
-     * Method to launch the goals scene.
-     */
-    @FXML public void openGoals()
-    {
-        moveDrawer();
-        app.launchGoalsScene();
-    }
-
-
-    /**
-     * Method to launch the data analysis scene.
-     */
-    @FXML public void openAnalysis()
-    {
-        moveDrawer();
-        app.launchDataAnalysisScene();
-    }
-
-
-    /**
-     * Method to move the navigation drawer as appropriate.
-     */
-    private void moveDrawer()
-    {
-        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
-        closeNav.setToX(-(drawer.getWidth()));
-        closeNav.play();
-        setUpScene();
     }
 }

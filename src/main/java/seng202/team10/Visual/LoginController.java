@@ -100,7 +100,7 @@ public class LoginController implements Controllable{
 
     @FXML public void titleReleased()
     {
-
+//        app.titleReleased();
     }
 
 
@@ -326,12 +326,12 @@ public class LoginController implements Controllable{
                 deleteProfile();
                 setUpScene();
                 if (app.getUsers().size() == 0) {
-                    app.launchCreateProfileScene();
+                    app.getTitleBar().openCreateProfile();
                 }
             }
         } else {
-            app.setCurrentProfile(app.getUsers().get(0));
-            app.launchProfileScene();
+            app.getTitleBar().setCurrentProfile(app.getUsers().get(0));
+            app.getTitleBar().openViewProfile();
         }
 
     }
@@ -357,7 +357,7 @@ public class LoginController implements Controllable{
             }
         } else {
             app.setCurrentProfile(app.getUsers().get(1));
-            app.launchProfileScene();
+            app.getTitleBar().openViewProfile();
         }
     }
 
@@ -382,7 +382,7 @@ public class LoginController implements Controllable{
             }
         } else {
             app.setCurrentProfile(app.getUsers().get(2));
-            app.launchProfileScene();
+            app.getTitleBar().openViewProfile();
         }
     }
 
@@ -407,7 +407,7 @@ public class LoginController implements Controllable{
             }
         } else {
             app.setCurrentProfile(app.getUsers().get(3));
-            app.launchProfileScene();
+            app.getTitleBar().openViewProfile();
         }
     }
 
@@ -432,7 +432,7 @@ public class LoginController implements Controllable{
             }
         } else {
             app.setCurrentProfile(app.getUsers().get(4));
-            app.launchProfileScene();
+            app.getTitleBar().openViewProfile();
         }
     }
 
@@ -445,7 +445,7 @@ public class LoginController implements Controllable{
     public void createProfile()
     {
         setUpScene();
-        app.launchCreateProfileScene();
+        app.getTitleBar().openCreateProfile();
     }
 
 
@@ -460,13 +460,13 @@ public class LoginController implements Controllable{
             deleteMode = false;
             deleteModeLabel.setVisible(false);
             setUpUserButtons();
-            toggleRedBorders();
+            toggleDeleteButtons();
 
         } else {
             deleteMode = true;
             deleteModeLabel.setVisible(true);
             setUpUserButtons();
-            toggleRedBorders();
+            toggleDeleteButtons();
         }
     }
 
@@ -474,20 +474,20 @@ public class LoginController implements Controllable{
     /**
      * Method to toggle red borders around user buttons
      */
-    public void toggleRedBorders()
+    public void toggleDeleteButtons()
     {
-        if (userOneButton.getStyle().equals(userButtonStyle)) {
+        if (userOneButton.getStyle().equals("")) {
             userOneButton.setStyle(userButtonBorderStyle + userButtonStyle);
             userTwoButton.setStyle(userButtonBorderStyle + userButtonStyle);
             userThreeButton.setStyle(userButtonBorderStyle + userButtonStyle);
             userFourButton.setStyle(userButtonBorderStyle + userButtonStyle);
             userFiveButton.setStyle(userButtonBorderStyle + userButtonStyle);
         } else {
-            userOneButton.setStyle(userButtonStyle);
-            userTwoButton.setStyle(userButtonStyle);
-            userThreeButton.setStyle(userButtonStyle);
-            userFourButton.setStyle(userButtonStyle);
-            userFiveButton.setStyle(userButtonStyle);
+            userOneButton.setStyle(null);
+            userTwoButton.setStyle(null);
+            userThreeButton.setStyle(null);
+            userFourButton.setStyle(null);
+            userFiveButton.setStyle(null);
         }
     }
 
