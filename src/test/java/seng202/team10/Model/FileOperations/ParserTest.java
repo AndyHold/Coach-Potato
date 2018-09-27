@@ -323,4 +323,12 @@ public class ParserTest {
         dateTime = testParser.parseDateTimeFromStrings("03/04/2018", "23:46:12");
         assertTrue(dateTime.isEqual(dateTime1));
     }
+
+    @Test
+    public void entryDateTimeMangled() throws FileNotFoundException, NoDataFoundException{
+        ArrayList<String> fileContents = testParser.getFileContents("FilesToLoad/TestData/spacedEntries.csv");
+        ArrayList<ArrayList<String>> formattedFileContents = testParser.formatFileContents(fileContents);
+        ArrayList<Activity> activities = testParser.processFile(formattedFileContents);
+        assertTrue(testParser.getBadActivities() == 4);
+    }
 }
