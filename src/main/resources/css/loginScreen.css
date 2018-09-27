@@ -58,6 +58,12 @@
     -fx-border-min-width: 200px;
 }
 
+.label
+{
+    -fx-font-size: 19px;
+    -fx-text-fill: #b3b3ff;
+}
+
 #helpButton
 {
     -fx-border-width: 0;

@@ -1,17 +1,17 @@
-//package seng202.team10.Control;
-//
-//import org.junit.After;
-//import org.junit.Before;
-//import org.junit.Test;
-//import seng202.team10.Model.ActivitiesData.DateTime;
-//import seng202.team10.Model.Exceptions.*;
-//import seng202.team10.Model.UserProfile;
-//
-//import java.util.ArrayList;
-//
-//import static org.junit.Assert.*;
-//
-//public class GUIControllerTest {
+package seng202.team10.Control;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import seng202.team10.Model.ActivitiesData.DateTime;
+import seng202.team10.Model.Exceptions.*;
+import seng202.team10.Model.UserProfile;
+
+import java.util.ArrayList;
+
+import static org.junit.Assert.*;
+
+public class GUIControllerTest {
 //
 //    private GUIController testGuiController;
 //    private UserProfile testUser;
@@ -187,4 +187,4 @@
 //        testDOB = null;
 //        badTestUser = null;
 //    }
-//}
+}

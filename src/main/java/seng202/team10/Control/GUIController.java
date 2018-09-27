@@ -14,6 +14,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -81,7 +82,7 @@ public class GUIController extends Application {
             primaryStage.initStyle(StageStyle.TRANSPARENT);
 //            titleBarScene.
 //            primaryStage.setOpacity(0.9);
-
+            titleBarScene.setFill(Color.TRANSPARENT);
             Parent root = new Pane();
             primaryStage.setScene(titleBarScene);
             primaryStage.show();
