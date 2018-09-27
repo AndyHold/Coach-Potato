@@ -5,8 +5,6 @@ import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -69,12 +67,8 @@ public class TitleBarController {
         loadAllPanes();
         if (app.getUserNames().isEmpty()) {
             openCreateProfile();
-//            WindowStyle.allowDrag(root, primaryStage);
-//            WindowStyle.stageDimension(primaryStage.getWidth(), primaryStage.getHeight());
         } else {
             openLogin();
-//            WindowStyle.allowDrag(root, primaryStage);
-//            WindowStyle.stageDimension(primaryStage.getWidth(), primaryStage.getHeight());
         }
     }
 

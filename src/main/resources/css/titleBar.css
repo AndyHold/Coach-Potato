@@ -10,6 +10,11 @@
     -fx-text-fill: blue;
 }
 
+.pane
+{
+    -fx-background-color: transparent;
+}
+
 .button:focused
 {
     -fx-font-family: "Noto Serif Georgian";
@@ -74,7 +79,11 @@
 
 #mainPane
 {
-    -fx-background-color: #8080ff;
+    -fx-background-color: linear-gradient(#8080ff 0%, blue 100%);
+    -fx-background-radius: 2em;
+    -fx-border-color: blue;
+    -fx-border-width: 2px;
+    -fx-border-radius: 2em;
 }
 
 #menuBar
