@@ -79,7 +79,7 @@
                               <Font size="15.0" />
                            </font>
                         </Button>
-                        <Label fx:id="deleteModeLabel" layoutX="660.0" layoutY="550.0" maxHeight="35.0" maxWidth="250.0" minHeight="35.0" minWidth="250.0" text="You are now in delete mode!" underline="true" visible="false" />
+                        <Label fx:id="deleteModeLabel" alignment="CENTER" layoutX="660.0" layoutY="550.0" maxHeight="35.0" maxWidth="250.0" minHeight="35.0" minWidth="250.0" text="You are now in delete mode!" underline="true" visible="false" />
                      </children>
                   </Pane>
                </content>

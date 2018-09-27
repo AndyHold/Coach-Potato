@@ -370,7 +370,6 @@ public class GoalController implements Controllable{
 
     /**
      * Method to update the achieved goal list view
-     * TODO these methods can be refactored
      */
     @FXML public void updateCurrentListView() {
         if (currentGoalsListView.getSelectionModel().getSelectedItem() != null && !app.getTitleBar().getCurrentProfile().getGoals().getCurrentGoals().isEmpty()) {
@@ -383,7 +382,19 @@ public class GoalController implements Controllable{
                 }
             }
             if (goal != null) {
-                printGoalsReview(goal, currentTypeTextField, currentStartDateTextField, currentGoalTextArea);
+                String status = app.getTitleBar().getCurrentProfile().getGoals().checkGoal(goal.getGoalName());
+                switch (status) {
+                    case "inprogress":
+                        printGoalsReview(goal, currentTypeTextField, currentStartDateTextField, currentGoalTextArea);
+                        break;
+                    case "achieved":
+                        currentGoalTextArea.setText("Congratulations!!!\nThat goal has been achieved and has been moved to the past goals tab.");
+                        break;
+                    case "failed":
+                        currentGoalTextArea.setText("Oh No!!!\nThat goal has been failed and has been moved to the past goals tab.");
+                        break;
+                }
+                addGoalsToTable();
             }
         }
     }
@@ -534,6 +545,7 @@ public class GoalController implements Controllable{
     /**
      * Method called when the remove goal button is pushed.
      * Toggles delete mode and red border around list view.
+     * TODO finish this
      */
     @FXML
     public void removeGoal()
@@ -554,6 +566,7 @@ public class GoalController implements Controllable{
 
     /**
      * Method to update the achieved goal list view
+     * TODO these methods can be refactored
      */
     @FXML public void updateAchievedListView() {
         if (achievedListView.getSelectionModel().getSelectedItem() != null && !app.getTitleBar().getCurrentProfile().getGoals().getAchievedGoals().isEmpty()) {
