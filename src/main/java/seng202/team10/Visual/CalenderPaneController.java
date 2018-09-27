@@ -120,6 +120,7 @@ public class CalenderPaneController {
                                "-fx-text-fill: black; " +
                                "-fx-font-size: 12px");
         calendarTitle.setTextFill(Color.WHITE);
+        calendarTitle.setAlignment(Pos.CENTER);
         calendarTitle.setPadding(new Insets(5, 5, 5, 5));
         calendarTitle.setMinSize(210, 30);
         calendarTitle.setMaxSize(210, 30);

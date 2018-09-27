@@ -1,0 +1,41 @@
+#manualDataTableView
+{
+    -fx-background-radius: 1em;
+    /*-fx-background-color: #8080ff;*/
+    -fx-border-radius: 1em;
+    /*-fx-border-color: blue;*/
+}
+
+#manualDataTableView.column-header
+{
+    -fx-background-color: transparent;
+}
+
+#manualDataTableView:cell-selection
+{
+
+}
+
+#dateColumn.column-header
+{
+    -fx-background-radius: 1em 0 0 0;
+    -fx-background-color: transparent;
+}
+
+#elevationColumn.column-header
+{
+    -fx-background-radius: 0 1em 0 0;
+}
+
+.table-view .column-header-background
+{
+    -fx-background-radius: 1em 1em 0 0;
+    -fx-background-color: linear-gradient(blue 0%, brown 100%);
+}
+
+.table-view .column-header-background .label
+{
+    -fx-background-radius: 1em 1em 0 0;
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
