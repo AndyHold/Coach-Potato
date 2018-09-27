@@ -175,7 +175,7 @@ public class Parser {
             if(inputValidator.isValidEntryLine(formattedFile.get(linePosition))){
                 Entry currentEntry = processLine(formattedFile);
                 currentDateTime = currentEntry.getTime();
-                if (previousDateTime != null && !nextDateIsValid(currentDateTime, previousDateTime)) {
+                if (previousDateTime != null && !dateIsValid(currentDateTime, previousDateTime)) {
                     throw new BadActivityException();
                 }
                 activity.addEntry(currentEntry);
@@ -207,21 +207,17 @@ public class Parser {
 
     /**
      * Method to check that the next date of an activity is valid. It checks that the next entry's dateTime is not
-     * more than 3 hours away and not equal to or before the previous date. In these cases, the activity is dumped
+     * more than 3 hours away and not before the previous date. In these cases, the activity is dumped
      * as the date and time of the activity is compromised and will likely be incorrect.
      * @param currentEntryDateTime The DateTime of the current entry being looked at
      * @param previousDateTime The DateTime being compared with the current entry
      * @return True if the next date is within 3 hours after the current date, false if it isn't, or is before the current.
      */
-    private boolean nextDateIsValid(DateTime currentEntryDateTime, DateTime previousDateTime) {
-        System.out.println(currentEntryDateTime.subtract(previousDateTime));
+    private boolean dateIsValid(DateTime currentEntryDateTime, DateTime previousDateTime) {
         if (currentEntryDateTime.subtract(previousDateTime) > (3*60*60)) { //that's 3 hours in seconds.
             return false;
         }
         if (previousDateTime.isAfter(currentEntryDateTime)) {
-            return false;
-        }
-        if (previousDateTime.isEqual(currentEntryDateTime)) {
             return false;
         }
         return true;
