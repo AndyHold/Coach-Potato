@@ -27,35 +27,38 @@ public class GoalController implements Controllable{
 
 
     @FXML private ComboBox goalTypeCombo;
-    @FXML private ComboBox currentGoalsCombo;
     @FXML private TextField goalNameEntry;
     @FXML private DatePicker startDatePicker;
     @FXML private DatePicker targetDatePicker;
     @FXML private TextField targetValueEntry;
     @FXML private Button createButton;
     @FXML private Button removeGoalButton;
-    @FXML private Button reviewButton;
+    @FXML private ListView currentGoalsListView;
     @FXML private ListView achievedListView;
     @FXML private ListView failedListView;
+    @FXML private ListView futureGoalsListView;
     @FXML private TextArea progressText;
+    @FXML private TextField currentTypeTextField;
+    @FXML private TextField currentStartDateTextField;
+    @FXML private TextArea currentGoalTextArea;
     @FXML private TextField achievedTypeTextField;
     @FXML private TextField achievedStartDateTextField;
     @FXML private TextArea achievedGoalTextArea;
     @FXML private TextField failedTypeTextField;
     @FXML private TextField failedStartDateTextField;
     @FXML private TextArea failedGoalTextArea;
-    @FXML private ListView futureGoalsListView;
     @FXML private TextField futureTypeTextField;
     @FXML private TextField futureDateTextField;
     @FXML private TextArea futureGoalTextArea;
     @FXML private Label unitsLabel;
-    @FXML private VBox drawer;
+    @FXML private Label deleteModeLabel;
     @FXML private TextArea helpTextArea;
     @FXML private Button helpButton;
     @FXML private Tab currentTab;
     @FXML private Tab futureTab;
     @FXML private Tab pastTab;
     @FXML private Tab createTab;
+    private boolean deleteMode = false;
 
 
     /**
@@ -108,11 +111,11 @@ public class GoalController implements Controllable{
         // Set up tool tips for current
         helpButton.setTooltip(new Tooltip("Need Help?"));
         // Current Tab
-        currentGoalsCombo.setTooltip(new Tooltip("Click here to select the current goal you would like to either view or remove."));
-        reviewButton.setTooltip(new Tooltip("Click here to review the progress of the selected goal."));
-        removeGoalButton.setTooltip(new Tooltip("Click here to remove the selected goal from your profile."));
-        progressText.setTooltip(new Tooltip("This is the description window.\n" +
-                                            "The description of your selected goal is displayed here."));
+        currentGoalsListView.setTooltip(new Tooltip("Click here to select the current goal you would like to either view or remove."));
+        currentTypeTextField.setTooltip(new Tooltip("This is where the goal type is displayed."));
+        currentStartDateTextField.setTooltip(new Tooltip("This is where the start date of the goal is displayed."));
+        currentGoalTextArea.setTooltip(new Tooltip("This is where the description of the selected failed goal is displayed."));
+
         // Past Tab
         achievedListView.setTooltip(new Tooltip("This is a list of your past goals that were achieved.\n" +
                                                 "Click on a goal to review it."));
@@ -366,6 +369,27 @@ public class GoalController implements Controllable{
 
 
     /**
+     * Method to update the achieved goal list view
+     * TODO these methods can be refactored
+     */
+    @FXML public void updateCurrentListView() {
+        if (currentGoalsListView.getSelectionModel().getSelectedItem() != null && !app.getTitleBar().getCurrentProfile().getGoals().getCurrentGoals().isEmpty()) {
+            String item = currentGoalsListView.getSelectionModel().getSelectedItem().toString();
+            Goal goal = null;
+            for (Goal selectedGoal : app.getTitleBar().getCurrentProfile().getGoals().getCurrentGoals()) {
+                if (selectedGoal.getGoalName().equals(item)) {
+                    goal = selectedGoal;
+                    break;
+                }
+            }
+            if (goal != null) {
+                printGoalsReview(goal, currentTypeTextField, currentStartDateTextField, currentGoalTextArea);
+            }
+        }
+    }
+
+
+    /**
      * Method to initialise the goal tables each time the user logs in, enters goals screen or switches tabs within goals.
      */
     public void addGoalsToTable() {
@@ -381,10 +405,14 @@ public class GoalController implements Controllable{
         app.getTitleBar().getCurrentProfile().getGoals().refreshGoals();
         if (app.getTitleBar().getCurrentProfile().getGoals() != null) {
             ObservableList<String> currentGoals = FXCollections.observableArrayList(app.getTitleBar().getCurrentProfile().getGoals().getCurrentGoalNames());
+<<<<<<< HEAD
 >>>>>>> e7a69fc0... Worked extensively on the GUI. now have a working custom title bar, a new colour theme which has been implemented on login, profile, and createprofile screens.
             currentGoalsCombo.setItems(currentGoals);
             currentGoalsCombo.setVisibleRowCount(5);
 
+=======
+            currentGoalsListView.setItems(currentGoals);
+>>>>>>> 3cc29b5c... Worked even further on GUI redesign. Now all tableviews are done. Only Goal screens, Analysis screen and map screen are left.
             ObservableList<String> achievedGoalNames = FXCollections.observableArrayList(app.getTitleBar().getCurrentProfile().getGoals().getAchievedGoalNames());
             achievedListView.setItems(achievedGoalNames);
             ObservableList<String> failedGoalNames = FXCollections.observableArrayList(app.getTitleBar().getCurrentProfile().getGoals().getFailedGoalNames());
@@ -396,7 +424,6 @@ public class GoalController implements Controllable{
         ObservableList<String> goalTypes = FXCollections.observableArrayList("Weight", "Distance", "Frequency", "BMI", "Time");
         goalTypeCombo.setItems(goalTypes);
         goalTypeCombo.setVisibleRowCount(5);
-        progressText.setText("");
     }
 
 
@@ -488,35 +515,39 @@ public class GoalController implements Controllable{
      * Method called when the remove goal button is clicked.
      * Removes the selected goal from the user profile or displays an error if none selected.
      */
-    @FXML public void removeGoal() {
-        if (currentGoalsCombo.getValue() == null) {
-            app.createPopUp(Alert.AlertType.ERROR, "You have not selected a goal", "Please choose a goal to remove");
-        } else {
-            Goals goalsInstance = app.getTitleBar().getCurrentProfile().getGoals();
-            String name = currentGoalsCombo.getValue().toString();
-            goalsInstance.removeCurrentGoal(name);
-            ObservableList<String> currentGoals = FXCollections.observableArrayList(goalsInstance.getCurrentGoalNames());
-            currentGoalsCombo.setItems(currentGoals);
-            app.createPopUp(Alert.AlertType.INFORMATION, "Information", "Goal successfully removed");
-            progressText.setText("");
-        }
-
-    }
+//    @FXML public void removeGoal() {
+//        if (currentGoalsCombo.getValue() == null) {
+//            app.createPopUp(Alert.AlertType.ERROR, "You have not selected a goal", "Please choose a goal to remove");
+//        } else {
+//            Goals goalsInstance = app.getTitleBar().getCurrentProfile().getGoals();
+//            String name = currentGoalsCombo.getValue().toString();
+//            goalsInstance.removeCurrentGoal(name);
+//            ObservableList<String> currentGoals = FXCollections.observableArrayList(goalsInstance.getCurrentGoalNames());
+//            currentGoalsCombo.setItems(currentGoals);
+//            app.createPopUp(Alert.AlertType.INFORMATION, "Information", "Goal successfully removed");
+//            progressText.setText("");
+//        }
+//
+//    }
 
 
     /**
-     * Method called when the review goal button is clicked
-     * Displays the details of the selected goal or generates an error message if not.
+     * Method called when the remove goal button is pushed.
+     * Toggles delete mode and red border around list view.
      */
-    @FXML public void reviewGoal() {
-        if (currentGoalsCombo.getValue() == null){
-            app.createPopUp(Alert.AlertType.ERROR, "No goal selected", "Please choose a goal to review");
+    @FXML
+    public void removeGoal()
+    {
+        if(deleteMode) {
+            deleteMode = false;
+            deleteModeLabel.setVisible(false);
+            currentGoalsListView.setStyle(null);
+
         } else {
-            Goals goalsInstance = app.getTitleBar().getCurrentProfile().getGoals();
-            String goalName = currentGoalsCombo.getValue().toString();
-            progressText.setText(goalsInstance.checkGoal(goalName));
-            ObservableList<String> currentGoals = FXCollections.observableArrayList(goalsInstance.getCurrentGoalNames());
-            currentGoalsCombo.setItems(currentGoals);
+            deleteMode = true;
+            deleteModeLabel.setVisible(true);
+            currentGoalsListView.setStyle("-fx-border-color: indigo; " +
+            "-fx-border-width: 5px;");
         }
     }
 
@@ -525,7 +556,7 @@ public class GoalController implements Controllable{
      * Method to update the achieved goal list view
      */
     @FXML public void updateAchievedListView() {
-        if (!app.getTitleBar().getCurrentProfile().getGoals().getAchievedGoals().isEmpty()) {
+        if (achievedListView.getSelectionModel().getSelectedItem() != null && !app.getTitleBar().getCurrentProfile().getGoals().getAchievedGoals().isEmpty()) {
             String item = achievedListView.getSelectionModel().getSelectedItem().toString();
             Goal goal = null;
             for (Goal selectedGoal : app.getTitleBar().getCurrentProfile().getGoals().getAchievedGoals()) {
@@ -538,7 +569,6 @@ public class GoalController implements Controllable{
                 printGoalsReview(goal, achievedTypeTextField, achievedStartDateTextField, achievedGoalTextArea);
             }
         }
-
     }
 
 
@@ -546,7 +576,7 @@ public class GoalController implements Controllable{
      * Method to update the failed goal list view
      */
     @FXML public void updateFailedListView() {
-        if (!app.getTitleBar().getCurrentProfile().getGoals().getFailedGoals().isEmpty()) {
+        if (failedListView.getSelectionModel().getSelectedItem() != null && !app.getTitleBar().getCurrentProfile().getGoals().getFailedGoals().isEmpty()) {
             String item = failedListView.getSelectionModel().getSelectedItem().toString();
             Goal goal = null;
             for (Goal selectedGoal : app.getTitleBar().getCurrentProfile().getGoals().getFailedGoals()) {
@@ -566,7 +596,7 @@ public class GoalController implements Controllable{
      * Method to update the future goal list view
      */
     @FXML public void updateFutureListView() {
-        if (!app.getTitleBar().getCurrentProfile().getGoals().getFutureGoals().isEmpty()) {
+        if (futureGoalsListView.getSelectionModel().getSelectedItem() != null && !app.getTitleBar().getCurrentProfile().getGoals().getFutureGoals().isEmpty()) {
             String item = futureGoalsListView.getSelectionModel().getSelectedItem().toString();
             Goal goal = null;
             for (Goal selectedGoal : app.getTitleBar().getCurrentProfile().getGoals().getFutureGoals()) {

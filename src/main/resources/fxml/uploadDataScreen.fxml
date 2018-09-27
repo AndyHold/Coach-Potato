@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
@@ -15,6 +22,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -295,6 +303,9 @@
 >>>>>>> 46edd0eb... GUI changes - changed colour scheme to make it not look ugy for now, will make it better for deliverable 3.
 =======
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextAreas" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/uploadData.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.UploadDataController">
+=======
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextAreas" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.UploadDataController">
+>>>>>>> 3cc29b5c... Worked even further on GUI redesign. Now all tableviews are done. Only Goal screens, Analysis screen and map screen are left.
    <children>
       <VBox prefHeight="720.0" prefWidth="1280.0" spacing="15.0">
 >>>>>>> e7a69fc0... Worked extensively on the GUI. now have a working custom title bar, a new colour theme which has been implemented on login, profile, and createprofile screens.
@@ -306,16 +317,16 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <HBox prefHeight="25.0" prefWidth="1260.0" spacing="25.0">
+                  <HBox alignment="CENTER_LEFT" fillHeight="false" prefHeight="25.0" prefWidth="1260.0">
                      <children>
-                        <Pane prefHeight="25.0" prefWidth="1095.0">
+                        <Pane prefHeight="25.0" prefWidth="1080.0">
                            <children>
-                              <TextField fx:id="filePathTextField" prefHeight="35.0" prefWidth="1095.0" promptText="Please enter file path">
+                              <TextField fx:id="filePathTextField" prefHeight="35.0" prefWidth="1075.0" promptText="Please enter file path">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </TextField>
-                              <Button fx:id="browseButton" layoutX="1060.0" layoutY="1.0" maxHeight="34.0" maxWidth="35.0" mnemonicParsing="false" onAction="#browse" prefHeight="32.0" prefWidth="35.0">
+                              <Button fx:id="browseButton" layoutX="1046.0" maxHeight="31.0" maxWidth="35.0" mnemonicParsing="false" onAction="#browse" prefHeight="31.0" prefWidth="35.0">
                                  <graphic>
                                     <ImageView fitHeight="16.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                                        <viewport>
@@ -329,23 +340,27 @@
                               </Button>
                            </children>
                         </Pane>
-                        <Button fx:id="uploadButton" maxHeight="35.0" minHeight="35.0" mnemonicParsing="false" onAction="#uploadData" prefHeight="35.0" text="Upload">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="helpButtonUploadFile" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" onAction="#displayUploadFileHelp" prefHeight="35.0" prefWidth="43.0">
-                           <graphic>
-                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../Images/help.png" />
-                                 </image>
-                                 <viewport>
-                                    <Rectangle2D />
-                                 </viewport>
-                              </ImageView>
-                           </graphic>
-                        </Button>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="180.0" spacing="10.0">
+                           <children>
+                              <Button fx:id="uploadButton" maxHeight="35.0" maxWidth="90.0" minHeight="35.0" minWidth="90.0" mnemonicParsing="false" onAction="#uploadData" prefHeight="35.0" prefWidth="90.0" text="Upload">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="helpButtonUploadFile" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" mnemonicParsing="false" onAction="#displayUploadFileHelp" prefHeight="39.0" prefWidth="49.0">
+                                 <graphic>
+                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Images/help.png" />
+                                       </image>
+                                       <viewport>
+                                          <Rectangle2D />
+                                       </viewport>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </HBox>
                      </children>
                   </HBox>
                </children>
@@ -528,4 +543,8 @@
    <padding>
       <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
    </padding>
+   <stylesheets>
+      <URL value="@../css/uploadData.css" />
+      <URL value="@../css/titleBar.css" />
+   </stylesheets>
 </Pane>

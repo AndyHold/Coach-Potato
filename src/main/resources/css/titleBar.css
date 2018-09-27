@@ -17,10 +17,9 @@
 
 .button:focused
 {
-    -fx-font-family: "Noto Serif Georgian";
-    -fx-font-size: 14px;
-    -fx-background-color: blueviolet;
-    -fx-border-color: indigo;
+    -fx-text-fill: #b3b3ff;
+    -fx-background-color: blue;
+    -fx-border-color: #b3b3ff;
     -fx-border-width: 4px;
 }
 
@@ -182,4 +181,72 @@
 #minimiseButton
 {
     -fx-font-size: 14px;
+}
+
+/*Table View Style*/
+.table-view
+{
+    -fx-background-radius: 1em;
+    -fx-background-color: #8080ff;
+    -fx-border-radius: 1em;
+    -fx-border-color: blue;
+}
+
+.column-header
+{
+    -fx-background-color: transparent;
+}
+
+.table-row-cell
+{
+    -fx-background-color: #8080ff;
+    -fx-border-color: blue;
+    -fx-text-background-color: blue;
+}
+
+.table-row-cell:selected
+{
+    -fx-background-color: blue;
+    -fx-border-color: white;
+    -fx-text-background-color: white;
+}
+
+.table-view .column-header-background
+{
+    -fx-background-radius: 1em 1em 0 0;
+    -fx-background-color: #b3b3ff;
+}
+
+.table-view .column-header-background .label
+{
+    -fx-background-radius: 1em 1em 0 0;
+    -fx-background-color: transparent;
+    -fx-text-fill: blue;
+}
+
+
+/* scroll bar starts here */
+
+/* The increment and decrement button CSS class of scrollbar */
+.table-view .increment-button ,.table-view .decrement-button {
+    -fx-background-color:transparent;
+    -fx-background-radius: 2em;
+
+}
+
+/* The main scrollbar **track** CSS class  */
+.table-view .scroll-bar:horizontal .track,
+.table-view .scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: blue;
+    -fx-background-radius: 2em;
+    -fx-border-radius:2em;
+}
+
+/* The main scrollbar **thumb** CSS class which we drag every time (movable) */
+.table-view .scroll-bar:horizontal .thumb,
+.table-view .scroll-bar:vertical .thumb {
+    -fx-background-color: blue;
+    -fx-background-insets: 2, 0, 0;
+    -fx-background-radius: 2em;
 }
