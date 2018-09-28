@@ -72,7 +72,7 @@
                         </HBox>
                         <HBox prefHeight="25.0" prefWidth="470.0" spacing="10.0">
                            <children>
-                              <Label fx:id="weightErrorLabel" prefHeight="25.0" prefWidth="230.0" text="Weight must be between 30 - 180" textFill="#eb0a0a" visible="false" />
+                              <Label fx:id="weightErrorLabel" prefHeight="25.0" prefWidth="230.0" text="Weight must be between 30 - 250" textFill="#eb0a0a" visible="false" />
                               <Label fx:id="heightErrorLabel" prefHeight="25.0" prefWidth="230.0" text="Height must be between 50 - 260" textFill="#e40606" visible="false" />
                            </children>
                         </HBox>
