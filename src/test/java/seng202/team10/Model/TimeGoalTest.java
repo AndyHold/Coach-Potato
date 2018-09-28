@@ -57,7 +57,7 @@ public class TimeGoalTest {
     public void reviewTimeGoalWorkingTowardsLowerBound() {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
-        target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() + 2, now1.getHour(), now1.getMinute(), now1.getSecond());
+        target = new DateTime(now1.getYear() + 1, now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         testGoal = new TimeGoal(name, currentTime, target, targetTime);
         String message = ((TimeGoal) testGoal).reviewTimeGoal(0.0);
         assertEquals("Your target for this goal was to excersize for 200.0 minutes by " + target + "\n" +
@@ -69,7 +69,7 @@ public class TimeGoalTest {
     public void reviewTimeGoalWorkingTowardsUpperBound() {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
-        target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() + 2, now1.getHour(), now1.getMinute(), now1.getSecond());
+        target = new DateTime(now1.getYear() + 1, now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         testGoal = new TimeGoal(name, currentTime, target, targetTime);
         String message = ((TimeGoal) testGoal).reviewTimeGoal(199.9);
         assertEquals("Your target for this goal was to excersize for 200.0 minutes by " + target + "\n" +

@@ -54,7 +54,7 @@ public class DistanceGoalTest {
     public void reviewDistanceGoalWorkingTowardsLowerBound() {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
-        target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() + 2, now1.getHour(), now1.getMinute(), now1.getSecond());
+        target = new DateTime(now1.getYear() + 1, now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         testGoal = new DistanceGoal(name, currentTime, target, targetDist);
         String message = ((DistanceGoal) testGoal).reviewDistanceGoal(0.0);
         assertEquals("Your target for this goal was to cover 1000.0 km in distance by " + target + "\n" +
@@ -66,7 +66,7 @@ public class DistanceGoalTest {
     public void reviewDistanceGoalWorkingTowardsUpperBound() {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
-        target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() + 2, now1.getHour(), now1.getMinute(), now1.getSecond());
+        target = new DateTime(now1.getYear() + 1, now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         testGoal = new DistanceGoal(name, currentTime, target, targetDist);
         String message = ((DistanceGoal) testGoal).reviewDistanceGoal(999.9);
         assertEquals("Your target for this goal was to cover 1000.0 km in distance by " + target + "\n" +
