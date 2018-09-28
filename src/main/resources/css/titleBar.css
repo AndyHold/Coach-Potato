@@ -40,7 +40,7 @@
 .list-view .list-cell:filled
 {
     -fx-background-color: #b3b3ff;
-    -fx-text-fill: blue;
+    -fx-text-fill: black;
 }
 
 .list-view .list-cell:selected
@@ -67,7 +67,6 @@
     -fx-border-width: 2px;
     -fx-background-color:  #b3b3ff;
     -fx-border-color: blue;
-    -fx-border-width: 2px;
     -fx-text-fill: blue;
 }
 
@@ -90,7 +89,6 @@
     -fx-max-width: 30;
     -fx-min-height: 30;
     -fx-max-height: 30;
-
 }
 
 #minimiseButton
@@ -99,7 +97,6 @@
     -fx-max-width: 30;
     -fx-min-height: 30;
     -fx-max-height: 30;
-
 }
 
 #menuButton
@@ -114,7 +111,7 @@
 
 #mainPane
 {
-    -fx-background-color: linear-gradient(#8080ff 0%, blue 100%);
+    -fx-background-color: linear-gradient(blue 0%, #8080ff 60%);
     -fx-background-radius: 2em;
     -fx-border-color: blue;
     -fx-border-width: 2px;
@@ -133,80 +130,56 @@
 {
     -fx-background-radius: 0 1em 0 0;
     -fx-border-radius: 0 1em 0 0;
+    -fx-background-color: linear-gradient(#8080ff 0%, #b3b3ff 100%);
     -fx-min-width: 150;
     -fx-max-width: 150;
-    -fx-min-height: 60;
-    -fx-max-height: 60;
+    -fx-min-height: 100;
+    -fx-max-height: 100;
 }
 
-#viewProfileButton
+#viewProfileButton, #uploadDataButton, #viewActivitiesButton, #goalsButton, #analysisButton
 {
     -fx-background-radius: 0;
     -fx-border-radius: 0;
-    -fx-background-color:  #b3b3ff;
+    -fx-background-color:  linear-gradient(#8080ff 0%, #b3b3ff 100%);
     -fx-border-color: blue;
     -fx-border-width: 2px;
     -fx-text-fill: blue;
     -fx-min-width: 150;
     -fx-max-width: 150;
-    -fx-min-height: 60;
-    -fx-max-height: 60;
+    -fx-min-height: 100;
+    -fx-max-height: 100;
 }
 
-#uploadDataButton
-{
-    -fx-background-radius: 0;
-    -fx-border-radius: 0;
-    -fx-background-color:  #b3b3ff;
-    -fx-border-color: blue;
-    -fx-border-width: 2px;
-    -fx-text-fill: blue;
-    -fx-min-width: 150;
-    -fx-max-width: 150;
-    -fx-min-height: 60;
-    -fx-max-height: 60;
-}
-
-#viewActivitiesButton
-{
-    -fx-background-radius: 0;
-    -fx-border-radius: 0;
-    -fx-background-color:  #b3b3ff;
-    -fx-border-color: blue;
-    -fx-border-width: 2px;
-    -fx-text-fill: blue;
-    -fx-min-width: 150;
-    -fx-max-width: 150;
-    -fx-min-height: 60;
-    -fx-max-height: 60;
-}
-
-#goalsButton
-{
-    -fx-background-radius: 0;
-    -fx-border-radius: 0;
-    -fx-background-color:  #b3b3ff;
-    -fx-border-color: blue;
-    -fx-border-width: 2px;
-    -fx-text-fill: blue;
-    -fx-min-width: 150;
-    -fx-max-width: 150;
-    -fx-min-height: 60;
-    -fx-max-height: 60;
-}
-
-#analysisButton
+#healthWarningsButton
 {
     -fx-background-radius: 0 0 1em 0;
     -fx-border-radius: 0 0 1em 0;
-    -fx-background-color:  #b3b3ff;
+    -fx-background-color:  linear-gradient(#8080ff 0%, #b3b3ff 100%);
     -fx-border-color: blue;
     -fx-border-width: 2px;
     -fx-text-fill: blue;
     -fx-min-width: 150;
     -fx-max-width: 150;
-    -fx-min-height: 60;
-    -fx-max-height: 60;
+    -fx-min-height: 100;
+    -fx-max-height: 100;
+}
+
+#menuBar .label
+{
+    -fx-text-fill: black;
+}
+
+#viewProfileButton:focused, #uploadDataButton:focused, #viewActivitiesButton:focused, #goalsButton:focused, #healthWarningsButton:focused, #logOutButton:focused, #analysisButton:focused
+{
+    -fx-background-color: green;
+}
+
+#viewProfileButton:focused .label, #uploadDataButton:focused .label, #viewActivitiesButton:focused .label,
+#goalsButton:focused .label, #healthWarningsButton:focused .label, #logOutButton:focused .label,
+#analysisButton:focused .label
+{
+    -fx-text-fill: blue;
 }
 
 #closeButton
@@ -217,6 +190,16 @@
 #minimiseButton
 {
     -fx-font-size: 14px;
+}
+
+#warningButton
+{
+    -fx-min-height: 30px;
+    -fx-max-height: 30px;
+    -fx-min-width: 30px;
+    -fx-max-width: 30px;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
 }
 
 /*Table View Style*/

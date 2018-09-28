@@ -1,0 +1,10 @@
+#helpButton
+{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+#activityLabel
+{
+    -fx-font-size: 19px;
+}
