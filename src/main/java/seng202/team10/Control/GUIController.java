@@ -284,10 +284,8 @@ public class GUIController extends Application {
             primaryStage.setTitle("Coach Potato");
             primaryStage.setResizable(false);
             primaryStage.initStyle(StageStyle.TRANSPARENT);
-//            titleBarScene.
 //            primaryStage.setOpacity(0.9);
             titleBarScene.setFill(Color.TRANSPARENT);
-            Parent root = new Pane();
             primaryStage.setScene(titleBarScene);
             primaryStage.show();
             this.primaryStage = primaryStage;

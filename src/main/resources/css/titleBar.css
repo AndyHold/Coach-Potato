@@ -39,7 +39,7 @@
 {
     -fx-font-family: "Noto Serif Georgian";
     -fx-font-size: 14px;
-    -fx-text-fill: blue;
+    -fx-text-fill: white;
 }
 
 .text-field
@@ -83,6 +83,7 @@
     -fx-border-color: blue;
     -fx-border-width: 2px;
     -fx-border-radius: 2em;
+    -fx-rotate-
 }
 
 #menuBar
@@ -201,7 +202,7 @@
 {
     -fx-background-color: #8080ff;
     -fx-border-color: blue;
-    -fx-text-background-color: blue;
+    -fx-text-background-color: white;
 }
 
 .table-row-cell:selected
