@@ -57,8 +57,6 @@ public class GUIController extends Application {
     private ArrayList<String> userNames;
     private double[] offset_XY;
 
-    private static final Rectangle2D SCREEN_BOUNDS= Screen.getPrimary()
-            .getVisualBounds();
     private Parent root;
 
     //private Goals goals = new Goals(currentUser);
@@ -74,17 +72,17 @@ public class GUIController extends Application {
         if(!dataReader.checkFileExists("./profiles")) {
             dataWriter.createProfileFolder();
         }
-            loadAllUsers();
-            loadTitleBar();
-            allowDrag(root, primaryStage);
-            primaryStage.setTitle("Coach Potato");
-            primaryStage.setResizable(false);
-            primaryStage.initStyle(StageStyle.TRANSPARENT);
-//            primaryStage.setOpacity(0.9);
-            titleBarScene.setFill(Color.TRANSPARENT);
-            primaryStage.setScene(titleBarScene);
-            primaryStage.show();
-            this.primaryStage = primaryStage;
+        loadAllUsers();
+        loadTitleBar();
+        allowDrag(root, primaryStage);
+        primaryStage.setTitle("Coach Potato");
+        primaryStage.setResizable(false);
+        primaryStage.initStyle(StageStyle.TRANSPARENT);
+//        primaryStage.setOpacity(0.9);
+        titleBarScene.setFill(Color.TRANSPARENT);
+        primaryStage.setScene(titleBarScene);
+        primaryStage.show();
+        this.primaryStage = primaryStage;
     }
 
     /**
@@ -106,13 +104,16 @@ public class GUIController extends Application {
      */
     private void allowDrag(Parent root, Stage stage)
     {
+        Rectangle2D
+                screenBounds = Screen.getPrimary()
+                .getVisualBounds();
         root.setOnMousePressed((MouseEvent p) -> {
             offset_XY = new double[]{p.getSceneX(), p.getSceneY()};
         });
 
         root.setOnMouseDragged((MouseEvent d) -> {
             //Ensures the stage is not dragged past the taskbar
-            if (d.getScreenY()<(SCREEN_BOUNDS.getMaxY()-20))
+            if (d.getScreenY()<(screenBounds.getMaxY()-20))
                 stage.setY(d.getScreenY() - offset_XY[1]);
             stage.setX(d.getScreenX() - offset_XY[0]);
         });

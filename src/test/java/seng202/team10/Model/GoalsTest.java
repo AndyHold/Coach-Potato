@@ -283,8 +283,7 @@ public class GoalsTest {
         assertEquals(1, achievedGoalNames.size());
         assertEquals(0, currentGoals.size());
         assertEquals(0, currentGoalNames.size());
-        assertEquals("Your target for this goal was to weigh 101.0 or less by " + targetDate + "\n" +
-                "Congratulations you have completed this goal! It has been removed from your current goals and added to your achieved goals.", message);
+        assertEquals("achieved", message);
     }
 
     @Test
@@ -312,9 +311,7 @@ public class GoalsTest {
         assertEquals(1, failedGoalNames.size());
         assertEquals(0, currentGoals.size());
         assertEquals(0, currentGoalNames.size());
-        assertEquals("Your target for this goal was to weigh 99.0 or less by " + targetDate + "\n" +
-                "\n" +
-                "You have failed to complete this goal in time. It has been removed from your current goals and added to your failed goals.", message);
+        assertEquals("failed", message);
     }
 
     @Test
@@ -342,8 +339,7 @@ public class GoalsTest {
         assertEquals(1, achievedGoalNames.size());
         assertEquals(0, currentGoals.size());
         assertEquals(0, currentGoalNames.size());
-        assertEquals("Your target for this goal was to have a BMI less than or equal to 30.0 by " + targetDate + "\n" +
-                "Congratulations you have completed this goal! It has been removed from your current goals and added to your achieved goals.", message);
+        assertEquals("achieved", message);
     }
 
     @Test
@@ -371,9 +367,7 @@ public class GoalsTest {
         assertEquals(1, failedGoalNames.size());
         assertEquals(0, currentGoals.size());
         assertEquals(0, currentGoalNames.size());
-        assertEquals("Your target for this goal was to have a BMI less than or equal to 10.0 by " + targetDate + "\n" +
-                "\n" +
-                "You have failed to complete this goal in time. It has been removed from your current goals and added to your failed goals.", message);
+        assertEquals("failed", message);
     }
 
 }
