@@ -19,7 +19,6 @@ public class MapControllerTest {
         user.setHeight(80);
         user.setWeight(80);
         user.setGender("Male");
-        user.setMaxHeartRate(170);
         DateTime birthday = new DateTime(1996, 12, 04, 0, 0, 0);
         user.setBirthDate(birthday);
         guiController.uploadDataToUser(user, "./FilesToLoad/testdata.csv");

@@ -6,6 +6,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
@@ -41,6 +42,7 @@ public class TitleBarController {
     private CreateProfileController createProfileController;
     private LoginController loginController;
     @FXML private VBox menuBar;
+    @FXML private Button warningButton;
     private ProfileController profileController;
     private UploadDataController uploadDataController;
     private ActivityViewerController activityViewerController;
@@ -69,6 +71,21 @@ public class TitleBarController {
             openCreateProfile();
         } else {
             openLogin();
+        }
+    }
+
+
+    /**
+     * Set up method for the health warnings flag.
+     */
+    public void setUpWarningFlag()
+    {
+        if (currentUser.getActiveHealthWarnings().size() > 0) {
+            System.out.println("here");
+            warningButton.setVisible(true);
+            warningButton.setTooltip(new Tooltip("You currently have " +
+                                                 currentUser.getActiveHealthWarnings().size() +
+                                                 " active health warnings.\nPlease click here to view them."));
         }
     }
 
@@ -206,6 +223,8 @@ public class TitleBarController {
         app.getDataWriter().saveProfile(currentUser);
         profileController.setUserDetails();
         slideMenu(false);
+        // Set up warning flag if necessary
+        setUpWarningFlag();
         setScene(profilePane);
     }
 

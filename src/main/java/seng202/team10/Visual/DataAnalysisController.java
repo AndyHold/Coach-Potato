@@ -26,7 +26,7 @@ import java.util.ResourceBundle;
  */
 public class DataAnalysisController implements Controllable, Initializable{
 
-    private GUIController guiController;
+    private GUIController app;
     private Activity activity;
     private DataAnalysis dataAnalysis;
     private int currentIndex;
@@ -58,7 +58,7 @@ public class DataAnalysisController implements Controllable, Initializable{
     @Override
     public void setApp(GUIController guiController)
     {
-        this.guiController = guiController;
+        this.app = guiController;
     }
 
     /**
@@ -76,7 +76,7 @@ public class DataAnalysisController implements Controllable, Initializable{
         // Create a new data analysis
         dataAnalysis = new DataAnalysis();
         // Check for activities in the profile
-        if (guiController.getTitleBar().getCurrentProfile().getActivities().isEmpty()) {
+        if (app.getTitleBar().getCurrentProfile().getActivities().isEmpty()) {
             this.displayNoData(true);
         } else {
             this.setUpListView();
@@ -170,7 +170,7 @@ public class DataAnalysisController implements Controllable, Initializable{
     private void setUpListView()
     {
         ObservableList<String> activityNames = FXCollections.observableArrayList();
-        for (Activity activity : guiController.getTitleBar().getCurrentProfile().getActivities()) {
+        for (Activity activity : app.getTitleBar().getCurrentProfile().getActivities()) {
             String activityString = activity.getName() + " : " + activity.getStartDateTime().toString();
             activityNames.add(activityString);
         }
@@ -180,7 +180,7 @@ public class DataAnalysisController implements Controllable, Initializable{
             currentIndex = 0;
         }
         currentIndex = activityList.getSelectionModel().getSelectedIndex();
-        activity = guiController.getTitleBar().getCurrentProfile().getActivities().get(currentIndex);
+        activity = app.getTitleBar().getCurrentProfile().getActivities().get(currentIndex);
     }
 
 
@@ -218,7 +218,7 @@ public class DataAnalysisController implements Controllable, Initializable{
      */
     private void populateCaloriesBurnedGraph(ArrayList<Double> timeArray)
     {
-        ArrayList<Double> calorieArray = dataAnalysis.getCaloriesFromActivity(activity, guiController.getTitleBar().getCurrentProfile());
+        ArrayList<Double> calorieArray = dataAnalysis.getCaloriesFromActivity(activity, app.getTitleBar().getCurrentProfile());
         for (int i = 0; i < timeArray.size(); i++) {
             caloriesBurnedSeries.getData().add(new XYChart.Data(timeArray.get(i), calorieArray.get(i)));
         }
@@ -235,7 +235,7 @@ public class DataAnalysisController implements Controllable, Initializable{
     {
         ArrayList<Double> stressArray = new ArrayList<>();
         for (int i = 0; i < timeArray.size(); i++) {
-            double stressPercent = (double)heartRateArray.get(i)/(double)guiController.getTitleBar().getCurrentProfile().getMaxHeartRate();
+            double stressPercent = (double)heartRateArray.get(i)/((double) 220 - app.getTitleBar().getCurrentProfile().calculateAge());
             stressArray.add(stressPercent);
             stressLevelTimeSeries.getData().add(new XYChart.Data(timeArray.get(i), stressArray.get(i)));
         }
@@ -366,9 +366,9 @@ public class DataAnalysisController implements Controllable, Initializable{
     {
 >>>>>>> 517b3e8c... Refactored Classes in the Visual, Exceptions and ActivitiesData packages to meet style guidlines and java doc specs. Also refactored some methods that were particularly large. Also dealt with some warnings and refactored a bit because of it.
         if (!(activity == null)) {
-            guiController.getTitleBar().openMap(activity);
+            app.getTitleBar().openMap(activity);
         } else {
-            this.guiController.createPopUp(Alert.AlertType.ERROR, "Error", "Please select an activity.");
+            this.app.createPopUp(Alert.AlertType.ERROR, "Error", "Please select an activity.");
         }
 
     }

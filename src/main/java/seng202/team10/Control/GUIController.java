@@ -991,6 +991,7 @@ public class GUIController extends Application {
 >>>>>>> e7a69fc0... Worked extensively on the GUI. now have a working custom title bar, a new colour theme which has been implemented on login, profile, and createprofile screens.
     }
 
+
     /**
      * Creates a new profile (and adds the test data to it for now).
      * @param newUser  The profile being created.
@@ -1001,8 +1002,7 @@ public class GUIController extends Application {
                 newUser.getWeight() != 0.0 &&
                 newUser.getHeight() != 0.0 &&
                 newUser.getBirthDate() != null &&
-                newUser.getGender() != null &&
-                newUser.getMaxHeartRate() != 0) {
+                newUser.getGender() != null) {
             users.add(newUser);
         } else {
             throw new InvalidUserException();

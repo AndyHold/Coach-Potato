@@ -4,6 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import seng202.team10.Model.ActivitiesData.Activity;
+import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.Exceptions.InvalidHeightException;
 import seng202.team10.Model.Exceptions.InvalidWeightException;
 import seng202.team10.Model.Exceptions.UserNameException;
@@ -27,6 +28,7 @@ public class UserProfileTest {
     public void setUp() throws Exception {
         testProfile.setName("dave");
         testProfile.setWeight(80);
+        testProfile.setBirthDate(new DateTime(1987, 9, 9, 0, 0, 0));
         ArrayList<String> fileContents = testParser.getFileContents("./FilesToLoad/testdata.csv");
         ArrayList<ArrayList<String>> formattedFile = testParser.formatFileContents(fileContents);
         ArrayList<Activity> testResults = testParser.processFile(formattedFile);
