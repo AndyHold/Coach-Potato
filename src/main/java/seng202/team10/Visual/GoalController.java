@@ -36,7 +36,6 @@ public class GoalController implements Controllable {
     @FXML private ListView achievedListView;
     @FXML private ListView failedListView;
     @FXML private ListView futureGoalsListView;
-    @FXML private TextArea progressText;
     @FXML private TextField currentTypeTextField;
     @FXML private TextField currentStartDateTextField;
     @FXML private TextArea currentGoalTextArea;
@@ -270,31 +269,54 @@ public class GoalController implements Controllable {
 
     /**
      * Method to update the achieved goal list view
+     * TODO reset all text fields to display nothing
      */
-    @FXML public void updateCurrentListView() {
-        if (currentGoalsListView.getSelectionModel().getSelectedItem() != null && !app.getTitleBar().getCurrentProfile().getGoals().getCurrentGoals().isEmpty()) {
-            String item = currentGoalsListView.getSelectionModel().getSelectedItem().toString();
-            Goal goal = null;
-            for (Goal selectedGoal : app.getTitleBar().getCurrentProfile().getGoals().getCurrentGoals()) {
-                if (selectedGoal.getGoalName().equals(item)) {
-                    goal = selectedGoal;
-                    break;
+    @FXML public void updateCurrentListView()
+    {
+        // Reset text fields
+//        resetTextCurrent();
+        // If delete mode activated:
+        if (deleteMode) {
+            // If there is a goal selected
+            if (currentGoalsListView.getSelectionModel().getSelectedItem() != null) {
+                // Get the name of the selected goal
+                String item = currentGoalsListView.getSelectionModel().getSelectedItem().toString();
+                // Ask the user if they are sure they want to delete the goal
+                String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + item + "\" goal?");
+                // If they say yes
+                if (option.equals("OK")) {
+                    //delete the goal and set deletemode off again
+                    app.getTitleBar().getCurrentProfile().getGoals().removeCurrentGoal(item);
+                    toggleDeleteMode();
                 }
             }
-            if (goal != null) {
-                String status = app.getTitleBar().getCurrentProfile().getGoals().checkGoal(goal.getGoalName());
-                switch (status) {
-                    case "inprogress":
-                        printGoalsReview(goal, currentTypeTextField, currentStartDateTextField, currentGoalTextArea);
+            addGoalsToTable();
+        } else {
+            // If there is a goal selected
+            if (currentGoalsListView.getSelectionModel().getSelectedItem() != null) {
+                String item = currentGoalsListView.getSelectionModel().getSelectedItem().toString();
+                Goal goal = null;
+                for (Goal selectedGoal : app.getTitleBar().getCurrentProfile().getGoals().getCurrentGoals()) {
+                    if (selectedGoal.getGoalName().equals(item)) {
+                        goal = selectedGoal;
                         break;
-                    case "achieved":
-                        currentGoalTextArea.setText("Congratulations!!!\nThat goal has been achieved and has been moved to the past goals tab.");
-                        break;
-                    case "failed":
-                        currentGoalTextArea.setText("Oh No!!!\nThat goal has been failed and has been moved to the past goals tab.");
-                        break;
+                    }
                 }
-                addGoalsToTable();
+                if (goal != null) {
+                    String status = app.getTitleBar().getCurrentProfile().getGoals().checkGoal(goal.getGoalName());
+                    switch (status) {
+                        case "inprogress":
+                            printGoalsReview(goal, currentTypeTextField, currentStartDateTextField, currentGoalTextArea);
+                            break;
+                        case "achieved":
+                            currentGoalTextArea.setText("Congratulations!!!\nThat goal has been achieved and has been moved to the past goals tab.");
+                            break;
+                        case "failed":
+                            currentGoalTextArea.setText("Oh No!!!\nThat goal has been failed and has been moved to the past goals tab.");
+                            break;
+                    }
+                    addGoalsToTable();
+                }
             }
         }
     }
@@ -407,32 +429,11 @@ public class GoalController implements Controllable {
 
 
     /**
-     * Method called when the remove goal button is clicked.
-     * Removes the selected goal from the user profile or displays an error if none selected.
-     */
-//    @FXML public void removeGoal() {
-//        if (currentGoalsCombo.getValue() == null) {
-//            app.createPopUp(Alert.AlertType.ERROR, "You have not selected a goal", "Please choose a goal to remove");
-//        } else {
-//            Goals goalsInstance = app.getTitleBar().getCurrentProfile().getGoals();
-//            String name = currentGoalsCombo.getValue().toString();
-//            goalsInstance.removeCurrentGoal(name);
-//            ObservableList<String> currentGoals = FXCollections.observableArrayList(goalsInstance.getCurrentGoalNames());
-//            currentGoalsCombo.setItems(currentGoals);
-//            app.createPopUp(Alert.AlertType.INFORMATION, "Information", "Goal successfully removed");
-//            progressText.setText("");
-//        }
-//
-//    }
-
-
-    /**
      * Method called when the remove goal button is pushed.
      * Toggles delete mode and red border around list view.
-     * TODO finish this
      */
     @FXML
-    public void removeGoal()
+    public void toggleDeleteMode()
     {
         if(deleteMode) {
             deleteMode = false;

@@ -317,7 +317,7 @@ public class LoginController implements Controllable{
     {
         if (deleteMode) {
             String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + app.getUsers().get(0).getName() + "\"");
-            if (option.length() == 2) {
+            if (option.equals("OK")) {
                 if (app.getUsers().size() == 5) {
                     createProfileButton.setDisable(false);
                 }

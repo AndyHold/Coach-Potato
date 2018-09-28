@@ -1,3 +1,8 @@
+.tab-pane .tab-header-area .tab-header-background
+{
+    -fx-opacity: 0;
+}
+
 .button
 {
     -fx-font-family: "Noto Serif Georgian";
@@ -21,6 +26,37 @@
     -fx-background-color: blue;
     -fx-border-color: #b3b3ff;
     -fx-border-width: 4px;
+}
+
+.list-view
+{
+    -fx-background-radius: 1em;
+    -fx-border-color: blue;
+    -fx-background-color: #b3b3ff;
+    -fx-border-radius: 1em;
+    -fx-border-width: 2px;
+}
+
+.list-view .list-cell:filled
+{
+    -fx-background-color: #b3b3ff;
+    -fx-text-fill: blue;
+}
+
+.list-view .list-cell:selected
+{
+    -fx-text-fill: white;
+    -fx-background-color: blue;
+    -fx-border-color: white;
+}
+
+.list-view .list-cell
+{
+    -fx-background-radius: 7px;
+    -fx-border-color: blue;
+    -fx-background-color: #b3b3ff;
+    -fx-border-radius: 7px;
+    -fx-border-width: 1px;
 }
 
 .combo-box
@@ -83,7 +119,6 @@
     -fx-border-color: blue;
     -fx-border-width: 2px;
     -fx-border-radius: 2em;
-    -fx-rotate-
 }
 
 #menuBar
