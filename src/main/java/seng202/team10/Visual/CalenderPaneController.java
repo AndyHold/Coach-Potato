@@ -112,6 +112,7 @@ public class CalenderPaneController {
 
         // Create calendarTitle and buttons to change current month
         calendarTitle = new Label();
+<<<<<<< HEAD
         calendarTitle.setStyle("-fx-background-color: #f48fb1; " +
                                "-fx-background-radius: 0; " +
                                "-fx-border-radius: 0; " +
@@ -120,6 +121,10 @@ public class CalenderPaneController {
                                "-fx-text-fill: black; " +
                                "-fx-font-size: 12px");
         calendarTitle.setTextFill(Color.WHITE);
+=======
+        calendarTitle.setStyle("-fx-background-color: #f48fb1");
+        calendarTitle.setTextFill(Color.BLACK);
+>>>>>>> f7b90380... Small tweaks to fix pipeline issues caused by recent merge.
         calendarTitle.setAlignment(Pos.CENTER);
         calendarTitle.setPadding(new Insets(5, 5, 5, 5));
         calendarTitle.setMinSize(210, 30);
@@ -130,12 +135,17 @@ public class CalenderPaneController {
         Button previousMonth = new Button("<<");
         previousMonth.setTextFill(Color.WHITE);
         previousMonth.setStyle("-fx-background-color: #f48fb1; " +
+<<<<<<< HEAD
                                "-fx-background-radius: 1em 0 0 0; " +
                                "-fx-border-radius: 1em 0 0 0; " +
                                "-fx-border-width: 1px; " +
                                "-fx-border-color: black; " +
                                "-fx-text-fill: black;" +
                                "-fx-font-size: 12px");
+=======
+                               "-fx-border-color: transparent; " +
+                               "-fx-background-radius: 1em 0 0 0; ");
+>>>>>>> f7b90380... Small tweaks to fix pipeline issues caused by recent merge.
         previousMonth.setPadding(new Insets(5, 5, 5, 5));
         previousMonth.setMinSize(35, 30);
         previousMonth.setMaxSize(35, 30);
@@ -144,12 +154,17 @@ public class CalenderPaneController {
 
         Button nextMonth = new Button(">>");
         nextMonth.setStyle("-fx-background-color: #f48fb1; " +
+<<<<<<< HEAD
                            "-fx-background-radius: 0 1em 0 0; " +
                            "-fx-border-radius: 0 1em 0 0; " +
                            "-fx-border-width: 1px;" +
                            "-fx-border-color: black; " +
                            "-fx-text-fill: black; " +
                            "-fx-font-size: 12px");
+=======
+                            "-fx-border-color: transparent; " +
+                            "-fx-background-radius: 0 1em 0 0;");
+>>>>>>> f7b90380... Small tweaks to fix pipeline issues caused by recent merge.
         nextMonth.setTextFill(Color.WHITE);
         nextMonth.setPadding(new Insets(5, 5, 5, 5));
         nextMonth.setMinSize(35, 30);

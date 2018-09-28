@@ -290,10 +290,24 @@ public class GUIController extends Application {
             primaryStage.show();
             this.primaryStage = primaryStage;
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 4e37ab85... Finished Implementing new Login Screen Layout.
 =======
 >>>>>>> 5997e6c... Finished Implementing new Login Screen Layout.
 >>>>>>> 6e249b39... Finished Implementing new Login Screen Layout.
+=======
+    }
+
+    /**
+     * loads all the users in the profiles folder and adds them to the users arraylist
+     */
+    private void loadAllUsers()
+    {
+        userNames = dataReader.getExistingUsers();
+        for(String username: userNames){
+            users.add(dataReader.loadExistingProfile(username));
+        }
+>>>>>>> f7b90380... Small tweaks to fix pipeline issues caused by recent merge.
     }
 
 
@@ -337,17 +351,6 @@ public class GUIController extends Application {
     public Stage getPrimaryStage()
     {
         return primaryStage;
-    }
-
-    /**
-     * loads all the users in the profiles folder and adds them to the users arraylist
-     */
-    private void loadAllUsers()
-    {
-        userNames = dataReader.getExistingUsers();
-        for(String username: userNames){
-            users.add(dataReader.loadExistingProfile(username));
-        }
     }
 
 
@@ -659,6 +662,7 @@ public class GUIController extends Application {
 
 
     /**
+<<<<<<< HEAD
      * updates the map scene with a specific activity
      * @param activity the activity being mapped
      */
@@ -675,6 +679,8 @@ public class GUIController extends Application {
 
 
     /**
+=======
+>>>>>>> f7b90380... Small tweaks to fix pipeline issues caused by recent merge.
      * Initalizes every loader, controller and scene for each scene. Also runs the setApp(this) and
      * setUpScene methods for each.
      * @throws Exception Not implemented.

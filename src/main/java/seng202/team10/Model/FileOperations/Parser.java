@@ -188,6 +188,7 @@ public class Parser {
 
 
         Activity activity = new Activity(name);
+<<<<<<< HEAD
 
 
 
@@ -207,6 +208,8 @@ public class Parser {
 =======
 =======
         Activity activity = new Activity(name);
+=======
+>>>>>>> f7b90380... Small tweaks to fix pipeline issues caused by recent merge.
         DateTime currentDateTime = null;
         DateTime previousDateTime = null;
 
