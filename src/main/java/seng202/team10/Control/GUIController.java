@@ -243,6 +243,7 @@ public class GUIController extends Application {
         titleBarScene = new Scene(root, 1280, 750);
     }
 
+
     /**
      * Creates a new profile (and adds the test data to it for now).
      * @param newUser  The profile being created.
@@ -254,8 +255,7 @@ public class GUIController extends Application {
                 newUser.getWeight() != 0.0 &&
                 newUser.getHeight() != 0.0 &&
                 newUser.getBirthDate() != null &&
-                newUser.getGender() != null &&
-                newUser.getMaxHeartRate() != 0) {
+                newUser.getGender() != null) {
             users.add(newUser);
         } else {
             throw new InvalidUserException();

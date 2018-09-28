@@ -272,8 +272,6 @@ public class CreateProfileController implements Controllable
         this.setUserDOB(userProfile);
         // Set gender and handle Exceptions
         this.setUserGender(userProfile);
-        // Set Max Heart Rate
-        this.setUserMaxHeartRate(userProfile);
         // Add the user to the Controller
         this.saveUserProfile(userProfile);
     }
@@ -292,18 +290,6 @@ public class CreateProfileController implements Controllable
             this.app.getDataWriter().saveProfile(userProfile);
             app.getTitleBar().openLogin();
         } catch (InvalidUserException exception) { }
-    }
-
-
-    /**
-     * Method to set the max heart rate of the user. This is calculated from the user's birth date.
-     * @param userProfile  A UserProfile that is being created.
-     */
-    private void setUserMaxHeartRate(UserProfile userProfile)
-    {
-        try {
-            userProfile.setMaxHeartRate(220 - (Calendar.getInstance().get(Calendar.YEAR) - userProfile.getBirthDate().getYear()));
-        } catch (NullPointerException exception) { }
     }
 
 

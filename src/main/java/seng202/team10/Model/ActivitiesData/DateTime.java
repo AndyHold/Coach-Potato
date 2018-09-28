@@ -2,6 +2,7 @@ package seng202.team10.Model.ActivitiesData;
 
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 
 
@@ -381,6 +382,44 @@ public class DateTime implements Serializable {
         int daysThis = calculateDaysFrom1900(this);
         int daysOther = calculateDaysFrom1900(otherDateTime);
         return daysThis - daysOther;
+    }
+
+
+    /**
+     * Method to calculate the years between two DateTimes. discards any extra months or days.
+     * @param otherDateTime DateTime: The date time to be compared with.
+     * @return int: The difference in years.
+     * TODO test this
+     */
+    public int subtractYearsFromDateTime(DateTime otherDateTime)
+    {
+        int years = this.getYear() - otherDateTime.getYear();
+        if (this.getMonth() < otherDateTime.getMonth()) {
+            years -= 1;
+        } else if (this.getMonth() == otherDateTime.getMonth()) {
+            if (this.getDay() < otherDateTime.getDay()) {
+                years -= 1;
+            }
+        }
+        return years;
+    }
+
+
+    /**
+     * Method to get the current DateTime and return it as a new DateTime method.
+     * @return DateTime: The current DateTime.
+     * TODO test this
+     */
+    public static DateTime now()
+    {
+        LocalDateTime current = LocalDateTime.now();
+        int year = current.getYear();
+        int month = current.getMonthValue();
+        int day = current.getDayOfMonth();
+        int hour = current.getHour();
+        int minute = current.getMinute();
+        int second = current.getSecond();
+        return new DateTime(year, month, day, hour, minute, second);
     }
 
 

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-
 
 <Pane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1280.0" stylesheets="@../css/titleBar.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.TitleBarController">
    <children>
@@ -16,9 +16,9 @@
                   <Button fx:id="menuButton" mnemonicParsing="false" onAction="#menuSelected" text="Menu" textFill="#443355" />
                   <HBox prefHeight="30.0" prefWidth="110.0" spacing="10.0">
                      <children>
-                        <Button fx:id="warningButton" mnemonicParsing="false" onAction="#openWarnings">
+                        <Button fx:id="warningButton" mnemonicParsing="false" onAction="#openWarnings" visible="false">
                            <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Images/warning.png" />
                                  </image>

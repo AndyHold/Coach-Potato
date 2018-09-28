@@ -414,6 +414,8 @@ public class UploadDataController {
                 ArrayList<ArrayList<String>> formattedFile = this.parser.formatFileContents(fileContents);
                 ArrayList<Activity> newActivities = this.parser.processFile(formattedFile);
                 app.getTitleBar().getCurrentProfile().addActivities(newActivities);
+                // Set warning flag in title bar if warnings were added.
+                app.getTitleBar().setUpWarningFlag();
                 app.getDataWriter().saveProfile(app.getTitleBar().getCurrentProfile()); // Reserialize profile after adding data
                 if (this.parser.getBadActivities() > 0) {
                     String discardedMessage = String.valueOf(this.parser.getBadActivities()) + " of " + String.valueOf(newActivities.size() + this.parser.getBadActivities()) + " activities found were discarded due to being unparsable";
@@ -457,6 +459,8 @@ public class UploadDataController {
                 newActivity.postEntriesSetUp();
                 // Add Activity to user profile.
                 app.getTitleBar().getCurrentProfile().addActivity(newActivity);
+                // Set warning flag in title bar if warnings added
+                app.getTitleBar().setUpWarningFlag();
                 // Reserialize profile after adding data
                 app.getDataWriter().saveProfile(app.getTitleBar().getCurrentProfile());
                 // Display a success pop up

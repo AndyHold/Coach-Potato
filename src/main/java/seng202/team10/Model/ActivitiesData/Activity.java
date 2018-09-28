@@ -1,6 +1,8 @@
 package seng202.team10.Model.ActivitiesData;
 
 
+import seng202.team10.Model.UserProfile;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -22,6 +24,7 @@ public class Activity implements Serializable {
     private int totalDuration;
     private ActivityType type;
     private DateTime endDateTime;
+    private ArrayList<HealthWarningType> healthWarningTypes;
 
 
 
@@ -198,6 +201,28 @@ public class Activity implements Serializable {
         this.type = ActivityType.determineType(this.name);
         setEndDateTime();
         calculateEntriesVelocity();
+    }
+
+
+    /**
+     * Method to check for health warnings and add them if detected.
+     * @param user UserProfile: profile of the user.
+     */
+    public void checkEntriesForWarnings(UserProfile user)
+    {
+        for (Entry entry: entries) {
+            this.healthWarningTypes = (HealthWarning.addWarning(this, entry.isFirstEntry(), entry.getHeartRate(), user.calculateAge()));
+        }
+    }
+
+
+    /**
+     * Getter method for the health warnings ascociated with this activity.
+     * @return ArrayList: list of health warning types.
+     */
+    public ArrayList<HealthWarningType> getHealthWarningTypes()
+    {
+        return healthWarningTypes;
     }
 
 
