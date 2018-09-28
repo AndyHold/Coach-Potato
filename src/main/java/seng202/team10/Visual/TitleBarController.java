@@ -85,8 +85,12 @@ public class TitleBarController {
         }
         currentScene.getChildren().setAll(newPane);
     }
-    
-    
+
+
+    /**
+     * Method to create all panes used by the application
+     * @throws IOException if an error occurs
+     */
     private void loadAllPanes() throws IOException
     {
         FXMLLoader createProfileLoader = new FXMLLoader(getClass().getResource("/fxml/createProfileScreen.fxml"));
@@ -149,18 +153,29 @@ public class TitleBarController {
     }
 
 
+    /**
+     * Method called when the minimise button is pressed.
+     * Minimises the screen to the task bar.
+     */
     @FXML public void minimise()
     {
         app.minimise();
     }
 
 
+    /**
+     * Method called when the close button is pressed.
+     * Closes the application.
+     */
     @FXML public void close()
     {
         Platform.exit();
     }
 
 
+    /**
+     * Method to display the create profile screen
+     */
     @FXML public void openCreateProfile()
     {
         System.out.println("Create");
@@ -170,6 +185,9 @@ public class TitleBarController {
     }
 
 
+    /**
+     * Method to display the login screen
+     */
     @FXML public void openLogin()
     {
         app.setCurrentUser(null);
@@ -179,6 +197,9 @@ public class TitleBarController {
     }
 
 
+    /**
+     * Method to display the view profile screen
+     */
     @FXML public void openViewProfile()
     {
         profileController.setUpScene();
@@ -189,6 +210,9 @@ public class TitleBarController {
     }
 
 
+    /**
+     * Method to display the upload data screen
+     */
     @FXML public void openUploadData()
     {
 
@@ -199,6 +223,9 @@ public class TitleBarController {
     }
 
 
+    /**
+     * Method to display the view activities screen
+     */
     @FXML public void openViewActivities()
     {
 
@@ -209,6 +236,9 @@ public class TitleBarController {
     }
 
 
+    /**
+     * Method to display the goals screen
+     */
     @FXML public void openGoals()
     {
         app.getDataWriter().saveProfile(currentUser);
@@ -218,6 +248,9 @@ public class TitleBarController {
     }
 
 
+    /**
+     * Method to display the analysis screen
+     */
     @FXML public void openAnalysis()
     {
         app.getDataWriter().saveProfile(currentUser);
@@ -227,7 +260,10 @@ public class TitleBarController {
     }
 
 
-    public void openEntry(Activity activity)
+    /**
+     * Method to display the entry viewer screen
+     */
+    @FXML public void openEntry(Activity activity)
     {
         slideMenu(false);
         entryViewerController.setUpScene(activity);
@@ -236,7 +272,10 @@ public class TitleBarController {
     }
 
 
-    public void openMap(Activity activity)
+    /**
+     * Method to display the map screen
+     */
+    @FXML public void openMap(Activity activity)
     {
         mapController.setActivity(activity);
         mapController.setUpScene();
@@ -246,6 +285,19 @@ public class TitleBarController {
     }
 
 
+    /**
+     * Method to display the health warnings screen
+     */
+    @FXML public void openWarnings()
+    {
+
+    }
+
+
+    /**
+     * Method called when the menu button is pressed
+     * Displays the menu
+     */
     @FXML public void menuSelected()
     {
         slideMenu(true);
@@ -256,7 +308,7 @@ public class TitleBarController {
      * Method called when the menu button is selected.
      * calls the animation of the menu bar.
      */
-    public void slideMenu(Boolean clicked)
+    private void slideMenu(Boolean clicked)
     {
         TranslateTransition openNav = new TranslateTransition(new Duration(350), menuBar);
         TranslateTransition closeNav = new TranslateTransition(new Duration(350), menuBar);
@@ -272,7 +324,7 @@ public class TitleBarController {
 
     /**
      * Getter Method for the Goals Controller
-     * @return
+     * @return GoalController
      */
     public GoalController getGoalController()
     {
