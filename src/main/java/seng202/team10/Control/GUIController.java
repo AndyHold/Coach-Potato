@@ -92,7 +92,7 @@ public class GUIController extends Application {
      */
     private void loadAllUsers()
     {
-        ArrayList<String> userNames = dataReader.getExistingUsers();
+        userNames = dataReader.getExistingUsers();
         for(String username: userNames){
             users.add(dataReader.loadExistingProfile(username));
         }
@@ -139,17 +139,6 @@ public class GUIController extends Application {
     public Stage getPrimaryStage()
     {
         return primaryStage;
-    }
-
-    /**
-     * loads all the users in the profiles folder and adds them to the users arraylist
-     */
-    private void loadAllUsers()
-    {
-        userNames = dataReader.getExistingUsers();
-        for(String username: userNames){
-            users.add(dataReader.loadExistingProfile(username));
-        }
     }
 
 
@@ -237,21 +226,6 @@ public class GUIController extends Application {
         this.getTitleBar().openMap(activity);
     }
 
-
-    /**
-     * updates the map scene with a specific activity
-     * @param activity the activity being mapped
-     */
-    public void refreshMapScene(Activity activity)
-    {
-        this.launchDataAnalysisScene();
-        try {
-            TimeUnit.MICROSECONDS.sleep(90000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        this.launchMapScene(activity);
-    }
 
     /**
      * Initalizes every loader, controller and scene for each scene. Also runs the setApp(this) and

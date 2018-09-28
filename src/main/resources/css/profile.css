@@ -139,9 +139,8 @@
     -fx-text-fill: blue;
 }
 
-#calendarPane:previousMonth
+#calendarPane .button
 {
-
-
-
+    -fx-text-fill: black;
+    -fx-font-size: 12px;
 }

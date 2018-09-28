@@ -164,9 +164,6 @@ public class Parser {
         int totalEntries = 0;
 
         Activity activity = new Activity(name);
-
-
-        Activity activity = new Activity(name);
         DateTime currentDateTime = null;
         DateTime previousDateTime = null;
 
