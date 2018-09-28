@@ -6,14 +6,11 @@ import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.ActivitiesData.Entry;
 import seng202.team10.Model.ActivitiesData.Position;
 import seng202.team10.Model.Exceptions.BadActivityException;
-import seng202.team10.Model.Exceptions.EntryOutOfSequenceException;
 import seng202.team10.Model.Exceptions.NoActivityFoundException;
 import seng202.team10.Model.Exceptions.NoDataFoundException;
 
 import java.io.FileNotFoundException;
-import java.time.DateTimeException;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Parser {
 
