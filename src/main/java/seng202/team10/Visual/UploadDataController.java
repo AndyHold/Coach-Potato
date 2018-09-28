@@ -413,8 +413,8 @@ public class UploadDataController {
                 ArrayList<String> fileContents = this.parser.getFileContents(filename);
                 ArrayList<ArrayList<String>> formattedFile = this.parser.formatFileContents(fileContents);
                 ArrayList<Activity> newActivities = this.parser.processFile(formattedFile);
-                app.getCurrentProfile().addActivities(newActivities);
-                app.getDataWriter().saveProfile(app.getCurrentProfile()); // Reserialize profile after adding data
+                app.getTitleBar().getCurrentProfile().addActivities(newActivities);
+                app.getDataWriter().saveProfile(app.getTitleBar().getCurrentProfile()); // Reserialize profile after adding data
                 if (this.parser.getBadActivities() > 0) {
                     String discardedMessage = String.valueOf(this.parser.getBadActivities()) + " of " + String.valueOf(newActivities.size() + this.parser.getBadActivities()) + " activities found were discarded due to being unparsable";
                     this.app.createPopUp(Alert.AlertType.WARNING, "Warning", discardedMessage);
@@ -456,9 +456,9 @@ public class UploadDataController {
                 }
                 newActivity.postEntriesSetUp();
                 // Add Activity to user profile.
-                app.getCurrentProfile().addActivity(newActivity);
+                app.getTitleBar().getCurrentProfile().addActivity(newActivity);
                 // Reserialize profile after adding data
-                app.getDataWriter().saveProfile(app.getCurrentProfile());
+                app.getDataWriter().saveProfile(app.getTitleBar().getCurrentProfile());
                 // Display a success pop up
                 this.app.createPopUp(Alert.AlertType.INFORMATION, "Success", "You have successfully created the activity \"" + activityName + "\"");
                 // Reset table, text field and ComboBox to be blank
@@ -514,95 +514,5 @@ public class UploadDataController {
         if (selectedFile != null) {
             filePathTextField.setText(selectedFile.getAbsolutePath());
         }
-    }
-
-
-    /**
-     * Method to draw the navigation drawer.
-     */
-    @FXML private void drawerAction()
-    {
-
-        TranslateTransition openNav = new TranslateTransition(new Duration(350), drawer);
-        openNav.setToX(0);
-        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
-        if (drawer.getTranslateX() != 0) {
-            openNav.play();
-        } else {
-            closeNav.setToX(-(drawer.getWidth()));
-            closeNav.play();
-        }
-    }
-
-
-    /**
-     * Method to launch the login scene.
-     */
-    @FXML public void openChooseProfile()
-    {
-        moveDrawer();
-        app.launchLoginScene();
-    }
-
-
-    /**
-     * Method to launch the view profile scene.
-     */
-    @FXML public void openViewProfile()
-    {
-        moveDrawer();
-        app.launchProfileScene();
-    }
-
-
-    /**
-     * Method to launch the upload data scene.
-     */
-    @FXML public void openUploadData()
-    {
-        moveDrawer();
-        app.launchUploadDataScene();
-    }
-
-
-    /**
-     * Method to launch the view activities scene.
-     */
-    @FXML public void openViewActivities()
-    {
-        moveDrawer();
-        app.launchActivityViewerScene();
-    }
-
-
-    /**
-     * Method to launch the goals scene.
-     */
-    @FXML public void openGoals()
-    {
-        moveDrawer();
-        app.launchGoalsScene();
-    }
-
-
-    /**
-     * Method to launch the data analysis scene.
-     */
-    @FXML public void openAnalysis()
-    {
-        moveDrawer();
-        app.launchDataAnalysisScene();
-    }
-
-
-    /**
-     * Method to move the navigation drawer as appropriate.
-     */
-    private void moveDrawer()
-    {
-        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
-        closeNav.setToX(-(drawer.getWidth()));
-        closeNav.play();
-        setUpScene();
     }
 }

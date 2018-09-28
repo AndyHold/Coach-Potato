@@ -78,7 +78,7 @@ public class DataAnalysisController implements Controllable, Initializable{
         // Create a new data analysis
         dataAnalysis = new DataAnalysis();
         // Check for activities in the profile
-        if (guiController.getCurrentProfile().getActivities().isEmpty()) {
+        if (guiController.getTitleBar().getCurrentProfile().getActivities().isEmpty()) {
             this.displayNoData(true);
         } else {
             this.setUpListView();
@@ -172,7 +172,7 @@ public class DataAnalysisController implements Controllable, Initializable{
     private void setUpListView()
     {
         ObservableList<String> activityNames = FXCollections.observableArrayList();
-        for (Activity activity : guiController.getCurrentProfile().getActivities()) {
+        for (Activity activity : guiController.getTitleBar().getCurrentProfile().getActivities()) {
             String activityString = activity.getName() + " : " + activity.getStartDateTime().toString();
             activityNames.add(activityString);
         }
@@ -182,7 +182,7 @@ public class DataAnalysisController implements Controllable, Initializable{
             currentIndex = 0;
         }
         currentIndex = activityList.getSelectionModel().getSelectedIndex();
-        activity = guiController.getCurrentProfile().getActivities().get(currentIndex);
+        activity = guiController.getTitleBar().getCurrentProfile().getActivities().get(currentIndex);
     }
 
 
@@ -220,7 +220,7 @@ public class DataAnalysisController implements Controllable, Initializable{
      */
     private void populateCaloriesBurnedGraph(ArrayList<Double> timeArray)
     {
-        ArrayList<Double> calorieArray = dataAnalysis.getCaloriesFromActivity(activity, guiController.getCurrentProfile());
+        ArrayList<Double> calorieArray = dataAnalysis.getCaloriesFromActivity(activity, guiController.getTitleBar().getCurrentProfile());
         for (int i = 0; i < timeArray.size(); i++) {
             caloriesBurnedSeries.getData().add(new XYChart.Data(timeArray.get(i), calorieArray.get(i)));
         }
@@ -237,7 +237,7 @@ public class DataAnalysisController implements Controllable, Initializable{
     {
         ArrayList<Double> stressArray = new ArrayList<>();
         for (int i = 0; i < timeArray.size(); i++) {
-            double stressPercent = (double)heartRateArray.get(i)/(double)guiController.getCurrentProfile().getMaxHeartRate();
+            double stressPercent = (double)heartRateArray.get(i)/(double)guiController.getTitleBar().getCurrentProfile().getMaxHeartRate();
             stressArray.add(stressPercent);
             stressLevelTimeSeries.getData().add(new XYChart.Data(timeArray.get(i), stressArray.get(i)));
         }
@@ -349,7 +349,7 @@ public class DataAnalysisController implements Controllable, Initializable{
     @FXML public void viewMap()
     {
         if (!(activity == null)) {
-            guiController.launchMapScene(activity);
+            guiController.getTitleBar().openMap(activity);
         } else {
             this.guiController.createPopUp(Alert.AlertType.ERROR, "Error", "Please select an activity.");
         }
@@ -363,94 +363,5 @@ public class DataAnalysisController implements Controllable, Initializable{
     public void initialize(URL location, ResourceBundle resources)
     {
         setUpGraphs();
-    }
-
-    /**
-     * Method to draw the navigation drawer.
-     */
-    @FXML private void drawerAction()
-    {
-
-        TranslateTransition openNav = new TranslateTransition(new Duration(350), drawer);
-        openNav.setToX(0);
-        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
-        if (drawer.getTranslateX() != 0) {
-            openNav.play();
-        } else {
-            closeNav.setToX(-(drawer.getWidth()));
-            closeNav.play();
-        }
-    }
-
-
-    /**
-     * Method to launch the login scene.
-     */
-    @FXML public void openChooseProfile()
-    {
-        moveDrawer();
-        guiController.launchLoginScene();
-    }
-
-
-    /**
-     * Method to launch the view profile scene.
-     */
-    @FXML public void openViewProfile()
-    {
-        moveDrawer();
-        guiController.launchProfileScene();
-    }
-
-
-    /**
-     * Method to launch the upload data scene.
-     */
-    @FXML public void openUploadData()
-    {
-        moveDrawer();
-        guiController.launchUploadDataScene();
-    }
-
-
-    /**
-     * Method to launch the view activities scene.
-     */
-    @FXML public void openViewActivities()
-    {
-        moveDrawer();
-        guiController.launchActivityViewerScene();
-    }
-
-
-    /**
-     * Method to launch the goals scene.
-     */
-    @FXML public void openGoals()
-    {
-        moveDrawer();
-        guiController.launchGoalsScene();
-    }
-
-
-    /**
-     * Method to launch the data analysis scene.
-     */
-    @FXML public void openAnalysis()
-    {
-        moveDrawer();
-        guiController.launchDataAnalysisScene();
-    }
-
-
-    /**
-     * Method to move the navigation drawer as appropriate.
-     */
-    private void moveDrawer()
-    {
-        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
-        closeNav.setToX(-(drawer.getWidth()));
-        closeNav.play();
-        setUpScene();
     }
 }

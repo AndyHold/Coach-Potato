@@ -14,14 +14,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane onMouseClicked="#hideHelpTextArea" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: mediumpurple;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.CreateProfileController">
+<Pane onMouseClicked="#hideHelpTextArea" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/createProfile.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.CreateProfileController">
    <children>
-      <VBox prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: mediumpurple;">
+      <VBox prefHeight="720.0" prefWidth="1280.0">
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
          <children>
-            <HBox alignment="CENTER" fillHeight="false" prefHeight="700.0" prefWidth="1260.0" spacing="10.0" style="-fx-background-color: mediumpurple;">
+            <HBox alignment="CENTER" fillHeight="false" prefHeight="700.0" prefWidth="1260.0" spacing="10.0">
                <children>
                   <Label>
                      <graphic>
@@ -32,12 +32,12 @@
                         </ImageView>
                      </graphic>
                   </Label>
-                  <VBox fx:id="wholeProfileVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="490.0" spacing="5.0">
+                  <VBox fx:id="wholeProfileVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="395.0" prefWidth="490.0" spacing="5.0">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                      <children>
-                        <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="470.0">
+                        <HBox alignment="TOP_CENTER" prefHeight="30.0" prefWidth="470.0">
                            <children>
                               <Label text="Create Profile">
                                  <font>
@@ -46,61 +46,61 @@
                               </Label>
                            </children>
                         </HBox>
-                        <TextField fx:id="nameEntry" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="470.0" promptText="Enter User Name" />
-                        <Label fx:id="nameErrorLabel" prefHeight="25.0" prefWidth="470.0" text="Please enter a valid user name between 1 - 15 characters" textFill="#f80606" visible="false" />
-                        <HBox prefHeight="25.0" prefWidth="470.0" spacing="38.0">
+                        <TextField fx:id="nameEntry" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="470.0" promptText="Enter User Name" />
+                        <Label fx:id="nameErrorLabel" prefHeight="30.0" prefWidth="470.0" text="Please enter a valid user name between 1 - 15 characters" textFill="#f80606" visible="false" />
+                        <HBox prefHeight="30.0" prefWidth="470.0" spacing="38.0">
                            <children>
-                              <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" text="Date of birth:">
+                              <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" text="Date of birth:">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <ComboBox fx:id="dayEntry" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" promptText="Day" />
-                              <ComboBox fx:id="monthEntry" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="90.0" promptText="Month" />
-                              <ComboBox fx:id="yearEntry" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="90.0" promptText="Year" />
+                              <ComboBox fx:id="dayEntry" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="80.0" promptText="Day" />
+                              <ComboBox fx:id="monthEntry" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="90.0" promptText="Month" />
+                              <ComboBox fx:id="yearEntry" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="90.0" promptText="Year" />
                            </children>
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
                         </HBox>
-                        <Label fx:id="dateErrorLabel" prefHeight="25.0" prefWidth="470.0" text="Please enter all fields for date of birth" textFill="#f20808" visible="false" />
-                        <HBox prefHeight="25.0" prefWidth="470.0" spacing="10.0">
+                        <Label fx:id="dateErrorLabel" prefHeight="30.0" prefWidth="470.0" text="Please enter all fields for date of birth" textFill="#f20808" visible="false" />
+                        <HBox prefHeight="30.0" prefWidth="470.0" spacing="10.0">
                            <children>
-                              <TextField fx:id="weightEntry" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="230.0" promptText="Enter Weight (kg)" />
-                              <TextField fx:id="heightEntry" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="230.0" promptText="Enter Height (cm)" />
+                              <TextField fx:id="weightEntry" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="230.0" promptText="Enter Weight (kg)" />
+                              <TextField fx:id="heightEntry" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="230.0" promptText="Enter Height (cm)" />
                            </children>
                         </HBox>
-                        <HBox prefHeight="25.0" prefWidth="470.0" spacing="10.0">
+                        <HBox prefHeight="30.0" prefWidth="470.0" spacing="10.0">
                            <children>
-                              <Label fx:id="weightErrorLabel" prefHeight="25.0" prefWidth="230.0" text="Weight must be between 30 - 250" textFill="#eb0a0a" visible="false" />
-                              <Label fx:id="heightErrorLabel" prefHeight="25.0" prefWidth="230.0" text="Height must be between 50 - 260" textFill="#e40606" visible="false" />
+                              <Label fx:id="weightErrorLabel" prefHeight="30.0" prefWidth="230.0" text="Weight must be between 30 - 180" textFill="#eb0a0a" visible="false" />
+                              <Label fx:id="heightErrorLabel" prefHeight="30.0" prefWidth="230.0" text="Height must be between 50 - 260" textFill="#e40606" visible="false" />
                            </children>
                         </HBox>
-                        <HBox prefHeight="25.0" prefWidth="470.0" spacing="54.0">
+                        <HBox prefHeight="30.0" prefWidth="470.0" spacing="54.0">
                            <children>
-                              <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Select gender:">
+                              <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" text="Select gender:">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <RadioButton fx:id="maleRad" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="Male">
+                              <RadioButton fx:id="maleRad" maxHeight="30.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="Male">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </RadioButton>
-                              <RadioButton fx:id="femaleRad" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="Female">
+                              <RadioButton fx:id="femaleRad" maxHeight="30.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="Female">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </RadioButton>
-                              <RadioButton fx:id="notSpecifiedRad" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="Other">
+                              <RadioButton fx:id="notSpecifiedRad" maxHeight="30.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="Other">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </RadioButton>
                            </children>
                         </HBox>
-                        <Label fx:id="genderErrorLabel" prefHeight="25.0" prefWidth="470.0" text="Please select a gender option." textFill="#eb0505" visible="false" />
+                        <Label fx:id="genderErrorLabel" prefHeight="30.0" prefWidth="470.0" text="Please select a gender option." textFill="#eb0505" visible="false" />
                         <HBox prefHeight="65.0" prefWidth="470.0" spacing="10.0">
                            <children>
                               <Button fx:id="backButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#back" prefHeight="65.0" prefWidth="230.0" text="Back" />
@@ -123,7 +123,7 @@
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="TOP_RIGHT" prefHeight="55.0" prefWidth="1260.0" style="-fx-background-color: mediumpurple;">
+            <HBox alignment="TOP_RIGHT" prefHeight="55.0" prefWidth="1260.0">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" />
                </padding>

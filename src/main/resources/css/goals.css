@@ -1,0 +1,44 @@
+
+
+#deleteModeLabel
+{
+    -fx-font-size: 14;
+    -fx-text-fill: #cc00ff;
+    -fx-border-color: #cc00ff;
+    -fx-border-radius: 1em;
+    -fx-border-width: 5px;
+}
+
+#helpButton
+{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+#startDatePicker .button, #targetDatePicker .button
+{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+#startDatePicker .label, #targetDatePicker .button
+{
+    -fx-text-fill: black;
+}
+
+.tab .label
+{
+    -fx-background-color: transparent;
+}
+
+.tab
+{
+    -fx-background-radius: 1em 1em 0 0;
+    -fx-background-color: #b3b3ff;
+}
+
+.tab:selected
+{
+    -fx-border-radius: 1em 1em 0 0;
+    -fx-border-width: 2px;
+    -fx-border-color: blue;
+}

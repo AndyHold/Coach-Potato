@@ -1,0 +1,21 @@
+#dateColumn .column-header
+{
+    -fx-background-radius: 1em 0 0 0;
+}
+
+#elevationColumn .column-header
+{
+    -fx-background-radius: 0 1em 0 0;
+}
+
+#helpButtonUploadFile
+{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+#helpButtonManualActivity
+{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}

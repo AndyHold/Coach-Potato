@@ -1,0 +1,54 @@
+.tab-pane
+{
+    -fx-tab-min-height: 6em;
+    -fx-tab-max-height: 6em;
+    -fx-tab-min-width: 6em;
+    -fx-tab-max-width: 6em;
+}
+
+.tab .tab-label
+{
+    -fx-background-color: transparent;
+    -fx-alignment: center;
+}
+
+.tab
+{
+    -fx-background-color: linear-gradient(#8080ff 0%, #b3b3ff 100%);
+    -fx-background-radius: 1em;
+    -fx-border-radius: 1em
+}
+
+.tab:selected
+{
+    -fx-border-width: 2px;
+    -fx-border-color: blue;
+}
+
+.tab-pane
+{
+    -fx-background-radius: 1em;
+    -fx-background-color: #b3b3ff;
+    -fx-border-radius: 1em;
+    -fx-border-width: 2px;
+    -fx-border-color: blue;
+}
+
+#activityNameLabel
+{
+    -fx-font-size: 24px;
+}
+
+#distanceLabel,
+#heartLabel,
+#caloriesLabel,
+#stressLabel
+{
+    -fx-text-fill: white;
+}
+
+#helpButton
+{
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+}

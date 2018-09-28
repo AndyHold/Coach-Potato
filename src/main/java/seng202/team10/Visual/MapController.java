@@ -17,6 +17,7 @@ import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.Entry;
 import seng202.team10.Model.ActivitiesData.Route;
 
+import java.net.URL;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Map;
@@ -161,10 +162,10 @@ public class MapController implements Controllable, Initializable{
     /**
      * goes back to the data analysis screen
      */
-    @FXML public void goToActivityViewer()
+    @FXML public void goToDataAnalysis()
     {
 //        guiController.launchActivityViewerScene();
-        guiController.launchDataAnalysisScene();
+        guiController.getTitleBar().openAnalysis();
     }
 
 
