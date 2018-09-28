@@ -69,8 +69,8 @@ public class GoalsTest {
         int year = now.getYear();
         int month = now.getMonthValue();
         int day = now.getDayOfMonth() + 1;
-        startDate = new DateTime(year, month, day+1, 0,0,0);
-        targetDate = new DateTime(year, month, day+2, 0,0,0);
+        startDate = new DateTime(year + 1, month, day, 0,0,0);
+        targetDate = new DateTime(year + 2, month, day, 0,0,0);
         goalsInstance.createGoal("WeightGoal1", startDate, targetDate, "Weight", 75.0);
         futureGoalNames = goalsInstance.getFutureGoalNames();
         futureGoals = goalsInstance.getFutureGoals();
@@ -106,8 +106,8 @@ public class GoalsTest {
         int year = now.getYear();
         int month = now.getMonthValue();
         int day = now.getDayOfMonth() + 1;
-        startDate = new DateTime(year, month, day+1, 0,0,0);
-        targetDate = new DateTime(year, month, day+2, 0,0,0);
+        startDate = new DateTime(year + 1, month, day, 0,0,0);
+        targetDate = new DateTime(year + 2, month, day, 0,0,0);
         goalsInstance.createGoal("DistGoal1", startDate, targetDate, "Distance", 200.0);
         futureGoalNames = goalsInstance.getFutureGoalNames();
         futureGoals = goalsInstance.getFutureGoals();
@@ -143,8 +143,8 @@ public class GoalsTest {
         int year = now.getYear();
         int month = now.getMonthValue();
         int day = now.getDayOfMonth() + 1;
-        startDate = new DateTime(year, month, day+1, 0,0,0);
-        targetDate = new DateTime(year, month, day+2, 0,0,0);
+        startDate = new DateTime(year + 1, month, day, 0,0,0);
+        targetDate = new DateTime(year + 2, month, day, 0,0,0);
         goalsInstance.createGoal("TimeGoal1", startDate, targetDate, "Time", 200.0);
         futureGoalNames = goalsInstance.getFutureGoalNames();
         futureGoals = goalsInstance.getFutureGoals();
@@ -180,8 +180,8 @@ public class GoalsTest {
         int year = now.getYear();
         int month = now.getMonthValue();
         int day = now.getDayOfMonth() + 1;
-        startDate = new DateTime(year, month, day+1, 0,0,0);
-        targetDate = new DateTime(year, month, day+2, 0,0,0);
+        startDate = new DateTime(year + 1, month, day, 0,0,0);
+        targetDate = new DateTime(year + 2, month, day, 0,0,0);
         goalsInstance.createGoal("BmiGoal1", startDate, targetDate, "BMI", 30.0);
         futureGoalNames = goalsInstance.getFutureGoalNames();
         futureGoals = goalsInstance.getFutureGoals();
@@ -217,8 +217,8 @@ public class GoalsTest {
         int year = now.getYear();
         int month = now.getMonthValue();
         int day = now.getDayOfMonth() + 1;
-        startDate = new DateTime(year, month, day+1, 0,0,0);
-        targetDate = new DateTime(year, month, day+2, 0,0,0);
+        startDate = new DateTime(year + 1, month, day, 0,0,0);
+        targetDate = new DateTime(year + 2, month, day, 0,0,0);
         goalsInstance.createGoal("FreqGoal1", startDate, targetDate,10);
         futureGoalNames = goalsInstance.getFutureGoalNames();
         futureGoals = goalsInstance.getFutureGoals();
