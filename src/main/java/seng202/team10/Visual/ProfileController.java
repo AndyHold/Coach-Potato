@@ -56,6 +56,10 @@ public class ProfileController {
     @FXML private Text heartRateText;
     @FXML private VBox wholeProfileVBox;
     @FXML private TextArea helpTextArea;
+    @FXML public ListView activitiesListView;
+    @FXML public ListView goalsListView;
+    @FXML public Label activitiesLabel;
+    @FXML public Label goalsListLabel;
 
 
     /**
@@ -226,11 +230,15 @@ public class ProfileController {
             distanceHBox.setVisible(true);
             velocityHBox.setVisible(true);
             heartRateHBox.setVisible(true);
+            activitiesListView.setVisible(true);
+            goalsListView.setVisible(true);
         } else {
             distanceText.setText("Total Distance Covered: 0.00 km");
             velocityText.setText("Average Speed: 0.00 km/h");
             heartRateText.setText("Average Heart Rate: No Data");
         }
+        activitiesLabel.setVisible(true);
+        goalsListLabel.setVisible(true);
     }
 
 
