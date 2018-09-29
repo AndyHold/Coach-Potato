@@ -116,7 +116,7 @@ public class AnchorPaneNode extends AnchorPane {
     {
         super(children);
         // Add action handler for mouse clicked
-        this.setOnMouseEntered(e -> this.setStyle("-fx-background-color: #E91E63"));
+        this.setOnMouseEntered(e -> this.setStyle("-fx-background-color: #0097A7"));
         this.setOnMouseExited(e -> this.setStyle("-fx-background-color: null"));
     }
 
