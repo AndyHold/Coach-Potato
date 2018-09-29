@@ -129,4 +129,13 @@ public class HealthWarning implements java.io.Serializable {
     public String getActivityName() {
         return activityName;
     }
+
+
+    /**
+     * Getter method for the start date of the activity that caused the health warning.
+     * @return DateTime
+     */
+    public DateTime getActivityDate() {
+        return activityDate;
+    }
 }

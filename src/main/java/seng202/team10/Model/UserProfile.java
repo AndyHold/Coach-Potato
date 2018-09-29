@@ -89,6 +89,18 @@ public class UserProfile implements java.io.Serializable {
     public String getGender() { return gender; }
 
 
+    public ArrayList<HealthWarning> getWarnings(HealthWarningType healthWarningType)
+    {
+        ArrayList<HealthWarning> result = new ArrayList<>();
+        for (HealthWarning healthWarning: activeHealthWarnings) {
+            if (healthWarning.getType() == healthWarningType) {
+                result.add(healthWarning);
+            }
+        }
+        return result;
+    }
+
+
 
     /**
      * Getter method for the activities of the user
@@ -388,8 +400,9 @@ public class UserProfile implements java.io.Serializable {
 
 
     /**
-     * Method to add health warnings to the list of active health warnings
-     * @param healthWarnings
+     * Method to add health warnings to the list of active health warnings.
+     * @param healthWarningTypes ArrayList: List of the health warning types in the activity.
+     * @param activity Activity: The activity the health warnings were detected on.
      */
     public void addHealthWarnings(ArrayList<HealthWarningType> healthWarningTypes, Activity activity)
     {
