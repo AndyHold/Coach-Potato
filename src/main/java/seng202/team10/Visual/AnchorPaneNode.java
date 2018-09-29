@@ -1,10 +1,14 @@
 package seng202.team10.Visual;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import seng202.team10.Control.DataAnalysis;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
+import seng202.team10.Model.Goals.Goal;
+import seng202.team10.Model.Goals.Goals;
 import seng202.team10.Model.UserProfile;
 
 import java.time.LocalDate;
@@ -21,6 +25,7 @@ public class AnchorPaneNode extends AnchorPane {
     private UserProfile currentUser;
     private ProfileController profileController;
     private ArrayList<Activity> activities = new ArrayList<>();
+    private ArrayList<Goal> todayGoals = new ArrayList<>();
 
     /**
      * Setter method to set the profile controller for this Scene.
@@ -98,7 +103,7 @@ public class AnchorPaneNode extends AnchorPane {
     public void onMouseClicked()
     {
         DateTime dateToday = new DateTime(date.getYear(), date.getMonthValue(), date.getDayOfMonth(),0,0,0);
-        this.profileController.dailyStatsLabel.setText("Daily Statistics for " + dateToday.getDateAsString());
+        this.profileController.dailyStatsLabel.setText("Statistics for " + dateToday.getDateAsString());
         this.profileController.activity1Text.setText(this.printDistance());
         this.profileController.activity2Text.setText(this.printCalories());
         this.profileController.activity3Text.setText(this.printTimeSpent());
@@ -106,6 +111,20 @@ public class AnchorPaneNode extends AnchorPane {
         this.profileController.activity2HBox.setVisible(true);
         this.profileController.activity3HBox.setVisible(true);
         this.profileController.dailyStatsLabel.setVisible(true);
+        this.profileController.activitiesLabel.setVisible(false);
+        this.profileController.goalsListLabel.setVisible(false);
+
+        ObservableList<Object> goalsList = FXCollections.observableArrayList();
+        for (int i = 0; i < todayGoals.size(); i++) {
+            goalsList.add(todayGoals.get(i).getGoalName() + ": " + todayGoals.get(i).getGoalType());
+        }
+        this.profileController.goalsListView.setItems(goalsList);
+
+        ObservableList<Object> activitiesList = FXCollections.observableArrayList();
+        for (int i = 0; i < activities.size(); i++) {
+            activitiesList.add(activities.get(i).getName() + ": " + activities.get(i).getTypeString());
+        }
+        this.profileController.activitiesListView.setItems(activitiesList);
     }
 
     /**
@@ -164,4 +183,22 @@ public class AnchorPaneNode extends AnchorPane {
     {
         this.currentUser = currentUser;
     }
+
+    /**
+     * Getter method to get the pane's goals.
+     * @return todayGoals Arraylist of goals
+     */
+    public ArrayList<Goal> getTodayGoals() {
+        return todayGoals;
+    }
+
+    /**
+     * Setter method to set current user's goals.
+     * @param todayGoals Arraylist of goals
+     */
+    public void setTodayGoals(ArrayList<Goal> todayGoals) {
+        this.todayGoals = todayGoals;
+    }
+
+
 }

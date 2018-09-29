@@ -17,6 +17,8 @@ import javafx.scene.text.TextAlignment;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
+import seng202.team10.Model.Goals.Goal;
+import seng202.team10.Model.Goals.Goals;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -71,18 +73,6 @@ public class CalenderPaneController {
             LocalDate date = LocalDate.of(2000, i, 1);
             months.add(date.getMonth().toString());
         }
-//        months.add("January".toUpperCase());
-//        months.add("February".toUpperCase());
-//        months.add("March".toUpperCase());
-//        months.add("April".toUpperCase());
-//        months.add("May".toUpperCase());
-//        months.add("June".toUpperCase());
-//        months.add("July".toUpperCase());
-//        months.add("August".toUpperCase());
-//        months.add("September".toUpperCase());
-//        months.add("October".toUpperCase());
-//        months.add("November".toUpperCase());
-//        months.add("December".toUpperCase());
     }
 
     /**
@@ -165,6 +155,7 @@ public class CalenderPaneController {
         monthsComboBox.setMaxSize(120, 30);
         monthsComboBox.setPrefSize(120, 30);
         monthsComboBox.setValue(currentYearMonth.getMonth());
+        monthsComboBox.setStyle("-fx-border-color: #0097A7; -fx-background-color: #4DD0E1");
 
         yearsComboBox.setStyle("-fx-border-color: #0097A7; -fx-background-color: #4DD0E1");
         yearsComboBox.setVisibleRowCount(12);
@@ -250,15 +241,35 @@ public class CalenderPaneController {
             if (app.getTitleBar().getCurrentProfile().getActivities() != null) {
                 ArrayList<Activity> userActivities = app.getTitleBar().getCurrentProfile().getActivities();
                 ArrayList<Activity> todayActivities = new ArrayList<>();
+                int count = 0;
                 for (Activity activity: userActivities) {
                     LocalDate date = ap.getDate();
                     if (activity.getStartDateTime().getDateAsString().equals((new DateTime(date.getYear(), date.getMonthValue(), date.getDayOfMonth(), 0, 0, 0)).getDateAsString())) {
                         todayActivities.add(activity);
-                        txt.setText(txt.getText() + "\n A");
-
+                        count++;
                     }
                 }
+                if (count != 0) {
+                    txt.setText(txt.getText() + String.format("\n %d A", count));
+                }
                 ap.setActivities(todayActivities);
+            }
+
+            if (app.getTitleBar().getCurrentProfile().getGoals().getCreatedGoals() != null) {
+                ArrayList<Goal> userGoals = app.getTitleBar().getCurrentProfile().getGoals().getCreatedGoals();
+                ArrayList<Goal> todayGoals = new ArrayList<>();
+                int countGoals = 0;
+                for (Goal goal: userGoals) {
+                    LocalDate date = ap.getDate();
+                    if (goal.getGoalTargetDate().getDateAsString().equals((new DateTime(date.getYear(), date.getMonthValue(), date.getDayOfMonth(), 0, 0, 0)).getDateAsString())) {
+                        todayGoals.add(goal);
+                        countGoals++;
+                    }
+                }
+                if (countGoals != 0) {
+                    txt.setText(txt.getText() + String.format("\n %d G", countGoals));
+                }
+                ap.setTodayGoals(todayGoals);
             }
 
             if (calendarDate.getMonth() == yearMonth.getMonth()) {
@@ -292,6 +303,10 @@ public class CalenderPaneController {
         populateCalendar(currentYearMonth);
     }
 
+
+    /**
+     * Method to change the month and year. Repopulate the calendar with the correct dates.
+     */
     private void changeMonthYear() {
         int month = (Month.valueOf(monthsComboBox.getValue().toString())).getValue();
         int year = Integer.valueOf(yearsComboBox.getValue().toString());
