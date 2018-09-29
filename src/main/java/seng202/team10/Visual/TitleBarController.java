@@ -36,6 +36,7 @@ public class TitleBarController {
     private Pane analysisPane;
     private Pane entryPane;
     private Pane mapPane;
+    private Pane healthWarningPane;
 
     @FXML private Pane currentScene;
     @FXML private Button menuButton;
@@ -51,6 +52,7 @@ public class TitleBarController {
     private UserProfile currentUser;
     private EntryViewerController entryViewerController;
     private MapController mapController;
+    private HealthWarningsController healthWarningController;
 
     /**
      * Setter Method for the GUIController
@@ -81,7 +83,6 @@ public class TitleBarController {
     public void setUpWarningFlag()
     {
         if (currentUser.getActiveHealthWarnings().size() > 0) {
-            System.out.println("here");
             warningButton.setVisible(true);
             warningButton.setTooltip(new Tooltip("You currently have " +
                                                  currentUser.getActiveHealthWarnings().size() +
@@ -167,6 +168,12 @@ public class TitleBarController {
         mapPane = mapLoader.load();
         mapController = mapLoader.getController();
         mapController.setApp(this.app);
+        
+        
+        FXMLLoader healthWarningLoader = new FXMLLoader((getClass().getResource("/fxml/healthWarningsScreen.fxml")));
+        healthWarningPane = healthWarningLoader.load();
+        healthWarningController = healthWarningLoader.getController();
+        healthWarningController.setApp(this.app);
     }
 
 
@@ -195,7 +202,6 @@ public class TitleBarController {
      */
     @FXML public void openCreateProfile()
     {
-        System.out.println("Create");
         slideMenu(false);
         createProfileController.toggleBackButton();
         setScene(createProfilePane);
@@ -296,6 +302,7 @@ public class TitleBarController {
      */
     @FXML public void openMap(Activity activity)
     {
+        slideMenu(false);
         mapController.setActivity(activity);
         mapController.setUpScene();
         Route newRoute = mapController.makeRoute(activity);
@@ -309,7 +316,9 @@ public class TitleBarController {
      */
     @FXML public void openWarnings()
     {
-
+        healthWarningController.setUpScene();
+        slideMenu(false);
+        setScene(healthWarningPane);
     }
 
 

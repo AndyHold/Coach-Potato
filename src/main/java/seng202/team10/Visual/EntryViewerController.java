@@ -168,7 +168,6 @@ public class EntryViewerController {
         loadedActivity.setEntries(savingEntries);
         loadedActivity.postEntriesSetUp();
         loadedActivity.checkEntriesForWarnings(app.getTitleBar().getCurrentProfile());
-        System.out.println(this.app.getTitleBar().getCurrentProfile().getActiveHealthWarnings().size());
         app.getTitleBar().setUpWarningFlag();
         app.getTitleBar().openViewActivities();
     }
