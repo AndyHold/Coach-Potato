@@ -10,10 +10,7 @@ import javafx.util.Duration;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Control.InputValidator;
 import seng202.team10.Model.ActivitiesData.DateTime;
-import seng202.team10.Model.Exceptions.BadGoalNameException;
-import seng202.team10.Model.Exceptions.InvalidGoalDateException;
-import seng202.team10.Model.Exceptions.InvalidGoalTargetException;
-import seng202.team10.Model.Exceptions.NoTypeSelectedException;
+import seng202.team10.Model.Exceptions.*;
 import seng202.team10.Model.Goals.*;
 
 /**
@@ -274,7 +271,7 @@ public class GoalController implements Controllable {
 
 
     /**
-     * Method to update the achieved goal list view.
+     * Method to update the current goal list view.
      * TODO reset all text fields to display nothing
      */
     @FXML public void updateCurrentListView()
@@ -411,6 +408,7 @@ public class GoalController implements Controllable {
             //reset the entry values, ready for a new goal to be created
             goalNameEntry.setText("");
             targetValueEntry.setText("");
+            this.addGoalsToTable();
         } catch (InvalidGoalDateException | BadGoalNameException | InvalidGoalTargetException | NoTypeSelectedException exception) {
             app.createPopUp(Alert.AlertType.ERROR, "Error", exception.getMessage());
         } catch (NumberFormatException exception) {

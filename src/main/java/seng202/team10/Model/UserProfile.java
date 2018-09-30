@@ -74,7 +74,7 @@ public class UserProfile implements java.io.Serializable {
      */
     public void setName(String newName) throws UserNameException
     {
-        if (!(newName.length() > 15 || !newName.matches("[a-zA-Z0-9]+ ?[a-zA-Z0-9]+"))) {
+        if (!(newName.length() > 50 || !newName.matches("[a-zA-Z0-9 ]*"))) {
             this.name = newName;
         } else {
             throw new UserNameException();
@@ -161,6 +161,15 @@ public class UserProfile implements java.io.Serializable {
         if (numberOfBadActivities > 0) {
             throw new ExistingElementException(String.valueOf(numberOfBadActivities) + " Activities overlapped with existing activities and were not added");
         }
+    }
+
+    /**
+     * Method to remove a single activity from the profile
+     * @param toDelete the activity being deleted
+     */
+    public void deleteActivity(Activity toDelete)
+    {
+        activities.remove(toDelete);
     }
 
 
