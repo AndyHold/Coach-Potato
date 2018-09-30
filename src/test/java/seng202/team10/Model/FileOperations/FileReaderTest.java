@@ -29,7 +29,7 @@ public class FileReaderTest {
 
 
     @Test
-    public void loadExistingProfile() {
+    public void loadExistingProfile() throws Exception{
         UserProfile loadedProfile = testReader.loadExistingProfile(testProfile.getName());
         assertEquals("jeff", loadedProfile.getName());
         assertEquals(75, loadedProfile.getWeight(), 1);

@@ -12,7 +12,7 @@
     -fx-background-color:  #b3b3ff;
     -fx-border-color: blue;
     -fx-border-width: 2px;
-    -fx-text-fill: blue;
+    -fx-text-fill: #00001a;
 }
 
 .pane
@@ -74,7 +74,7 @@
 {
     -fx-font-family: "Noto Serif Georgian";
     -fx-font-size: 14px;
-    -fx-text-fill: white;
+    -fx-text-fill: #00001a;
 }
 
 .text-field
@@ -111,7 +111,7 @@
 
 #mainPane
 {
-    -fx-background-color: linear-gradient(blue 0%, #8080ff 60%);
+    -fx-background-color: f0f0f0;
     -fx-background-radius: 2em;
     -fx-border-color: blue;
     -fx-border-width: 2px;
@@ -220,7 +220,7 @@
 {
     -fx-background-color: #8080ff;
     -fx-border-color: blue;
-    -fx-text-background-color: white;
+    -fx-text-background-color: #00001a;
 }
 
 .table-row-cell:selected

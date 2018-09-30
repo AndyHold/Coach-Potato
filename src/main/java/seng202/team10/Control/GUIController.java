@@ -32,6 +32,7 @@ import seng202.team10.Model.UserProfile;
 import seng202.team10.Visual.*;
 
 import java.io.FileNotFoundException;
+import java.io.InvalidClassException;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
@@ -88,11 +89,15 @@ public class GUIController extends Application {
     /**
      * loads all the users in the profiles folder and adds them to the users arraylist
      */
-    private void loadAllUsers()
-    {
+    private void loadAllUsers() {
         userNames = dataReader.getExistingUsers();
-        for(String username: userNames){
-            users.add(dataReader.loadExistingProfile(username));
+        for (String username : userNames) {
+            try {
+                users.add(dataReader.loadExistingProfile(username));
+                }
+                catch(Exception e){
+                    createPopUp(Alert.AlertType.ERROR, "Error", "Could not load profile: " + username);
+                }
         }
     }
 
