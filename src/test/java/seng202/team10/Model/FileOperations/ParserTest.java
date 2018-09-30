@@ -310,6 +310,7 @@ public class ParserTest {
         DateTime dateTime = null;
         try {
             dateTime = testParser.parseDateTimeFromStrings("this is a test", "throw exception");
+            assertTrue(1 == 0);
         } catch (IllegalArgumentException exception) {
             assertTrue(dateTime == null);
         }
