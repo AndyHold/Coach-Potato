@@ -1,6 +1,8 @@
 package seng202.team10.Model.Goals;
 
 import seng202.team10.Model.ActivitiesData.DateTime;
+import seng202.team10.Model.Exceptions.*;
+import seng202.team10.Model.UserProfile;
 
 import java.time.LocalDateTime;
 
@@ -8,13 +10,39 @@ import java.time.LocalDateTime;
  * BMI Goals Class for Coach Potato SENG202 2018S2
  */
 public class BmiGoal extends Goal {
+
+
     private double goalBmi;
 
-    public BmiGoal(String name, DateTime start, DateTime target, double bmi)
+
+    /**
+     * Constructor method for bmi goal
+     * @param name: String
+     * @param start: DateTime
+     * @param target: DateTime
+     * @throws InvalidGoalDateException When invalid dates are entered
+     * @throws BadGoalNameException When invalid name is entered
+     */
+    public BmiGoal(String name, DateTime start, DateTime target) throws InvalidGoalDateException, BadGoalNameException
     {
-        super(name, start, target, "BMI", false);
-        goalBmi = bmi;
+        super(name, start, target, "BMI");
     }
+
+
+    /**
+     * Setter method for the target value of bmi goal.
+     * @param target: double
+     * @throws InvalidGoalTargetException When target is outside the correct values.
+     */
+    public void setTargetValue(double target, UserProfile user) throws InvalidGoalTargetException
+    {
+        if (user.calcBmi() <= target || target <= 10) {
+            throw new InvalidGoalTargetException("Please enter a BMI above 10 that you have not already achieved.");
+        } else {
+            goalBmi = target;
+        }
+    }
+
 
     /**
      * Getter method for the goal BMI

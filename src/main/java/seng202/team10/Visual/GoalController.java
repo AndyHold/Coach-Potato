@@ -10,6 +10,10 @@ import javafx.util.Duration;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Control.InputValidator;
 import seng202.team10.Model.ActivitiesData.DateTime;
+import seng202.team10.Model.Exceptions.BadGoalNameException;
+import seng202.team10.Model.Exceptions.InvalidGoalDateException;
+import seng202.team10.Model.Exceptions.InvalidGoalTargetException;
+import seng202.team10.Model.Exceptions.NoTypeSelectedException;
 import seng202.team10.Model.Goals.*;
 
 /**
@@ -382,65 +386,37 @@ public class GoalController implements Controllable {
         int targetMonth = targetDatePicker.getValue().getMonthValue();
         int targetDay = targetDatePicker.getValue().getDayOfMonth();
         DateTime targetDate = new DateTime(targetYear, targetMonth, targetDay, 0, 0,0);
-        if (type == null) {
-            app.createPopUp(Alert.AlertType.ERROR, "Invalid Goal Type", "Please choose a goal type");
-            validInput = false;
-        } else if (!input.validGoalName(name, goalsInstance)) {
-            app.createPopUp(Alert.AlertType.ERROR, "Invalid Goal Name", "Name must be between 2 and 10 characters long and cannot be the same name as another goal");
-            validInput = false;
-        } else if (!input.validGoalStartDate(startDate)){
-            app.createPopUp(Alert.AlertType.ERROR, "Invalid start date", "Start date must be during this year or next year and cannot be in the past.");
-            validInput = false;
-        } else if (!input.validGoalTargetDate(targetDate)){
-            app.createPopUp(Alert.AlertType.ERROR, "Invalid target date", "Target date must be in the next 5 years and cannot be in the past.");
-            validInput = false;
-        } else if (!input.checkStartVsTargetDates(startDate, targetDate)) {
-            app.createPopUp(Alert.AlertType.ERROR, "Invalid Dates", "Target date must be after the start date.");
-            validInput = false;
-        } else {
-            try {
-                String target1 = targetValueEntry.getText();
-                if (type.equals("Frequency")) {
-                    target = Integer.parseInt(target1);
-                    if (!input.isValidIntTargetValue(target)) {
-                        app.createPopUp(Alert.AlertType.ERROR, "Invalid target", "Please choose a numeric and realistic target value that you have not already achieved");
-                        validInput = false;
-                    }
-                } else {
-                    doubleTarget = Double.valueOf(target1);
-                    if (!input.isValidTargetValue(type, doubleTarget, app.getTitleBar().getCurrentProfile())) {
-                        app.createPopUp(Alert.AlertType.ERROR, "Invalid target", "Please choose a numeric and realistic target value that you have not already achieved");
-                        validInput = false;
-                    }
-                }
-            } catch (NumberFormatException e) {
-                app.createPopUp(Alert.AlertType.ERROR, "Invalid target", "Please choose a realistic target value that you have not already achieved");
-                validInput = false;
-            }
-        }
-        if (validInput) {
+        try {
+            String target1 = targetValueEntry.getText();
+            doubleTarget = Double.valueOf(target1);
             switch (type) {
                 case "Weight":
-                    goalsInstance.createGoal(name, startDate, targetDate, type, doubleTarget);
+                    goalsInstance.createGoal(name, startDate, targetDate, type, doubleTarget, app.getTitleBar().getCurrentProfile());
                     break;
                 case "Frequency":
-                    goalsInstance.createGoal(name, startDate, targetDate, target);
+                    target = Integer.parseInt(target1);
+                    goalsInstance.createGoal(name, startDate, targetDate, target, type);
                     break;
                 case "Distance":
-                    goalsInstance.createGoal(name, startDate, targetDate, type, doubleTarget);
+                    goalsInstance.createGoal(name, startDate, targetDate, type, doubleTarget, app.getTitleBar().getCurrentProfile());
                     break;
                 case "BMI":
-                    goalsInstance.createGoal(name, startDate, targetDate, type, doubleTarget);
+                    goalsInstance.createGoal(name, startDate, targetDate, type, doubleTarget, app.getTitleBar().getCurrentProfile());
                     break;
                 default:  //goal must be of type Time
-                    goalsInstance.createGoal(name, startDate, targetDate, type, doubleTarget);
+                    goalsInstance.createGoal(name, startDate, targetDate, type, doubleTarget, app.getTitleBar().getCurrentProfile());
                     break;
             }
             app.createPopUp(Alert.AlertType.INFORMATION, "Information", "Goal successfully created!");
             //reset the entry values, ready for a new goal to be created
             goalNameEntry.setText("");
             targetValueEntry.setText("");
+        } catch (InvalidGoalDateException | BadGoalNameException | InvalidGoalTargetException | NoTypeSelectedException exception) {
+            app.createPopUp(Alert.AlertType.ERROR, "Error", exception.getMessage());
+        } catch (NumberFormatException exception) {
+            app.createPopUp(Alert.AlertType.ERROR, "Error", "Please enter a valid number for target value");
         }
+
     }
 
 

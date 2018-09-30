@@ -19,7 +19,8 @@ public class FileReader {
      * @param profileName UserProfile: should match what would be returned from UserProfile.getName()
      * @return UserProfile
      * */
-    public UserProfile loadExistingProfile(String profileName) throws Exception{
+    public UserProfile loadExistingProfile(String profileName) throws IOException, ClassNotFoundException
+    {
         String filename = "./profiles/" + profileName + ".ser";
         if(checkFileExists(filename)) {
 //            try {

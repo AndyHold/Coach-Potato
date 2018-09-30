@@ -60,7 +60,8 @@ public class InputValidator {
      * @param target  The target date being checked
      * @return true if valid, false if not
      */
-    public boolean checkStartVsTargetDates(DateTime start, DateTime target) {
+    public boolean checkStartVsTargetDates(DateTime start, DateTime target)
+    {
         return (start.isBefore(target));
     }
 
