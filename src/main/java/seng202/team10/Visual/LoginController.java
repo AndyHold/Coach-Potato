@@ -12,6 +12,7 @@ import seng202.team10.Control.GUIController;
 import seng202.team10.Model.UserProfile;
 
 import java.io.IOException;
+import java.io.InvalidClassException;
 import java.util.ArrayList;
 
 
@@ -303,8 +304,7 @@ public class LoginController implements Controllable{
      * If in delete mode, prompts the user to delete this profile.
      * If not logs in with this profile.
      */
-    @FXML public void userButtonOne()
-    {
+    @FXML public void userButtonOne() {
         if (deleteMode) {
             String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + app.getUserNames().get(0) + "\"");
             if (option.equals("OK")) {
@@ -324,11 +324,13 @@ public class LoginController implements Controllable{
             try {
                 app.setCurrentProfile(app.getDataReader().loadExistingProfile(app.getUserNames().get(0) + " - " + app.getUserGenders().get(0)));
                 app.getTitleBar().openViewProfile();
-            } catch (IOException | ClassNotFoundException exception) {
-                app.createPopUp(Alert.AlertType.ERROR, "Error", "An error occured while loading that profile.");
+            } catch (ClassNotFoundException | IOException exception) {
+                String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Error", "Could not load profile: " + app.getUserNames().get(0) + "\nWould you like to delete it?");
+                if (option.equals("OK")) {
+                    app.getDataWriter().deleteProfile(app.getUserNames().get(0) + " - " + app.getUserGenders().get(0));
+                }
             }
         }
-
     }
 
 
@@ -356,7 +358,10 @@ public class LoginController implements Controllable{
                 app.setCurrentProfile(app.getDataReader().loadExistingProfile(app.getUserNames().get(1) + " - " + app.getUserGenders().get(1)));
                 app.getTitleBar().openViewProfile();
             } catch (IOException | ClassNotFoundException exception) {
-                app.createPopUp(Alert.AlertType.ERROR, "Error", "An error occured while loading that profile.");
+                String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Error", "Could not load profile: " + app.getUserNames().get(1) + "\nWould you like to delete it?");
+                if (option.equals("OK")) {
+                    app.getDataWriter().deleteProfile(app.getUserNames().get(1) + " - " + app.getUserGenders().get(1));
+                }
             }
         }
     }
@@ -386,7 +391,10 @@ public class LoginController implements Controllable{
                 app.setCurrentProfile(app.getDataReader().loadExistingProfile(app.getUserNames().get(2) + " - " + app.getUserGenders().get(2)));
                 app.getTitleBar().openViewProfile();
             } catch (IOException | ClassNotFoundException exception) {
-                app.createPopUp(Alert.AlertType.ERROR, "Error", "An error occured while loading that profile.");
+                String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Error", "Could not load profile: " + app.getUserNames().get(2) + "\nWould you like to delete it?");
+                if (option.equals("OK")) {
+                    app.getDataWriter().deleteProfile(app.getUserNames().get(2) + " - " + app.getUserGenders().get(2));
+                }
             }
         }
     }
@@ -416,7 +424,10 @@ public class LoginController implements Controllable{
                 app.setCurrentProfile(app.getDataReader().loadExistingProfile(app.getUserNames().get(3) + " - " + app.getUserGenders().get(3)));
                 app.getTitleBar().openViewProfile();
             } catch (IOException | ClassNotFoundException exception) {
-                app.createPopUp(Alert.AlertType.ERROR, "Error", "An error occured while loading that profile.");
+                String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Error", "Could not load profile: " + app.getUserNames().get(3) + "\nWould you like to delete it?");
+                if (option.equals("OK")) {
+                    app.getDataWriter().deleteProfile(app.getUserNames().get(3) + " - " + app.getUserGenders().get(3));
+                }
             }
         }
     }
@@ -446,7 +457,10 @@ public class LoginController implements Controllable{
                 app.setCurrentProfile(app.getDataReader().loadExistingProfile(app.getUserNames().get(4) + " - " + app.getUserGenders().get(4)));
                 app.getTitleBar().openViewProfile();
             } catch (IOException | ClassNotFoundException exception) {
-                app.createPopUp(Alert.AlertType.ERROR, "Error", "An error occured while loading that profile.");
+                String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Error", "Could not load profile: " + app.getUserNames().get(4) + "\nWould you like to delete it?");
+                if (option.equals("OK")) {
+                    app.getDataWriter().deleteProfile(app.getUserNames().get(4) + " - " + app.getUserGenders().get(4));
+                }
             }
         }
     }
