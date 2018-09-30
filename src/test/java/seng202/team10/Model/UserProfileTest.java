@@ -41,7 +41,7 @@ public class UserProfileTest {
     }
 
     @Test
-    public void serializeTest(){
+    public void serializeTest() throws Exception{
         writer.saveProfile(testProfile);
         UserProfile loadedProfile = reader.loadExistingProfile("dave");
         boolean sameActivities = true;

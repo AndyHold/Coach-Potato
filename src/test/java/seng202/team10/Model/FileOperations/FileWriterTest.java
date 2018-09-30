@@ -5,6 +5,8 @@ import seng202.team10.Model.Exceptions.InvalidWeightException;
 import seng202.team10.Model.Exceptions.UserNameException;
 import seng202.team10.Model.UserProfile;
 
+import java.io.InvalidClassException;
+
 import static org.junit.Assert.*;
 
 public class FileWriterTest {
@@ -49,7 +51,7 @@ public class FileWriterTest {
 
 
     @Test
-    public void updateExistingProfile() throws InvalidWeightException
+    public void updateExistingProfile() throws InvalidWeightException, Exception
     {
         testWriter.saveProfile(testProfile);
         testProfile.setWeight(100);
