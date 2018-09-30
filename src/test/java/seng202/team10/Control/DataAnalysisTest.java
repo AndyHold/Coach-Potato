@@ -3,6 +3,7 @@ package seng202.team10.Control;
 import org.junit.Before;
 import org.junit.Test;
 import seng202.team10.Model.ActivitiesData.Activity;
+import seng202.team10.Model.ActivitiesData.DataAnalysis;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.UserProfile;
 
@@ -29,7 +30,7 @@ public class DataAnalysisTest {
         user.setHeight(80);
         user.setWeight(80);
         user.setGender("Male");
-        DateTime birthday = new DateTime(1996, 12, 04, 0, 0, 0);
+        DateTime birthday = new DateTime(1996, 12, 4, 0, 0, 0);
         user.setBirthDate(birthday);
         guiController.uploadDataToUser(user, "./FilesToLoad/testdata.csv");
         activities = user.getActivities();
@@ -39,7 +40,7 @@ public class DataAnalysisTest {
     @Test
     public void getTimeFromActivityReturnsTotalTime() {
         ArrayList<Integer> times = dataAnalysis.getTimeFromActivity(activities.get(0));
-        assertTrue((times.get(times.size()-1)) == activities.get(0).getTotalDuration());
+        assertEquals((int) (times.get(times.size() - 1)), activities.get(0).getTotalDuration());
     }
 
     @Test
@@ -71,7 +72,7 @@ public class DataAnalysisTest {
     @Test
     public void getHeartRateFromActivity() {
         ArrayList<Integer> heartRates = dataAnalysis.getHeartRateFromActivity(activities.get(1));
-        ArrayList<Integer> actualHeartRates = new ArrayList<Integer>();
+        ArrayList<Integer> actualHeartRates = new ArrayList<>();
         actualHeartRates.add(157);
         actualHeartRates.add(156);
         actualHeartRates.add(153);

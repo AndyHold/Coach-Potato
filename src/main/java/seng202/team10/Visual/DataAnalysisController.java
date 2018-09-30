@@ -1,6 +1,5 @@
 package seng202.team10.Visual;
 
-import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -9,11 +8,9 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
-import javafx.util.Duration;
-import seng202.team10.Control.DataAnalysis;
+import seng202.team10.Model.ActivitiesData.DataAnalysis;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.Activity;
-import seng202.team10.Model.UserProfile;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -86,7 +83,7 @@ public class DataAnalysisController implements Controllable, Initializable{
             // Get arrays
             ArrayList<Double> timeArray = dataAnalysis.getMinutesFromActivity(activity);
             ArrayList<Integer> heartRateArray = dataAnalysis.getHeartRateFromActivity(activity);
-            Integer timeTaken = activity.getTotalDuration();
+            int timeTaken = activity.getTotalDuration();
             // Set the name
             activityNameLabel.setText(activity.getName());
             timeTakenLabel.setText("Time Taken: " + activity.secondsToTime(timeTaken));

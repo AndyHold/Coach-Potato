@@ -67,7 +67,8 @@ public class TitleBarController {
     /**
      * Sets up objects that require it prior to showing the scene
      */
-    public void setUpScene() throws IOException {
+    public void setUpScene() throws IOException
+    {
         loadAllPanes();
         if (app.getUsers().isEmpty()) {
             openCreateProfile();
@@ -80,7 +81,7 @@ public class TitleBarController {
     /**
      * Set up method for the health warnings flag.
      */
-    public void setUpWarningFlag()
+    protected void setUpWarningFlag()
     {
         if (currentUser.getActiveHealthWarnings().size() > 0) {
             warningButton.setVisible(true);
@@ -200,7 +201,7 @@ public class TitleBarController {
     /**
      * Method to display the create profile screen
      */
-    @FXML public void openCreateProfile()
+    @FXML protected  void openCreateProfile()
     {
         slideMenu(false);
         createProfileController.toggleBackButton();
@@ -288,7 +289,7 @@ public class TitleBarController {
     /**
      * Method to display the entry viewer screen
      */
-    @FXML public void openEntry(Activity activity)
+    @FXML protected  void openEntry(Activity activity)
     {
         slideMenu(false);
         entryViewerController.setUpScene(activity);

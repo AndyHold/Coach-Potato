@@ -1,6 +1,5 @@
 package seng202.team10.Model.FileOperations;
 
-import seng202.team10.Control.InputValidator;
 import seng202.team10.Model.ActivitiesData.*;
 import seng202.team10.Model.Exceptions.BadActivityException;
 import seng202.team10.Model.Exceptions.NoActivityFoundException;
@@ -63,6 +62,7 @@ public class Parser {
         }
         return formattedFile;
     }
+
 
     /**
      *Processes a list of activities from the contents of a file.
@@ -129,6 +129,31 @@ public class Parser {
 
 
     /**
+     * checks if the name of an activity is valid
+     * @param activityName The activity name being checked
+     * @return true if valid, false if not
+     */
+    private boolean isValidActivityName(String activityName) {
+        return ((activityName.length() <= 50) && (activityName.matches("[a-zA-Z0-9]+[a-zA-Z0-9 ]*")));
+    }
+
+
+    /**
+     * checks if the header line of an activity is of a valid format
+     * @param header The header line being checked
+     * @return true if valid, false if not
+     */
+    private boolean validActivityHeader(ArrayList<String> header) {
+        if (header.size() >= 2) {
+            if (header.get(0).equals("#start")) {
+                return isValidActivityName(header.get(1));
+            }
+        }
+        return false;
+    }
+
+
+    /**
      * Processes an activity in the file contents, called by the processFile() function.
      * Sets the name and date of the activity, then loops through the file
      * calling processLine() on each line, which is added to the activity object.
@@ -137,20 +162,17 @@ public class Parser {
      * @throws NoActivityFoundException when there is no activity in the file to process.
      * @return activity  An Activity object that contains a number of entries.
      */
-    public Activity processActivity(ArrayList<ArrayList<String>> formattedFile) throws BadActivityException, NoActivityFoundException
+    private Activity processActivity(ArrayList<ArrayList<String>> formattedFile) throws BadActivityException, NoActivityFoundException
     {
-        InputValidator inputValidator = new InputValidator();
-        if (!inputValidator.validActivityHeader(formattedFile.get(linePosition))) {
-            while (!inputValidator.validActivityHeader(formattedFile.get(linePosition)) && linePosition < formattedFile.size()-1) {
-                linePosition++;
-            }
-            if (!(inputValidator.validActivityHeader(formattedFile.get(linePosition)))) {
-                this.linePosition++;
-                throw new NoActivityFoundException();
-            }
-
-
+        while (!(validActivityHeader(formattedFile.get(linePosition)) && linePosition < formattedFile.size()-1)) {
+            linePosition++;
         }
+        if (!(validActivityHeader(formattedFile.get(linePosition)))) {
+            this.linePosition++;
+            throw new NoActivityFoundException();
+        }
+
+
         String name = formattedFile.get(linePosition).get(1);
         linePosition += 1;
 
@@ -214,14 +236,14 @@ public class Parser {
 >>>>>>> 2775b492... Added several cases to check for bad activities and bad entries, throwing exceptions where necessary
         while (linePosition < formattedFile.size() && (formattedFile.get(linePosition)).size() != 2) {
 
-            if(inputValidator.isValidEntryLine(formattedFile.get(linePosition))){
+            try {
                 Entry currentEntry = processLine(formattedFile);
                 currentDateTime = currentEntry.getTime();
                 if (previousDateTime != null && !dateIsValid(currentDateTime, previousDateTime)) {
                     throw new BadActivityException();
                 }
                 activity.addEntry(currentEntry);
-            } else {
+            } catch (IllegalArgumentException exception) {
                 badEntries += 1;
             }
 
@@ -265,11 +287,6 @@ public class Parser {
 >>>>>>> 2775b492... Added several cases to check for bad activities and bad entries, throwing exceptions where necessary
 
         activity.postEntriesSetUp();
-
-//        while (linePosition < formattedFile.size() && formattedFile.get(linePosition).get(0) != "#start"){
-////            linePosition+=1;
-////        }
-
         return activity;
     }
 
@@ -285,10 +302,7 @@ public class Parser {
         if (currentEntryDateTime.subtract(previousDateTime) > (3*60*60)) { //that's 3 hours in seconds.
             return false;
         }
-        if (previousDateTime.isAfter(currentEntryDateTime)) {
-            return false;
-        }
-        return true;
+        return !previousDateTime.isAfter(currentEntryDateTime);
     }
 
     /**
@@ -297,12 +311,10 @@ public class Parser {
      * heart rate, and to a Position object for position.
      * @param formattedFile  The formatted file to be processed.
      * @return entry  An entry which details a moment in time in an activity .
+     * @throws IllegalArgumentException When bad data is found.
      */
-    public Entry processLine(ArrayList<ArrayList<String>> formattedFile){
-        boolean isFirst = false;
-        if(formattedFile.get(linePosition-1).size() != 6){
-            isFirst = true;
-        }
+    protected Entry processLine(ArrayList<ArrayList<String>> formattedFile) throws IllegalArgumentException
+    {
         ArrayList<String> currentLine = formattedFile.get(linePosition);
         String[] timeArray = (currentLine.get(1)).split(":");
         String[] dateArray = (currentLine.get(0)).split("/");
@@ -317,19 +329,17 @@ public class Parser {
         int heartRate = Integer.valueOf(currentLine.get(2));
         Position position = processPosition(currentLine);
 
-        Entry newEntry = new Entry(dateTime, heartRate, position);
-        newEntry.setFirstEntry(isFirst);
-        return newEntry;
+        return new Entry(dateTime, heartRate, position);
     }
 
     /**
      * Processes the position from the file by converting it to a position object from strings.
      * Called by the processLine() function.
-     *
      * @param currentLine The current line the parser is on.
      * @return position  A Position object that details the position for an Entry.
      */
-    private Position processPosition(ArrayList<String> currentLine){
+    private Position processPosition(ArrayList<String> currentLine) throws IllegalArgumentException
+    {
         double latitude = Double.valueOf(currentLine.get(3));
         double longitude = Double.valueOf(currentLine.get(4));
         double elevation = Double.valueOf(currentLine.get(5));
@@ -337,25 +347,6 @@ public class Parser {
         return new Position(latitude, longitude, elevation);
     }
 
-
-    //POSSIBLY AN UNUSED FUNCTION.
-//    private int removeDuplicateEntries(Activity activity) {
-//        int removeCount = 0;
-//        for (int i = 0; i < activity.getEntries().size(); i++) {
-//            for (int j = 0; j < activity.getEntries().size(); j++) {
-//                if (activity.getEntries().get(i).equals(activity.getEntries().get(j))) {
-//                    if (activity.getEntries().get(i) == activity.getEntries().get(j)) {
-//                        ;
-//                    } else {
-//                        activity.getEntries().remove(j);
-//                        removeCount += 1;
-//                    }
-//                }
-//
-//            }
-//        }
-//        return removeCount;
-//    }
 
     /**
      * returns the number of activities that were not imported for various reasons
@@ -365,21 +356,21 @@ public class Parser {
         return badActivities;
     }
 
+
     /**
      * returns the current line index that the parser is working at
      * @return index of line
      */
-    public int getLineIndex (){
+    protected int getLineIndex(){
         return linePosition;
     }
+
 
     /**
      * manually sets the parser to move to a specific line
      * @param linePosition the line number to move to
      */
-    public void setLinePosition(int linePosition) {
+    protected void setLinePosition(int linePosition) {
         this.linePosition = linePosition;
     }
-
-
 }

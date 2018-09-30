@@ -1,4 +1,4 @@
-package seng202.team10.Control;
+package seng202.team10.Model.ActivitiesData;
 
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;

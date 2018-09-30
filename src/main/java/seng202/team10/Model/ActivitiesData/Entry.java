@@ -218,6 +218,7 @@ public class Entry  implements Serializable {
      * @param position: Position Position of the entry.
 >>>>>>> 793f578b... Changed latitude and longitude error checking in Position class and removed unnecessary lines from Entry class.
      */
+<<<<<<< HEAD
     public Entry(DateTime time, int heartRate, Position position) {
 =======
     public Entry(boolean firstEntry, DateTime time, int heartRate, Position position) {
@@ -239,6 +240,9 @@ public class Entry  implements Serializable {
 =======
     public Entry(DateTime time, int heartRate, Position position) throws NullPointerException
 >>>>>>> 04a8fe97... Changed the entry constructor to throw null pointers
+=======
+    public Entry(DateTime time, int heartRate, Position position) throws IllegalArgumentException
+>>>>>>> 86a38794... Refactored parser to no longer use the input validator class. Now the input validator class is not used at all so is deleted.
     {
 =======
 >>>>>>> 04fec49c... DateTime now has 100% test coverage, refactored Activity and Entry to make them more readable and got rid of unnecessary String attributes and had them be derived when asked for in the getter method instead. This will make it easier when the values are changed. Implemented the calculateVelocity method in Entry and the calculateEntriesVelocity method in Activity properly so that the data can now be used for graphing.
@@ -592,7 +596,7 @@ public class Entry  implements Serializable {
      * Method to calculate user's distance.
      * @param prevEntry: Entry
      */
-    public void calculateDistance(Entry prevEntry)
+    protected void calculateDistance(Entry prevEntry)
     {
         Position prevPosition = prevEntry.getPosition();
         this.distance = prevPosition.subtract(this.position);
@@ -617,7 +621,7 @@ public class Entry  implements Serializable {
      * Method to calculate user's velocity.
      * @param prevEntry: Entry
      */
-    public void calculateVelocity(Entry prevEntry)
+    protected void calculateVelocity(Entry prevEntry)
     {
         DateTime prevTime = prevEntry.getTime();
 <<<<<<< HEAD
@@ -724,7 +728,7 @@ public class Entry  implements Serializable {
 >>>>>>> 7f979e0c... Wrote some more tests for Activity, Entry, Position classes and JavaDocs for those classes.
      * @return heartRate: double
      */
-    public int getHeartRate()
+    protected int getHeartRate()
     {
         return heartRate;
 >>>>>>> 04fec49c... DateTime now has 100% test coverage, refactored Activity and Entry to make them more readable and got rid of unnecessary String attributes and had them be derived when asked for in the getter method instead. This will make it easier when the values are changed. Implemented the calculateVelocity method in Entry and the calculateEntriesVelocity method in Activity properly so that the data can now be used for graphing.
@@ -766,7 +770,7 @@ public class Entry  implements Serializable {
      * Method to get user's velocity.
      * @return velocity: double
      */
-    public double getVelocity()
+    protected double getVelocity()
     {
         return velocity;
     }
@@ -829,7 +833,7 @@ public class Entry  implements Serializable {
      * Method to get the string representation of the latitude.
      * @return String
      */
-    public String getLatitudeString()
+    protected String getLatitudeString()
     {
         return String.format("%.6f", this.position.getLatitude());
     }
@@ -839,7 +843,7 @@ public class Entry  implements Serializable {
      * Method to get the string representation of the longitude.
      * @return String
      */
-    public String getLongitudeString()
+    protected String getLongitudeString()
     {
         return String.format("%.6f", this.position.getLongitude());
     }
@@ -849,7 +853,7 @@ public class Entry  implements Serializable {
      * Method to get the string representation of the elevation.
      * @return String
      */
-    public String getElevationString()
+    protected String getElevationString()
     {
         return String.format("%.2f", this.position.getElevation());
     }
@@ -859,7 +863,7 @@ public class Entry  implements Serializable {
      * Method to get the string representation of the distance from the previous Entry.
      * @return String
      */
-    public String getDistanceString()
+    protected String getDistanceString()
     {
         return String.format("%.2f", this.getDistance());
     }
@@ -869,10 +873,11 @@ public class Entry  implements Serializable {
      * Method to get the string representation of the velocity at this Entry.
      * @return String
      */
-    public String getVelocityString()
+    protected String getVelocityString()
     {
         return String.format("%.2f", this.getVelocity());
     }
+<<<<<<< HEAD
 
 
 <<<<<<< HEAD
@@ -1068,4 +1073,6 @@ public class Entry  implements Serializable {
 >>>>>>> d15fa3f6... Refactored Activity Class to delete some redundant code, fixed Activity class created a ActivityTypeTest class and implemented tests for it. Wrote some more tests for DateTime's new change methods, wrote some tests for the Position class.
 =======
 >>>>>>> 7f979e0c... Wrote some more tests for Activity, Entry, Position classes and JavaDocs for those classes.
+=======
+>>>>>>> 86a38794... Refactored parser to no longer use the input validator class. Now the input validator class is not used at all so is deleted.
 }
