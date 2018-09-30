@@ -5,8 +5,11 @@ import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
@@ -53,6 +56,8 @@ public class TitleBarController {
     private EntryViewerController entryViewerController;
     private MapController mapController;
     private HealthWarningsController healthWarningController;
+    @FXML private ImageView profileMenuIcon;
+
 
     /**
      * Setter Method for the GUIController
@@ -70,7 +75,7 @@ public class TitleBarController {
     public void setUpScene() throws IOException
     {
         loadAllPanes();
-        if (app.getUsers().isEmpty()) {
+        if (app.getUserNames().isEmpty()) {
             openCreateProfile();
         } else {
             openLogin();
@@ -215,6 +220,7 @@ public class TitleBarController {
     @FXML public void openLogin()
     {
         app.setCurrentUser(null);
+        app.loadUserDetails();
         loginController.setUpScene();
         slideMenu(false);
         setScene(loginPane);
@@ -226,6 +232,12 @@ public class TitleBarController {
      */
     @FXML public void openViewProfile()
     {
+        profileController.setCurrentUser(currentUser);
+        try {
+            profileMenuIcon.setImage(new Image("Images/profile" + currentUser.getGender() + ".png"));
+        } catch (IllegalArgumentException exception) {
+            app.createPopUp(Alert.AlertType.ERROR, "Error", "Could not find profile icon");
+        }
         profileController.setUpScene();
         app.getDataWriter().saveProfile(currentUser);
         profileController.setUserDetails();

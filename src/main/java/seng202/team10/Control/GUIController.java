@@ -117,12 +117,12 @@ public class GUIController extends Application {
     private Parser parser = new Parser();
     private FileWriter dataWriter = new FileWriter();
     private FileReader dataReader = new FileReader();
-    private ArrayList<String> userNames;
+    private ArrayList<String> userNames = new ArrayList<>();
     private double[] offset_XY;
 
     private Parent root;
+    private ArrayList<String> userGenders = new ArrayList<>();
 
-    //private Goals goals = new Goals(currentUser);
 
     /**
      * A lot of the initial setup when the program is launched. loads profiles and scenes to the stage
@@ -279,6 +279,7 @@ public class GUIController extends Application {
             dataWriter.createProfileFolder();
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> e7a69fc0... Worked extensively on the GUI. now have a working custom title bar, a new colour theme which has been implemented on login, profile, and createprofile screens.
 =======
 //        try {
@@ -309,12 +310,15 @@ public class GUIController extends Application {
 =======
 =======
         loadAllUsers();
+=======
+//        loadAllUsers();
+        loadUserDetails();
+>>>>>>> 4f1b7d76... Fixed tests so that new format of error exceptions does not break the pipeline.
         loadTitleBar();
         allowDrag(root, primaryStage);
         primaryStage.setTitle("Coach Potato");
         primaryStage.setResizable(false);
         primaryStage.initStyle(StageStyle.TRANSPARENT);
-//        primaryStage.setOpacity(0.9);
         titleBarScene.setFill(Color.TRANSPARENT);
         primaryStage.setScene(titleBarScene);
         primaryStage.show();
@@ -322,9 +326,11 @@ public class GUIController extends Application {
 >>>>>>> 86964199... Changed a few JUnit tests to fix pipeline issues caused by recent merge, still failing on the future goals tests as adding 3 days at the end of the month throws an exception.
     }
 
+
     /**
-     * loads all the users in the profiles folder and adds them to the users arraylist
+     * Method to load usernames and genders from the filenames.
      */
+<<<<<<< HEAD
     private void loadAllUsers() throws IOException, ClassNotFoundException {
         userNames = dataReader.getExistingUsers();
         for (String username : userNames) {
@@ -342,7 +348,52 @@ public class GUIController extends Application {
 =======
         userNames = dataReader.getExistingUsers();
 >>>>>>> e18e43a0... Refactored GoalController to handle exceptions instead of using the Input Validator. Refactored the Goal classes to throw exceptions with invalid input.
+=======
+    public void loadUserDetails()
+    {
+        userNames.clear();
+        userGenders.clear();
+        dataReader.getExistingUsers(userNames, userGenders);
+>>>>>>> 4f1b7d76... Fixed tests so that new format of error exceptions does not break the pipeline.
     }
+
+
+    /**
+     * Getter method for the data reader
+     * @return FileReader
+     */
+    public FileReader getDataReader()
+    {
+        return dataReader;
+    }
+
+    /**
+     * Getter method for the user genders in an ArrayList of strings
+     * @return ArrayList
+     */
+    public ArrayList<String> getUserGenders()
+    {
+        return userGenders;
+    }
+
+
+    //    /**
+//     * loads all the users in the profiles folder and adds them to the users arraylist
+//     */
+//    private void loadAllUsers() throws IOException, ClassNotFoundException {
+//        userNames = dataReader.getExistingUsers();
+//        for (String username : userNames) {
+//            try {
+//                users.add(dataReader.loadExistingProfile(username));
+//            } catch(InvalidClassException exception) {
+//                String option = createPopUp(Alert.AlertType.CONFIRMATION, "Error", "Could not load profile: " + username + "\nWould you like to delete it?");
+//                if (option.equals("OK")) {
+//                    getDataWriter().deleteProfile(username);
+//                }
+//            }
+//        }
+//        userNames = dataReader.getExistingUsers();
+//    }
 
 
     /**
@@ -456,6 +507,7 @@ public class GUIController extends Application {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     /**
      * Sets the scene on the primary stage to the login scene.
@@ -514,6 +566,8 @@ public class GUIController extends Application {
 =======
 >>>>>>> 879a82d8... Added remove goal button, review progress button and goal progress text field. Edited the check goal and remove goal methods in Goals class. Created reviewGoal and removeGoal action handlers in GoalController. Changed the return types of the reviewing goals methods. Introduced a getGoalObject method.
 =======
+=======
+>>>>>>> 4f1b7d76... Fixed tests so that new format of error exceptions does not break the pipeline.
 
 >>>>>>> f05f9ca3... Created constructors for userProfile and Added a test user.
 =======
@@ -1025,7 +1079,8 @@ public class GUIController extends Application {
                 newUser.getHeight() != 0.0 &&
                 newUser.getBirthDate() != null &&
                 newUser.getGender() != null) {
-            users.add(newUser);
+
+            getDataWriter().saveProfile(newUser);
         } else {
             throw new InvalidUserException();
         }

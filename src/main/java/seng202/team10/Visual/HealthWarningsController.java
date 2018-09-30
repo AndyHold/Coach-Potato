@@ -40,7 +40,7 @@ public class HealthWarningsController implements Controllable {
     public void setUpScene()
     {
         getWarningLists();
-        setLabelsUp();
+        setUpLabels();
         engine = googleWebView.getEngine();
         engine.load("https://google.com");
     }
@@ -54,7 +54,14 @@ public class HealthWarningsController implements Controllable {
     }
 
 
+<<<<<<< HEAD
     private void setLabelsUp()
+=======
+    /**
+     * Initializes labels and icons for each health condition.
+     */
+    private void setUpLabels()
+>>>>>>> 4f1b7d76... Fixed tests so that new format of error exceptions does not break the pipeline.
     {
         tachycardiaIcon.setVisible(false);
         bradycardiaIcon.setVisible(false);

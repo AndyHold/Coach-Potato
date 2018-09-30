@@ -41,8 +41,30 @@ public class HealthWarning implements java.io.Serializable {
         if (checkBradycardia(heartRate)) {
             warnings.add(HealthWarningType.BRADYCARDIA);
         }
-        if (checkCardiovascularMortality(heartRate, maxHeartRate)) {
-            warnings.add(HealthWarningType.CARDIOVASCULAR_MORTALITY);
+        switch (activity.getType())
+        {
+            case WORKOUT:
+                if (checkCardiovascularMortality(heartRate, maxHeartRate)) {
+                    warnings.add(HealthWarningType.CARDIOVASCULAR_MORTALITY);
+                }
+                break;
+            case WALK:
+                if (checkCardiovascularMortality(heartRate, maxHeartRate)) {
+                    warnings.add(HealthWarningType.CARDIOVASCULAR_MORTALITY);
+                }
+                break;
+
+            case HIKE:
+                if (checkCardiovascularMortality(heartRate, maxHeartRate)) {
+                    warnings.add(HealthWarningType.CARDIOVASCULAR_MORTALITY);
+                }
+                break;
+
+            case OTHER:
+                if (checkCardiovascularMortality(heartRate, maxHeartRate)) {
+                    warnings.add(HealthWarningType.CARDIOVASCULAR_MORTALITY);
+                }
+                break;
         }
         return warnings;
     }

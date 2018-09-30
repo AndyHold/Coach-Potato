@@ -9,10 +9,15 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.DateTime;
+<<<<<<< HEAD
 import seng202.team10.Model.Exceptions.InvalidHeightException;
 import seng202.team10.Model.Exceptions.InvalidWeightException;
 import seng202.team10.Model.Exceptions.UniqueNameException;
 import seng202.team10.Model.Exceptions.UserNameException;
+=======
+import seng202.team10.Model.Exceptions.*;
+import seng202.team10.Model.UserProfile;
+>>>>>>> 4f1b7d76... Fixed tests so that new format of error exceptions does not break the pipeline.
 
 import java.text.DecimalFormat;
 import java.time.YearMonth;
@@ -24,6 +29,7 @@ public class ProfileController {
     private GUIController app;
     private DataAnalysis dataAnalysis = new DataAnalysis();
     private List<String> quotes;
+    private UserProfile currentUser;
 
     @FXML Pane calendarPane;
     @FXML private Label welcomeProfileLabel;
@@ -60,6 +66,7 @@ public class ProfileController {
 
 
     /**
+<<<<<<< HEAD
      * List of Motivational quotes.
      */
     private void setQuotes()
@@ -90,6 +97,10 @@ public class ProfileController {
     /**
      * Setter method to set the GUI controller for this Scene
      * @param app GUIController
+=======
+     * Setter method to pass the GUIController into this controller.
+     * @param guiController <b>GUIController:</b> The main controller.
+>>>>>>> 4f1b7d76... Fixed tests so that new format of error exceptions does not break the pipeline.
      */
     public void setApp(GUIController app)
     {
@@ -123,7 +134,48 @@ public class ProfileController {
 
 
     /**
+<<<<<<< HEAD
      * Set up method for the help text area
+=======
+     * Sets the list of motivational quotes.
+     */
+    private void setQuotes()
+    {
+        quotes = Arrays.asList(
+                "To not prepare is to prepare to fail.",
+                "Exercise instead of extra fries.",
+                "It starts in the kitchen and continues on the pavement.",
+                "People say nothing is impossible, but I do nothing everyday.",
+                "If you cannot do great things, do small things in a great way.",
+                "You are what you repeatedly do.",
+                "It is our choices that show what we truly are, far more than our abilities.",
+                "People often say that motivation doesn't last. Well, neither does bathing - that's why we recommend it daily.",
+                "I didn't get there by wishing for it or hoping for it, but by working for it.",
+                "Be patient with yourself. Self-growth is tender; it’s holy ground. There’s no greater investment.",
+                "You can waste your life drawing lines. Or you can live your life crossing them.",
+                "Action is the foundational key to all success.",
+                "Obstacles are those frightful things you see when you take your eyes off your goal.",
+                "Someday is not a day of the week.",
+                "Challenges are what make life interesting and overcoming them is what makes life meaningful.",
+                "I already know what giving up feels like, I want to see what happens if i don't.",
+                "Some days it's hard to find motivation, some days motivation finds you!",
+                "Yesterday you said tomorrow, so just do it!"
+        );
+    }
+
+
+    /**
+     * Setter method for the current user
+     * @param currentUser UserProfile
+     */
+    public void setCurrentUser(UserProfile currentUser)
+    {
+        this.currentUser = currentUser;
+    }
+
+    /**
+     * Set up method for the help text area.
+>>>>>>> 4f1b7d76... Fixed tests so that new format of error exceptions does not break the pipeline.
      */
     private void setUpHelpTextArea()
     {
@@ -206,7 +258,9 @@ public class ProfileController {
     {
         DecimalFormat df2 = new DecimalFormat("#.##");
         setUpScene();
+
         wholeProfileVBox.setVisible(true);
+<<<<<<< HEAD
         app.getTitleBar().getCurrentProfile();
         welcomeProfileLabel.setText("Welcome " + String.valueOf(app.getTitleBar().getCurrentProfile().getName()) + ", Let's do it!");
         usernameTA.setText(app.getTitleBar().getCurrentProfile().getName());
@@ -215,14 +269,23 @@ public class ProfileController {
         weightValueTA.setText(df2.format((app.getTitleBar().getCurrentProfile().getWeight())));
         heightValueTA.setText(df2.format((app.getTitleBar().getCurrentProfile().getHeight())));
         bmiValueTA.setText(df2.format((app.getTitleBar().getCurrentProfile().calcBmi())) + " - " + app.getTitleBar().getCurrentProfile().getBmiCategory());
+=======
+        welcomeProfileLabel.setText("Welcome " + String.valueOf(currentUser.getName()) + ", Let's do it!");
+        usernameTA.setText(currentUser.getName());
+        genderTA.setText(currentUser.getGender());
+        dobTA.setText(currentUser.getBirthDate().getDateAsString());
+        weightValueTA.setText(df2.format((currentUser.getWeight())));
+        heightValueTA.setText(df2.format((currentUser.getHeight())));
+        bmiValueTA.setText(df2.format((currentUser.calcBmi())) + " - " + currentUser.getBmiCategory());
+>>>>>>> 4f1b7d76... Fixed tests so that new format of error exceptions does not break the pipeline.
         calendarPane.getChildren().add(new CalenderPaneController(YearMonth.now(), app, this).getView());
 
         // Sets up the calendar and other stats if the user has already uploaded the data to the app else all values are 0 initially.
-        if (app.getTitleBar().getCurrentProfile().getActivities().size() > 0) {
+        if (currentUser.getActivities().size() > 0) {
 
-            distanceText.setText("Total Distance Covered: " + df2.format((app.getTitleBar().getCurrentProfile().getActivitiesDistance(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0)))/1000) + " km");
-            velocityText.setText("Average Speed: " + df2.format(app.getTitleBar().getCurrentProfile().getActivitiesSpeed(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0))) + " km/h");
-            heartRateText.setText("Average Heart Rate: " + String.valueOf(app.getTitleBar().getCurrentProfile().getActivitiesHeartRate(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0))) + " bpm");
+            distanceText.setText("Total Distance Covered: " + df2.format((currentUser.getActivitiesDistance(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0)))/1000) + " km");
+            velocityText.setText("Average Speed: " + df2.format(currentUser.getActivitiesSpeed(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0))) + " km/h");
+            heartRateText.setText("Average Heart Rate: " + String.valueOf(currentUser.getActivitiesHeartRate(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0))) + " bpm");
             recentActivitiesLabel.setVisible(true);
             distanceHBox.setVisible(true);
             velocityHBox.setVisible(true);
@@ -278,7 +341,7 @@ public class ProfileController {
                 "-fx-background-color: transparent");
 
         // Set Name and handle Exceptions
-        String oldName = app.getTitleBar().getCurrentProfile().getName();
+        String oldName = currentUser.getName();
         try {
             String nameString = usernameTA.getText();
             app.checkUniqueName(nameString);
@@ -290,7 +353,7 @@ public class ProfileController {
         } catch (UniqueNameException | IllegalArgumentException exception) {
             app.createPopUp(Alert.AlertType.ERROR, "Invalid Username", "Please enter a valid username: This username already exists." );
         }
-        String newName = app.getTitleBar().getCurrentProfile().getName();
+        String newName = currentUser.getName();
         if(!(oldName.equals(newName))){
             app.getDataWriter().deleteProfile(oldName);
     }
@@ -333,7 +396,6 @@ public class ProfileController {
         editProfileButton.setVisible(true);
         app.getDataWriter().saveProfile(app.getTitleBar().getCurrentProfile());
         setUserDetails();
-
     }
 
     /**

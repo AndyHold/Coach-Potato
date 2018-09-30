@@ -17,10 +17,11 @@ public class FileWriter
      *saves the inputted user profile as a serialized file
      *@param profile  the UserProfile being saved.
      */
-    public void saveProfile(UserProfile profile){
+    public void saveProfile(UserProfile profile)
+    {
         createProfileFolder();
         activeProfile = profile;
-        String filename = "./profiles/" + activeProfile.getName() + ".ser";
+        String filename = "./profiles/" + activeProfile.getName() + " - " + activeProfile.getGender() + ".ser";
         try {
             FileOutputStream fileOut = new FileOutputStream(filename);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
