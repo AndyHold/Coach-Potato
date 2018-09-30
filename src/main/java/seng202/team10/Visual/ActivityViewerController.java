@@ -164,6 +164,7 @@ public class ActivityViewerController {
     private void populateTable(ObservableList<Activity> displayActivities)
     {
         activitiesTableView.setItems(displayActivities);
+        activitiesTableView.refresh();
     }
 
     /**
@@ -281,6 +282,20 @@ public class ActivityViewerController {
         } else {
             app.createPopUp(Alert.AlertType.ERROR, "Error", "Please select an Activity first");
         }
+    }
+
+    /**
+     * Method to remove the currently selected Activity from the profile
+     */
+    @FXML public void deleteActivity()
+    {
+        if(activitiesTableView.getSelectionModel().getSelectedItem() != null) {
+            Activity toDelete = activitiesTableView.getSelectionModel().getSelectedItem();
+            app.getTitleBar().getCurrentProfile().deleteActivity(toDelete);
+        } else {
+            app.createPopUp(Alert.AlertType.ERROR, "Error", "Please select an Activity first");
+        }
+        populateTable(FXCollections.observableArrayList(app.getTitleBar().getCurrentProfile().getActivities()));
     }
 
 

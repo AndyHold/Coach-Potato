@@ -163,6 +163,15 @@ public class UserProfile implements java.io.Serializable {
         }
     }
 
+    /**
+     * Method to remove a single activity from the profile
+     * @param toDelete the activity being deleted
+     */
+    public void deleteActivity(Activity toDelete)
+    {
+        activities.remove(toDelete);
+    }
+
 
     /**
      * Getter method for the weight of the user
