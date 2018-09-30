@@ -270,7 +270,7 @@ public class GoalController implements Controllable {
 
 
     /**
-     * Method to update the achieved goal list view.
+     * Method to update the current goal list view.
      * TODO reset all text fields to display nothing
      */
     @FXML public void updateCurrentListView()
@@ -440,7 +440,9 @@ public class GoalController implements Controllable {
             //reset the entry values, ready for a new goal to be created
             goalNameEntry.setText("");
             targetValueEntry.setText("");
+            this.addGoalsToTable();
         }
+
     }
 
 
