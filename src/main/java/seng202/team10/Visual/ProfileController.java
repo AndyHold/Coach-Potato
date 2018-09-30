@@ -75,7 +75,7 @@ public class ProfileController {
                 "People say nothing is impossible, but I do nothing everyday.",
                 "If you cannot do great things, do small things in a great way.",
                 "You are what you repeatedly do.",
-                "It is our choices, Harry that show what we truly are, far more than our abilities.",
+                "It is our choices that show what we truly are, far more than our abilities.",
                 "People often say that motivation doesn't last. Well, neither does bathing - that's why we recommend it daily.",
                 "I didn't get there by wishing for it or hoping for it, but by working for it.",
                 "Be patient with yourself. Self-growth is tender; it’s holy ground. There’s no greater investment.",
@@ -281,6 +281,7 @@ public class ProfileController {
                 "-fx-background-color: transparent");
 
         // Set Name and handle Exceptions
+        String oldName = app.getTitleBar().getCurrentProfile().getName();
         try {
             String nameString = usernameTA.getText();
             app.checkUniqueName(nameString);
@@ -292,6 +293,10 @@ public class ProfileController {
         } catch (UniqueNameException | IllegalArgumentException exception) {
             app.createPopUp(Alert.AlertType.ERROR, "Invalid Username", "Please enter a valid username: This username already exists." );
         }
+        String newName = app.getTitleBar().getCurrentProfile().getName();
+        if(!(oldName.equals(newName))){
+            app.getDataWriter().deleteProfile(oldName);
+    }
         // Set weight and handle exceptions
         try {
             app.getUsers().get(app.getUsers().indexOf(app.getTitleBar().getCurrentProfile())).setWeight(Double.valueOf(weightValueTA.getText()));
