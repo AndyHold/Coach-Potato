@@ -1,6 +1,5 @@
 package seng202.team10.Visual;
 
-import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -8,8 +7,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.util.Duration;
-import seng202.team10.Control.DataAnalysis;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.Exceptions.*;
@@ -206,7 +203,7 @@ public class ProfileController {
     /**
      * Method to correctly display all user related details for the view profile scene.
      */
-    public void setUserDetails()
+    protected void setUserDetails()
     {
         DecimalFormat df2 = new DecimalFormat("#.##");
         setUpScene();

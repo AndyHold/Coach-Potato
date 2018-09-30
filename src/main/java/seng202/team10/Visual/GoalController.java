@@ -1,14 +1,10 @@
 package seng202.team10.Visual;
 
-import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.VBox;
-import javafx.util.Duration;
 import seng202.team10.Control.GUIController;
-import seng202.team10.Control.InputValidator;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.Exceptions.*;
 import seng202.team10.Model.Goals.*;
@@ -367,14 +363,12 @@ public class GoalController implements Controllable {
     @FXML
     public void createGoal()
     {
-        boolean validInput = true;
         Goals goalsInstance = app.getTitleBar().getCurrentProfile().getGoals();
-        InputValidator input = new InputValidator();
 
         String type = goalTypeCombo.getValue().toString();
         String name = goalNameEntry.getText();
-        int target = 0;
-        double doubleTarget = 0.0;
+        int target;
+        double doubleTarget;
         int startYear = startDatePicker.getValue().getYear();
         int startMonth = startDatePicker.getValue().getMonthValue();
         int startDay = startDatePicker.getValue().getDayOfMonth();
