@@ -1,0 +1,29 @@
+.VBox
+{
+    -fx-min-height: 115;
+    -fx-max-height: 115;
+    -fx-min-width: 380;
+    -fx-max-width: 380;
+}
+
+.HBox
+{
+    -fx-min-height: 35;
+    -fx-max-height: 35;
+    -fx-min-width: 370;
+    -fx-max-width: 370;
+}
+
+.Label
+{
+    -fx-min-height: 35;
+    -fx-max-height: 35;
+}
+
+.button
+{
+    -fx-min-height: 35;
+    -fx-max-height: 35;
+    -fx-min-width: 150;
+    -fx-max-width: 150;
+}
