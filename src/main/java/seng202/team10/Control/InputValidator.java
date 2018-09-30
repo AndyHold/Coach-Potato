@@ -12,58 +12,6 @@ import java.util.ArrayList;
  */
 public class InputValidator {
 
-    /**
-     * checks if a goal name is valid (length and duplicate)
-     * @param name the name being checked
-     * @param goalInst the existing goals
-     * @return true if valid, false if not
-     */
-    public boolean validGoalName(String name, Goals goalInst) {
-        if (goalInst.getCreatedGoalNames().contains(name)) {
-            return false;
-        } else {
-            return name.length() <= 10 && name.length() >= 2;
-        }
-    }
-
-    /**
-     * checks if the startdate is valid
-     * @param startDate The start date being checked
-     * @return true if valid, false if not
-     */
-    public boolean validGoalStartDate(DateTime startDate) {
-        LocalDateTime now = LocalDateTime.now();
-        int year = now.getYear();
-        int month = now.getMonthValue();
-        int day = now.getDayOfMonth();
-        DateTime today = new DateTime(year, month, day, 0,0,0);
-        return !startDate.isBefore(today) && (startDate.getYear() <= (today.getYear() + 1));
-    }
-
-    /**
-     * checks if the end date of a goal is valid
-     * @param targetDate The date being checked
-     * @return true if valid, false if not
-     */
-    public boolean validGoalTargetDate(DateTime targetDate) {
-        LocalDateTime now = LocalDateTime.now();
-        int year = now.getYear();
-        int month = now.getMonthValue();
-        int day = now.getDayOfMonth();
-        DateTime today = new DateTime(year, month, day, 0,0,0);
-        return !targetDate.isBefore(today) && (targetDate.getYear() <= (today.getYear() + 5));
-    }
-
-    /**
-     * makes sure the start date isn't after the enddate
-     * @param start  The start date being checked
-     * @param target  The target date being checked
-     * @return true if valid, false if not
-     */
-    public boolean checkStartVsTargetDates(DateTime start, DateTime target)
-    {
-        return (start.isBefore(target));
-    }
 
     /**
      * checks if an int value is between two set bounds
@@ -94,22 +42,6 @@ public class InputValidator {
             return false;
         }
     }
-
-//    /**
-//     * Returns true if the argument can be parsed to a float, false otherwise
-//     *
-//     * @param floatString  The string being checked to be a float.
-//     * @return  True if the string can be parsed to a float.
-//     */
-//    public boolean isValidFloat(String floatString) {
-//        float parsedFloat;
-//        try {
-//            parsedFloat = Float.parseFloat(floatString);
-//        } catch (NumberFormatException e){
-//            return false;
-//        }
-//        return true;
-//    }
 
     /**
      * checks if the name of an activity is valid
@@ -208,42 +140,5 @@ public class InputValidator {
             return this.floatValueInRange(entryLine.get(5), -500, 5000);
         }
         return false;
-    }
-
-    /**
-     * checks if the target type of a goal is valid
-     * @param type The type of the goal being checked
-     * @param target The target of the goal being checked
-     * @param user The user being used for checking
-     * @return true if valid, false if not
-     */
-    public boolean isValidTargetValue (String type, double target, UserProfile user) {
-        if (type.equals("Weight")) {
-            if (user.getWeight() <= target || target <= 30) {
-                return false;
-            }
-        } else if (type.equals("Distance")) {
-            if (target < 100) {
-                return  false;
-            }
-        } else if (type.equals("BMI")) {
-            if (user.calcBmi() <= target || target <= 10) {
-                return false;
-            }
-        } else { //goal must be of type Time
-            if (target <= 0) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
-     * checks if an integer is a valid target value (0-10,000)
-     * @param target The integer being checked
-     * @return true if valid, false if not
-     */
-    public boolean isValidIntTargetValue (int target) {
-        return (target >= 0 || target < 10000);
     }
 }
