@@ -5,8 +5,11 @@ import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
@@ -52,6 +55,8 @@ public class TitleBarController {
     private EntryViewerController entryViewerController;
     private MapController mapController;
     private HealthWarningsController healthWarningController;
+    @FXML private ImageView profileMenuIcon;
+
 
     /**
      * Setter method to pass the GUIController into this controller.
@@ -66,7 +71,8 @@ public class TitleBarController {
     /**
      * Sets up objects that require it prior to showing the scene.
      */
-    public void setUpScene() throws IOException {
+    public void setUpScene() throws IOException
+    {
         loadAllPanes();
         if (app.getUserNames().isEmpty()) {
             openCreateProfile();
@@ -79,7 +85,7 @@ public class TitleBarController {
     /**
      * Set up method for the health warnings flag.
      */
-    public void setUpWarningFlag()
+    protected void setUpWarningFlag()
     {
         if (currentUser.getActiveHealthWarnings().size() > 0) {
             warningButton.setVisible(true);
@@ -199,7 +205,7 @@ public class TitleBarController {
     /**
      * Method to display the create profile screen.
      */
-    @FXML public void openCreateProfile()
+    @FXML protected  void openCreateProfile()
     {
         slideMenu(false);
         createProfileController.toggleBackButton();
@@ -213,6 +219,7 @@ public class TitleBarController {
     @FXML public void openLogin()
     {
         app.setCurrentUser(null);
+        app.loadUserDetails();
         loginController.setUpScene();
         slideMenu(false);
         setScene(loginPane);
@@ -224,6 +231,12 @@ public class TitleBarController {
      */
     @FXML public void openViewProfile()
     {
+        profileController.setCurrentUser(currentUser);
+        try {
+            profileMenuIcon.setImage(new Image("Images/profile" + currentUser.getGender() + ".png"));
+        } catch (IllegalArgumentException exception) {
+            app.createPopUp(Alert.AlertType.ERROR, "Error", "Could not find profile icon");
+        }
         profileController.setUpScene();
         app.getDataWriter().saveProfile(currentUser);
         profileController.setUserDetails();
@@ -287,7 +300,7 @@ public class TitleBarController {
     /**
      * Method to display the entry viewer screen.
      */
-    @FXML public void openEntry(Activity activity)
+    @FXML protected  void openEntry(Activity activity)
     {
         slideMenu(false);
         entryViewerController.setUpScene(activity);

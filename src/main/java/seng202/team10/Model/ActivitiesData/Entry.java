@@ -43,7 +43,7 @@ public class Entry  implements Serializable {
      * @param heartRate: double Heart rate field of the entry.
      * @param position: Position Position of the entry.
      */
-    public Entry(DateTime time, int heartRate, Position position)
+    public Entry(DateTime time, int heartRate, Position position) throws IllegalArgumentException
     {
         setTime(time);
         setHeartRate(heartRate);
@@ -133,7 +133,7 @@ public class Entry  implements Serializable {
      * Method to calculate user's distance.
      * @param prevEntry: Entry
      */
-    public void calculateDistance(Entry prevEntry)
+    protected void calculateDistance(Entry prevEntry)
     {
         Position prevPosition = prevEntry.getPosition();
         this.distance = prevPosition.subtract(this.position);
@@ -144,7 +144,7 @@ public class Entry  implements Serializable {
      * Method to calculate user's velocity.
      * @param prevEntry: Entry
      */
-    public void calculateVelocity(Entry prevEntry)
+    protected void calculateVelocity(Entry prevEntry)
     {
         DateTime prevTime = prevEntry.getTime();
         this.velocity = (this.distance/time.subtract(prevTime));
@@ -195,7 +195,7 @@ public class Entry  implements Serializable {
      * Method to get user's heart rate.
      * @return heartRate: double
      */
-    public int getHeartRate()
+    protected int getHeartRate()
     {
         return heartRate;
     }
@@ -225,7 +225,7 @@ public class Entry  implements Serializable {
      * Method to get user's velocity.
      * @return velocity: double
      */
-    public double getVelocity()
+    protected double getVelocity()
     {
         return velocity;
     }
@@ -275,7 +275,7 @@ public class Entry  implements Serializable {
      * Method to get the string representation of the latitude.
      * @return String
      */
-    public String getLatitudeString()
+    protected String getLatitudeString()
     {
         return String.format("%.6f", this.position.getLatitude());
     }
@@ -285,7 +285,7 @@ public class Entry  implements Serializable {
      * Method to get the string representation of the longitude.
      * @return String
      */
-    public String getLongitudeString()
+    protected String getLongitudeString()
     {
         return String.format("%.6f", this.position.getLongitude());
     }
@@ -295,7 +295,7 @@ public class Entry  implements Serializable {
      * Method to get the string representation of the elevation.
      * @return String
      */
-    public String getElevationString()
+    protected String getElevationString()
     {
         return String.format("%.2f", this.position.getElevation());
     }
@@ -305,7 +305,7 @@ public class Entry  implements Serializable {
      * Method to get the string representation of the distance from the previous Entry.
      * @return String
      */
-    public String getDistanceString()
+    protected String getDistanceString()
     {
         return String.format("%.2f", this.getDistance());
     }
@@ -315,33 +315,8 @@ public class Entry  implements Serializable {
      * Method to get the string representation of the velocity at this Entry.
      * @return String
      */
-    public String getVelocityString()
+    protected String getVelocityString()
     {
         return String.format("%.2f", this.getVelocity());
     }
-
-
-    //THE FOLLOWING METHOD WAS AN ATTEMPT TO INTERPOLATE, LEAVING IT HERE JUST IN CASE BUT WILL TRY INTERPOLATION IN DATAANALYSIS
-    // TODO how did this end up??? Can we use more two or three entries either side if possible???
-
-//    /**
-//     * Method to find the average of two entries. Assumes that the year and the month are the same.
-//     * @param otherEntry  Is the entry directly after this entry.
-//     * @return An entry that will be slotted between this entry and other entry.
-//     */
-//    public Entry getAverageEntry(Entry otherEntry)
-//        {
-//
-//        int timeDifference = otherEntry.getTime().subtract(this.time);
-//        DateTime averageTime = this.time.
-//        int averageHeartRate = (this.heartRate + otherEntry.getHeartRate()) / 2;
-//
-//        double averageLatitude = (this.getPosition().getLatitude() - otherEntry.getPosition().getLatitude()) / 2;
-//        double averageLongitude = (this.getPosition().getLongitude() - otherEntry.getPosition().getLongitude()) / 2;
-//        double averageElevation = (this.getPosition().getElevation() - otherEntry.getPosition().getElevation()) / 2;
-//        Position averagePosition = new Position(averageLatitude, averageLongitude, averageElevation);
-//
-//        return new Entry(false, averageTime, averageHeartRate, averagePosition);
-//    }
-
 }

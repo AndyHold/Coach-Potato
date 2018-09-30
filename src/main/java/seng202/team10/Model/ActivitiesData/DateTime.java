@@ -75,6 +75,7 @@ public class DateTime implements Serializable {
      * @param hour int: new hour value
      * @param minute int: new minute value
      * @param second int: new second vlaue
+     * @throws IllegalArgumentException Thrown when the date entered is incorrect
      */
     public void changeTime(int hour, int minute, int second) throws IllegalArgumentException
     {

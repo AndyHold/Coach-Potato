@@ -96,7 +96,7 @@ public class Activity implements Serializable {
     /**
      * Setter method for the date and time the activity was started on
      */
-    public void setStartDateTime()
+    private void setStartDateTime()
     {
             this.startDateTime = entries.get(0).getTime();
     }
@@ -105,7 +105,7 @@ public class Activity implements Serializable {
     /**
      * Setter method for the date and time the activity was finished on
      */
-    public void setEndDateTime()
+    private void setEndDateTime()
     {
         this.endDateTime = this.entries.get(this.entries.size() - 1).getTime();
     }
@@ -135,7 +135,7 @@ public class Activity implements Serializable {
     /**
      * method to calculate and set the total distance of the activity
      */
-    public void calculateTotalDistance()
+    protected void calculateTotalDistance()
     {
         this.totalDistance = 0.0;
         for(int i = 1; i < this.entries.size(); i++) {
@@ -148,7 +148,7 @@ public class Activity implements Serializable {
     /**
      * Method to calculate and set the total time taken during the activity
      */
-    public void calculateTotalDuration()
+    protected void calculateTotalDuration()
     {
         this.totalDuration = this.entries.get(this.entries.size() - 1).getTime().subtract(this.startDateTime);
     }
@@ -157,7 +157,7 @@ public class Activity implements Serializable {
     /**
      * Method to calculate and set the average velocity during the activity
      */
-    public void calculateAverageVelocity()
+    protected void calculateAverageVelocity()
     {
         this.averageVelocity = this.totalDistance / this.totalDuration;
     }
@@ -166,7 +166,7 @@ public class Activity implements Serializable {
     /**
      * Method to calculate and set the average heart rate during the activity
      */
-    public void calculateAverageHeartRate()
+    protected void calculateAverageHeartRate()
     {
         double totalHeartRate = 0.0;
         int count = 0;
@@ -201,6 +201,19 @@ public class Activity implements Serializable {
         this.type = ActivityType.determineType(this.name);
         setEndDateTime();
         calculateEntriesVelocity();
+        setFirst();
+    }
+
+
+    /**
+     * Method to set the first entry field in all the activities entries.
+     */
+    private void setFirst()
+    {
+        for (Entry entry: entries) {
+            entry.setFirstEntry(false);
+        }
+        entries.get(0).setFirstEntry(true);
     }
 
 
@@ -259,7 +272,7 @@ public class Activity implements Serializable {
     /**
      * Setter method for the velocity at each Entry in the Activity
      */
-    public void calculateEntriesVelocity()
+    private void calculateEntriesVelocity()
     {
         entries.get(0).setFirstEntry(true);
         for (int i = 1; i < entries.size(); i++) {
@@ -332,7 +345,7 @@ public class Activity implements Serializable {
      * Getter method for the Time as a String
      * @return String
      */
-    public String getTimeString()
+    protected String getTimeString()
     {
         return this.startDateTime.toString();
     }
@@ -342,7 +355,7 @@ public class Activity implements Serializable {
      * Getter method for the Duration, in minutes to 2DP
      * @return String
      */
-    public double getDurationMins()
+    protected double getDurationMins()
     {
         return Math.round((this.totalDuration / 60.0) * 100.0) / 100.0;
         //return String.format("%.2f", );
@@ -363,7 +376,7 @@ public class Activity implements Serializable {
      * Getter method for the Distance as a String, in Km to 2DP
      * @return String
      */
-    public Double getDistanceKM()
+    protected Double getDistanceKM()
     {
         return Math.round(this.totalDistance / 10.0) / 100.0;
     }
@@ -373,7 +386,7 @@ public class Activity implements Serializable {
      * Getter method for the Average Heart Rate as a String
      * @return String
      */
-    public String getHeartString()
+    protected String getHeartString()
     {
         return String.valueOf(this.averageHeartRate);
     }
@@ -383,7 +396,7 @@ public class Activity implements Serializable {
      * Getter method for the Number of Entries as a String
      * @return String
      */
-    public int getEntryno()
+    protected int getEntryno()
     {
         return this.entries.size();
     }

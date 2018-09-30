@@ -3,6 +3,9 @@ package seng202.team10.Model;
 import org.junit.Before;
 import org.junit.Test;
 import seng202.team10.Model.ActivitiesData.DateTime;
+import seng202.team10.Model.Exceptions.BadGoalNameException;
+import seng202.team10.Model.Exceptions.InvalidGoalDateException;
+import seng202.team10.Model.Exceptions.InvalidGoalTargetException;
 import seng202.team10.Model.Goals.Goal;
 import seng202.team10.Model.Goals.TimeGoal;
 
@@ -30,7 +33,8 @@ public class TimeGoalTest {
 
 
     @Test
-    public void reviewTimeGoalFailUpperBound() {
+    public void reviewTimeGoalFailUpperBound() throws InvalidGoalTargetException, InvalidGoalDateException, BadGoalNameException
+    {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() - 1, now1.getHour(), now1.getMinute(), now1.getSecond());
@@ -42,7 +46,8 @@ public class TimeGoalTest {
     }
 
     @Test
-    public void reviewTimeGoalFailLowerBound() {
+    public void reviewTimeGoalFailLowerBound() throws InvalidGoalTargetException, InvalidGoalDateException, BadGoalNameException
+    {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() - 1, now1.getHour(), now1.getMinute(), now1.getSecond());
@@ -54,7 +59,8 @@ public class TimeGoalTest {
     }
 
     @Test
-    public void reviewTimeGoalWorkingTowardsLowerBound() {
+    public void reviewTimeGoalWorkingTowardsLowerBound() throws InvalidGoalTargetException, InvalidGoalDateException, BadGoalNameException
+    {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear() + 1, now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
@@ -66,7 +72,8 @@ public class TimeGoalTest {
     }
 
     @Test
-    public void reviewTimeGoalWorkingTowardsUpperBound() {
+    public void reviewTimeGoalWorkingTowardsUpperBound() throws InvalidGoalTargetException, InvalidGoalDateException, BadGoalNameException
+    {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear() + 1, now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
@@ -78,7 +85,8 @@ public class TimeGoalTest {
     }
 
     @Test
-    public void reviewTimeGoalAchievedJust() {
+    public void reviewTimeGoalAchievedJust() throws InvalidGoalTargetException, InvalidGoalDateException, BadGoalNameException
+    {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
@@ -89,7 +97,8 @@ public class TimeGoalTest {
     }
 
     @Test
-    public void reviewTimeGoalAchievedEasily() {
+    public void reviewTimeGoalAchievedEasily() throws InvalidGoalTargetException, InvalidGoalDateException, BadGoalNameException
+    {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
