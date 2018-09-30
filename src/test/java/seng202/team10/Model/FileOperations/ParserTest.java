@@ -27,7 +27,6 @@ public class ParserTest {
         int entryCounter = 0;
         for (Activity temp: testResults){
 
-
             ArrayList<Entry> activeEntries = temp.getEntries();
             activityCounter += 1;
             for(Entry tempEntry: activeEntries){
@@ -37,6 +36,7 @@ public class ParserTest {
         }
         assertEquals(12, activityCounter);
         assertEquals(1135, entryCounter);
+
         }
 
 
@@ -145,7 +145,7 @@ public class ParserTest {
             testParser.processFile(formattedFileContents);
             assertTrue(false);
         } catch (NoDataFoundException e) {
-            assertEquals(e.getMessage(), "No activities found in file.");
+            assertEquals("No activities found in file.", e.getMessage());
         }
     }
 
@@ -166,7 +166,7 @@ public class ParserTest {
             testParser.processFile(formattedFileContents);
             assertTrue(false);
         } catch (NoDataFoundException e) {
-            assertEquals(e.getMessage(), "No activities found in file.");
+            assertEquals("No activities found in file.", e.getMessage());
         }
     }
 
@@ -186,7 +186,7 @@ public class ParserTest {
             testParser.processFile(formattedFileContents);
             assertTrue(false);
         } catch (NoDataFoundException e) {
-            assertEquals(e.getMessage(), "No activities found in file.");
+            assertEquals("No activities found in file.", e.getMessage());
         }
     }
 
@@ -198,7 +198,7 @@ public class ParserTest {
             testParser.processFile(formattedFileContents);
             assertTrue(false);
         } catch (NoDataFoundException e) {
-            assertEquals(e.getMessage(), "No activities found in file.");
+            assertEquals("No activities found in file.", e.getMessage());
         }
     }
 
@@ -210,7 +210,7 @@ public class ParserTest {
             ArrayList<Activity> activities = testParser.processFile(formattedFileContents);
             assertTrue(false);
         } catch (NoDataFoundException e) {
-            assertEquals(e.getMessage(), "No activities found in file.");
+            assertEquals("No activities found in file.", e.getMessage());
         }
     }
 
@@ -246,7 +246,7 @@ public class ParserTest {
         for (Activity activity : activities) {
             numberOfEntriesSuccessfullyUploaded += activity.getEntries().size();
         }
-        assertEquals(numberOfEntriesSuccessfullyUploaded, 1071);
+        assertEquals(1071, numberOfEntriesSuccessfullyUploaded);
     }
 
     @Test
@@ -259,7 +259,7 @@ public class ParserTest {
         for (Activity activity : activities) {
             numberOfEntriesSuccessfullyUploaded += activity.getEntries().size();
         }
-        assertEquals(numberOfEntriesSuccessfullyUploaded, 1135);
+        assertEquals(1135, numberOfEntriesSuccessfullyUploaded);
 
     }
 
@@ -294,7 +294,7 @@ public class ParserTest {
         for (Activity activity : activities) {
             numberOfEntriesSuccessfullyUploaded += activity.getEntries().size();
         }
-        assertEquals(numberOfEntriesSuccessfullyUploaded, 961);
+        assertEquals(961, numberOfEntriesSuccessfullyUploaded);
     }
 
     @Test
@@ -310,6 +310,7 @@ public class ParserTest {
         DateTime dateTime = null;
         try {
             dateTime = testParser.parseDateTimeFromStrings("this is a test", "throw exception");
+            assertTrue(1 == 0);
         } catch (IllegalArgumentException exception) {
             assertTrue(dateTime == null);
         }
@@ -322,5 +323,13 @@ public class ParserTest {
         DateTime dateTime1 = new DateTime(2018, 4, 3, 23,46, 12);
         dateTime = testParser.parseDateTimeFromStrings("03/04/2018", "23:46:12");
         assertTrue(dateTime.isEqual(dateTime1));
+    }
+
+    @Test
+    public void entryDateTimeMangled() throws FileNotFoundException, NoDataFoundException{
+        ArrayList<String> fileContents = testParser.getFileContents("FilesToLoad/TestData/badDateEntries.csv");
+        ArrayList<ArrayList<String>> formattedFileContents = testParser.formatFileContents(fileContents);
+        ArrayList<Activity> activities = testParser.processFile(formattedFileContents);
+        assertTrue(testParser.getBadActivities() == 4);
     }
 }

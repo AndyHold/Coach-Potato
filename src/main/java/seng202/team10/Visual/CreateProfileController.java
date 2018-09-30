@@ -4,7 +4,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import org.apache.commons.lang3.StringUtils;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.Exceptions.*;
@@ -13,7 +12,7 @@ import seng202.team10.Model.UserProfile;
 import java.util.Calendar;
 
 /**
- * CreateProfileController Class for Coach Potato
+ * Controller for the create profile screen, where the user can create a profile.
  * SENG202 2018S2
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
@@ -21,7 +20,7 @@ public class CreateProfileController implements Controllable
 {
 
     private GUIController app;
-    ToggleGroup toggleGroup;
+    private ToggleGroup toggleGroup;
 
     @FXML private TextField nameEntry;
     @FXML private TextField weightEntry;
@@ -44,12 +43,12 @@ public class CreateProfileController implements Controllable
 
 
     /**
-     * Setter method to set the GUI controller for this Scene
-     * @param app GUIController
+     * Setter method to pass the GUIController into this controller.
+     * @param guiController <b>GUIController:</b> The main controller.
      */
-    public void setApp(GUIController app)
+    public void setApp(GUIController guiController)
     {
-        this.app = app;
+        this.app = guiController;
     }
 
 
@@ -245,12 +244,10 @@ public class CreateProfileController implements Controllable
     {
         // Set all error labels to invisible
         setErrorsInvisible();
-
         // Set all Text fields etc to null
         setInputsToNull();
-
         // Launch login screen
-        app.launchLoginScene();
+        app.getTitleBar().openLogin();
     }
 
 
@@ -274,8 +271,6 @@ public class CreateProfileController implements Controllable
         this.setUserDOB(userProfile);
         // Set gender and handle Exceptions
         this.setUserGender(userProfile);
-        // Set Max Heart Rate
-        this.setUserMaxHeartRate(userProfile);
         // Add the user to the Controller
         this.saveUserProfile(userProfile);
     }
@@ -292,20 +287,8 @@ public class CreateProfileController implements Controllable
             setErrorsInvisible();
             setInputsToNull();
             this.app.getDataWriter().saveProfile(userProfile);
-            app.launchLoginScene();
+            app.getTitleBar().openLogin();
         } catch (InvalidUserException exception) { }
-    }
-
-
-    /**
-     * Method to set the max heart rate of the user. This is calculated from the user's birth date.
-     * @param userProfile  A UserProfile that is being created.
-     */
-    private void setUserMaxHeartRate(UserProfile userProfile)
-    {
-        try {
-            userProfile.setMaxHeartRate(220 - (Calendar.getInstance().get(Calendar.YEAR) - userProfile.getBirthDate().getYear()));
-        } catch (NullPointerException exception) { }
     }
 
 
@@ -342,7 +325,7 @@ public class CreateProfileController implements Controllable
             int dayInt = Integer.valueOf(day);
             DateTime dateOfBirth = new DateTime(yearInt, monthInt, dayInt, 0, 0, 0);
             userProfile.setBirthDate(dateOfBirth);
-        } catch (NullPointerException | IllegalArgumentException exception) {
+        } catch (NullPointerException | IllegalArgumentException | InvalidDateException exception) {
             dateErrorLabel.setVisible(true);
         }
     }
@@ -383,12 +366,12 @@ public class CreateProfileController implements Controllable
     private void setUserName(UserProfile userProfile)
     {
         try {
-            String nameString = StringUtils.capitalize(getTextFieldString(nameEntry).toLowerCase());
+            String nameString = getTextFieldString(nameEntry).substring(0,1).toUpperCase() + getTextFieldString(nameEntry).substring(1).toLowerCase();
             this.app.checkUniqueName(nameString);
             try {
                 userProfile.setName(nameString);
             } catch (UserNameException | IllegalArgumentException exception) {
-                nameErrorLabel.setText("Please enter a valid user name between 1 - 15 characters");
+                nameErrorLabel.setText("Please enter a valid user name between 1 - 50 characters");
                 nameErrorLabel.setVisible(true);
             }
         } catch (UniqueNameException | IllegalArgumentException exception) {

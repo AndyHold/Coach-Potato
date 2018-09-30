@@ -23,7 +23,9 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 /**
- * Upload Data Controller Class for Coach Potato SENG202 2018S2
+ * Controller class for the upload data screen, where data can be uploaded into the system.
+ * SENG202 2018S2
+ * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public class UploadDataController {
 
@@ -61,17 +63,17 @@ public class UploadDataController {
 
 
     /**
-     * Setter method to set the GUI controller for this Scene
-     * @param app The main controller being passed in
+     * Setter method to pass the GUIController into this controller.
+     * @param guiController <b>GUIController:</b> The main controller.
      */
-    public void setApp(GUIController app)
+    public void setApp(GUIController guiController)
     {
-        this.app = app;
+        this.app = guiController;
     }
 
 
     /**
-     * Sets up objects that require it prior to showing the scene
+     * Sets up objects that require it prior to showing the scene.
      */
     public void setUpScene()
     {
@@ -87,7 +89,7 @@ public class UploadDataController {
 
 
     /**
-     * Set up method for the change listeners
+     * Set up method for the change listeners.
      */
     private void setUpListners()
     {
@@ -113,7 +115,7 @@ public class UploadDataController {
 
 
     /**
-     * Set up method for the table view
+     * Set up method for the table view.
      */
     private void setUpTableView()
     {
@@ -138,7 +140,7 @@ public class UploadDataController {
 
 
     /**
-     * Set up method for the tool tips
+     * Set up method for the tool tips.
      */
     private void setUpToolTips()
     {
@@ -178,7 +180,7 @@ public class UploadDataController {
 
 
     /**
-     * Set up method for the help text areas
+     * Set up method for the help text areas.
      */
     private void setUpHelpTextAreas()
     {
@@ -237,8 +239,8 @@ public class UploadDataController {
 
 
     /**
-     * Method to change the time of an Entry when it is modified in the TableView
-     * @param editedCell TableColumn.CellEditEvent: Cell edited by the user
+     * Method to change the time of an Entry when it is modified in the TableView.
+     * @param editedCell <b>TableColumn.CellEditEvent:</b> Cell edited by the user.
      */
     @FXML public void changeTimeCellEvent(TableColumn.CellEditEvent editedCell)
     {
@@ -255,8 +257,8 @@ public class UploadDataController {
 
 
     /**
-     * Method to change the date of an Entry when it is modified in the TableView
-     * @param editedCell TableColumn.CellEditEvent: Cell edited by the user
+     * Method to change the date of an Entry when it is modified in the TableView.
+     * @param editedCell <b>TableColumn.CellEditEvent:</b> Cell edited by the user.
      */
     @FXML public void changeDateCellEvent(TableColumn.CellEditEvent editedCell)
     {
@@ -275,8 +277,8 @@ public class UploadDataController {
 
 
     /**
-     * Method to change the Heart Rate of an Entry when it is modified in the TableView
-     * @param editedCell TableColumn.CellEditEvent: Cell edited by the user
+     * Method to change the Heart Rate of an Entry when it is modified in the TableView.
+     * @param editedCell <b>TableColumn.CellEditEvent:</b> Cell edited by the user.
      */
     @FXML public void changeHeartRateCellEvent(TableColumn.CellEditEvent editedCell)
     {
@@ -293,8 +295,8 @@ public class UploadDataController {
 
 
     /**
-     * Method to change the Latitude of an Entry when it is modified in the TableView
-     * @param editedCell TableColumn.CellEditEvent: Cell edited by the user
+     * Method to change the Latitude of an Entry when it is modified in the TableView.
+     * @param editedCell <b>TableColumn.CellEditEvent:</b> Cell edited by the user.
      */
     @FXML public void changeLatitudeCellEvent(TableColumn.CellEditEvent editedCell)
     {
@@ -312,8 +314,8 @@ public class UploadDataController {
 
 
     /**
-     * Method to change the Longitude of an Entry when it is modified in the TableView
-     * @param editedCell TableColumn.CellEditEvent: Cell edited by the user
+     * Method to change the Longitude of an Entry when it is modified in the TableView.
+     * @param editedCell <b>TableColumn.CellEditEvent:</b> Cell edited by the user.
      */
     @FXML public void changeLongitudeCellEvent(TableColumn.CellEditEvent editedCell)
     {
@@ -331,8 +333,8 @@ public class UploadDataController {
 
 
     /**
-     * Method to change the Elevation of an Entry when it is modified in the TableView
-     * @param editedCell TableColumn.CellEditEvent: Cell edited by the user
+     * Method to change the Elevation of an Entry when it is modified in the TableView.
+     * @param editedCell <b>TableColumn.CellEditEvent:</b> Cell edited by the user.
      */
     @FXML public void changeElevationCellEvent(TableColumn.CellEditEvent editedCell)
     {
@@ -349,19 +351,17 @@ public class UploadDataController {
 
 
     /**
-     * Method to create an ObservableList&gt;Entry&lt; object for the TableView
+     * Method to create an ObservableList&gt;Entry&lt; object for the TableView.
      * @return ObservableList&gt;Entry&lt;
      */
     public ObservableList<Entry> getEntries()
     {
-        ObservableList<Entry> entries = FXCollections.observableArrayList();
-        return entries;
+        return FXCollections.observableArrayList();
     }
 
 
     /**
-     * Method to add an entry input by the user when the add entry button is pushed
-     * // TODO make a catch for future dates.
+     * Method to add an entry input by the user when the add entry button is pushed.
      */
     @FXML public void addEntryToTableView()
     {
@@ -401,7 +401,7 @@ public class UploadDataController {
 
 
     /**
-     * Method to upload data from a file when the upload data button is pushed
+     * Method to upload data from a file when the upload data button is pushed.
      */
     @FXML public void uploadData()
     {
@@ -413,8 +413,10 @@ public class UploadDataController {
                 ArrayList<String> fileContents = this.parser.getFileContents(filename);
                 ArrayList<ArrayList<String>> formattedFile = this.parser.formatFileContents(fileContents);
                 ArrayList<Activity> newActivities = this.parser.processFile(formattedFile);
-                app.getCurrentProfile().addActivities(newActivities);
-                app.getDataWriter().saveProfile(app.getCurrentProfile()); // Reserialize profile after adding data
+                app.getTitleBar().getCurrentProfile().addActivities(newActivities);
+                // Set warning flag in title bar if warnings were added.
+                app.getTitleBar().setUpWarningFlag();
+                app.getDataWriter().saveProfile(app.getTitleBar().getCurrentProfile()); // Reserialize profile after adding data
                 if (this.parser.getBadActivities() > 0) {
                     String discardedMessage = String.valueOf(this.parser.getBadActivities()) + " of " + String.valueOf(newActivities.size() + this.parser.getBadActivities()) + " activities found were discarded due to being unparsable";
                     this.app.createPopUp(Alert.AlertType.WARNING, "Warning", discardedMessage);
@@ -434,7 +436,7 @@ public class UploadDataController {
 
 
     /**
-     * Method to create an Activity object from the entries input by the user and add it to the User Profile when the Submit Data button is pushed
+     * Method to create an Activity object from the entries input by the user and add it to the User Profile when the Submit Data button is pushed.
      */
     @FXML public void submitData()
     {
@@ -456,9 +458,11 @@ public class UploadDataController {
                 }
                 newActivity.postEntriesSetUp();
                 // Add Activity to user profile.
-                app.getCurrentProfile().addActivity(newActivity);
+                app.getTitleBar().getCurrentProfile().addActivity(newActivity);
+                // Set warning flag in title bar if warnings added
+                app.getTitleBar().setUpWarningFlag();
                 // Reserialize profile after adding data
-                app.getDataWriter().saveProfile(app.getCurrentProfile());
+                app.getDataWriter().saveProfile(app.getTitleBar().getCurrentProfile());
                 // Display a success pop up
                 this.app.createPopUp(Alert.AlertType.INFORMATION, "Success", "You have successfully created the activity \"" + activityName + "\"");
                 // Reset table, text field and ComboBox to be blank
@@ -474,7 +478,7 @@ public class UploadDataController {
 
 
     /**
-     * Method to clear the TableView of current Entries when the Clear Table button is pushed
+     * Method to clear the TableView of current Entries when the Clear Table button is pushed.
      */
     @FXML public void clearTableView()
     {
@@ -485,7 +489,7 @@ public class UploadDataController {
 
 
     /**
-     * Method to delete the selected entry from the table when the Delete Entry button is pushed
+     * Method to delete the selected entry from the table when the Delete Entry button is pushed.
      */
     @FXML public void deleteEntryFromTableView()
     {
@@ -499,7 +503,7 @@ public class UploadDataController {
 
 
     /**
-     * Method to open a browse window to select a file and input the URL to the File Select Text Field
+     * Method to open a browse window to select a file and input the URL to the File Select Text Field.
      */
     @FXML public void browse()
     {
@@ -514,95 +518,5 @@ public class UploadDataController {
         if (selectedFile != null) {
             filePathTextField.setText(selectedFile.getAbsolutePath());
         }
-    }
-
-
-    /**
-     * Method to draw the navigation drawer.
-     */
-    @FXML private void drawerAction()
-    {
-
-        TranslateTransition openNav = new TranslateTransition(new Duration(350), drawer);
-        openNav.setToX(0);
-        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
-        if (drawer.getTranslateX() != 0) {
-            openNav.play();
-        } else {
-            closeNav.setToX(-(drawer.getWidth()));
-            closeNav.play();
-        }
-    }
-
-
-    /**
-     * Method to launch the login scene.
-     */
-    @FXML public void openChooseProfile()
-    {
-        moveDrawer();
-        app.launchLoginScene();
-    }
-
-
-    /**
-     * Method to launch the view profile scene.
-     */
-    @FXML public void openViewProfile()
-    {
-        moveDrawer();
-        app.launchProfileScene();
-    }
-
-
-    /**
-     * Method to launch the upload data scene.
-     */
-    @FXML public void openUploadData()
-    {
-        moveDrawer();
-        app.launchUploadDataScene();
-    }
-
-
-    /**
-     * Method to launch the view activities scene.
-     */
-    @FXML public void openViewActivities()
-    {
-        moveDrawer();
-        app.launchActivityViewerScene();
-    }
-
-
-    /**
-     * Method to launch the goals scene.
-     */
-    @FXML public void openGoals()
-    {
-        moveDrawer();
-        app.launchGoalsScene();
-    }
-
-
-    /**
-     * Method to launch the data analysis scene.
-     */
-    @FXML public void openAnalysis()
-    {
-        moveDrawer();
-        app.launchDataAnalysisScene();
-    }
-
-
-    /**
-     * Method to move the navigation drawer as appropriate.
-     */
-    private void moveDrawer()
-    {
-        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
-        closeNav.setToX(-(drawer.getWidth()));
-        closeNav.play();
-        setUpScene();
     }
 }

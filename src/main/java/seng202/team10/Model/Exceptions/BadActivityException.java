@@ -11,7 +11,7 @@ public class BadActivityException extends Exception{
 
 
     /**
-     * Constructor method for DuplicateEntryException
+     * Constructor method for BadActivityException
      */
     public BadActivityException()
     {

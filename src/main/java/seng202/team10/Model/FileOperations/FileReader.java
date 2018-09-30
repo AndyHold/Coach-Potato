@@ -19,21 +19,22 @@ public class FileReader {
      * @param profileName UserProfile: should match what would be returned from UserProfile.getName()
      * @return UserProfile
      * */
-    public UserProfile loadExistingProfile(String profileName){
+    public UserProfile loadExistingProfile(String profileName) throws IOException, ClassNotFoundException
+    {
         String filename = "./profiles/" + profileName + ".ser";
         if(checkFileExists(filename)) {
-            try {
+//            try {
                 FileInputStream fileIn = new FileInputStream(filename);
                 ObjectInputStream in = new ObjectInputStream(fileIn);
                 localProfile = (UserProfile) in.readObject();
                 in.close();
                 fileIn.close();
                 return localProfile;
-            } catch (ClassNotFoundException c) {
-                c.printStackTrace();
-            } catch (IOException i) {
-                i.printStackTrace();
-            }
+//            } catch (ClassNotFoundException c) {
+//                c.printStackTrace();
+//            } catch (IOException i) {
+//                i.printStackTrace();
+//            }
         }
         return localProfile;
     }

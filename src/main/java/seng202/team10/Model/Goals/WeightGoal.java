@@ -2,6 +2,8 @@ package seng202.team10.Model.Goals;
 
 
 import seng202.team10.Model.ActivitiesData.DateTime;
+import seng202.team10.Model.Exceptions.*;
+import seng202.team10.Model.UserProfile;
 
 import java.time.LocalDateTime;
 
@@ -9,12 +11,38 @@ import java.time.LocalDateTime;
  * Weight Goal Class for Coach Potato SENG202 2018S2
  */
 public class WeightGoal extends Goal {
+
+
     private double goalWeight;
 
-    public WeightGoal(String name, DateTime start, DateTime target, double weight)
+
+    /**
+     * Constructor method for weight goal
+     * @param name: String
+     * @param start: DateTime
+     * @param target: DateTime
+     * @throws InvalidGoalDateException When invalid dates are entered
+     * @throws BadGoalNameException When invalid name is entered
+     * @throws InvalidGoalTargetException When invalid target is entered
+     */
+    public WeightGoal(String name, DateTime start, DateTime target) throws InvalidGoalDateException, BadGoalNameException
     {
-        super(name, start, target, "Weight", false);
-        goalWeight = weight;
+        super(name, start, target, "Weight");
+    }
+
+
+    /**
+     * Setter method for the target value of weight goal.
+     * @param target: double
+     * @throws InvalidGoalTargetException When target is outside the correct values.
+     */
+    public void setTargetValue(double target, UserProfile user) throws InvalidGoalTargetException
+    {
+        if (user.getWeight() <= target || target <= 30) {
+            throw new InvalidGoalTargetException("Please enter a weight 30kg or more and not already achieved.");
+        } else {
+            goalWeight = target;
+        }
     }
 
     /**

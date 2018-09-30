@@ -1,0 +1,90 @@
+#quoteButton
+{
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 1em;
+    -fx-border-radius: 1em;
+}
+
+#quotesLabel
+{
+    -fx-font-family: System;
+    -fx-font-size: 19px;
+    -fx-font-style: italic;
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 1em;
+    -fx-border-radius: 1em;
+}
+
+#helpButton
+{
+    -fx-border-width: 0;
+}
+
+#welcomeProfileLabel
+{
+    -fx-font-size: 22px;
+}
+
+#yourProfileLabel, #measurementsLabel, #recentActivitiesLabel, #dailyStatsLabel
+{
+    -fx-font-family: System;
+    -fx-font-style: italic;
+    -fx-font-size: 18px;
+}
+
+#overallStatsVBox, #dailyStatsVBox, #wholeProfileVBox
+{
+    -fx-background-color: #b3b3ff;
+    -fx-border-width: 2px;
+    -fx-border-color: blue;
+}
+
+#distanceText, #velocityText, #heartRateText, #activity1Text, #activity2Text, #activity3Text
+{
+    -fx-text-fill: blue;
+}
+
+#calendarPane .button
+{
+    -fx-text-fill: black;
+    -fx-font-size: 12px;
+}
+
+.list-view
+{
+    /*-fx-background-radius: 1em;*/
+    /*-fx-border-color: #0097A7;*/
+    /*-fx-background-color: #4DD0E1;*/
+    -fx-background-color: #b3b3ff;
+    -fx-border-color: blue;
+    /*-fx-border-radius: 1em;*/
+    -fx-border-width: 2px;
+}
+
+.list-view .list-cell:filled
+{
+    /*-fx-background-color: #4DD0E1;*/
+    /*-fx-text-fill: black;*/
+    -fx-background-color: #b3b3ff;
+    -fx-text-fill: blue;
+}
+
+.list-view .list-cell:selected
+{
+    -fx-text-fill: white;
+    /*-fx-background-color: #4DD0E1;*/
+    -fx-background-color: #b3b3ff;
+    -fx-border-color: white;
+}
+
+.list-view .list-cell {
+    /*-fx-background-radius: 7px;*/
+    /*-fx-border-color: #0097A7;*/
+    /*-fx-background-color: #4DD0E1;*/
+    -fx-background-color: #b3b3ff;
+    -fx-border-color: blue;
+    /*-fx-border-radius: 7px;*/
+    -fx-border-width: 1px;
+}

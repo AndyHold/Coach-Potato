@@ -22,6 +22,7 @@
     </script>
     <script src="http://js.api.here.com/v3/3.0/mapsjs-ui.js"
             type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
     <link rel="stylesheet" type="text/css"
           href="http://js.api.here.com/v3/3.0/mapsjs-ui.css" />
 </head>
@@ -52,6 +53,8 @@
 
     var ui = H.ui.UI.createDefault(map, defaultLayers);
 
+    var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+
     function displayRoute(route) {
 
         var mapObjects = map.getObjects();
@@ -61,7 +64,7 @@
             return;
         }
 
-    // CREATE MARKERS AT START AND FINISH
+        // CREATE MARKERS AT START AND FINISH
         marker2 = new H.map.Marker(route[route.length-1], {icon : icon2});
         marker1 = new H.map.Marker(route[0], {icon: icon1});
 

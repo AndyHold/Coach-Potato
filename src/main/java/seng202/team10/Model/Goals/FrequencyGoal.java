@@ -2,6 +2,7 @@ package seng202.team10.Model.Goals;
 
 
 import seng202.team10.Model.ActivitiesData.DateTime;
+import seng202.team10.Model.Exceptions.*;
 
 import java.time.LocalDateTime;
 
@@ -12,11 +13,33 @@ public class FrequencyGoal extends Goal {
     private int goalFrequency;
 
 
-    public FrequencyGoal(String name, DateTime start, DateTime target, int frequency)
+    /**
+     * Constructor method for frequency goal
+     * @param name: String
+     * @param start: DateTime
+     * @param target: DateTime
+     * @param frequency: int
+     * @throws InvalidGoalDateException When invalid dates are entered
+     * @throws BadGoalNameException When invalid name is entered
+     * @throws InvalidGoalTargetException When invalid target is entered
+     */
+    public FrequencyGoal(String name, DateTime start, DateTime target, int frequency) throws InvalidGoalDateException, BadGoalNameException, InvalidGoalTargetException
     {
-        super(name, start, target, "Frequency", false);
-        goalFrequency = frequency;
+        super(name, start, target, "Frequency");
+        setTargetValue(frequency);
+    }
 
+
+    /**
+     * Setter method for the target value of frequency goal.
+     * @param target: int
+     * @throws InvalidGoalTargetException When target is outside the correct values.
+     */
+    private void setTargetValue(int target) throws InvalidGoalTargetException
+    {
+        if (target < 1 || target > 1000) {
+            throw new InvalidGoalTargetException("Target must be between 1 - 1000");
+        }
     }
 
 

@@ -1,5 +1,9 @@
 package seng202.team10.Visual;
 
+import com.google.common.base.Charsets;
+import com.google.common.collect.Maps;
+import com.google.common.io.Resources;
+import com.hubspot.jinjava.Jinjava;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Worker;
@@ -14,17 +18,20 @@ import seng202.team10.Model.ActivitiesData.Entry;
 import seng202.team10.Model.ActivitiesData.Route;
 
 import java.net.URL;
+import java.io.IOException;
+import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 /**
- * Map Controller Class for Coach Potato SENG202 2018S2
+ * Controller class for the map screen, where a map of an activity is displayed.
+ * SENG202 2018S2
+ * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public class MapController implements Controllable, Initializable{
 
-    private GUIController guiController;
+    private GUIController app;
     private WebEngine webEngine;
-    private boolean firstLoad = true;
-    private boolean firstMapView = false;
     private Activity activity;
     private Route route;
 
@@ -36,19 +43,18 @@ public class MapController implements Controllable, Initializable{
 
 
     /**
-     * sets this scene to be the currently active one
-     * @param guiController  The main controller being passed in
+     * Setter method to pass the GUIController into this controller.
+     * @param guiController <b>GUIController:</b> The main controller.
      */
-    @Override
     public void setApp(GUIController guiController)
     {
-        this.guiController = guiController;
+        this.app = guiController;
     }
 
 
     /**
-     * displays the route on the map
-     * @param newRoute the Route being displayed
+     * Method to display a route on the map, and show the map to the user.
+     * @param newRoute The <b>Route</b> being displayed.
      */
     public void displayRoute(Route newRoute)
     {
@@ -60,16 +66,15 @@ public class MapController implements Controllable, Initializable{
                             try {
                                 webEngine.executeScript(scriptToExecute);
                             } catch (netscape.javascript.JSException exception) {
-                                guiController.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to the internet. Please connect and try again.");
+                                app.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to the internet. Please connect and try again.");
                             }
                         }
                     }
                 });
     }
 
-
     /**
-     * sets up the initial scene with all the areas
+     * Method to set up the scene. Pre-renders the map and sets up tool tips.
      */
     @Override
     public void setUpScene()
@@ -81,15 +86,7 @@ public class MapController implements Controllable, Initializable{
 
         webEngine = mapWebView.getEngine();
         webEngine.load(this.getClass().getResource("/map.html").toExternalForm());
-        if (firstMapView) {
-            firstMapView = false;
-            guiController.refreshMapScene(this.activity);
-        }
 
-        if (firstLoad) {
-            firstMapView = true;
-            firstLoad = false;
-        }
         // Hide the help text field when focus is lost
         helpTextArea.focusedProperty().addListener((ov, oldV, newV) -> {
             if (!newV) {
@@ -119,7 +116,7 @@ public class MapController implements Controllable, Initializable{
 
 
     /**
-     * set up method for the tool tips
+     * Set up method for the tool tips
      */
     private void setUpToolTips()
     {
@@ -151,8 +148,8 @@ public class MapController implements Controllable, Initializable{
 
 
     /**
-     * Setter method for the activity being mapped
-     * @param activity Activity: activity being mapped
+     * Setter method for the activity being mapped.
+     * @param activity The <b>Activity</b> being mapped.
      */
     public void setActivity(Activity activity)
     {
@@ -162,19 +159,19 @@ public class MapController implements Controllable, Initializable{
 
 
     /**
-     * goes back to the data analysis screen
+     * Method to go to the analysis screen.
      */
-    @FXML public void goToActivityViewer()
+    @FXML public void goToDataAnalysis()
     {
 //        guiController.launchActivityViewerScene();
-        guiController.launchDataAnalysisScene();
+        app.getTitleBar().openAnalysis();
     }
 
 
     /**
-     * creates a new Route from an activity
-     * @param activity the activity being mapped
-     * @return the Route opject of the activity
+     * Creates a new Route from an activity.
+     * @param activity The <b>Activity</b> being mapped.
+     * @return A <b>Route</b> object made from the activity.
      */
     public Route makeRoute(Activity activity)
     {
@@ -189,6 +186,14 @@ public class MapController implements Controllable, Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-
+        Jinjava jinjava = new Jinjava();
+        Map<String, Object> context = Maps.newHashMap();
+        String template = "";
+        try {
+            template = Resources.toString(Resources.getResource("map.html"), Charsets.UTF_8);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String renderedTemplate = jinjava.render(template, context);
     }
 }

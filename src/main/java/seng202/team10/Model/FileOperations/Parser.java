@@ -1,10 +1,7 @@
 package seng202.team10.Model.FileOperations;
 
 import seng202.team10.Control.InputValidator;
-import seng202.team10.Model.ActivitiesData.Activity;
-import seng202.team10.Model.ActivitiesData.DateTime;
-import seng202.team10.Model.ActivitiesData.Entry;
-import seng202.team10.Model.ActivitiesData.Position;
+import seng202.team10.Model.ActivitiesData.*;
 import seng202.team10.Model.Exceptions.BadActivityException;
 import seng202.team10.Model.Exceptions.NoActivityFoundException;
 import seng202.team10.Model.Exceptions.NoDataFoundException;
@@ -34,8 +31,6 @@ public class Parser {
     { //handle this with gui message in what calls this
         ArrayList<String> fileContents;
         FileReader reader = new FileReader();
-        InputValidator inputValidator = new InputValidator();
-//        if(reader.checkFileExists("./FilesToLoad/" + filePath)) {
         if(reader.checkFileExists(filePath)) {
             try {
                 fileContents = reader.openNewFile(filePath);
@@ -166,17 +161,25 @@ public class Parser {
         int totalEntries = 0;
 
         Activity activity = new Activity(name);
+        DateTime currentDateTime = null;
+        DateTime previousDateTime = null;
 
         while (linePosition < formattedFile.size() && (formattedFile.get(linePosition)).size() != 2) {
 
             if(inputValidator.isValidEntryLine(formattedFile.get(linePosition))){
-                activity.addEntry(processLine(formattedFile));
+                Entry currentEntry = processLine(formattedFile);
+                currentDateTime = currentEntry.getTime();
+                if (previousDateTime != null && !dateIsValid(currentDateTime, previousDateTime)) {
+                    throw new BadActivityException();
+                }
+                activity.addEntry(currentEntry);
             } else {
                 badEntries += 1;
             }
 
             totalEntries += 1;
             linePosition += 1;
+            previousDateTime = currentDateTime;
         }
 
         if((badEntries * 10) > totalEntries) {
@@ -194,6 +197,24 @@ public class Parser {
 ////        }
 
         return activity;
+    }
+
+    /**
+     * Method to check that the next date of an activity is valid. It checks that the next entry's dateTime is not
+     * more than 3 hours away and not before the previous date. In these cases, the activity is dumped
+     * as the date and time of the activity is compromised and will likely be incorrect.
+     * @param currentEntryDateTime The DateTime of the current entry being looked at
+     * @param previousDateTime The DateTime being compared with the current entry
+     * @return True if the next date is within 3 hours after the current date, false if it isn't, or is before the current.
+     */
+    private boolean dateIsValid(DateTime currentEntryDateTime, DateTime previousDateTime) {
+        if (currentEntryDateTime.subtract(previousDateTime) > (3*60*60)) { //that's 3 hours in seconds.
+            return false;
+        }
+        if (previousDateTime.isAfter(currentEntryDateTime)) {
+            return false;
+        }
+        return true;
     }
 
     /**

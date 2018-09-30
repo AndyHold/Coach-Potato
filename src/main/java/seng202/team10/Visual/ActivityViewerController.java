@@ -12,17 +12,20 @@ import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
 
+import javax.swing.text.html.ImageView;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
- * Activity Viewer Controller Class for Coach Potato SENG202 2018S2
+ * Controller for the Activity Viewer Screen, which displays and filters lists of activities
+ * SENG202 2018S2
+ * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public class ActivityViewerController {
 
     private GUIController app;
     private ObservableList<String> types;
-    private ObservableList<Activity> activities;
 
     @FXML private DatePicker startDate;
     @FXML private DatePicker endDate;
@@ -32,16 +35,16 @@ public class ActivityViewerController {
     @FXML private TableColumn<Activity, String> nameColumn;
     @FXML private TableColumn<Activity, String> typeColumn;
     @FXML private TableColumn<Activity, String> starttimeColumn;
-    @FXML private TableColumn<Activity, Double> durationColumn;
-    @FXML private TableColumn<Activity, Double> speedColumn;
-    @FXML private TableColumn<Activity, Double> distanceColumn;
-    @FXML private TableColumn<Activity, Integer> heartrateColumn;
     @FXML private TableColumn<Activity, Integer> entrynoColumn;
     @FXML private Button entryViewerButton;
     @FXML private Button helpButton;
     @FXML private TextArea helpTextArea;
     @FXML private ComboBox typeSelect;
-    @FXML private VBox drawer;
+    @FXML private Label distanceLabel;
+    @FXML private Label durationLabel;
+    @FXML private Label speedLabel;
+    @FXML private Label heartRateLabel;
+    private int currentIndex = -1;
 
 
     /**
@@ -65,6 +68,7 @@ public class ActivityViewerController {
                 helpTextArea.setVisible(false);
             }
         });
+        clearFilters();
     }
 
 
@@ -73,14 +77,14 @@ public class ActivityViewerController {
      */
     private void setUpTableView()
     {
-        activities = FXCollections.observableArrayList(app.getCurrentProfile().getActivities());
+        ObservableList<Activity> activities = FXCollections.observableArrayList(app.getTitleBar().getCurrentProfile().getActivities());
         nameColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("name"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("typeString"));
         starttimeColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("timeString"));
-        durationColumn.setCellValueFactory(new PropertyValueFactory<Activity, Double>("DurationMins"));
-        speedColumn.setCellValueFactory(new PropertyValueFactory<Activity, Double>("SpeedKMH"));
-        distanceColumn.setCellValueFactory(new PropertyValueFactory<Activity, Double>("DistanceKM"));
-        heartrateColumn.setCellValueFactory(new PropertyValueFactory<Activity, Integer>("averageHeartRate"));
+//        durationColumn.setCellValueFactory(new PropertyValueFactory<Activity, Double>("DurationMins"));
+//        speedColumn.setCellValueFactory(new PropertyValueFactory<Activity, Double>("SpeedKMH"));
+//        distanceColumn.setCellValueFactory(new PropertyValueFactory<Activity, Double>("DistanceKM"));
+//        heartrateColumn.setCellValueFactory(new PropertyValueFactory<Activity, Integer>("averageHeartRate"));
         entrynoColumn.setCellValueFactory(new PropertyValueFactory<Activity, Integer>("entryno"));
         populateTable(activities);
         activitiesTableView.refresh();
@@ -155,47 +159,110 @@ public class ActivityViewerController {
 
 
     /**
-     * method to fill the table with the activities to display. used by setUpScene as well as applyFilter
-     * @param displayActivities the arraylist of activity objects to be displayed in the table
+     * Method to fill the table with the activities to display used by setUpScene as well as applyFilter.
+     * @param displayActivities An <b>ArrayList&gt;Activity&lt;</b> to be displayed in the table.
      */
     private void populateTable(ObservableList<Activity> displayActivities)
     {
         activitiesTableView.setItems(displayActivities);
+        activitiesTableView.refresh();
+    }
+
+
+    @FXML public void updateStatLabels()
+    {
+        if (activitiesTableView.getSelectionModel().getSelectedIndex() != currentIndex) {
+            currentIndex = activitiesTableView.getSelectionModel().getSelectedIndex();
+            setUpStatLabels(activitiesTableView.getSelectionModel().getSelectedItem());
+        }
+
+    }
+
+    private void setUpStatLabels(Activity selectedActivity)
+    {
+        distanceLabel.setText(selectedActivity.getTotalDistance().toString());
+        durationLabel.setText(String.valueOf(selectedActivity.getTotalDuration()));
+        speedLabel.setText(selectedActivity.getAverageVelocity().toString());
+        heartRateLabel.setText(String.valueOf(selectedActivity.getAverageHeartRate()));
+    }
+
+    @FXML private void viewGraph()
+    {
+
+    }
+
+    @FXML private void viewMap()
+    {
+
     }
 
     /**
-     * Method to update table with activities between the two datepickers and of matching type when the filterApplyButton is pressed
+     * Method to update table with activities between the two date pickers and of matching type when the filterApplyButton is pressed.
      */
     @FXML public void applyFilter()
     {
-        ArrayList<Activity> dateFiltered = new ArrayList<>();
+        ArrayList<Activity> newActivities = new ArrayList<>();
+        for(Activity profileActivity: app.getTitleBar().getCurrentProfile().getActivities()) {
+            newActivities.add(profileActivity);
+        }
         LocalDate lowerDate = startDate.getValue();
         LocalDate upperDate = endDate.getValue();
         String typeSelected = (String) typeSelect.getValue();
-        if (lowerDate != null && upperDate != null) {
-            if(lowerDate.getYear() < 1900 || lowerDate.getYear() > 2100 || upperDate.getYear() > 2100 || upperDate.getYear() < 1900 || lowerDate.getYear() > upperDate.getYear()){
-                app.createPopUp(Alert.AlertType.ERROR, "Error", "Please choose dates between 1900 and 2100, and make sure the first date is earlier than the second");
-                dateFiltered = app.getCurrentProfile().getActivities();
+        DateTime lowerDateTime = null;
+        DateTime upperDateTime = null;
+        //Datetime check and creation
+        if (lowerDate != null) {
+            if(lowerDate.getYear() < 1900 || lowerDate.getYear() > 2100){
+                app.createPopUp(Alert.AlertType.ERROR, "Error", "Please choose a lower date between 1900 and 2100");
             } else {
-                DateTime lowerDateTime = new DateTime(lowerDate.getYear(), lowerDate.getMonthValue(), lowerDate.getDayOfMonth(), 0, 0, 1);
-                DateTime upperDateTime = new DateTime(upperDate.getYear(), upperDate.getMonthValue(), upperDate.getDayOfMonth(), 23, 59, 59);
-                for (Activity eachActivity : app.getCurrentProfile().getActivities()) {
-                    if (lowerDateTime.isBefore(eachActivity.getStartDateTime()) && upperDateTime.isAfter(eachActivity.getStartDateTime())) {
-                        dateFiltered.add(eachActivity);
-                    }
+                lowerDateTime = new DateTime(lowerDate.getYear(), lowerDate.getMonthValue(), lowerDate.getDayOfMonth(), 0, 0, 1);
+            }
+        }
+        if (upperDate != null) {
+            if (upperDate.getYear() > 2100 || upperDate.getYear() < 1900) {
+                app.createPopUp(Alert.AlertType.ERROR, "Error", "Please choose an upper date between 1900 and 2100");
+            } else {
+                upperDateTime = new DateTime(upperDate.getYear(), upperDate.getMonthValue(), upperDate.getDayOfMonth(), 23, 59, 59);
+            }
+        }
+        if((lowerDateTime != null) && (upperDateTime != null)) {
+            if(lowerDateTime.isAfter(upperDateTime)) {
+                app.createPopUp(Alert.AlertType.ERROR, "Error", "Please make sure your lower date is earlier than your upper date");
+                lowerDateTime = null;
+                upperDateTime = null;
+            }
+        }
+
+        ArrayList<Activity> badActivities = new ArrayList<>();
+
+        //lower date filter
+        if(lowerDateTime != null) {
+            for(Activity checkActivity: newActivities) {
+                if (checkActivity.getStartDateTime().isBefore(lowerDateTime)) {
+                    badActivities.add(checkActivity);
                 }
             }
-        } else {
-            dateFiltered = app.getCurrentProfile().getActivities();
         }
-        ArrayList<Activity> typeFiltered = new ArrayList<>();
-        for (Activity eachActivity : dateFiltered) {
-            if (typeSelected == null || typeSelected.equals("All") || typeSelected.equals(eachActivity.getTypeString())) {
-                typeFiltered.add(eachActivity);
+        //upper date filter
+        if(upperDateTime != null) {
+            for(Activity checkActivity: newActivities) {
+                if (checkActivity.getEndDateTime().isAfter(upperDateTime)) {
+                    badActivities.add(checkActivity);
+                }
             }
         }
-        ObservableList<Activity> newActivities = FXCollections.observableArrayList(typeFiltered);
-        populateTable(newActivities);
+        //type filter
+        if(!(typeSelected == null || typeSelected.equals("All"))) {
+            for(Activity checkActivity: newActivities) {
+                if (!(typeSelected.equals(checkActivity.getTypeString()))) {
+                    badActivities.add(checkActivity);
+                }
+            }
+        }
+        //removal of activities, reload table
+        newActivities.removeAll(badActivities);
+        ObservableList<Activity> obsActivities = FXCollections.observableArrayList(newActivities);
+        populateTable(obsActivities);
     }
 
 
@@ -226,7 +293,7 @@ public class ActivityViewerController {
      */
     @FXML public void clearFilters()
     {
-        ObservableList<Activity> activities = FXCollections.observableArrayList(app.getCurrentProfile().getActivities());
+        ObservableList<Activity> activities = FXCollections.observableArrayList(app.getTitleBar().getCurrentProfile().getActivities());
         populateTable(activities);
         typeSelect.setValue(null);
         startDate.setValue(null);
@@ -240,101 +307,33 @@ public class ActivityViewerController {
     @FXML public void openEntries()
     {
         if(activitiesTableView.getSelectionModel().getSelectedItem() != null) {
-            app.launchEntryViewerScene(activitiesTableView.getSelectionModel().getSelectedItem());
+            app.getTitleBar().openEntry(activitiesTableView.getSelectionModel().getSelectedItem());
         } else {
             app.createPopUp(Alert.AlertType.ERROR, "Error", "Please select an Activity first");
         }
     }
 
-
     /**
-     * Setter method to set the GUI controller for this Scene
-     * @param app GUIController
+     * Method to remove the currently selected Activity from the profile
      */
-    public void setApp(GUIController app)
+    @FXML public void deleteActivity()
     {
-        this.app = app;
-    }
-
-
-    /**
-     * Method to draw the navigation drawer.
-     */
-    @FXML private void drawerAction()
-    {
-
-        TranslateTransition openNav = new TranslateTransition(new Duration(350), drawer);
-        openNav.setToX(0);
-        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
-        if (drawer.getTranslateX() != 0) {
-            openNav.play();
+        if(activitiesTableView.getSelectionModel().getSelectedItem() != null) {
+            Activity toDelete = activitiesTableView.getSelectionModel().getSelectedItem();
+            app.getTitleBar().getCurrentProfile().deleteActivity(toDelete);
         } else {
-            closeNav.setToX(-(drawer.getWidth()));
-            closeNav.play();
+            app.createPopUp(Alert.AlertType.ERROR, "Error", "Please select an Activity first");
         }
-    }
-    /**
-     * Method to launch the login scene.
-     */
-    @FXML public void openChooseProfile()
-    {
-        moveDrawer();
-        app.launchLoginScene();
+        populateTable(FXCollections.observableArrayList(app.getTitleBar().getCurrentProfile().getActivities()));
     }
 
-    /**
-     * Method to launch the view profile scene.
-     */
-    @FXML public void openViewProfile()
-    {
-        moveDrawer();
-        app.launchProfileScene();
-    }
 
     /**
-     * Method to launch the upload data scene.
+     * Setter method to pass the GUIController into this controller.
+     * @param guiController <b>GUIController:</b> The main controller.
      */
-    @FXML public void openUploadData()
+    public void setApp(GUIController guiController)
     {
-        moveDrawer();
-        app.launchUploadDataScene();
-    }
-
-    /**
-     * Method to launch the view activities scene.
-     */
-    @FXML public void openViewActivities()
-    {
-        moveDrawer();
-        app.launchActivityViewerScene();
-    }
-
-    /**
-     * Method to launch the goals scene.
-     */
-    @FXML public void openGoals()
-    {
-        moveDrawer();
-        app.launchGoalsScene();
-    }
-
-    /**
-     * Method to launch the data analysis scene.
-     */
-    @FXML public void openAnalysis()
-    {
-        moveDrawer();
-        app.launchDataAnalysisScene();
-    }
-
-    /**
-     * Method to move the navigation drawer as appropriate.
-     */
-    private void moveDrawer()
-    {
-        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
-        closeNav.setToX(-(drawer.getWidth()));
-        closeNav.play();
-        setUpScene();
+        this.app = guiController;
     }
 }

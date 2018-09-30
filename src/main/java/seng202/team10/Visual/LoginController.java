@@ -1,5 +1,6 @@
 package seng202.team10.Visual;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,8 +13,9 @@ import seng202.team10.Model.UserProfile;
 
 import java.util.ArrayList;
 
+
 /**
- * LoginController Class for Coach Potato
+ * Controller class for the login screen, which displays lists of users for logging in.
  * SENG202 2018S2
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
@@ -48,8 +50,8 @@ public class LoginController implements Controllable{
 
 
     /**
-     * Setter method for the GUIController
-     * @param app GUIController
+     * Setter method to pass the GUIController into this controller.
+     * @param app <b>GUIController:</b> The main controller.
      */
     public void setApp(GUIController app)
     {
@@ -58,7 +60,7 @@ public class LoginController implements Controllable{
 
 
     /**
-     * Method to initialize the user images and other objects on the screen.
+     * Sets up objects that require it prior to showing the scene.
      */
     public void setUpScene() {
         // Set user button style string
@@ -89,7 +91,17 @@ public class LoginController implements Controllable{
 
 
     /**
-     * Set the css style for the User Buttons as a string
+     * Method called when the close button is selected.
+     * Closes the application.
+     */
+    @FXML public void close()
+    {
+        Platform.exit();
+    }
+
+
+    /**
+     * Set the css style for the User Buttons as a string.
      */
     private void setUserButtonStyle()
     {
@@ -106,7 +118,7 @@ public class LoginController implements Controllable{
 
 
     /**
-     * Set up Method for the tool tips
+     * Set up method for the tool tips.
      */
     private void setUpToolTips()
     {
@@ -118,7 +130,7 @@ public class LoginController implements Controllable{
 
 
     /**
-     * Set up method for the help text field
+     * Set up method for the help text field.
      */
     private void setUpHelpText()
     {
@@ -163,8 +175,8 @@ public class LoginController implements Controllable{
 
     /**
      * Setter method for the user buttons. Sets the user to a button depending on the index in the list of users.
-     * @param index int: index of the uwser to be set up
-     * @param user UserProfile: profile of the user to be associated with a button.
+     * @param index An <b>Integer</b> index of the user list.
+     * @param user <b>UserProfile</b> of the user to be associated with a button.
      */
     private void setButtonProperties(int index, UserProfile user)
     {
@@ -291,7 +303,7 @@ public class LoginController implements Controllable{
     {
         if (deleteMode) {
             String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + app.getUsers().get(0).getName() + "\"");
-            if (option.length() == 2) {
+            if (option.equals("OK")) {
                 if (app.getUsers().size() == 5) {
                     createProfileButton.setDisable(false);
                 }
@@ -300,12 +312,12 @@ public class LoginController implements Controllable{
                 deleteProfile();
                 setUpScene();
                 if (app.getUsers().size() == 0) {
-                    app.launchCreateProfileScene();
+                    app.getTitleBar().openCreateProfile();
                 }
             }
         } else {
-            app.setCurrentProfile(app.getUsers().get(0));
-            app.launchProfileScene();
+            app.getTitleBar().setCurrentProfile(app.getUsers().get(0));
+            app.getTitleBar().openViewProfile();
         }
 
     }
@@ -319,7 +331,7 @@ public class LoginController implements Controllable{
     @FXML public void userButtonTwo()
     {
         if (deleteMode) {
-            String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + app.getUsers().get(0).getName() + "\"");
+            String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + app.getUsers().get(1).getName() + "\"");
             if (option.length() == 2) {
                 if (app.getUsers().size() == 5) {
                     createProfileButton.setDisable(false);
@@ -331,7 +343,7 @@ public class LoginController implements Controllable{
             }
         } else {
             app.setCurrentProfile(app.getUsers().get(1));
-            app.launchProfileScene();
+            app.getTitleBar().openViewProfile();
         }
     }
 
@@ -344,7 +356,7 @@ public class LoginController implements Controllable{
     @FXML public void userButtonThree()
     {
         if (deleteMode) {
-            String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + app.getUsers().get(0).getName() + "\"");
+            String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + app.getUsers().get(2).getName() + "\"");
             if (option.length() == 2) {
                 if (app.getUsers().size() == 5) {
                     createProfileButton.setDisable(false);
@@ -356,7 +368,7 @@ public class LoginController implements Controllable{
             }
         } else {
             app.setCurrentProfile(app.getUsers().get(2));
-            app.launchProfileScene();
+            app.getTitleBar().openViewProfile();
         }
     }
 
@@ -369,7 +381,7 @@ public class LoginController implements Controllable{
     @FXML public void userButtonFour()
     {
         if (deleteMode) {
-            String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + app.getUsers().get(0).getName() + "\"");
+            String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + app.getUsers().get(3).getName() + "\"");
             if (option.length() == 2) {
                 if (app.getUsers().size() == 5) {
                     createProfileButton.setDisable(false);
@@ -381,7 +393,7 @@ public class LoginController implements Controllable{
             }
         } else {
             app.setCurrentProfile(app.getUsers().get(3));
-            app.launchProfileScene();
+            app.getTitleBar().openViewProfile();
         }
     }
 
@@ -394,7 +406,7 @@ public class LoginController implements Controllable{
     @FXML public void userButtonFive()
     {
         if (deleteMode) {
-            String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + app.getUsers().get(0).getName() + "\"");
+            String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + app.getUsers().get(4).getName() + "\"");
             if (option.length() == 2) {
                 if (app.getUsers().size() == 5) {
                     createProfileButton.setDisable(false);
@@ -406,7 +418,7 @@ public class LoginController implements Controllable{
             }
         } else {
             app.setCurrentProfile(app.getUsers().get(4));
-            app.launchProfileScene();
+            app.getTitleBar().openViewProfile();
         }
     }
 
@@ -419,7 +431,7 @@ public class LoginController implements Controllable{
     public void createProfile()
     {
         setUpScene();
-        app.launchCreateProfileScene();
+        app.getTitleBar().openCreateProfile();
     }
 
 
@@ -434,13 +446,13 @@ public class LoginController implements Controllable{
             deleteMode = false;
             deleteModeLabel.setVisible(false);
             setUpUserButtons();
-            toggleRedBorders();
+            toggleDeleteButtons();
 
         } else {
             deleteMode = true;
             deleteModeLabel.setVisible(true);
             setUpUserButtons();
-            toggleRedBorders();
+            toggleDeleteButtons();
         }
     }
 
@@ -448,20 +460,20 @@ public class LoginController implements Controllable{
     /**
      * Method to toggle red borders around user buttons
      */
-    public void toggleRedBorders()
+    private void toggleDeleteButtons()
     {
-        if (userOneButton.getStyle().equals(userButtonStyle)) {
+        if (userOneButton.getStyle().equals("")) {
             userOneButton.setStyle(userButtonBorderStyle + userButtonStyle);
             userTwoButton.setStyle(userButtonBorderStyle + userButtonStyle);
             userThreeButton.setStyle(userButtonBorderStyle + userButtonStyle);
             userFourButton.setStyle(userButtonBorderStyle + userButtonStyle);
             userFiveButton.setStyle(userButtonBorderStyle + userButtonStyle);
         } else {
-            userOneButton.setStyle(userButtonStyle);
-            userTwoButton.setStyle(userButtonStyle);
-            userThreeButton.setStyle(userButtonStyle);
-            userFourButton.setStyle(userButtonStyle);
-            userFiveButton.setStyle(userButtonStyle);
+            userOneButton.setStyle(null);
+            userTwoButton.setStyle(null);
+            userThreeButton.setStyle(null);
+            userFourButton.setStyle(null);
+            userFiveButton.setStyle(null);
         }
     }
 

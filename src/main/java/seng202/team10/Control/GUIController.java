@@ -1,13 +1,23 @@
 package seng202.team10.Control;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.ActivitiesData.Route;
@@ -22,65 +32,34 @@ import seng202.team10.Model.UserProfile;
 import seng202.team10.Visual.*;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InvalidClassException;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
+
 
 /**
  * This is the main controller for the application. This class creates and launches scenes,
  * stores all data needed and functions as the general controller. It passes itself into
  * controllers so they can access any information they need.
  */
-public class GUIController extends Application{
+public class GUIController extends Application {
 
-    private FXMLLoader mainLoader;
-    private Scene mainScene;
-    private MenuBarController mainController;
 
-    private FXMLLoader loginLoader;
-    private Scene loginScene;
-    private LoginController loginController;
-
-    private FXMLLoader createProfileLoader;
-    private Scene createProfileScene;
-    private CreateProfileController createProfileController;
-
-    private FXMLLoader profileLoader;
-    private Scene profileScene;
-    private ProfileController profileController;
-
-    private FXMLLoader goalsLoader;
-    private Scene goalsScene;
-    private GoalController goalsController;
-
-    private FXMLLoader uploadDataLoader;
-    private Scene uploadDataScene;
-    private UploadDataController uploadDataController;
-
-    private FXMLLoader dataAnalysisLoader;
-    private Scene dataAnalysisScene;
-    private DataAnalysisController dataAnalysisController;
-
-    private FXMLLoader activityViewerLoader;
-    private Scene activityViewerScene;
-    private ActivityViewerController activityViewerController;
-
-    private FXMLLoader entryViewerLoader;
-    private Scene entryViewerScene;
-    private EntryViewerController entryViewerController;
-
-    private FXMLLoader mapLoader;
-    private Scene mapScene;
-    private MapController mapController;
+    private Scene titleBarScene;
+    private TitleBarController titleBarController;
 
     private Stage primaryStage;
     private ArrayList<UserProfile> users = new ArrayList<>();
 
-
-    private UserProfile currentUser;
     private Parser parser = new Parser();
     private FileWriter dataWriter = new FileWriter();
     private FileReader dataReader = new FileReader();
+    private ArrayList<String> userNames;
+    private double[] offset_XY;
+
+    private Parent root;
 
     //private Goals goals = new Goals(currentUser);
 
@@ -92,40 +71,93 @@ public class GUIController extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception
     {
-        if(!dataReader.checkFileExists("./profiles")){
+        if(!dataReader.checkFileExists("./profiles")) {
             dataWriter.createProfileFolder();
         }
-        try {
-//            Added a test user.
-//            users.add(new UserProfile("Potato", 75, 180, new DateTime(2000, 1, 1, 1, 1, 1), "Male"));
-//            users.get(0).setMaxHeartRate(210);
-        } catch (IllegalArgumentException exception) {
-            createPopUp(Alert.AlertType.ERROR, "Error", "Could not find image");
-        }
-            loadAllUsers();
-            loadAllScenes();
-            primaryStage.setTitle("Coach Potato");
-            primaryStage.setResizable(false);
-            if (users.isEmpty()) {
-                primaryStage.setScene(createProfileScene);
-            } else {
-                primaryStage.setScene(loginScene);
-            }
-            //        primaryStage.setScene(mainScene);
-            //primaryStage.setScene(goalsScene);
-            primaryStage.show();
-            this.primaryStage = primaryStage;
+        loadAllUsers();
+        loadTitleBar();
+        allowDrag(root, primaryStage);
+        primaryStage.setTitle("Coach Potato");
+        primaryStage.setResizable(false);
+        primaryStage.initStyle(StageStyle.TRANSPARENT);
+//        primaryStage.setOpacity(0.9);
+        titleBarScene.setFill(Color.TRANSPARENT);
+        primaryStage.setScene(titleBarScene);
+        primaryStage.show();
+        this.primaryStage = primaryStage;
     }
 
     /**
      * loads all the users in the profiles folder and adds them to the users arraylist
      */
-    private void loadAllUsers()
-    {
-        ArrayList<String> userNames = dataReader.getExistingUsers();
-        for(String username: userNames){
-            users.add(dataReader.loadExistingProfile(username));
+    private void loadAllUsers() throws IOException, ClassNotFoundException {
+        userNames = dataReader.getExistingUsers();
+        for (String username : userNames) {
+            try {
+                users.add(dataReader.loadExistingProfile(username));
+            } catch(InvalidClassException exception) {
+                String option = createPopUp(Alert.AlertType.CONFIRMATION, "Error", "Could not load profile: " + username + "\nWould you like to delete it?");
+                if (option.equals("OK")) {
+                    getDataWriter().deleteProfile(username);
+                }
+            }
         }
+        userNames = dataReader.getExistingUsers();
+    }
+
+
+    /**
+     * Method to set the window as draggable.
+     * @param root Parent: the root scene loader of the window.
+     * @param stage Stage: the primary stage.
+     */
+    private void allowDrag(Parent root, Stage stage)
+    {
+        Rectangle2D
+                screenBounds = Screen.getPrimary()
+                .getVisualBounds();
+        root.setOnMousePressed((MouseEvent p) -> {
+            offset_XY = new double[]{p.getSceneX(), p.getSceneY()};
+        });
+
+        root.setOnMouseDragged((MouseEvent d) -> {
+            //Ensures the stage is not dragged past the taskbar
+            if (d.getScreenY()<(screenBounds.getMaxY()-20))
+                stage.setY(d.getScreenY() - offset_XY[1]);
+            stage.setX(d.getScreenX() - offset_XY[0]);
+        });
+
+        root.setOnMouseReleased((MouseEvent r)-> {
+            //Ensures the stage is not dragged past top of screen
+            if (stage.getY()<0.0) stage.setY(0.0);
+        });
+    }
+
+
+    /**
+     * Getter Method for the usernames arraylist
+     * @return ArrayList: User Names
+     */
+    public ArrayList getUserNames() {
+        return userNames;
+    }
+
+    /**
+     * Getter Method for the primary stage
+     * @return Stage: the primary stage of the application
+     */
+    public Stage getPrimaryStage()
+    {
+        return primaryStage;
+    }
+
+
+    /**
+     * Method to minimise the window to the task bar.
+     */
+    public void minimise()
+    {
+        primaryStage.setIconified(true);
     }
 
 
@@ -166,32 +198,11 @@ public class GUIController extends Application{
         user.addActivities(activities);
     }
 
-
-    /**
-     * Sets the scene on the primary stage to the login scene.
-     */
-    public void launchLoginScene()
-    {
-        currentUser = null;
-        loginController.setUpScene();
-        primaryStage.setScene(loginScene);
-    }
-
     /*dNewScene("/fxml/loginScreen.fxml");
         createProfileScene = loadNewScene("/fxml/createProfileScreen.fxml");
         profileScene = loadNewScene("/fxml/profileScreen.fxml");
         goalsScene = loadNewScene("/fxml/goalsScreen.fxml");
         uploadDataScene */
-     /**
-     * Sets the scene on the primary stage to the profile scene.
-     */
-    public void launchProfileScene()
-    {
-        profileController.setUpScene();
-        dataWriter.saveProfile(currentUser);
-        profileController.setUserDetails();
-        primaryStage.setScene(profileScene);
-    }
 
     /**
      * checks to see if a profile already exists with a specific username
@@ -200,90 +211,15 @@ public class GUIController extends Application{
      */
     public void checkUniqueName(String userName) throws UniqueNameException
     {
-        if (currentUser == null || !userName.contentEquals(currentUser.getName())) {
+        if (titleBarController.getCurrentProfile() == null || !userName.contentEquals(titleBarController.getCurrentProfile().getName())) {
             for (UserProfile userProfile : this.getUsers()) {
                 if (userProfile.getName().equals(userName)) {
                     throw new UniqueNameException();
                 }
             }
         }
-
     }
 
-    /**
-     * sets up and launches the map scene for a specific activity
-     * @param activity the activity being mapped
-     */
-    public void launchMapScene(Activity activity)
-    {
-        mapController.setActivity(activity);
-        mapController.setUpScene();
-        Route newRoute = mapController.makeRoute(activity);
-        mapController.displayRoute(newRoute);
-        primaryStage.setScene(mapScene);
-    }
-
-    /**
-     * sets up the goals screen and loads it onto the primary stage
-     */
-    public void launchGoalsScene()
-    {
-        //goalsController.setUpScene();
-        dataWriter.saveProfile(currentUser);
-        goalsController.addGoalsToTable();
-        primaryStage.setScene(goalsScene);
-    }
-
-    /**
-     * Sets the scene on the primary stage to the upload data scene.
-     */
-    public void launchUploadDataScene()
-    {
-        uploadDataController.setUpScene();
-        dataWriter.saveProfile(currentUser);
-        primaryStage.setScene(uploadDataScene);
-    }
-
-    /**
-     * Sets the scene on the primary stage to the create profile scene.
-     */
-    public void launchCreateProfileScene()
-    {
-        createProfileController.toggleBackButton();
-        primaryStage.setScene(createProfileScene);
-    }
-
-    /**
-     * Sets the scene on the primary stage to the data analysis scene.
-     */
-    public void launchDataAnalysisScene()
-    {
-//        dataAnalysisController.setActivity(currentUser.getActivities().get(0));
-        dataAnalysisController.setUpScene();
-        dataWriter.saveProfile(currentUser);
-        primaryStage.setScene(dataAnalysisScene);
-    }
-
-    /**
-     * Sets the scene on the primary stage to the entry viewer scene.
-     * @param activity  The activity being viewed
-     */
-    public void launchEntryViewerScene(Activity activity)
-    {
-        entryViewerController.setUpScene(activity);
-        dataWriter.saveProfile(currentUser);
-        primaryStage.setScene(entryViewerScene);
-    }
-
-    /**
-     * Sets the scene on the primary stage to the activity viewer scene.
-     */
-    public void launchActivityViewerScene()
-    {
-        dataWriter.saveProfile(currentUser);
-        activityViewerController.setUpScene();
-        primaryStage.setScene(activityViewerScene);
-    }
 
     /**
      * updates the map scene with a specific activity
@@ -291,108 +227,31 @@ public class GUIController extends Application{
      */
     public void refreshMapScene(Activity activity)
     {
-        this.launchDataAnalysisScene();
+        this.getTitleBar().openAnalysis();
         try {
             TimeUnit.MICROSECONDS.sleep(90000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        this.launchMapScene(activity);
+        this.getTitleBar().openMap(activity);
     }
+
 
     /**
      * Initalizes every loader, controller and scene for each scene. Also runs the setApp(this) and
      * setUpScene methods for each.
      * @throws Exception Not implemented.
      */
-    public void loadAllScenes() throws Exception
+    public void loadTitleBar() throws Exception
     {
-//        loginScene = loadNewScene("/fxml/loginScreen.fxml");
-//        createProfileScene = loadNewScene("/fxml/createProfileScreen.fxml");
-//        profileScene = loadNewScene("/fxml/profileScreen.fxml");
-//        goalsScene = loadNewScene("/fxml/goalsScreen.fxml");
-//        uploadDataScene = loadNewScene("/fxml/uploadDataScreen.fxml");
-
-
-        loginLoader = new FXMLLoader(getClass().getResource("/fxml/loginScreen.fxml"));
-        Parent root = loginLoader.load();
-        loginController = loginLoader.getController();
-        loginController.setApp(this);
-        loginController.setUpScene();
-        loginScene = new Scene(root, 1280, 720);
-
-//        mainLoader = new FXMLLoader(getClass().getResource("/fxml/mainScreen.fxml"));
-//        VBox mainVBox = mainLoader.load();
-//        mainController = mainLoader.getController();
-//        mainController.setApp(this);
-//        mainController.setUpScene();
-//        mainScene = new Scene(mainVBox, 1280, 720);
-
-        createProfileLoader = new FXMLLoader(getClass().getResource("/fxml/createProfileScreen.fxml"));
-        Pane paneCP = createProfileLoader.load();
-        createProfileController = createProfileLoader.getController();
-        createProfileController.setApp(this);
-        createProfileController.setUpScene();
-        createProfileScene = new Scene(paneCP, 1280, 720);
-
-        profileLoader = new FXMLLoader(getClass().getResource("/fxml/profileScreen.fxml"));
-        Pane PaneP = profileLoader.load();
-        profileController = profileLoader.getController();
-        profileController.setApp(this);
-        profileController.setUpScene();
-        profileScene = new Scene(PaneP, 1280, 720);
-
-        goalsLoader = new FXMLLoader(getClass().getResource("/fxml/goalsScreen.fxml"));
-        Pane paneG = goalsLoader.load();
-        goalsController = goalsLoader.getController();
-        goalsController.setApp(this);
-        goalsController.setUpScene();
-        goalsScene = new Scene(paneG, 1280, 720);
-
-        uploadDataLoader = new FXMLLoader(getClass().getResource("/fxml/uploadDataScreen.fxml"));
-        Pane paneUD = uploadDataLoader.load();
-        uploadDataController = uploadDataLoader.getController();
-        uploadDataController.setApp(this);
-        uploadDataController.setUpScene();
-        uploadDataScene = new Scene(paneUD, 1280, 720);
-
-        dataAnalysisLoader = new FXMLLoader(getClass().getResource("/fxml/dataAnalysisScreen.fxml"));
-        Pane paneDA = dataAnalysisLoader.load();
-        dataAnalysisController = dataAnalysisLoader.getController();
-        dataAnalysisController.setApp(this);
-//        dataAnalysisController.setUpScene();
-        dataAnalysisScene = new Scene(paneDA, 1280, 720);
-
-        activityViewerLoader = new FXMLLoader(getClass().getResource("/fxml/activityViewerScreen.fxml"));
-        Pane paneAV = activityViewerLoader.load();
-        activityViewerController = activityViewerLoader.getController();
-        activityViewerController.setApp(this);
-//        ActivityViewerController.setUpScene();
-        activityViewerScene = new Scene(paneAV, 1280, 720);
-
-        entryViewerLoader = new FXMLLoader(getClass().getResource("/fxml/entryViewerScreen.fxml"));
-        Pane paneEV = entryViewerLoader.load();
-        entryViewerController = entryViewerLoader.getController();
-        entryViewerController.setApp(this);
-//        EntryViewerController.setUpScene();
-        entryViewerScene = new Scene(paneEV, 1280, 720);
-
-        mapLoader = new FXMLLoader(getClass().getResource("/fxml/mapScreen.fxml"));
-        Pane paneMap = mapLoader.load();
-        mapController = mapLoader.getController();
-        mapController.setApp(this);
-        mapController.setUpScene();
-        mapScene = new Scene(paneMap, 1280, 720);
+        FXMLLoader titleBarLoader = new FXMLLoader(getClass().getResource("/fxml/titleBar.fxml"));
+        root = titleBarLoader.load();
+        titleBarController = titleBarLoader.getController();
+        titleBarController.setApp(this);
+        titleBarController.setUpScene();
+        titleBarScene = new Scene(root, 1280, 750);
     }
 
-//    public Pair<Scene, Controllable> loadNewScene(String fxmlPath) throws Exception{
-//           FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-//           Pane pane = loader.load();
-//           Controllable controller = loader.getController();
-//           controller.setApp(this);
-//           controller.setUpScene();
-//           return new Scene(pane, 900, 600);
-//    }
 
     /**
      * Creates a new profile (and adds the test data to it for now).
@@ -405,8 +264,7 @@ public class GUIController extends Application{
                 newUser.getWeight() != 0.0 &&
                 newUser.getHeight() != 0.0 &&
                 newUser.getBirthDate() != null &&
-                newUser.getGender() != null &&
-                newUser.getMaxHeartRate() != 0) {
+                newUser.getGender() != null) {
             users.add(newUser);
         } else {
             throw new InvalidUserException();
@@ -419,17 +277,8 @@ public class GUIController extends Application{
      * @param userProfile  The user profile that's logged in.
      */
     public void setCurrentProfile(UserProfile userProfile) {
-        this.currentUser = userProfile;
-        this.goalsController.addGoalsToTable();
-    }
-
-    /**
-     * Gets the currently logged in user.
-     * @return  a UserProfile object of the currently logged in user.
-     */
-    public UserProfile getCurrentProfile()
-    {
-        return this.currentUser;
+        this.titleBarController.setCurrentProfile(userProfile);
+        this.titleBarController.getGoalController().addGoalsToTable();
     }
 
     /**
@@ -476,5 +325,18 @@ public class GUIController extends Application{
         errorPopUp.setHeaderText(null);
         Optional<ButtonType> buttonType = errorPopUp.showAndWait();
         return buttonType.get().getText();
+    }
+
+    public TitleBarController getTitleBar() {
+        return titleBarController;
+    }
+
+
+    /**
+     * Setter Method for current user
+     * @param currentUser UserProfile: Current logged in user.
+     */
+    public void setCurrentUser(UserProfile currentUser) {
+        this.titleBarController.setCurrentProfile(currentUser);
     }
 }

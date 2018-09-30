@@ -1,0 +1,271 @@
+.tab-pane .tab-header-area .tab-header-background
+{
+    -fx-opacity: 0;
+}
+
+.button
+{
+    -fx-font-family: "Noto Serif Georgian";
+    -fx-font-size: 14px;
+    -fx-background-radius: 1em;
+    -fx-border-radius: 1em;
+    -fx-background-color:  #b3b3ff;
+    -fx-border-color: blue;
+    -fx-border-width: 2px;
+    -fx-text-fill: #00001a;
+}
+
+.pane
+{
+    -fx-background-color: transparent;
+}
+
+.button:focused
+{
+    -fx-text-fill: #b3b3ff;
+    -fx-background-color: blue;
+    -fx-border-color: #b3b3ff;
+    -fx-border-width: 4px;
+}
+
+.list-view
+{
+    -fx-background-radius: 1em;
+    -fx-border-color: blue;
+    -fx-background-color: #b3b3ff;
+    -fx-border-radius: 1em;
+    -fx-border-width: 2px;
+}
+
+.list-view .list-cell:filled
+{
+    -fx-background-color: #b3b3ff;
+    -fx-text-fill: black;
+}
+
+.list-view .list-cell:selected
+{
+    -fx-text-fill: white;
+    -fx-background-color: blue;
+    -fx-border-color: white;
+}
+
+.list-view .list-cell
+{
+    -fx-background-radius: 7px;
+    -fx-border-color: blue;
+    -fx-background-color: #b3b3ff;
+    -fx-border-radius: 7px;
+    -fx-border-width: 1px;
+}
+
+.combo-box
+{
+    -fx-font-size: 11px;
+    -fx-background-radius: 1em;
+    -fx-border-radius: 1em;
+    -fx-border-width: 2px;
+    -fx-background-color:  #b3b3ff;
+    -fx-border-color: blue;
+    -fx-text-fill: blue;
+}
+
+.label
+{
+    -fx-font-family: "Noto Serif Georgian";
+    -fx-font-size: 14px;
+    -fx-text-fill: #00001a;
+}
+
+.text-field
+{
+    -fx-font-family: "Noto Serif Georgian";
+    -fx-font-size: 14px;
+}
+
+#closeButton
+{
+    -fx-min-width: 30;
+    -fx-max-width: 30;
+    -fx-min-height: 30;
+    -fx-max-height: 30;
+}
+
+#minimiseButton
+{
+    -fx-min-width: 30;
+    -fx-max-width: 30;
+    -fx-min-height: 30;
+    -fx-max-height: 30;
+}
+
+#menuButton
+{
+    -fx-font-family: System;
+    -fx-font-size: 12px;
+    -fx-min-width: 70;
+    -fx-max-width: 70;
+    -fx-min-height: 30;
+    -fx-max-height: 30;
+}
+
+#mainPane
+{
+    -fx-background-color: f0f0f0;
+    -fx-background-radius: 2em;
+    -fx-border-color: blue;
+    -fx-border-width: 2px;
+    -fx-border-radius: 2em;
+}
+
+#menuBar
+{
+    -fx-min-width: 150;
+    -fx-max-width: 150;
+    -fx-min-height: 720;
+    -fx-max-height: 720;
+}
+
+#logOutButton
+{
+    -fx-background-radius: 0 1em 0 0;
+    -fx-border-radius: 0 1em 0 0;
+    -fx-background-color: linear-gradient(#8080ff 0%, #b3b3ff 100%);
+    -fx-min-width: 150;
+    -fx-max-width: 150;
+    -fx-min-height: 100;
+    -fx-max-height: 100;
+}
+
+#viewProfileButton, #uploadDataButton, #viewActivitiesButton, #goalsButton, #analysisButton
+{
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-background-color:  linear-gradient(#8080ff 0%, #b3b3ff 100%);
+    -fx-border-color: blue;
+    -fx-border-width: 2px;
+    -fx-text-fill: blue;
+    -fx-min-width: 150;
+    -fx-max-width: 150;
+    -fx-min-height: 100;
+    -fx-max-height: 100;
+}
+
+#healthWarningsButton
+{
+    -fx-background-radius: 0 0 1em 0;
+    -fx-border-radius: 0 0 1em 0;
+    -fx-background-color:  linear-gradient(#8080ff 0%, #b3b3ff 100%);
+    -fx-border-color: blue;
+    -fx-border-width: 2px;
+    -fx-text-fill: blue;
+    -fx-min-width: 150;
+    -fx-max-width: 150;
+    -fx-min-height: 100;
+    -fx-max-height: 100;
+}
+
+#menuBar .label
+{
+    -fx-text-fill: black;
+}
+
+#viewProfileButton:focused, #uploadDataButton:focused, #viewActivitiesButton:focused, #goalsButton:focused, #healthWarningsButton:focused, #logOutButton:focused, #analysisButton:focused
+{
+    -fx-background-color: green;
+}
+
+#viewProfileButton:focused .label, #uploadDataButton:focused .label, #viewActivitiesButton:focused .label,
+#goalsButton:focused .label, #healthWarningsButton:focused .label, #logOutButton:focused .label,
+#analysisButton:focused .label
+{
+    -fx-text-fill: blue;
+}
+
+#closeButton
+{
+    -fx-font-size: 12px;
+}
+
+#minimiseButton
+{
+    -fx-font-size: 14px;
+}
+
+#warningButton
+{
+    -fx-min-height: 30px;
+    -fx-max-height: 30px;
+    -fx-min-width: 30px;
+    -fx-max-width: 30px;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+/*Table View Style*/
+.table-view
+{
+    -fx-background-radius: 1em;
+    -fx-background-color: #8080ff;
+    -fx-border-radius: 1em;
+    -fx-border-color: blue;
+}
+
+.column-header
+{
+    -fx-background-color: transparent;
+}
+
+.table-row-cell
+{
+    -fx-background-color: #8080ff;
+    -fx-border-color: blue;
+    -fx-text-background-color: #00001a;
+}
+
+.table-row-cell:selected
+{
+    -fx-background-color: blue;
+    -fx-border-color: white;
+    -fx-text-background-color: white;
+}
+
+.table-view .column-header-background
+{
+    -fx-background-radius: 1em 1em 0 0;
+    -fx-background-color: #b3b3ff;
+}
+
+.table-view .column-header-background .label
+{
+    -fx-background-radius: 1em 1em 0 0;
+    -fx-background-color: transparent;
+    -fx-text-fill: blue;
+}
+
+
+/* scroll bar starts here */
+
+/* The increment and decrement button CSS class of scrollbar */
+.table-view .increment-button ,.table-view .decrement-button {
+    -fx-background-color:transparent;
+    -fx-background-radius: 2em;
+
+}
+
+/* The main scrollbar **track** CSS class  */
+.table-view .scroll-bar:horizontal .track,
+.table-view .scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: blue;
+    -fx-background-radius: 2em;
+    -fx-border-radius:2em;
+}
+
+/* The main scrollbar **thumb** CSS class which we drag every time (movable) */
+.table-view .scroll-bar:horizontal .thumb,
+.table-view .scroll-bar:vertical .thumb {
+    -fx-background-color: blue;
+    -fx-background-insets: 2, 0, 0;
+    -fx-background-radius: 2em;
+}

@@ -15,6 +15,6 @@ public class InvalidHeightException extends Exception {
      */
     public InvalidHeightException()
     {
-        super("Invalid Height");
+        super("Invalid height");
     }
 }
