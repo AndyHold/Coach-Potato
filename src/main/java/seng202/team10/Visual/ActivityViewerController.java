@@ -166,6 +166,7 @@ public class ActivityViewerController {
     private void populateTable(ObservableList<Activity> displayActivities)
     {
         activitiesTableView.setItems(displayActivities);
+        activitiesTableView.refresh();
     }
 
 
@@ -314,6 +315,7 @@ public class ActivityViewerController {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     /**
      * method to create a popup to display a message
@@ -334,6 +336,22 @@ public class ActivityViewerController {
 =======
 >>>>>>> debfc12... Clear filters button properly reloads the table and clears filter selections
 >>>>>>> 304a880b... Clear filters button properly reloads the table and clears filter selections
+=======
+    /**
+     * Method to remove the currently selected Activity from the profile
+     */
+    @FXML public void deleteActivity()
+    {
+        if(activitiesTableView.getSelectionModel().getSelectedItem() != null) {
+            Activity toDelete = activitiesTableView.getSelectionModel().getSelectedItem();
+            app.getTitleBar().getCurrentProfile().deleteActivity(toDelete);
+        } else {
+            app.createPopUp(Alert.AlertType.ERROR, "Error", "Please select an Activity first");
+        }
+        populateTable(FXCollections.observableArrayList(app.getTitleBar().getCurrentProfile().getActivities()));
+    }
+
+>>>>>>> c3af2f13... Implemented button to delete an activity on the activity viewer
 
     /**
      * Setter method to set the GUI controller for this Scene
