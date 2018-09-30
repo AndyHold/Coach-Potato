@@ -10,7 +10,7 @@ public class EntryOutOfSequenceException extends Exception{
 
 
     /**
-     * Constructor method for DuplicateEntryException
+     * Constructor method for EntryOutOfSequenceException
      */
     public EntryOutOfSequenceException()
     {

@@ -12,10 +12,7 @@ import javafx.util.Duration;
 import seng202.team10.Control.DataAnalysis;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.DateTime;
-import seng202.team10.Model.Exceptions.InvalidHeightException;
-import seng202.team10.Model.Exceptions.InvalidWeightException;
-import seng202.team10.Model.Exceptions.UniqueNameException;
-import seng202.team10.Model.Exceptions.UserNameException;
+import seng202.team10.Model.Exceptions.*;
 
 import java.text.DecimalFormat;
 import java.time.YearMonth;
@@ -23,12 +20,13 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Profile Controller Class for Coach Potato SENG202 2018S2
+ * Controller class for the profile screen, where user information and activity summaries are displayed.
+ * SENG202 2018S2
+ * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public class ProfileController {
 
     private GUIController app;
-    private DataAnalysis dataAnalysis = new DataAnalysis();
     private List<String> quotes;
 
     @FXML Pane calendarPane;
@@ -66,7 +64,7 @@ public class ProfileController {
 
 
     /**
-     * List of Motivational quotes.
+     * Sets the list of motivational quotes.
      */
     private void setQuotes()
     {
@@ -94,17 +92,17 @@ public class ProfileController {
 
 
     /**
-     * Setter method to set the GUI controller for this Scene
-     * @param app GUIController
+     * Setter method to pass the GUIController into this controller.
+     * @param guiController <b>GUIController:</b> The main controller.
      */
-    public void setApp(GUIController app)
+    public void setApp(GUIController guiController)
     {
-        this.app = app;
+        this.app = guiController;
     }
 
 
     /**
-     * Sets up objects that require it prior to showing the scene
+     * Sets up objects that require it prior to showing the scene.
      */
     public void setUpScene()
     {
@@ -129,7 +127,7 @@ public class ProfileController {
 
 
     /**
-     * Set up method for the help text area
+     * Set up method for the help text area.
      */
     private void setUpHelpTextArea()
     {
@@ -159,7 +157,7 @@ public class ProfileController {
 
 
     /**
-     * Set up method for the tool tips
+     * Set up method for the tool tips.
      */
     private void setUpToolTips()
     {
@@ -213,7 +211,6 @@ public class ProfileController {
         DecimalFormat df2 = new DecimalFormat("#.##");
         setUpScene();
         wholeProfileVBox.setVisible(true);
-        app.getTitleBar().getCurrentProfile();
         welcomeProfileLabel.setText("Welcome " + String.valueOf(app.getTitleBar().getCurrentProfile().getName()) + ", Let's do it!");
         usernameTA.setText(app.getTitleBar().getCurrentProfile().getName());
         genderTA.setText(app.getTitleBar().getCurrentProfile().getGender());
@@ -317,7 +314,7 @@ public class ProfileController {
             int dayInt = Integer.valueOf(dob.substring(0,2));
             DateTime dateOfBirth = new DateTime(yearInt, monthInt, dayInt, 0, 0, 0);
             app.getUsers().get(app.getUsers().indexOf(app.getTitleBar().getCurrentProfile())).setBirthDate(dateOfBirth);
-        } catch (NullPointerException | IllegalArgumentException exception) {
+        } catch (NullPointerException | IllegalArgumentException | InvalidDateException exception) {
             app.createPopUp(Alert.AlertType.ERROR, "Invalid Date of Birth", "Please enter a valid date: It should be in DD/MM/YYYY format." );
         }
 

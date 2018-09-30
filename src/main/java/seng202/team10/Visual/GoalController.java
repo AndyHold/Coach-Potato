@@ -13,7 +13,9 @@ import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.Goals.*;
 
 /**
- * Goal Controller Class for Coach Potato SENG202 2018S2
+ * Controller class for the goals screen, which is where goals are viewed, created and managed.
+ * SENG202 2018S2
+ * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public class GoalController implements Controllable {
 
@@ -31,7 +33,6 @@ public class GoalController implements Controllable {
     @FXML private DatePicker targetDatePicker;
     @FXML private TextField targetValueEntry;
     @FXML private Button createButton;
-    @FXML private Button removeGoalButton;
     @FXML private ListView currentGoalsListView;
     @FXML private ListView achievedListView;
     @FXML private ListView failedListView;
@@ -60,16 +61,17 @@ public class GoalController implements Controllable {
 
 
     /**
-     * sets this scene to be the active one
-     * @param app  The main controller being passed in
+     * Setter method to pass the GUIController into this controller.
+     * @param guiController <b>GUIController:</b> The main controller.
      */
-    public void setApp(GUIController app){
-        this.app = app;
+    public void setApp(GUIController guiController)
+    {
+        this.app = guiController;
     }
 
 
     /**
-     * sets up the scene with all the fields and help things
+     * Method to set up objects that require it prior to showing the scene.
      */
     public void setUpScene() {
         // Set tool tips
@@ -102,7 +104,7 @@ public class GoalController implements Controllable {
 
 
     /**
-     * Set up method for the tool tips
+     * Set up method for the tool tips.
      */
     private void setUpToolTips()
     {
@@ -145,7 +147,7 @@ public class GoalController implements Controllable {
 
 
     /**
-     * Set up method for the help text area
+     * Set up method for the help text area.
      */
     private void setUpHelpTexts()
     {
@@ -225,7 +227,7 @@ public class GoalController implements Controllable {
 
 
     /**
-     * Method called when help button is clicked on
+     * Method called when help button is clicked on.
      * Sets dimensions and text for help area depending on which tab is currently displayed.
      */
     @FXML private void displayHelp()
@@ -268,7 +270,7 @@ public class GoalController implements Controllable {
 
 
     /**
-     * Method to update the achieved goal list view
+     * Method to update the achieved goal list view.
      * TODO reset all text fields to display nothing
      */
     @FXML public void updateCurrentListView()
@@ -277,46 +279,60 @@ public class GoalController implements Controllable {
 //        resetTextCurrent();
         // If delete mode activated:
         if (deleteMode) {
-            // If there is a goal selected
-            if (currentGoalsListView.getSelectionModel().getSelectedItem() != null) {
-                // Get the name of the selected goal
-                String item = currentGoalsListView.getSelectionModel().getSelectedItem().toString();
-                // Ask the user if they are sure they want to delete the goal
-                String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + item + "\" goal?");
-                // If they say yes
-                if (option.equals("OK")) {
-                    //delete the goal and set deletemode off again
-                    app.getTitleBar().getCurrentProfile().getGoals().removeCurrentGoal(item);
-                    toggleDeleteMode();
+            deleteAGoal();
+        } else {
+            viewGoalDetails();
+        }
+    }
+
+    /**
+     * Method for when the user is in delete mode, deletes a goal with a confirmation message.
+     */
+    private void deleteAGoal() {
+        // If there is a goal selected
+        if (currentGoalsListView.getSelectionModel().getSelectedItem() != null) {
+            // Get the name of the selected goal
+            String item = currentGoalsListView.getSelectionModel().getSelectedItem().toString();
+            // Ask the user if they are sure they want to delete the goal
+            String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + item + "\" goal?");
+            // If they say yes
+            if (option.equals("OK")) {
+                //delete the goal and set deletemode off again
+                app.getTitleBar().getCurrentProfile().getGoals().removeCurrentGoal(item);
+                toggleDeleteMode();
+            }
+        }
+        addGoalsToTable();
+    }
+
+    /*
+    *Displays details of a goal that's selected.
+     */
+    private void viewGoalDetails() {
+        // If there is a goal selected
+        if (currentGoalsListView.getSelectionModel().getSelectedItem() != null) {
+            String item = currentGoalsListView.getSelectionModel().getSelectedItem().toString();
+            Goal goal = null;
+            for (Goal selectedGoal : app.getTitleBar().getCurrentProfile().getGoals().getCurrentGoals()) {
+                if (selectedGoal.getGoalName().equals(item)) {
+                    goal = selectedGoal;
+                    break;
                 }
             }
-            addGoalsToTable();
-        } else {
-            // If there is a goal selected
-            if (currentGoalsListView.getSelectionModel().getSelectedItem() != null) {
-                String item = currentGoalsListView.getSelectionModel().getSelectedItem().toString();
-                Goal goal = null;
-                for (Goal selectedGoal : app.getTitleBar().getCurrentProfile().getGoals().getCurrentGoals()) {
-                    if (selectedGoal.getGoalName().equals(item)) {
-                        goal = selectedGoal;
+            if (goal != null) {
+                String status = app.getTitleBar().getCurrentProfile().getGoals().checkGoal(goal.getGoalName());
+                switch (status) {
+                    case "inprogress":
+                        printGoalsReview(goal, currentTypeTextField, currentStartDateTextField, currentGoalTextArea);
                         break;
-                    }
+                    case "achieved":
+                        currentGoalTextArea.setText("Congratulations!!!\nThat goal has been achieved and has been moved to the past goals tab.");
+                        break;
+                    case "failed":
+                        currentGoalTextArea.setText("Oh No!!!\nThat goal has been failed and has been moved to the past goals tab.");
+                        break;
                 }
-                if (goal != null) {
-                    String status = app.getTitleBar().getCurrentProfile().getGoals().checkGoal(goal.getGoalName());
-                    switch (status) {
-                        case "inprogress":
-                            printGoalsReview(goal, currentTypeTextField, currentStartDateTextField, currentGoalTextArea);
-                            break;
-                        case "achieved":
-                            currentGoalTextArea.setText("Congratulations!!!\nThat goal has been achieved and has been moved to the past goals tab.");
-                            break;
-                        case "failed":
-                            currentGoalTextArea.setText("Oh No!!!\nThat goal has been failed and has been moved to the past goals tab.");
-                            break;
-                    }
-                    addGoalsToTable();
-                }
+                addGoalsToTable();
             }
         }
     }
@@ -345,7 +361,7 @@ public class GoalController implements Controllable {
 
 
     /**
-     * creates a new goal
+     * Creates a new goal with the information entered by the user.
      */
     @FXML
     public void createGoal()
@@ -450,8 +466,7 @@ public class GoalController implements Controllable {
 
 
     /**
-     * Method to update the achieved goal list view
-     * TODO these methods can be refactored
+     * Method to update the achieved goal list view.
      */
     @FXML public void updateAchievedListView() {
         if (achievedListView.getSelectionModel().getSelectedItem() != null && !app.getTitleBar().getCurrentProfile().getGoals().getAchievedGoals().isEmpty()) {
@@ -471,7 +486,7 @@ public class GoalController implements Controllable {
 
 
     /**
-     * Method to update the failed goal list view
+     * Method to update the failed goal list view.
      */
     @FXML public void updateFailedListView() {
         if (failedListView.getSelectionModel().getSelectedItem() != null && !app.getTitleBar().getCurrentProfile().getGoals().getFailedGoals().isEmpty()) {
@@ -491,7 +506,7 @@ public class GoalController implements Controllable {
 
 
     /**
-     * Method to update the future goal list view
+     * Method to update the future goal list view.
      */
     @FXML public void updateFutureListView() {
         if (futureGoalsListView.getSelectionModel().getSelectedItem() != null && !app.getTitleBar().getCurrentProfile().getGoals().getFutureGoals().isEmpty()) {
@@ -511,11 +526,11 @@ public class GoalController implements Controllable {
 
 
     /**
-     * Method to display the details of a goal in given text fields and a text area
-     * @param goal Goal: goal to be reviewed
-     * @param typeText TextField: text field for the type of goal
-     * @param startDateText TextField: text field for the start date of the goal
-     * @param goalText Text Area: text area for the description of the goal.
+     * Method to display the details of a goal in given text fields and a text area.
+     * @param goal <b>Goal</b> to be reviewed.
+     * @param typeText <b>TextField</b> for the type of goal.
+     * @param startDateText <b>TextField</b> for the start date of the goal.
+     * @param goalText <b>TextArea</b> for the description of the goal.
      */
     private void printGoalsReview(Goal goal, TextField typeText, TextField startDateText, TextArea goalText) {
         String type = goal.getGoalType();

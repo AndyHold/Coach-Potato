@@ -16,10 +16,9 @@ import seng202.team10.Model.ActivitiesData.Route;
 import seng202.team10.Model.UserProfile;
 
 import java.io.IOException;
-//import seng202.team10.Control.WindowStyle;
 
 /**
- * TitleBarController Class for Coach Potato
+ * Controller class for the title bar, which loads and launches every major scene.
  * SENG202 2018S2
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
@@ -55,17 +54,17 @@ public class TitleBarController {
     private HealthWarningsController healthWarningController;
 
     /**
-     * Setter Method for the GUIController
-     * @param app GUIController
+     * Setter method to pass the GUIController into this controller.
+     * @param guiController <b>GUIController:</b> The main controller.
      */
-    public void setApp(GUIController app)
+    public void setApp(GUIController guiController)
     {
-        this.app = app;
+        this.app = guiController;
     }
 
 
     /**
-     * Sets up objects that require it prior to showing the scene
+     * Sets up objects that require it prior to showing the scene.
      */
     public void setUpScene() throws IOException {
         loadAllPanes();
@@ -92,7 +91,7 @@ public class TitleBarController {
 
 
     /**
-     * Set the new scene to be displayed
+     * Set the new scene to be displayed.
      */
     public void setScene(Pane newPane)
     {
@@ -106,8 +105,8 @@ public class TitleBarController {
 
 
     /**
-     * Method to create all panes used by the application
-     * @throws IOException if an error occurs
+     * Method to create all panes used by the application.
+     * @throws IOException if an error occurs.
      */
     private void loadAllPanes() throws IOException
     {
@@ -198,7 +197,7 @@ public class TitleBarController {
 
 
     /**
-     * Method to display the create profile screen
+     * Method to display the create profile screen.
      */
     @FXML public void openCreateProfile()
     {
@@ -209,7 +208,7 @@ public class TitleBarController {
 
 
     /**
-     * Method to display the login screen
+     * Method to display the login screen.
      */
     @FXML public void openLogin()
     {
@@ -221,7 +220,7 @@ public class TitleBarController {
 
 
     /**
-     * Method to display the view profile screen
+     * Method to display the view profile screen.
      */
     @FXML public void openViewProfile()
     {
@@ -236,7 +235,7 @@ public class TitleBarController {
 
 
     /**
-     * Method to display the upload data screen
+     * Method to display the upload data screen.
      */
     @FXML public void openUploadData()
     {
@@ -249,7 +248,7 @@ public class TitleBarController {
 
 
     /**
-     * Method to display the view activities screen
+     * Method to display the view activities screen.
      */
     @FXML public void openViewActivities()
     {
@@ -262,7 +261,7 @@ public class TitleBarController {
 
 
     /**
-     * Method to display the goals screen
+     * Method to display the goals screen.
      */
     @FXML public void openGoals()
     {
@@ -274,7 +273,7 @@ public class TitleBarController {
 
 
     /**
-     * Method to display the analysis screen
+     * Method to display the analysis screen.
      */
     @FXML public void openAnalysis()
     {
@@ -286,7 +285,7 @@ public class TitleBarController {
 
 
     /**
-     * Method to display the entry viewer screen
+     * Method to display the entry viewer screen.
      */
     @FXML public void openEntry(Activity activity)
     {
@@ -298,7 +297,7 @@ public class TitleBarController {
 
 
     /**
-     * Method to display the map screen
+     * Method to display the map screen.
      */
     @FXML public void openMap(Activity activity)
     {
@@ -312,7 +311,7 @@ public class TitleBarController {
 
 
     /**
-     * Method to display the health warnings screen
+     * Method to display the health warnings screen.
      */
     @FXML public void openWarnings()
     {
@@ -323,8 +322,8 @@ public class TitleBarController {
 
 
     /**
-     * Method called when the menu button is pressed
-     * Displays the menu
+     * Method called when the menu button is pressed.
+     * Displays the menu.
      */
     @FXML public void menuSelected()
     {
@@ -334,7 +333,7 @@ public class TitleBarController {
 
     /**
      * Method called when the menu button is selected.
-     * calls the animation of the menu bar.
+     * Calls the animation of the menu bar.
      */
     private void slideMenu(Boolean clicked)
     {
@@ -351,7 +350,7 @@ public class TitleBarController {
 
 
     /**
-     * Getter Method for the Goals Controller
+     * Getter method for the Goals Controller.
      * @return GoalController
      */
     public GoalController getGoalController()
@@ -362,7 +361,7 @@ public class TitleBarController {
 
     /**
      * Setter method for the current user.
-     * @param currentProfile UserProfile: current logged in user.
+     * @param currentProfile <b>UserProfile</b> of the currently logged in user.
      */
     public void setCurrentProfile(UserProfile currentProfile)
     {
@@ -371,8 +370,8 @@ public class TitleBarController {
 
 
     /**
-     * Getter method for the current logged in user
-     * @return UserProfile
+     * Getter method for the currently logged in user.
+     * @return <b>UserProfile</b> of the currently logged in user.
      */
     public UserProfile getCurrentProfile()
     {

@@ -14,13 +14,18 @@ import seng202.team10.Model.ActivitiesData.HealthWarningType;
 
 import javax.swing.text.html.ListView;
 
+/**
+ * Health Warnings Controller class for Coach Potato
+ * SENG202 2018S2
+ * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
+ */
 public class HealthWarningsController implements Controllable {
 
 
     private GUIController app;
     private ObservableList<HealthWarning> tachycardiaWarnings;
     private ObservableList<HealthWarning> bradycardiaWarnings;
-    ObservableList<HealthWarning> cardiovascularMortalityWarnings;
+    private ObservableList<HealthWarning> cardiovascularMortalityWarnings;
     @FXML private Label tachycardiaActivitiesLabel;
     @FXML private Label bradycardiaActivitiesLabel;
     @FXML private Label cardiovascularMortalityActivitiesLabel;
@@ -31,12 +36,19 @@ public class HealthWarningsController implements Controllable {
     private WebEngine engine;
 
 
-    public void setApp(GUIController app)
+    /**
+     * Setter method to pass the GUIController into this controller.
+     * @param guiController <b>GUIController:</b> The main controller.
+     */
+    public void setApp(GUIController guiController)
     {
-        this.app = app;
+        this.app = guiController;
     }
 
 
+    /**
+     * Sets up objects that require it prior to showing the scene.
+     */
     public void setUpScene()
     {
         getWarningLists();
@@ -46,6 +58,9 @@ public class HealthWarningsController implements Controllable {
     }
 
 
+    /**
+     * Method to get lists of warnings for each type of health condition.
+     */
     private void getWarningLists()
     {
         tachycardiaWarnings = FXCollections.observableArrayList(app.getTitleBar().getCurrentProfile().getWarnings(HealthWarningType.TACHYCARDIA));
@@ -54,6 +69,9 @@ public class HealthWarningsController implements Controllable {
     }
 
 
+    /**
+     * Initializes labels and icons for each health condition.
+     */
     private void setLabelsUp()
     {
         tachycardiaIcon.setVisible(false);
@@ -94,19 +112,25 @@ public class HealthWarningsController implements Controllable {
 
     }
 
-
+    /**
+     * Method to search the web page for tachycardia.
+     */
     @FXML public void showTachycardiaSearch()
     {
         engine.load(HealthWarningType.TACHYCARDIA.getURL());
     }
 
-
+    /**
+     * Method to search the web page for brachycardia.
+     */
     @FXML public void showBradycardiaSearch()
     {
         engine.load(HealthWarningType.BRADYCARDIA.getURL());
     }
 
-
+    /**
+     * Method to search the web page for cardiovascular mortality.
+     */
     @FXML public void showCardiovascularSearch()
     {
         engine.load(HealthWarningType.CARDIOVASCULAR_MORTALITY.getURL());

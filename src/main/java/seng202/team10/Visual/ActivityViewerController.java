@@ -14,15 +14,17 @@ import seng202.team10.Model.ActivitiesData.DateTime;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
- * Activity Viewer Controller Class for Coach Potato SENG202 2018S2
+ * Controller for the Activity Viewer Screen, which displays and filters lists of activities
+ * SENG202 2018S2
+ * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public class ActivityViewerController {
 
     private GUIController app;
     private ObservableList<String> types;
-    private ObservableList<Activity> activities;
 
     @FXML private DatePicker startDate;
     @FXML private DatePicker endDate;
@@ -65,6 +67,7 @@ public class ActivityViewerController {
                 helpTextArea.setVisible(false);
             }
         });
+        clearFilters();
     }
 
 
@@ -73,7 +76,7 @@ public class ActivityViewerController {
      */
     private void setUpTableView()
     {
-        activities = FXCollections.observableArrayList(app.getTitleBar().getCurrentProfile().getActivities());
+        ObservableList<Activity> activities = FXCollections.observableArrayList(app.getTitleBar().getCurrentProfile().getActivities());
         nameColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("name"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("typeString"));
         starttimeColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("timeString"));
@@ -155,8 +158,8 @@ public class ActivityViewerController {
 
 
     /**
-     * method to fill the table with the activities to display. used by setUpScene as well as applyFilter
-     * @param displayActivities the arraylist of activity objects to be displayed in the table
+     * Method to fill the table with the activities to display used by setUpScene as well as applyFilter.
+     * @param displayActivities An ArrayList&gt;Activity&lt; to be displayed in the table.
      */
     private void populateTable(ObservableList<Activity> displayActivities)
     {
@@ -164,38 +167,72 @@ public class ActivityViewerController {
     }
 
     /**
-     * Method to update table with activities between the two datepickers and of matching type when the filterApplyButton is pressed
+     * Method to update table with activities between the two date pickers and of matching type when the filterApplyButton is pressed.
      */
     @FXML public void applyFilter()
     {
-        ArrayList<Activity> dateFiltered = new ArrayList<>();
+        ArrayList<Activity> newActivities = new ArrayList<>();
+        for(Activity profileActivity: app.getTitleBar().getCurrentProfile().getActivities()) {
+            newActivities.add(profileActivity);
+        }
         LocalDate lowerDate = startDate.getValue();
         LocalDate upperDate = endDate.getValue();
         String typeSelected = (String) typeSelect.getValue();
-        if (lowerDate != null && upperDate != null) {
-            if(lowerDate.getYear() < 1900 || lowerDate.getYear() > 2100 || upperDate.getYear() > 2100 || upperDate.getYear() < 1900 || lowerDate.getYear() > upperDate.getYear()){
-                app.createPopUp(Alert.AlertType.ERROR, "Error", "Please choose dates between 1900 and 2100, and make sure the first date is earlier than the second");
-                dateFiltered = app.getTitleBar().getCurrentProfile().getActivities();
+        DateTime lowerDateTime = null;
+        DateTime upperDateTime = null;
+        //Datetime check and creation
+        if (lowerDate != null) {
+            if(lowerDate.getYear() < 1900 || lowerDate.getYear() > 2100){
+                app.createPopUp(Alert.AlertType.ERROR, "Error", "Please choose a lower date between 1900 and 2100");
             } else {
-                DateTime lowerDateTime = new DateTime(lowerDate.getYear(), lowerDate.getMonthValue(), lowerDate.getDayOfMonth(), 0, 0, 1);
-                DateTime upperDateTime = new DateTime(upperDate.getYear(), upperDate.getMonthValue(), upperDate.getDayOfMonth(), 23, 59, 59);
-                for (Activity eachActivity : app.getTitleBar().getCurrentProfile().getActivities()) {
-                    if (lowerDateTime.isBefore(eachActivity.getStartDateTime()) && upperDateTime.isAfter(eachActivity.getStartDateTime())) {
-                        dateFiltered.add(eachActivity);
-                    }
+                lowerDateTime = new DateTime(lowerDate.getYear(), lowerDate.getMonthValue(), lowerDate.getDayOfMonth(), 0, 0, 1);
+            }
+        }
+        if (upperDate != null) {
+            if (upperDate.getYear() > 2100 || upperDate.getYear() < 1900) {
+                app.createPopUp(Alert.AlertType.ERROR, "Error", "Please choose an upper date between 1900 and 2100");
+            } else {
+                upperDateTime = new DateTime(upperDate.getYear(), upperDate.getMonthValue(), upperDate.getDayOfMonth(), 23, 59, 59);
+            }
+        }
+        if((lowerDateTime != null) && (upperDateTime != null)) {
+            if(lowerDateTime.isAfter(upperDateTime)) {
+                app.createPopUp(Alert.AlertType.ERROR, "Error", "Please make sure your lower date is earlier than your upper date");
+                lowerDateTime = null;
+                upperDateTime = null;
+            }
+        }
+
+        ArrayList<Activity> badActivities = new ArrayList<>();
+
+        //lower date filter
+        if(lowerDateTime != null) {
+            for(Activity checkActivity: newActivities) {
+                if (checkActivity.getStartDateTime().isBefore(lowerDateTime)) {
+                    badActivities.add(checkActivity);
                 }
             }
-        } else {
-            dateFiltered = app.getTitleBar().getCurrentProfile().getActivities();
         }
-        ArrayList<Activity> typeFiltered = new ArrayList<>();
-        for (Activity eachActivity : dateFiltered) {
-            if (typeSelected == null || typeSelected.equals("All") || typeSelected.equals(eachActivity.getTypeString())) {
-                typeFiltered.add(eachActivity);
+        //upper date filter
+        if(upperDateTime != null) {
+            for(Activity checkActivity: newActivities) {
+                if (checkActivity.getEndDateTime().isAfter(upperDateTime)) {
+                    badActivities.add(checkActivity);
+                }
             }
         }
-        ObservableList<Activity> newActivities = FXCollections.observableArrayList(typeFiltered);
-        populateTable(newActivities);
+        //type filter
+        if(!(typeSelected == null || typeSelected.equals("All"))) {
+            for(Activity checkActivity: newActivities) {
+                if (!(typeSelected.equals(checkActivity.getTypeString()))) {
+                    badActivities.add(checkActivity);
+                }
+            }
+        }
+        //removal of activities, reload table
+        newActivities.removeAll(badActivities);
+        ObservableList<Activity> obsActivities = FXCollections.observableArrayList(newActivities);
+        populateTable(obsActivities);
     }
 
 
@@ -248,11 +285,11 @@ public class ActivityViewerController {
 
 
     /**
-     * Setter method to set the GUI controller for this Scene
-     * @param app GUIController
+     * Setter method to pass the GUIController into this controller.
+     * @param guiController <b>GUIController:</b> The main controller.
      */
-    public void setApp(GUIController app)
+    public void setApp(GUIController guiController)
     {
-        this.app = app;
+        this.app = guiController;
     }
 }
