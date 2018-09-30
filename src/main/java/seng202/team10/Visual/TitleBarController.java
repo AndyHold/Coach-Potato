@@ -69,7 +69,7 @@ public class TitleBarController {
      */
     public void setUpScene() throws IOException {
         loadAllPanes();
-        if (app.getUserNames().isEmpty()) {
+        if (app.getUsers().isEmpty()) {
             openCreateProfile();
         } else {
             openLogin();

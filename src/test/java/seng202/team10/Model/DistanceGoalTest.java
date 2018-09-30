@@ -3,6 +3,9 @@ package seng202.team10.Model;
 import org.junit.Before;
 import org.junit.Test;
 import seng202.team10.Model.ActivitiesData.DateTime;
+import seng202.team10.Model.Exceptions.BadGoalNameException;
+import seng202.team10.Model.Exceptions.InvalidGoalDateException;
+import seng202.team10.Model.Exceptions.InvalidGoalTargetException;
 import seng202.team10.Model.Goals.DistanceGoal;
 import seng202.team10.Model.Goals.Goal;
 
@@ -27,7 +30,8 @@ public class DistanceGoalTest {
     }
 
     @Test
-    public void reviewDistanceGoalFailUpperBound() {
+    public void reviewDistanceGoalFailUpperBound() throws InvalidGoalDateException, BadGoalNameException, InvalidGoalTargetException
+    {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() - 1, now1.getHour(), now1.getMinute(), now1.getSecond());
@@ -39,7 +43,8 @@ public class DistanceGoalTest {
     }
 
     @Test
-    public void reviewDistanceGoalFailLowerBound() {
+    public void reviewDistanceGoalFailLowerBound() throws InvalidGoalDateException, BadGoalNameException, InvalidGoalTargetException
+    {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() - 1, now1.getHour(), now1.getMinute(), now1.getSecond());
@@ -51,7 +56,8 @@ public class DistanceGoalTest {
     }
 
     @Test
-    public void reviewDistanceGoalWorkingTowardsLowerBound() {
+    public void reviewDistanceGoalWorkingTowardsLowerBound() throws InvalidGoalDateException, BadGoalNameException, InvalidGoalTargetException
+    {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear() + 1, now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
@@ -63,7 +69,8 @@ public class DistanceGoalTest {
     }
 
     @Test
-    public void reviewDistanceGoalWorkingTowardsUpperBound() {
+    public void reviewDistanceGoalWorkingTowardsUpperBound() throws InvalidGoalDateException, BadGoalNameException, InvalidGoalTargetException
+    {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear() + 1, now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
@@ -75,7 +82,8 @@ public class DistanceGoalTest {
     }
 
     @Test
-    public void reviewDistanceGoalAchievedJust() {
+    public void reviewDistanceGoalAchievedJust() throws InvalidGoalDateException, BadGoalNameException, InvalidGoalTargetException
+    {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
@@ -86,7 +94,8 @@ public class DistanceGoalTest {
     }
 
     @Test
-    public void reviewDistanceGoalAchievedEasily() {
+    public void reviewDistanceGoalAchievedEasily() throws InvalidGoalDateException, BadGoalNameException, InvalidGoalTargetException
+    {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());

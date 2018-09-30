@@ -3,6 +3,9 @@ package seng202.team10.Model;
 import org.junit.Before;
 import org.junit.Test;
 import seng202.team10.Model.ActivitiesData.DateTime;
+import seng202.team10.Model.Exceptions.BadGoalNameException;
+import seng202.team10.Model.Exceptions.InvalidGoalDateException;
+import seng202.team10.Model.Exceptions.InvalidGoalTargetException;
 import seng202.team10.Model.Goals.FrequencyGoal;
 import seng202.team10.Model.Goals.Goal;
 
@@ -32,7 +35,8 @@ public class FrequencyGoalTest {
 
 
     @Test
-    public void reviewFrequencyGoalFailUpperBound() {
+    public void reviewFrequencyGoalFailUpperBound() throws InvalidGoalDateException, BadGoalNameException, InvalidGoalTargetException
+    {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() - 1, now1.getHour(), now1.getMinute(), now1.getSecond());
@@ -44,7 +48,8 @@ public class FrequencyGoalTest {
     }
 
     @Test
-    public void reviewFrequencyGoalFailLowerBound() {
+    public void reviewFrequencyGoalFailLowerBound() throws InvalidGoalDateException, BadGoalNameException, InvalidGoalTargetException
+    {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() - 1, now1.getHour(), now1.getMinute(), now1.getSecond());
@@ -56,7 +61,8 @@ public class FrequencyGoalTest {
     }
 
     @Test
-    public void reviewFrequencyGoalWorkingTowardsLowerBound() {
+    public void reviewFrequencyGoalWorkingTowardsLowerBound() throws InvalidGoalDateException, BadGoalNameException, InvalidGoalTargetException
+    {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear() + 1, now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
@@ -68,7 +74,8 @@ public class FrequencyGoalTest {
     }
 
     @Test
-    public void reviewFrequencyGoalWorkingTowardsUpperBound() {
+    public void reviewFrequencyGoalWorkingTowardsUpperBound() throws InvalidGoalDateException, BadGoalNameException, InvalidGoalTargetException
+    {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear() + 1, now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
@@ -80,7 +87,8 @@ public class FrequencyGoalTest {
     }
 
     @Test
-    public void reviewFrequencyGoalAchievedJust() {
+    public void reviewFrequencyGoalAchievedJust() throws InvalidGoalDateException, BadGoalNameException, InvalidGoalTargetException
+    {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
@@ -91,7 +99,8 @@ public class FrequencyGoalTest {
     }
 
     @Test
-    public void reviewFrequencyGoalAchievedEasily() {
+    public void reviewFrequencyGoalAchievedEasily() throws InvalidGoalDateException, BadGoalNameException, InvalidGoalTargetException
+    {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());

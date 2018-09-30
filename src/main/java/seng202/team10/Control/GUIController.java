@@ -86,6 +86,7 @@ import seng202.team10.Model.UserProfile;
 import seng202.team10.Visual.*;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InvalidClassException;
 import java.util.ArrayList;
 <<<<<<< HEAD
@@ -324,17 +325,23 @@ public class GUIController extends Application {
     /**
      * loads all the users in the profiles folder and adds them to the users arraylist
      */
-    private void loadAllUsers() {
+    private void loadAllUsers() throws IOException, ClassNotFoundException {
         userNames = dataReader.getExistingUsers();
         for (String username : userNames) {
             try {
                 users.add(dataReader.loadExistingProfile(username));
+            } catch(InvalidClassException exception) {
+                String option = createPopUp(Alert.AlertType.CONFIRMATION, "Error", "Could not load profile: " + username + "\nWould you like to delete it?");
+                if (option.equals("OK")) {
+                    getDataWriter().deleteProfile(username);
                 }
-                catch(Exception e){
-                    createPopUp(Alert.AlertType.ERROR, "Error", "Could not load profile: " + username);
-                }
+            }
         }
+<<<<<<< HEAD
 >>>>>>> f7b90380... Small tweaks to fix pipeline issues caused by recent merge.
+=======
+        userNames = dataReader.getExistingUsers();
+>>>>>>> e18e43a0... Refactored GoalController to handle exceptions instead of using the Input Validator. Refactored the Goal classes to throw exceptions with invalid input.
     }
 
 

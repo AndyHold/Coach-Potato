@@ -54,12 +54,12 @@
 
 .list-view
 {
-    -fx-background-radius: 1em;
+    /*-fx-background-radius: 1em;*/
     /*-fx-border-color: #0097A7;*/
     /*-fx-background-color: #4DD0E1;*/
     -fx-background-color: #b3b3ff;
     -fx-border-color: blue;
-    -fx-border-radius: 1em;
+    /*-fx-border-radius: 1em;*/
     -fx-border-width: 2px;
 }
 
@@ -80,11 +80,11 @@
 }
 
 .list-view .list-cell {
-    -fx-background-radius: 7px;
+    /*-fx-background-radius: 7px;*/
     /*-fx-border-color: #0097A7;*/
     /*-fx-background-color: #4DD0E1;*/
     -fx-background-color: #b3b3ff;
     -fx-border-color: blue;
-    -fx-border-radius: 7px;
+    /*-fx-border-radius: 7px;*/
     -fx-border-width: 1px;
 }

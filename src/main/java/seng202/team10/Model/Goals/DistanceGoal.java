@@ -2,17 +2,46 @@ package seng202.team10.Model.Goals;
 
 
 import seng202.team10.Model.ActivitiesData.DateTime;
+import seng202.team10.Model.Exceptions.*;
 
 import java.time.LocalDateTime;
 
 
 public class DistanceGoal extends Goal {
+
+
     private double goalDistance;
 
-    public DistanceGoal(String name, DateTime start, DateTime target, double distance)
+
+    /**
+     * Constructor method for distance goal
+     * @param name: String
+     * @param start: DateTime
+     * @param target: DateTime
+     * @param distance: double
+     * @throws InvalidGoalDateException When invalid dates are entered
+     * @throws BadGoalNameException When invalid name is entered
+     * @throws InvalidGoalTargetException When invalid target is entered
+     */
+    public DistanceGoal(String name, DateTime start, DateTime target, double distance) throws InvalidGoalDateException, BadGoalNameException, InvalidGoalTargetException
     {
-        super(name, start, target, "Distance", false);
-        goalDistance = distance;
+        super(name, start, target, "Distance");
+        setTargetValue(distance);
+    }
+
+
+    /**
+     * Setter method for the target value of distance goal.
+     * @param target: double
+     * @throws InvalidGoalTargetException When target is outside the correct values.
+     */
+    private void setTargetValue(double target) throws InvalidGoalTargetException
+    {
+        if (target < 100) {
+            throw new InvalidGoalTargetException("Target must be greater than 100m");
+        } else {
+            this.goalDistance = target;
+        }
     }
 
 

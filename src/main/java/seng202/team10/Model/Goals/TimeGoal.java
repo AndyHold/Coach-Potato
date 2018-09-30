@@ -1,16 +1,47 @@
 package seng202.team10.Model.Goals;
 
 import seng202.team10.Model.ActivitiesData.DateTime;
+import seng202.team10.Model.Exceptions.*;
 
 import java.time.LocalDateTime;
 
 public class TimeGoal extends Goal {
+
+
     private double goalTime;
 
-    public TimeGoal(String name, DateTime start, DateTime target, double time) {
-        super(name, start, target, "Time", false);
-        goalTime = time;
+
+    /**
+     * Constructor method for time goal
+     * @param name: String
+     * @param start: DateTime
+     * @param target: DateTime
+     * @throws InvalidGoalDateException When invalid dates are entered
+     * @throws BadGoalNameException When invalid name is entered
+     * @throws InvalidGoalTargetException When invalid target is entered
+     */
+    public TimeGoal(String name, DateTime start, DateTime target, double time) throws InvalidGoalTargetException, InvalidGoalDateException, BadGoalNameException
+    {
+        super(name, start, target, "Time");
+        setTarget(time);
     }
+
+
+    /**
+     * Setter method for the target value of time goal.
+     * @param target: double
+     * @throws InvalidGoalTargetException When target is outside the correct values.
+     * TODO can set a target with more minautes than is possible.
+     */
+    public void setTarget(double target) throws InvalidGoalTargetException
+    {
+        if (target <= 0) {
+            throw new InvalidGoalTargetException("Please enter a time of at least 1 minute");
+        } else {
+            goalTime = target;
+        }
+    }
+
 
     /**
      * Getter method for the goal time
