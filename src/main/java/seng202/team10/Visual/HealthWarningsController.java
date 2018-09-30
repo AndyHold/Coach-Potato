@@ -80,11 +80,14 @@ public class HealthWarningsController implements Controllable {
         if (tachycardiaWarnings.size() > 0) {
             tachycardiaActivitiesLabel.setText("You currently have " + tachycardiaWarnings.size() + " warnings.");
             tachycardiaIcon.setVisible(true);
-
+        } else {
+            tachycardiaActivitiesLabel.setText("You currently have no warnings.");
         }
         if (bradycardiaWarnings.size() > 0) {
             bradycardiaActivitiesLabel.setText("You currently have " + bradycardiaWarnings.size() + " warnings.");
             bradycardiaIcon.setVisible(true);
+        } else {
+            bradycardiaActivitiesLabel.setText("You currently have no warnings.");
         }
         if (cardiovascularMortalityWarnings.size() > 0) {
             cardiovascularMortalityActivitiesLabel.setText("You currently have " + cardiovascularMortalityWarnings.size() + " warnings.");
