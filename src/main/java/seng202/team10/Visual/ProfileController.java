@@ -334,7 +334,9 @@ public class ProfileController {
         }
         confirmButton.setVisible(false);
         editProfileButton.setVisible(true);
+        app.getDataWriter().saveProfile(app.getTitleBar().getCurrentProfile());
         setUserDetails();
+
     }
 
     /**
