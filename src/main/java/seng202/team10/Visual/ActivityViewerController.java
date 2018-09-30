@@ -17,13 +17,14 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * Activity Viewer Controller Class for Coach Potato SENG202 2018S2
+ * Controller for the Activity Viewer Screen, which displays and filters lists of activities
+ * SENG202 2018S2
+ * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public class ActivityViewerController {
 
     private GUIController app;
     private ObservableList<String> types;
-    private ObservableList<Activity> activities;
 
     @FXML private DatePicker startDate;
     @FXML private DatePicker endDate;
@@ -75,7 +76,7 @@ public class ActivityViewerController {
      */
     private void setUpTableView()
     {
-        activities = FXCollections.observableArrayList(app.getTitleBar().getCurrentProfile().getActivities());
+        ObservableList<Activity> activities = FXCollections.observableArrayList(app.getTitleBar().getCurrentProfile().getActivities());
         nameColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("name"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("typeString"));
         starttimeColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("timeString"));
@@ -157,8 +158,8 @@ public class ActivityViewerController {
 
 
     /**
-     * method to fill the table with the activities to display. used by setUpScene as well as applyFilter
-     * @param displayActivities the arraylist of activity objects to be displayed in the table
+     * Method to fill the table with the activities to display used by setUpScene as well as applyFilter.
+     * @param displayActivities An ArrayList&gt;Activity&lt; to be displayed in the table.
      */
     private void populateTable(ObservableList<Activity> displayActivities)
     {
@@ -166,7 +167,7 @@ public class ActivityViewerController {
     }
 
     /**
-     * Method to update table with activities between the two datepickers and of matching type when the filterApplyButton is pressed
+     * Method to update table with activities between the two date pickers and of matching type when the filterApplyButton is pressed.
      */
     @FXML public void applyFilter()
     {
@@ -284,11 +285,11 @@ public class ActivityViewerController {
 
 
     /**
-     * Setter method to set the GUI controller for this Scene
-     * @param app GUIController
+     * Setter method to pass the GUIController into this controller.
+     * @param guiController <b>GUIController:</b> The main controller.
      */
-    public void setApp(GUIController app)
+    public void setApp(GUIController guiController)
     {
-        this.app = app;
+        this.app = guiController;
     }
 }

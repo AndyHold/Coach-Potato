@@ -54,8 +54,8 @@ public class DataAnalysisController implements Controllable, Initializable{
 
 
     /**
-     * Method to pass the guiController into this class.
-     * @param guiController  The main controller class that contains most information
+     * Setter method to pass the GUIController into this controller.
+     * @param guiController <b>GUIController:</b> The main controller.
      */
     @Override
     public void setApp(GUIController guiController)
@@ -188,7 +188,7 @@ public class DataAnalysisController implements Controllable, Initializable{
 
     /**
      * Method to populate the distance over time graph with data.
-     * @param timeArray  An ArrayList<Double> that contains the total time that has passed at each point in the activity.
+     * @param timeArray  An ArrayList&gt;Double&lt; that contains the total time that has passed at each point in the activity.
      */
     private void populateDistanceTimeGraph(ArrayList<Double> timeArray)
     {
@@ -202,8 +202,8 @@ public class DataAnalysisController implements Controllable, Initializable{
 
     /**
      * Method to populate the heart rate over time graph with data.
-     * @param timeArray  An ArrayList<Double> that contains the total time that has passed at each point in the activity.
-     * @param heartRateArray  An ArrayList<Integer> that contains a list of heartrates at each point in the activity.
+     * @param timeArray  An ArrayList&gt;Double&lt; that contains the total time that has passed at each point in the activity.
+     * @param heartRateArray  An ArrayList&gt;Integer&lt; that contains a list of heartrates at each point in the activity.
      */
     private void populateHeartRateTimeGraph(ArrayList<Double> timeArray, ArrayList<Integer> heartRateArray)
     {
@@ -216,7 +216,7 @@ public class DataAnalysisController implements Controllable, Initializable{
 
     /**
      * Method to populate the calories burned over time graph with data.
-     * @param timeArray  An ArrayList<Double> that contains the total time that has passed at each point in the activity.
+     * @param timeArray  An ArrayList&gt;Double&lt; that contains the total time that has passed at each point in the activity.
      */
     private void populateCaloriesBurnedGraph(ArrayList<Double> timeArray)
     {
@@ -230,8 +230,8 @@ public class DataAnalysisController implements Controllable, Initializable{
 
     /**
      * Method to populate the stress level over time graph with data.
-     * @param timeArray  An ArrayList<Double> that contains the total time that has passed at each point in the activity.
-     * @param heartRateArray  An ArrayList<Integer> that contains a list of heartrates at each point in the activity.
+     * @param timeArray  An ArrayList&gt;Double&lt; that contains the total time that has passed at each point in the activity.
+     * @param heartRateArray  An ArrayList&gt;Integer&lt; that contains a list of heartrates at each point in the activity.
      */
     private void populateStressTimeGraph(ArrayList<Double> timeArray, ArrayList<Integer> heartRateArray)
     {
@@ -296,12 +296,12 @@ public class DataAnalysisController implements Controllable, Initializable{
         distanceOverTime.getYAxis().setLabel("Distance (m)");
         heartRateOverTime.getYAxis().setLabel("Heart rate (bpm)");
         caloriesBurned.getYAxis().setLabel("Calories burned");
-        stressLevelOverTime.getYAxis().setLabel("Stress level");
+        stressLevelOverTime.getYAxis().setLabel("Stress level (% of max heart rate)");
     }
 
 
     /**
-     * Method to set up a graph by setting its label and disabling symbols.
+     * Method to set up a graph by setting its label and disabling symbols and legends.
      * @param linechart  The graph being set up.
      */
     private void setUpOneGraph(LineChart linechart)
@@ -313,7 +313,8 @@ public class DataAnalysisController implements Controllable, Initializable{
 
 
     /**
-     * Method to display a message if there is no data to display, or to disable the message if there is data.
+     * Method to display a message if there is no data to display, or to disable the message if there is data. Also
+     * sets the list of activities to null when there is no data.
      * @param noDataFound True if there is no data to display. False if there is.
      */
     private void displayNoData(boolean noDataFound)
@@ -357,7 +358,7 @@ public class DataAnalysisController implements Controllable, Initializable{
     }
 
     /**
-     * Method to initialize the class. Calls the setUpScene method when called. Called when the class is constructed.
+     * Method to initialize the class. Calls the setUpGraphs method when called. Called when the class is constructed.
      */
     @Override
     public void initialize(URL location, ResourceBundle resources)

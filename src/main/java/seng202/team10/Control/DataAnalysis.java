@@ -11,40 +11,16 @@ import java.util.Calendar;
 
 /**
  * Class that contains methods for processing activities for data analysis, mostly used by the DataAnalysisController class.
+ * SENG202 2018S2
+ * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public class DataAnalysis {
 
-
-    private ArrayList<Activity> activities;
-
-
-//    /**
-//     * Method to sort a list of activities by their date.
-//     * @return  A sorted list of activities.
-//     */
-//    public ArrayList<Activity> sortByDate() {
-//
-//        activities.sort(new Comparator<Activity>() {
-//            @Override
-//            public int compare(Activity a1, Activity a2) {
-//                if(a2.getStartDateTime().isAfter(a1.getStartDateTime())) {
-//                    return -1;
-//                } else if ((a2.getStartDateTime().isBefore(a1.getStartDateTime()))) {
-//                    return 1;
-//                } else {
-//                    return 0;
-//                }
-//            }
-//        });
-//        return activities;
-//    }
-
-
     /**
      * Method to calculate the cumulative time spent in an activity, with each array index holding a sum of the time
-     * spent before it.
+     * spent so far.
      * @param activity  The activity the time spent is gotten from.
-     * @return  An array of integers, each index holding a sum of the time spent before it.
+     * @return  An ArrayList&gt;Integer&lt;, each index holding a sum of the time spent before it.
      */
     public ArrayList<Integer> getTimeFromActivity(Activity activity) {
         ArrayList<Integer> timeArray = new ArrayList<>();
@@ -101,8 +77,8 @@ public class DataAnalysis {
 
 
     /**
-     * Method to find the calories burned at each point in an activity. This is based on the gender, weight, age and
-     * heart rate of the user. For the not specified gender, an average of the male and female calculations are used.
+     * Method to find the calories burned at each point in an activity. This is calculated from the gender, weight, age and
+     * heart rate of the user. For the gender "other", an average of the male and female calculations are used.
      * The total calories burned is the last index of the returned array.
      * @param activity  The activity the calories are being calculated from.
      * @param user  The user being used for the calorie calculations.
@@ -114,58 +90,37 @@ public class DataAnalysis {
         ArrayList<Double> calorieArray = new ArrayList<>();
 
         int userAge = Calendar.getInstance().get(Calendar.YEAR) - user.getBirthDate().getYear();
-        if (user.getGender() == "Male") {
-            for (int index = 0; index < activity.getEntries().size(); index++) {
-                Entry entry = activity.getEntries().get(index);
-                double calories = ((-55.0969 + (0.6309 * entry.getHeartRate()) + (0.1988 * user.getWeight()) + (0.2017 * userAge))/4.184) * 60 * timeArray.get(index)/3600.0;
-                calorieArray.add(calories);
-            }
-        } else if (user.getGender() == "Female") {
-            for (int index = 0; index < activity.getEntries().size(); index++) {
-                Entry entry = activity.getEntries().get(index);
-                double calories = ((-20.4022 + (0.4472 * entry.getHeartRate()) + (0.1263 * user.getWeight()) + (0.074 * userAge))/4.184) * 60 * timeArray.get(index)/3600.0;
-                calorieArray.add(calories);
-            }
-        } else {
-            for (int index = 0; index < activity.getEntries().size(); index++) {
-                Entry entry = activity.getEntries().get(index);
-                double calories = ((-37.5 + (0.54 * entry.getHeartRate()) + (0.155 * user.getWeight()) + (0.138 * userAge))/4.184) * 60 * timeArray.get(index)/3600.0;
-                calorieArray.add(calories);
-            }
+        switch (user.getGender()) {
+            case "Male":
+                for (int index = 0; index < activity.getEntries().size(); index++) {
+                    Entry entry = activity.getEntries().get(index);
+                    double calories = ((-55.0969 + (0.6309 * entry.getHeartRate()) + (0.1988 * user.getWeight()) + (0.2017 * userAge)) / 4.184) * 60 * timeArray.get(index) / 3600.0;
+                    calorieArray.add(calories);
+                }
+                break;
+            case "Female":
+                for (int index = 0; index < activity.getEntries().size(); index++) {
+                    Entry entry = activity.getEntries().get(index);
+                    double calories = ((-20.4022 + (0.4472 * entry.getHeartRate()) + (0.1263 * user.getWeight()) + (0.074 * userAge)) / 4.184) * 60 * timeArray.get(index) / 3600.0;
+                    calorieArray.add(calories);
+                }
+                break;
+            default:
+                for (int index = 0; index < activity.getEntries().size(); index++) {
+                    Entry entry = activity.getEntries().get(index);
+                    double calories = ((-37.5 + (0.54 * entry.getHeartRate()) + (0.155 * user.getWeight()) + (0.138 * userAge)) / 4.184) * 60 * timeArray.get(index) / 3600.0;
+                    calorieArray.add(calories);
+                }
+                break;
         }
-        //activities.setCaloriesBurned(calorieArray[-1]);
         return calorieArray;
     }
-
-
-    /**
-     * Method to get the positions of entries from an activity.
-     * @param activity  The activity the entries are being taken from
-     * @return  An ArrayList&gt;Position&lt; that contains the positions in an activity.
-     */
-    public ArrayList<Position> getPositionFromActivity(Activity activity) {
-
-        ArrayList<Position> positionArray = new ArrayList<>();
-        for (Entry entry : activity.getEntries()) {
-            positionArray.add(entry.getPosition());
-        }
-        return positionArray;
-    }
-
-    /**
-     * Sets the activities value.
-     * @param activities  An ArrayList&gt;Activity&lt;
-     */
-    public void setActivities(ArrayList<Activity> activities) {
-        this.activities = activities;
-    }
-
 
     /**
      * Method to calculate the cumulative time spent in an activity in minutes, with each array index holding a sum of the time
      * spent before it. The final index holds the total time in minutes.
      * @param activity  The activity the time spent is gotten from.
-     * @return  An array of Doubles, each index holding a sum of the time spent before it.
+     * @return  An ArrayLisst&gt;Double&lt;, each index holding a sum of the time spent before it.
      */
     public ArrayList<Double> getMinutesFromActivity(Activity activity) {
 
@@ -181,24 +136,5 @@ public class DataAnalysis {
         }
         minutesArray.add(minutesSum);
         return minutesArray;
-
     }
-
-//    /**
-//     * Takes an arraylist of entries and fills in any missing gaps in the data for analysis.
-//     *
-//     * @param entryArrayList
-//     * @return
-//     */
-//    public ArrayList<Entry> interpolateEntries(ArrayList<Entry> entryArrayList) {
-//        ArrayList<Entry> interpolatedEntries = new ArrayList<>();
-//        DateTime entryTime;
-//        for (Entry entry : entryArrayList) {
-//            entryTime = entry.getTime();
-//            interpolatedEntries.add(entry);
-//
-//        }
-//
-//    }
-
 }

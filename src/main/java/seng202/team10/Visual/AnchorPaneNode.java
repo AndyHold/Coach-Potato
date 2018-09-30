@@ -16,6 +16,8 @@ import java.util.ArrayList;
 
 /**
  * Subclass of an anchor pane that can store additional data.
+ * SENG202 2018S2
+ * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public class AnchorPaneNode extends AnchorPane {
 
@@ -29,7 +31,7 @@ public class AnchorPaneNode extends AnchorPane {
 
     /**
      * Setter method to set the profile controller for this Scene.
-     * @param profileController profileController
+     * @param profileController The <b>profileController</b> being set.
      */
     public void setProfileController(ProfileController profileController)
     {
@@ -38,9 +40,9 @@ public class AnchorPaneNode extends AnchorPane {
 
     /**
      * Method to calculate the total distance for this pane's date and returns it as a string.
-     * @return distanceCovered String
+     * @return A <b>String</b> descrbing the distance covered.
      */
-    public String printDistance()
+    private String printDistance()
     {
         double distance = 0.0;
         String distanceCovered = "Distance Covered: ";
@@ -53,7 +55,7 @@ public class AnchorPaneNode extends AnchorPane {
 
     /**
      * Method to calculate the average speed for this pane's date and returns it as a string.
-     * @return averageSpeed String
+     * @return A <b>String</b> describing the average speed
      */
     public String printSpeed()
     {
@@ -68,23 +70,22 @@ public class AnchorPaneNode extends AnchorPane {
 
     /**
      * Method to calculate the calories burned for this pane's date and returns it as a string.
-     * @return caloriesBurned String
+     * @return A <b>String</b> describing the calories burned.
      */
-    public String printCalories()
+    private String printCalories()
     {
         double calories = 0.0;
         for (Activity activity: activities) {
             calories += (dataAnalysis.getCaloriesFromActivity(activity, currentUser)).get(activity.getEntries().size()-1);
         }
-        String caloriesBurned = "Calories burned: " + String.format("%.2f", calories);
-        return caloriesBurned;
+        return "Calories burned: " + String.format("%.2f", calories);
     }
 
     /**
      * Method to calculate the total time spent for this pane's date and returns it as a string.
-     * @return timeSpent String
+     * @return A <b>String</b> describing the time spent
      */
-    public String printTimeSpent()
+    private String printTimeSpent()
     {
         int time = 0;
         for (Activity activity: activities) {
@@ -93,8 +94,7 @@ public class AnchorPaneNode extends AnchorPane {
 
         int minutes = time/60;
         int seconds = time%60;
-        String timeSpent = "Time spent: " + String.valueOf(minutes) + ":" + String.valueOf(seconds) + " minutes";
-        return timeSpent;
+        return "Time spent: " + String.valueOf(minutes) + ":" + String.valueOf(seconds) + " minutes";
     }
 
     /**
@@ -131,7 +131,7 @@ public class AnchorPaneNode extends AnchorPane {
      * Create a anchor pane node. Date is not assigned in the constructor.
      * @param children children of the anchor pane
      */
-    public AnchorPaneNode(Node... children)
+    AnchorPaneNode(Node... children)
     {
         super(children);
         // Add action handler for mouse clicked
@@ -159,7 +159,7 @@ public class AnchorPaneNode extends AnchorPane {
 
     /**
      * Getter method to get the pane's activities.
-     * @return activities ArrayList of Activity.
+     * @return An <b>ArrayList&gt;Activity&lt;</b>
      */
     public ArrayList<Activity> getActivities()
     {
@@ -168,7 +168,7 @@ public class AnchorPaneNode extends AnchorPane {
 
     /**
      * Setter method to set the pane's activities.
-     * @param activities ArrayList of Activity.
+     * @param activities An <b>ArrayList&gt;Activity&lt;</b>
      */
     public void setActivities(ArrayList<Activity> activities)
     {
@@ -177,7 +177,7 @@ public class AnchorPaneNode extends AnchorPane {
 
     /**
      * Setter method to set the current user profile.
-     * @param currentUser UserProfile
+     * @param currentUser <b>UserProfile</b>
      */
     public void setCurrentUser(UserProfile currentUser)
     {
@@ -186,7 +186,7 @@ public class AnchorPaneNode extends AnchorPane {
 
     /**
      * Getter method to get the pane's goals.
-     * @return todayGoals Arraylist of goals
+     * @return An <b>ArrayList&gt;Goal&lt;</b>
      */
     public ArrayList<Goal> getTodayGoals() {
         return todayGoals;
@@ -194,7 +194,7 @@ public class AnchorPaneNode extends AnchorPane {
 
     /**
      * Setter method to set current user's goals.
-     * @param todayGoals Arraylist of goals
+     * @param todayGoals An <b>ArrayList&gt;Goal&lt;</b>
      */
     public void setTodayGoals(ArrayList<Goal> todayGoals) {
         this.todayGoals = todayGoals;

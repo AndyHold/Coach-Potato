@@ -16,6 +16,6 @@ public class InvalidWeightException extends Exception {
      */
     public InvalidWeightException()
     {
-        super("Invalid Weight");
+        super("Invalid weight");
     }
 }

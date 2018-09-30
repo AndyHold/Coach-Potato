@@ -6,6 +6,7 @@ import seng202.team10.Model.Exceptions.*;
 import seng202.team10.Model.Goals.Goals;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * UserProfile Class for Coach Potato
@@ -36,11 +37,11 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Constructor method for UserProfile class
-     * @param name: String
-     * @param weight: double
-     * @param birthDate: DateTime
-     * @param gender: String
-     * @param height : double
+     * @param name: <b>String</b>
+     * @param weight: <b>Double</b>
+     * @param birthDate: <b>DateTime</b>
+     * @param gender: <b>String</b>
+     * @param height : <b>Double</b>
      * @throws UserNameException When the user name is invalid
      * @throws InvalidWeightException When the weight is invalid
      * @throws InvalidHeightException When the height is invalid
@@ -58,8 +59,8 @@ public class UserProfile implements java.io.Serializable {
 
 
     /**
-     * Getter method for the name of the user
-     * @return String
+     * Getter method for the name of the user.
+     * @return <b>String</b>
      */
     public String getName() {
         return name;
@@ -68,7 +69,7 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Setter method for the name of the user
-     * @param newName: String
+     * @param newName: A <b>String</b> of the name entered for the user.
      * @throws  UserNameException when the user name is invalid
      */
     public void setName(String newName) throws UserNameException
@@ -83,18 +84,23 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Setter method for the gender of the user
-     * @param gender: String: "Male", "Female", or "Other"
+     * @param gender <b>String:</b> "Male", "Female", or "Other"
      */
     public void setGender(String gender) { this.gender = gender; }
 
 
     /**
      * Getter method for the gender of the user
-     * @return String
+     * @return <b>String</b>
      */
     public String getGender() { return gender; }
 
 
+    /**
+     * Gets a list of health warnings.
+     * @param healthWarningType An enum for the health warning type.
+     * @return  An <b>ArrayList&gt;HealthWarning&lt;</b>
+     */
     public ArrayList<HealthWarning> getWarnings(HealthWarningType healthWarningType)
     {
         ArrayList<HealthWarning> result = new ArrayList<>();
@@ -110,7 +116,7 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Getter method for the activities of the user
-     * @return Activities
+     * @return An <b>ArrayList&gt;Activity&lt;</b>
      */
     public ArrayList<Activity> getActivities() {
         return this.activities;
@@ -119,8 +125,8 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Method for adding an activity to the list of user's Activities.
-     * @param newActivity Activity
-     * @throws ExistingActivityException If the activity already exists in the application
+     * @param newActivity The <b>Activity</b> being added to the user.
+     * @throws ExistingActivityException If the activity already exists in the application.
      */
     public void addActivity(Activity newActivity) throws ExistingActivityException
     {
@@ -139,7 +145,7 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Method for adding a new list of activities (such as when a new CSV file is loaded)
-     * @param newActivities: Arraylist of Activity
+     * @param newActivities <b>ArrayList&gt;Activity&lt;</b> of activities being added to the user.
      * @throws  ExistingElementException When the activity already exists in the application
      */
     public void addActivities(ArrayList<Activity> newActivities) throws ExistingElementException
@@ -160,7 +166,7 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Getter method for the weight of the user
-     * @return double
+     * @return <b>Double</b>
      */
     public double getWeight() {
         return this.weight;
@@ -169,7 +175,7 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Getter method for the height of the user
-     * @return double
+     * @return <b>Double</b>
      */
     public double getHeight() {
         return this.height;
@@ -178,8 +184,8 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Setter method for the weight of the user
-     * @param newWeight: double
-     * @throws InvalidWeightException when weight is not in the valid range
+     * @param newWeight A double of the weight entered.
+     * @throws InvalidWeightException when weight is not in the valid range (30-250)
      */
     public void setWeight(double newWeight) throws InvalidWeightException
     {
@@ -193,8 +199,8 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Setter method for the height of the user
-     * @param newHeight: double
-     * @throws  InvalidHeightException when the height is invalid
+     * @param newHeight A double of the height entered.
+     * @throws  InvalidHeightException when the height not in the valid range (50-260)
      */
     public void setHeight(double newHeight) throws InvalidHeightException
     {
@@ -207,19 +213,25 @@ public class UserProfile implements java.io.Serializable {
 
 
     /**
-     * Setter method for the birthDate of the user
-     * @param newDate: DateTime
-     *               TODO add exception if age is less than 5 years old.
+     * Setter method for the birth date of the user
+     * @param newDate: DateTime of the date of birth entered
+     * @throws  InvalidDateException when the date not in the valid range (age between 5-120)
      */
-    public void setBirthDate(DateTime newDate)
+    public void setBirthDate(DateTime newDate) throws InvalidDateException
     {
+
         this.birthDate = newDate;
+        int userAge  = calculateAge();
+        if (userAge < 5 || userAge > 120) {
+            this.birthDate = null;
+            throw new InvalidDateException();
+        }
     }
 
 
     /**
-     * Getter method for the birthDate of the user
-     * @return Date
+     * Getter method for the birth date of the user
+     * @return <b>DateTime</b>
      */
     public DateTime getBirthDate()
     {
@@ -228,7 +240,7 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Method to calculate user's Body Mass Index (BMI)
-     * @return double
+     * @return <b>Double</b>
      */
     public double calcBmi() {
         this.bmi = getWeight() / (Math.pow(getHeight() / 100, 2));
@@ -248,6 +260,10 @@ public class UserProfile implements java.io.Serializable {
     }
 
 
+    /**
+     * Method to return a string describing the BMI category the user belongs to.
+     * @return  <b>String</b>
+     */
     public String getBmiCategory()
     {
         calcBmi();
@@ -266,7 +282,7 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Override method to get a string representation of an user profile
-     * @return String
+     * @return <b>String</b>
      */
     @Override
     public String toString()
@@ -284,7 +300,7 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Getter method to get user's goals.
-     * @return Goals
+     * @return <b>Goals</b>
      */
     public Goals getGoals()
     {
@@ -293,7 +309,7 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Setter method to set user's goals.
-     * @param goals: Goals
+     * @param goals <b>Goals</b>
      */
     public void setGoals(Goals goals)
     {
@@ -304,7 +320,7 @@ public class UserProfile implements java.io.Serializable {
      * Method to get the total distance of user's activities within two DateTime objects.
      * @param startDate The start date of the activity
      * @param endDate The end date of the activity
-     * @return totalDistance: double
+     * @return A <b>Double</b> describing the total distance
      */
     public double getActivitiesDistance(DateTime startDate, DateTime endDate)
     {
@@ -322,7 +338,7 @@ public class UserProfile implements java.io.Serializable {
      * Method to get the average speed of user's activities within two DateTime objects.
      * @param startDate The start date of the activity
      * @param endDate The end date of the activity
-     * @return averageSpeed: double
+     * @return A <b>Double</b> describing the average speed
      */
     public double getActivitiesSpeed(DateTime startDate, DateTime endDate)
     {
@@ -343,7 +359,7 @@ public class UserProfile implements java.io.Serializable {
      * Method to get the number of user's activities within two DateTime objects.
      * @param startDate The start date of the activity
      * @param endDate The end date of the activity
-     * @return frequency: int
+     * @return An <b>Integer</b> describing the frequency of activities
      */
     public int getActivitiesFreq(DateTime startDate, DateTime endDate)
     {
@@ -360,7 +376,7 @@ public class UserProfile implements java.io.Serializable {
      * Method to get the total duration in seconds of user's activities within two DateTime objects.
      * @param startDate The start date of the activity
      * @param endDate The end date of the activity
-     * @return totalTime: int
+     * @return An <b>Integer</b> describing the total time taken of a number of activities.
      */
     public double getActivitiesTime(DateTime startDate, DateTime endDate)
     {
@@ -374,51 +390,32 @@ public class UserProfile implements java.io.Serializable {
     }
 
     /**
-     * Getter method to get user's average heart rate.
-     * @return int
-     */
-    public int getAverageHeartRate()
-    {
-        return averageHeartRate;
-    }
-
-    /**
-     * Setter method to set user's average heart rate.
-     * @param averageHeartRate: int
-     */
-    public void setAverageHeartRate(int averageHeartRate)
-    {
-        this.averageHeartRate = averageHeartRate;
-    }
-
-    /**
      * Method to get the average heart rate of user's activities within two DateTime objects.
      * @param startDate The start date of the activity
      * @param endDate The end date of the activity
-     * @return averageHeartRate: int
+     * @return An <b>Integer</b> describing the average heart rate
      */
     public int getActivitiesHeartRate(DateTime startDate, DateTime endDate)
     {
         int sum = 0;
         int count = 0;
-        int averageHeartRate = 0;
         for (Activity activity : activities) {
             if (activity.getStartDateTime().isAfter(startDate) && activity.getEndDateTime().isBefore(endDate)) {
                 sum += activity.getAverageHeartRate();
                 count++;
             }
         }
-        averageHeartRate = sum/count;
-        return averageHeartRate;
+        return sum/count;
     }
 
 
     /**
      * Method to add health warnings to the list of active health warnings.
-     * @param healthWarningTypes ArrayList: List of the health warning types in the activity.
-     * @param activity Activity: The activity the health warnings were detected on.
+     * @param healthWarningTypes An <b>ArrayList&gt;HealthWarningType&lt;</b> describing the types of health
+     *                           warnings in the activity.
+     * @param activity The <b>Activity</b> the health warnings were detected on.
      */
-    public void addHealthWarnings(ArrayList<HealthWarningType> healthWarningTypes, Activity activity)
+    private void addHealthWarnings(ArrayList<HealthWarningType> healthWarningTypes, Activity activity)
     {
         for (HealthWarningType healthWarningType: healthWarningTypes) {
             activeHealthWarnings.add(new HealthWarning(healthWarningType, activity.getName(), activity.getStartDateTime()));
@@ -428,7 +425,7 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Getter method for the current health warnings.
-     * @return ArrayList: List of the current health warnings.
+     * @return <b>ArrayList&gt;HealthWarning&lt;</b>
      */
     public ArrayList<HealthWarning> getActiveHealthWarnings()
     {
