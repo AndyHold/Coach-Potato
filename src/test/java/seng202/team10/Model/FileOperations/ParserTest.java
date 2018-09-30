@@ -326,7 +326,7 @@ public class ParserTest {
 
     @Test
     public void entryDateTimeMangled() throws FileNotFoundException, NoDataFoundException{
-        ArrayList<String> fileContents = testParser.getFileContents("FilesToLoad/TestData/spacedEntries.csv");
+        ArrayList<String> fileContents = testParser.getFileContents("FilesToLoad/TestData/badDateEntries.csv");
         ArrayList<ArrayList<String>> formattedFileContents = testParser.formatFileContents(fileContents);
         ArrayList<Activity> activities = testParser.processFile(formattedFileContents);
         assertTrue(testParser.getBadActivities() == 4);
