@@ -377,25 +377,6 @@ public class GUIController extends Application {
     }
 
 
-    //    /**
-//     * loads all the users in the profiles folder and adds them to the users arraylist
-//     */
-//    private void loadAllUsers() throws IOException, ClassNotFoundException {
-//        userNames = dataReader.getExistingUsers();
-//        for (String username : userNames) {
-//            try {
-//                users.add(dataReader.loadExistingProfile(username));
-//            } catch(InvalidClassException exception) {
-//                String option = createPopUp(Alert.AlertType.CONFIRMATION, "Error", "Could not load profile: " + username + "\nWould you like to delete it?");
-//                if (option.equals("OK")) {
-//                    getDataWriter().deleteProfile(username);
-//                }
-//            }
-//        }
-//        userNames = dataReader.getExistingUsers();
-//    }
-
-
     /**
      * Method to set the window as draggable.
      * @param root Parent: the root scene loader of the window.
