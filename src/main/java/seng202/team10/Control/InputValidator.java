@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class InputValidator {
 
+<<<<<<< HEAD
     /**
      * checks if a goal name is valid (length and duplicate)
      * @param name the name being checked
@@ -61,6 +62,8 @@ public class InputValidator {
     {
         return (start.isBefore(target));
     }
+=======
+>>>>>>> d4556095... Deleted some methods from InputValidator as they are no longer used and added icon for hearRate graph
 
     /**
      * checks if an int value is between two set bounds
@@ -91,22 +94,6 @@ public class InputValidator {
             return false;
         }
     }
-
-//    /**
-//     * Returns true if the argument can be parsed to a float, false otherwise
-//     *
-//     * @param floatString  The string being checked to be a float.
-//     * @return  True if the string can be parsed to a float.
-//     */
-//    public boolean isValidFloat(String floatString) {
-//        float parsedFloat;
-//        try {
-//            parsedFloat = Float.parseFloat(floatString);
-//        } catch (NumberFormatException e){
-//            return false;
-//        }
-//        return true;
-//    }
 
     /**
      * checks if the name of an activity is valid
@@ -206,6 +193,7 @@ public class InputValidator {
         }
         return false;
     }
+<<<<<<< HEAD
 
     /**
      * checks if the target type of a goal is valid
@@ -243,4 +231,6 @@ public class InputValidator {
     public boolean isValidIntTargetValue (int target) {
         return (target >= 0 || target < 10000);
     }
+=======
+>>>>>>> d4556095... Deleted some methods from InputValidator as they are no longer used and added icon for hearRate graph
 }
