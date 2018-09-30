@@ -7,14 +7,14 @@ package seng202.team10.Model.Exceptions;
  * SENG202 2018S2
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
-public class BadActivityException extends Exception{
+public class InvalidDateException extends Exception{
 
 
     /**
-     * Constructor method for BadActivityException
+     * Constructor method for InvalidDateException
      */
-    public BadActivityException()
+    public InvalidDateException()
     {
-        super("This activity is unparsable and has been discarded");
+        super("The date entered is invalid");
     }
 }

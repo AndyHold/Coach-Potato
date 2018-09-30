@@ -24,14 +24,14 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 /**
- * Map Controller Class for Coach Potato SENG202 2018S2
+ * Controller class for the map screen, where a map of an activity is displayed.
+ * SENG202 2018S2
+ * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public class MapController implements Controllable, Initializable{
 
-    private GUIController guiController;
+    private GUIController app;
     private WebEngine webEngine;
-    private boolean firstLoad = true;
-    private boolean firstMapView = false;
     private Activity activity;
     private Route route;
 
@@ -43,19 +43,18 @@ public class MapController implements Controllable, Initializable{
 
 
     /**
-     * Method to set this scene to be the currently active one.
-     * @param guiController  The main controller being passed in.
+     * Setter method to pass the GUIController into this controller.
+     * @param guiController <b>GUIController:</b> The main controller.
      */
-    @Override
     public void setApp(GUIController guiController)
     {
-        this.guiController = guiController;
+        this.app = guiController;
     }
 
 
     /**
      * Method to display a route on the map, and show the map to the user.
-     * @param newRoute the Route being displayed
+     * @param newRoute The <b>Route</b> being displayed.
      */
     public void displayRoute(Route newRoute)
     {
@@ -67,7 +66,7 @@ public class MapController implements Controllable, Initializable{
                             try {
                                 webEngine.executeScript(scriptToExecute);
                             } catch (netscape.javascript.JSException exception) {
-                                guiController.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to the internet. Please connect and try again.");
+                                app.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to the internet. Please connect and try again.");
                             }
                         }
                     }
@@ -117,7 +116,7 @@ public class MapController implements Controllable, Initializable{
 
 
     /**
-     * set up method for the tool tips
+     * Set up method for the tool tips
      */
     private void setUpToolTips()
     {
@@ -149,8 +148,8 @@ public class MapController implements Controllable, Initializable{
 
 
     /**
-     * Setter method for the activity being mapped
-     * @param activity Activity: activity being mapped
+     * Setter method for the activity being mapped.
+     * @param activity The <b>Activity</b> being mapped.
      */
     public void setActivity(Activity activity)
     {
@@ -160,19 +159,19 @@ public class MapController implements Controllable, Initializable{
 
 
     /**
-     * goes back to the data analysis screen
+     * Method to go to the analysis screen.
      */
     @FXML public void goToDataAnalysis()
     {
 //        guiController.launchActivityViewerScene();
-        guiController.getTitleBar().openAnalysis();
+        app.getTitleBar().openAnalysis();
     }
 
 
     /**
-     * creates a new Route from an activity
-     * @param activity the activity being mapped
-     * @return the Route opject of the activity
+     * Creates a new Route from an activity.
+     * @param activity The <b>Activity</b> being mapped.
+     * @return A <b>Route</b> object made from the activity.
      */
     public Route makeRoute(Activity activity)
     {

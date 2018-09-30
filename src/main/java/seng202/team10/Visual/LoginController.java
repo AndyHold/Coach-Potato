@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 
 /**
- * LoginController Class for Coach Potato
+ * Controller class for the login screen, which displays lists of users for logging in.
  * SENG202 2018S2
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
@@ -50,8 +50,8 @@ public class LoginController implements Controllable{
 
 
     /**
-     * Setter method for the GUIController
-     * @param app GUIController
+     * Setter method to pass the GUIController into this controller.
+     * @param app <b>GUIController:</b> The main controller.
      */
     public void setApp(GUIController app)
     {
@@ -60,7 +60,7 @@ public class LoginController implements Controllable{
 
 
     /**
-     * Method to initialize the user images and other objects on the screen.
+     * Sets up objects that require it prior to showing the scene.
      */
     public void setUpScene() {
         // Set user button style string
@@ -92,7 +92,7 @@ public class LoginController implements Controllable{
 
     /**
      * Method called when the close button is selected.
-     * closes the application.
+     * Closes the application.
      */
     @FXML public void close()
     {
@@ -101,7 +101,7 @@ public class LoginController implements Controllable{
 
 
     /**
-     * Set the css style for the User Buttons as a string
+     * Set the css style for the User Buttons as a string.
      */
     private void setUserButtonStyle()
     {
@@ -118,7 +118,7 @@ public class LoginController implements Controllable{
 
 
     /**
-     * Set up Method for the tool tips
+     * Set up method for the tool tips.
      */
     private void setUpToolTips()
     {
@@ -130,7 +130,7 @@ public class LoginController implements Controllable{
 
 
     /**
-     * Set up method for the help text field
+     * Set up method for the help text field.
      */
     private void setUpHelpText()
     {
@@ -175,8 +175,8 @@ public class LoginController implements Controllable{
 
     /**
      * Setter method for the user buttons. Sets the user to a button depending on the index in the list of users.
-     * @param index int: index of the uwser to be set up
-     * @param user UserProfile: profile of the user to be associated with a button.
+     * @param index An <b>Integer</b> index of the user list.
+     * @param user <b>UserProfile</b> of the user to be associated with a button.
      */
     private void setButtonProperties(int index, UserProfile user)
     {
@@ -460,7 +460,7 @@ public class LoginController implements Controllable{
     /**
      * Method to toggle red borders around user buttons
      */
-    public void toggleDeleteButtons()
+    private void toggleDeleteButtons()
     {
         if (userOneButton.getStyle().equals("")) {
             userOneButton.setStyle(userButtonBorderStyle + userButtonStyle);

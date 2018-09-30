@@ -15,7 +15,7 @@ import seng202.team10.Model.Exceptions.EntryOutOfSequenceException;
 import java.util.ArrayList;
 
 /**
- * EntryViewerController Class for Coach Potato
+ * Controller class for the entry viewer screen, where lists of entries for activities are displayed.
  * SENG202 2018S2
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
@@ -41,8 +41,8 @@ public class EntryViewerController {
 
 
     /**
-     * Method to set up objects that require it prior to showing the scene
-     * @param loadActivity The activity to be loaded
+     * Method to set up objects that require it prior to showing the scene.
+     * @param loadActivity The <b>Activity</b> to be loaded.
      */
     public void setUpScene(Activity loadActivity)
     {
@@ -65,7 +65,7 @@ public class EntryViewerController {
 
 
     /**
-     * Method to set up the table view with the entries from the activity
+     * Method to set up the table view with the entries from the activity.
      */
     private void setUpTableView()
     {
@@ -92,7 +92,7 @@ public class EntryViewerController {
 
 
     /**
-     * Set up method for the help text area
+     * Set up method for the help text area.
      */
     private void setUpHelpTextArea()
     {
@@ -115,7 +115,7 @@ public class EntryViewerController {
 
 
     /**
-     * Set up method for the tool tips
+     * Set up method for the tool tips.
      */
     private void setToolTips()
     {
@@ -150,17 +150,17 @@ public class EntryViewerController {
 
 
     /**
-     * Setter method to set the GUI controller for this Scene
-     * @param app GUIController
+     * Setter method to pass the GUIController into this controller.
+     * @param guiController <b>GUIController:</b> The main controller.
      */
-    public void setApp(GUIController app)
+    public void setApp(GUIController guiController)
     {
-        this.app = app;
+        this.app = guiController;
     }
 
 
     /**
-     * Method to return to the activityViewer when the activityReturnButton is pressed and saves changes to entries
+     * Method to return to the activityViewer when the activityReturnButton is pressed and saves changes to entries.
      */
     @FXML public void returnToActivities()
     {
@@ -173,9 +173,9 @@ public class EntryViewerController {
     }
 
     /**
-     * method to check if a list of entries are in time sequence
-     * @param checkingEntries the arraylist of entries being checked
-     * @return true if the order is correct, false if not
+     * Method to check if a list of entries are in time sequence.
+     * @param checkingEntries The <b>ArrayList&gt;Entry&lt;</b> being checked.
+     * @throws EntryOutOfSequenceException if the entries are not in time sequence.
      */
     private void checkContinuity(ArrayList<Entry> checkingEntries) throws EntryOutOfSequenceException {
         if (checkingEntries.size() > 1) {
@@ -188,8 +188,8 @@ public class EntryViewerController {
     }
 
     /**
-     * Method to change the time of an Entry when it is modified in the TableView
-     * @param editedCell TableColumn.CellEditEvent: Cell edited by the user
+     * Method to change the time of an Entry when it is modified in the TableView.
+     * @param editedCell <b>TableColumn.CellEditEvent:</b> Cell edited by the user.
      */
     @FXML public void changeTimeCellEvent(TableColumn.CellEditEvent editedCell)
     {
@@ -213,8 +213,8 @@ public class EntryViewerController {
 
 
     /**
-     * Method to change the date of an Entry when it is modified in the TableView
-     * @param editedCell TableColumn.CellEditEvent: Cell edited by the user
+     * Method to change the date of an Entry when it is modified in the TableView.
+     * @param editedCell <b>TableColumn.CellEditEvent:</b> Cell edited by the user.
      */
     @FXML public void changeDateCellEvent(TableColumn.CellEditEvent editedCell)
     {
@@ -238,8 +238,8 @@ public class EntryViewerController {
 
 
     /**
-     * Method to change the Heart Rate of an Entry when it is modified in the TableView
-     * @param editedCell TableColumn.CellEditEvent: Cell edited by the user
+     * Method to change the Heart Rate of an Entry when it is modified in the TableView.
+     * @param editedCell <b>TableColumn.CellEditEvent:</b> Cell edited by the user.
      */
     @FXML public void changeHeartRateCellEvent(TableColumn.CellEditEvent editedCell)
     {
@@ -257,8 +257,8 @@ public class EntryViewerController {
 
 
     /**
-     * Method to change the Latitude of an Entry when it is modified in the TableView
-     * @param editedCell TableColumn.CellEditEvent: Cell edited by the user
+     * Method to change the Latitude of an Entry when it is modified in the TableView.
+     * @param editedCell <b>TableColumn.CellEditEvent:</b> Cell edited by the user.
      */
     @FXML public void changeLatitudeCellEvent(TableColumn.CellEditEvent editedCell)
     {
@@ -277,8 +277,8 @@ public class EntryViewerController {
 
 
     /**
-     * Method to change the Longitude of an Entry when it is modified in the TableView
-     * @param editedCell TableColumn.CellEditEvent: Cell edited by the user
+     * Method to change the Longitude of an Entry when it is modified in the TableView.
+     * @param editedCell <b>TableColumn.CellEditEvent:</b> Cell edited by the user.
      */
     @FXML public void changeLongitudeCellEvent(TableColumn.CellEditEvent editedCell)
     {
@@ -297,8 +297,8 @@ public class EntryViewerController {
 
 
     /**
-     * Method to change the Elevation of an Entry when it is modified in the TableView
-     * @param editedCell TableColumn.CellEditEvent: Cell edited by the user
+     * Method to change the Elevation of an Entry when it is modified in the TableView.
+     * @param editedCell <b>TableColumn.CellEditEvent:</b> Cell edited by the user.
      */
     @FXML public void changeElevationCellEvent(TableColumn.CellEditEvent editedCell)
     {

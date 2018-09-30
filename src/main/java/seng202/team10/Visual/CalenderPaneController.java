@@ -26,7 +26,7 @@ import java.time.YearMonth;
 import java.util.ArrayList;
 
 /**
- * CallenderPaneController Class for Coach Potato
+ * Controller for the Calendar pane in the profile screen, which shows dates of activities and goals.
  * SENG202 2018S2
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
@@ -34,7 +34,6 @@ public class CalenderPaneController {
 
     private ArrayList<AnchorPaneNode> allCalendarDays = new ArrayList<>(42);
     private VBox view;
-    private Label calendarTitle;
     private YearMonth currentYearMonth;
     private GUIController app;
     private ProfileController profileController;
@@ -45,12 +44,12 @@ public class CalenderPaneController {
 
 
     /**
-     * Setter method to set the GUI controller for this Scene
-     * @param app GUIController
+     * Setter method to pass the GUIController into this controller.
+     * @param guiController <b>GUIController:</b> The main controller.
      */
-    public void setApp(GUIController app)
+    public void setApp(GUIController guiController)
     {
-        this.app = app;
+        this.app = guiController;
     }
 
 
@@ -58,7 +57,7 @@ public class CalenderPaneController {
      * Setter method to set the profile controller for this Scene
      * @param profileController profileController
      */
-    public void setProfileController(ProfileController profileController)
+    private void setProfileController(ProfileController profileController)
     {
         this.profileController = profileController;
     }
@@ -93,7 +92,7 @@ public class CalenderPaneController {
      * @param profileController  The profile controller that controls the profile screen
      *
      */
-    public CalenderPaneController(YearMonth yearMonth, GUIController app, ProfileController profileController)
+    CalenderPaneController(YearMonth yearMonth, GUIController app, ProfileController profileController)
     {
         setApp(app);
         setProfileController(profileController);
@@ -170,41 +169,6 @@ public class CalenderPaneController {
         HBox comboBar = new HBox(monthsComboBox, yearsComboBox);
         comboBar.setAlignment(Pos.CENTER);
 
-//        // Create calendarTitle and buttons to change current month
-//        calendarTitle = new Label();
-//        calendarTitle.setStyle("-fx-background-color: #4DD0E1");
-//        calendarTitle.setTextFill(Color.BLACK);
-//        calendarTitle.setAlignment(Pos.CENTER);
-//        calendarTitle.setPadding(new Insets(5, 5, 5, 5));
-//        calendarTitle.setMinSize(210, 30);
-//        calendarTitle.setMaxSize(210, 30);
-//        calendarTitle.setPrefSize(210, 30);
-//        calendarTitle.setTextAlignment(TextAlignment.CENTER);
-//
-//        Button previousMonth = new Button("<<");
-//        previousMonth.setTextFill(Color.WHITE);
-//        previousMonth.setStyle("-fx-background-color: #4DD0E1; " +
-//                               "-fx-border-color: transparent; " +
-//                               "-fx-background-radius: 1em 0 0 0; ");
-//        previousMonth.setPadding(new Insets(5, 5, 5, 5));
-//        previousMonth.setMinSize(35, 30);
-//        previousMonth.setMaxSize(35, 30);
-//        previousMonth.setPrefSize(35, 30);
-//        previousMonth.setOnAction(e -> previousMonth());
-//
-//        Button nextMonth = new Button(">>");
-//        nextMonth.setStyle("-fx-background-color: #4DD0E1; " +
-//                            "-fx-border-color: transparent; " +
-//                            "-fx-background-radius: 0 1em 0 0;");
-//        nextMonth.setTextFill(Color.WHITE);
-//        nextMonth.setPadding(new Insets(5, 5, 5, 5));
-//        nextMonth.setMinSize(35, 30);
-//        nextMonth.setMaxSize(35, 30);
-//        nextMonth.setPrefSize(35, 30);
-//        nextMonth.setOnAction(e -> nextMonth());
-//        HBox titleBar = new HBox(previousMonth, calendarTitle, nextMonth);
-//        titleBar.setAlignment(Pos.CENTER);
-
         // Populate calendar with the appropriate day numbers
         populateCalendar(yearMonth);
         // Create the calendar view
@@ -216,7 +180,7 @@ public class CalenderPaneController {
      * Set the days of the calendar to correspond to the appropriate date
      * @param yearMonth year and month of month to render
      */
-    public void populateCalendar(YearMonth yearMonth) {
+    private void populateCalendar(YearMonth yearMonth) {
         // Get the date we want to start with on the calendar
         LocalDate calendarDate = LocalDate.of(yearMonth.getYear(), yearMonth.getMonthValue(), 1);
         // Dial back the day until it is SUNDAY (unless the month starts on a sunday)

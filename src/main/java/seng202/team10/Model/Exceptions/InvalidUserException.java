@@ -14,6 +14,6 @@ public class InvalidUserException extends Exception {
      */
     public InvalidUserException()
     {
-        super("Invalid User");
+        super("Invalid user");
     }
 }

@@ -11,7 +11,7 @@ public class ExistingActivityException extends Exception {
 
 
     /**
-     * Constructor method for ExistingElementException
+     * Constructor method for ExistingActivityException
      * @param newMessage String: Message to be displayed on exception.
      */
     public ExistingActivityException(String newMessage)

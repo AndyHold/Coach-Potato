@@ -13,7 +13,7 @@ import seng202.team10.Model.UserProfile;
 import java.util.Calendar;
 
 /**
- * CreateProfileController Class for Coach Potato
+ * Controller for the create profile screen, where the user can create a profile.
  * SENG202 2018S2
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
@@ -21,7 +21,7 @@ public class CreateProfileController implements Controllable
 {
 
     private GUIController app;
-    ToggleGroup toggleGroup;
+    private ToggleGroup toggleGroup;
 
     @FXML private TextField nameEntry;
     @FXML private TextField weightEntry;
@@ -44,12 +44,12 @@ public class CreateProfileController implements Controllable
 
 
     /**
-     * Setter method to set the GUI controller for this Scene
-     * @param app GUIController
+     * Setter method to pass the GUIController into this controller.
+     * @param guiController <b>GUIController:</b> The main controller.
      */
-    public void setApp(GUIController app)
+    public void setApp(GUIController guiController)
     {
-        this.app = app;
+        this.app = guiController;
     }
 
 
@@ -326,7 +326,7 @@ public class CreateProfileController implements Controllable
             int dayInt = Integer.valueOf(day);
             DateTime dateOfBirth = new DateTime(yearInt, monthInt, dayInt, 0, 0, 0);
             userProfile.setBirthDate(dateOfBirth);
-        } catch (NullPointerException | IllegalArgumentException exception) {
+        } catch (NullPointerException | IllegalArgumentException | InvalidDateException exception) {
             dateErrorLabel.setVisible(true);
         }
     }
