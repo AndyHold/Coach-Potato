@@ -21,10 +21,10 @@ public class UserProfile implements java.io.Serializable {
     private double height;
     private DateTime birthDate;
     private String gender;
-    private int maxHeartRate;
     private int averageHeartRate;
     private double bmi;
     private Goals goals = new Goals(this);
+    private ArrayList<HealthWarning> activeHealthWarnings = new ArrayList<>();
 
 
     /**
@@ -95,20 +95,16 @@ public class UserProfile implements java.io.Serializable {
     public String getGender() { return gender; }
 
 
-    /**
-     * Setter method for the maxHeartRate of the user
-     * @param maxHeartrate: int
-     */
-    public void setMaxHeartRate(int maxHeartrate)
+    public ArrayList<HealthWarning> getWarnings(HealthWarningType healthWarningType)
     {
-        this.maxHeartRate = maxHeartrate;
+        ArrayList<HealthWarning> result = new ArrayList<>();
+        for (HealthWarning healthWarning: activeHealthWarnings) {
+            if (healthWarning.getType() == healthWarningType) {
+                result.add(healthWarning);
+            }
+        }
+        return result;
     }
-
-    /**
-     * Getter method for the maxHeartRate of the user
-     * @return int
-     */
-    public int getMaxHeartRate() { return maxHeartRate; }
 
 
 
@@ -128,7 +124,6 @@ public class UserProfile implements java.io.Serializable {
      */
     public void addActivity(Activity newActivity) throws ExistingActivityException
     {
-        // TODO fix this it is not working!!!
         for (Activity existingActivity: activities) {
             if (!newActivity.getStartDateTime().isAfter(existingActivity.getEndDateTime())) { // If the existing activity's end is not before the new activity's start
                 if (!newActivity.getEndDateTime().isBefore(existingActivity.getStartDateTime())) { // If the existing activity's start is not after the new activity's end
@@ -136,6 +131,8 @@ public class UserProfile implements java.io.Serializable {
                 }
             }
         } // Else continue to add the activity.
+        newActivity.checkEntriesForWarnings(this);
+        addHealthWarnings(newActivity.getHealthWarningTypes(), newActivity);
         activities.add(newActivity);
     }
 
@@ -212,8 +209,10 @@ public class UserProfile implements java.io.Serializable {
     /**
      * Setter method for the birthDate of the user
      * @param newDate: DateTime
+     *               TODO add exception if age is less than 5 years old.
      */
-    public void setBirthDate(DateTime newDate) {
+    public void setBirthDate(DateTime newDate)
+    {
         this.birthDate = newDate;
     }
 
@@ -222,7 +221,8 @@ public class UserProfile implements java.io.Serializable {
      * Getter method for the birthDate of the user
      * @return Date
      */
-    public DateTime getBirthDate() {
+    public DateTime getBirthDate()
+    {
         return this.birthDate;
     }
 
@@ -236,7 +236,20 @@ public class UserProfile implements java.io.Serializable {
     }
 
 
-    public String getBmiCategory() {
+    /**
+     * Calculates the users age based on thier date of birth.
+     * @return int: The users age.
+     * TODO test this
+     */
+    public int calculateAge()
+    {
+        DateTime current = DateTime.now();
+        return current.subtractYearsFromDateTime(this.birthDate);
+    }
+
+
+    public String getBmiCategory()
+    {
         calcBmi();
         String category;
         if(this.bmi < 18.5) {
@@ -256,7 +269,8 @@ public class UserProfile implements java.io.Serializable {
      * @return String
      */
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "UserProfile{" +
                 "name='" + name + '\'' +
                 ", activities=" + activities +
@@ -272,7 +286,8 @@ public class UserProfile implements java.io.Serializable {
      * Getter method to get user's goals.
      * @return Goals
      */
-    public Goals getGoals() {
+    public Goals getGoals()
+    {
         return goals;
     }
 
@@ -280,7 +295,8 @@ public class UserProfile implements java.io.Serializable {
      * Setter method to set user's goals.
      * @param goals: Goals
      */
-    public void setGoals(Goals goals) {
+    public void setGoals(Goals goals)
+    {
         this.goals = goals;
     }
 
@@ -290,7 +306,8 @@ public class UserProfile implements java.io.Serializable {
      * @param endDate The end date of the activity
      * @return totalDistance: double
      */
-    public double getActivitiesDistance(DateTime startDate, DateTime endDate) {
+    public double getActivitiesDistance(DateTime startDate, DateTime endDate)
+    {
         double totalDistance = 0;
         for (Activity activity : activities) {
             if (activity.getStartDateTime().isAfter(startDate) && activity.getEndDateTime().isBefore(endDate)) {
@@ -307,7 +324,8 @@ public class UserProfile implements java.io.Serializable {
      * @param endDate The end date of the activity
      * @return averageSpeed: double
      */
-    public double getActivitiesSpeed(DateTime startDate, DateTime endDate) {
+    public double getActivitiesSpeed(DateTime startDate, DateTime endDate)
+    {
         double averageSpeed = 0;
         int count = 0;
         for (Activity activity : activities) {
@@ -327,7 +345,8 @@ public class UserProfile implements java.io.Serializable {
      * @param endDate The end date of the activity
      * @return frequency: int
      */
-    public int getActivitiesFreq(DateTime startDate, DateTime endDate) {
+    public int getActivitiesFreq(DateTime startDate, DateTime endDate)
+    {
         int frequency = 0;
         for (Activity activity : activities) {
             if (activity.getStartDateTime().isAfter(startDate) && activity.getEndDateTime().isBefore(endDate)) {
@@ -343,7 +362,8 @@ public class UserProfile implements java.io.Serializable {
      * @param endDate The end date of the activity
      * @return totalTime: int
      */
-    public double getActivitiesTime(DateTime startDate, DateTime endDate) {
+    public double getActivitiesTime(DateTime startDate, DateTime endDate)
+    {
         double totalTime = 0;
         for (Activity activity : activities) {
             if (activity.getStartDateTime().isAfter(startDate) && activity.getEndDateTime().isBefore(endDate)) {
@@ -357,7 +377,8 @@ public class UserProfile implements java.io.Serializable {
      * Getter method to get user's average heart rate.
      * @return int
      */
-    public int getAverageHeartRate() {
+    public int getAverageHeartRate()
+    {
         return averageHeartRate;
     }
 
@@ -365,7 +386,8 @@ public class UserProfile implements java.io.Serializable {
      * Setter method to set user's average heart rate.
      * @param averageHeartRate: int
      */
-    public void setAverageHeartRate(int averageHeartRate) {
+    public void setAverageHeartRate(int averageHeartRate)
+    {
         this.averageHeartRate = averageHeartRate;
     }
 
@@ -375,7 +397,8 @@ public class UserProfile implements java.io.Serializable {
      * @param endDate The end date of the activity
      * @return averageHeartRate: int
      */
-    public int getActivitiesHeartRate(DateTime startDate, DateTime endDate) {
+    public int getActivitiesHeartRate(DateTime startDate, DateTime endDate)
+    {
         int sum = 0;
         int count = 0;
         int averageHeartRate = 0;
@@ -390,4 +413,25 @@ public class UserProfile implements java.io.Serializable {
     }
 
 
+    /**
+     * Method to add health warnings to the list of active health warnings.
+     * @param healthWarningTypes ArrayList: List of the health warning types in the activity.
+     * @param activity Activity: The activity the health warnings were detected on.
+     */
+    public void addHealthWarnings(ArrayList<HealthWarningType> healthWarningTypes, Activity activity)
+    {
+        for (HealthWarningType healthWarningType: healthWarningTypes) {
+            activeHealthWarnings.add(new HealthWarning(healthWarningType, activity.getName(), activity.getStartDateTime()));
+        }
+    }
+
+
+    /**
+     * Getter method for the current health warnings.
+     * @return ArrayList: List of the current health warnings.
+     */
+    public ArrayList<HealthWarning> getActiveHealthWarnings()
+    {
+        return activeHealthWarnings;
+    }
 }

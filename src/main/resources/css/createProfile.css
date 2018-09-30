@@ -1,0 +1,18 @@
+#helpButton
+{
+    -fx-border-width: 0;
+}
+
+#dayEntry
+{
+    -fx-background-radius: 1em;
+    -fx-border-radius: 1em;
+    -fx-border-width: 2px;
+}
+
+.radio-button
+{
+    -fx-font-family: "Noto Serif Georgian";
+    -fx-font-size: 14px;
+    -fx-text-fill: blue;
+}

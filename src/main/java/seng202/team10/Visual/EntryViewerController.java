@@ -167,7 +167,9 @@ public class EntryViewerController {
         ArrayList<Entry> savingEntries = new ArrayList<>(this.entries);
         loadedActivity.setEntries(savingEntries);
         loadedActivity.postEntriesSetUp();
-        app.launchActivityViewerScene();
+        loadedActivity.checkEntriesForWarnings(app.getTitleBar().getCurrentProfile());
+        app.getTitleBar().setUpWarningFlag();
+        app.getTitleBar().openViewActivities();
     }
 
     /**

@@ -1,5 +1,9 @@
 package seng202.team10.Visual;
 
+import com.google.common.base.Charsets;
+import com.google.common.collect.Maps;
+import com.google.common.io.Resources;
+import com.hubspot.jinjava.Jinjava;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Worker;
@@ -14,6 +18,9 @@ import seng202.team10.Model.ActivitiesData.Entry;
 import seng202.team10.Model.ActivitiesData.Route;
 
 import java.net.URL;
+import java.io.IOException;
+import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 /**
@@ -36,8 +43,8 @@ public class MapController implements Controllable, Initializable{
 
 
     /**
-     * sets this scene to be the currently active one
-     * @param guiController  The main controller being passed in
+     * Method to set this scene to be the currently active one.
+     * @param guiController  The main controller being passed in.
      */
     @Override
     public void setApp(GUIController guiController)
@@ -47,7 +54,7 @@ public class MapController implements Controllable, Initializable{
 
 
     /**
-     * displays the route on the map
+     * Method to display a route on the map, and show the map to the user.
      * @param newRoute the Route being displayed
      */
     public void displayRoute(Route newRoute)
@@ -67,9 +74,8 @@ public class MapController implements Controllable, Initializable{
                 });
     }
 
-
     /**
-     * sets up the initial scene with all the areas
+     * Method to set up the scene. Pre-renders the map and sets up tool tips.
      */
     @Override
     public void setUpScene()
@@ -81,15 +87,7 @@ public class MapController implements Controllable, Initializable{
 
         webEngine = mapWebView.getEngine();
         webEngine.load(this.getClass().getResource("/map.html").toExternalForm());
-        if (firstMapView) {
-            firstMapView = false;
-            guiController.refreshMapScene(this.activity);
-        }
 
-        if (firstLoad) {
-            firstMapView = true;
-            firstLoad = false;
-        }
         // Hide the help text field when focus is lost
         helpTextArea.focusedProperty().addListener((ov, oldV, newV) -> {
             if (!newV) {
@@ -164,10 +162,10 @@ public class MapController implements Controllable, Initializable{
     /**
      * goes back to the data analysis screen
      */
-    @FXML public void goToActivityViewer()
+    @FXML public void goToDataAnalysis()
     {
 //        guiController.launchActivityViewerScene();
-        guiController.launchDataAnalysisScene();
+        guiController.getTitleBar().openAnalysis();
     }
 
 
@@ -189,6 +187,14 @@ public class MapController implements Controllable, Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-
+        Jinjava jinjava = new Jinjava();
+        Map<String, Object> context = Maps.newHashMap();
+        String template = "";
+        try {
+            template = Resources.toString(Resources.getResource("map.html"), Charsets.UTF_8);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String renderedTemplate = jinjava.render(template, context);
     }
 }

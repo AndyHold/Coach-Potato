@@ -73,7 +73,7 @@ public class ActivityViewerController {
      */
     private void setUpTableView()
     {
-        activities = FXCollections.observableArrayList(app.getCurrentProfile().getActivities());
+        activities = FXCollections.observableArrayList(app.getTitleBar().getCurrentProfile().getActivities());
         nameColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("name"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("typeString"));
         starttimeColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("timeString"));
@@ -175,18 +175,18 @@ public class ActivityViewerController {
         if (lowerDate != null && upperDate != null) {
             if(lowerDate.getYear() < 1900 || lowerDate.getYear() > 2100 || upperDate.getYear() > 2100 || upperDate.getYear() < 1900 || lowerDate.getYear() > upperDate.getYear()){
                 app.createPopUp(Alert.AlertType.ERROR, "Error", "Please choose dates between 1900 and 2100, and make sure the first date is earlier than the second");
-                dateFiltered = app.getCurrentProfile().getActivities();
+                dateFiltered = app.getTitleBar().getCurrentProfile().getActivities();
             } else {
                 DateTime lowerDateTime = new DateTime(lowerDate.getYear(), lowerDate.getMonthValue(), lowerDate.getDayOfMonth(), 0, 0, 1);
                 DateTime upperDateTime = new DateTime(upperDate.getYear(), upperDate.getMonthValue(), upperDate.getDayOfMonth(), 23, 59, 59);
-                for (Activity eachActivity : app.getCurrentProfile().getActivities()) {
+                for (Activity eachActivity : app.getTitleBar().getCurrentProfile().getActivities()) {
                     if (lowerDateTime.isBefore(eachActivity.getStartDateTime()) && upperDateTime.isAfter(eachActivity.getStartDateTime())) {
                         dateFiltered.add(eachActivity);
                     }
                 }
             }
         } else {
-            dateFiltered = app.getCurrentProfile().getActivities();
+            dateFiltered = app.getTitleBar().getCurrentProfile().getActivities();
         }
         ArrayList<Activity> typeFiltered = new ArrayList<>();
         for (Activity eachActivity : dateFiltered) {
@@ -226,7 +226,7 @@ public class ActivityViewerController {
      */
     @FXML public void clearFilters()
     {
-        ObservableList<Activity> activities = FXCollections.observableArrayList(app.getCurrentProfile().getActivities());
+        ObservableList<Activity> activities = FXCollections.observableArrayList(app.getTitleBar().getCurrentProfile().getActivities());
         populateTable(activities);
         typeSelect.setValue(null);
         startDate.setValue(null);
@@ -240,7 +240,7 @@ public class ActivityViewerController {
     @FXML public void openEntries()
     {
         if(activitiesTableView.getSelectionModel().getSelectedItem() != null) {
-            app.launchEntryViewerScene(activitiesTableView.getSelectionModel().getSelectedItem());
+            app.getTitleBar().openEntry(activitiesTableView.getSelectionModel().getSelectedItem());
         } else {
             app.createPopUp(Alert.AlertType.ERROR, "Error", "Please select an Activity first");
         }
@@ -254,87 +254,5 @@ public class ActivityViewerController {
     public void setApp(GUIController app)
     {
         this.app = app;
-    }
-
-
-    /**
-     * Method to draw the navigation drawer.
-     */
-    @FXML private void drawerAction()
-    {
-
-        TranslateTransition openNav = new TranslateTransition(new Duration(350), drawer);
-        openNav.setToX(0);
-        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
-        if (drawer.getTranslateX() != 0) {
-            openNav.play();
-        } else {
-            closeNav.setToX(-(drawer.getWidth()));
-            closeNav.play();
-        }
-    }
-    /**
-     * Method to launch the login scene.
-     */
-    @FXML public void openChooseProfile()
-    {
-        moveDrawer();
-        app.launchLoginScene();
-    }
-
-    /**
-     * Method to launch the view profile scene.
-     */
-    @FXML public void openViewProfile()
-    {
-        moveDrawer();
-        app.launchProfileScene();
-    }
-
-    /**
-     * Method to launch the upload data scene.
-     */
-    @FXML public void openUploadData()
-    {
-        moveDrawer();
-        app.launchUploadDataScene();
-    }
-
-    /**
-     * Method to launch the view activities scene.
-     */
-    @FXML public void openViewActivities()
-    {
-        moveDrawer();
-        app.launchActivityViewerScene();
-    }
-
-    /**
-     * Method to launch the goals scene.
-     */
-    @FXML public void openGoals()
-    {
-        moveDrawer();
-        app.launchGoalsScene();
-    }
-
-    /**
-     * Method to launch the data analysis scene.
-     */
-    @FXML public void openAnalysis()
-    {
-        moveDrawer();
-        app.launchDataAnalysisScene();
-    }
-
-    /**
-     * Method to move the navigation drawer as appropriate.
-     */
-    private void moveDrawer()
-    {
-        TranslateTransition closeNav = new TranslateTransition(new Duration(350), drawer);
-        closeNav.setToX(-(drawer.getWidth()));
-        closeNav.play();
-        setUpScene();
     }
 }
