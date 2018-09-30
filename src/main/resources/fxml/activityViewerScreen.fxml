@@ -20,7 +20,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextArea" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/activityViewer.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.ActivityViewerController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextArea" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/activityViewer.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.ActivityViewerController">
    <children>
       <VBox prefHeight="720.0" prefWidth="1280.0">
          <children>
@@ -178,6 +178,7 @@
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Button fx:id="entryViewerButton" mnemonicParsing="false" onAction="#openEntries" prefHeight="35.0" prefWidth="120.0" text="View Entries" />
+                  <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteActivity" prefHeight="37.0" prefWidth="132.0" text="Delete Activity" />
                   <Button fx:id="mapViewerButton" mnemonicParsing="false" onAction="#viewMap" prefHeight="35.0" prefWidth="120.0" text="View Map" />
                   <Button fx:id="graphViewerButton" mnemonicParsing="false" onAction="#viewGraph" prefHeight="35.0" prefWidth="120.0" text="View Graph" />
                </children></HBox>
