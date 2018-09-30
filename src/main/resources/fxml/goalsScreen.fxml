@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -31,11 +32,11 @@
                <content>
                   <Pane>
                      <children>
-                        <VBox alignment="CENTER" prefHeight="683.0" prefWidth="1280.0">
+                        <VBox alignment="CENTER" layoutY="-3.0" prefHeight="684.0" prefWidth="1280.0">
                            <children>
                               <HBox alignment="CENTER" fillHeight="false" prefHeight="683.0" prefWidth="1280.0" spacing="30.0">
                                  <children>
-                                    <VBox prefHeight="430.0" prefWidth="600.0" spacing="30.0">
+                                    <VBox prefHeight="430.0" prefWidth="600.0" spacing="30.0" translateY="90.0">
                                        <children>
                                           <VBox prefHeight="350.0" prefWidth="600.0">
                                              <children>
@@ -62,17 +63,17 @@
                                                 <HBox prefHeight="320.0" prefWidth="600.0">
                                                    <children>
                                                       <ListView fx:id="currentGoalsListView" onMouseClicked="#updateCurrentListView" prefHeight="320.0" prefWidth="200.0" />
-                                                      <VBox alignment="TOP_RIGHT" prefHeight="320.0" prefWidth="200.0" spacing="65.0">
+                                                      <VBox alignment="TOP_RIGHT" prefHeight="320.0" prefWidth="132.0" spacing="65.0">
                                                          <children>
                                                             <Label prefHeight="25.0" text="Type: " />
                                                             <Label prefHeight="25.0" text="Start Date:" />
-                                                            <Label prefHeight="25.0" text="Goal achieved:" />
+                                                            <Label prefHeight="25.0" text="Goal to achieve:" />
                                                          </children>
                                                       </VBox>
-                                                      <VBox prefHeight="320.0" prefWidth="200.0" spacing="65.0">
+                                                      <VBox prefHeight="320.0" prefWidth="266.0" spacing="65.0">
                                                          <children>
-                                                            <TextField fx:id="currentTypeTextField" editable="false" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" visible="false" />
-                                                            <TextField fx:id="currentStartDateTextField" editable="false" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" visible="false" />
+                                                            <TextField fx:id="currentTypeTextField" editable="false" maxHeight="34.0" minHeight="30.0" prefHeight="50.0" prefWidth="266.0" visible="false" />
+                                                            <TextField fx:id="currentStartDateTextField" editable="false" maxHeight="50.0" minHeight="30.0" prefHeight="50.0" prefWidth="266.0" visible="false" />
                                                             <TextArea fx:id="currentGoalTextArea" editable="false" maxHeight="140.0" minHeight="140.0" prefHeight="140.0" visible="false" wrapText="true" />
                                                          </children>
                                                       </VBox>
@@ -92,7 +93,7 @@
                                           </HBox>
                                        </children>
                                     </VBox>
-                                    <VBox fillWidth="false" prefHeight="430.0" prefWidth="600.0">
+                                    <VBox fillWidth="false" prefHeight="430.0" prefWidth="600.0" translateY="90.0">
                                        <children>
                                           <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="552.0" spacing="30.0">
                                              <children>
@@ -107,17 +108,17 @@
                                           <HBox prefHeight="320.0" prefWidth="600.0">
                                              <children>
                                                 <ListView fx:id="futureGoalsListView" onMouseClicked="#updateFutureListView" prefHeight="320.0" prefWidth="200.0" />
-                                                <VBox alignment="TOP_RIGHT" prefHeight="365.0" prefWidth="200.0" spacing="65.0">
+                                                <VBox alignment="TOP_RIGHT" prefHeight="320.0" prefWidth="139.0" spacing="65.0">
                                                    <children>
                                                       <Label prefHeight="25.0" text="Type:" />
                                                       <Label prefHeight="25.0" text="Start Date:" />
                                                       <Label prefHeight="25.0" text="Goal to achieve:" />
                                                    </children>
                                                 </VBox>
-                                                <VBox prefHeight="365.0" prefWidth="200.0" spacing="65.0">
+                                                <VBox prefHeight="320.0" prefWidth="258.0" spacing="65.0">
                                                    <children>
-                                                      <TextField fx:id="futureDateTextField" />
-                                                      <TextField fx:id="futureTypeTextField" />
+                                                      <TextField fx:id="futureTypeTextField" minHeight="30.0" minWidth="30.0" />
+                                                      <TextField fx:id="futureDateTextField" minHeight="30.0" />
                                                       <TextArea fx:id="futureGoalTextArea" editable="false" prefHeight="150.0" prefWidth="200.0" wrapText="true" />
                                                    </children>
                                                 </VBox>
@@ -125,6 +126,92 @@
                                           </HBox>
                                        </children>
                                     </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="150.0" prefWidth="1280.0">
+                           <children>
+                              <HBox prefHeight="50.0" prefWidth="200.0">
+                                 <children>
+                                    <Label prefHeight="51.0" prefWidth="346.0" text="Create a new goal:">
+                                       <font>
+                                          <Font size="23.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="50.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children></HBox>
+                              <HBox prefHeight="50.0" prefWidth="1280.0">
+                                 <children>
+                                    <TextField fx:id="goalNameEntry" prefHeight="30.0" prefWidth="200.0" promptText="Enter Goal Name...">
+                                       <HBox.margin>
+                                          <Insets left="50.0" right="150.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <HBox prefHeight="100.0" prefWidth="350.0">
+                                       <children>
+                                          <Label prefHeight="30.0" text="Goal start date:">
+                                             <HBox.margin>
+                                                <Insets right="20.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <DatePicker fx:id="startDatePicker" prefHeight="30.0" prefWidth="198.0" />
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="50.0" right="100.0" />
+                                       </HBox.margin>
+                                    </HBox>
+                                    <HBox prefHeight="100.0" prefWidth="350.0">
+                                       <children>
+                                          <Label prefHeight="30.0" text="Goal target date:">
+                                             <HBox.margin>
+                                                <Insets right="20.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <DatePicker fx:id="targetDatePicker" prefHeight="30.0" prefWidth="200.0">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin></DatePicker>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </HBox>
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="50.0" prefWidth="200.0">
+                                 <children>
+                                    <ComboBox fx:id="goalTypeCombo" onAction="#displayUnits" prefHeight="30.0" prefWidth="200.0" promptText="Choose Goal Type...">
+                                       <HBox.margin>
+                                          <Insets left="50.0" right="150.0" />
+                                       </HBox.margin>
+                                    </ComboBox>
+                                    <HBox prefHeight="21.0" prefWidth="400.0">
+                                       <children>
+                                          <TextField fx:id="targetValueEntry" prefHeight="30.0" prefWidth="200.0" promptText="Enter target value:">
+                                             <HBox.margin>
+                                                <Insets left="120.0" />
+                                             </HBox.margin></TextField>
+                                          <Label fx:id="unitsLabel" prefHeight="30.0" prefWidth="65.0">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="50.0" right="100.0" />
+                                       </HBox.margin>
+                                    </HBox>
+                                    <Button fx:id="createButton" mnemonicParsing="false" onAction="#createGoal" prefHeight="21.0" prefWidth="200.0" text="Create!">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets left="80.0" />
+                                       </HBox.margin>
+                                    </Button>
                                  </children>
                               </HBox>
                            </children>
@@ -137,7 +224,7 @@
              <content>
                   <Pane>
                      <children>
-                        <VBox layoutX="40.0" layoutY="80.0" prefHeight="350.0" prefWidth="540.0">
+                        <VBox layoutX="40.0" layoutY="80.0" prefHeight="376.0" prefWidth="540.0">
                            <children>
                               <HBox prefHeight="35.0" prefWidth="540.0">
                                  <children>
@@ -180,7 +267,7 @@
                               </HBox>
                            </children>
                         </VBox>
-                        <VBox fillWidth="false" layoutX="620.0" layoutY="80.0" prefHeight="350.0" prefWidth="540.0">
+                        <VBox fillWidth="false" layoutX="620.0" layoutY="80.0" prefHeight="379.0" prefWidth="540.0">
                            <children>
                               <HBox prefHeight="35.0" prefWidth="492.0" spacing="20.0">
                                  <children>
@@ -195,7 +282,7 @@
                                     <Insets left="10.0" />
                                  </padding>
                               </HBox>
-                              <HBox prefHeight="320.0" prefWidth="540.0">
+                              <HBox prefHeight="328.0" prefWidth="540.0">
                                  <children>
                                     <ListView fx:id="failedListView" onMouseClicked="#updateFailedListView" prefHeight="320.0" prefWidth="180.0" />
                                     <VBox alignment="TOP_RIGHT" prefHeight="320.0" prefWidth="180.0" spacing="65.0">
@@ -218,79 +305,18 @@
                   </Pane>
              </content>
            </Tab>
-             <Tab fx:id="createTab" onSelectionChanged="#addGoalsToTable" text="Create Goal">
-               <content>
-                  <Pane>
-                     <children>
-                        <HBox alignment="CENTER" prefHeight="657.0" prefWidth="1280.0">
-                           <children>
-                              <VBox alignment="CENTER" prefHeight="657.0" prefWidth="500.0">
-                                 <children>
-                                    <HBox fillHeight="false" prefHeight="420.0" prefWidth="500.0">
-                                       <children>
-                                          <VBox fillWidth="false" prefHeight="420.0" prefWidth="300.0" spacing="130.0">
-                                             <children>
-                                                 <ComboBox fx:id="goalTypeCombo" onAction="#displayUnits" prefHeight="30.0" prefWidth="200.0" promptText="Choose Goal Type..." />
-                                                <VBox alignment="TOP_RIGHT" prefHeight="60.0" prefWidth="200.0">
-                                                   <children>
-                                                       <Label prefHeight="30.0" text="Goal start date:" />
-                                                       <DatePicker fx:id="startDatePicker" prefHeight="30.0" prefWidth="198.0" />
-                                                   </children>
-                                                </VBox>
-                                                <HBox prefHeight="30.0" prefWidth="300.0">
-                                                   <children>
-                                                       <TextField fx:id="targetValueEntry" prefHeight="30.0" prefWidth="200.0" promptText="Enter target value:" />
-                                                      <Label fx:id="unitsLabel" prefHeight="30.0" prefWidth="65.0">
-                                                         <font>
-                                                            <Font size="14.0" />
-                                                         </font>
-                                                      </Label>
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                          </VBox>
-                                          <VBox alignment="TOP_RIGHT" fillWidth="false" prefHeight="420.0" prefWidth="200.0" spacing="130.0">
-                                             <children>
-                                                 <TextField fx:id="goalNameEntry" prefHeight="30.0" prefWidth="200.0" promptText="Enter Goal Name..." />
-                                                <VBox alignment="TOP_RIGHT" prefHeight="60.0" prefWidth="200.0">
-                                                   <children>
-                                                       <Label prefHeight="30.0" text="Goal target date:" />
-                                                       <DatePicker fx:id="targetDatePicker" prefHeight="30.0" prefWidth="200.0" />
-                                                   </children>
-                                                </VBox>
-                                                 <Button fx:id="createButton" mnemonicParsing="false" onAction="#createGoal" prefHeight="70.0" prefWidth="200.0" text="Create!">
-                                                   <font>
-                                                      <Font size="20.0" />
-                                                   </font>
-                                                </Button>
-                                             </children>
-                                          </VBox>
-                                       </children>
-                                    </HBox>
-                                 </children>
-                              </VBox>
-                           </children>
-                        </HBox>
-                     </children>
-                  </Pane>
-               </content>
-             </Tab>
-             <Tab fx:id="futureTab" onSelectionChanged="#addGoalsToTable" text="Future Goals">
-               <content>
-                  <Pane />
-               </content>
-             </Tab>
          </tabs>
        </TabPane>
-      <Button fx:id="helpButton" layoutX="1212.0" layoutY="665.0" mnemonicParsing="false" onAction="#displayHelp" prefHeight="35.0" prefWidth="48.0">
+      <Button fx:id="helpButton" layoutX="1212.0" layoutY="665.0" mnemonicParsing="false" onAction="#displayHelp" prefHeight="35.0" prefWidth="48.0" translateY="10.0">
          <graphic>
-            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateY="5.0">
                <image>
                   <Image url="@../Images/help.png" />
                </image>
             </ImageView>
          </graphic>
       </Button>
-      <TextArea fx:id="helpTextArea" editable="false" layoutX="825.0" layoutY="270.0" prefHeight="400.0" prefWidth="400.0" />
+      <TextArea fx:id="helpTextArea" editable="false" layoutX="825.0" layoutY="270.0" prefHeight="400.0" prefWidth="400.0" visible="false" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="23.0" layoutX="22.0" layoutY="198.0" stroke="BLACK" strokeType="INSIDE" width="1237.0" />
    </children>
 </Pane>

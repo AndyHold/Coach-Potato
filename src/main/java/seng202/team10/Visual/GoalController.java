@@ -372,7 +372,11 @@ public class GoalController implements Controllable{
 
 
     /**
+<<<<<<< HEAD
      * Method to update the achieved goal list view
+=======
+     * Method to update the current goal list view.
+>>>>>>> 24bc09d6... Refactored Goals screen to make it look nicer, and to use up free real estate
      * TODO reset all text fields to display nothing
      */
     @FXML public void updateCurrentListView()
@@ -511,10 +515,14 @@ public class GoalController implements Controllable{
             //reset the entry values, ready for a new goal to be created
             goalNameEntry.setText("");
             targetValueEntry.setText("");
+<<<<<<< HEAD
         } catch (InvalidGoalDateException | BadGoalNameException | InvalidGoalTargetException | NoTypeSelectedException exception) {
             app.createPopUp(Alert.AlertType.ERROR, "Error", exception.getMessage());
         } catch (NumberFormatException exception) {
             app.createPopUp(Alert.AlertType.ERROR, "Error", "Please enter a valid number for target value");
+=======
+            this.addGoalsToTable();
+>>>>>>> 24bc09d6... Refactored Goals screen to make it look nicer, and to use up free real estate
         }
 
     }
