@@ -12,6 +12,7 @@ import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
 
+import javax.swing.text.html.ImageView;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,16 +31,16 @@ public class ActivityViewerController {
     @FXML private TableColumn<Activity, String> nameColumn;
     @FXML private TableColumn<Activity, String> typeColumn;
     @FXML private TableColumn<Activity, String> starttimeColumn;
-    @FXML private TableColumn<Activity, Double> durationColumn;
-    @FXML private TableColumn<Activity, Double> speedColumn;
-    @FXML private TableColumn<Activity, Double> distanceColumn;
-    @FXML private TableColumn<Activity, Integer> heartrateColumn;
     @FXML private TableColumn<Activity, Integer> entrynoColumn;
     @FXML private Button entryViewerButton;
     @FXML private Button helpButton;
     @FXML private TextArea helpTextArea;
     @FXML private ComboBox typeSelect;
-    @FXML private VBox drawer;
+    @FXML private Label distanceLabel;
+    @FXML private Label durationLabel;
+    @FXML private Label speedLabel;
+    @FXML private Label heartRateLabel;
+    private int currentIndex = -1;
 
 
     /**
@@ -76,10 +77,10 @@ public class ActivityViewerController {
         nameColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("name"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("typeString"));
         starttimeColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("timeString"));
-        durationColumn.setCellValueFactory(new PropertyValueFactory<Activity, Double>("DurationMins"));
-        speedColumn.setCellValueFactory(new PropertyValueFactory<Activity, Double>("SpeedKMH"));
-        distanceColumn.setCellValueFactory(new PropertyValueFactory<Activity, Double>("DistanceKM"));
-        heartrateColumn.setCellValueFactory(new PropertyValueFactory<Activity, Integer>("averageHeartRate"));
+//        durationColumn.setCellValueFactory(new PropertyValueFactory<Activity, Double>("DurationMins"));
+//        speedColumn.setCellValueFactory(new PropertyValueFactory<Activity, Double>("SpeedKMH"));
+//        distanceColumn.setCellValueFactory(new PropertyValueFactory<Activity, Double>("DistanceKM"));
+//        heartrateColumn.setCellValueFactory(new PropertyValueFactory<Activity, Integer>("averageHeartRate"));
         entrynoColumn.setCellValueFactory(new PropertyValueFactory<Activity, Integer>("entryno"));
         populateTable(activities);
         activitiesTableView.refresh();
@@ -154,12 +155,45 @@ public class ActivityViewerController {
 
 
     /**
+<<<<<<< HEAD
      * method to fill the table with the activities to display. used by setUpScene as well as applyFilter
      * @param displayActivities the arraylist of activity objects to be displayed in the table
+=======
+     * Method to fill the table with the activities to display used by setUpScene as well as applyFilter.
+     * @param displayActivities An <b>ArrayList&gt;Activity&lt;</b> to be displayed in the table.
+>>>>>>> 01bb5f29... Changed the activity viewer screen so it displays images and stat breakdowns for the selected activity.
      */
     private void populateTable(ObservableList<Activity> displayActivities)
     {
         activitiesTableView.setItems(displayActivities);
+    }
+
+
+    @FXML public void updateStatLabels()
+    {
+        if (activitiesTableView.getSelectionModel().getSelectedIndex() != currentIndex) {
+            currentIndex = activitiesTableView.getSelectionModel().getSelectedIndex();
+            setUpStatLabels(activitiesTableView.getSelectionModel().getSelectedItem());
+        }
+
+    }
+
+    private void setUpStatLabels(Activity selectedActivity)
+    {
+        distanceLabel.setText(selectedActivity.getTotalDistance().toString());
+        durationLabel.setText(String.valueOf(selectedActivity.getTotalDuration()));
+        speedLabel.setText(selectedActivity.getAverageVelocity().toString());
+        heartRateLabel.setText(String.valueOf(selectedActivity.getAverageHeartRate()));
+    }
+
+    @FXML private void viewGraph()
+    {
+
+    }
+
+    @FXML private void viewMap()
+    {
+
     }
 
     /**
