@@ -20,23 +20,27 @@ public class FileReaderTest {
 
 
     @BeforeClass
-    public static void setUp() throws Exception {
+    public static void setUp() throws Exception
+    {
         testWriter.createProfileFolder();
         testProfile.setName("jeff");
+        testProfile.setGender("Male");
         testProfile.setWeight(75);
         testWriter.saveProfile(testProfile);
     }
 
 
     @Test
-    public void loadExistingProfile() throws Exception{
-        UserProfile loadedProfile = testReader.loadExistingProfile(testProfile.getName());
+    public void loadExistingProfile() throws Exception
+    {
+        UserProfile loadedProfile = testReader.loadExistingProfile(testProfile.getName() + " - " + testProfile.getGender());
         assertEquals("jeff", loadedProfile.getName());
         assertEquals(75, loadedProfile.getWeight(), 1);
     }
 
     @Test
-    public void openNewFile() throws FileNotFoundException {
+    public void openNewFile() throws FileNotFoundException
+    {
         assertTrue(testReader.checkFileExists("./FilesToLoad/testdata.csv"));
         ArrayList<String> dataLines = testReader.openNewFile("./FilesToLoad/testdata.csv");
         assertEquals(1147, dataLines.size(), 1);
@@ -47,20 +51,27 @@ public class FileReaderTest {
     {
         UserProfile secondTestProfile = new UserProfile();
         secondTestProfile.setName("bill");
+        secondTestProfile.setGender("Male");
         testWriter.saveProfile(secondTestProfile);
-        ArrayList<String> testFileNames = testReader.getExistingUsers();
+        ArrayList<String> testFileNames = new ArrayList<>();
+        ArrayList<String> testFileGenders = new ArrayList<>();
+        testReader.getExistingUsers(testFileNames, testFileGenders);
         ArrayList<String> expectedNames = new ArrayList<String>(Arrays.asList("bill", "jeff"));
+        testWriter.deleteProfile("bill - Male");
         assertTrue(testFileNames.containsAll(expectedNames));
     }
 
+
     @Test
-    public void checkFileExists() {
+    public void checkFileExists()
+    {
         assertTrue(testReader.checkFileExists("./profiles/" + testProfile.getName() + ".ser"));
     }
 
-    @AfterClass
-    public static void tearDown(){
-        testWriter.deleteProfile("jeff");
-    }
 
+    @AfterClass
+    public static void tearDown()
+    {
+        testWriter.deleteProfile("jeff - Male");
+    }
 }

@@ -52,7 +52,7 @@ public class HealthWarningsController implements Controllable {
     public void setUpScene()
     {
         getWarningLists();
-        setLabelsUp();
+        setUpLabels();
         engine = googleWebView.getEngine();
         engine.load("https://google.com");
     }
@@ -72,7 +72,7 @@ public class HealthWarningsController implements Controllable {
     /**
      * Initializes labels and icons for each health condition.
      */
-    private void setLabelsUp()
+    private void setUpLabels()
     {
         tachycardiaIcon.setVisible(false);
         bradycardiaIcon.setVisible(false);

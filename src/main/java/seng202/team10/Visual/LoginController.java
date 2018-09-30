@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.UserProfile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -123,6 +124,10 @@ public class LoginController implements Controllable{
     private void setUpToolTips()
     {
         userOneButton.setTooltip(new Tooltip("Select Create New Profile to add a new user here"));
+        userTwoButton.setTooltip(new Tooltip("Select Create New Profile to add a new user here"));
+        userThreeButton.setTooltip(new Tooltip("Select Create New Profile to add a new user here"));
+        userFourButton.setTooltip(new Tooltip("Select Create New Profile to add a new user here"));
+        userFiveButton.setTooltip(new Tooltip("Select Create New Profile to add a new user here"));
         createProfileButton.setTooltip(new Tooltip("Navigates to the Create Profile Screen"));
         deleteProfileButton.setTooltip(new Tooltip("Toggles delete mode.\nOnce delete mode is activated the profiles you click on will be deleted"));
         helpButton.setTooltip(new Tooltip("Need Help?"));
@@ -158,12 +163,10 @@ public class LoginController implements Controllable{
      */
     private void setUpUserButtons()
     {
-        ObservableList<String> userNames = FXCollections.observableArrayList();
-        ArrayList<UserProfile> users = app.getUsers();
-        for (int i = 0; i < users.size(); i++) {
-            UserProfile user = app.getUsers().get(i);
-            setButtonProperties(i, user);
-            userNames.add(user.getName()); // Delete When Finished
+        ArrayList<String> userNames = app.getUserNames();
+        ArrayList<String> userGenders = app.getUserGenders();
+        for (int i = 0; i < userNames.size(); i++) {
+            setButtonProperties(i, userNames.get(i), userGenders.get(i));
         }
         userOneImage.setVisible(true);
         userTwoImage.setVisible(true);
@@ -176,80 +179,81 @@ public class LoginController implements Controllable{
     /**
      * Setter method for the user buttons. Sets the user to a button depending on the index in the list of users.
      * @param index An <b>Integer</b> index of the user list.
-     * @param user <b>UserProfile</b> of the user to be associated with a button.
+     * @param name A <b>String</b> name of the user to be associated with a button.
+     * @param gender A <b>String</b> gender of the user to be associated with a button.
      */
-    private void setButtonProperties(int index, UserProfile user)
+    private void setButtonProperties(int index, String name, String gender)
     {
         try {
             switch (index) {
                 case 0:
                     // Set image
-                    userOneImage.setImage(new Image("Images/" + user.getGender() + ".png"));
+                    userOneImage.setImage(new Image("Images/" + gender + ".png"));
                     // Set name
-                    userOneNameLabel.setText(user.getName());
+                    userOneNameLabel.setText(name);
                     // Set Enabled
                     userOneButton.setDisable(false);
                     // Set tool tip
                     if (deleteMode) {
-                        userOneButton.setTooltip(new Tooltip("Delete user \"" + user.getName() + "\""));
+                        userOneButton.setTooltip(new Tooltip("Delete user \"" + name + "\""));
                     } else {
-                        userOneButton.setTooltip(new Tooltip("Login with user \"" + user.getName() + "\""));
+                        userOneButton.setTooltip(new Tooltip("Login with user \"" + name + "\""));
                     }
                     break;
                 case 1:
                     // Set image
-                    userTwoImage.setImage(new Image("Images/" + user.getGender() + ".png"));
+                    userTwoImage.setImage(new Image("Images/" + gender + ".png"));
                     // Set name
-                    userTwoNameLabel.setText(user.getName());
+                    userTwoNameLabel.setText(name);
                     // Set Enabled
                     userTwoButton.setDisable(false);
                     // Set tool tip
                     if (deleteMode) {
-                        userTwoButton.setTooltip(new Tooltip("Delete user \"" + user.getName() + "\""));
+                        userTwoButton.setTooltip(new Tooltip("Delete user \"" + name + "\""));
                     } else {
-                        userTwoButton.setTooltip(new Tooltip("Login with user \"" + user.getName() + "\""));
+                        userTwoButton.setTooltip(new Tooltip("Login with user \"" + name + "\""));
                     }
                     break;
                 case 2:
                     // Set image
-                    userThreeImage.setImage(new Image("Images/" + user.getGender() + ".png"));
+                    userThreeImage.setImage(new Image("Images/" + gender + ".png"));
                     // Set name
-                    userThreeNameLabel.setText(user.getName());
+                    userThreeNameLabel.setText(name);
                     // Set Enabled
                     userThreeButton.setDisable(false);
                     // Set tool tip
                     if (deleteMode) {
-                        userThreeButton.setTooltip(new Tooltip("Delete user \"" + user.getName() + "\""));
+                        userThreeButton.setTooltip(new Tooltip("Delete user \"" + name + "\""));
                     } else {
-                        userThreeButton.setTooltip(new Tooltip("Login with user \"" + user.getName() + "\""));
+                        userThreeButton.setTooltip(new Tooltip("Login with user \"" + name + "\""));
                     }
                     break;
                 case 3:
                     // Set image
-                    userFourImage.setImage(new Image("Images/" + user.getGender() + ".png"));
+                    userFourImage.setImage(new Image("Images/" + gender + ".png"));
                     // Set name
-                    userFourNameLabel.setText(user.getName());
+                    userFourNameLabel.setText(name);
                     // Set Enabled
                     userFourButton.setDisable(false);
                     // Set tool tip
                     if (deleteMode) {
-                        userFourButton.setTooltip(new Tooltip("Delete user \"" + user.getName() + "\""));
+                        userFourButton.setTooltip(new Tooltip("Delete user \"" + name + "\""));
                     } else {
-                        userFourButton.setTooltip(new Tooltip("Login with user \"" + user.getName() + "\""));
+                        userFourButton.setTooltip(new Tooltip("Login with user \"" + name + "\""));
                     }
                     break;
                 case 4:
                     // Set image
-                    userFiveImage.setImage(new Image("Images/" + user.getGender() + ".png"));
+                    userFiveImage.setImage(new Image("Images/" + gender + ".png"));
                     // Set name
-                    userFiveNameLabel.setText(user.getName());
+                    userFiveNameLabel.setText(name);
                     // Set Enabled
                     userFiveButton.setDisable(false);
                     // Set tool tip
                     if (deleteMode) {
-                        userFiveButton.setTooltip(new Tooltip("Delete user \"" + user.getName() + "\""));
+                        userFiveButton.setTooltip(new Tooltip("Delete user \"" + name + "\""));
                     } else {
-                        userFiveButton.setTooltip(new Tooltip("Login with user \"" + user.getName() + "\""));
+                        userFiveButton.setTooltip(new Tooltip("Login with user \"" + name + "\""));
                     }
                     break;
             }
@@ -302,22 +306,27 @@ public class LoginController implements Controllable{
     @FXML public void userButtonOne()
     {
         if (deleteMode) {
-            String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + app.getUsers().get(0).getName() + "\"");
+            String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + app.getUserNames().get(0) + "\"");
             if (option.equals("OK")) {
-                if (app.getUsers().size() == 5) {
+                if (app.getUserNames().size() == 5) {
                     createProfileButton.setDisable(false);
                 }
-                app.getDataWriter().deleteProfile(app.getUsers().get(0).getName());
-                app.getUsers().remove(0);
+                app.getDataWriter().deleteProfile(app.getUserNames().get(0) + " - " + app.getUserGenders().get(0));
+                app.getUserNames().remove(0);
+                app.getUserGenders().remove(0);
                 deleteProfile();
                 setUpScene();
-                if (app.getUsers().size() == 0) {
+                if (app.getUserNames().size() == 0) {
                     app.getTitleBar().openCreateProfile();
                 }
             }
         } else {
-            app.getTitleBar().setCurrentProfile(app.getUsers().get(0));
-            app.getTitleBar().openViewProfile();
+            try {
+                app.setCurrentProfile(app.getDataReader().loadExistingProfile(app.getUserNames().get(0) + " - " + app.getUserGenders().get(0)));
+                app.getTitleBar().openViewProfile();
+            } catch (IOException | ClassNotFoundException exception) {
+                app.createPopUp(Alert.AlertType.ERROR, "Error", "An error occured while loading that profile.");
+            }
         }
 
     }
@@ -333,17 +342,22 @@ public class LoginController implements Controllable{
         if (deleteMode) {
             String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + app.getUsers().get(1).getName() + "\"");
             if (option.length() == 2) {
-                if (app.getUsers().size() == 5) {
+                if (app.getUserNames().size() == 5) {
                     createProfileButton.setDisable(false);
                 }
-                app.getDataWriter().deleteProfile(app.getUsers().get(1).getName());
-                app.getUsers().remove(1);
+                app.getDataWriter().deleteProfile(app.getUserNames().get(1) + " - " + app.getUserGenders().get(1));
+                app.getUserNames().remove(1);
+                app.getUserGenders().remove(1);
                 deleteProfile();
                 setUpScene();
             }
         } else {
-            app.setCurrentProfile(app.getUsers().get(1));
-            app.getTitleBar().openViewProfile();
+            try {
+                app.setCurrentProfile(app.getDataReader().loadExistingProfile(app.getUserNames().get(1) + " - " + app.getUserGenders().get(1)));
+                app.getTitleBar().openViewProfile();
+            } catch (IOException | ClassNotFoundException exception) {
+                app.createPopUp(Alert.AlertType.ERROR, "Error", "An error occured while loading that profile.");
+            }
         }
     }
 
@@ -358,17 +372,22 @@ public class LoginController implements Controllable{
         if (deleteMode) {
             String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + app.getUsers().get(2).getName() + "\"");
             if (option.length() == 2) {
-                if (app.getUsers().size() == 5) {
+                if (app.getUserNames().size() == 5) {
                     createProfileButton.setDisable(false);
                 }
-                app.getDataWriter().deleteProfile(app.getUsers().get(2).getName());
-                app.getUsers().remove(2);
+                app.getDataWriter().deleteProfile(app.getUserNames().get(2) + " - " + app.getUserGenders().get(2));
+                app.getUserNames().remove(2);
+                app.getUserGenders().remove(2);
                 deleteProfile();
                 setUpScene();
             }
         } else {
-            app.setCurrentProfile(app.getUsers().get(2));
-            app.getTitleBar().openViewProfile();
+            try {
+                app.setCurrentProfile(app.getDataReader().loadExistingProfile(app.getUserNames().get(2) + " - " + app.getUserGenders().get(2)));
+                app.getTitleBar().openViewProfile();
+            } catch (IOException | ClassNotFoundException exception) {
+                app.createPopUp(Alert.AlertType.ERROR, "Error", "An error occured while loading that profile.");
+            }
         }
     }
 
@@ -383,17 +402,22 @@ public class LoginController implements Controllable{
         if (deleteMode) {
             String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + app.getUsers().get(3).getName() + "\"");
             if (option.length() == 2) {
-                if (app.getUsers().size() == 5) {
+                if (app.getUserNames().size() == 5) {
                     createProfileButton.setDisable(false);
                 }
-                app.getDataWriter().deleteProfile(app.getUsers().get(3).getName());
-                app.getUsers().remove(3);
+                app.getDataWriter().deleteProfile(app.getUserNames().get(3) + " - " + app.getUserGenders().get(3));
+                app.getUserNames().remove(3);
+                app.getUserGenders().remove(3);
                 deleteProfile();
                 setUpScene();
             }
         } else {
-            app.setCurrentProfile(app.getUsers().get(3));
-            app.getTitleBar().openViewProfile();
+            try {
+                app.setCurrentProfile(app.getDataReader().loadExistingProfile(app.getUserNames().get(3) + " - " + app.getUserGenders().get(3)));
+                app.getTitleBar().openViewProfile();
+            } catch (IOException | ClassNotFoundException exception) {
+                app.createPopUp(Alert.AlertType.ERROR, "Error", "An error occured while loading that profile.");
+            }
         }
     }
 
@@ -408,17 +432,22 @@ public class LoginController implements Controllable{
         if (deleteMode) {
             String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + app.getUsers().get(4).getName() + "\"");
             if (option.length() == 2) {
-                if (app.getUsers().size() == 5) {
+                if (app.getUserNames().size() == 5) {
                     createProfileButton.setDisable(false);
                 }
-                app.getDataWriter().deleteProfile(app.getUsers().get(4).getName());
-                app.getUsers().remove(4);
+                app.getDataWriter().deleteProfile(app.getUserNames().get(4) + " - " + app.getUserGenders().get(4));
+                app.getUserNames().remove(4);
+                app.getUserGenders().remove(4);
                 deleteProfile();
                 setUpScene();
             }
         } else {
-            app.setCurrentProfile(app.getUsers().get(4));
-            app.getTitleBar().openViewProfile();
+            try {
+                app.setCurrentProfile(app.getDataReader().loadExistingProfile(app.getUserNames().get(4) + " - " + app.getUserGenders().get(4)));
+                app.getTitleBar().openViewProfile();
+            } catch (IOException | ClassNotFoundException exception) {
+                app.createPopUp(Alert.AlertType.ERROR, "Error", "An error occured while loading that profile.");
+            }
         }
     }
 

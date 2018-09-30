@@ -70,7 +70,7 @@
                <graphic>
                   <VBox alignment="CENTER" prefHeight="100.0" prefWidth="150.0">
                      <children>
-                        <ImageView fitHeight="65.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="profileMenuIcon" fitHeight="65.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Images/profileMale.png" />
                            </image>
