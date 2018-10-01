@@ -167,14 +167,13 @@ public class Parser {
      */
     private Activity processActivity(ArrayList<ArrayList<String>> formattedFile) throws BadActivityException, NoActivityFoundException
     {
-        while (!(validActivityHeader(formattedFile.get(linePosition)) && linePosition < formattedFile.size()-1)) {
+        while ((linePosition < formattedFile.size() - 1) && !(validActivityHeader(formattedFile.get(linePosition)))) {
             linePosition++;
         }
         if (!(validActivityHeader(formattedFile.get(linePosition)))) {
             this.linePosition++;
             throw new NoActivityFoundException();
         }
-
 
         String name = formattedFile.get(linePosition).get(1);
         linePosition += 1;
@@ -195,7 +194,7 @@ public class Parser {
                     throw new BadActivityException();
                 }
                 activity.addEntry(currentEntry);
-            } catch (IllegalArgumentException exception) {
+            } catch (IllegalArgumentException | IndexOutOfBoundsException exception) {
                 badEntries += 1;
             }
 
@@ -238,8 +237,9 @@ public class Parser {
      * @param formattedFile  The formatted file to be processed.
      * @return entry  An entry which details a moment in time in an activity .
      * @throws IllegalArgumentException When bad data is found.
+     * @throws IndexOutOfBoundsException When not enough time elements are input. E.g the hours are missing
      */
-    protected Entry processLine(ArrayList<ArrayList<String>> formattedFile) throws IllegalArgumentException
+    protected Entry processLine(ArrayList<ArrayList<String>> formattedFile) throws IllegalArgumentException, IndexOutOfBoundsException
     {
         ArrayList<String> currentLine = formattedFile.get(linePosition);
         String[] timeArray = (currentLine.get(1)).split(":");
@@ -266,6 +266,9 @@ public class Parser {
      */
     private Position processPosition(ArrayList<String> currentLine) throws IllegalArgumentException
     {
+        if (currentLine.size() != 6) {
+            throw new IllegalArgumentException();
+        }
         double latitude = Double.valueOf(currentLine.get(3));
         double longitude = Double.valueOf(currentLine.get(4));
         double elevation = Double.valueOf(currentLine.get(5));
