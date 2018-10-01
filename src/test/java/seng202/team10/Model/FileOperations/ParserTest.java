@@ -4,6 +4,7 @@ import org.junit.Test;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.ActivitiesData.Entry;
+import seng202.team10.Model.ActivitiesData.Position;
 import seng202.team10.Model.Exceptions.NoDataFoundException;
 
 import java.io.FileNotFoundException;
@@ -63,12 +64,34 @@ public class ParserTest {
     }
 
     @Test
-    public void processLine() throws FileNotFoundException{
+    public void processLineDateStringSame() throws FileNotFoundException{
         ArrayList<String> fileContents = testParser.getFileContents("./FilesToLoad/testdata.csv");
         ArrayList<ArrayList<String>> formattedFile = testParser.formatFileContents(fileContents);
         testParser.setLinePosition(35);
         Entry testEntry = testParser.processLine(formattedFile);
-        assertTrue(testEntry.isFirstEntry());
+        Entry actualEntry = new Entry(new DateTime(2015, 4, 12, 22, 0, 42), 157, new Position(30.245576, -97.823843, 220.3));
+        assertTrue(actualEntry.getDateString().equals(testEntry.getDateString()));
+
+    }
+
+    @Test
+    public void processLineTimeStringSame() throws FileNotFoundException{
+        ArrayList<String> fileContents = testParser.getFileContents("./FilesToLoad/testdata.csv");
+        ArrayList<ArrayList<String>> formattedFile = testParser.formatFileContents(fileContents);
+        testParser.setLinePosition(35);
+        Entry testEntry = testParser.processLine(formattedFile);
+        Entry actualEntry = new Entry(new DateTime(2015, 4, 12, 22, 0, 42), 157, new Position(30.245576, -97.823843, 220.3));
+        assertTrue(actualEntry.getTimeString().equals(testEntry.getTimeString()));
+    }
+
+    @Test
+    public void processLineHeartRateSame() throws FileNotFoundException{
+        ArrayList<String> fileContents = testParser.getFileContents("./FilesToLoad/testdata.csv");
+        ArrayList<ArrayList<String>> formattedFile = testParser.formatFileContents(fileContents);
+        testParser.setLinePosition(35);
+        Entry testEntry = testParser.processLine(formattedFile);
+        Entry actualEntry = new Entry(new DateTime(2015, 4, 12, 22, 0, 42), 157, new Position(30.245576, -97.823843, 220.3));
+        assertTrue(actualEntry.getHeartRateString().equals(testEntry.getHeartRateString()));
     }
 
 
