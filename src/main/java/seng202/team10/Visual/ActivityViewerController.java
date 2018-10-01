@@ -11,6 +11,7 @@ import javafx.util.Duration;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
+import seng202.team10.Model.ActivitiesData.HealthWarning;
 
 import javax.swing.text.html.ImageView;
 import java.time.LocalDate;
@@ -166,6 +167,10 @@ public class ActivityViewerController {
     }
 
 
+    /**
+     * Method to check weather a new activity is selected and if so call for the stats to be updated to reflect that activity.
+     * Called when the table view is clicked with the mouse.
+     */
     @FXML public void updateStatLabels()
     {
         if (activitiesTableView.getSelectionModel().getSelectedIndex() != currentIndex) {
@@ -175,6 +180,11 @@ public class ActivityViewerController {
 
     }
 
+
+    /**
+     * Method to update the stat labels with their respective stats from the activity given.
+     * @param selectedActivity an <b>Acrtivity</b> to get the stats from.
+     */
     private void setUpStatLabels(Activity selectedActivity)
     {
         distanceLabel.setText(selectedActivity.getTotalDistance().toString());
@@ -183,6 +193,11 @@ public class ActivityViewerController {
         heartRateLabel.setText(String.valueOf(selectedActivity.getAverageHeartRate()));
     }
 
+
+    /**
+     * Method to check if an activity is selected and call the view graph screen if so, otherwise create a pop up error.
+     * Called when the view graph button is selected.
+     */
     @FXML private void viewGraph()
     {
         if(activitiesTableView.getSelectionModel().getSelectedItem() != null) {
@@ -192,6 +207,11 @@ public class ActivityViewerController {
         }
     }
 
+
+    /**
+     * Method to check if an activity is selected and call the view map screen if so, otherwise create a pop up error.
+     * Called when the view map button is selected.
+     */
     @FXML private void viewMap()
     {
         if(activitiesTableView.getSelectionModel().getSelectedItem() != null) {
@@ -201,8 +221,14 @@ public class ActivityViewerController {
         }
     }
 
+
     /**
+<<<<<<< HEAD
      * Method to update table with activities between the two datepickers and of matching type when the filterApplyButton is pressed
+=======
+     * Method to update table with activities between the two date pickers and of matching type
+     * Called when the filterApplyButton is pressed.
+>>>>>>> 5c7ad329... Fixed delete Activity function to delet all health warnings assosciated with the deleted activity. Fixed a bug with login process where bad profiles are deleted from the file folder but not from the login screen when selected.
      */
     @FXML public void applyFilter()
     {
@@ -306,6 +332,7 @@ public class ActivityViewerController {
 
     }
 
+
     /**
      * method to open the entryViewer screen with the selected activity when the entryViewerButton is pressed
      */
@@ -318,6 +345,7 @@ public class ActivityViewerController {
         }
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -341,6 +369,9 @@ public class ActivityViewerController {
 >>>>>>> debfc12... Clear filters button properly reloads the table and clears filter selections
 >>>>>>> 304a880b... Clear filters button properly reloads the table and clears filter selections
 =======
+=======
+
+>>>>>>> 5c7ad329... Fixed delete Activity function to delet all health warnings assosciated with the deleted activity. Fixed a bug with login process where bad profiles are deleted from the file folder but not from the login screen when selected.
     /**
      * Method to remove the currently selected Activity from the profile
      */
@@ -349,6 +380,7 @@ public class ActivityViewerController {
         if(activitiesTableView.getSelectionModel().getSelectedItem() != null) {
             Activity toDelete = activitiesTableView.getSelectionModel().getSelectedItem();
             app.getTitleBar().getCurrentProfile().deleteActivity(toDelete);
+            app.getTitleBar().setUpWarningFlag();
         } else {
             app.createPopUp(Alert.AlertType.ERROR, "Error", "Please select an Activity first");
         }

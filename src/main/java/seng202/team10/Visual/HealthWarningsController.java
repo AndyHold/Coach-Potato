@@ -51,11 +51,11 @@ public class HealthWarningsController implements Controllable {
         setUpLabels();
         engine = googleWebView.getEngine();
         engine.load("https://google.com");
-//        warningsScrollPane.focusedProperty().addListener((ov, oldV, newV) -> {
-//        if (!newV) {
-//            hideWarningsScrollPane();
-//        }
-//    });
+        warningsScrollPane.focusedProperty().addListener((ov, oldV, newV) -> {
+        if (!newV) {
+            hideWarningsScrollPane();
+        }
+    });
     }
 
 

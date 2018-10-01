@@ -352,6 +352,12 @@ public class LoginController implements Controllable{
                 String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Error", "Could not load profile: " + app.getUserNames().get(0) + "\nWould you like to delete it?");
                 if (option.equals("OK")) {
                     app.getDataWriter().deleteProfile(app.getUserNames().get(0) + " - " + app.getUserGenders().get(0));
+                    app.getUserNames().remove(0);
+                    app.getUserGenders().remove(0);
+                    setUpScene();
+                    if (app.getUserNames().size() == 0) {
+                        app.getTitleBar().openCreateProfile();
+                    }
                 }
             }
         }
@@ -385,6 +391,9 @@ public class LoginController implements Controllable{
                 String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Error", "Could not load profile: " + app.getUserNames().get(1) + "\nWould you like to delete it?");
                 if (option.equals("OK")) {
                     app.getDataWriter().deleteProfile(app.getUserNames().get(1) + " - " + app.getUserGenders().get(1));
+                    app.getUserNames().remove(1);
+                    app.getUserGenders().remove(1);
+                    setUpScene();
                 }
             }
         }
@@ -418,6 +427,9 @@ public class LoginController implements Controllable{
                 String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Error", "Could not load profile: " + app.getUserNames().get(2) + "\nWould you like to delete it?");
                 if (option.equals("OK")) {
                     app.getDataWriter().deleteProfile(app.getUserNames().get(2) + " - " + app.getUserGenders().get(2));
+                    app.getUserNames().remove(2);
+                    app.getUserGenders().remove(2);
+                    setUpScene();
                 }
             }
         }
@@ -451,6 +463,9 @@ public class LoginController implements Controllable{
                 String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Error", "Could not load profile: " + app.getUserNames().get(3) + "\nWould you like to delete it?");
                 if (option.equals("OK")) {
                     app.getDataWriter().deleteProfile(app.getUserNames().get(3) + " - " + app.getUserGenders().get(3));
+                    app.getUserNames().remove(3);
+                    app.getUserGenders().remove(3);
+                    setUpScene();
                 }
             }
         }
@@ -484,6 +499,9 @@ public class LoginController implements Controllable{
                 String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Error", "Could not load profile: " + app.getUserNames().get(4) + "\nWould you like to delete it?");
                 if (option.equals("OK")) {
                     app.getDataWriter().deleteProfile(app.getUserNames().get(4) + " - " + app.getUserGenders().get(4));
+                    app.getUserNames().remove(4);
+                    app.getUserGenders().remove(4);
+                    setUpScene();
                 }
             }
         }
