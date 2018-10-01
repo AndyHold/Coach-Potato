@@ -57,9 +57,15 @@ public class Goal implements Serializable {
             throw new InvalidGoalDateException("You cannot select a date in the past.");
         } else if (startDate.isAfter(targetDate)) {
             throw new InvalidGoalDateException("Target date must be after start date.");
+<<<<<<< HEAD
         } else if (startDate.getYear() > (today.getYear() + 1)) {
             throw new InvalidGoalDateException("Start date must be before the end of next year.");
         } else if (targetDate.getYear() > (today.getYear() + 5)) {
+=======
+        } else if (startDate.getYear() >= (today.getYear() + 1)) {
+            throw new InvalidGoalDateException("Start date must be before the end of next year.");
+        } else if (targetDate.getYear() >= (today.getYear() + 5)) {
+>>>>>>> fcd658d3... Fixed some JUnit tests after a refactor
             throw new InvalidGoalDateException("Target date must be before the end of the year, five years from now.");
         } else {
             this.goalStartDate = startDate;
