@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
@@ -14,15 +19,15 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextArea" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/dataAnalysis.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.DataAnalysisController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextArea" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/dataAnalysis.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.DataAnalysisController">
    <children>
-      <TabPane fx:id="tabPane" layoutX="551.0" layoutY="122.0" prefHeight="504.0" prefWidth="608.0" side="LEFT" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="tabPane" layoutX="20.0" layoutY="48.0" prefHeight="620.0" prefWidth="1240.0" side="LEFT" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab>
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <LineChart fx:id="distanceOverTime" prefHeight="474.0" prefWidth="608.0" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <LineChart fx:id="distanceOverTime" prefHeight="620.0" prefWidth="1145.0" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <xAxis>
                             <NumberAxis side="BOTTOM" fx:id="xAxisDT" />
                           </xAxis>
@@ -47,9 +52,9 @@
           </Tab>
           <Tab>
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="513.0" prefWidth="921.0">
                      <children>
-                        <LineChart fx:id="heartRateOverTime" prefHeight="472.0" prefWidth="608.0">
+                        <LineChart fx:id="heartRateOverTime" prefHeight="620.0" prefWidth="1145.0">
                           <xAxis>
                             <NumberAxis side="BOTTOM" />
                           </xAxis>
@@ -76,7 +81,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <LineChart fx:id="caloriesBurned" prefHeight="472.0" prefWidth="608.0">
+                        <LineChart fx:id="caloriesBurned" prefHeight="620.0" prefWidth="1145.0">
                           <xAxis>
                             <NumberAxis side="BOTTOM" />
                           </xAxis>
@@ -104,7 +109,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <LineChart fx:id="stressLevelOverTime" prefHeight="471.0" prefWidth="614.0">
+                        <LineChart fx:id="stressLevelOverTime" prefHeight="620.0" prefWidth="1145.0">
                           <xAxis>
                             <NumberAxis side="BOTTOM" />
                           </xAxis>
@@ -130,12 +135,8 @@
             </Tab>
         </tabs>
       </TabPane>
-      <Label fx:id="activityNameLabel" layoutX="607.0" layoutY="51.0" text="Name Of Activity" />
-      <Label fx:id="timeTakenLabel" layoutX="937.0" layoutY="51.0" text="Total Time Taken" />
-      <ListView fx:id="activityList" layoutX="43.0" layoutY="122.0" onMouseClicked="#refresh" prefHeight="504.0" prefWidth="400.0" stylesheets="@../css/dataAnalysis.css" />
+      <Label fx:id="activityNameLabel" layoutX="538.0" layoutY="6.0" text="Name Of Activity" />
       <Label fx:id="noActivitiesLabel" layoutX="180.0" layoutY="350.0" text="No activities found" visible="false" />
-      <Label layoutX="208.0" layoutY="87.0" text="Activities" />
-      <Button fx:id="mapButton" layoutX="804.0" layoutY="647.0" mnemonicParsing="false" onAction="#viewMap" prefHeight="35.0" prefWidth="100.0" text="View Map" />
       <Button fx:id="helpButton" layoutX="1218.0" layoutY="671.0" mnemonicParsing="false" onAction="#displayHelp" prefHeight="35.0" prefWidth="48.0" style="-fx-background-color: transparent;">
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
@@ -145,5 +146,6 @@
          </graphic>
       </Button>
       <TextArea fx:id="helpTextArea" editable="false" layoutX="817.0" layoutY="337.0" prefHeight="335.0" prefWidth="400.0" />
+      <Button fx:id="backButton" layoutX="20.0" layoutY="672.0" mnemonicParsing="false" onAction="#openViewActivities" prefHeight="35.0" prefWidth="100.0" text="Back" />
    </children>
 </Pane>

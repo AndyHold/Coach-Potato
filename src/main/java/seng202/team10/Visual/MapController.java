@@ -157,16 +157,13 @@ public class MapController implements Controllable, Initializable{
         this.activityLabel.setText(activity.getName());
     }
 
-
     /**
-     * Method to go to the analysis screen.
+     * Method to open the view activities screen.
+     * Called when the back button is pressed.
      */
-    @FXML public void goToDataAnalysis()
-    {
-//        guiController.launchActivityViewerScene();
-        app.getTitleBar().openAnalysis();
+    @FXML void openViewActivities() {
+        this.app.getTitleBar().openViewActivities();
     }
-
 
     /**
      * Creates a new Route from an activity.
