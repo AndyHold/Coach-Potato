@@ -295,7 +295,7 @@ public class ProfileController {
             String nameString = usernameTA.getText();
             app.checkUniqueName(nameString);
             try {
-                app.getUsers().get(app.getUsers().indexOf(app.getTitleBar().getCurrentProfile())).setName(nameString);
+                currentUser.setName(nameString);
             } catch (UserNameException | IllegalArgumentException exception) {
                 app.createPopUp(Alert.AlertType.ERROR, "Invalid Username", "Please enter a valid username: It should be less than 50 characters and only contain alphanumeric characters." );
             }
@@ -303,19 +303,20 @@ public class ProfileController {
             app.createPopUp(Alert.AlertType.ERROR, "Invalid Username", "Please enter a valid username: This username already exists." );
         }
         String newName = currentUser.getName();
-        if(!(oldName.equals(newName))){
-            app.getDataWriter().deleteProfile(oldName);
-    }
+        if(!(oldName.equals(newName))) {
+            app.getDataWriter().deleteProfile(oldName + " - " + currentUser.getGender());
+            app.getDataWriter().saveProfile(currentUser);
+        }
         // Set weight and handle exceptions
         try {
-            app.getUsers().get(app.getUsers().indexOf(app.getTitleBar().getCurrentProfile())).setWeight(Double.valueOf(weightValueTA.getText()));
+            currentUser.setWeight(Double.valueOf(weightValueTA.getText()));
         }  catch (InvalidWeightException | IllegalArgumentException exception) {
             app.createPopUp(Alert.AlertType.ERROR, "Invalid Weight", "Please enter a valid weight: It should be greater than 30 kg and less than 500 kg." );
         }
 
         // Set height and handle Exceptions
         try {
-            app.getUsers().get(app.getUsers().indexOf(app.getTitleBar().getCurrentProfile())).setHeight(Double.valueOf(heightValueTA.getText()));
+            currentUser.setHeight(Double.valueOf(heightValueTA.getText()));
         } catch (InvalidHeightException | IllegalArgumentException exception) {
             app.createPopUp(Alert.AlertType.ERROR, "Invalid Height", "Please enter a valid height: It should be greater than 50 cm and less than 250 cm." );
         }
@@ -327,23 +328,26 @@ public class ProfileController {
             int monthInt = Integer.valueOf(dob.substring(3,5));
             int dayInt = Integer.valueOf(dob.substring(0,2));
             DateTime dateOfBirth = new DateTime(yearInt, monthInt, dayInt, 0, 0, 0);
-            app.getUsers().get(app.getUsers().indexOf(app.getTitleBar().getCurrentProfile())).setBirthDate(dateOfBirth);
+            currentUser.setBirthDate(dateOfBirth);
         } catch (NullPointerException | IllegalArgumentException | InvalidDateException exception) {
             app.createPopUp(Alert.AlertType.ERROR, "Invalid Date of Birth", "Please enter a valid date: It should be in DD/MM/YYYY format." );
         }
 
         // Set gender and handle Exceptions
         List<String> genderList = Arrays.asList("Male", "Female", "Other");
-        if (genderList.contains(genderTA.getText())) {
-            app.getUsers().get(app.getUsers().indexOf(app.getTitleBar().getCurrentProfile())).setGender(genderTA.getText());
-        }
-        else {
+        String oldGender = currentUser.getGender();
+        String newGender = genderTA.getText();
+        if (genderList.contains(newGender)) {
+            currentUser.setGender(newGender);
+        } else {
             app.createPopUp(Alert.AlertType.ERROR, "Invalid Gender", "Please enter a valid gender: It should be either \"Male\", \"Female\" or \"Other\"." );
-
+        }
+        if (!(oldGender.equals(currentUser.getGender()))) {
+            app.getDataWriter().deleteProfile(currentUser.getName() + " - " + oldGender);
         }
         confirmButton.setVisible(false);
         editProfileButton.setVisible(true);
-        app.getDataWriter().saveProfile(app.getTitleBar().getCurrentProfile());
+        app.getDataWriter().saveProfile(currentUser);
         setUserDetails();
     }
 
