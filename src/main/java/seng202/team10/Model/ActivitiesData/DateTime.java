@@ -98,7 +98,7 @@ public class DateTime implements Serializable {
      */
     private void setYear(int newYear)
     {
-        if ((1900 <= newYear) && (newYear <= 2100)) {
+        if (1900 <= newYear && newYear <= 2100) {
             this.year = newYear;
         } else {
             throw new IllegalArgumentException("Year parameter not valid!\nvalue: " + String.valueOf(newYear) + " is not in range 1900 - 2100");

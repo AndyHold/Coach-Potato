@@ -160,6 +160,7 @@ public class Entry  implements Serializable {
 =======
      */
 <<<<<<< HEAD
+<<<<<<< HEAD
     public Entry(boolean firstEntry, DateTime time, double heartRate, Position position) {
 >>>>>>> 79c9f1d... No changes made
 =======
@@ -235,6 +236,9 @@ public class Entry  implements Serializable {
 =======
 =======
     public Entry(DateTime time, int heartRate, Position position)
+=======
+    public Entry(DateTime time, int heartRate, Position position) throws NullPointerException
+>>>>>>> 04a8fe97... Changed the entry constructor to throw null pointers
     {
 =======
 >>>>>>> 04fec49c... DateTime now has 100% test coverage, refactored Activity and Entry to make them more readable and got rid of unnecessary String attributes and had them be derived when asked for in the getter method instead. This will make it easier when the values are changed. Implemented the calculateVelocity method in Entry and the calculateEntriesVelocity method in Activity properly so that the data can now be used for graphing.
@@ -377,7 +381,11 @@ public class Entry  implements Serializable {
      */
     public void setTime(DateTime time)
     {
-        this.time = time;
+        if (time != null) {
+            this.time = time;
+        } else {
+            throw new NullPointerException("Time cannot be null");
+        }
     }
 
 
@@ -455,8 +463,16 @@ public class Entry  implements Serializable {
      */
     public void setPosition(Position position)
     {
+<<<<<<< HEAD
         this.position = position;
 >>>>>>> 04fec49c... DateTime now has 100% test coverage, refactored Activity and Entry to make them more readable and got rid of unnecessary String attributes and had them be derived when asked for in the getter method instead. This will make it easier when the values are changed. Implemented the calculateVelocity method in Entry and the calculateEntriesVelocity method in Activity properly so that the data can now be used for graphing.
+=======
+        if (position != null) {
+            this.position = position;
+        } else {
+            throw new NullPointerException("Position cannot be null");
+        }
+>>>>>>> 04a8fe97... Changed the entry constructor to throw null pointers
     }
 
 
