@@ -12,10 +12,7 @@ import javafx.geometry.Pos;
 import org.junit.Before;
 import org.junit.Test;
 import seng202.team10.Model.ActivitiesData.DateTime;
-import seng202.team10.Model.Exceptions.BadGoalNameException;
-import seng202.team10.Model.Exceptions.InvalidGoalDateException;
-import seng202.team10.Model.Exceptions.InvalidGoalTargetException;
-import seng202.team10.Model.Exceptions.NoTypeSelectedException;
+import seng202.team10.Model.Exceptions.*;
 import seng202.team10.Model.Goals.*;
 
 import java.time.LocalDateTime;
@@ -273,7 +270,7 @@ public class GoalsTest {
 
 
     @Test
-    public void checkWeightGoalAchieved() throws BadGoalNameException, InvalidGoalDateException, InvalidGoalTargetException
+    public void checkWeightGoalAchieved() throws BadGoalNameException, InvalidGoalDateException, InvalidGoalTargetException, InvalidWeightException
     {
         LocalDateTime now = LocalDateTime.now();
         int year = now.getYear();
@@ -288,7 +285,9 @@ public class GoalsTest {
         achievedGoalNames = goalsInstance.getAchievedGoalNames();
 
         WeightGoal goalToCheck = new WeightGoal("WeightGoal1", startDate, targetDate);
+        testUser.setWeight(102);
         goalToCheck.setTargetValue(101.0, testUser);
+        testUser.setWeight(100);
         currentGoals.add(goalToCheck);
         currentGoalNames.add(goalToCheck.getGoalName());
 
@@ -322,14 +321,14 @@ public class GoalsTest {
 //    }
 =======
     @Test
-    public void checkWeightGoalFailed() throws BadGoalNameException, InvalidGoalDateException, InvalidGoalTargetException
+    public void checkWeightGoalFailed() throws BadGoalNameException, InvalidGoalDateException, InvalidGoalTargetException, InterruptedException
     {
         LocalDateTime now = LocalDateTime.now();
         int year = now.getYear();
         int month = now.getMonthValue();
         int day = now.getDayOfMonth();
         startDate = new DateTime(year, month, day, 0,0,0);
-        targetDate = new DateTime(year - 4, month, day, 0,0,0);
+        targetDate = new DateTime(year, month, day, 0,0,0);
 
         currentGoals = goalsInstance.getCurrentGoals();
         currentGoalNames = goalsInstance.getCurrentGoalNames();
@@ -340,7 +339,7 @@ public class GoalsTest {
         goalToCheck.setTargetValue(99.0, testUser);
         currentGoals.add(goalToCheck);
         currentGoalNames.add(goalToCheck.getGoalName());
-
+        Thread.sleep(1000);
         String message = goalsInstance.checkGoal(goalToCheck.getGoalName());
 
         assertEquals(1, failedGoals.size());
@@ -380,14 +379,14 @@ public class GoalsTest {
     }
 
     @Test
-    public void checkBMIGoalFailed() throws BadGoalNameException, InvalidGoalDateException, InvalidGoalTargetException
+    public void checkBMIGoalFailed() throws BadGoalNameException, InvalidGoalDateException, InvalidGoalTargetException, InterruptedException, InvalidWeightException
     {
         LocalDateTime now = LocalDateTime.now();
         int year = now.getYear();
         int month = now.getMonthValue();
         int day = now.getDayOfMonth();
         startDate = new DateTime(year, month, day, 0,0,0);
-        targetDate = new DateTime(year - 4, month, day, 0,0,0);
+        targetDate = new DateTime(year, month, day, 0,0,0);
 
         currentGoals = goalsInstance.getCurrentGoals();
         currentGoalNames = goalsInstance.getCurrentGoalNames();
@@ -396,9 +395,10 @@ public class GoalsTest {
 
         BmiGoal goalToCheck = new BmiGoal("BMIGoal1", startDate, targetDate);
         goalToCheck.setTargetValue(10.0, testUser);
+        testUser.setWeight(100);
         currentGoals.add(goalToCheck);
         currentGoalNames.add(goalToCheck.getGoalName());
-
+        Thread.sleep(1000);
         String message = goalsInstance.checkGoal(goalToCheck.getGoalName());
 
         assertEquals(1, failedGoals.size());

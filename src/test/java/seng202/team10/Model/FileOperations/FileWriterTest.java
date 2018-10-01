@@ -68,13 +68,13 @@ public class FileWriterTest {
         testWriter.saveProfile(testProfile);
         testProfile.setWeight(100);
         testWriter.saveProfile(testProfile);
-        assertEquals(100, testReader.loadExistingProfile(testProfile.getName()).getWeight(), 1);
+        assertEquals(100, testReader.loadExistingProfile(testProfile.getName() + " - " + testProfile.getGender()).getWeight(), 1);
     }
 
 
     @AfterClass
     public static void tearDown()
     {
-        testWriter.deleteProfile("jeff");
+        testWriter.deleteProfile("jeff - Male");
     }
 }

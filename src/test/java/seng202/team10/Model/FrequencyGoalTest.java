@@ -35,12 +35,12 @@ public class FrequencyGoalTest {
 
 
     @Test
-    public void reviewFrequencyGoalFailUpperBound() throws InvalidGoalDateException, BadGoalNameException, InvalidGoalTargetException
-    {
+    public void reviewFrequencyGoalFailUpperBound() throws InvalidGoalDateException, BadGoalNameException, InvalidGoalTargetException, InterruptedException {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
-        target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() - 1, now1.getHour(), now1.getMinute(), now1.getSecond());
+        target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         testGoal = new FrequencyGoal(name, currentTime, target, targetFreq);
+        Thread.sleep(1000);
         String message = ((FrequencyGoal) testGoal).reviewFrequencyGoal(9);
         assertEquals("Your target for this goal was to excersize 10 times by " + target + "\n" +
                 "\n" +
@@ -48,12 +48,12 @@ public class FrequencyGoalTest {
     }
 
     @Test
-    public void reviewFrequencyGoalFailLowerBound() throws InvalidGoalDateException, BadGoalNameException, InvalidGoalTargetException
-    {
+    public void reviewFrequencyGoalFailLowerBound() throws InvalidGoalDateException, BadGoalNameException, InvalidGoalTargetException, InterruptedException {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
-        target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() - 1, now1.getHour(), now1.getMinute(), now1.getSecond());
+        target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         testGoal = new FrequencyGoal(name, currentTime, target, targetFreq);
+        Thread.sleep(1000);
         String message = ((FrequencyGoal) testGoal).reviewFrequencyGoal(0);
         assertEquals("Your target for this goal was to excersize 10 times by " + target + "\n" +
                 "\n" +

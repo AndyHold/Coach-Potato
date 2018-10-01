@@ -37,6 +37,8 @@ public class FrequencyGoal extends Goal {
     {
         if (target < 1 || target > 1000) {
             throw new InvalidGoalTargetException("Target must be between 1 - 1000");
+        } else {
+            this.goalFrequency = target;
         }
     }
 

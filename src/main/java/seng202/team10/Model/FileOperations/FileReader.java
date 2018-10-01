@@ -68,6 +68,8 @@ public class FileReader {
      */
     public void getExistingUsers(ArrayList<String> foundUsers, ArrayList<String> usersGenders)
     {
+        foundUsers.clear();
+        usersGenders.clear();
         File folder = new File("./profiles");
         File[] listOfFiles = folder.listFiles();
         if (listOfFiles != null) {

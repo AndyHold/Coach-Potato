@@ -28,6 +28,7 @@ public class UserProfileTest {
     public void setUp() throws Exception {
         testProfile.setName("dave");
         testProfile.setWeight(80);
+        testProfile.setGender("Male");
         testProfile.setBirthDate(new DateTime(1987, 9, 9, 0, 0, 0));
         ArrayList<String> fileContents = testParser.getFileContents("./FilesToLoad/testdata.csv");
         ArrayList<ArrayList<String>> formattedFile = testParser.formatFileContents(fileContents);
@@ -37,13 +38,13 @@ public class UserProfileTest {
 
     @After
     public void tearDown() throws Exception {
-        writer.deleteProfile("dave");
+        writer.deleteProfile("dave - Male");
     }
 
     @Test
     public void serializeTest() throws Exception{
         writer.saveProfile(testProfile);
-        UserProfile loadedProfile = reader.loadExistingProfile("dave");
+        UserProfile loadedProfile = reader.loadExistingProfile("dave - Male");
         boolean sameActivities = true;
         for(int i = 0; i < testProfile.getActivities().size(); i++) {
             if(!testProfile.getActivities().get(i).getName().equals(loadedProfile.getActivities().get(i).getName())){
