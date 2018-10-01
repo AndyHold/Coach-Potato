@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.shape.*?>
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -22,9 +15,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextArea" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/goals.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.GoalController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextArea" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/goals.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.GoalController">
    <children>
        <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE">
          <tabs>
@@ -32,6 +26,7 @@
                <content>
                   <Pane>
                      <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="23.0" layoutX="20.0" layoutY="170.0" stroke="BLACK" strokeType="INSIDE" width="1237.0" />
                         <VBox alignment="CENTER" layoutY="-3.0" prefHeight="684.0" prefWidth="1280.0">
                            <children>
                               <HBox alignment="CENTER" fillHeight="false" prefHeight="683.0" prefWidth="1280.0" spacing="30.0">
@@ -143,21 +138,56 @@
                                        </HBox.margin>
                                     </Label>
                                  </children></HBox>
-                              <HBox prefHeight="50.0" prefWidth="1280.0">
+                              <HBox prefHeight="50.0" prefWidth="200.0">
                                  <children>
-                                    <TextField fx:id="goalNameEntry" prefHeight="30.0" prefWidth="200.0" promptText="Enter Goal Name...">
+                                    <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="80.0" text="Name:">
                                        <HBox.margin>
-                                          <Insets left="50.0" right="150.0" />
+                                          <Insets left="50.0" right="50.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <TextField fx:id="goalNameEntry" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="Enter Goal Name...">
+                                       <HBox.margin>
+                                          <Insets />
                                        </HBox.margin>
                                     </TextField>
+                                    <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="140.0" text="Type:">
+                                       <HBox.margin>
+                                          <Insets left="120.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <ComboBox fx:id="goalTypeCombo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#displayUnits" prefHeight="30.0" prefWidth="200.0" promptText="Choose Goal Type...">
+                                       <HBox.margin>
+                                          <Insets right="60.0" />
+                                       </HBox.margin>
+                                    </ComboBox>
+                                    <HBox prefHeight="21.0" prefWidth="400.0">
+                                       <children>
+                                          <Label fx:id="unitsLabel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="65.0" text="Target: ">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="targetValueEntry" prefHeight="30.0" prefWidth="200.0" promptText="Enter target value:">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin></TextField>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="50.0" right="100.0" />
+                                       </HBox.margin>
+                                    </HBox>
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="50.0" prefWidth="1280.0">
+                                 <children>
                                     <HBox prefHeight="100.0" prefWidth="350.0">
                                        <children>
-                                          <Label prefHeight="30.0" text="Goal start date:">
+                                          <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="110.0" text="Goal start date:">
                                              <HBox.margin>
                                                 <Insets right="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <DatePicker fx:id="startDatePicker" prefHeight="30.0" prefWidth="198.0" />
+                                          <DatePicker fx:id="startDatePicker" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" />
                                        </children>
                                        <HBox.margin>
                                           <Insets left="50.0" right="100.0" />
@@ -165,7 +195,7 @@
                                     </HBox>
                                     <HBox prefHeight="100.0" prefWidth="350.0">
                                        <children>
-                                          <Label prefHeight="30.0" text="Goal target date:">
+                                          <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="120.0" text="Goal target date:">
                                              <HBox.margin>
                                                 <Insets right="20.0" />
                                              </HBox.margin>
@@ -179,37 +209,12 @@
                                           <Insets />
                                        </HBox.margin>
                                     </HBox>
-                                 </children>
-                              </HBox>
-                              <HBox prefHeight="50.0" prefWidth="200.0">
-                                 <children>
-                                    <ComboBox fx:id="goalTypeCombo" onAction="#displayUnits" prefHeight="30.0" prefWidth="200.0" promptText="Choose Goal Type...">
-                                       <HBox.margin>
-                                          <Insets left="50.0" right="150.0" />
-                                       </HBox.margin>
-                                    </ComboBox>
-                                    <HBox prefHeight="21.0" prefWidth="400.0">
-                                       <children>
-                                          <TextField fx:id="targetValueEntry" prefHeight="30.0" prefWidth="200.0" promptText="Enter target value:">
-                                             <HBox.margin>
-                                                <Insets left="120.0" />
-                                             </HBox.margin></TextField>
-                                          <Label fx:id="unitsLabel" prefHeight="30.0" prefWidth="65.0">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                       <HBox.margin>
-                                          <Insets left="50.0" right="100.0" />
-                                       </HBox.margin>
-                                    </HBox>
-                                    <Button fx:id="createButton" mnemonicParsing="false" onAction="#createGoal" prefHeight="21.0" prefWidth="200.0" text="Create!">
+                                    <Button fx:id="createButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#createGoal" prefHeight="40.0" prefWidth="230.0" text="Create!">
                                        <font>
                                           <Font size="20.0" />
                                        </font>
                                        <HBox.margin>
-                                          <Insets left="80.0" />
+                                          <Insets left="100.0" />
                                        </HBox.margin>
                                     </Button>
                                  </children>
@@ -317,6 +322,5 @@
          </graphic>
       </Button>
       <TextArea fx:id="helpTextArea" editable="false" layoutX="825.0" layoutY="270.0" prefHeight="400.0" prefWidth="400.0" visible="false" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="23.0" layoutX="22.0" layoutY="198.0" stroke="BLACK" strokeType="INSIDE" width="1237.0" />
    </children>
 </Pane>
