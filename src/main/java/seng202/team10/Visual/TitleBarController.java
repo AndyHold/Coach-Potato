@@ -288,9 +288,10 @@ public class TitleBarController {
     /**
      * Method to display the analysis screen.
      */
-    @FXML public void openAnalysis()
+    @FXML public void openAnalysis(Activity activity)
     {
         app.getDataWriter().saveProfile(currentUser);
+        dataAnalysisController.setActivity(activity);
         dataAnalysisController.setUpScene();
         slideMenu(false);
         setScene(analysisPane);

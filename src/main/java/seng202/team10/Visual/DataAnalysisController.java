@@ -29,18 +29,14 @@ public class DataAnalysisController implements Controllable, Initializable{
     private int currentIndex;
 
     @FXML private Label activityNameLabel;
-    @FXML private Label timeTakenLabel;
     @FXML private TabPane tabPane;
     @FXML private LineChart distanceOverTime;
     @FXML private LineChart heartRateOverTime;
     @FXML private LineChart caloriesBurned;
     @FXML private LineChart stressLevelOverTime;
-    @FXML private Label noActivitiesLabel;
-    @FXML private ListView activityList;
-    @FXML private VBox drawer;
     @FXML private TextArea helpTextArea;
     @FXML private Button helpButton;
-    @FXML private Button mapButton;
+    @FXML private Button backButton;
 
     private XYChart.Series distanceTimeSeries;
     private XYChart.Series heartRateSeries;
@@ -73,26 +69,19 @@ public class DataAnalysisController implements Controllable, Initializable{
         // Create a new data analysis
         dataAnalysis = new DataAnalysis();
         // Check for activities in the profile
-        if (app.getTitleBar().getCurrentProfile().getActivities().isEmpty()) {
-            this.displayNoData(true);
-        } else {
-            this.setUpListView();
-            this.displayNoData(false);
-            this.initializeSeries();
-            this.clearGraphs();
-            // Get arrays
-            ArrayList<Double> timeArray = dataAnalysis.getMinutesFromActivity(activity);
-            ArrayList<Integer> heartRateArray = dataAnalysis.getHeartRateFromActivity(activity);
-            int timeTaken = activity.getTotalDuration();
-            // Set the name
-            activityNameLabel.setText(activity.getName());
-            timeTakenLabel.setText("Time Taken: " + activity.secondsToTime(timeTaken));
-            // Populate the graphs
-            this.populateDistanceTimeGraph(timeArray);
-            this.populateHeartRateTimeGraph(timeArray, heartRateArray);
-            this.populateCaloriesBurnedGraph(timeArray);
-            this.populateStressTimeGraph(timeArray, heartRateArray);
-        }
+        this.initializeSeries();
+        this.clearGraphs();
+        // Get arrays
+        ArrayList<Double> timeArray = dataAnalysis.getMinutesFromActivity(activity);
+        ArrayList<Integer> heartRateArray = dataAnalysis.getHeartRateFromActivity(activity);
+        // Set the name
+        activityNameLabel.setText(activity.getName());
+        // Populate the graphs
+        this.populateDistanceTimeGraph(timeArray);
+        this.populateHeartRateTimeGraph(timeArray, heartRateArray);
+        this.populateCaloriesBurnedGraph(timeArray);
+        this.populateStressTimeGraph(timeArray, heartRateArray);
+
         // Hide the help text field when focus is lost
         helpTextArea.focusedProperty().addListener((ov, oldV, newV) -> {
             if (!newV) {
@@ -131,9 +120,7 @@ public class DataAnalysisController implements Controllable, Initializable{
      */
     private void setUpToolTips()
     {
-        activityList.setTooltip(new Tooltip("Select an activity from the list to update the graphs with that activity."));
         tabPane.setTooltip(new Tooltip("Select the tab of the graph you wish to see."));
-        mapButton.setTooltip(new Tooltip("Click here to view a map of the selected Activity."));
         helpButton.setTooltip(new Tooltip("Need Help?"));
     }
 
@@ -157,27 +144,6 @@ public class DataAnalysisController implements Controllable, Initializable{
     {
         helpTextArea.setVisible(false);
         helpButton.requestFocus();
-    }
-
-
-    /**
-     * Method to set up the ListView that contains a list of activities for the user to view. It displays the activity
-     * name and date.
-     */
-    private void setUpListView()
-    {
-        ObservableList<String> activityNames = FXCollections.observableArrayList();
-        for (Activity activity : app.getTitleBar().getCurrentProfile().getActivities()) {
-            String activityString = activity.getName() + " : " + activity.getStartDateTime().toString();
-            activityNames.add(activityString);
-        }
-        activityList.setItems(activityNames);
-        if (activityList.getSelectionModel().getSelectedIndex() == -1) {
-            activityList.getSelectionModel().selectFirst();
-            currentIndex = 0;
-        }
-        currentIndex = activityList.getSelectionModel().getSelectedIndex();
-        activity = app.getTitleBar().getCurrentProfile().getActivities().get(currentIndex);
     }
 
 
@@ -263,19 +229,6 @@ public class DataAnalysisController implements Controllable, Initializable{
         stressLevelOverTime.getData().clear();
     }
 
-
-    /**
-     * Method to set up the scene if a different index than the currently selected one is chosen. Called when any
-     * actvity in the list view is clicked.
-     */
-    @FXML private void refresh()
-    {
-        if (activityList.getSelectionModel().getSelectedIndex() != currentIndex) {
-            setUpScene();
-        }
-    }
-
-
     /**
      * Method to set up the graphs by initializing them and setting labels.
      */
@@ -294,6 +247,10 @@ public class DataAnalysisController implements Controllable, Initializable{
         stressLevelOverTime.getYAxis().setLabel("Stress level (% of max heart rate)");
     }
 
+    @FXML public void openViewActivities() {
+        app.getTitleBar().openViewActivities();
+    }
+
 
     /**
      * Method to set up a graph by setting its label and disabling symbols and legends.
@@ -308,48 +265,12 @@ public class DataAnalysisController implements Controllable, Initializable{
 
 
     /**
-     * Method to display a message if there is no data to display, or to disable the message if there is data. Also
-     * sets the list of activities to null when there is no data.
-     * @param noDataFound True if there is no data to display. False if there is.
-     */
-    private void displayNoData(boolean noDataFound)
-    {
-        if (noDataFound) {
-            activityList.setItems(null);
-            tabPane.setVisible(false);
-            activityNameLabel.setVisible(false);
-            timeTakenLabel.setVisible(false);
-            noActivitiesLabel.setVisible(true);
-        } else {
-            tabPane.setVisible(true);
-            activityNameLabel.setVisible(true);
-            timeTakenLabel.setVisible(true);
-            noActivitiesLabel.setVisible(false);
-        }
-    }
-
-
-    /**
      * Method to set the activity attribute.
      * @param activity  The activity that the local value is being set to.
      */
     public void setActivity(Activity activity)
     {
         this.activity = activity;
-    }
-
-
-    /**
-     *Method to launch the map for the currently selected activity.
-     */
-    @FXML public void viewMap()
-    {
-        if (!(activity == null)) {
-            app.getTitleBar().openMap(activity);
-        } else {
-            this.app.createPopUp(Alert.AlertType.ERROR, "Error", "Please select an activity.");
-        }
-
     }
 
     /**

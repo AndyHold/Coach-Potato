@@ -345,7 +345,7 @@ public class Activity implements Serializable {
      * Getter method for the Time as a String
      * @return String
      */
-    protected String getTimeString()
+    public String getTimeString()
     {
         return this.startDateTime.toString();
     }
@@ -396,7 +396,7 @@ public class Activity implements Serializable {
      * Getter method for the Number of Entries as a String
      * @return String
      */
-    protected int getEntryno()
+    public int getEntryno()
     {
         return this.entries.size();
     }

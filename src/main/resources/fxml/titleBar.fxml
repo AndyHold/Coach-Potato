@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -10,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1280.0" stylesheets="@../css/titleBar.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.TitleBarController">
+<Pane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1280.0" stylesheets="@../css/titleBar.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.TitleBarController">
    <children>
       <VBox prefHeight="750.0" prefWidth="1280.0">
          <children>
@@ -115,19 +121,6 @@
                            </image>
                         </ImageView>
                         <Label text="Goals" />
-                     </children>
-                  </VBox>
-               </graphic></Button>
-            <Button fx:id="analysisButton" mnemonicParsing="false" onAction="#openAnalysis">
-               <graphic>
-                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="150.0">
-                     <children>
-                        <ImageView fitHeight="65.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Images/graph.png" />
-                           </image>
-                        </ImageView>
-                        <Label text="Analysis" />
                      </children>
                   </VBox>
                </graphic></Button>

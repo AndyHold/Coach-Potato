@@ -15,6 +15,6 @@ public class BadGoalNameException extends Exception {
      */
     public BadGoalNameException()
     {
-        super("Please select a name for your goal.\nMust be between 2 - 20 characters long.");
+        super("Please select a name for your goal.\nMust be between 2 - 20 characters long and \ncannot be the same as an existing goal.");
     }
 }
