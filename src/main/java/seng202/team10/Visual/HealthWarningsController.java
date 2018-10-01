@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -35,9 +36,9 @@ public class HealthWarningsController implements Controllable {
     @FXML private ImageView bradycardiaIcon;
     @FXML private ImageView cardiovascularMortalityIcon;
     @FXML private WebView googleWebView;
-    @FXML private VBox tWarningsVBox;
-    @FXML private VBox bWarningsVBox;
-    @FXML private VBox cWarningsVBox;
+    @FXML private Pane tWarningsPane;
+    @FXML private Pane bWarningsPane;
+    @FXML private Pane cWarningsPane;
     @FXML private ScrollPane warningsScrollPane;
     private WebEngine engine;
 
@@ -57,8 +58,8 @@ public class HealthWarningsController implements Controllable {
      */
     public void setUpScene()
     {
+        warningsScrollPane.setVisible(false);
         getWarningLists();
-        createWarningPanes();
         setUpLabels();
         engine = googleWebView.getEngine();
         engine.load("https://google.com");
@@ -73,19 +74,19 @@ public class HealthWarningsController implements Controllable {
     /**
      * Method to create warning panes and add them to their correct VBox's
      */
-    private void createWarningPanes()
+    public void createWarningPanes()
     {
         // Tachycardia
         for (HealthWarning healthWarning: tachycardiaWarnings) {
-            new WarningPane(healthWarning, this, tWarningsVBox);
+            new WarningPane(healthWarning, this, tWarningsPane);
         }
         // Bradycardia
         for (HealthWarning healthWarning: bradycardiaWarnings) {
-            new WarningPane(healthWarning, this, bWarningsVBox);
+            new WarningPane(healthWarning, this, bWarningsPane);
         }
         // Cardiovascular Mortality
         for (HealthWarning healthWarning: cardiovascularMortalityWarnings) {
-            new WarningPane(healthWarning, this, cWarningsVBox);
+            new WarningPane(healthWarning, this, cWarningsPane);
         }
     }
 
@@ -151,36 +152,47 @@ public class HealthWarningsController implements Controllable {
                 break;
         }
         setUpLabels();
+        app.getTitleBar().setUpWarningFlag();
         //TODO this is very slow...
+    }
+
+
+    /**
+     * Getter method for the <b>GUIController</b>
+     * @return the <b>GUIController</b>
+     */
+    public GUIController getApp()
+    {
+        return this.app;
     }
 
 
     @FXML public void showCardiovascularMortalityWarnings()
     {
         warningsScrollPane.setVisible(true);
-        cWarningsVBox.setVisible(true);
+        cWarningsPane.setVisible(true);
     }
 
 
     @FXML public void showBradycardiaWarnings()
     {
         warningsScrollPane.setVisible(true);
-        bWarningsVBox.setVisible(true);
+        bWarningsPane.setVisible(true);
     }
 
 
     @FXML public void showTachycardiaWarnings()
     {
         warningsScrollPane.setVisible(true);
-        tWarningsVBox.setVisible(true);
+        tWarningsPane.setVisible(true);
     }
 
     @FXML public void hideWarningsScrollPane()
     {
         warningsScrollPane.setVisible(false);
-        tWarningsVBox.setVisible(false);
-        bWarningsVBox.setVisible(false);
-        cWarningsVBox.setVisible(false);
+        tWarningsPane.setVisible(false);
+        bWarningsPane.setVisible(false);
+        cWarningsPane.setVisible(false);
     }
 
     /**

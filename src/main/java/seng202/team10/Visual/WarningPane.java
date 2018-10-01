@@ -6,9 +6,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import seng202.team10.Model.ActivitiesData.HealthWarning;
@@ -20,30 +22,40 @@ public class WarningPane {
     private VBox container;
     private Button clearButton;
     private HealthWarningsController healthWarningsController;
-    private VBox mainVBox;
+    private Pane mainPane;
 
 
-    public WarningPane(HealthWarning healthWarning, HealthWarningsController healthWarningsController, VBox mainVBox)
+    public WarningPane(HealthWarning healthWarning, HealthWarningsController healthWarningsController, Pane mainPane)
     {
         this.healthWarning = healthWarning;
         this.healthWarningsController = healthWarningsController;
-        this.mainVBox = mainVBox;
+        this.mainPane = mainPane;
         this.container = new VBox();
         setStyle();
         fillContainer();
-        extendVBox(mainVBox, 115);
-        mainVBox.getChildren().add(container);
+        container.setLayoutY(mainPane.getChildren().size() * 115);
+        this.mainPane.getChildren().add(container);
+        resizePane(this.mainPane);
     }
 
 
-    private void extendVBox(VBox mainVBox, int amount)
+    /**
+     * Method to extend the Pane to fit the new container
+     * @param mainPane the <b>Pane</b> to be resized
+     */
+    private void resizePane(Pane mainPane)
     {
-        double currentHeight = mainVBox.getHeight();
-        mainVBox.setMaxHeight(currentHeight + amount);
-        mainVBox.setMinHeight(currentHeight + amount);
+        double newHeight = (mainPane.getChildren().size() * 115);
+        mainPane.setStyle("-fx-min-height: " + newHeight + "; " +
+                          "-fx-max-height: " + newHeight + ";");
+        mainPane.getParent().setStyle("-fx-min-height: " + newHeight + "; " +
+                                      "-fx-max-height: " + newHeight + ";");
     }
 
 
+    /**
+     * Fills the warning pane with the elements assosciated with the health warning.
+     */
     private void fillContainer()
     {
         HBox activityHBox = new HBox();
@@ -71,30 +83,44 @@ public class WarningPane {
         this.clearButton = new Button("Clear Warning");
         buttonBox.getChildren().add(clearButton);
         container.getChildren().add(buttonBox);
+        setButtonAction();
+        mainPane.getChildren().remove(container);
+        resizePane(mainPane);
+    }
+
+
+    /**
+     * Setter method for the Action Listener assosciated with the clear button
+     */
+    private void setButtonAction()
+    {
         clearButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                int i = 0;
+                while (i < mainPane.getChildren().size() && mainPane.getChildren().get(i) != container) {
+                    i++;
+                }
                 TranslateTransition clear = new TranslateTransition(new Duration(350), container);
-                clear.setToX(container.getLayoutX() - 380);
+                clear.setToX(-380);
                 clear.play();
-//                for (int i = 0; i < mainVBox.getChildren().size(); i++) {
-//                    TranslateTransition raise = new TranslateTransition(new Duration(350), mainVBox.getChildren().get(i));
-//                    raise.setToY(mainVBox.getChildren().get(i).getLayoutY() - 115);
-//                    raise.play();
-//                }
-                mainVBox.getChildren().remove(container);
-                extendVBox(mainVBox, -115);
+                long now2 = System.currentTimeMillis();
+                i++;
+                while (i < mainPane.getChildren().size()) {
+                    TranslateTransition raise = new TranslateTransition(new Duration(350), mainPane.getChildren().get(i));
+                    raise.setToY(mainPane.getChildren().get(i).getTranslateY() - 115);
+                    raise.play();
+                    i++;
+                }
                 healthWarningsController.removeWarning(healthWarning);
             }
         });
     }
 
 
-    public HealthWarning getHealthWarning()
-    {
-        return healthWarning;
-    }
-
+    /**
+     * Setter method for the style sheet assosciated with this pane.
+     */
     private void setStyle()
     {
         String css = this.getClass().getResource("/css/warningPane.css").toExternalForm();
