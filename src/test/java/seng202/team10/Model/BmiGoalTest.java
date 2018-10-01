@@ -35,13 +35,14 @@ public class BmiGoalTest {
 
 
     @Test
-    public void reviewBMIGoalFailLowerBound() throws BadGoalNameException, InvalidGoalDateException, InvalidGoalTargetException
+    public void reviewBMIGoalFailLowerBound() throws BadGoalNameException, InvalidGoalDateException, InvalidGoalTargetException, InterruptedException
     {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
-        target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() - 1, now1.getHour(), now1.getMinute(), now1.getSecond());
+        target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() , now1.getHour(), now1.getMinute(), now1.getSecond());
         testGoal = new BmiGoal(name, currentTime, target);
         ((BmiGoal) testGoal).setTargetValue(targetBMI, testUser);
+        Thread.sleep(1000);
         String message = ((BmiGoal) testGoal).reviewBmiGoal(20.1);
         assertEquals("Your target for this goal was to have a BMI less than or equal to 20.0 by " + target + "\n" +
                 "\n" +
@@ -49,13 +50,14 @@ public class BmiGoalTest {
     }
 
     @Test
-    public void reviewBMIGoalFailUpperBound() throws InvalidGoalTargetException, BadGoalNameException, InvalidGoalDateException
+    public void reviewBMIGoalFailUpperBound() throws InvalidGoalTargetException, BadGoalNameException, InvalidGoalDateException, InterruptedException
     {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
-        target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() - 1, now1.getHour(), now1.getMinute(), now1.getSecond());
+        target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         testGoal = new BmiGoal(name, currentTime, target);
         ((BmiGoal) testGoal).setTargetValue(targetBMI, testUser);
+        Thread.sleep(1000);
         String message = ((BmiGoal) testGoal).reviewBmiGoal(2000);
         assertEquals("Your target for this goal was to have a BMI less than or equal to 20.0 by " + target + "\n" +
                 "\n" +
@@ -67,7 +69,7 @@ public class BmiGoalTest {
     {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
-        target = new DateTime(now1.getYear() + 1, now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
+        target = new DateTime(now1.getYear() + 4, now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         testGoal = new BmiGoal(name, currentTime, target);
         ((BmiGoal) testGoal).setTargetValue(targetBMI, testUser);
         String message = ((BmiGoal) testGoal).reviewBmiGoal(20.1);
@@ -81,7 +83,7 @@ public class BmiGoalTest {
     {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
-        target = new DateTime(now1.getYear() + 1, now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
+        target = new DateTime(now1.getYear() + 4, now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         testGoal = new BmiGoal(name, currentTime, target);
         ((BmiGoal) testGoal).setTargetValue(targetBMI, testUser);
         String message = ((BmiGoal) testGoal).reviewBmiGoal(2000);

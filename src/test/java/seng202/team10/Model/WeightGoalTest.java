@@ -35,83 +35,97 @@ public class WeightGoalTest {
 
     // TODO test the constructor method properly
     @Test
-    public void reviewWeightGoalFailLowerBound() throws BadGoalNameException, InvalidGoalDateException, InvalidGoalTargetException
+    public void reviewWeightGoalFailLowerBound() throws BadGoalNameException, InvalidGoalDateException, InvalidGoalTargetException, InvalidWeightException, InterruptedException
     {
         LocalDateTime now1 = LocalDateTime.now();
+        testUser.setWeight(101.0);
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
-        target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() - 1, now1.getHour(), now1.getMinute(), now1.getSecond());
+        target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         testGoal = new WeightGoal(name, currentTime, target);
         ((WeightGoal) testGoal).setTargetValue(targetWeight, testUser);
+        Thread.sleep(1000);
         String message = ((WeightGoal) testGoal).reviewWeightGoal(101.0);
+        testUser.setWeight(100);
         assertEquals("Your target for this goal was to weigh 100.0 or less by " + target + "\n" +
                 "\n" +
                 "You have failed to complete this goal in time. It has been removed from your current goals and added to your failed goals.", message);
     }
 
     @Test
-    public void reviewWeightGoalFailUpperBound() throws BadGoalNameException, InvalidGoalDateException, InvalidGoalTargetException
+    public void reviewWeightGoalFailUpperBound() throws BadGoalNameException, InvalidGoalDateException, InvalidGoalTargetException, InvalidWeightException, InterruptedException
     {
         LocalDateTime now1 = LocalDateTime.now();
+        testUser.setWeight(250);
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
-        target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() - 1, now1.getHour(), now1.getMinute(), now1.getSecond());
+        target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() , now1.getHour(), now1.getMinute(), now1.getSecond());
         testGoal = new WeightGoal(name, currentTime, target);
         ((WeightGoal) testGoal).setTargetValue(targetWeight, testUser);
-        String message = ((WeightGoal) testGoal).reviewWeightGoal(500);
+        Thread.sleep(1000);
+        String message = ((WeightGoal) testGoal).reviewWeightGoal(250);
+        testUser.setWeight(100);
         assertEquals("Your target for this goal was to weigh 100.0 or less by " + target + "\n" +
                 "\n" +
                 "You have failed to complete this goal in time. It has been removed from your current goals and added to your failed goals.", message);
     }
 
     @Test
-    public void reviewWeightGoalWorkingTowardsLowerBound() throws BadGoalNameException, InvalidGoalDateException, InvalidGoalTargetException
+    public void reviewWeightGoalWorkingTowardsLowerBound() throws BadGoalNameException, InvalidGoalDateException, InvalidGoalTargetException, InvalidWeightException
     {
         LocalDateTime now1 = LocalDateTime.now();
+        testUser.setWeight(101);
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear() + 1, now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         testGoal = new WeightGoal(name, currentTime, target);
         ((WeightGoal) testGoal).setTargetValue(targetWeight, testUser);
         String message = ((WeightGoal) testGoal).reviewWeightGoal(101);
+        testUser.setWeight(100);
         assertEquals("Your target for this goal was to weigh 100.0 or less by " + target + "\n" +
                 "\n" +
                 "You need to lose 1.0 more kgs to meet your goal.", message);
     }
 
     @Test
-    public void reviewWeightGoalWorkingTowardsUpperBound() throws InvalidGoalTargetException, BadGoalNameException, InvalidGoalDateException
+    public void reviewWeightGoalWorkingTowardsUpperBound() throws InvalidGoalTargetException, BadGoalNameException, InvalidGoalDateException, InvalidWeightException
     {
         LocalDateTime now1 = LocalDateTime.now();
+        testUser.setWeight(250);
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear() + 1, now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         testGoal = new WeightGoal(name, currentTime, target);
         ((WeightGoal) testGoal).setTargetValue(targetWeight, testUser);
-        String message = ((WeightGoal) testGoal).reviewWeightGoal(500);
+        String message = ((WeightGoal) testGoal).reviewWeightGoal(250);
+        testUser.setWeight(100);
         assertEquals("Your target for this goal was to weigh 100.0 or less by " + target + "\n" +
                 "\n" +
-                "You need to lose 400.0 more kgs to meet your goal.", message);
+                "You need to lose 150.0 more kgs to meet your goal.", message);
     }
 
     @Test
-    public void reviewWeightGoalAchievedJust() throws InvalidGoalTargetException, BadGoalNameException, InvalidGoalDateException
+    public void reviewWeightGoalAchievedJust() throws InvalidGoalTargetException, BadGoalNameException, InvalidGoalDateException, InvalidWeightException
     {
         LocalDateTime now1 = LocalDateTime.now();
+        testUser.setWeight(101);
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         testGoal = new WeightGoal(name, currentTime, target);
         ((WeightGoal) testGoal).setTargetValue(targetWeight, testUser);
+        testUser.setWeight(100);
         String message = ((WeightGoal) testGoal).reviewWeightGoal(100);
         assertEquals("Your target for this goal was to weigh 100.0 or less by " + target + "\n" +
                 "Congratulations you have completed this goal! It has been removed from your current goals and added to your achieved goals.", message);
     }
 
     @Test
-    public void reviewWeightGoalAchievedEasily() throws InvalidGoalTargetException, BadGoalNameException, InvalidGoalDateException
+    public void reviewWeightGoalAchievedEasily() throws InvalidGoalTargetException, BadGoalNameException, InvalidGoalDateException, InvalidWeightException
     {
         LocalDateTime now1 = LocalDateTime.now();
+        testUser.setWeight(101);
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         testGoal = new WeightGoal(name, currentTime, target);
         ((WeightGoal) testGoal).setTargetValue(targetWeight, testUser);
         String message = ((WeightGoal) testGoal).reviewWeightGoal(50);
+        testUser.setWeight(100);
         assertEquals("Your target for this goal was to weigh 100.0 or less by " + target + "\n" +
                 "Congratulations you have completed this goal! It has been removed from your current goals and added to your achieved goals.", message);
     }

@@ -36,7 +36,7 @@ public class BmiGoal extends Goal {
      */
     public void setTargetValue(double target, UserProfile user) throws InvalidGoalTargetException
     {
-        if (user.calcBmi() <= target || target <= 10) {
+        if (user.calcBmi() <= target || target < 10) {
             throw new InvalidGoalTargetException("Please enter a BMI above 10 that you have not already achieved.");
         } else {
             goalBmi = target;

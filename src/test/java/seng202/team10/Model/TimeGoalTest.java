@@ -33,12 +33,12 @@ public class TimeGoalTest {
 
 
     @Test
-    public void reviewTimeGoalFailUpperBound() throws InvalidGoalTargetException, InvalidGoalDateException, BadGoalNameException
-    {
+    public void reviewTimeGoalFailUpperBound() throws InvalidGoalTargetException, InvalidGoalDateException, BadGoalNameException, InterruptedException {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
-        target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() - 1, now1.getHour(), now1.getMinute(), now1.getSecond());
+        target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         testGoal = new TimeGoal(name, currentTime, target, targetTime);
+        Thread.sleep(1000);
         String message = ((TimeGoal) testGoal).reviewTimeGoal(199.9);
         assertEquals("Your target for this goal was to excersize for 200.0 minutes by " + target + "\n" +
                 "\n" +
@@ -46,12 +46,12 @@ public class TimeGoalTest {
     }
 
     @Test
-    public void reviewTimeGoalFailLowerBound() throws InvalidGoalTargetException, InvalidGoalDateException, BadGoalNameException
-    {
+    public void reviewTimeGoalFailLowerBound() throws InvalidGoalTargetException, InvalidGoalDateException, BadGoalNameException, InterruptedException {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
-        target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() - 1, now1.getHour(), now1.getMinute(), now1.getSecond());
+        target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         testGoal = new TimeGoal(name, currentTime, target, targetTime);
+        Thread.sleep(1000);
         String message = ((TimeGoal) testGoal).reviewTimeGoal(0.0);
         assertEquals("Your target for this goal was to excersize for 200.0 minutes by " + target + "\n" +
                 "\n" +

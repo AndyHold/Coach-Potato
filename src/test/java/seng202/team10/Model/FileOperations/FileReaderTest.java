@@ -65,7 +65,7 @@ public class FileReaderTest {
     @Test
     public void checkFileExists()
     {
-        assertTrue(testReader.checkFileExists("./profiles/" + testProfile.getName() + ".ser"));
+        assertTrue(testReader.checkFileExists("./profiles/" + testProfile.getName() + " - " + testProfile.getGender() + ".ser"));
     }
 
 
