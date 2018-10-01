@@ -86,8 +86,9 @@ public class TitleBarController {
     /**
      * Set up method for the health warnings flag.
      */
-    protected void setUpWarningFlag()
+    public void setUpWarningFlag()
     {
+        warningButton.setVisible(false);
         if (currentUser.getActiveHealthWarnings().size() > 0) {
             warningButton.setVisible(true);
             warningButton.setTooltip(new Tooltip("You currently have " +
@@ -333,6 +334,7 @@ public class TitleBarController {
         healthWarningController.setUpScene();
         slideMenu(false);
         setScene(healthWarningPane);
+        healthWarningController.createWarningPanes();
     }
 
 
