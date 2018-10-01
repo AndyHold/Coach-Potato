@@ -5,6 +5,7 @@ import seng202.team10.Model.UserProfile;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Set;
 
 
 /**
@@ -24,7 +25,7 @@ public class Activity implements Serializable {
     private int totalDuration;
     private ActivityType type;
     private DateTime endDateTime;
-    private ArrayList<HealthWarningType> healthWarningTypes;
+    private ArrayList<HealthWarning> healthWarnings = new ArrayList<>();
 
 
 
@@ -223,9 +224,18 @@ public class Activity implements Serializable {
      */
     public void checkEntriesForWarnings(UserProfile user)
     {
+        Set<HealthWarningType> warnings = null;
         for (Entry entry: entries) {
-            this.healthWarningTypes = (HealthWarning.addWarning(this, entry.isFirstEntry(), entry.getHeartRate(), user.calculateAge()));
+            ArrayList<HealthWarningType> newHealthWarningTypes = (HealthWarning.addWarning(this, entry.isFirstEntry(), entry.getHeartRate(), user.calculateAge()));
+            for (HealthWarningType healthWarningType: newHealthWarningTypes) {
+                warnings.add(healthWarningType);
+            }
         }
+        for (HealthWarningType healthWarningType: warnings) {
+            HealthWarning warning = new HealthWarning(healthWarningType, this.getName(), this.getStartDateTime());
+            this.healthWarnings.add(warning);
+        }
+
     }
 
 
@@ -233,9 +243,9 @@ public class Activity implements Serializable {
      * Getter method for the health warnings ascociated with this activity.
      * @return ArrayList: list of health warning types.
      */
-    public ArrayList<HealthWarningType> getHealthWarningTypes()
+    public ArrayList<HealthWarning> getHealthWarnings()
     {
-        return healthWarningTypes;
+        return healthWarnings;
     }
 
 

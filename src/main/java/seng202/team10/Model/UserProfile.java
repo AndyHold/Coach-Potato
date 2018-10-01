@@ -138,7 +138,7 @@ public class UserProfile implements java.io.Serializable {
             }
         } // Else continue to add the activity.
         newActivity.checkEntriesForWarnings(this);
-        addHealthWarnings(newActivity.getHealthWarningTypes(), newActivity);
+        addHealthWarnings(newActivity.getHealthWarnings());
         activities.add(newActivity);
     }
 
@@ -163,12 +163,14 @@ public class UserProfile implements java.io.Serializable {
         }
     }
 
+
     /**
      * Method to remove a single activity from the profile
      * @param toDelete the activity being deleted
      */
     public void deleteActivity(Activity toDelete)
     {
+        removeHealthWarnings(toDelete.getHealthWarnings());
         activities.remove(toDelete);
     }
 
@@ -177,7 +179,8 @@ public class UserProfile implements java.io.Serializable {
      * Getter method for the weight of the user
      * @return <b>Double</b>
      */
-    public double getWeight() {
+    public double getWeight()
+    {
         return this.weight;
     }
 
@@ -186,7 +189,8 @@ public class UserProfile implements java.io.Serializable {
      * Getter method for the height of the user
      * @return <b>Double</b>
      */
-    public double getHeight() {
+    public double getHeight()
+    {
         return this.height;
     }
 
@@ -251,7 +255,8 @@ public class UserProfile implements java.io.Serializable {
      * Method to calculate user's Body Mass Index (BMI)
      * @return <b>Double</b>
      */
-    public double calcBmi() {
+    public double calcBmi()
+    {
         this.bmi = getWeight() / (Math.pow(getHeight() / 100, 2));
         return this.bmi;
     }
@@ -420,14 +425,13 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Method to add health warnings to the list of active health warnings.
-     * @param healthWarningTypes An <b>ArrayList&gt;HealthWarningType&lt;</b> describing the types of health
+     * @param healthWarnings An <b>ArrayList&gt;HealthWarning&lt;</b> of health
      *                           warnings in the activity.
-     * @param activity The <b>Activity</b> the health warnings were detected on.
      */
-    private void addHealthWarnings(ArrayList<HealthWarningType> healthWarningTypes, Activity activity)
+    private void addHealthWarnings(ArrayList<HealthWarning> healthWarnings)
     {
-        for (HealthWarningType healthWarningType: healthWarningTypes) {
-            activeHealthWarnings.add(new HealthWarning(healthWarningType, activity.getName(), activity.getStartDateTime()));
+        for (HealthWarning healthWarning: healthWarnings) {
+            activeHealthWarnings.add(healthWarning);
         }
     }
 
@@ -449,5 +453,18 @@ public class UserProfile implements java.io.Serializable {
     public void removeHealthWarning(HealthWarning healthWarning)
     {
         activeHealthWarnings.remove(healthWarning);
+    }
+
+
+    /**
+     * Method to remove a list of health warnings from the user.
+     * @param healthWarnings an <b>ArrayList&gt;HealthWarning&lt;</b> containing the <b>HealthWarnings</b> to be deleted.
+     * Called when deleting an activity from the user.
+     */
+    public void removeHealthWarnings(ArrayList<HealthWarning> healthWarnings)
+    {
+        for (HealthWarning healthWarning: healthWarnings) {
+            removeHealthWarning(healthWarning);
+        }
     }
 }
