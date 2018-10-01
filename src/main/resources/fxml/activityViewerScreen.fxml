@@ -23,7 +23,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextArea" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/activityViewer.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.ActivityViewerController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextArea" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/activityViewer.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.ActivityViewerController">
    <children>
       <VBox prefHeight="720.0" prefWidth="1280.0">
          <children>
@@ -90,13 +90,13 @@
                                     </Label>
                                     <ImageView fitHeight="165.0" fitWidth="171.0" pickOnBounds="true" preserveRatio="true">
                                        <VBox.margin>
-                                          <Insets />
+                                          <Insets left="55.0" />
                                        </VBox.margin>
                                        <image>
                                           <Image url="@../Images/distanceLabel.png" />
                                        </image>
                                     </ImageView>
-                                    <Label fx:id="distanceLabel" alignment="CENTER" prefHeight="92.0" prefWidth="273.0" text="Label">
+                                    <Label fx:id="distanceLabel" alignment="CENTER" prefHeight="92.0" prefWidth="273.0" text="0">
                                        <font>
                                           <Font size="40.0" />
                                        </font>
@@ -112,13 +112,13 @@
                                     </Label>
                                     <ImageView fitHeight="148.0" fitWidth="275.0" pickOnBounds="true" preserveRatio="true">
                                        <VBox.margin>
-                                          <Insets />
+                                          <Insets left="62.0" />
                                        </VBox.margin>
                                        <image>
                                           <Image url="@../Images/clock.png" />
                                        </image>
                                     </ImageView>
-                                    <Label fx:id="durationLabel" alignment="CENTER" prefHeight="92.0" prefWidth="273.0" text="Label">
+                                    <Label fx:id="durationLabel" alignment="CENTER" prefHeight="92.0" prefWidth="273.0" text="0">
                                        <font>
                                           <Font size="40.0" />
                                        </font>
@@ -138,13 +138,13 @@
                                     </Label>
                                     <ImageView fitHeight="148.0" fitWidth="275.0" pickOnBounds="true" preserveRatio="true">
                                        <VBox.margin>
-                                          <Insets />
+                                          <Insets left="62.0" />
                                        </VBox.margin>
                                        <image>
                                           <Image url="@../Images/speed.png" />
                                        </image>
                                     </ImageView>
-                                    <Label fx:id="speedLabel" alignment="CENTER" prefHeight="92.0" prefWidth="273.0" text="Label">
+                                    <Label fx:id="speedLabel" alignment="CENTER" prefHeight="92.0" prefWidth="273.0" text="0">
                                        <font>
                                           <Font size="40.0" />
                                        </font>
@@ -160,13 +160,13 @@
                                     </Label>
                                     <ImageView fitHeight="148.0" fitWidth="275.0" pickOnBounds="true" preserveRatio="true">
                                        <VBox.margin>
-                                          <Insets />
+                                          <Insets left="60.0" />
                                        </VBox.margin>
                                        <image>
                                           <Image url="@../Images/heartRate.png" />
                                        </image>
                                     </ImageView>
-                                    <Label fx:id="heartRateLabel" alignment="CENTER" prefHeight="92.0" prefWidth="273.0" text="Label">
+                                    <Label fx:id="heartRateLabel" alignment="CENTER" prefHeight="92.0" prefWidth="273.0" text="0">
                                        <font>
                                           <Font size="40.0" />
                                        </font>

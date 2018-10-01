@@ -735,6 +735,7 @@ public class GUIController extends Application {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * updates the map scene with a specific activity
      * @param activity the activity being mapped
      */
@@ -753,6 +754,8 @@ public class GUIController extends Application {
     /**
 =======
 >>>>>>> f7b90380... Small tweaks to fix pipeline issues caused by recent merge.
+=======
+>>>>>>> 3e2b2c22... Changed the screens so that now the graphs are only accessible from view activities, same with map.
      * Initalizes every loader, controller and scene for each scene. Also runs the setApp(this) and
      * setUpScene methods for each.
      * @throws Exception Not implemented.

@@ -167,16 +167,22 @@ public class MapController implements Controllable, Initializable{
         this.activityLabel.setText(activity.getName());
     }
 
-
     /**
+<<<<<<< HEAD
      * goes back to the data analysis screen
      */
     @FXML public void goToDataAnalysis()
     {
 //        guiController.launchActivityViewerScene();
         guiController.getTitleBar().openAnalysis();
+=======
+     * Method to open the view activities screen.
+     * Called when the back button is pressed.
+     */
+    @FXML void openViewActivities() {
+        this.app.getTitleBar().openViewActivities();
+>>>>>>> 3e2b2c22... Changed the screens so that now the graphs are only accessible from view activities, same with map.
     }
-
 
     /**
      * creates a new Route from an activity
