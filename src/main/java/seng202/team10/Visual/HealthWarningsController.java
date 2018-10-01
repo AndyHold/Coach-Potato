@@ -4,8 +4,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import seng202.team10.Control.GUIController;
@@ -33,6 +35,10 @@ public class HealthWarningsController implements Controllable {
     @FXML private ImageView bradycardiaIcon;
     @FXML private ImageView cardiovascularMortalityIcon;
     @FXML private WebView googleWebView;
+    @FXML private VBox tWarningsVBox;
+    @FXML private VBox bWarningsVBox;
+    @FXML private VBox cWarningsVBox;
+    @FXML private ScrollPane warningsScrollPane;
     private WebEngine engine;
 
 
@@ -52,9 +58,35 @@ public class HealthWarningsController implements Controllable {
     public void setUpScene()
     {
         getWarningLists();
-        setLabelsUp();
+        createWarningPanes();
+        setUpLabels();
         engine = googleWebView.getEngine();
         engine.load("https://google.com");
+//        warningsScrollPane.focusedProperty().addListener((ov, oldV, newV) -> {
+//        if (!newV) {
+//            hideWarningsScrollPane();
+//        }
+//    });
+    }
+
+
+    /**
+     * Method to create warning panes and add them to their correct VBox's
+     */
+    private void createWarningPanes()
+    {
+        // Tachycardia
+        for (HealthWarning healthWarning: tachycardiaWarnings) {
+            new WarningPane(healthWarning, this, tWarningsVBox);
+        }
+        // Bradycardia
+        for (HealthWarning healthWarning: bradycardiaWarnings) {
+            new WarningPane(healthWarning, this, bWarningsVBox);
+        }
+        // Cardiovascular Mortality
+        for (HealthWarning healthWarning: cardiovascularMortalityWarnings) {
+            new WarningPane(healthWarning, this, cWarningsVBox);
+        }
     }
 
 
@@ -72,7 +104,7 @@ public class HealthWarningsController implements Controllable {
     /**
      * Initializes labels and icons for each health condition.
      */
-    private void setLabelsUp()
+    private void setUpLabels()
     {
         tachycardiaIcon.setVisible(false);
         bradycardiaIcon.setVisible(false);
@@ -80,11 +112,14 @@ public class HealthWarningsController implements Controllable {
         if (tachycardiaWarnings.size() > 0) {
             tachycardiaActivitiesLabel.setText("You currently have " + tachycardiaWarnings.size() + " warnings.");
             tachycardiaIcon.setVisible(true);
-
+        } else {
+            tachycardiaActivitiesLabel.setText("You currently have no warnings.");
         }
         if (bradycardiaWarnings.size() > 0) {
             bradycardiaActivitiesLabel.setText("You currently have " + bradycardiaWarnings.size() + " warnings.");
             bradycardiaIcon.setVisible(true);
+        } else {
+            bradycardiaActivitiesLabel.setText("You currently have no warnings.");
         }
         if (cardiovascularMortalityWarnings.size() > 0) {
             cardiovascularMortalityActivitiesLabel.setText("You currently have " + cardiovascularMortalityWarnings.size() + " warnings.");
@@ -95,21 +130,57 @@ public class HealthWarningsController implements Controllable {
     }
 
 
+    /**
+     * Method to remove a warning from the user and the screen.
+     * @param healthWarning the <b>HealthWarning</b> being removed
+     */
+    public void removeWarning(HealthWarning healthWarning)
+    {
+        app.getTitleBar().getCurrentProfile().removeHealthWarning(healthWarning);
+        app.getDataWriter().saveProfile(app.getTitleBar().getCurrentProfile());
+        switch(healthWarning.getType())
+        {
+            case TACHYCARDIA:
+                tachycardiaWarnings.remove(healthWarning);
+                break;
+            case BRADYCARDIA:
+                bradycardiaWarnings.remove(healthWarning);
+                break;
+            case CARDIOVASCULAR_MORTALITY:
+                cardiovascularMortalityWarnings.remove(healthWarning);
+                break;
+        }
+        setUpLabels();
+        //TODO this is very slow...
+    }
+
+
     @FXML public void showCardiovascularMortalityWarnings()
     {
-
+        warningsScrollPane.setVisible(true);
+        cWarningsVBox.setVisible(true);
     }
 
 
     @FXML public void showBradycardiaWarnings()
     {
-
+        warningsScrollPane.setVisible(true);
+        bWarningsVBox.setVisible(true);
     }
 
 
     @FXML public void showTachycardiaWarnings()
     {
+        warningsScrollPane.setVisible(true);
+        tWarningsVBox.setVisible(true);
+    }
 
+    @FXML public void hideWarningsScrollPane()
+    {
+        warningsScrollPane.setVisible(false);
+        tWarningsVBox.setVisible(false);
+        bWarningsVBox.setVisible(false);
+        cWarningsVBox.setVisible(false);
     }
 
     /**

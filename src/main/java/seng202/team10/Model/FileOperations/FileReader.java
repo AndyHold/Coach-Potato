@@ -66,23 +66,25 @@ public class FileReader {
     }
 
     /**
-     * checks which users are saved in the profiles folder, returning their names
-     * @return foundUsers: arraylist of filenames of existing profiles (no extensions)
+     * Method to check which users are saved in the profiles folder, adding their names and genders to ArrayLists that are passed in.
      */
-    public ArrayList getExistingUsers() {
-        ArrayList<String> foundUsers = new ArrayList<>();
+    public void getExistingUsers(ArrayList<String> foundUsers, ArrayList<String> usersGenders)
+    {
         File folder = new File("./profiles");
         File[] listOfFiles = folder.listFiles();
         if (listOfFiles != null) {
             for (File listOfFile : listOfFiles) {
                 if (listOfFile.isFile()) {
                     if (getFileExtension(listOfFile).equals(".ser")) {
-                        foundUsers.add(listOfFile.getName().substring(0, listOfFile.getName().length() - 4));
+                        String[] filename = listOfFile.getName().substring(0, listOfFile.getName().length() - 4).split(" - ");
+                        if (filename.length == 2) {
+                            foundUsers.add(filename[0]);
+                            usersGenders.add(filename[1]);
+                        }
                     }
                 }
             }
         }
-        return foundUsers;
     }
 
 

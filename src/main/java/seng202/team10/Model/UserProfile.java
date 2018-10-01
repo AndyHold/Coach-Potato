@@ -440,4 +440,14 @@ public class UserProfile implements java.io.Serializable {
     {
         return activeHealthWarnings;
     }
+
+
+    /**
+     * Method to remove a health warning from the user.
+     * @param healthWarning A <b>HealthWarning</b> cleared by the user.
+     */
+    public void removeHealthWarning(HealthWarning healthWarning)
+    {
+        activeHealthWarnings.remove(healthWarning);
+    }
 }

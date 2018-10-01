@@ -56,12 +56,12 @@ public class GUIController extends Application {
     private Parser parser = new Parser();
     private FileWriter dataWriter = new FileWriter();
     private FileReader dataReader = new FileReader();
-    private ArrayList<String> userNames;
+    private ArrayList<String> userNames = new ArrayList<>();
     private double[] offset_XY;
 
     private Parent root;
+    private ArrayList<String> userGenders = new ArrayList<>();
 
-    //private Goals goals = new Goals(currentUser);
 
     /**
      * A lot of the initial setup when the program is launched. loads profiles and scenes to the stage
@@ -74,35 +74,47 @@ public class GUIController extends Application {
         if(!dataReader.checkFileExists("./profiles")) {
             dataWriter.createProfileFolder();
         }
-        loadAllUsers();
+//        loadAllUsers();
+        loadUserDetails();
         loadTitleBar();
         allowDrag(root, primaryStage);
         primaryStage.setTitle("Coach Potato");
         primaryStage.setResizable(false);
         primaryStage.initStyle(StageStyle.TRANSPARENT);
-//        primaryStage.setOpacity(0.9);
         titleBarScene.setFill(Color.TRANSPARENT);
         primaryStage.setScene(titleBarScene);
         primaryStage.show();
         this.primaryStage = primaryStage;
     }
 
+
     /**
-     * loads all the users in the profiles folder and adds them to the users arraylist
+     * Method to load usernames and genders from the filenames.
      */
-    private void loadAllUsers() throws IOException, ClassNotFoundException {
-        userNames = dataReader.getExistingUsers();
-        for (String username : userNames) {
-            try {
-                users.add(dataReader.loadExistingProfile(username));
-            } catch(InvalidClassException exception) {
-                String option = createPopUp(Alert.AlertType.CONFIRMATION, "Error", "Could not load profile: " + username + "\nWould you like to delete it?");
-                if (option.equals("OK")) {
-                    getDataWriter().deleteProfile(username);
-                }
-            }
-        }
-        userNames = dataReader.getExistingUsers();
+    public void loadUserDetails()
+    {
+        userNames.clear();
+        userGenders.clear();
+        dataReader.getExistingUsers(userNames, userGenders);
+    }
+
+
+    /**
+     * Getter method for the data reader
+     * @return FileReader
+     */
+    public FileReader getDataReader()
+    {
+        return dataReader;
+    }
+
+    /**
+     * Getter method for the user genders in an ArrayList of strings
+     * @return ArrayList
+     */
+    public ArrayList<String> getUserGenders()
+    {
+        return userGenders;
     }
 
 
@@ -198,11 +210,6 @@ public class GUIController extends Application {
         user.addActivities(activities);
     }
 
-    /*dNewScene("/fxml/loginScreen.fxml");
-        createProfileScene = loadNewScene("/fxml/createProfileScreen.fxml");
-        profileScene = loadNewScene("/fxml/profileScreen.fxml");
-        goalsScene = loadNewScene("/fxml/goalsScreen.fxml");
-        uploadDataScene */
 
     /**
      * checks to see if a profile already exists with a specific username
@@ -265,7 +272,8 @@ public class GUIController extends Application {
                 newUser.getHeight() != 0.0 &&
                 newUser.getBirthDate() != null &&
                 newUser.getGender() != null) {
-            users.add(newUser);
+
+            getDataWriter().saveProfile(newUser);
         } else {
             throw new InvalidUserException();
         }

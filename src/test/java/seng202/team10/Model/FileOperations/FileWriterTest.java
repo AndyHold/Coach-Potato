@@ -5,11 +5,14 @@ import seng202.team10.Model.Exceptions.InvalidWeightException;
 import seng202.team10.Model.Exceptions.UserNameException;
 import seng202.team10.Model.UserProfile;
 
+import java.io.IOException;
 import java.io.InvalidClassException;
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
 public class FileWriterTest {
+
 
     private static FileReader testReader = new FileReader();
     private static FileWriter testWriter = new FileWriter();
@@ -21,15 +24,18 @@ public class FileWriterTest {
     {
         testWriter.createProfileFolder();
         testProfile.setName("jeff");
+        testProfile.setGender("Male");
         testProfile.setWeight(75);
         testWriter.saveProfile(testProfile);
     }
 
+
     @Test
     public void saveProfile() {
         testWriter.saveProfile(testProfile);
-        assertTrue(testReader.checkFileExists("./profiles/" + testProfile.getName() + ".ser"));
+        assertTrue(testReader.checkFileExists("./profiles/" + testProfile.getName() + " - " + testProfile.getGender() + ".ser"));
     }
+
 
     @Test
     public void createProfileFolder() {
@@ -38,20 +44,26 @@ public class FileWriterTest {
 
     }
 
+
     @Test
     public void deleteProfile() throws UserNameException
     {
         UserProfile secondTestProfile = new UserProfile();
         secondTestProfile.setName("bill");
+        secondTestProfile.setGender("Male");
         testWriter.saveProfile(secondTestProfile);
-        int initialSize = testReader.getExistingUsers().size();
-        testWriter.deleteProfile(secondTestProfile.getName());
-        assertEquals(initialSize -1, testReader.getExistingUsers().size(), 0);
+        ArrayList<String> userNames = new ArrayList<>();
+        ArrayList<String> userGenders = new ArrayList<>();
+        testReader.getExistingUsers(userNames, userGenders);
+        int initialSize = userNames.size();
+        testWriter.deleteProfile(secondTestProfile.getName() + " - " + secondTestProfile.getGender());
+        testReader.getExistingUsers(userNames, userGenders);
+        assertEquals(initialSize - 1, userNames.size());
     }
 
 
     @Test
-    public void updateExistingProfile() throws InvalidWeightException, Exception
+    public void updateExistingProfile() throws InvalidWeightException, IOException, ClassNotFoundException
     {
         testWriter.saveProfile(testProfile);
         testProfile.setWeight(100);
@@ -59,8 +71,10 @@ public class FileWriterTest {
         assertEquals(100, testReader.loadExistingProfile(testProfile.getName()).getWeight(), 1);
     }
 
+
     @AfterClass
-    public static void tearDown(){
+    public static void tearDown()
+    {
         testWriter.deleteProfile("jeff");
     }
 }

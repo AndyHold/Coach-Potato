@@ -286,9 +286,10 @@ public class CreateProfileController implements Controllable
             app.createUser(userProfile);
             setErrorsInvisible();
             setInputsToNull();
-            this.app.getDataWriter().saveProfile(userProfile);
             app.getTitleBar().openLogin();
-        } catch (InvalidUserException exception) { }
+        } catch (InvalidUserException exception) {
+            app.createPopUp(Alert.AlertType.ERROR, "Error", "The user information you have entered is invalid.");
+        }
     }
 
 
