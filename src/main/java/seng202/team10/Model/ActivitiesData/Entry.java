@@ -43,7 +43,7 @@ public class Entry  implements Serializable {
      * @param heartRate: double Heart rate field of the entry.
      * @param position: Position Position of the entry.
      */
-    public Entry(DateTime time, int heartRate, Position position)
+    public Entry(DateTime time, int heartRate, Position position) throws NullPointerException
     {
         setTime(time);
         setHeartRate(heartRate);
@@ -57,7 +57,11 @@ public class Entry  implements Serializable {
      */
     public void setTime(DateTime time)
     {
-        this.time = time;
+        if (time != null) {
+            this.time = time;
+        } else {
+            throw new NullPointerException("Time cannot be null");
+        }
     }
 
 
@@ -82,7 +86,11 @@ public class Entry  implements Serializable {
      */
     public void setPosition(Position position)
     {
-        this.position = position;
+        if (position != null) {
+            this.position = position;
+        } else {
+            throw new NullPointerException("Position cannot be null");
+        }
     }
 
 
