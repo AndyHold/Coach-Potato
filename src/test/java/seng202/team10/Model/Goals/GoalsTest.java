@@ -1,10 +1,11 @@
-package seng202.team10.Model;
+package seng202.team10.Model.Goals;
 
 import org.junit.Before;
 import org.junit.Test;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.Exceptions.*;
 import seng202.team10.Model.Goals.*;
+import seng202.team10.Model.UserProfile;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
