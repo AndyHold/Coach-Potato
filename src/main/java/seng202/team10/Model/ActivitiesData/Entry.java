@@ -830,7 +830,7 @@ public class Entry  implements Serializable {
      * Getter for the velocity of the entry.
      * @return A <b>Double</b> of the velocity of the entry.
      */
-    protected double getVelocity()
+    public double getVelocity()
     {
         return velocity;
     }

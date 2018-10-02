@@ -11,6 +11,7 @@ import javafx.scene.layout.VBox;
 import seng202.team10.Model.ActivitiesData.DataAnalysis;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.Activity;
+import seng202.team10.Model.ActivitiesData.Entry;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ public class GraphsController implements Controllable, Initializable{
     @FXML private LineChart heartRateOverTime;
     @FXML private LineChart caloriesBurned;
     @FXML private LineChart stressLevelOverTime;
+    @FXML private LineChart speedOverTime;
     @FXML private TextArea helpTextArea;
     @FXML private Button helpButton;
     @FXML private Button backButton;
@@ -42,6 +44,7 @@ public class GraphsController implements Controllable, Initializable{
     private XYChart.Series heartRateSeries;
     private XYChart.Series caloriesBurnedSeries;
     private XYChart.Series stressLevelTimeSeries;
+    private XYChart.Series speedTimeSeries;
 
 
     /**
@@ -78,6 +81,7 @@ public class GraphsController implements Controllable, Initializable{
         activityNameLabel.setText(activity.getName());
         // Populate the graphs
         this.populateDistanceTimeGraph(timeArray);
+        this.populateSpeedTimeGraph(timeArray);
         this.populateHeartRateTimeGraph(timeArray, heartRateArray);
         this.populateCaloriesBurnedGraph(timeArray);
         this.populateStressTimeGraph(timeArray, heartRateArray);
@@ -153,6 +157,22 @@ public class GraphsController implements Controllable, Initializable{
         distanceOverTime.getData().add(distanceTimeSeries);
     }
 
+    /**
+     * Method to populate the speed over time graph with data.
+     * @param timeArray  An ArrayList&gt;Double&lt; that contains the total time that has passed at each point in the activity.
+     */
+    private void populateSpeedTimeGraph(ArrayList<Double> timeArray)
+    {
+        ArrayList<Double> speedArray = new ArrayList<>();
+        for(Entry eachEntry: activity.getEntries()){
+            speedArray.add(eachEntry.getVelocity());
+        }
+        for (int i = 0; i < timeArray.size(); i++) {
+            speedTimeSeries.getData().add(new XYChart.Data(timeArray.get(i), speedArray.get(i)));
+        }
+        speedOverTime.getData().add(speedTimeSeries);
+    }
+
 
     /**
      * Method to populate the heart rate over time graph with data.
@@ -222,6 +242,7 @@ public class GraphsController implements Controllable, Initializable{
         heartRateSeries = new XYChart.Series();
         caloriesBurnedSeries = new XYChart.Series();
         stressLevelTimeSeries = new XYChart.Series();
+        speedTimeSeries = new XYChart.Series();
     }
 
 
@@ -234,6 +255,7 @@ public class GraphsController implements Controllable, Initializable{
         heartRateOverTime.getData().clear();
         caloriesBurned.getData().clear();
         stressLevelOverTime.getData().clear();
+        speedOverTime.getData().clear();
     }
 
     /**
@@ -244,11 +266,13 @@ public class GraphsController implements Controllable, Initializable{
         this.initializeSeries();
 
         setUpOneGraph(distanceOverTime);
+        setUpOneGraph(speedOverTime);
         setUpOneGraph(heartRateOverTime);
         setUpOneGraph(caloriesBurned);
         setUpOneGraph(stressLevelOverTime);
 
         distanceOverTime.getYAxis().setLabel("Distance (m)");
+        speedOverTime.getYAxis().setLabel("Speed (m/s)");
         heartRateOverTime.getYAxis().setLabel("Heart rate (bpm)");
         caloriesBurned.getYAxis().setLabel("Calories burned");
         stressLevelOverTime.getYAxis().setLabel("Stress level");
