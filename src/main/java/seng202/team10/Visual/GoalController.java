@@ -34,17 +34,9 @@ public class GoalController implements Controllable {
     @FXML private ListView achievedListView;
     @FXML private ListView failedListView;
     @FXML private ListView futureGoalsListView;
-    @FXML private TextField currentTypeTextField;
-    @FXML private TextField currentStartDateTextField;
     @FXML private TextArea currentGoalTextArea;
-    @FXML private TextField achievedTypeTextField;
-    @FXML private TextField achievedStartDateTextField;
     @FXML private TextArea achievedGoalTextArea;
-    @FXML private TextField failedTypeTextField;
-    @FXML private TextField failedStartDateTextField;
     @FXML private TextArea failedGoalTextArea;
-    @FXML private TextField futureTypeTextField;
-    @FXML private TextField futureDateTextField;
     @FXML private TextArea futureGoalTextArea;
     @FXML private Label unitsLabel;
     @FXML private Label deleteModeLabel;
@@ -54,6 +46,10 @@ public class GoalController implements Controllable {
     @FXML private Tab futureTab;
     @FXML private Tab pastTab;
     @FXML private Tab createTab;
+    @FXML private Label currentDescriptionLabel;
+    @FXML private Label futureDescriptionLabel;
+    @FXML private Label failedDescriptionLabel;
+    @FXML private Label achievedDescriptionLabel;
     private boolean deleteMode = false;
 
 
@@ -79,16 +75,10 @@ public class GoalController implements Controllable {
         helpTextArea.setWrapText(true);
 
 
-        achievedTypeTextField.setVisible(false);
-        achievedStartDateTextField.setVisible(false);
         achievedGoalTextArea.setVisible(false);
 
-        failedTypeTextField.setVisible(false);
-        failedStartDateTextField.setVisible(false);
         failedGoalTextArea.setVisible(false);
 
-        futureTypeTextField.setVisible(false);
-        futureDateTextField.setVisible(false);
         futureGoalTextArea.setVisible(false);
 
         // Hide the current help text field when focus is lost
@@ -109,26 +99,18 @@ public class GoalController implements Controllable {
         helpButton.setTooltip(new Tooltip("Need Help?"));
         // Current Tab
         currentGoalsListView.setTooltip(new Tooltip("Click here to select the current goal you would like to either view or remove."));
-        currentTypeTextField.setTooltip(new Tooltip("This is where the goal type is displayed."));
-        currentStartDateTextField.setTooltip(new Tooltip("This is where the start date of the goal is displayed."));
         currentGoalTextArea.setTooltip(new Tooltip("This is where the description of the selected failed goal is displayed."));
 
         // Past Tab
         achievedListView.setTooltip(new Tooltip("This is a list of your past goals that were achieved.\n" +
                                                 "Click on a goal to review it."));
-        achievedTypeTextField.setTooltip(new Tooltip("This is where the goal type is displayed."));
-        achievedStartDateTextField.setTooltip(new Tooltip("This is where the start date of the goal is displayed."));
         achievedGoalTextArea.setTooltip(new Tooltip("This is where the description of the selected achieved goal is displayed."));
         failedListView.setTooltip(new Tooltip("This is a list of your past goals that were failed.\n" +
                                               "Click on a goal to review it."));
-        failedTypeTextField.setTooltip(new Tooltip("This is where the goal type is displayed."));
-        failedStartDateTextField.setTooltip(new Tooltip("This is where the start date of the goal is displayed."));
         failedGoalTextArea.setTooltip(new Tooltip("This is where the description of the selected failed goal is displayed."));
         // Future Tab
         futureGoalsListView.setTooltip(new Tooltip("This is a list of your future goals.\n" +
                                                    "Click on a goal to review it."));
-        futureTypeTextField.setTooltip(new Tooltip("This is where the goal type is displayed."));
-        futureTypeTextField.setTooltip(new Tooltip("This is where the start date of the goal is displayed."));
         futureGoalTextArea.setTooltip(new Tooltip("This is where the description of the selected future goal is displayed."));
         // Create Tab
         goalTypeCombo.setTooltip(new Tooltip("Click here to select a goal type to create."));
@@ -320,7 +302,7 @@ public class GoalController implements Controllable {
                 String status = app.getTitleBar().getCurrentProfile().getGoals().checkGoal(goal.getGoalName());
                 switch (status) {
                     case "inprogress":
-                        printGoalsReview(goal, currentTypeTextField, currentStartDateTextField, currentGoalTextArea);
+                        printGoalsReview(goal, currentGoalTextArea, currentDescriptionLabel);
                         break;
                     case "achieved":
                         currentGoalTextArea.setText("Congratulations!!!\nThat goal has been achieved and has been moved to the past goals tab.");
@@ -447,7 +429,7 @@ public class GoalController implements Controllable {
                 }
             }
             if (goal != null) {
-                printGoalsReview(goal, achievedTypeTextField, achievedStartDateTextField, achievedGoalTextArea);
+                printGoalsReview(goal, achievedGoalTextArea, achievedDescriptionLabel);
             }
         }
     }
@@ -467,7 +449,7 @@ public class GoalController implements Controllable {
                 }
             }
             if (goal != null) {
-                printGoalsReview(goal, failedTypeTextField, failedStartDateTextField, failedGoalTextArea);
+                printGoalsReview(goal, failedGoalTextArea, failedDescriptionLabel);
             }
         }
     }
@@ -487,7 +469,7 @@ public class GoalController implements Controllable {
                 }
             }
             if (goal != null) {
-                printGoalsReview(goal, futureTypeTextField, futureDateTextField, futureGoalTextArea);
+                printGoalsReview(goal, futureGoalTextArea, futureDescriptionLabel);
             }
         }
     }
@@ -496,39 +478,27 @@ public class GoalController implements Controllable {
     /**
      * Method to display the details of a goal in given text fields and a text area.
      * @param goal <b>Goal</b> to be reviewed.
-     * @param typeText <b>TextField</b> for the type of goal.
-     * @param startDateText <b>TextField</b> for the start date of the goal.
      * @param goalText <b>TextArea</b> for the description of the goal.
      */
-    private void printGoalsReview(Goal goal, TextField typeText, TextField startDateText, TextArea goalText) {
+    private void printGoalsReview(Goal goal, TextArea goalText, Label description) {
         String type = goal.getGoalType();
-        typeText.setVisible(true);
-        startDateText.setVisible(true);
         goalText.setVisible(true);
+        description.setVisible(true);
         switch (type) {
             case "Weight":
-                typeText.setText(type);
-                startDateText.setText(goal.getGoalStartDate().toString());
-                goalText.setText("To weigh " + ((WeightGoal) goal).getGoalWeight() + " kgs or less by " + goal.getGoalTargetDate());
+                goalText.setText("Type: " + type + "\n\nStart Date: " + goal.getGoalStartDate().toString() + "\n\nGoal to achieve: " +
+                        "To weigh " + ((WeightGoal) goal).getGoalWeight() + " kgs or less by " + goal.getGoalTargetDate());
                 break;
             case "Frequency":
-                typeText.setText(type);
-                startDateText.setText(goal.getGoalStartDate().toString());
                 goalText.setText("To participate in " + ((FrequencyGoal) goal).getGoalFrequency() + " activities by " + goal.getGoalTargetDate());
                 break;
             case "Distance":
-                typeText.setText(type);
-                startDateText.setText(goal.getGoalStartDate().toString());
                 goalText.setText("To cover " + ((DistanceGoal) goal).getGoalDistance() + " metres by " + goal.getGoalTargetDate());
                 break;
             case "BMI":
-                typeText.setText(type);
-                startDateText.setText(goal.getGoalStartDate().toString());
                 goalText.setText("To have a BMI of " + ((BmiGoal) goal).getGoalBmi() + " or less by " + goal.getGoalTargetDate());
                 break;
             default:  //goal must be of type Time
-                typeText.setText(type);
-                startDateText.setText(goal.getGoalStartDate().toString());
                 goalText.setText("To spend " + ((TimeGoal) goal).getGoalTime() + " minutes exercising by " + goal.getGoalTargetDate());
                 break;
         }
