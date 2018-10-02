@@ -662,10 +662,12 @@ public class GoalController implements Controllable{
         description.setVisible(true);
         switch (type) {
             case "Weight":
-                goalText.setText("Type: " + type + "\n\nStart Date: " + goal.getGoalStartDate().toString() + "\n\nGoal to achieve: " +
+                goalText.setText("Type: " + type + "\n\nStart Date: " + goal.getGoalStartDate().toString() +
+                        "\n\nTarget Date: " + goal.getGoalTargetDate().toString() + "\n\nGoal to achieve: " +
                         "To weigh " + ((WeightGoal) goal).getGoalWeight() + " kgs or less by " + goal.getGoalTargetDate());
                 break;
             case "Frequency":
+<<<<<<< HEAD
 >>>>>>> fc6a87cc... Refactored Goals screen GUI to make it look better.
                 goalText.setText("To participate in " + ((FrequencyGoal) goal).getGoalFrequency() + " activities by " + goal.getGoalTargetDate());
 >>>>>>> 517b3e8c... Refactored Classes in the Visual, Exceptions and ActivitiesData packages to meet style guidlines and java doc specs. Also refactored some methods that were particularly large. Also dealt with some warnings and refactored a bit because of it.
@@ -706,6 +708,26 @@ public class GoalController implements Controllable{
 =======
 >>>>>>> fc6a87cc... Refactored Goals screen GUI to make it look better.
                 goalText.setText("To spend " + ((TimeGoal) goal).getGoalTime() + " minutes exercising by " + goal.getGoalTargetDate());
+=======
+                goalText.setText("Type: " + type + "\n\nStart Date: " + goal.getGoalStartDate().toString() +
+                        "\n\nTarget Date: " + goal.getGoalTargetDate().toString() + "\n\nGoal to achieve: " +
+                        "To participate in " + ((FrequencyGoal) goal).getGoalFrequency() + " activities by " + goal.getGoalTargetDate());
+                break;
+            case "Distance":
+                goalText.setText("Type: " + type + "\n\nStart Date: " + goal.getGoalStartDate().toString() +
+                        "\n\nTarget Date: " + goal.getGoalTargetDate().toString() + "\n\nGoal to achieve: " +
+                        "To cover " + ((DistanceGoal) goal).getGoalDistance() + " metres by " + goal.getGoalTargetDate());
+                break;
+            case "BMI":
+                goalText.setText("Type: " + type + "\n\nStart Date: " + goal.getGoalStartDate().toString() +
+                        "\n\nTarget Date: " + goal.getGoalTargetDate().toString() + "\n\nGoal to achieve: " +
+                        "To have a BMI of " + ((BmiGoal) goal).getGoalBmi() + " or less by " + goal.getGoalTargetDate());
+                break;
+            default:  //goal must be of type Time
+                goalText.setText("Type: " + type + "\n\nStart Date: " + goal.getGoalStartDate().toString() +
+                        "\n\nTarget Date: " + goal.getGoalTargetDate().toString() + "\n\nGoal to achieve: " +
+                        "To spend " + ((TimeGoal) goal).getGoalTime() + " minutes exercising by " + goal.getGoalTargetDate());
+>>>>>>> c51a4395... Goals screen refactoring continued
                 break;
 >>>>>>> 517b3e8c... Refactored Classes in the Visual, Exceptions and ActivitiesData packages to meet style guidlines and java doc specs. Also refactored some methods that were particularly large. Also dealt with some warnings and refactored a bit because of it.
         }
