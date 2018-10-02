@@ -4,10 +4,12 @@ import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
 import seng202.team10.Control.GUIController;
@@ -71,7 +73,7 @@ public class UploadDataController {
     @FXML private Button submitDataButton;
     @FXML private TextArea manualEntryHelpTextArea;
     @FXML private TextArea uploadFileHelpTextArea;
-
+    @FXML private Rectangle loadingCover;
 
     /**
      * Setter method to set the GUI controller for this Scene
@@ -299,6 +301,7 @@ public class UploadDataController {
     {
         manualEntryHelpTextArea.setVisible(false);
         uploadFileHelpTextArea.setVisible(false);
+        loadingCover.setVisible(false);
         manualEntryHelpTextArea.setText("Welcome to the Manual Activity Entry Section!\n\n" +
                                         "In this section, you can manually enter each entry point of an activity along with the name of the activity. " +
                                         "Each new entry will be added to the table in chronological order and prompts will be given for invalid data formats. " +
@@ -520,6 +523,8 @@ public class UploadDataController {
      */
     @FXML public void uploadData()
     {
+        loadingCover.setVisible(true);
+        app.getPrimaryStage().getScene().setCursor(Cursor.WAIT);
         String filename = filePathTextField.getText();
         if (filename.length() == 0) {
             this.app.createPopUp(Alert.AlertType.ERROR, "Error", "No file path, please select a csv file");
@@ -547,6 +552,8 @@ public class UploadDataController {
                 this.app.createPopUp(Alert.AlertType.ERROR, "Error", exception.getMessage());
             }
         }
+        loadingCover.setVisible(false);
+        app.getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
     }
 
 <<<<<<< HEAD
