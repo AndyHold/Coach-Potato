@@ -783,7 +783,7 @@ public class Entry  implements Serializable {
      * @return A <b>Double</b> of the heart rate of the entry.
 >>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
-    protected int getHeartRate()
+    public int getHeartRate()
     {
         return heartRate;
 >>>>>>> 04fec49c... DateTime now has 100% test coverage, refactored Activity and Entry to make them more readable and got rid of unnecessary String attributes and had them be derived when asked for in the getter method instead. This will make it easier when the values are changed. Implemented the calculateVelocity method in Entry and the calculateEntriesVelocity method in Activity properly so that the data can now be used for graphing.
