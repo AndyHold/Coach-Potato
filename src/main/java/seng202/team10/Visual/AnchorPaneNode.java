@@ -110,20 +110,30 @@ public class AnchorPaneNode extends AnchorPane {
         this.profileController.activity2HBox.setVisible(true);
         this.profileController.activity3HBox.setVisible(true);
         this.profileController.dailyStatsLabel.setVisible(true);
-        this.profileController.activitiesLabel.setVisible(false);
-        this.profileController.goalsListLabel.setVisible(false);
 
         ObservableList<Object> goalsList = FXCollections.observableArrayList();
         for (Goal todayGoal : todayGoals) {
             goalsList.add(todayGoal.getGoalName() + ": " + todayGoal.getGoalType());
         }
-        this.profileController.goalsListView.setItems(goalsList);
+        if (goalsList.size() < 1) {
+            this.profileController.goalsListLabel.setText("No goals were found for this date.");
+        } else {
+            this.profileController.goalsListLabel.setVisible(false);
+            this.profileController.goalsListView.setItems(goalsList);
+        }
 
         ObservableList<Object> activitiesList = FXCollections.observableArrayList();
         for (Activity activity : activities) {
             activitiesList.add(activity.getName() + ": " + activity.getTypeString());
         }
-        this.profileController.activitiesListView.setItems(activitiesList);
+        if (activitiesList.size() < 1) {
+            this.profileController.activitiesLabel.setText("No activities were found for this date.");
+        } else {
+            this.profileController.activitiesLabel.setVisible(false);
+            this.profileController.activitiesListView.setItems(activitiesList);
+        }
+
+
     }
 
     /**
