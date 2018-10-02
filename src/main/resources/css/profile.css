@@ -39,6 +39,8 @@
     -fx-background-color: #b3b3ff;
     -fx-border-width: 2px;
     -fx-border-color: blue;
+    -fx-background-radius: 1em;
+    -fx-border-radius: 1em;
 }
 
 #distanceText, #velocityText, #heartRateText, #activity1Text, #activity2Text, #activity3Text
