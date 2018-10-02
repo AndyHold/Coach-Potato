@@ -6,7 +6,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -45,7 +44,7 @@ public class WarningPane {
      */
     private void resizePane(Pane mainPane)
     {
-        double newHeight = (mainPane.getChildren().size() * 115);
+        double newHeight = mainPane.getChildren().size() * 115;
         mainPane.setStyle("-fx-min-height: " + newHeight + "; " +
                           "-fx-max-height: " + newHeight + ";");
         mainPane.getParent().setStyle("-fx-min-height: " + newHeight + "; " +
@@ -84,8 +83,6 @@ public class WarningPane {
         buttonBox.getChildren().add(clearButton);
         container.getChildren().add(buttonBox);
         setButtonAction();
-        mainPane.getChildren().remove(container);
-        resizePane(mainPane);
     }
 
 
@@ -97,24 +94,55 @@ public class WarningPane {
         clearButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                int i = 0;
-                while (i < mainPane.getChildren().size() && mainPane.getChildren().get(i) != container) {
-                    i++;
+                clearWarning();
+                System.out.println(mainPane.getChildren().size());
+                if (mainPane.getChildren().size() == 1) {
+                    healthWarningsController.hideWarningsScrollPane();
                 }
-                TranslateTransition clear = new TranslateTransition(new Duration(350), container);
-                clear.setToX(-380);
-                clear.play();
-                long now2 = System.currentTimeMillis();
-                i++;
-                while (i < mainPane.getChildren().size()) {
-                    TranslateTransition raise = new TranslateTransition(new Duration(350), mainPane.getChildren().get(i));
-                    raise.setToY(mainPane.getChildren().get(i).getTranslateY() - 115);
-                    raise.play();
-                    i++;
-                }
-                healthWarningsController.removeWarning(healthWarning);
             }
         });
+    }
+
+
+    /**
+     * Method to clear this warning from the warnings scroll pane.
+     * Called when the clear all button is pushed together with all the other warnings of this type.
+     */
+    public void clearWarningSolo()
+    {
+        healthWarningsController.removeWarning(healthWarning);
+        mainPane.getChildren().remove(container);
+    }
+
+
+    /**
+     * Method to clear this warning from the warnings scroll pane.
+     * Called when the clear warning button or the clear all button is selected
+     */
+    public void clearWarning()
+    {
+        int i = 0;
+        while (i < mainPane.getChildren().size() && mainPane.getChildren().get(i) != container) {
+            i++;
+        }
+        TranslateTransition clear = new TranslateTransition(new Duration(350), container);
+        clear.setToX(-380);
+        clear.play();
+        clear.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                mainPane.getChildren().remove(container);
+                resizePane(mainPane);
+            }
+        });
+        i++;
+        while (i < mainPane.getChildren().size()) {
+            TranslateTransition raise = new TranslateTransition(new Duration(350), mainPane.getChildren().get(i));
+            raise.setToY(mainPane.getChildren().get(i).getTranslateY() - 115);
+            raise.play();
+            i++;
+        }
+        healthWarningsController.removeWarning(healthWarning);
     }
 
 

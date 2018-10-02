@@ -5,6 +5,7 @@ import seng202.team10.Model.UserProfile;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -224,7 +225,7 @@ public class Activity implements Serializable {
      */
     public void checkEntriesForWarnings(UserProfile user)
     {
-        Set<HealthWarningType> warnings = null;
+        Set<HealthWarningType> warnings = new HashSet<>();
         for (Entry entry: entries) {
             ArrayList<HealthWarningType> newHealthWarningTypes = (HealthWarning.addWarning(this, entry.isFirstEntry(), entry.getHeartRate(), user.calculateAge()));
             for (HealthWarningType healthWarningType: newHealthWarningTypes) {
@@ -235,7 +236,6 @@ public class Activity implements Serializable {
             HealthWarning warning = new HealthWarning(healthWarningType, this.getName(), this.getStartDateTime());
             this.healthWarnings.add(warning);
         }
-
     }
 
 
