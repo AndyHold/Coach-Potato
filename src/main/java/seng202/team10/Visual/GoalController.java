@@ -486,20 +486,29 @@ public class GoalController implements Controllable {
         description.setVisible(true);
         switch (type) {
             case "Weight":
-                goalText.setText("Type: " + type + "\n\nStart Date: " + goal.getGoalStartDate().toString() + "\n\nGoal to achieve: " +
+                goalText.setText("Type: " + type + "\n\nStart Date: " + goal.getGoalStartDate().toString() +
+                        "\n\nTarget Date: " + goal.getGoalTargetDate().toString() + "\n\nGoal to achieve: " +
                         "To weigh " + ((WeightGoal) goal).getGoalWeight() + " kgs or less by " + goal.getGoalTargetDate());
                 break;
             case "Frequency":
-                goalText.setText("To participate in " + ((FrequencyGoal) goal).getGoalFrequency() + " activities by " + goal.getGoalTargetDate());
+                goalText.setText("Type: " + type + "\n\nStart Date: " + goal.getGoalStartDate().toString() +
+                        "\n\nTarget Date: " + goal.getGoalTargetDate().toString() + "\n\nGoal to achieve: " +
+                        "To participate in " + ((FrequencyGoal) goal).getGoalFrequency() + " activities by " + goal.getGoalTargetDate());
                 break;
             case "Distance":
-                goalText.setText("To cover " + ((DistanceGoal) goal).getGoalDistance() + " metres by " + goal.getGoalTargetDate());
+                goalText.setText("Type: " + type + "\n\nStart Date: " + goal.getGoalStartDate().toString() +
+                        "\n\nTarget Date: " + goal.getGoalTargetDate().toString() + "\n\nGoal to achieve: " +
+                        "To cover " + ((DistanceGoal) goal).getGoalDistance() + " metres by " + goal.getGoalTargetDate());
                 break;
             case "BMI":
-                goalText.setText("To have a BMI of " + ((BmiGoal) goal).getGoalBmi() + " or less by " + goal.getGoalTargetDate());
+                goalText.setText("Type: " + type + "\n\nStart Date: " + goal.getGoalStartDate().toString() +
+                        "\n\nTarget Date: " + goal.getGoalTargetDate().toString() + "\n\nGoal to achieve: " +
+                        "To have a BMI of " + ((BmiGoal) goal).getGoalBmi() + " or less by " + goal.getGoalTargetDate());
                 break;
             default:  //goal must be of type Time
-                goalText.setText("To spend " + ((TimeGoal) goal).getGoalTime() + " minutes exercising by " + goal.getGoalTargetDate());
+                goalText.setText("Type: " + type + "\n\nStart Date: " + goal.getGoalStartDate().toString() +
+                        "\n\nTarget Date: " + goal.getGoalTargetDate().toString() + "\n\nGoal to achieve: " +
+                        "To spend " + ((TimeGoal) goal).getGoalTime() + " minutes exercising by " + goal.getGoalTargetDate());
                 break;
         }
     }
