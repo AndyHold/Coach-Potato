@@ -37,14 +37,18 @@
                                              <children>
                                                 <HBox prefHeight="35.0" prefWidth="600.0">
                                                    <children>
-                                                      <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="492.0" spacing="20.0">
+                                                      <HBox alignment="CENTER_LEFT" prefHeight="33.0" prefWidth="600.0" spacing="20.0">
                                                          <children>
-                                                            <Label fx:id="currentGoalsLabel" text="Current Goals:">
+                                                            <Label fx:id="currentGoalsLabel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="130.0" text="Current Goals:">
                                                                <font>
                                                                   <Font size="20.0" />
                                                                </font>
                                                             </Label>
-                                                            <Label text="(Select one to review it)" />
+                                                            <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="180.0" text="(Select one to review it)" />
+                                                            <Label fx:id="currentDescriptionLabel" prefHeight="30.0" prefWidth="250.0" text="Description: " visible="false">
+                                                               <font>
+                                                                  <Font size="20.0" />
+                                                               </font></Label>
                                                          </children>
                                                          <opaqueInsets>
                                                             <Insets />
@@ -55,21 +59,13 @@
                                                       </HBox>
                                                    </children>
                                                 </HBox>
-                                                <HBox prefHeight="320.0" prefWidth="600.0">
+                                                <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="600.0">
                                                    <children>
-                                                      <ListView fx:id="currentGoalsListView" onMouseClicked="#updateCurrentListView" prefHeight="320.0" prefWidth="200.0" />
-                                                      <VBox alignment="TOP_RIGHT" prefHeight="320.0" prefWidth="132.0" spacing="65.0">
+                                                      <ListView fx:id="currentGoalsListView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#updateCurrentListView" prefHeight="320.0" prefWidth="200.0" />
+                                                      <VBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="150.0" spacing="65.0" />
+                                                      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="250.0" spacing="65.0">
                                                          <children>
-                                                            <Label prefHeight="25.0" text="Type: " />
-                                                            <Label prefHeight="25.0" text="Start Date:" />
-                                                            <Label prefHeight="25.0" text="Goal to achieve:" />
-                                                         </children>
-                                                      </VBox>
-                                                      <VBox prefHeight="320.0" prefWidth="266.0" spacing="65.0">
-                                                         <children>
-                                                            <TextField fx:id="currentTypeTextField" editable="false" maxHeight="34.0" minHeight="30.0" prefHeight="50.0" prefWidth="266.0" visible="false" />
-                                                            <TextField fx:id="currentStartDateTextField" editable="false" maxHeight="50.0" minHeight="30.0" prefHeight="50.0" prefWidth="266.0" visible="false" />
-                                                            <TextArea fx:id="currentGoalTextArea" editable="false" maxHeight="140.0" minHeight="140.0" prefHeight="140.0" visible="false" wrapText="true" />
+                                                            <TextArea fx:id="currentGoalTextArea" editable="false" maxHeight="320.0" minHeight="140.0" prefHeight="320.0" prefWidth="266.0" visible="false" wrapText="true" />
                                                          </children>
                                                       </VBox>
                                                    </children>
@@ -92,29 +88,26 @@
                                        <children>
                                           <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="552.0" spacing="30.0">
                                              <children>
-                                                <Label prefHeight="30.0" text="Future Goals:">
+                                                <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="120.0" text="Future Goals:">
                                                    <font>
                                                       <Font size="20.0" />
                                                    </font>
                                                 </Label>
-                                                <Label prefHeight="30.0" text="(Select one to review it)" />
+                                                <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="170.0" text="(Select one to review it)" />
+                                                <Label fx:id="futureDescriptionLabel" prefHeight="30.0" prefWidth="250.0" text="Description: " visible="false">
+                                                   <font>
+                                                      <Font size="20.0" />
+                                                   </font>
+                                                </Label>
                                              </children>
                                           </HBox>
                                           <HBox prefHeight="320.0" prefWidth="600.0">
                                              <children>
-                                                <ListView fx:id="futureGoalsListView" onMouseClicked="#updateFutureListView" prefHeight="320.0" prefWidth="200.0" />
-                                                <VBox alignment="TOP_RIGHT" prefHeight="320.0" prefWidth="139.0" spacing="65.0">
-                                                   <children>
-                                                      <Label prefHeight="25.0" text="Type:" />
-                                                      <Label prefHeight="25.0" text="Start Date:" />
-                                                      <Label prefHeight="25.0" text="Goal to achieve:" />
-                                                   </children>
-                                                </VBox>
+                                                <ListView fx:id="futureGoalsListView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#updateFutureListView" prefHeight="320.0" prefWidth="200.0" />
+                                                <VBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="150.0" spacing="65.0" />
                                                 <VBox prefHeight="320.0" prefWidth="258.0" spacing="65.0">
                                                    <children>
-                                                      <TextField fx:id="futureTypeTextField" minHeight="30.0" minWidth="30.0" />
-                                                      <TextField fx:id="futureDateTextField" minHeight="30.0" />
-                                                      <TextArea fx:id="futureGoalTextArea" editable="false" prefHeight="150.0" prefWidth="200.0" wrapText="true" />
+                                                      <TextArea fx:id="futureGoalTextArea" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="250.0" wrapText="true" />
                                                    </children>
                                                 </VBox>
                                              </children>
@@ -166,7 +159,11 @@
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin></TextField>
+<<<<<<< HEAD
                                           <Label fx:id="unitsLabel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="65.0">
+=======
+                                          <Label fx:id="unitsLabel" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="65.0">
+>>>>>>> fc6a87cc... Refactored Goals screen GUI to make it look better.
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
@@ -233,14 +230,18 @@
                            <children>
                               <HBox prefHeight="35.0" prefWidth="540.0">
                                  <children>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="492.0" spacing="20.0">
+                                    <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="540.0" spacing="20.0">
                                        <children>
                                            <Label fx:id="AcheivedGoalsLabel" text="Achieved Goals:">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>
                                           </Label>
-                                          <Label text="(Select one to review it)" />
+                                          <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="170.0" text="(Select one to review it)" />
+                                          <Label fx:id="achievedDescriptionLabel" prefHeight="30.0" prefWidth="150.0" text="Description: " visible="false">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font></Label>
                                        </children>
                                        <opaqueInsets>
                                           <Insets />
@@ -254,18 +255,10 @@
                               <HBox prefHeight="320.0" prefWidth="540.0">
                                  <children>
                                     <ListView fx:id="achievedListView" onMouseClicked="#updateAchievedListView" prefHeight="320.0" prefWidth="180.0" />
-                                    <VBox alignment="TOP_RIGHT" prefHeight="320.0" prefWidth="180.0" spacing="65.0">
-                                       <children>
-                                          <Label prefHeight="25.0" text="Type: " />
-                                          <Label prefHeight="25.0" text="Start Date:" />
-                                          <Label prefHeight="25.0" text="Goal achieved:" />
-                                       </children>
-                                    </VBox>
+                                    <VBox alignment="TOP_RIGHT" prefHeight="320.0" prefWidth="180.0" spacing="65.0" />
                                     <VBox prefHeight="320.0" prefWidth="180.0" spacing="65.0">
                                        <children>
-                                          <TextField fx:id="achievedTypeTextField" editable="false" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" />
-                                          <TextField fx:id="achievedStartDateTextField" editable="false" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" />
-                                          <TextArea fx:id="achievedGoalTextArea" editable="false" maxHeight="140.0" minHeight="140.0" prefHeight="140.0" prefWidth="177.0" wrapText="true" />
+                                          <TextArea fx:id="achievedGoalTextArea" editable="false" maxHeight="320.0" minHeight="140.0" prefHeight="320.0" prefWidth="180.0" wrapText="true" />
                                        </children>
                                     </VBox>
                                  </children>
@@ -281,26 +274,24 @@
                                           <Font size="20.0" />
                                        </font>
                                     </Label>
-                                    <Label prefHeight="35.0" text="(Select one to review it)" />
+                                    <Label prefHeight="35.0" prefWidth="200.0" text="(Select one to review it)" />
+                                    <Label fx:id="failedDescriptionLabel" prefHeight="25.0" text="Description: " visible="false">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
                                  </children>
                                  <padding>
                                     <Insets left="10.0" />
                                  </padding>
                               </HBox>
-                              <HBox prefHeight="328.0" prefWidth="540.0">
+                              <HBox prefHeight="320.0" prefWidth="540.0">
                                  <children>
                                     <ListView fx:id="failedListView" onMouseClicked="#updateFailedListView" prefHeight="320.0" prefWidth="180.0" />
-                                    <VBox alignment="TOP_RIGHT" prefHeight="320.0" prefWidth="180.0" spacing="65.0">
-                                       <children>
-                                          <Label prefHeight="25.0" text="Type: " />
-                                          <Label prefHeight="25.0" text="Start Date:" />
-                                          <Label prefHeight="25.0" text="Goal failed:" />
-                                       </children></VBox>
+                                    <VBox alignment="TOP_RIGHT" prefHeight="320.0" prefWidth="180.0" spacing="65.0" />
                                     <VBox prefHeight="320.0" prefWidth="180.0" spacing="65.0">
                                        <children>
-                                          <TextField fx:id="failedTypeTextField" editable="false" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" />
-                                          <TextField fx:id="failedStartDateTextField" editable="false" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" />
-                                          <TextArea fx:id="failedGoalTextArea" editable="false" prefHeight="140.0" prefWidth="180.0" wrapText="true" />
+                                          <TextArea fx:id="failedGoalTextArea" editable="false" prefHeight="320.0" prefWidth="180.0" wrapText="true" />
                                        </children></VBox>
                                  </children>
                               </HBox>
