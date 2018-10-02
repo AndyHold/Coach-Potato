@@ -182,13 +182,13 @@ public class ActivityViewerController {
 
     /**
      * Method to update the stat labels with their respective stats from the activity given.
-     * @param selectedActivity an <b>Acrtivity</b> to get the stats from.
+     * @param selectedActivity an <b>Activity</b> to get the stats from.
      */
     private void setUpStatLabels(Activity selectedActivity)
     {
-        distanceLabel.setText(selectedActivity.getTotalDistance().toString());
-        durationLabel.setText(String.valueOf(selectedActivity.getTotalDuration()));
-        speedLabel.setText(selectedActivity.getAverageVelocity().toString());
+        distanceLabel.setText(selectedActivity.getDistanceKM().toString());
+        durationLabel.setText(String.valueOf(selectedActivity.getDurationMins()));
+        speedLabel.setText(selectedActivity.getSpeedKMH().toString());
         heartRateLabel.setText(String.valueOf(selectedActivity.getAverageHeartRate()));
     }
 

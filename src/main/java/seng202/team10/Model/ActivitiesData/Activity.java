@@ -365,7 +365,7 @@ public class Activity implements Serializable {
      * Getter method for the Duration, in minutes to 2DP
      * @return String
      */
-    protected double getDurationMins()
+    public double getDurationMins()
     {
         return Math.round((this.totalDuration / 60.0) * 100.0) / 100.0;
         //return String.format("%.2f", );
@@ -386,7 +386,7 @@ public class Activity implements Serializable {
      * Getter method for the Distance as a String, in Km to 2DP
      * @return String
      */
-    protected Double getDistanceKM()
+    public Double getDistanceKM()
     {
         return Math.round(this.totalDistance / 10.0) / 100.0;
     }
