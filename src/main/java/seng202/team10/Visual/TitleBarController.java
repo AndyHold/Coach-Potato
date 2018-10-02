@@ -41,22 +41,22 @@ public class TitleBarController {
     private Pane mapPane;
     private Pane healthWarningPane;
 
+    private UserProfile currentUser;
     @FXML private Pane currentScene;
     @FXML private Button menuButton;
+    @FXML private Button warningButton;
+    @FXML private VBox menuBar;
+    @FXML private ImageView profileMenuIcon;
     private CreateProfileController createProfileController;
     private LoginController loginController;
-    @FXML private VBox menuBar;
-    @FXML private Button warningButton;
     private ProfileController profileController;
     private UploadDataController uploadDataController;
     private ActivityViewerController activityViewerController;
     private GoalController goalsController;
     private DataAnalysisController dataAnalysisController;
-    private UserProfile currentUser;
     private EntryViewerController entryViewerController;
     private MapController mapController;
     private HealthWarningsController healthWarningController;
-    @FXML private ImageView profileMenuIcon;
 
 
     /**
@@ -393,5 +393,26 @@ public class TitleBarController {
     public UserProfile getCurrentProfile()
     {
         return currentUser;
+    }
+
+
+    /**
+     * Resets the help text areas and the health warning scroll pane to be invisible.
+     * Called when the title bar is clicked.
+     */
+    @FXML public void titleClicked()
+    {
+        createProfileController.hideHelpTextArea();
+        loginController.hideHelpTextArea();
+        profileController.hideHelpTextArea();
+        uploadDataController.hideHelpTextAreas();
+        activityViewerController.hideHelpTextArea();
+        goalsController.hideHelpTextArea();
+        dataAnalysisController.hideHelpTextArea();
+        entryViewerController.hideHelpTextArea();
+        mapController.hideHelpTextArea();
+        healthWarningController.hideWarningsScrollPane();
+//        healthWarningController.hideHelpTextArea();
+
     }
 }

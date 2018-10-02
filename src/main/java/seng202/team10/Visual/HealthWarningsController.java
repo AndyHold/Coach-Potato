@@ -1,7 +1,10 @@
 package seng202.team10.Visual;
 
+import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -11,11 +14,13 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.util.Duration;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.HealthWarning;
 import seng202.team10.Model.ActivitiesData.HealthWarningType;
 
 import javax.swing.text.html.ListView;
+import java.util.ArrayList;
 
 public class HealthWarningsController implements Controllable {
 
@@ -23,7 +28,14 @@ public class HealthWarningsController implements Controllable {
     private GUIController app;
     private ObservableList<HealthWarning> tachycardiaWarnings;
     private ObservableList<HealthWarning> bradycardiaWarnings;
+<<<<<<< HEAD
     ObservableList<HealthWarning> cardiovascularMortalityWarnings;
+=======
+    private ObservableList<HealthWarning> cardiovascularMortalityWarnings;
+    private ArrayList<WarningPane> tWarnings= new ArrayList<>();
+    private ArrayList<WarningPane> bWarnings= new ArrayList<>();
+    private ArrayList<WarningPane> cWarnings= new ArrayList<>();
+>>>>>>> 48ad2079... Implemented a clear all button on the health warnings screen. Found some issues with the clear functionality so had to fix it a bit.
     @FXML private Label tachycardiaActivitiesLabel;
     @FXML private Label bradycardiaActivitiesLabel;
     @FXML private Label cardiovascularMortalityActivitiesLabel;
@@ -34,6 +46,7 @@ public class HealthWarningsController implements Controllable {
     @FXML private Pane tWarningsPane;
     @FXML private Pane bWarningsPane;
     @FXML private Pane cWarningsPane;
+    @FXML private Pane warningsParentPane;
     @FXML private ScrollPane warningsScrollPane;
     private WebEngine engine;
 
@@ -46,16 +59,15 @@ public class HealthWarningsController implements Controllable {
 
     public void setUpScene()
     {
-        warningsScrollPane.setVisible(false);
+        hideWarningsScrollPane();
         getWarningLists();
         setUpLabels();
         engine = googleWebView.getEngine();
         engine.load("https://google.com");
-        warningsScrollPane.focusedProperty().addListener((ov, oldV, newV) -> {
-        if (!newV) {
-            hideWarningsScrollPane();
-        }
-    });
+//        warningsScrollPane.focusedProperty().addListener((ov, oldV, newV) -> {
+//        if (!newV) {
+//            hideWarningsScrollPane();
+//        }});
     }
 
 
@@ -66,15 +78,15 @@ public class HealthWarningsController implements Controllable {
     {
         // Tachycardia
         for (HealthWarning healthWarning: tachycardiaWarnings) {
-            new WarningPane(healthWarning, this, tWarningsPane);
+            tWarnings.add(new WarningPane(healthWarning, this, tWarningsPane));
         }
         // Bradycardia
         for (HealthWarning healthWarning: bradycardiaWarnings) {
-            new WarningPane(healthWarning, this, bWarningsPane);
+            bWarnings.add(new WarningPane(healthWarning, this, bWarningsPane));
         }
         // Cardiovascular Mortality
         for (HealthWarning healthWarning: cardiovascularMortalityWarnings) {
-            new WarningPane(healthWarning, this, cWarningsPane);
+            cWarnings.add(new WarningPane(healthWarning, this, cWarningsPane));
         }
     }
 
@@ -156,25 +168,81 @@ public class HealthWarningsController implements Controllable {
     }
 
 
-    @FXML public void showCardiovascularMortalityWarnings()
+    @FXML public void showTachycardiaWarnings()
     {
-        warningsScrollPane.setVisible(true);
-        cWarningsPane.setVisible(true);
+        hideWarningsScrollPane();
+        if (tachycardiaWarnings.size() > 0) {
+            showWarningPane(tWarningsPane);
+        }
+        warningsScrollPane.setLayoutY(20);
     }
 
 
     @FXML public void showBradycardiaWarnings()
     {
-        warningsScrollPane.setVisible(true);
-        bWarningsPane.setVisible(true);
+        hideWarningsScrollPane();
+        if (bradycardiaWarnings.size() > 0) {
+            showWarningPane(bWarningsPane);
+        }
+        warningsScrollPane.setLayoutY(250);
     }
 
 
-    @FXML public void showTachycardiaWarnings()
+    @FXML public void showCardiovascularMortalityWarnings()
+    {
+        hideWarningsScrollPane();
+        if (cardiovascularMortalityWarnings.size() > 0) {
+            showWarningPane(cWarningsPane);
+        }
+        warningsScrollPane.setLayoutY(440);
+    }
+
+
+    @FXML public void clearAllWarnings()
+    {
+        if (tWarningsPane.isVisible()) {
+            clearWarnings(tWarningsPane, tWarnings);
+        } else if (bWarningsPane.isVisible()) {
+            clearWarnings(bWarningsPane, bWarnings);
+        } else {
+            clearWarnings(cWarningsPane, cWarnings);
+        }
+    }
+
+
+    private void clearWarnings(Pane clearPane, ArrayList<WarningPane> warnings)
+        {
+            TranslateTransition clear = new TranslateTransition(new Duration(350), clearPane);
+            clear.setToX(-380);
+            clear.play();
+            clear.setOnFinished(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    hideWarningsScrollPane();
+                    clearPane.setTranslateX(0);
+                    for (WarningPane warningPane: warnings) {
+                        warningPane.clearWarningSolo();
+                    }
+                    warnings.clear();
+                }
+            });
+        }
+
+
+    /**
+     * Method to show the warning Pane and stretch it to fit the values it requires.
+     * @param warningPane
+     */
+    private void showWarningPane(Pane warningPane)
     {
         warningsScrollPane.setVisible(true);
-        tWarningsPane.setVisible(true);
+        warningPane.setVisible(true);
+        warningsScrollPane.requestFocus();
+        double newHeight = warningPane.getChildren().size() * 115;
+        warningsParentPane.setStyle("-fx-min-height: " + newHeight + "; " +
+                                    "-fx-max-height: " + newHeight + ";");
     }
+
 
     @FXML public void hideWarningsScrollPane()
     {

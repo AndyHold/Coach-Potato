@@ -47,3 +47,11 @@
     -fx-border-color: green;
 }
 
+#clearAllButton
+{
+    -fx-min-width: 150px;
+    -fx-max-width: 150px;
+    -fx-min-height: 35px;
+    -fx-max-height: 35px;
+}
+

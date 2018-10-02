@@ -48,6 +48,7 @@ public class HealthWarning implements java.io.Serializable {
                     warnings.add(HealthWarningType.CARDIOVASCULAR_MORTALITY);
                 }
                 break;
+
             case WALK:
                 if (checkCardiovascularMortality(heartRate, maxHeartRate)) {
                     warnings.add(HealthWarningType.CARDIOVASCULAR_MORTALITY);
