@@ -3,7 +3,7 @@ package seng202.team10.Visual;
 import com.google.common.base.Charsets;
 import com.google.common.collect.Maps;
 import com.google.common.io.Resources;
-import com.hubspot.jinjava.Jinjava;
+import com.hubspot.jinjava.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Worker;
@@ -18,7 +18,6 @@ import seng202.team10.Model.ActivitiesData.Entry;
 import seng202.team10.Model.ActivitiesData.Route;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.Map;
 import java.util.ResourceBundle;
 
