@@ -59,7 +59,7 @@ public class CreateProfileController implements Controllable
     public void toggleBackButton()
     {
         helpButton.requestFocus();
-        if (this.app.getUsers().size() == 0) {
+        if (this.app.getUserNames().size() == 0) {
             backButton.setDisable(true);
         } else {
             backButton.setDisable(false);
@@ -367,6 +367,9 @@ public class CreateProfileController implements Controllable
     private void setUserName(UserProfile userProfile)
     {
         try {
+            if (getTextFieldString(nameEntry).equals("")){
+                throw new UserNameException();
+            }
             String nameString = getTextFieldString(nameEntry).substring(0,1).toUpperCase() + getTextFieldString(nameEntry).substring(1).toLowerCase();
             this.app.checkUniqueName(nameString);
             try {
@@ -377,6 +380,9 @@ public class CreateProfileController implements Controllable
             }
         } catch (UniqueNameException | IllegalArgumentException exception) {
             nameErrorLabel.setText("This username already exists.");
+            nameErrorLabel.setVisible(true);
+        } catch (UserNameException e) {
+            nameErrorLabel.setText("Please enter a valid user name between 1 - 50 characters");
             nameErrorLabel.setVisible(true);
         }
     }

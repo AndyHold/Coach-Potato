@@ -51,7 +51,6 @@ public class GUIController extends Application {
     private TitleBarController titleBarController;
 
     private Stage primaryStage;
-    private ArrayList<UserProfile> users = new ArrayList<>();
 
     private Parser parser = new Parser();
     private FileWriter dataWriter = new FileWriter();
@@ -150,7 +149,7 @@ public class GUIController extends Application {
      * Getter Method for the usernames arraylist
      * @return ArrayList: User Names
      */
-    public ArrayList getUserNames() {
+    public ArrayList<String> getUserNames() {
         return userNames;
     }
 
@@ -219,8 +218,8 @@ public class GUIController extends Application {
     public void checkUniqueName(String userName) throws UniqueNameException
     {
         if (titleBarController.getCurrentProfile() == null || !userName.contentEquals(titleBarController.getCurrentProfile().getName())) {
-            for (UserProfile userProfile : this.getUsers()) {
-                if (userProfile.getName().equals(userName)) {
+            for (String name : this.getUserNames()) {
+                if (name.equals(userName)) {
                     throw new UniqueNameException();
                 }
             }
@@ -271,24 +270,6 @@ public class GUIController extends Application {
     public void setCurrentProfile(UserProfile userProfile) {
         this.titleBarController.setCurrentProfile(userProfile);
         this.titleBarController.getGoalController().addGoalsToTable();
-    }
-
-    /**
-     * Gets the list of user profiles.
-     * @return  a ArrayList&gt;UserProfile&lt; object of the user profiles.
-     */
-    public ArrayList<UserProfile> getUsers()
-    {
-        return users;
-    }
-
-    /**
-     * Sets the user profiles.
-     * @param users  The list of users stored in the app.
-     */
-    public void setUsers(ArrayList<UserProfile> users)
-    {
-        this.users = users;
     }
 
 
