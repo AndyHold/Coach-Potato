@@ -1,33 +1,21 @@
 package seng202.team10.Control;
 
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import seng202.team10.Model.ActivitiesData.Activity;
-import seng202.team10.Model.ActivitiesData.DateTime;
-import seng202.team10.Model.ActivitiesData.Route;
-import seng202.team10.Model.Exceptions.ExistingElementException;
-import seng202.team10.Model.Exceptions.InvalidUserException;
-import seng202.team10.Model.Exceptions.NoDataFoundException;
-import seng202.team10.Model.Exceptions.UniqueNameException;
-import seng202.team10.Model.FileOperations.FileReader;
-import seng202.team10.Model.FileOperations.FileWriter;
-import seng202.team10.Model.FileOperations.Parser;
+import seng202.team10.Model.Exceptions.*;
+import seng202.team10.Model.FileOperations.*;
 import seng202.team10.Model.UserProfile;
 import seng202.team10.Visual.*;
 
@@ -127,20 +115,29 @@ public class GUIController extends Application {
         Rectangle2D
                 screenBounds = Screen.getPrimary()
                 .getVisualBounds();
-        root.setOnMousePressed((MouseEvent p) -> {
-            offset_XY = new double[]{p.getSceneX(), p.getSceneY()};
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent p) {
+                offset_XY = new double[]{p.getSceneX(), p.getSceneY()};
+            }
         });
 
-        root.setOnMouseDragged((MouseEvent d) -> {
-            //Ensures the stage is not dragged past the taskbar
-            if (d.getScreenY()<(screenBounds.getMaxY()-20))
-                stage.setY(d.getScreenY() - offset_XY[1]);
-            stage.setX(d.getScreenX() - offset_XY[0]);
+        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent d) {
+                //Ensures the stage is not dragged past the taskbar
+                if (d.getScreenY() < (screenBounds.getMaxY() - 20))
+                    stage.setY(d.getScreenY() - offset_XY[1]);
+                stage.setX(d.getScreenX() - offset_XY[0]);
+            }
         });
 
-        root.setOnMouseReleased((MouseEvent r)-> {
-            //Ensures the stage is not dragged past top of screen
-            if (stage.getY()<0.0) stage.setY(0.0);
+        root.setOnMouseReleased(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent r) {
+                //Ensures the stage is not dragged past top of screen
+                if (stage.getY() < 0.0) stage.setY(0.0);
+            }
         });
     }
 
@@ -309,7 +306,8 @@ public class GUIController extends Application {
      * Setter Method for current user
      * @param currentUser UserProfile: Current logged in user.
      */
-    public void setCurrentUser(UserProfile currentUser) {
+    public void setCurrentUser(UserProfile currentUser)
+    {
         this.titleBarController.setCurrentProfile(currentUser);
     }
 }
