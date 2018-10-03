@@ -489,14 +489,14 @@ public class CreateProfileController implements Controllable
             try {
                 userProfile.setName(nameString);
             } catch (UserNameException | IllegalArgumentException exception) {
-                nameErrorLabel.setText("Please enter a valid user name between 1 - 50 characters");
+                nameErrorLabel.setText("Please enter a valid user name between 1 - 15 characters");
                 nameErrorLabel.setVisible(true);
             }
         } catch (UniqueNameException | IllegalArgumentException exception) {
             nameErrorLabel.setText("This username already exists.");
             nameErrorLabel.setVisible(true);
         } catch (UserNameException e) {
-            nameErrorLabel.setText("Please enter a valid user name between 1 - 50 characters");
+            nameErrorLabel.setText("Please enter a valid user name between 1 - 15 characters");
             nameErrorLabel.setVisible(true);
         }
     }
