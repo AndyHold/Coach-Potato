@@ -1,52 +1,4 @@
-#userOneButton
-{
-    -fx-background-radius: 8em;
-    -fx-border-radius: 8em;
-    -fx-border-width: 4px;
-    -fx-border-radius: 8em;
-    -fx-border-max-height: 200px;
-    -fx-border-min-height: 200px;
-    -fx-border-max-width: 200px;
-    -fx-border-min-width: 200px;
-}
-
-#userTwoButton
-{
-    -fx-background-radius: 8em;
-    -fx-border-radius: 8em;
-    -fx-border-width: 4px;
-    -fx-border-radius: 8em;
-    -fx-border-max-height: 200px;
-    -fx-border-min-height: 200px;
-    -fx-border-max-width: 200px;
-    -fx-border-min-width: 200px;
-}
-
-#userThreeButton
-{
-    -fx-background-radius: 8em;
-    -fx-border-radius: 8em;
-    -fx-border-width: 4px;
-    -fx-border-radius: 8em;
-    -fx-border-max-height: 200px;
-    -fx-border-min-height: 200px;
-    -fx-border-max-width: 200px;
-    -fx-border-min-width: 200px;
-}
-
-#userFourButton
-{
-    -fx-background-radius: 8em;
-    -fx-border-radius: 8em;
-    -fx-border-width: 4px;
-    -fx-border-radius: 8em;
-    -fx-border-max-height: 200px;
-    -fx-border-min-height: 200px;
-    -fx-border-max-width: 200px;
-    -fx-border-min-width: 200px;
-}
-
-#userFiveButton
+#userOneButton, #userTwoButton, #userThreeButton, #userFourButton, #userFiveButton
 {
     -fx-background-radius: 8em;
     -fx-border-radius: 8em;
@@ -61,7 +13,7 @@
 .label
 {
     -fx-font-size: 19px;
-    -fx-text-fill: #b3b3ff;
+    -fx-text-fill: blue;
 }
 
 #helpButton

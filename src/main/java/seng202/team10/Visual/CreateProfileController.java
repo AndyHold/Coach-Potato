@@ -9,6 +9,7 @@ import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.Exceptions.*;
 import seng202.team10.Model.UserProfile;
 
+import java.time.LocalDateTime;
 import java.util.Calendar;
 
 /**
@@ -124,7 +125,9 @@ public class CreateProfileController implements Controllable
 
         //Set up years comboBox
         ObservableList<Integer> years = FXCollections.observableArrayList();
-        for (int i = 1900; i <= 2010; i ++) {
+        LocalDateTime now = LocalDateTime.now();
+        int upperRestriction = now.getYear() - 6;
+        for (int i = upperRestriction; i >= 1900; i--) {
             years.add(i);
         }
         yearEntry.setItems(years);
@@ -327,6 +330,8 @@ public class CreateProfileController implements Controllable
             DateTime dateOfBirth = new DateTime(yearInt, monthInt, dayInt, 0, 0, 0);
             userProfile.setBirthDate(dateOfBirth);
         } catch (NullPointerException | IllegalArgumentException | InvalidDateException exception) {
+            int UpperLimit = LocalDateTime.now().getYear() - 6;
+            dateErrorLabel.setText("Please enter a date of birth between 1900 and " + String.valueOf(UpperLimit));
             dateErrorLabel.setVisible(true);
         }
     }
