@@ -86,11 +86,10 @@ import seng202.team10.Model.UserProfile;
 import seng202.team10.Visual.*;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InvalidClassException;
 import java.util.ArrayList;
 <<<<<<< HEAD
 import java.util.Optional;
+<<<<<<< HEAD
 =======
 import java.util.concurrent.TimeUnit;
 <<<<<<< HEAD
@@ -98,6 +97,8 @@ import java.util.concurrent.TimeUnit;
 =======
 >>>>>>> cf34074... Added a small delay for the map loading the first time
 >>>>>>> 3110e544... Added a small delay for the map loading the first time
+=======
+>>>>>>> 491a6f29... Deleted rudundant imports fro gui controller and added a dependency2
 
 
 /**
@@ -110,15 +111,12 @@ public class GUIController extends Application {
 
     private Scene titleBarScene;
     private TitleBarController titleBarController;
-
     private Stage primaryStage;
-
     private Parser parser = new Parser();
     private FileWriter dataWriter = new FileWriter();
     private FileReader dataReader = new FileReader();
     private ArrayList<String> userNames = new ArrayList<>();
     private double[] offset_XY;
-
     private Parent root;
     private ArrayList<String> userGenders = new ArrayList<>();
 

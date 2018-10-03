@@ -176,7 +176,7 @@ public class TitleBarController {
         mapController = mapLoader.getController();
         mapController.setApp(this.app);
         
-        
+
         FXMLLoader healthWarningLoader = new FXMLLoader((getClass().getResource("/fxml/healthWarningsScreen.fxml")));
         healthWarningPane = healthWarningLoader.load();
         healthWarningController = healthWarningLoader.getController();
