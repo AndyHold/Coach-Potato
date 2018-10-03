@@ -39,6 +39,7 @@ public class MapController implements Controllable, Initializable{
     @FXML private TextArea helpTextArea;
     @FXML private Button helpButton;
     @FXML private Button backButton;
+    private String renderedTemplate;
 
 
     /**
@@ -190,6 +191,6 @@ public class MapController implements Controllable, Initializable{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String renderedTemplate = jinjava.render(template, context);
+        renderedTemplate = jinjava.render(template, context);
     }
 }
