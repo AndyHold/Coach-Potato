@@ -230,11 +230,7 @@ public class Activity implements Serializable {
         for (Entry entry: entries) {
             if (warnings.size() < 3) {
                 Set<HealthWarningType> newHealthWarningTypes = HealthWarning.addWarning(this.getType(), entry.isFirstEntry(), entry.getHeartRate(), user.calculateAge());
-                System.out.println("Whats returned: ");
-                System.out.println(newHealthWarningTypes);
                 warnings.addAll(newHealthWarningTypes);
-                System.out.println("After Intersection: ");
-                System.out.println(warnings);
             }
         }
         warnings.iterator().forEachRemaining(new Consumer<HealthWarningType>() {
