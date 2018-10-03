@@ -2,6 +2,8 @@ package seng202.team10.Model.ActivitiesData;
 
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class HealthWarning implements java.io.Serializable {
 
@@ -25,23 +27,22 @@ public class HealthWarning implements java.io.Serializable {
 
     /**
      * Method to check a heart rate from an entry in an activity for a necessary health warning.
-     * @param activity Activity: Activity to add the health warning to.
-     * @param firstEntry boolean: True if this is the first entry in the activity (resting heart rate).
-     * @param heartRate double: Heart rate at the time of the entry.
-     * @param age int: Age in years of the user.
+     * @param type an <b>ActivityType</b>: ActivityType of the current activity.
+     * @param firstEntry a <b>boolean</b>: True if this is the first entry in the activity (resting heart rate).
+     * @param heartRate a <b>double</b>: Heart rate at the time of the entry.
+     * @param age an <b>int</b>: Age in years of the user.
      */
-    public static ArrayList<HealthWarningType> addWarning(Activity activity, boolean firstEntry, int heartRate, int age)
+    public static Set<HealthWarningType> addWarning(ActivityType type, boolean firstEntry, int heartRate, int age)
     {
-        ArrayList<HealthWarningType> warnings = new ArrayList<>();
+        Set<HealthWarningType> warnings = new HashSet<>();
         int maxHeartRate = 220 - age;
-        if (firstEntry) {
-            if (checkTachycardia(heartRate, age)) {
-                warnings.add(HealthWarningType.TACHYCARDIA);            }
+        if (firstEntry && checkTachycardia(heartRate, age)) {
+            warnings.add(HealthWarningType.TACHYCARDIA);
         }
         if (checkBradycardia(heartRate)) {
             warnings.add(HealthWarningType.BRADYCARDIA);
         }
-        switch (activity.getType())
+        switch (type)
         {
             case WORKOUT:
                 if (checkCardiovascularMortality(heartRate, maxHeartRate)) {

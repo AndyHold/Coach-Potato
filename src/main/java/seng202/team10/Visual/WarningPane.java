@@ -95,7 +95,6 @@ public class WarningPane {
             @Override
             public void handle(ActionEvent event) {
                 clearWarning();
-                System.out.println(mainPane.getChildren().size());
                 if (mainPane.getChildren().size() == 1) {
                     healthWarningsController.hideWarningsScrollPane();
                 }

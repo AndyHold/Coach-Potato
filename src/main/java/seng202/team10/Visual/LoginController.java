@@ -80,7 +80,7 @@ public class LoginController implements Controllable{
         // Set up user buttons
         setUpUserButtons();
         // Disable the create profile button if we have maximum users
-        if (app.getUsers().size() == 5) {
+        if (app.getUserNames().size() == 5) {
             createProfileButton.setDisable(true);
         }
         // Hide the help text field when focus is lost
@@ -348,7 +348,7 @@ public class LoginController implements Controllable{
     @FXML public void userButtonTwo()
     {
         if (deleteMode) {
-            String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + app.getUsers().get(1).getName() + "\"");
+            String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + app.getUserNames().get(1) + "\"");
             if (option.length() == 2) {
                 if (app.getUserNames().size() == 5) {
                     createProfileButton.setDisable(false);
@@ -384,7 +384,7 @@ public class LoginController implements Controllable{
     @FXML public void userButtonThree()
     {
         if (deleteMode) {
-            String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + app.getUsers().get(2).getName() + "\"");
+            String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + app.getUserNames().get(2) + "\"");
             if (option.length() == 2) {
                 if (app.getUserNames().size() == 5) {
                     createProfileButton.setDisable(false);
@@ -420,7 +420,7 @@ public class LoginController implements Controllable{
     @FXML public void userButtonFour()
     {
         if (deleteMode) {
-            String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + app.getUsers().get(3).getName() + "\"");
+            String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + app.getUserNames().get(3) + "\"");
             if (option.length() == 2) {
                 if (app.getUserNames().size() == 5) {
                     createProfileButton.setDisable(false);
@@ -456,7 +456,7 @@ public class LoginController implements Controllable{
     @FXML public void userButtonFive()
     {
         if (deleteMode) {
-            String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + app.getUsers().get(4).getName() + "\"");
+            String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + app.getUserNames().get(4) + "\"");
             if (option.length() == 2) {
                 if (app.getUserNames().size() == 5) {
                     createProfileButton.setDisable(false);

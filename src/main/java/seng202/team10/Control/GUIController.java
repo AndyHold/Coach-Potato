@@ -1,42 +1,27 @@
 package seng202.team10.Control;
 
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import seng202.team10.Model.ActivitiesData.Activity;
-import seng202.team10.Model.ActivitiesData.DateTime;
-import seng202.team10.Model.ActivitiesData.Route;
-import seng202.team10.Model.Exceptions.ExistingElementException;
-import seng202.team10.Model.Exceptions.InvalidUserException;
-import seng202.team10.Model.Exceptions.NoDataFoundException;
-import seng202.team10.Model.Exceptions.UniqueNameException;
-import seng202.team10.Model.FileOperations.FileReader;
-import seng202.team10.Model.FileOperations.FileWriter;
-import seng202.team10.Model.FileOperations.Parser;
+import seng202.team10.Model.Exceptions.*;
+import seng202.team10.Model.FileOperations.*;
 import seng202.team10.Model.UserProfile;
 import seng202.team10.Visual.*;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InvalidClassException;
 import java.util.ArrayList;
 import java.util.Optional;
-import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -49,16 +34,12 @@ public class GUIController extends Application {
 
     private Scene titleBarScene;
     private TitleBarController titleBarController;
-
     private Stage primaryStage;
-    private ArrayList<UserProfile> users = new ArrayList<>();
-
     private Parser parser = new Parser();
     private FileWriter dataWriter = new FileWriter();
     private FileReader dataReader = new FileReader();
     private ArrayList<String> userNames = new ArrayList<>();
     private double[] offset_XY;
-
     private Parent root;
     private ArrayList<String> userGenders = new ArrayList<>();
 
@@ -128,20 +109,29 @@ public class GUIController extends Application {
         Rectangle2D
                 screenBounds = Screen.getPrimary()
                 .getVisualBounds();
-        root.setOnMousePressed((MouseEvent p) -> {
-            offset_XY = new double[]{p.getSceneX(), p.getSceneY()};
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent p) {
+                offset_XY = new double[]{p.getSceneX(), p.getSceneY()};
+            }
         });
 
-        root.setOnMouseDragged((MouseEvent d) -> {
-            //Ensures the stage is not dragged past the taskbar
-            if (d.getScreenY()<(screenBounds.getMaxY()-20))
-                stage.setY(d.getScreenY() - offset_XY[1]);
-            stage.setX(d.getScreenX() - offset_XY[0]);
+        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent d) {
+                //Ensures the stage is not dragged past the taskbar
+                if (d.getScreenY() < (screenBounds.getMaxY() - 20))
+                    stage.setY(d.getScreenY() - offset_XY[1]);
+                stage.setX(d.getScreenX() - offset_XY[0]);
+            }
         });
 
-        root.setOnMouseReleased((MouseEvent r)-> {
-            //Ensures the stage is not dragged past top of screen
-            if (stage.getY()<0.0) stage.setY(0.0);
+        root.setOnMouseReleased(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent r) {
+                //Ensures the stage is not dragged past top of screen
+                if (stage.getY() < 0.0) stage.setY(0.0);
+            }
         });
     }
 
@@ -150,7 +140,7 @@ public class GUIController extends Application {
      * Getter Method for the usernames arraylist
      * @return ArrayList: User Names
      */
-    public ArrayList getUserNames() {
+    public ArrayList<String> getUserNames() {
         return userNames;
     }
 
@@ -219,8 +209,8 @@ public class GUIController extends Application {
     public void checkUniqueName(String userName) throws UniqueNameException
     {
         if (titleBarController.getCurrentProfile() == null || !userName.contentEquals(titleBarController.getCurrentProfile().getName())) {
-            for (UserProfile userProfile : this.getUsers()) {
-                if (userProfile.getName().equals(userName)) {
+            for (String name : this.getUserNames()) {
+                if (name.equals(userName)) {
                     throw new UniqueNameException();
                 }
             }
@@ -273,24 +263,6 @@ public class GUIController extends Application {
         this.titleBarController.getGoalController().addGoalsToTable();
     }
 
-    /**
-     * Gets the list of user profiles.
-     * @return  a ArrayList&gt;UserProfile&lt; object of the user profiles.
-     */
-    public ArrayList<UserProfile> getUsers()
-    {
-        return users;
-    }
-
-    /**
-     * Sets the user profiles.
-     * @param users  The list of users stored in the app.
-     */
-    public void setUsers(ArrayList<UserProfile> users)
-    {
-        this.users = users;
-    }
-
 
     /**
      * obligatory main method. launches the program
@@ -328,7 +300,8 @@ public class GUIController extends Application {
      * Setter Method for current user
      * @param currentUser UserProfile: Current logged in user.
      */
-    public void setCurrentUser(UserProfile currentUser) {
+    public void setCurrentUser(UserProfile currentUser)
+    {
         this.titleBarController.setCurrentProfile(currentUser);
     }
 }

@@ -200,7 +200,7 @@ public class ActivityViewerController {
     @FXML private void viewGraph()
     {
         if(activitiesTableView.getSelectionModel().getSelectedItem() != null) {
-            app.getTitleBar().openAnalysis(activitiesTableView.getSelectionModel().getSelectedItem());
+            app.getTitleBar().openGraphs(activitiesTableView.getSelectionModel().getSelectedItem());
         } else {
             app.createPopUp(Alert.AlertType.ERROR, "Error", "Please select an Activity first");
         }
@@ -350,6 +350,7 @@ public class ActivityViewerController {
             Activity toDelete = activitiesTableView.getSelectionModel().getSelectedItem();
             app.getTitleBar().getCurrentProfile().deleteActivity(toDelete);
             app.getTitleBar().setUpWarningFlag();
+            app.getDataWriter().saveProfile(app.getTitleBar().getCurrentProfile());
         } else {
             app.createPopUp(Alert.AlertType.ERROR, "Error", "Please select an Activity first");
         }

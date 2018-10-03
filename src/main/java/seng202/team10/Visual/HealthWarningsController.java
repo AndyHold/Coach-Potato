@@ -34,9 +34,9 @@ public class HealthWarningsController implements Controllable {
     private ObservableList<HealthWarning> tachycardiaWarnings;
     private ObservableList<HealthWarning> bradycardiaWarnings;
     private ObservableList<HealthWarning> cardiovascularMortalityWarnings;
-    private ArrayList<WarningPane> tWarnings= new ArrayList<>();
-    private ArrayList<WarningPane> bWarnings= new ArrayList<>();
-    private ArrayList<WarningPane> cWarnings= new ArrayList<>();
+    private ArrayList<WarningPane> tWarnings = new ArrayList<>();
+    private ArrayList<WarningPane> bWarnings = new ArrayList<>();
+    private ArrayList<WarningPane> cWarnings = new ArrayList<>();
     @FXML private Label tachycardiaActivitiesLabel;
     @FXML private Label bradycardiaActivitiesLabel;
     @FXML private Label cardiovascularMortalityActivitiesLabel;
@@ -70,6 +70,7 @@ public class HealthWarningsController implements Controllable {
         hideWarningsScrollPane();
         getWarningLists();
         setUpLabels();
+
         engine = googleWebView.getEngine();
         engine.load("https://google.com");
 //        warningsScrollPane.focusedProperty().addListener((ov, oldV, newV) -> {
@@ -84,6 +85,12 @@ public class HealthWarningsController implements Controllable {
      */
     public void createWarningPanes()
     {
+        tWarningsPane.getChildren().clear();
+        bWarningsPane.getChildren().clear();
+        cWarningsPane.getChildren().clear();
+        tWarnings.clear();
+        bWarnings.clear();
+        cWarnings.clear();
         // Tachycardia
         for (HealthWarning healthWarning: tachycardiaWarnings) {
             tWarnings.add(new WarningPane(healthWarning, this, tWarningsPane));
@@ -161,7 +168,6 @@ public class HealthWarningsController implements Controllable {
         }
         setUpLabels();
         app.getTitleBar().setUpWarningFlag();
-        //TODO this is very slow...
     }
 
 

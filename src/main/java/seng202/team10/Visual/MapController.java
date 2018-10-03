@@ -3,7 +3,7 @@ package seng202.team10.Visual;
 import com.google.common.base.Charsets;
 import com.google.common.collect.Maps;
 import com.google.common.io.Resources;
-import com.hubspot.jinjava.Jinjava;
+import com.hubspot.jinjava.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Worker;
@@ -19,7 +19,6 @@ import seng202.team10.Model.ActivitiesData.Route;
 
 import java.net.URL;
 import java.io.IOException;
-import java.net.URL;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -40,6 +39,7 @@ public class MapController implements Controllable, Initializable{
     @FXML private TextArea helpTextArea;
     @FXML private Button helpButton;
     @FXML private Button backButton;
+    private String renderedTemplate;
 
 
     /**
@@ -108,7 +108,7 @@ public class MapController implements Controllable, Initializable{
                              "- To add satelite view or terrain view select the layers icon\n" +
                              "  in the bottom right of the map and choose the desired\n" +
                              "  view.\n" +
-                             "- To return to the Analysis Screen select the Back button.\n\n" +
+                             "- To return to the Graphs Screen select the Back button.\n\n" +
                              "The start of your activity is marked by the green pin and the end is marked by the finish flag.");
         helpTextArea.setWrapText(true);
         helpTextArea.setVisible(false);
@@ -120,7 +120,7 @@ public class MapController implements Controllable, Initializable{
      */
     private void setUpToolTips()
     {
-        backButton.setTooltip(new Tooltip("Click here to return to the Analysis Screen."));
+        backButton.setTooltip(new Tooltip("Click here to return to the Graphs Screen."));
         helpButton.setTooltip(new Tooltip("Need Help?"));
     }
 
@@ -191,6 +191,6 @@ public class MapController implements Controllable, Initializable{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String renderedTemplate = jinjava.render(template, context);
+        renderedTemplate = jinjava.render(template, context);
     }
 }
