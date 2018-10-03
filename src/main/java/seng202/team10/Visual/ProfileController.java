@@ -180,7 +180,7 @@ public class ProfileController {
     private void setUpHelpTextArea()
     {
         helpTextArea.setText("Welcome to Profile View Screen!\n\n" +
-                             "On this screen you can edit your profile details, view brief statistics, and view activities in a calender format.\n" +
+                             "On this screen you can edit your profile details, view brief statistics, and view activities in a calendar format.\n" +
                              "- To edit your profile:\n" +
                              "\t- Click on the Edit button\n" +
                              "\t- Click on the data field you wish to edit\n" +
@@ -190,14 +190,14 @@ public class ProfileController {
                              "\tand will need to try again.\n" +
                              "- Your brief statistics are displayed in the two information\n" +
                              "  boxes on the bottom of the screen.\n" +
-                             "- To view activities in the calender:\n" +
+                             "- To view activities in the calendar:\n" +
                              "\t- Navigate to the month and year of your desired\n" +
                              "\t  activity using the controls at the top of the\n" +
-                             "\t  calender.\n" +
+                             "\t  calendar.\n" +
                              "\t- Dates with activities in them will have an A in them.\n" +
                              "\t- Click on the date of your activity.\n" +
                              "\t- Your statistics for that day will now be displayed in\n" +
-                             "\t  the information box below the calender.\n\n" +
+                             "\t  the information box below the calendar.\n\n" +
                              "Hover the mouse over any field to see what it contains.");
         helpTextArea.setVisible(false);
         helpTextArea.setWrapText(true);
@@ -277,8 +277,12 @@ public class ProfileController {
         weightValueTA.setText(df2.format((currentUser.getWeight())));
         heightValueTA.setText(df2.format((currentUser.getHeight())));
         bmiValueTA.setText(df2.format((currentUser.calcBmi())) + " - " + currentUser.getBmiCategory());
+<<<<<<< HEAD
 >>>>>>> 4f1b7d76... Fixed tests so that new format of error exceptions does not break the pipeline.
         calendarPane.getChildren().add(new CalenderPaneController(YearMonth.now(), app, this).getView());
+=======
+        calendarPane.getChildren().add(new CalendarPaneController(YearMonth.now(), app, this).getView());
+>>>>>>> 7dae5bcb... changed miss spelt calendar
 
         // Sets up the calendar and other stats if the user has already uploaded the data to the app else all values are 0 initially.
         if (currentUser.getActivities().size() > 0) {

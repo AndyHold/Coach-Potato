@@ -30,7 +30,7 @@ import java.util.ArrayList;
  * SENG202 2018S2
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
-public class CalenderPaneController {
+public class CalendarPaneController {
 
     private ArrayList<AnchorPaneNode> allCalendarDays = new ArrayList<>(42);
     private VBox view;
@@ -93,7 +93,11 @@ public class CalenderPaneController {
      * @param profileController  The profile controller that controls the profile screen
      *
      */
+<<<<<<< HEAD:src/main/java/seng202/team10/Visual/CalenderPaneController.java
     public CalenderPaneController(YearMonth yearMonth, GUIController app, ProfileController profileController)
+=======
+    CalendarPaneController(YearMonth yearMonth, GUIController app, ProfileController profileController)
+>>>>>>> 7dae5bcb... changed miss spelt calendar:src/main/java/seng202/team10/Visual/CalendarPaneController.java
     {
         setApp(app);
         setProfileController(profileController);
