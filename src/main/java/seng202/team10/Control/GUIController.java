@@ -20,11 +20,8 @@ import seng202.team10.Model.UserProfile;
 import seng202.team10.Visual.*;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InvalidClassException;
 import java.util.ArrayList;
 import java.util.Optional;
-import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -37,15 +34,12 @@ public class GUIController extends Application {
 
     private Scene titleBarScene;
     private TitleBarController titleBarController;
-
     private Stage primaryStage;
-
     private Parser parser = new Parser();
     private FileWriter dataWriter = new FileWriter();
     private FileReader dataReader = new FileReader();
     private ArrayList<String> userNames = new ArrayList<>();
     private double[] offset_XY;
-
     private Parent root;
     private ArrayList<String> userGenders = new ArrayList<>();
 
