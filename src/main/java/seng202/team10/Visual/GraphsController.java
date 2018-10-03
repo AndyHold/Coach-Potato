@@ -17,11 +17,11 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
- * DataAnalysisController Class for Coach Potato
+ * GraphsController Class for Coach Potato
  * SENG202 2018S2
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
-public class DataAnalysisController implements Controllable, Initializable{
+public class GraphsController implements Controllable, Initializable{
 
     private GUIController app;
     private Activity activity;
@@ -95,7 +95,7 @@ public class DataAnalysisController implements Controllable, Initializable{
      */
     private void setUpHelpTextArea()
     {
-        helpTextArea.setText("Welcome to the Analysis Screen!\n\n" +
+        helpTextArea.setText("Welcome to the Graphs Screen!\n\n" +
                              "On this screen you can view graphs of an activity or select to view a map of the route taken.\n\n" +
                              "- To view graphs of an activity:\n" +
                              "\t- Select the activity you wish to view by clicking on\n" +

@@ -137,7 +137,7 @@
     -fx-max-height: 100;
 }
 
-#viewProfileButton, #uploadDataButton, #viewActivitiesButton, #goalsButton, #analysisButton
+#viewProfileButton, #uploadDataButton, #viewActivitiesButton, #goalsButton, #graphsButton
 {
     -fx-background-radius: 0;
     -fx-border-radius: 0;
@@ -170,14 +170,14 @@
     -fx-text-fill: black;
 }
 
-#viewProfileButton:focused, #uploadDataButton:focused, #viewActivitiesButton:focused, #goalsButton:focused, #healthWarningsButton:focused, #logOutButton:focused, #analysisButton:focused
+#viewProfileButton:focused, #uploadDataButton:focused, #viewActivitiesButton:focused, #goalsButton:focused, #healthWarningsButton:focused, #logOutButton:focused, #graphsButton:focused
 {
     -fx-background-color: green;
 }
 
 #viewProfileButton:focused .label, #uploadDataButton:focused .label, #viewActivitiesButton:focused .label,
 #goalsButton:focused .label, #healthWarningsButton:focused .label, #logOutButton:focused .label,
-#analysisButton:focused .label
+#graphsButton:focused .label
 {
     -fx-text-fill: blue;
 }

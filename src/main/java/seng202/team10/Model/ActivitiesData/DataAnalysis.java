@@ -10,7 +10,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
+<<<<<<< HEAD
  * Class that contains methods for processing activities for data analysis, mostly used by the DataAnalysisController class.
+=======
+ * Class that contains methods for processing activities for data analysis, mostly used by the graphsController class.
+ * SENG202 2018S2
+ * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
+>>>>>>> 662d506f... Renamed the data analysis screen to the graphs screen
  */
 public class DataAnalysis {
 

@@ -36,7 +36,7 @@ public class TitleBarController {
     private Pane uploadDataPane;
     private Pane activityViewerPane;
     private Pane goalPane;
-    private Pane analysisPane;
+    private Pane graphsPane;
     private Pane entryPane;
     private Pane mapPane;
     private Pane healthWarningPane;
@@ -53,7 +53,7 @@ public class TitleBarController {
     private UploadDataController uploadDataController;
     private ActivityViewerController activityViewerController;
     private GoalController goalsController;
-    private DataAnalysisController dataAnalysisController;
+    private GraphsController graphsController;
     private EntryViewerController entryViewerController;
     private MapController mapController;
     private HealthWarningsController healthWarningController;
@@ -70,7 +70,12 @@ public class TitleBarController {
 
 
     /**
+<<<<<<< HEAD
      * Sets up objects that require it prior to showing the scene
+=======
+     * Sets up objects that require it prior to showing the scene.
+     * @throws IOException when there is an error.
+>>>>>>> 662d506f... Renamed the data analysis screen to the graphs screen
      */
     public void setUpScene() throws IOException
     {
@@ -99,7 +104,12 @@ public class TitleBarController {
 
 
     /**
+<<<<<<< HEAD
      * Set the new scene to be displayed
+=======
+     * Set the new scene to be displayed.
+     * @param newPane  The <b>Pane</b> being set to the scene.
+>>>>>>> 662d506f... Renamed the data analysis screen to the graphs screen
      */
     public void setScene(Pane newPane)
     {
@@ -159,10 +169,10 @@ public class TitleBarController {
         goalsController.setUpScene();
 
 
-        FXMLLoader dataAnalysisLoader = new FXMLLoader(getClass().getResource("/fxml/dataAnalysisScreen.fxml"));
-        analysisPane = dataAnalysisLoader.load();
-        dataAnalysisController = dataAnalysisLoader.getController();
-        dataAnalysisController.setApp(this.app);
+        FXMLLoader graphsLoader = new FXMLLoader(getClass().getResource("/fxml/graphsScreen.fxml"));
+        graphsPane = graphsLoader.load();
+        graphsController = graphsLoader.getController();
+        graphsController.setApp(this.app);
 
 
         FXMLLoader entryLoader = new FXMLLoader(getClass().getResource("/fxml/entryViewerScreen.fxml"));
@@ -288,15 +298,20 @@ public class TitleBarController {
 
 
     /**
+<<<<<<< HEAD
      * Method to display the analysis screen
+=======
+     * Method to display the graphs screen.
+     * @param activity  The <b>Activity</b> the graph is being viewed of.
+>>>>>>> 662d506f... Renamed the data analysis screen to the graphs screen
      */
-    @FXML public void openAnalysis(Activity activity)
+    @FXML public void openGraphs(Activity activity)
     {
         app.getDataWriter().saveProfile(currentUser);
-        dataAnalysisController.setActivity(activity);
-        dataAnalysisController.setUpScene();
+        graphsController.setActivity(activity);
+        graphsController.setUpScene();
         slideMenu(false);
-        setScene(analysisPane);
+        setScene(graphsPane);
     }
 
 
@@ -408,7 +423,7 @@ public class TitleBarController {
         uploadDataController.hideHelpTextAreas();
         activityViewerController.hideHelpTextArea();
         goalsController.hideHelpTextArea();
-        dataAnalysisController.hideHelpTextArea();
+        graphsController.hideHelpTextArea();
         entryViewerController.hideHelpTextArea();
         mapController.hideHelpTextArea();
         healthWarningController.hideWarningsScrollPane();
