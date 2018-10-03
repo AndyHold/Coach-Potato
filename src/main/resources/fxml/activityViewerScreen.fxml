@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
@@ -9,6 +10,8 @@
 <?import javafx.scene.layout.*?>
 =======
 >>>>>>> c3af2f13... Implemented button to delete an activity on the activity viewer
+=======
+>>>>>>> d170c555... Changed the words to average speed etc
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -22,8 +25,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextArea" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/activityViewer.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.ActivityViewerController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextArea" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/activityViewer.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.ActivityViewerController">
    <children>
       <VBox prefHeight="720.0" prefWidth="1280.0">
          <children>
@@ -85,7 +89,7 @@
                                  <children>
                                     <Label alignment="CENTER" prefHeight="34.0" prefWidth="280.0" text="Distance (km)">
                                        <font>
-                                          <Font size="26.0" />
+                                          <Font size="20.0" />
                                        </font>
                                     </Label>
                                     <ImageView fitHeight="165.0" fitWidth="171.0" pickOnBounds="true" preserveRatio="true">
@@ -107,7 +111,7 @@
                                  <children>
                                     <Label alignment="CENTER" prefHeight="34.0" prefWidth="280.0" text="Duration (mins)">
                                        <font>
-                                          <Font size="26.0" />
+                                          <Font size="20.0" />
                                        </font>
                                     </Label>
                                     <ImageView fitHeight="148.0" fitWidth="275.0" pickOnBounds="true" preserveRatio="true">
@@ -131,9 +135,9 @@
                            <children>
                               <VBox prefHeight="200.0" prefWidth="275.0">
                                  <children>
-                                    <Label alignment="CENTER" prefHeight="34.0" prefWidth="280.0" text="Speed (km/h)">
+                                    <Label alignment="CENTER" prefHeight="34.0" prefWidth="280.0" text="Average Speed (km/h)">
                                        <font>
-                                          <Font size="26.0" />
+                                          <Font size="20.0" />
                                        </font>
                                     </Label>
                                     <ImageView fitHeight="148.0" fitWidth="275.0" pickOnBounds="true" preserveRatio="true">
@@ -153,9 +157,9 @@
                               </VBox>
                               <VBox prefHeight="200.0" prefWidth="275.0">
                                  <children>
-                                    <Label alignment="CENTER" prefHeight="34.0" prefWidth="280.0" text="Heart Rate (bpm)">
+                                    <Label alignment="CENTER" prefHeight="34.0" prefWidth="280.0" text="Average Heart Rate (bpm)">
                                        <font>
-                                          <Font size="26.0" />
+                                          <Font size="20.0" />
                                        </font>
                                     </Label>
                                     <ImageView fitHeight="148.0" fitWidth="275.0" pickOnBounds="true" preserveRatio="true">
