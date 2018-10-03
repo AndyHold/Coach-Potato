@@ -23,6 +23,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextAreas" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: mediumpurple;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.UploadDataController">
 =======
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextAreas" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: mediumpurple;" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.UploadDataController">
@@ -306,6 +307,9 @@
 =======
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextAreas" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.UploadDataController">
 >>>>>>> 07a79ce7... Opaque cover pane and loading cursor while activities are being loaded
+=======
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextAreas" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.UploadDataController">
+>>>>>>> d01aa415... Removed User arraylist from GUI Controller which led me to lots of bugs which I fixed.
    <children>
       <VBox prefHeight="720.0" prefWidth="1280.0" spacing="15.0">
 >>>>>>> e7a69fc0... Worked extensively on the GUI. now have a working custom title bar, a new colour theme which has been implemented on login, profile, and createprofile screens.

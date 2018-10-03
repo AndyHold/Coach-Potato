@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.Consumer;
 
 
 /**
@@ -246,15 +247,22 @@ public class Activity implements Serializable {
     {
         Set<HealthWarningType> warnings = new HashSet<>();
         for (Entry entry: entries) {
-            ArrayList<HealthWarningType> newHealthWarningTypes = (HealthWarning.addWarning(this, entry.isFirstEntry(), entry.getHeartRate(), user.calculateAge()));
-            for (HealthWarningType healthWarningType: newHealthWarningTypes) {
-                warnings.add(healthWarningType);
+            if (warnings.size() < 3) {
+                Set<HealthWarningType> newHealthWarningTypes = HealthWarning.addWarning(this.getType(), entry.isFirstEntry(), entry.getHeartRate(), user.calculateAge());
+                System.out.println("Whats returned: ");
+                System.out.println(newHealthWarningTypes);
+                warnings.addAll(newHealthWarningTypes);
+                System.out.println("After Intersection: ");
+                System.out.println(warnings);
             }
         }
-        for (HealthWarningType healthWarningType: warnings) {
-            HealthWarning warning = new HealthWarning(healthWarningType, this.getName(), this.getStartDateTime());
-            this.healthWarnings.add(warning);
-        }
+        warnings.iterator().forEachRemaining(new Consumer<HealthWarningType>() {
+            @Override
+            public void accept(HealthWarningType healthWarningType) {
+                HealthWarning warning = new HealthWarning(healthWarningType, getName(), getStartDateTime());
+                healthWarnings.add(warning);
+            }
+        });
     }
 
 

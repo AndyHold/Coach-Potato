@@ -413,6 +413,7 @@ public class TitleBarController {
         mapController.hideHelpTextArea();
         healthWarningController.hideWarningsScrollPane();
 //        healthWarningController.hideHelpTextArea();
+//        healthWarningController.ideHelpTextArea();
 
     }
 }

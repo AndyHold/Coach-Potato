@@ -32,10 +32,16 @@ public class HealthWarningsController implements Controllable {
     ObservableList<HealthWarning> cardiovascularMortalityWarnings;
 =======
     private ObservableList<HealthWarning> cardiovascularMortalityWarnings;
+<<<<<<< HEAD
     private ArrayList<WarningPane> tWarnings= new ArrayList<>();
     private ArrayList<WarningPane> bWarnings= new ArrayList<>();
     private ArrayList<WarningPane> cWarnings= new ArrayList<>();
 >>>>>>> 48ad2079... Implemented a clear all button on the health warnings screen. Found some issues with the clear functionality so had to fix it a bit.
+=======
+    private ArrayList<WarningPane> tWarnings = new ArrayList<>();
+    private ArrayList<WarningPane> bWarnings = new ArrayList<>();
+    private ArrayList<WarningPane> cWarnings = new ArrayList<>();
+>>>>>>> d01aa415... Removed User arraylist from GUI Controller which led me to lots of bugs which I fixed.
     @FXML private Label tachycardiaActivitiesLabel;
     @FXML private Label bradycardiaActivitiesLabel;
     @FXML private Label cardiovascularMortalityActivitiesLabel;
@@ -62,6 +68,7 @@ public class HealthWarningsController implements Controllable {
         hideWarningsScrollPane();
         getWarningLists();
         setUpLabels();
+
         engine = googleWebView.getEngine();
         engine.load("https://google.com");
 //        warningsScrollPane.focusedProperty().addListener((ov, oldV, newV) -> {
@@ -76,6 +83,12 @@ public class HealthWarningsController implements Controllable {
      */
     public void createWarningPanes()
     {
+        tWarningsPane.getChildren().clear();
+        bWarningsPane.getChildren().clear();
+        cWarningsPane.getChildren().clear();
+        tWarnings.clear();
+        bWarnings.clear();
+        cWarnings.clear();
         // Tachycardia
         for (HealthWarning healthWarning: tachycardiaWarnings) {
             tWarnings.add(new WarningPane(healthWarning, this, tWarningsPane));
@@ -154,7 +167,6 @@ public class HealthWarningsController implements Controllable {
         }
         setUpLabels();
         app.getTitleBar().setUpWarningFlag();
-        //TODO this is very slow...
     }
 
 

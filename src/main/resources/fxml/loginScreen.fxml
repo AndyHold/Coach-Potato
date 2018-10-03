@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextArea" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: transparent;" stylesheets="@../css/loginScreen.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.LoginController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextArea" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: transparent;" stylesheets="@../css/loginScreen.css" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.LoginController">
    <children>
       <VBox prefHeight="720.0" prefWidth="1280.0">
          <children>
