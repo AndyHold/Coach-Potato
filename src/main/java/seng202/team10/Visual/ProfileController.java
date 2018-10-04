@@ -208,12 +208,12 @@ public class ProfileController {
                              "\t- Click the Confirm Changes Button\n" +
                              "\tIf any invalid data is entered you will get a pop up\n" +
                              "\tand will need to try again.\n" +
-                             "- Your brief statistics are displayed in the two\n" +
-                             "  information boxes on the bottom of the screen.\n" +
-                             "- To view activities in the calendar:\n" +
+                             "- Your total statistics are displayed in the\n" +
+                             "  information box on the bottom left of the screen.\n" +
+                             "- To view activities and goals in the calendar:\n" +
                              "\t- Navigate to the month and year of your desired\n" +
-                             "\t  activity using the controls at the top of the\n" +
-                             "\t  calendar.\n" +
+                             "\t  activity or goal using the controls at the top\n" +
+                             "\t  of the calendar.\n" +
                              "\t- Dates with activities will have an A in them\n" +
                              "\t  and will be highlighted blue.\n" +
                              "\t- Dates with goals will have an G in them\n" +
@@ -221,7 +221,8 @@ public class ProfileController {
                              "\t- Click on the date you wish to see.\n" +
                              "\t- Your activities and goals for that day will now be\n" +
                              "\t  displayed in the lists to the right of the calendar.\n" +
-                             "\t- Click on the activity you wish to see more details\n" +
+                             "\t  Your daily statistics will be updated for that day.\n" +
+                             "\t- Click on the goal you wish to see more details\n" +
                              "\t  about and it will be displayed in the information\n" +
                              "\t  box below the calendar\n" +
                              "Hover the mouse over each item to see what it does.");
