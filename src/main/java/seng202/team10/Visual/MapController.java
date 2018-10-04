@@ -3,7 +3,7 @@ package seng202.team10.Visual;
 import com.google.common.base.Charsets;
 import com.google.common.collect.Maps;
 import com.google.common.io.Resources;
-import com.hubspot.jinjava.*;
+import com.hubspot.jinjava.Jinjava;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Worker;
