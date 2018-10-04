@@ -107,27 +107,46 @@ public class ActivityViewerController {
     private void setUpHelpArea()
     {
         helpTextArea.setText("Welcome to the Activity View Screen!\n\n" +
-                             "On this screen you can sort your activities by different values, view activities between selected dates, " +
-                             "and view/edit the entries in an activity\n\n" +
+                             "On this screen you can sort your activities by different values, " +
+                             "view activities between selected dates, delete activities, " +
+                             "view/edit the entries in an activity, view a map of an activity, " +
+                             "or view graphs of an activity.\n\n" +
                              "- To sort your activities simply click on the title of the\n" +
                              "  value you wish to sort by. Hint: Try clicking multiple\n" +
                              "  times.\n" +
-                             "- To View activities between selected dates:\n" +
-                             "\t- Click the \"From\" date selector and choose the date\n" +
-                             "\t  to start from.\n" +
-                             "\t- Click the \"To\" date selector and choose the date to\n" +
-                             "\t  end on.\n" +
+                             "- To view activities between selected dates:\n" +
+                             "\t- Click the \"From\" date selector and choose the\n" +
+                             "\t  date to start from.\n" +
+                             "\t- Click the \"To\" date selector and choose the date\n" +
+                             "\t  to end on.\n" +
                              "\t- Click the \"Type\" Drop down and select a type of\n" +
                              "\t  activity to filter.\n" +
                              "\t- Click the Apply Filters button and the activities in\n" +
                              "\t  the table will be updated.\n" +
-                             "\t- If you wish to return to viewing al activities simply\n" +
-                             "\t  click the Clear Filters button.\n" +
+                             "\t- If you wish to return to viewing al activities\n" +
+                             "\t  simply click the Clear Filters button.\n" +
+                             "- To delete an activity:\n" +
+                             "\t- Select the activity you wish to delete from the\n" +
+                             "\t  list on the left.\n" +
+                             "\t- Click on the Delete Activity Button and you will\n" +
+                             "\t  receive a confirmation message.\n" +
+                             "\t- BEWARE! - If you delete an activity you cannot\n" +
+                             "\t  restore it!\n" +
                              "- To view/edit the entries in an activity:\n" +
                              "\t- Click the activity you wish to view/edit.\n" +
                              "\t- Click the View Entries button and you will be\n" +
-                             "\t  navigated to the Entry View Screen.\n\n" +
-                             "Hover the mouse over each button item to see what it is for.");
+                             "\t  navigated to the Entry View Screen.\n" +
+                             "- To view a map of an activity:\n" +
+                             "\t- Select an activity from the list of activities on the\n" +
+                             "\t  left.\n" +
+                             "\t- Click on the View Map button and you will be\n" +
+                             "\t  taken to the View Map Screen.\n" +
+                             "- To View graphs of an activity:\n" +
+                             "\t- Select an activity from the list of activities on the\n" +
+                             "\t  left.\n" +
+                             "\t- Click on the View Graphs button and you will be\n" +
+                             "\t  taken to the View Graphs Screen.\n\n" +
+                             "Hover the mouse over each item to see what it is for.");
         helpTextArea.setWrapText(true);
         helpTextArea.setVisible(false);
     }

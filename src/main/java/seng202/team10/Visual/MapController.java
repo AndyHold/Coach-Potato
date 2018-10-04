@@ -118,6 +118,8 @@ public class MapController implements Controllable, Initializable{
                              "- To add satelite view or terrain view select the layers icon\n" +
                              "  in the bottom right of the map and choose the desired\n" +
                              "  view.\n" +
+                             "- To move the map simply hold down the right mouse\n" +
+                             "  button and drag the mouse in the direction you wish.\n" +
                              "- To return to the Graphs Screen select the Back button.\n\n" +
                              "The start of your activity is marked by the green pin and the end is marked by the finish flag.");
         helpTextArea.setWrapText(true);

@@ -21,8 +21,8 @@
 #tachycardiaLearnMorebutton, #bradycardiaLearnMoreButton, #cardiovascularMortalityLearnMoreButton,
 #cardiovascularMortalityViewButton, #bradycardiaViewbutton, #tachycardiaViewButton
 {
-    -fx-border-color: white;
-    -fx-background-color: limegreen;
+    -fx-border-color: blue;
+    -fx-background-color: #b3b3ff;
     -fx-font-size: 18px;
     -fx-min-width: 340;
     -fx-max-width: 340;
@@ -30,13 +30,28 @@
     -fx-max-height: 60;
 }
 
+#tachycardiaLearnMorebutton:focused, #bradycardiaLearnMoreButton:focused,
+#cardiovascularMortalityLearnMoreButton:focused, #cardiovascularMortalityViewButton:focused,
+#bradycardiaViewbutton:focused, #tachycardiaViewButton:focused
+{
+    -fx-border-color: white;
+    -fx-background-color: blue;
+    -fx-text-fill: white;
+}
+
+#cardiovascularMortalityViewButton:focused .label,
+#bradycardiaViewbutton:focused .label, #tachycardiaViewButton:focused .label
+{
+    -fx-text-fill: white;
+}
+
 #tachycardiaVBox, #bradycardiaVBox, #cardiovascularMortalityVBox
 {
     -fx-background-radius: 1em;
-    -fx-background-color: lightgreen;
+    -fx-background-color: #b3b3ff;
     -fx-border-radius: 1em;
     -fx-border-width: 3px;
-    -fx-border-color: green;
+    -fx-border-color: blue;
 }
 
 #learnMorePane
@@ -44,7 +59,7 @@
     -fx-background-radius: 1em;
     -fx-border-radius: 1em;
     -fx-border-width: 3px;
-    -fx-border-color: green;
+    -fx-border-color: blue;
 }
 
 #clearAllButton

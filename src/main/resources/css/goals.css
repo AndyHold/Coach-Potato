@@ -2,11 +2,8 @@
 
 #deleteModeLabel
 {
-    -fx-font-size: 14;
-    -fx-text-fill: #cc00ff;
-    -fx-border-color: #cc00ff;
-    -fx-border-radius: 1em;
-    -fx-border-width: 5px;
+    -fx-font-size: 19;
+    -fx-text-fill: indigo;
 }
 
 #helpButton
@@ -40,5 +37,14 @@
 {
     -fx-border-radius: 1em 1em 0 0;
     -fx-border-width: 2px;
+    -fx-border-color: blue;
+}
+
+#createGoalVBox
+{
+    -fx-background-color: #b3b3ff;
+    -fx-background-radius: 1em;
+    -fx-border-radius: 1em;
+    -fx-border-width: 3px;
     -fx-border-color: blue;
 }

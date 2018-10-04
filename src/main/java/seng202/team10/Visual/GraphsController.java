@@ -96,19 +96,8 @@ public class GraphsController implements Controllable, Initializable{
     private void setUpHelpTextArea()
     {
         helpTextArea.setText("Welcome to the Graphs Screen!\n\n" +
-                             "On this screen you can view graphs of an activity or select to view a map of the route taken.\n\n" +
-                             "- To view graphs of an activity:\n" +
-                             "\t- Select the activity you wish to view by clicking on\n" +
-                             "\t  it in the list.\n" +
-                             "\t- The graph will now be updated automatically\n" +
-                             "\t  with the data from that activity.\n" +
-                             "\t- Now you can select a different graph to view by\n" +
-                             "\t  clicking on the tabs above the graph.\n" +
-                             "- To view a map:\n" +
-                             "\t- Select the activity you wish to view by clicking on\n" +
-                             "\t  it in the list.\n" +
-                             "\t- Click the View Map button to view the map.\n" +
-                             "\t- You will now be taken to the map view screen\n\n" +
+                             "On this screen you can view different graphs of an activity.\n\n" +
+                             "To change graphs, simply click on the tabs to the left of the graph.\n" +
                              "Hover the mouse over each button to see a brief discription of what it does.");
         helpTextArea.setWrapText(true);
         helpTextArea.setVisible(false);
