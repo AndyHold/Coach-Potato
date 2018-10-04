@@ -833,7 +833,7 @@ public class Entry  implements Serializable {
      * Method to get the string representation of the latitude.
      * @return String
      */
-    protected String getLatitudeString()
+    public String getLatitudeString()
     {
         return String.format("%.6f", this.position.getLatitude());
     }
@@ -843,7 +843,7 @@ public class Entry  implements Serializable {
      * Method to get the string representation of the longitude.
      * @return String
      */
-    protected String getLongitudeString()
+    public String getLongitudeString()
     {
         return String.format("%.6f", this.position.getLongitude());
     }
@@ -853,7 +853,7 @@ public class Entry  implements Serializable {
      * Method to get the string representation of the elevation.
      * @return String
      */
-    protected String getElevationString()
+    public String getElevationString()
     {
         return String.format("%.2f", this.position.getElevation());
     }
@@ -863,7 +863,7 @@ public class Entry  implements Serializable {
      * Method to get the string representation of the distance from the previous Entry.
      * @return String
      */
-    protected String getDistanceString()
+    public String getDistanceString()
     {
         return String.format("%.2f", this.getDistance());
     }
@@ -873,7 +873,7 @@ public class Entry  implements Serializable {
      * Method to get the string representation of the velocity at this Entry.
      * @return String
      */
-    protected String getVelocityString()
+    public String getVelocityString()
     {
         return String.format("%.2f", this.getVelocity());
     }

@@ -512,7 +512,7 @@ public class Activity implements Serializable {
      * Getter method for the Average Heart Rate as a String
      * @return String
      */
-    protected String getHeartString()
+    public String getHeartString()
     {
 <<<<<<< HEAD
 <<<<<<< HEAD

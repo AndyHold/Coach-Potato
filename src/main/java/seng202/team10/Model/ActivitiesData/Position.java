@@ -35,7 +35,7 @@ public class Position  implements Serializable {
      * Setter method to set user's distance.
      * @param latitude: double
      */
-    protected void setLatitude(double latitude) throws IllegalArgumentException
+    public void setLatitude(double latitude) throws IllegalArgumentException
     {
         if ((-90.0 <= latitude) && (latitude <= 90.0)) {
             this.latitude = latitude;
@@ -49,7 +49,7 @@ public class Position  implements Serializable {
      * Setter method to set user's longitude.
      * @param longitude: double
      */
-    protected void setLongitude(double longitude) throws IllegalArgumentException
+    public void setLongitude(double longitude) throws IllegalArgumentException
     {
         if ((-180 <= longitude) && (longitude <= 180)) {
             this.longitude = longitude;
@@ -63,7 +63,7 @@ public class Position  implements Serializable {
      * Setter method to set user's elevation.
      * @param elevation: double
      */
-    protected void setElevation(double elevation) throws IllegalArgumentException
+    public void setElevation(double elevation) throws IllegalArgumentException
     {
         if (-430.0 <= elevation && elevation <= 8850.0) {
             this.elevation = elevation;

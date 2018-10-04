@@ -198,7 +198,7 @@
 .table-view
 {
     -fx-background-radius: 1em;
-    -fx-background-color: #8080ff;
+    -fx-background-color: #b3b3ff;
     -fx-border-radius: 1em;
     -fx-border-color: blue;
 }
@@ -210,7 +210,7 @@
 
 .table-row-cell
 {
-    -fx-background-color: #8080ff;
+    -fx-background-color: #b3b3ff;
     -fx-border-color: blue;
     -fx-text-background-color: #00001a;
 }
@@ -225,7 +225,7 @@
 .table-view .column-header-background
 {
     -fx-background-radius: 1em 1em 0 0;
-    -fx-background-color: #b3b3ff;
+    -fx-background-color: #8080ff;
 }
 
 .table-view .column-header-background .label
