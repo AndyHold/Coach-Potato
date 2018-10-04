@@ -144,4 +144,9 @@ public class Goal implements Serializable {
     }
 
 
+    @Override
+    public String toString()
+    {
+        return getGoalName() + ": " + getGoalType();
+    }
 }

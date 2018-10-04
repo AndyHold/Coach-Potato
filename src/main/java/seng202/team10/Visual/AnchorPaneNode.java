@@ -25,6 +25,7 @@ public class AnchorPaneNode extends AnchorPane {
     private ProfileController profileController;
     private ArrayList<Activity> activities = new ArrayList<>();
     private ArrayList<Goal> todayGoals = new ArrayList<>();
+    private String style = null;
 
     /**
      * Setter method to set the profile controller for this Scene.
@@ -113,9 +114,9 @@ public class AnchorPaneNode extends AnchorPane {
         this.profileController.activitiesLabel.setVisible(false);
         this.profileController.goalsListLabel.setVisible(false);
 
-        ObservableList<Object> goalsList = FXCollections.observableArrayList();
+        ObservableList<Goal> goalsList = FXCollections.observableArrayList();
         for (Goal todayGoal : todayGoals) {
-            goalsList.add(todayGoal.getGoalName() + ": " + todayGoal.getGoalType());
+            goalsList.add(todayGoal);
         }
         this.profileController.goalsListView.setItems(goalsList);
 
@@ -134,8 +135,11 @@ public class AnchorPaneNode extends AnchorPane {
     {
         super(children);
         // Add action handler for mouse clicked
-        this.setOnMouseEntered(e -> this.setStyle("-fx-background-color: #0097A7"));
-        this.setOnMouseExited(e -> this.setStyle("-fx-background-color: null"));
+        this.setOnMouseEntered(e -> {
+            style = this.getStyle();
+            this.setStyle("-fx-background-color: #0097A7");
+        });
+        this.setOnMouseExited(e -> this.setStyle(style));
     }
 
     /**

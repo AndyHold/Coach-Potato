@@ -83,15 +83,7 @@
     -fx-font-size: 14px;
 }
 
-#closeButton
-{
-    -fx-min-width: 30;
-    -fx-max-width: 30;
-    -fx-min-height: 30;
-    -fx-max-height: 30;
-}
-
-#minimiseButton
+#closeButton, #minimiseButton
 {
     -fx-min-width: 30;
     -fx-max-width: 30;
@@ -133,8 +125,8 @@
     -fx-background-color: linear-gradient(#8080ff 0%, #b3b3ff 100%);
     -fx-min-width: 150;
     -fx-max-width: 150;
-    -fx-min-height: 100;
-    -fx-max-height: 100;
+    -fx-min-height: 115;
+    -fx-max-height: 115;
 }
 
 #viewProfileButton, #uploadDataButton, #viewActivitiesButton, #goalsButton, #graphsButton
@@ -147,8 +139,8 @@
     -fx-text-fill: blue;
     -fx-min-width: 150;
     -fx-max-width: 150;
-    -fx-min-height: 100;
-    -fx-max-height: 100;
+    -fx-min-height: 115;
+    -fx-max-height: 115;
 }
 
 #healthWarningsButton
@@ -161,8 +153,8 @@
     -fx-text-fill: blue;
     -fx-min-width: 150;
     -fx-max-width: 150;
-    -fx-min-height: 100;
-    -fx-max-height: 100;
+    -fx-min-height: 115;
+    -fx-max-height: 115;
 }
 
 #menuBar .label

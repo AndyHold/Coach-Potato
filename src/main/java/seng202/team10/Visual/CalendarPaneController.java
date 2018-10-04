@@ -12,6 +12,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.LinearGradient;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import seng202.team10.Control.GUIController;
@@ -218,26 +219,33 @@ public class CalendarPaneController {
         monthsComboBox.setItems(months);
         yearsComboBox.setItems(years);
 
-        monthsComboBox.setStyle("-fx-border-color: #0097A7; -fx-background-color: #4DD0E1");
+        monthsComboBox.setStyle("-fx-border-color: #0097A7; " +
+                                "-fx-background-color: #4DD0E1; " +
+                                "-fx-background-radius: 1em 0 0 0; " +
+                                "-fx-border-radius: 1em 0 0 0;");
         monthsComboBox.setVisibleRowCount(12);
         monthsComboBox.setMinSize(120, 30);
         monthsComboBox.setMaxSize(120, 30);
         monthsComboBox.setPrefSize(120, 30);
         monthsComboBox.setValue(currentYearMonth.getMonth());
-        monthsComboBox.setStyle("-fx-border-color: #0097A7; -fx-background-color: #4DD0E1");
 
-        yearsComboBox.setStyle("-fx-border-color: #0097A7; -fx-background-color: #4DD0E1");
+        yearsComboBox.setStyle("-fx-border-color: #0097A7; " +
+                               "-fx-background-color: #4DD0E1; " +
+                               "-fx-background-radius: 0 1em 0 0; " +
+                               "-fx-border-radius: 0 1em 0 0;");
         yearsComboBox.setVisibleRowCount(12);
         yearsComboBox.setMinSize(80, 30);
         yearsComboBox.setMaxSize(80, 30);
         yearsComboBox.setPrefSize(80, 30);
         yearsComboBox.setValue(currentYearMonth.getYear());
+        yearsComboBox.setId("yearsComboBox");
 
         monthsComboBox.setOnAction(e -> changeMonthYear());
         yearsComboBox.setOnAction(e -> changeMonthYear());
 
         HBox comboBar = new HBox(monthsComboBox, yearsComboBox);
         comboBar.setAlignment(Pos.CENTER);
+<<<<<<< HEAD
 
 //        // Create calendarTitle and buttons to change current month
 //        calendarTitle = new Label();
@@ -275,6 +283,8 @@ public class CalendarPaneController {
 //        titleBar.setAlignment(Pos.CENTER);
 >>>>>>> 76d685ba... Changed Calendar colour and added combo boxes for month and year.
 
+=======
+>>>>>>> 6929ca03... Some changes to GUI to make it consistant.
         // Populate calendar with the appropriate day numbers
         populateCalendar(yearMonth);
         // Create the calendar view
@@ -298,6 +308,7 @@ public class CalendarPaneController {
             if (ap.getChildren().size() != 0) {
                 ap.getChildren().remove(0);
             }
+            String style = null;
             Text txt = new Text(String.valueOf(calendarDate.getDayOfMonth()));
             txt.setFill(Color.BLACK);
             txt.setTextAlignment(TextAlignment.CENTER);
@@ -321,6 +332,7 @@ public class CalendarPaneController {
                 }
                 if (count != 0) {
                     txt.setText(txt.getText() + String.format("\n %d A", count));
+                    style = "-fx-background-color: blue;";
                 }
                 ap.setActivities(todayActivities);
             }
@@ -338,6 +350,9 @@ public class CalendarPaneController {
                 }
                 if (countGoals != 0) {
                     txt.setText(txt.getText() + String.format("\n %d G", countGoals));
+                    if (style != null) {
+                        style = "-fx-background-color: linear-gradient(blue 0%, green 100%);";
+                    } else style = "-fx-background-color: green;";
                 }
                 ap.setTodayGoals(todayGoals);
             }
@@ -345,6 +360,7 @@ public class CalendarPaneController {
             if (calendarDate.getMonth() == yearMonth.getMonth()) {
                 txt.setFill(Color.WHITE);
                 ap.getChildren().add(txt);
+                ap.setStyle(style);
             } else {
                 ap.getChildren().add(txt);
             }
