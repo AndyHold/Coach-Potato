@@ -297,6 +297,7 @@ public class TitleBarController {
     {
         app.getDataWriter().saveProfile(currentUser);
         goalsController.addGoalsToTable();
+        goalsController.resetTextFields();
         slideMenu(false);
         setScene(goalPane);
     }

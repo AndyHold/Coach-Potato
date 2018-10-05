@@ -72,8 +72,6 @@ public class GoalController implements Controllable{
      */
     public void setUpScene()
     {
-        // Reset all text areas
-        resetTextFields();
         // Set tool tips
         setUpToolTips();
         // Set up help text areas
@@ -351,6 +349,7 @@ public class GoalController implements Controllable{
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Method to update the achieved goal list view
 =======
      * Method to update the current goal list view.
@@ -384,6 +383,8 @@ public class GoalController implements Controllable{
 
 
     /**
+=======
+>>>>>>> f070a7b8... Fixed a bug with the current goals not being displayed properly.
      * Method to delete a current goal
      * Called when the remove goal button is selected under current goals.
      */
@@ -419,13 +420,18 @@ public class GoalController implements Controllable{
                 app.getTitleBar().getCurrentProfile().getGoals().removeCurrentGoal(item);
             }
             addGoalsToTable();
+            resetTextFields();
+        } else {
+            app.createPopUp(Alert.AlertType.ERROR, "Error", "You have not selected a goal to remove.");
         }
     }
 
+
     /**
-    *Displays details of a goal that's selected.
+     * Method to display details of a goal that's selected.
+     * Called when a goal is selected in the Current Goals List View
      */
-    private void viewGoalDetails() {
+    @FXML private void updateCurrentListView() {
         // If there is a goal selected
         if (currentGoalsListView.getSelectionModel().getSelectedItem() != null) {
             String item = currentGoalsListView.getSelectionModel().getSelectedItem().toString();
@@ -454,9 +460,12 @@ public class GoalController implements Controllable{
                     case "inprogress":
                         printGoalsReview(goal, currentGoalTextArea, currentDescriptionLabel);
                         break;
+
                     case "achieved":
-                        currentGoalTextArea.setText("Congratulations!!!\nThat goal has been achieved and has been moved to the past goals tab.");
+                        currentGoalTextArea.setText("Congratulations!!!\n" +
+                                                    "That goal has been achieved and has been moved to the past goals tab.");
                         break;
+
                     case "failed":
                         currentGoalTextArea.setText("Oh No!!!\nThat goal has been failed and has been moved to the past goals tab.");
 >>>>>>> fc6a87cc... Refactored Goals screen GUI to make it look better.
@@ -497,7 +506,6 @@ public class GoalController implements Controllable{
 >>>>>>> 03dfdb44... Now call addGoalsToTable when profile is set. Added text fields and areas for achieved and failed goals. Implemented addGoalsToTable, updateAchievedListView, updateFailedListView, and printPastGoalsReview functions in GoalController. In review goal methods, now compares current time to target date to see if you have failed your goal. Added achievedGoalNames, failedGoalNames and futureGoalNames ArrayLists to Goals.
 =======
         app.getTitleBar().getCurrentProfile().getGoals().refreshGoals();
-        resetTextFields();
         if (app.getTitleBar().getCurrentProfile().getGoals() != null) {
             ObservableList<String> currentGoals = FXCollections.observableArrayList(app.getTitleBar().getCurrentProfile().getGoals().getCurrentGoalNames());
 <<<<<<< HEAD
@@ -528,7 +536,7 @@ public class GoalController implements Controllable{
 =======
      * Method to reset all text areas to null and hidden
      */
-    private void resetTextFields()
+    public void resetTextFields()
     {
         currentGoalTextArea.setText("");
         futureGoalTextArea.setText("");
@@ -592,6 +600,14 @@ public class GoalController implements Controllable{
             goalNameEntry.setText("");
             targetValueEntry.setText("");
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+            startDatePicker.getEditor().clear();
+            targetDatePicker.getEditor().clear();
+            goalTypeCombo.getSelectionModel().select(null);
+            this.addGoalsToTable();
+            app.getDataWriter().saveProfile(app.getTitleBar().getCurrentProfile());
+>>>>>>> f070a7b8... Fixed a bug with the current goals not being displayed properly.
         } catch (InvalidGoalDateException | BadGoalNameException | InvalidGoalTargetException | NoTypeSelectedException exception) {
             app.createPopUp(Alert.AlertType.ERROR, "Error", exception.getMessage());
         } catch (NumberFormatException exception) {
