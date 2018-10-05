@@ -8,6 +8,12 @@ import seng202.team10.Model.Exceptions.NoDataFoundException;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
+<<<<<<< HEAD
+=======
+/**
+ * Parser Class for Coach Potato
+ */
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
 public class Parser {
 
     private int linePosition = 0;
@@ -46,7 +52,11 @@ public class Parser {
      *
      * @param fileContents The unparsed contents of the file, in arraylist form with values
      *                     seperated with commas.
+<<<<<<< HEAD
      * @return formattedFile  An ArrayList&gtArrayList&gtString&lt&lt that contains a list of lines,
+=======
+     * @return formattedFile  An ArrayList&lt;ArrayList&lt;String&lt;&gt;that contains a list of lines,
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      * that are each lists that contain each value in an index.
      */
     public ArrayList<ArrayList<String>> formatFileContents(ArrayList<String> fileContents)
@@ -69,7 +79,11 @@ public class Parser {
      *Calls processActivity() in a loop.
      * @param formattedFile  The formatted file to be processed.
      * @throws NoDataFoundException when there is no data in the formatted file.
+<<<<<<< HEAD
      * @return activites  An ArrayList&gtActivity&lt that contains every activity in the file.
+=======
+     * @return activites  An ArrayList&lt;Activity&gt;that contains every activity in the file.
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public ArrayList<Activity> processFile(ArrayList<ArrayList<String>> formattedFile) throws NoDataFoundException
     {
@@ -353,7 +367,7 @@ public class Parser {
 
     /**
      * returns the number of activities that were not imported for various reasons
-     * @return int count of bad activities
+     * @return An <b>int</b> count of bad activities
      */
     public int getBadActivities() {
         return badActivities;

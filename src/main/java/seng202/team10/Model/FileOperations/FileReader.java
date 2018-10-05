@@ -7,14 +7,22 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+<<<<<<< HEAD
 
+=======
+/**
+ * File Reader Class for Coach Potato
+ */
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
 public class FileReader {
 
     private UserProfile localProfile;
 
 
     /** Method to load an already established profile from file.
-     * @param profileName UserProfile: should match what would be returned from UserProfile.getName()
+     * @param profileName UserProfile: should match what would be returned from UserProfile.getName().
+     * @throws IOException when there is a failed I/O operation.
+     * @throws ClassNotFoundException when the class cannot be found.
      * @return UserProfile
      * */
     public UserProfile loadExistingProfile(String profileName) throws IOException, ClassNotFoundException
@@ -65,6 +73,8 @@ public class FileReader {
 
     /**
      * Method to check which users are saved in the profiles folder, adding their names and genders to ArrayLists that are passed in.
+     * @param foundUsers  An empty <b>ArrayList&lt;String&gt;</b> of users.
+     * @param usersGenders An empty <b>ArrayList&lt;String&gt;</b> of the genders of users.
      */
     public void getExistingUsers(ArrayList<String> foundUsers, ArrayList<String> usersGenders)
     {
@@ -91,7 +101,7 @@ public class FileReader {
     /**
      * helper method for getExistingUsers that checks and returns the extension of a file object
      * @param file the file being checked
-     * @return string of the . + the extension
+     * @return A <b>String</b> of the . + the extension
      */
     private String getFileExtension(File file) {
         String name = file.getName();

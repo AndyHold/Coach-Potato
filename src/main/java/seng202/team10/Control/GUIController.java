@@ -102,12 +102,10 @@ import java.util.concurrent.TimeUnit;
 
 
 /**
- * This is the main controller for the application. This class creates and launches scenes,
- * stores all data needed and functions as the general controller. It passes itself into
- * controllers so they can access any information they need.
+ * Class that acts as the main controller for the application. Creates and launches scenes,
+ * stores all data needed and functions. Passes itself into controllers so they can access any information they need.
  */
 public class GUIController extends Application {
-
 
     private Scene titleBarScene;
     private TitleBarController titleBarController;
@@ -122,9 +120,15 @@ public class GUIController extends Application {
 
 
     /**
+<<<<<<< HEAD
      * A lot of the initial setup when the program is launched. loads profiles and scenes to the stage
      * @param primaryStage
      * @throws Exception
+=======
+     * Method to perform the initial setup when the program is launched. Loads profiles and scenes to the stage.
+     * @param primaryStage The main stage of the application that all scenes will be set to.
+     * @throws Exception When the stage is null.
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     @Override
     public void start(Stage primaryStage) throws Exception
@@ -356,8 +360,8 @@ public class GUIController extends Application {
 
 
     /**
-     * Getter method for the data reader
-     * @return FileReader
+     * Getter method for the data reader.
+     * @return A <b>FileReader</b> for reading data from files.
      */
     public FileReader getDataReader()
     {
@@ -365,8 +369,8 @@ public class GUIController extends Application {
     }
 
     /**
-     * Getter method for the user genders in an ArrayList of strings
-     * @return ArrayList
+     * Getter method for the user genders.
+     * @return An <b>ArrayList&lt;String&gt;</b> of the genders of users.
      */
     public ArrayList<String> getUserGenders()
     {
@@ -376,8 +380,8 @@ public class GUIController extends Application {
 
     /**
      * Method to set the window as draggable.
-     * @param root Parent: the root scene loader of the window.
-     * @param stage Stage: the primary stage.
+     * @param root  The <b>Parent</b> scene loader of the window.
+     * @param stage  The primary <b>Stage</b> of the application.
      */
     private void allowDrag(Parent root, Stage stage)
     {
@@ -412,16 +416,16 @@ public class GUIController extends Application {
 
 
     /**
-     * Getter Method for the usernames arraylist
-     * @return ArrayList: User Names
+     * Getter method for the user names.
+     * @return An <b>ArrayList&lt;String&gt;</b> of user names.
      */
     public ArrayList<String> getUserNames() {
         return userNames;
     }
 
     /**
-     * Getter Method for the primary stage
-     * @return Stage: the primary stage of the application
+     * Getter method for the primary stage.
+     * @return The primary <b>Stage</b> of the application.
      */
     public Stage getPrimaryStage()
     {
@@ -459,8 +463,8 @@ public class GUIController extends Application {
 
 
     /**
-     * Getter method for the Parser
-     * @return Parser
+     * Getter method for the parser.
+     * @return A <b>Parser</b> for parsing data.
      */
 >>>>>>> b2c438da... Played around with the GUI a bit further and created a new branch for it in case I break everything.
     public Parser getParser()
@@ -471,7 +475,7 @@ public class GUIController extends Application {
 
     /**
      * Getter method for data writer
-     * @return FileWriter
+     * @return A <b>FileWriter</b> for writing to files.
      */
     public FileWriter getDataWriter()
     {
@@ -480,10 +484,18 @@ public class GUIController extends Application {
 
 
     /**
-     * Uploads the data from a file and stores it in the specified user profile.
+     * Method to upload the data from a file and store it in the specified user profile.
      *
+<<<<<<< HEAD
      * @param user  The user profile that the data is uploaded to.
      * @param filePath The file path the data is stored at.
+=======
+     * @param user  The <b>UserProfile</b> that the data is uploaded to.
+     * @param filePath A <b>String</b> of the file path the data is stored at.
+     * @throws FileNotFoundException When there's no file to be found
+     * @throws NoDataFoundException When there's no data to be found in the file
+     * @throws ExistingElementException When the data in the file has already been uploaded
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public void uploadDataToUser(UserProfile user, String filePath) throws FileNotFoundException, NoDataFoundException, ExistingElementException
     {
@@ -606,9 +618,15 @@ public class GUIController extends Application {
 
 =======
     /**
+<<<<<<< HEAD
      * checks to see if a profile already exists with a specific username
      * @param userName the username being checked
      * @throws UniqueNameException
+=======
+     * Method to check if a profile already exists with a specific username.
+     * @param userName A <b>String</b> of the username being checked.
+     * @throws UniqueNameException When a profile already exists with that name.
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
 >>>>>>> 37d12d4e... Added a load of missing javadoc all over the place
     public void checkUniqueName(String userName) throws UniqueNameException
@@ -697,6 +715,7 @@ public class GUIController extends Application {
 >>>>>>> 73cd1563... Finished Upload Data Screen, complete with error messages and full functionality. One Error will need to be modified but need to speak to team about it first. Changed heart rate from a double to an int. Made some changes to Parser, Activity, DateTime, Entry and Position to get it working.
 
     /**
+<<<<<<< HEAD
      * Sets the scene on the primary stage to the upload data scene.
      */
     public void launchUploadDataScene()
@@ -1047,6 +1066,12 @@ public class GUIController extends Application {
 >>>>>>> e4a580e1... Added map Controller
 =======
     public void loadTitleBar() throws Exception
+=======
+     * Method to initialize the loader, controller and scene for the title bar.
+     * @throws Exception When the resources cannot be found.
+     */
+    private void loadTitleBar() throws Exception
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
     {
         FXMLLoader titleBarLoader = new FXMLLoader(getClass().getResource("/fxml/titleBar.fxml"));
         root = titleBarLoader.load();
@@ -1059,8 +1084,14 @@ public class GUIController extends Application {
 
 
     /**
+<<<<<<< HEAD
      * Creates a new profile (and adds the test data to it for now).
      * @param newUser  The profile being created.
+=======
+     * Method to create a new user profile.
+     * @param newUser  The <b>UserProfile</b> being created.
+     * @throws InvalidUserException When the newUser has invalid data.
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public void createUser(UserProfile newUser) throws InvalidUserException
     {
@@ -1078,8 +1109,8 @@ public class GUIController extends Application {
 
 
     /**
-     * Sets the current user profile.
-     * @param userProfile  The user profile that's logged in.
+     * Setter for the user profile.
+     * @param userProfile  The <b>UserProfile</b> that's logged in.
      */
     public void setCurrentProfile(UserProfile userProfile) {
         this.titleBarController.setCurrentProfile(userProfile);
@@ -1109,8 +1140,13 @@ public class GUIController extends Application {
 >>>>>>> d01aa415... Removed User arraylist from GUI Controller which led me to lots of bugs which I fixed.
 
     /**
+<<<<<<< HEAD
      * obligatory main method. launches the thing
      * @param args
+=======
+     * Obligatory main method. Launches the program.
+     * @param args Not used main function variable.
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public static void main(String[] args)
     {
@@ -1119,10 +1155,18 @@ public class GUIController extends Application {
 
 
     /**
+<<<<<<< HEAD
      * Method to display a pop up window with a title a message and a type (depending on if you want an error or information etc)
      * @param type Alert.AlertType: type of alert
      * @param title String: Title of pop up window
      * @param message String: Message to display to user
+=======
+     * Method to display a pop up window with a title, a message and a type of alert (error, message or warning).
+     * @param type An <b>Alert.AlertType</b> of the type of alert.
+     * @param title A <b>String</b> of the title of the pop up window.
+     * @param message A <b>String</b> of the message to display to the user.
+     * @return  A <b>String</b> of the message displayed.
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public String createPopUp(Alert.AlertType type, String title, String message)
     {
@@ -1134,14 +1178,18 @@ public class GUIController extends Application {
         return buttonType.get().getText();
     }
 
+    /**
+     * Getter method for the title bar controller.
+     * @return A <b>TitleBarController</b> object.
+     */
     public TitleBarController getTitleBar() {
         return titleBarController;
     }
 
 
     /**
-     * Setter Method for current user
-     * @param currentUser UserProfile: Current logged in user.
+     * Setter method for current user.
+     * @param currentUser The <b>UserProfile</b> of the currently logged in user.
      */
     public void setCurrentUser(UserProfile currentUser)
     {

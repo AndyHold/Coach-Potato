@@ -4,7 +4,7 @@ package seng202.team10.Model.Goals;
 
 /**
  * GoalType Enum for Coach Potato
- * SENG202 2018S2
+ *
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public enum GoalType {
@@ -47,7 +47,11 @@ public enum GoalType {
 
     /**
      * returns the enum goal type as a string
+<<<<<<< HEAD
      * @return
+=======
+     * @return A <b>String</b>
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     @Override
     public String toString()

@@ -22,8 +22,13 @@ import java.util.ArrayList;
 
 
 /**
+<<<<<<< HEAD
  * LoginController Class for Coach Potato
  * SENG202 2018S2
+=======
+ * Controller class for the login screen, which displays lists of users for logging in.
+ *
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public class LoginController implements Controllable{

@@ -7,6 +7,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
+<<<<<<< HEAD
+=======
+/**
+ * File Writer Class for Coach Potato
+ */
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
 public class FileWriter
 {
 

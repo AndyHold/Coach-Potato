@@ -18,6 +18,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
+<<<<<<< HEAD
+=======
+/**
+ * Controller for the Activity Viewer Screen, which displays and filters lists of activities
+ *
+ * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
+ */
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
 public class ActivityViewerController {
 
     private GUIController app;
@@ -176,8 +184,12 @@ public class ActivityViewerController {
      * @param displayActivities the arraylist of activity objects to be displayed in the table
 =======
      * Method to fill the table with the activities to display used by setUpScene as well as applyFilter.
+<<<<<<< HEAD
      * @param displayActivities An <b>ArrayList&gt;Activity&lt;</b> to be displayed in the table.
 >>>>>>> 01bb5f29... Changed the activity viewer screen so it displays images and stat breakdowns for the selected activity.
+=======
+     * @param displayActivities An <b>ArrayList&lt;Activity&gt;</b> to be displayed in the table.
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     private void populateTable(ObservableList<Activity> displayActivities)
     {

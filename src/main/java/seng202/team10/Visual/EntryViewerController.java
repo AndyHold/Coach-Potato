@@ -15,8 +15,13 @@ import seng202.team10.Model.Exceptions.EntryOutOfSequenceException;
 import java.util.ArrayList;
 
 /**
+<<<<<<< HEAD
  * EntryViewerController Class for Coach Potato
  * SENG202 2018S2
+=======
+ * Controller class for the entry viewer screen, where lists of entries for activities are displayed.
+ *
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public class EntryViewerController {
@@ -173,9 +178,15 @@ public class EntryViewerController {
     }
 
     /**
+<<<<<<< HEAD
      * method to check if a list of entries are in time sequence
      * @param checkingEntries the arraylist of entries being checked
      * @return true if the order is correct, false if not
+=======
+     * Method to check if a list of entries are in time sequence.
+     * @param checkingEntries The <b>ArrayList&lt;Entry&gt;</b> being checked.
+     * @throws EntryOutOfSequenceException if the entries are not in time sequence.
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     private void checkContinuity(ArrayList<Entry> checkingEntries) throws EntryOutOfSequenceException {
         if (checkingEntries.size() > 1) {

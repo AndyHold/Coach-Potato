@@ -13,6 +13,14 @@ import seng202.team10.Model.Exceptions.NoTypeSelectedException;
 import seng202.team10.Model.Goals.*;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+/**
+ * Controller class for the goals screen, which is where goals are viewed, created and managed.
+ *
+ * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
+ */
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
 public class GoalController implements Controllable {
 =======
 public class GoalController implements Controllable{

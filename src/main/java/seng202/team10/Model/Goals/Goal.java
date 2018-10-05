@@ -7,7 +7,13 @@ import seng202.team10.Model.Exceptions.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+<<<<<<< HEAD
 
+=======
+/**
+ * Goal Class for Coach Potato
+ */
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
 public class Goal implements Serializable {
 
     private String goalName;
@@ -108,7 +114,7 @@ public class Goal implements Serializable {
 
     /**
      * Getter method for a goal's type
-     * @return String
+     * @return A <b>String</b>
      */
     public String getGoalType()
     {
@@ -136,7 +142,7 @@ public class Goal implements Serializable {
 
     /**
      * Getter method for the goal name
-     * @return String
+     * @return A <b>String</b>
      */
     public String getGoalName()
     {

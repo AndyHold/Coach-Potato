@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 
 /**
  * Goals Class for Coach Potato
- * SENG202 2018S2
+ *
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public class Goals implements Serializable {
@@ -63,16 +63,17 @@ public class Goals implements Serializable {
 
 
     /**
-     * Method to create a frequency goal and place it in the correct ArrayList
-     * @param name String: name of the goal
-     * @param startDate DateTime: date the goal starts on
-     * @param targetDate DateTime: target date for the goal
-     * @param type String: type of the goal
-     * @param value Double: target value of the goal
-     * @param user UserProfile: current logged in user
-     * @throws InvalidGoalDateException When invalid dates are entered
-     * @throws BadGoalNameException When invalid name is entered
-     * @throws InvalidGoalTargetException When invalid target is entered
+     * Method to create a frequency goal and place it in the correct ArrayList.
+     * @param name A <b>String</b> name of the goal.
+     * @param startDate DateTime: date the goal starts on.
+     * @param targetDate DateTime: target date for the goal.
+     * @param type A <b>String</b> type of the goal.
+     * @param value Double: target value of the goal.
+     * @param user UserProfile: current logged in user.
+     * @throws InvalidGoalDateException When invalid dates are entered.
+     * @throws BadGoalNameException When invalid name is entered.
+     * @throws InvalidGoalTargetException When invalid target is entered.
+     * @throws NoTypeSelectedException When type is null.
      */
     public void createGoal(String name, DateTime startDate, DateTime targetDate, String type, Double value, UserProfile user) throws InvalidGoalDateException, InvalidGoalTargetException, BadGoalNameException, NoTypeSelectedException
     {
@@ -112,15 +113,16 @@ public class Goals implements Serializable {
 
 
      /**
-     * Method to create a frequency goal and place it in the correct ArrayList
-     * @param name String: name of the goal
-     * @param startDate DateTime: date the goal starts on
-     * @param targetDate DateTime: target date for the goal
-     * @param freq int: goal number of activities
-     * @throws InvalidGoalDateException When invalid dates are entered
-     * @throws BadGoalNameException When invalid name is entered
-     * @throws InvalidGoalTargetException When invalid target is entered
-     * @throws NoTypeSelectedException When type has not been chosen
+     * Method to create a frequency goal and place it in the correct ArrayList.
+     * @param name A <b>String</b> name of the goal.
+     * @param startDate DateTime: date the goal starts on.
+     * @param targetDate DateTime: target date for the goal.
+     * @param freq An <b>int</b> of goal number of activities.
+     * @param type A <b>String</b> of the type of goal.
+     * @throws InvalidGoalDateException When invalid dates are entered.
+     * @throws BadGoalNameException When invalid name is entered.
+     * @throws InvalidGoalTargetException When invalid target is entered.
+     * @throws NoTypeSelectedException When type has not been chosen.
      */
     public void createGoal(String name, DateTime startDate, DateTime targetDate, int freq, String type) throws InvalidGoalDateException, BadGoalNameException, InvalidGoalTargetException, NoTypeSelectedException {
         if (type.length() == 0) {
@@ -158,7 +160,7 @@ public class Goals implements Serializable {
     /**
      * Method to check a goal, i.e. review the progress the user is making towards meeting a particular goal
      * @param goalName: String
-     * @return String: a textual description of the user progress towards meeting the goal
+     * @return A <b>String</b> a textual description of the user progress towards meeting the goal
      */
     public String checkGoal(String goalName)
     {
@@ -250,7 +252,11 @@ public class Goals implements Serializable {
 
     /**
      * Setter method for the currentGoalNames of the user
+<<<<<<< HEAD
      * @param currentGoals ArrayList&gtGoal&lt
+=======
+     * @param currentGoals ArrayList&lt;Goal&lt;
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public void setCurrentGoals(ArrayList<Goal> currentGoals)
     {
@@ -260,7 +266,11 @@ public class Goals implements Serializable {
 
     /**
      * Setter method for the currentGoalNames of the user
+<<<<<<< HEAD
      * @param currentGoalNames ArrayList&gtString&lt
+=======
+     * @param currentGoalNames ArrayList&lt;String&lt;
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public void setCurrentGoalNames(ArrayList<String> currentGoalNames)
     {
@@ -270,7 +280,11 @@ public class Goals implements Serializable {
 
     /**
      * Setter method for the createdGoals of the user
+<<<<<<< HEAD
      * @param createdGoals ArrayList&gtGoal&lt
+=======
+     * @param createdGoals ArrayList&lt;Goal&lt;
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public void setCreatedGoals(ArrayList<Goal> createdGoals)
     {
@@ -280,7 +294,11 @@ public class Goals implements Serializable {
 
     /**
      * Setter method for the createdGoalNames of the user
+<<<<<<< HEAD
      * @param createdGoalNames ArrayList&gtString&lt
+=======
+     * @param createdGoalNames ArrayList&lt;String&lt;
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public void setCreatedGoalNames(ArrayList<String> createdGoalNames)
     {
@@ -290,7 +308,11 @@ public class Goals implements Serializable {
 
     /**
      * Getter method for the currentGoalNames of the user
+<<<<<<< HEAD
      * @return ArrayList&gtString&lt
+=======
+     * @return ArrayList&lt;String&lt;
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public ArrayList<String> getCurrentGoalNames()
     {
@@ -300,7 +322,11 @@ public class Goals implements Serializable {
 
     /**
      * Getter method for the achieved goals of the user
+<<<<<<< HEAD
      * @return ArrayList&gtGoal&lt
+=======
+     * @return ArrayList&lt;Goal&lt;
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public ArrayList<Goal> getAchievedGoals()
     {
@@ -310,7 +336,11 @@ public class Goals implements Serializable {
 
     /**
      * Getter method for the current goals of the user
+<<<<<<< HEAD
      * @return ArrayList&gtGoal&lt
+=======
+     * @return ArrayList&lt;Goal&lt;
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public ArrayList<Goal> getCurrentGoals()
     {
@@ -320,7 +350,11 @@ public class Goals implements Serializable {
 
     /**
      * Getter method for the failed goals of the user
+<<<<<<< HEAD
      * @return ArrayList&gtGoal&lt
+=======
+     * @return ArrayList&lt;Goal&lt;
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public ArrayList<Goal> getFailedGoals()
     {
@@ -330,7 +364,11 @@ public class Goals implements Serializable {
 
     /**
      * Getter method for the failed goal names of the user
+<<<<<<< HEAD
      * @return ArrayList&gtString&lt
+=======
+     * @return ArrayList&lt;String&lt;
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public ArrayList<String> getFailedGoalNames()
     {
@@ -340,7 +378,11 @@ public class Goals implements Serializable {
 
     /**
      * Getter method for the created goals of the user (current, past and future)
+<<<<<<< HEAD
      * @return ArrayList&gtGoal&lt
+=======
+     * @return ArrayList&lt;Goal&lt;
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public ArrayList<Goal> getCreatedGoals()
     {
@@ -350,7 +392,11 @@ public class Goals implements Serializable {
 
     /**
      * Getter method for the created goal names of the user
+<<<<<<< HEAD
      * @return ArrayList&gtString&lt
+=======
+     * @return ArrayList&lt;String&lt;
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public ArrayList<String> getCreatedGoalNames()
     {
@@ -360,7 +406,11 @@ public class Goals implements Serializable {
 
     /**
      * Getter method for the future goals of the user
+<<<<<<< HEAD
      * @return ArrayList&gtGoal&lt
+=======
+     * @return ArrayList&lt;Goal&lt;
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public ArrayList<Goal> getFutureGoals()
     {
@@ -370,7 +420,11 @@ public class Goals implements Serializable {
 
     /**
      * Getter method for the future goal names of the user
+<<<<<<< HEAD
      * @return ArrayList&gtString&lt
+=======
+     * @return ArrayList&lt;String&lt;
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public ArrayList<String> getFutureGoalNames()
     {
@@ -390,7 +444,11 @@ public class Goals implements Serializable {
 
     /**
      * Getter method for the achieved goal names of the user
+<<<<<<< HEAD
      * @return ArrayList&gtString&lt
+=======
+     * @return ArrayList&lt;String&lt;
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public ArrayList<String> getAchievedGoalNames()
     {

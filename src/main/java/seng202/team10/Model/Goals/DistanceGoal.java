@@ -6,7 +6,13 @@ import seng202.team10.Model.Exceptions.*;
 
 import java.time.LocalDateTime;
 
+<<<<<<< HEAD
 
+=======
+/**
+ * Distance Goals Class for Coach Potato
+ */
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
 public class DistanceGoal extends Goal {
 
 
@@ -47,7 +53,7 @@ public class DistanceGoal extends Goal {
 
     /**
      * Getter method for the goal distance
-     * @return double
+     * @return A <b>Double</b>
      */
     public double getGoalDistance()
     {
@@ -58,7 +64,7 @@ public class DistanceGoal extends Goal {
     /**
      * Method to review a distance goal of the user. Determines whether the user has achieved, failed, or is still working towards a particular distance goal
      * @param dist: double
-     * @return String
+     * @return A <b>String</b>
      */
     public String reviewDistanceGoal(double dist)
     {

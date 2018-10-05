@@ -6,7 +6,13 @@ import seng202.team10.Model.Exceptions.*;
 
 import java.time.LocalDateTime;
 
+<<<<<<< HEAD
 
+=======
+/**
+ * Frequency Goals Class for Coach Potato
+ */
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
 public class FrequencyGoal extends Goal {
     private int goalFrequency;
 
@@ -45,7 +51,7 @@ public class FrequencyGoal extends Goal {
 
     /**
      * Getter method for the goal frequency
-     * @return int
+     * @return An <b>int</b>
      */
     public int getGoalFrequency()
     {
@@ -55,7 +61,7 @@ public class FrequencyGoal extends Goal {
     /**
      * Method to review a frequency goal of the user. Determines whether the user has achieved, failed, or is still working towards a particular frequency goal
      * @param freq: double
-     * @return String
+     * @return A <b>String</b>
      */
     public String reviewFrequencyGoal(int freq)
     {

@@ -10,7 +10,7 @@ import java.util.Calendar;
 
 /**
  * UserProfile Class for Coach Potato
- * SENG202 2018S2
+ *
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public class UserProfile implements java.io.Serializable {
@@ -110,7 +110,7 @@ public class UserProfile implements java.io.Serializable {
     /**
      * Gets a list of health warnings.
      * @param healthWarningType An enum for the health warning type.
-     * @return  An <b>ArrayList&gt;HealthWarning&lt;</b>
+     * @return  An <b>ArrayList&lt;HealthWarning&gt;</b>
      */
     public ArrayList<HealthWarning> getWarnings(HealthWarningType healthWarningType)
     {
@@ -127,7 +127,7 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Getter method for the activities of the user
-     * @return An <b>ArrayList&gt;Activity&lt;</b>
+     * @return An <b>ArrayList&lt;Activity&gt;</b>
      */
     public ArrayList<Activity> getActivities() {
         return this.activities;
@@ -161,9 +161,13 @@ public class UserProfile implements java.io.Serializable {
     /**
      * Method for adding a new list of activities (such as when a new CSV file is loaded)
 <<<<<<< HEAD
+<<<<<<< HEAD
      * @param newActivities: Arraylist of Activity
 =======
      * @param newActivities <b>ArrayList&gt;Activity&lt;</b> of activities being added to the user.
+=======
+     * @param newActivities <b>ArrayList&lt;Activity&gt;</b> of activities being added to the user.
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      * @throws  ExistingElementException When the activity already exists in the application
 >>>>>>> 033590fe... Javadocced and cleaned up all Controllers, Exceptions, UserProfile and DataAnalysis.
      */
@@ -287,7 +291,7 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Calculates the users age based on thier date of birth.
-     * @return int: The users age.
+     * @return An <b>int</b> of The users age.
      * TODO test this
      */
     public int calculateAge()
@@ -473,7 +477,7 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Method to add health warnings to the list of active health warnings.
-     * @param healthWarnings An <b>ArrayList&gt;HealthWarning&lt;</b> of health
+     * @param healthWarnings An <b>ArrayList&lt;HealthWarning&gt;</b> of health
      *                           warnings in the activity.
      */
     private void addHealthWarnings(ArrayList<HealthWarning> healthWarnings)
@@ -486,7 +490,7 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Getter method for the current health warnings.
-     * @return <b>ArrayList&gt;HealthWarning&lt;</b>
+     * @return <b>ArrayList&lt;HealthWarning&gt;</b>
      */
     public ArrayList<HealthWarning> getActiveHealthWarnings()
     {
@@ -506,7 +510,7 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Method to remove a list of health warnings from the user.
-     * @param healthWarnings an <b>ArrayList&gt;HealthWarning&lt;</b> containing the <b>HealthWarnings</b> to be deleted.
+     * @param healthWarnings an <b>ArrayList&lt;HealthWarning&gt;</b> containing the <b>HealthWarnings</b> to be deleted.
      * Called when deleting an activity from the user.
      */
     public void removeHealthWarnings(ArrayList<HealthWarning> healthWarnings)

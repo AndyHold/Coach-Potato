@@ -15,6 +15,11 @@ import java.util.ArrayList;
 
 /**
  * Subclass of an anchor pane that can store additional data.
+<<<<<<< HEAD
+=======
+ *
+ * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
  */
 public class AnchorPaneNode extends AnchorPane {
 
@@ -172,7 +177,11 @@ public class AnchorPaneNode extends AnchorPane {
 
     /**
      * Getter method to get the pane's activities.
+<<<<<<< HEAD
      * @return activities ArrayList of Activity.
+=======
+     * @return An <b>ArrayList&lt;Activity&gt;</b>
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public ArrayList<Activity> getActivities()
     {
@@ -181,7 +190,11 @@ public class AnchorPaneNode extends AnchorPane {
 
     /**
      * Setter method to set the pane's activities.
+<<<<<<< HEAD
      * @param activities ArrayList of Activity.
+=======
+     * @param activities An <b>ArrayList&lt;Activity&gt;</b>
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public void setActivities(ArrayList<Activity> activities)
     {
@@ -199,7 +212,11 @@ public class AnchorPaneNode extends AnchorPane {
 
     /**
      * Getter method to get the pane's goals.
+<<<<<<< HEAD
      * @return todayGoals Arraylist of goals
+=======
+     * @return An <b>ArrayList&lt;Goal&gt;</b>
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public ArrayList<Goal> getTodayGoals() {
         return todayGoals;
@@ -207,7 +224,11 @@ public class AnchorPaneNode extends AnchorPane {
 
     /**
      * Setter method to set current user's goals.
+<<<<<<< HEAD
      * @param todayGoals Arraylist of goals
+=======
+     * @param todayGoals An <b>ArrayList&lt;Goal&gt;</b>
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     protected void setTodayGoals(ArrayList<Goal> todayGoals) {
         this.todayGoals = todayGoals;

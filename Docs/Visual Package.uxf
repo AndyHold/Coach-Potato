@@ -36,7 +36,7 @@ Package::Visual
 -guiController: GUIController
 -frameMainScreen: JFrame
 -panelViewData: JPanel
--panelDataAnalysis: JPanel
+-panelGraphs: JPanel
 -panelProfileView: JPanel
 -panelUploadData: JPanel
 --

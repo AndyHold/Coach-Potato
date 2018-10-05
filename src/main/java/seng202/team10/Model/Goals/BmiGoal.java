@@ -6,6 +6,12 @@ import seng202.team10.Model.UserProfile;
 
 import java.time.LocalDateTime;
 
+<<<<<<< HEAD
+=======
+/**
+ * BMI Goals Class for Coach Potato
+ */
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
 public class BmiGoal extends Goal {
 
 
@@ -28,7 +34,8 @@ public class BmiGoal extends Goal {
 
     /**
      * Setter method for the target value of bmi goal.
-     * @param target: double
+     * @param target A <b>Double</b> of the target value of the bmi goal.
+     * @param user The <b>UserProfile</b> the target is being set for.
      * @throws InvalidGoalTargetException When target is outside the correct values.
      */
     public void setTargetValue(double target, UserProfile user) throws InvalidGoalTargetException
@@ -43,7 +50,7 @@ public class BmiGoal extends Goal {
 
     /**
      * Getter method for the goal BMI
-     * @return double
+     * @return A <b>Double</b>
      */
     public double getGoalBmi()
     {
@@ -53,7 +60,7 @@ public class BmiGoal extends Goal {
     /**
      * Method to review a BMI goal of the user. Determines whether the user has achieved, failed, or is still working towards a particular BMI goal
      * @param currentBmi: double
-     * @return String
+     * @return A <b>String</b>
      */
     public String reviewBmiGoal(double currentBmi)
     {

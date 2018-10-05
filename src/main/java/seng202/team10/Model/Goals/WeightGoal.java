@@ -7,7 +7,13 @@ import seng202.team10.Model.UserProfile;
 
 import java.time.LocalDateTime;
 
+<<<<<<< HEAD
 
+=======
+/**
+ * Weight Goal Class for Coach Potato
+ */
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
 public class WeightGoal extends Goal {
 
 
@@ -16,12 +22,11 @@ public class WeightGoal extends Goal {
 
     /**
      * Constructor method for weight goal
-     * @param name: String
-     * @param start: DateTime
-     * @param target: DateTime
-     * @throws InvalidGoalDateException When invalid dates are entered
-     * @throws BadGoalNameException When invalid name is entered
-     * @throws InvalidGoalTargetException When invalid target is entered
+     * @param name: String.
+     * @param start: DateTime.
+     * @param target: DateTime.
+     * @throws InvalidGoalDateException When invalid dates are entered.
+     * @throws BadGoalNameException When invalid name is entered.
      */
     public WeightGoal(String name, DateTime start, DateTime target) throws InvalidGoalDateException, BadGoalNameException
     {
@@ -32,6 +37,7 @@ public class WeightGoal extends Goal {
     /**
      * Setter method for the target value of weight goal.
      * @param target: double
+     * @param user  A <b>UserProfile</b> the goal is being set for.
      * @throws InvalidGoalTargetException When target is outside the correct values.
      */
     public void setTargetValue(double target, UserProfile user) throws InvalidGoalTargetException
@@ -45,7 +51,7 @@ public class WeightGoal extends Goal {
 
     /**
      * Getter method for the goal weight
-     * @return double
+     * @return A <b>Double</b>
      */
     public double getGoalWeight()
     {
@@ -56,7 +62,7 @@ public class WeightGoal extends Goal {
     /**
      * Method to review a weight goal of the user. Determines whether the user has achieved, failed, or is still working towards a particular weight goal
      * @param currentWeight: double
-     * @return String
+     * @return A <b>String</b>
      */
     public String reviewWeightGoal(double currentWeight)
     {

@@ -5,8 +5,7 @@ import java.io.Serializable;
 
 
 /**
- * Entry Class for Coach Potato
- * SENG202 2018S2
+ * Class that contains the data for an instance in time in an activity.
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public class Entry  implements Serializable {
@@ -84,8 +83,8 @@ public class Entry  implements Serializable {
 >>>>>>> f5029c7... No changes made
 
     /**
-     * Override Method to get the string representation of an Entry.
-     * @return String
+     * ToString method for the class.
+     * @return A <b>String</b> of the entry.
      */
     @Override
     public String toString()
@@ -102,6 +101,7 @@ public class Entry  implements Serializable {
 
     /**
      * Constructor for the Entry.
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> 5a3c8cd... No changes made
 =======
@@ -191,6 +191,11 @@ public class Entry  implements Serializable {
     public Entry(boolean firstEntry, DateTime time, double heartRate, Position position) {
 >>>>>>> 7de2265... No changes made
 =======
+=======
+     * @param time A <b>double</b> of the time field for the entry.
+     * @param heartRate A <b>double</b> of the heart rate field for the entry.
+     * @param position The <b>Position</b> of the entry.
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public Entry(boolean firstEntry, double time, double heartRate, Position position, Activity activity) {
 >>>>>>> 3c6c4ff... No changes made
@@ -381,7 +386,7 @@ public class Entry  implements Serializable {
 
     /**
      * Method to set user's entry time.
-     * @param time: double
+     * @param time A <b>double</b> of the time of the entry.
      */
     public void setTime(DateTime time)
     {
@@ -394,9 +399,9 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Method to set the current heart rate of the entry
-     * @param newHeartRate int: heart rate int
-     * @throws IllegalArgumentException newHeartRate is not a valid heart rate.
+     * Method to set the heart rate of the entry.
+     * @param newHeartRate An <b>int</b> of the heart rate being set.
+     * @throws IllegalArgumentException when the heart rate is not valid.
      */
     public void setHeartRate(int newHeartRate) throws IllegalArgumentException
     {
@@ -425,6 +430,7 @@ public class Entry  implements Serializable {
 
 
     /**
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
      * Setter method to set user's position.
@@ -464,6 +470,10 @@ public class Entry  implements Serializable {
      * Method to set user's position.
 >>>>>>> 7f979e0c... Wrote some more tests for Activity, Entry, Position classes and JavaDocs for those classes.
      * @param position: Position
+=======
+     * Method to set the position.
+     * @param position A <b>Position</b> of the location for the entry.
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public void setPosition(Position position)
     {
@@ -482,6 +492,7 @@ public class Entry  implements Serializable {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Method to change the current longitude of the entry
      * @param newLongitude double: longitude double
      * @throws IllegalArgumentException newLongitude does not represent a valid longitude
@@ -493,6 +504,11 @@ public class Entry  implements Serializable {
      * Method to set the current latitude of the entry
      * @param newLatitude double: latitude double
      * @throws IllegalArgumentException newLatitude does not represent a valid latitude
+=======
+     * Method to set the latitude of the entry.
+     * @param newLatitude A <b>Double</b> of the latitude being set.
+     * @throws IllegalArgumentException when the latitude is not valid.
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public void setLatitude(double newLatitude) throws IllegalArgumentException
     {
@@ -502,6 +518,7 @@ public class Entry  implements Serializable {
 
 
     /**
+<<<<<<< HEAD
 <<<<<<< HEAD
      * Method to set the current elevation of the entry (for GUI purposes)
      * @param newElevation double: elevation double
@@ -514,6 +531,11 @@ public class Entry  implements Serializable {
      * Method to change the current longitude of the entry
      * @param newLongitude double: longitude double
      * @throws IllegalArgumentException newLongitude does not represent a valid longitude
+=======
+     * Method to set the longitude of the entry.
+     * @param newLongitude A <b>Double</b> of the longitude being set.
+     * @throws IllegalArgumentException when the longitude is not valid.
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public void setLongitude(double newLongitude) throws IllegalArgumentException
     {
@@ -523,6 +545,7 @@ public class Entry  implements Serializable {
 
 
     /**
+<<<<<<< HEAD
 <<<<<<< HEAD
      * Setter method to set user's first entry.
      * @param firstEntry: boolean
@@ -550,6 +573,11 @@ public class Entry  implements Serializable {
      * @param newElevation double: elevation double
      * @throws NumberFormatException newElevation does not represent a valid elevation
 >>>>>>> 4774d9b... DateTime now has 100% test coverage, refactored Activity and Entry to make them more readable and got rid of unnecessary String attributes and had them be derived when asked for in the getter method instead. This will make it easier when the values are changed. Implemented the calculateVelocity method in Entry and the calculateEntriesVelocity method in Activity properly so that the data can now be used for graphing.
+=======
+     * Method to set the elevation of the entry.
+     * @param newElevation A <b>Double</b> of the elevation being set.
+     * @throws NumberFormatException when the elevation is not valid.
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public void setElevation(double newElevation) throws IllegalArgumentException
     {
@@ -559,6 +587,7 @@ public class Entry  implements Serializable {
 
 
     /**
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
      * Method to calculate user's distance.
@@ -574,6 +603,10 @@ public class Entry  implements Serializable {
      * Method to set user's first entry.
 >>>>>>> 7f979e0c... Wrote some more tests for Activity, Entry, Position classes and JavaDocs for those classes.
      * @param firstEntry: boolean
+=======
+     * Method to set the first entry.
+     * @param firstEntry <b>true</b> when the entry is first in the activity, <b>false</b> otherwise.
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public void setFirstEntry(boolean firstEntry)
     {
@@ -594,7 +627,7 @@ public class Entry  implements Serializable {
         this.velocity = (this.distance - prevDistance)/((time.subtract(prevTime)));
 =======
      * Method to calculate user's distance.
-     * @param prevEntry: Entry
+     * @param prevEntry The previous <b>Entry</b> in the activity this entry is in.
      */
     protected void calculateDistance(Entry prevEntry)
     {
@@ -619,7 +652,7 @@ public class Entry  implements Serializable {
         this.time.changeDate(year, month, day);
 =======
      * Method to calculate user's velocity.
-     * @param prevEntry: Entry
+     * @param prevEntry The previous <b>Entry</b> in the activity this entry is in.
      */
     protected void calculateVelocity(Entry prevEntry)
     {
@@ -638,6 +671,7 @@ public class Entry  implements Serializable {
 
 
     /**
+<<<<<<< HEAD
      * Method to change the current date of the entry (for GUI purposes)
 <<<<<<< HEAD
      * @param newDate String: String representation of a Time
@@ -653,6 +687,11 @@ public class Entry  implements Serializable {
 =======
      * @param newDate String: String representation of a Date
      * @throws IllegalArgumentException if illegal arguments encountered
+=======
+     * Method to change the date of the entry.
+     * @param newDate A <b>String</b> representation of a date.
+     * @throws IllegalArgumentException when the date is invalid.
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public void changeDate(String newDate) throws IllegalArgumentException
     {
@@ -667,6 +706,7 @@ public class Entry  implements Serializable {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Getter method to get user's entry time.
      * @return time: double
      */
@@ -677,10 +717,15 @@ public class Entry  implements Serializable {
      * Method to change the current date of the entry (for GUI purposes)
      * @param newDate String: String representation of a Time
      * @throws IllegalArgumentException if illegal arguments encountered
+=======
+     * Method to change the time of the entry.
+     * @param newTime A <b>String</b> representation of a time.
+     * @throws IllegalArgumentException when the time is invalid.
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
-    public void changeTime(String newDate) throws IllegalArgumentException
+    public void changeTime(String newTime) throws IllegalArgumentException
     {
-        String[] timeArray = newDate.split(":");
+        String[] timeArray = newTime.split(":");
         int hour = Integer.valueOf(timeArray[0]);
         int minute = Integer.valueOf(timeArray[1]);
         int second = Integer.valueOf(timeArray[2]);
@@ -690,6 +735,7 @@ public class Entry  implements Serializable {
 
 
     /**
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
      * Getter method to get user's heart rate.
@@ -704,6 +750,10 @@ public class Entry  implements Serializable {
      * Method to get user's entry time.
 >>>>>>> 7f979e0c... Wrote some more tests for Activity, Entry, Position classes and JavaDocs for those classes.
      * @return time: double
+=======
+     * Getter for the date and time of the entry.
+     * @return A <b>DateTime</b> of the date and time of the entry.
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public DateTime getTime()
     {
@@ -713,6 +763,7 @@ public class Entry  implements Serializable {
 
 
     /**
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
      * Getter method to get user's position.
@@ -727,6 +778,10 @@ public class Entry  implements Serializable {
      * Method to get user's heart rate.
 >>>>>>> 7f979e0c... Wrote some more tests for Activity, Entry, Position classes and JavaDocs for those classes.
      * @return heartRate: double
+=======
+     * Getter for the heart rate of the entry.
+     * @return A <b>Double</b> of the heart rate of the entry.
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     protected int getHeartRate()
     {
@@ -736,8 +791,8 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Method to get user's position.
-     * @return position: Position
+     * Getter for the position of the entry.
+     * @return A <b>Position</b> of the location of the entry.
      */
     public Position getPosition()
     {
@@ -746,6 +801,7 @@ public class Entry  implements Serializable {
 
 
     /**
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -759,6 +815,10 @@ public class Entry  implements Serializable {
      * Method to get user's distance.
 >>>>>>> 7f979e0c... Wrote some more tests for Activity, Entry, Position classes and JavaDocs for those classes.
      * @return distance: double
+=======
+     * Getter for the distance of the entry.
+     * @return A <b>Double</b> of the distance of the entry.
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public double getDistance()
     {
@@ -767,8 +827,8 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Method to get user's velocity.
-     * @return velocity: double
+     * Getter for the velocity of the entry.
+     * @return A <b>Double</b> of the velocity of the entry.
      */
     protected double getVelocity()
     {
@@ -785,8 +845,12 @@ public class Entry  implements Serializable {
      * Getter method to check if it is user's first entry.
 =======
      * Method to check if it is user's first entry.
+<<<<<<< HEAD
 >>>>>>> 7f979e0c... Wrote some more tests for Activity, Entry, Position classes and JavaDocs for those classes.
      * @return firstEntry: boolean
+=======
+     * @return <b>true</b> when the entry is first in the activity, <b>false</b> otherwise.
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public boolean isFirstEntry()
     {
@@ -796,12 +860,17 @@ public class Entry  implements Serializable {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 04fec49c... DateTime now has 100% test coverage, refactored Activity and Entry to make them more readable and got rid of unnecessary String attributes and had them be derived when asked for in the getter method instead. This will make it easier when the values are changed. Implemented the calculateVelocity method in Entry and the calculateEntriesVelocity method in Activity properly so that the data can now be used for graphing.
      * Getter method for the String representation of the date
 =======
      * Method to get the string representation of the date.
      * @return String
 >>>>>>> 7f979e0c... Wrote some more tests for Activity, Entry, Position classes and JavaDocs for those classes.
+=======
+     * Getter for the string representation of the date.
+     * @return A <b>String</b> of the date of the entry.
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public String getDateString()
     {
@@ -810,8 +879,8 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Method to get the string representation of the time.
-     * @return String
+     * Getter for the string representation of the time.
+     * @return A <b>String</b> of the time of the entry.
      */
     public String getTimeString()
     {
@@ -820,8 +889,8 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Method to get the string representation of an entry's heart rate.
-     * @return String
+     * Getter for the string representation the heart rate.
+     * @return A <b>String</b> of the heart rate of the entry.
      */
     public String getHeartRateString()
     {
@@ -830,8 +899,8 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Method to get the string representation of the latitude.
-     * @return String
+     * Getter for the string representation of the latitude.
+     * @return A <b>String</b> of the latitude of the entry.
      */
     public String getLatitudeString()
     {
@@ -840,8 +909,8 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Method to get the string representation of the longitude.
-     * @return String
+     * Getter for the string representation of the longitude.
+     * @return A <b>String</b> of the longitude of the entry.
      */
     public String getLongitudeString()
     {
@@ -850,8 +919,8 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Method to get the string representation of the elevation.
-     * @return String
+     * Getter for the string representation of the elevation.
+     * @return A <b>String</b> of the elevation of the entry.
      */
     public String getElevationString()
     {
@@ -860,8 +929,8 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Method to get the string representation of the distance from the previous Entry.
-     * @return String
+     * Getter for the string representation of the distance from the previous Entry.
+     * @return A <b>String</b> of the distance of the entry.
      */
     public String getDistanceString()
     {
@@ -870,8 +939,8 @@ public class Entry  implements Serializable {
 
 
     /**
-     * Method to get the string representation of the velocity at this Entry.
-     * @return String
+     * Getter for the string representation of the velocity at this Entry.
+     * @return A <b>String</b> of the velocity of the entry.
      */
     public String getVelocityString()
     {

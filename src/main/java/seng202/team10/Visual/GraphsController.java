@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 
 /**
  * GraphsController Class for Coach Potato
- * SENG202 2018S2
+ *
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public class GraphsController implements Controllable, Initializable{
@@ -138,7 +138,11 @@ public class GraphsController implements Controllable, Initializable{
 
     /**
      * Method to populate the distance over time graph with data.
+<<<<<<< HEAD
      * @param timeArray  An ArrayList<Double> that contains the total time that has passed at each point in the activity.
+=======
+     * @param timeArray  An ArrayList&lt;Double&gt;that contains the total time that has passed at each point in the activity.
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     private void populateDistanceTimeGraph(ArrayList<Double> timeArray)
     {
@@ -152,8 +156,13 @@ public class GraphsController implements Controllable, Initializable{
 
     /**
      * Method to populate the heart rate over time graph with data.
+<<<<<<< HEAD
      * @param timeArray  An ArrayList<Double> that contains the total time that has passed at each point in the activity.
      * @param heartRateArray  An ArrayList<Integer> that contains a list of heartrates at each point in the activity.
+=======
+     * @param timeArray  An ArrayList&lt;Double&gt;that contains the total time that has passed at each point in the activity.
+     * @param heartRateArray  An ArrayList&lt;Integer&gt;that contains a list of heartrates at each point in the activity.
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     private void populateHeartRateTimeGraph(ArrayList<Double> timeArray, ArrayList<Integer> heartRateArray)
     {
@@ -166,7 +175,11 @@ public class GraphsController implements Controllable, Initializable{
 
     /**
      * Method to populate the calories burned over time graph with data.
+<<<<<<< HEAD
      * @param timeArray  An ArrayList<Double> that contains the total time that has passed at each point in the activity.
+=======
+     * @param timeArray  An ArrayList&lt;Double&gt;that contains the total time that has passed at each point in the activity.
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     private void populateCaloriesBurnedGraph(ArrayList<Double> timeArray)
     {
@@ -180,8 +193,13 @@ public class GraphsController implements Controllable, Initializable{
 
     /**
      * Method to populate the stress level over time graph with data.
+<<<<<<< HEAD
      * @param timeArray  An ArrayList<Double> that contains the total time that has passed at each point in the activity.
      * @param heartRateArray  An ArrayList<Integer> that contains a list of heartrates at each point in the activity.
+=======
+     * @param timeArray  An ArrayList&lt;Double&gt;that contains the total time that has passed at each point in the activity.
+     * @param heartRateArray  An ArrayList&lt;Integer&gt;that contains a list of heartrates at each point in the activity.
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     private void populateStressTimeGraph(ArrayList<Double> timeArray, ArrayList<Integer> heartRateArray)
     {

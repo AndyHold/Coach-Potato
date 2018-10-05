@@ -5,6 +5,12 @@ import seng202.team10.Model.Exceptions.*;
 
 import java.time.LocalDateTime;
 
+<<<<<<< HEAD
+=======
+/**
+ * Time Goal Class for Coach Potato
+ */
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
 public class TimeGoal extends Goal {
 
 
@@ -16,9 +22,10 @@ public class TimeGoal extends Goal {
      * @param name: String
      * @param start: DateTime
      * @param target: DateTime
-     * @throws InvalidGoalDateException When invalid dates are entered
-     * @throws BadGoalNameException When invalid name is entered
-     * @throws InvalidGoalTargetException When invalid target is entered
+     * @param time A <b>Double</b> of the target time.
+     * @throws InvalidGoalDateException When invalid dates are entered.
+     * @throws BadGoalNameException When invalid name is entered.
+     * @throws InvalidGoalTargetException When invalid target is entered.
      */
     public TimeGoal(String name, DateTime start, DateTime target, double time) throws InvalidGoalTargetException, InvalidGoalDateException, BadGoalNameException
     {
@@ -45,7 +52,7 @@ public class TimeGoal extends Goal {
 
     /**
      * Getter method for the goal time
-     * @return double
+     * @return A <b>Double</b>
      */
     public double getGoalTime()
     {
@@ -56,7 +63,7 @@ public class TimeGoal extends Goal {
     /**
      * Method to review a time goal of the user. Determines whether the user has achieved, failed, or is still working towards a particular time goal
      * @param time: double
-     * @return String
+     * @return A <b>String</b>
      */
     public String reviewTimeGoal(double time)
     {

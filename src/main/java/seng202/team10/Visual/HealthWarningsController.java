@@ -22,6 +22,14 @@ import seng202.team10.Model.ActivitiesData.HealthWarningType;
 import javax.swing.text.html.ListView;
 import java.util.ArrayList;
 
+<<<<<<< HEAD
+=======
+/**
+ * Health Warnings Controller class for Coach Potato
+ *
+ * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
+ */
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
 public class HealthWarningsController implements Controllable {
 
 

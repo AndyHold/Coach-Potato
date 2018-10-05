@@ -27,8 +27,13 @@ import java.time.YearMonth;
 import java.util.ArrayList;
 
 /**
+<<<<<<< HEAD
  * CallenderPaneController Class for Coach Potato
  * SENG202 2018S2
+=======
+ * Controller for the Calendar pane in the profile screen, which shows dates of activities and goals.
+ *
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public class CalendarPaneController {

@@ -25,6 +25,14 @@ import java.time.YearMonth;
 import java.util.Arrays;
 import java.util.List;
 
+<<<<<<< HEAD
+=======
+/**
+ * Controller class for the profile screen, where user information and activity summaries are displayed.
+ *
+ * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
+ */
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
 public class ProfileController {
 
     private GUIController app;

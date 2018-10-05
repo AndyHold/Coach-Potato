@@ -22,8 +22,13 @@ import java.io.IOException;
 //import seng202.team10.Control.WindowStyle;
 
 /**
+<<<<<<< HEAD
  * TitleBarController Class for Coach Potato
  * SENG202 2018S2
+=======
+ * Controller class for the title bar, which loads and launches every major scene.
+ *
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public class TitleBarController {
@@ -316,7 +321,12 @@ public class TitleBarController {
 
 
     /**
+<<<<<<< HEAD
      * Method to display the entry viewer screen
+=======
+     * Method to display the entry viewer screen.
+     * @param activity  The <b>Activity</b> the entries are being viewed of.
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     @FXML protected  void openEntry(Activity activity)
     {
@@ -328,7 +338,12 @@ public class TitleBarController {
 
 
     /**
+<<<<<<< HEAD
      * Method to display the map screen
+=======
+     * Method to display the map screen.
+     * @param activity  The <b>Activity</b> the map is being viewed of.
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     @FXML public void openMap(Activity activity)
     {

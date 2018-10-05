@@ -14,7 +14,6 @@ import java.util.Calendar;
  * Class that contains methods for processing activities for data analysis, mostly used by the DataAnalysisController class.
 =======
  * Class that contains methods for processing activities for data analysis, mostly used by the graphsController class.
- * SENG202 2018S2
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
 >>>>>>> 662d506f... Renamed the data analysis screen to the graphs screen
  */
@@ -48,9 +47,15 @@ public class DataAnalysis {
 
     /**
      * Method to calculate the cumulative time spent in an activity, with each array index holding a sum of the time
+<<<<<<< HEAD
      * spent before it.
      * @param activity  The activity the time spent is gotten from.
      * @return  An array of integers, each index holding a sum of the time spent before it.
+=======
+     * spent so far.
+     * @param activity  The <b>Activity</b> the time spent is gotten from.
+     * @return  An <b>ArrayList&lt;Integer&gt;</b>, each index holding a sum of the time spent before it.
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public ArrayList<Integer> getTimeFromActivity(Activity activity) {
         ArrayList<Integer> timeArray = new ArrayList<>();
@@ -70,8 +75,13 @@ public class DataAnalysis {
     /**
      * Method to get an array of distances between entries from an activity. Each index in the array is the distance
      * between the first entry and the entry at that index.
+<<<<<<< HEAD
      * @param activity  The activity the distance array is being calculated from.
      * @return  An ArrayList<Double> that contains distances from the first entry position.
+=======
+     * @param activity The <b>Activity</b> the distance array is being calculated from.
+     * @return  An <b>ArrayList&lt;Double&gt;</b> that contains distances from the first entry position.
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public ArrayList<Double> getDistanceFromActivity(Activity activity) {
 
@@ -93,8 +103,13 @@ public class DataAnalysis {
 
     /**
      * Method to get an array of heart rates from an activity. Each heart rate corresponds to one entry.
+<<<<<<< HEAD
      * @param activity  The activity the heart rates are being taken from.
      * @return  An ArrayList<Integer> that contains the heart rate values in an activity.
+=======
+     * @param activity The <b>Activity</b> the heart rates are being taken from.
+     * @return  An <b>ArrayList&lt;Integer&gt;</b> that contains the heart rate values in an activity.
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public ArrayList<Integer> getHeartRateFromActivity(Activity activity) {
 
@@ -110,9 +125,15 @@ public class DataAnalysis {
      * Method to find the calories burned at each point in an activity. This is based on the gender, weight, age and
      * heart rate of the user. For the not specified gender, an average of the male and female calculations are used.
      * The total calories burned is the last index of the returned array.
+<<<<<<< HEAD
      * @param activity  The activity the calories are being calculated from.
      * @param user  The user being used for the calorie calculations.
      * @return  An ArrayList<Double> that contains a sum of the calories burned at a point in time for an activity.
+=======
+     * @param activity The <b>Activity</b> the calories are being calculated from.
+     * @param user  The <b>UserProfile</b> being used for the calorie calculations.
+     * @return  An <b>ArrayList&lt;Double&gt;</b> that contains a sum of the calories burned at a point in time for an activity.
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      *
      */
     public ArrayList<Double> getCaloriesFromActivity(Activity activity, UserProfile user) {
@@ -170,8 +191,13 @@ public class DataAnalysis {
     /**
      * Method to calculate the cumulative time spent in an activity in minutes, with each array index holding a sum of the time
      * spent before it. The final index holds the total time in minutes.
+<<<<<<< HEAD
      * @param activity  The activity the time spent is gotten from.
      * @return  An array of Doubles, each index holding a sum of the time spent before it.
+=======
+     * @param activity The <b>Activity</b> the time spent is gotten from.
+     * @return  An <b>ArrayList&lt;Double&gt;</b>, each index holding a sum of the time spent before it.
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public ArrayList<Double> getMinutesFromActivity(Activity activity) {
 

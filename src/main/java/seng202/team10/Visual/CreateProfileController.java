@@ -43,8 +43,13 @@ import java.time.LocalDateTime;
 import java.util.Calendar;
 
 /**
+<<<<<<< HEAD
  * CreateProfileController Class for Coach Potato
  * SENG202 2018S2
+=======
+ * Controller for the create profile screen, where the user can create a profile.
+ *
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public class CreateProfileController implements Controllable
@@ -528,7 +533,7 @@ public class CreateProfileController implements Controllable
 
     /**
      * Getter method for the selected Gender
-     * @return String
+     * @return A <b>String</b>
      */
     private String getSelectedGender() throws NullPointerException
     {

@@ -21,6 +21,14 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+<<<<<<< HEAD
+=======
+/**
+ * Controller class for the map screen, where a map of an activity is displayed.
+ *
+ * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
+ */
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
 public class MapController implements Controllable, Initializable{
 
     private GUIController guiController;

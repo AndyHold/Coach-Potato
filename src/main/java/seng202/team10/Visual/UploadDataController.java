@@ -39,6 +39,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
+<<<<<<< HEAD
+=======
+/**
+ * Controller class for the upload data screen, where data can be uploaded into the system.
+ *
+ * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
+ */
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
 public class UploadDataController {
 
     private GUIController app;
@@ -467,8 +475,13 @@ public class UploadDataController {
 
 
     /**
+<<<<<<< HEAD
      * Method to create an ObservableList<Entry> object for the TableView
      * @return ObservableList<Entry>
+=======
+     * Method to create an ObservableList&lt;Entry&gt;object for the TableView.
+     * @return ObservableList&lt;Entry&lt;
+>>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
     public ObservableList<Entry> getEntries()
     {
