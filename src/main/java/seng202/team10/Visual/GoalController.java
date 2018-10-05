@@ -20,10 +20,8 @@ public class GoalController implements Controllable{
 
 
     private GUIController app;
-    private String currentHelpText;
-    private String futureHelpText;
+    private String existingHelpText;
     private String pastHelpText;
-    private String createHelpText;
 
 
     @FXML private ComboBox goalTypeCombo;
@@ -42,18 +40,14 @@ public class GoalController implements Controllable{
     @FXML private TextArea failedGoalTextArea;
     @FXML private TextArea futureGoalTextArea;
     @FXML private Label unitsLabel;
-    @FXML private Label deleteModeLabel;
     @FXML private TextArea helpTextArea;
     @FXML private Button helpButton;
-    @FXML private Tab currentTab;
-    @FXML private Tab futureTab;
+    @FXML private Tab existingTab;
     @FXML private Tab pastTab;
-    @FXML private Tab createTab;
     @FXML private Label currentDescriptionLabel;
     @FXML private Label futureDescriptionLabel;
     @FXML private Label failedDescriptionLabel;
     @FXML private Label achievedDescriptionLabel;
-    private boolean deleteMode = false;
 
 
     /**
@@ -68,20 +62,16 @@ public class GoalController implements Controllable{
     /**
      * sets up the scene with all the fields and help things
      */
-    public void setUpScene() {
+    public void setUpScene()
+    {
+        // Reset all text areas
+        resetTextFields();
         // Set tool tips
         setUpToolTips();
         // Set up help text areas
         setUpHelpTexts();
         helpTextArea.setVisible(false);
         helpTextArea.setWrapText(true);
-
-
-        achievedGoalTextArea.setVisible(false);
-
-        failedGoalTextArea.setVisible(false);
-
-        futureGoalTextArea.setVisible(false);
 
         // Hide the current help text field when focus is lost
         helpTextArea.focusedProperty().addListener((ov, oldV, newV) -> {
@@ -93,7 +83,33 @@ public class GoalController implements Controllable{
 
 
     /**
+<<<<<<< HEAD
      * Set up method for the tool tips
+=======
+     * Method to set selected item to null for existing goals pane when clicked away from the list view.
+     * Called when clicked on the existing goals pane.
+     */
+    @FXML private void resetExistingSelect()
+    {
+        currentGoalsListView.getSelectionModel().select(null);
+        futureGoalsListView.getSelectionModel().select(null);
+    }
+
+
+    /**
+     * Method to set selected item to null for past goals pane when clicked away from the list view.
+     * Called when clicked on the past goals pane.
+     */
+    @FXML private void resetPastSelect()
+    {
+        achievedListView.getSelectionModel().select(null);
+        failedListView.getSelectionModel().select(null);
+    }
+
+
+    /**
+     * Set up method for the tool tips.
+>>>>>>> 0a21ee39... Refactored Goal Screen so that all labels can be seen properly, text fields empty when required and future goals can be deleted. Got rid of delete mode and opted for list selected delete function instead. Also updated help text to reflect the new layout.
      */
     private void setUpToolTips()
     {
@@ -231,78 +247,58 @@ public class GoalController implements Controllable{
      */
     private void setUpHelpTexts()
     {
-        currentHelpText = "Welcome to the Goals Screen!\n\n" +
-                "You are currently on the Current Goals Tab.\n\n" +
-                "On this tab you can view your current goals that are in progress, remove your current goals that are in progress or navigate to another tab.\n" +
-                "- To view your current goals:\n" +
-                "\t- Select your goal from the drop down menu.\n" +
-                "\t- Click the Review Progress Button.\n" +
-                "\t- A description of your goal and what you need to\n" +
-                "\t  achieve it will be displayed in the Description\n" +
-                "\t  Window.\n" +
-                "- To delete your current goals that are in progress:\n" +
-                "\t- Select the goal you would like to delete from the\n" +
-                "\t  drop down menu.\n" +
-                "\t- Click the Remove Goal button.\n" +
-                "\t- A pop up will notify you when your goal is\n" +
-                "\t  successfully removed from your profile.\n" +
-                "- To navigate to another tab simply click on the tab you\n" +
-                "  wish to see at the top of the screen.\n\n" +
-                "Hover over each item to see a brief description of what it does.";
+        existingHelpText = "Welcome to the Goals Screen!\n\n" +
+                           "You are currently on the Existing Goals Tab.\n\n" +
+                           "On this tab you can create new goals, view your current or future goals, remove your current goals or navigate to another tab.\n" +
+                           "- To create new goals:\n" +
+                           "\t- Locate the Create a new goal panel at the top of\n" +
+                           "\t  the screen.\n" +
+                           "\t- Enter your name into the text box on the top left.\n" +
+                           "\t- Choose a type for your goal in the top middle\n" +
+                           "\t  drop-down list.\n" +
+                           "\t- Enter a target value for your goal in the text box\n" +
+                           "\t  on the top right.\n" +
+                           "\t- You cannot choose a target value that has\n" +
+                           "\t  already been achieved.\n" +
+                           "\t- Choose a start date in the date picker, this\n" +
+                           "\t  cannot be in the past.\n" +
+                           "\t- Choose a target date you wish to achieve your\n" +
+                           "\t  goal by, this cannot be before the start date.\n" +
+                           "\t- Click on the Create button and your goal will be\n" +
+                           "\t  created and displayed in one of the lists below.\n" +
+                           "- To view your current goals:\n" +
+                           "\t- Select your goal from the Current Goals list on\n" +
+                           "\t  the left.\n" +
+                           "\t- Click the Review Progress Button.\n" +
+                           "\t- A description of your goal and what you need to\n" +
+                           "\t  achieve it will be displayed in the Description\n" +
+                           "\t  Window.\n" +
+                           "- To delete your current goals that are in progress:\n" +
+                           "\t- Select the goal you would like to delete from the\n" +
+                           "\t  Current Goals or Future Goals list.\n" +
+                           "\t- Click the Remove Goal button underneath that\n" +
+                           "\t  goal list.\n" +
+                           "\t- A pop up will notify you when your goal is\n" +
+                           "\t  successfully removed from your profile.\n" +
+                           "- To navigate to another tab simply click on the tab you\n" +
+                           "  wish to see at the top of the screen.\n\n" +
+                           "Hover over each item to see a brief description of what it does.";
         pastHelpText = "Welcome to the Goals Screen!\n\n" +
-                "You are currently on the Past Goals Tab.\n\n" +
-                "On this tab you can review your achieved goals, review your failed goals and navigate to another tab.\n" +
-                "- To review your achieved goals:\n" +
-                "\t- Select the goal you wish to review from the\n" +
-                "\t  Achieved Goals list.\n" +
-                "\t- Description fields will now appear with the details\n" +
-                "\t  of your selected goal.\n" +
-                "- To review your failed goals:\n" +
-                "\t- Select the goal you wish to review from the Failed\n" +
-                "\t  Goals list.\n" +
-                "\t- Description fields will now appear with the details\n" +
-                "\t  of your selected goal.\n" +
-                "- To navigate to another tab simply click on the tab you\n" +
-                "  wish to see at the top of the screen.\n\n" +
-                "Hover over each item to see a brief description of what it does.";
-        futureHelpText = "Welcome to the Goals Screen!\n\n" +
-                "You are currently on the Future Goals Tab.\n\n" +
-                "On this tab you can review your future goals and navigate to another tab.\n" +
-                "- To review your future goals:\n" +
-                "\t- Select the goal you wish to review from the\n" +
-                "\t  Future Goals list.\n" +
-                "\t- Description fields will now appear with the details\n" +
-                "\t  of your selected goal.\n" +
-                "- To navigate to another tab simply click on the tab you\n" +
-                "  wish to see at the top of the screen.\n\n" +
-                "Hover over each item to see a brief description of what it does.";
-        createHelpText = "Welcome to the Goals Screen!\n\n" +
-                "You are currently on the Create Goals Tab.\n\n" +
-                "On this tab you can create a new goal or navigate to a different tab.\n" +
-                "- To Create a new goal:\n" +
-                "\t- Click on the Goal Type drop down list and select a\n" +
-                "\t  goal type from the options.\n" +
-                "\t- Enter a name for your goal in the Enter Name text\n" +
-                "\t  box.\n" +
-                "\t- Name must be a unique goal name between 2 - 10\n" +
-                "\t  characters long.\n" +
-                "\t- Click on the Goal Start date picker and select a\n" +
-                "\t  date to start your goal on.\n" +
-                "\t- You cannot start a goal in the past.\n" +
-                "\t- Click on the Goal Target date picker and select a\n" +
-                "\t  target date for your goal to be achieved by.\n" +
-                "\t- You cannot select a target date before the start\n" +
-                "\t  date.\n" +
-                "\t- Enter a target value for your chosen goal type.\n" +
-                "\t- You cannot choose a target value that has already\n" +
-                "\t  been achieved.\n" +
-                "\t- Click on the Create button.\n" +
-                "\tYour new goal will be created and added to your\n" +
-                "\tprofile. you can review your created goals by\n" +
-                "\tnavigating to the current or future goals tabs.\n" +
-                "- To navigate to another tab simply click on the tab you\n" +
-                "  wish to see at the top of the screen.\n\n" +
-                "Hover over each item to see a brief description of what it does.";
+                       "You are currently on the Past Goals Tab.\n\n" +
+                       "On this tab you can review your achieved goals, review your failed goals and navigate to another tab.\n" +
+                       "- To review your achieved goals:\n" +
+                       "\t- Select the goal you wish to review from the\n" +
+                       "\t  Achieved Goals list.\n" +
+                       "\t- Description fields will now appear with the details\n" +
+                       "\t  of your selected goal.\n" +
+                       "- To review your failed goals:\n" +
+                       "\t- Select the goal you wish to review from the Failed\n" +
+                       "\t  Goals list.\n" +
+                       "\t- Description fields will now appear with the details\n" +
+                       "\t  of your selected goal.\n" +
+                       "- To navigate to another tab simply click on the tab you\n" +
+                       "  wish to see at the top of the screen.\n\n" +
+                       "Hover over each item to see a brief description of what it does.";
     }
 
 
@@ -314,14 +310,10 @@ public class GoalController implements Controllable{
     {
         helpTextArea.setVisible(true);
         helpTextArea.requestFocus();
-        if (currentTab.isSelected()) {
-            setHelpTextArea(currentHelpText, 270, 400);
-        } else if (futureTab.isSelected()) {
-            setHelpTextArea(futureHelpText,400, 270);
-        } else if (createTab.isSelected()) {
-            setHelpTextArea(createHelpText, 140, 530);
+        if (existingTab.isSelected()) {
+            setHelpTextArea(existingHelpText, 50, 620);
         } else if (pastTab.isSelected()) {
-            setHelpTextArea(pastHelpText,320, 350);
+            setHelpTextArea(pastHelpText,305, 365);
         }
     }
 
@@ -354,6 +346,7 @@ public class GoalController implements Controllable{
      * Method to update the achieved goal list view
 =======
      * Method to update the current goal list view.
+<<<<<<< HEAD
 >>>>>>> 24bc09d6... Refactored Goals screen to make it look nicer, and to use up free real estate
      * TODO reset all text fields to display nothing
      */
@@ -374,6 +367,66 @@ public class GoalController implements Controllable{
                     //delete the goal and set deletemode off again
                     app.getTitleBar().getCurrentProfile().getGoals().removeCurrentGoal(item);
                     toggleDeleteMode();
+=======
+     */
+    @FXML public void updateCurrentListView()
+    {
+            viewGoalDetails();
+    }
+
+
+    /**
+     * Method to delete a current goal
+     * Called when the remove goal button is selected under current goals.
+     */
+    @FXML public void removeCurrent()
+    {
+        deleteAGoal(currentGoalsListView);
+    }
+
+
+    /**
+     * Method to delete a future goal
+     * Called when the remove goal button is selected under future goals.
+     */
+    @FXML public void removeFuture()
+    {
+        deleteAGoal(futureGoalsListView);
+    }
+
+
+    /**
+     * Method to delete a goal with a confirmation message.
+     */
+    private void deleteAGoal(ListView list) {
+        // If there is a goal selected
+        if (list.getSelectionModel().getSelectedItem() != null) {
+            // Get the name of the selected goal
+            String item = list.getSelectionModel().getSelectedItem().toString();
+            // Ask the user if they are sure they want to delete the goal
+            String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + item + "\" goal?");
+            // If they say yes
+            if (option.equals("OK")) {
+                //delete the goal and set deletemode off again
+                app.getTitleBar().getCurrentProfile().getGoals().removeCurrentGoal(item);
+            }
+            addGoalsToTable();
+        }
+    }
+
+    /**
+    *Displays details of a goal that's selected.
+     */
+    private void viewGoalDetails() {
+        // If there is a goal selected
+        if (currentGoalsListView.getSelectionModel().getSelectedItem() != null) {
+            String item = currentGoalsListView.getSelectionModel().getSelectedItem().toString();
+            Goal goal = null;
+            for (Goal selectedGoal : app.getTitleBar().getCurrentProfile().getGoals().getCurrentGoals()) {
+                if (selectedGoal.getGoalName().equals(item)) {
+                    goal = selectedGoal;
+                    break;
+>>>>>>> 0a21ee39... Refactored Goal Screen so that all labels can be seen properly, text fields empty when required and future goals can be deleted. Got rid of delete mode and opted for list selected delete function instead. Also updated help text to reflect the new layout.
                 }
             }
 <<<<<<< HEAD
@@ -436,6 +489,7 @@ public class GoalController implements Controllable{
 >>>>>>> 03dfdb44... Now call addGoalsToTable when profile is set. Added text fields and areas for achieved and failed goals. Implemented addGoalsToTable, updateAchievedListView, updateFailedListView, and printPastGoalsReview functions in GoalController. In review goal methods, now compares current time to target date to see if you have failed your goal. Added achievedGoalNames, failedGoalNames and futureGoalNames ArrayLists to Goals.
 =======
         app.getTitleBar().getCurrentProfile().getGoals().refreshGoals();
+        resetTextFields();
         if (app.getTitleBar().getCurrentProfile().getGoals() != null) {
             ObservableList<String> currentGoals = FXCollections.observableArrayList(app.getTitleBar().getCurrentProfile().getGoals().getCurrentGoalNames());
 <<<<<<< HEAD
@@ -461,7 +515,31 @@ public class GoalController implements Controllable{
 
 
     /**
+<<<<<<< HEAD
      * creates a new goal
+=======
+     * Method to reset all text areas to null and hidden
+     */
+    private void resetTextFields()
+    {
+        currentGoalTextArea.setText("");
+        futureGoalTextArea.setText("");
+        achievedGoalTextArea.setText("");
+        failedGoalTextArea.setText("");
+        currentGoalTextArea.setVisible(false);
+        futureGoalTextArea.setVisible(false);
+        achievedGoalTextArea.setVisible(false);
+        failedGoalTextArea.setVisible(false);
+        currentDescriptionLabel.setVisible(false);
+        futureDescriptionLabel.setVisible(false);
+        achievedDescriptionLabel.setVisible(false);
+        failedDescriptionLabel.setVisible(false);
+    }
+
+
+    /**
+     * Creates a new goal with the information entered by the user.
+>>>>>>> 0a21ee39... Refactored Goal Screen so that all labels can be seen properly, text fields empty when required and future goals can be deleted. Got rid of delete mode and opted for list selected delete function instead. Also updated help text to reflect the new layout.
      */
     @FXML
     public void createGoal()
@@ -519,6 +597,7 @@ public class GoalController implements Controllable{
 
 
     /**
+<<<<<<< HEAD
      * Method called when the remove goal button is pushed.
      * Toggles delete mode and red border around list view.
      */
@@ -542,6 +621,9 @@ public class GoalController implements Controllable{
     /**
      * Method to update the achieved goal list view
      * TODO these methods can be refactored
+=======
+     * Method to update the achieved goal list view.
+>>>>>>> 0a21ee39... Refactored Goal Screen so that all labels can be seen properly, text fields empty when required and future goals can be deleted. Got rid of delete mode and opted for list selected delete function instead. Also updated help text to reflect the new layout.
      */
     @FXML public void updateAchievedListView() {
         if (achievedListView.getSelectionModel().getSelectedItem() != null && !app.getTitleBar().getCurrentProfile().getGoals().getAchievedGoals().isEmpty()) {
@@ -662,11 +744,13 @@ public class GoalController implements Controllable{
         description.setVisible(true);
         switch (type) {
             case "Weight":
-                goalText.setText("Type: " + type + "\n\nStart Date: " + goal.getGoalStartDate().toString() +
-                        "\n\nTarget Date: " + goal.getGoalTargetDate().toString() + "\n\nGoal to achieve: " +
-                        "To weigh " + ((WeightGoal) goal).getGoalWeight() + " kgs or less by " + goal.getGoalTargetDate());
+                goalText.setText("Type: " + type + "\n\nStart Date: " + goal.getGoalStartDate().getDateAsString() +
+                        "\n\nTarget Date: " + goal.getGoalTargetDate().getDateAsString() + "\n\nGoal to achieve: " +
+                        "To weigh " + ((WeightGoal) goal).getGoalWeight() + " kgs or less by " + goal.getGoalTargetDate().getDateAsString());
                 break;
+
             case "Frequency":
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> fc6a87cc... Refactored Goals screen GUI to make it look better.
                 goalText.setText("To participate in " + ((FrequencyGoal) goal).getGoalFrequency() + " activities by " + goal.getGoalTargetDate());
@@ -712,22 +796,36 @@ public class GoalController implements Controllable{
                 goalText.setText("Type: " + type + "\n\nStart Date: " + goal.getGoalStartDate().toString() +
                         "\n\nTarget Date: " + goal.getGoalTargetDate().toString() + "\n\nGoal to achieve: " +
                         "To participate in " + ((FrequencyGoal) goal).getGoalFrequency() + " activities by " + goal.getGoalTargetDate());
+=======
+                goalText.setText("Type: " + type + "\n\nStart Date: " + goal.getGoalStartDate().getDateAsString() +
+                        "\n\nTarget Date: " + goal.getGoalTargetDate().getDateAsString() + "\n\nGoal to achieve: " +
+                        "To participate in " + ((FrequencyGoal) goal).getGoalFrequency() + " activities by " + goal.getGoalTargetDate().getDateAsString());
+>>>>>>> 0a21ee39... Refactored Goal Screen so that all labels can be seen properly, text fields empty when required and future goals can be deleted. Got rid of delete mode and opted for list selected delete function instead. Also updated help text to reflect the new layout.
                 break;
+
             case "Distance":
-                goalText.setText("Type: " + type + "\n\nStart Date: " + goal.getGoalStartDate().toString() +
-                        "\n\nTarget Date: " + goal.getGoalTargetDate().toString() + "\n\nGoal to achieve: " +
-                        "To cover " + ((DistanceGoal) goal).getGoalDistance() + " metres by " + goal.getGoalTargetDate());
+                goalText.setText("Type: " + type + "\n\nStart Date: " + goal.getGoalStartDate().getDateAsString() +
+                        "\n\nTarget Date: " + goal.getGoalTargetDate().getDateAsString() + "\n\nGoal to achieve: " +
+                        "To cover " + ((DistanceGoal) goal).getGoalDistance() + " metres by " + goal.getGoalTargetDate().getDateAsString());
                 break;
+
             case "BMI":
-                goalText.setText("Type: " + type + "\n\nStart Date: " + goal.getGoalStartDate().toString() +
-                        "\n\nTarget Date: " + goal.getGoalTargetDate().toString() + "\n\nGoal to achieve: " +
-                        "To have a BMI of " + ((BmiGoal) goal).getGoalBmi() + " or less by " + goal.getGoalTargetDate());
+                goalText.setText("Type: " + type + "\n\nStart Date: " + goal.getGoalStartDate().getDateAsString() +
+                        "\n\nTarget Date: " + goal.getGoalTargetDate().getDateAsString() + "\n\nGoal to achieve: " +
+                        "To have a BMI of " + ((BmiGoal) goal).getGoalBmi() + " or less by " + goal.getGoalTargetDate().getDateAsString());
                 break;
+
             default:  //goal must be of type Time
+<<<<<<< HEAD
                 goalText.setText("Type: " + type + "\n\nStart Date: " + goal.getGoalStartDate().toString() +
                         "\n\nTarget Date: " + goal.getGoalTargetDate().toString() + "\n\nGoal to achieve: " +
                         "To spend " + ((TimeGoal) goal).getGoalTime() + " minutes exercising by " + goal.getGoalTargetDate());
 >>>>>>> c51a4395... Goals screen refactoring continued
+=======
+                goalText.setText("Type: " + type + "\n\nStart Date: " + goal.getGoalStartDate().getDateAsString() +
+                        "\n\nTarget Date: " + goal.getGoalTargetDate().getDateAsString() + "\n\nGoal to achieve: " +
+                        "To spend " + ((TimeGoal) goal).getGoalTime() + " minutes exercising by " + goal.getGoalTargetDate().getDateAsString());
+>>>>>>> 0a21ee39... Refactored Goal Screen so that all labels can be seen properly, text fields empty when required and future goals can be deleted. Got rid of delete mode and opted for list selected delete function instead. Also updated help text to reflect the new layout.
                 break;
 >>>>>>> 517b3e8c... Refactored Classes in the Visual, Exceptions and ActivitiesData packages to meet style guidlines and java doc specs. Also refactored some methods that were particularly large. Also dealt with some warnings and refactored a bit because of it.
         }
@@ -744,15 +842,19 @@ public class GoalController implements Controllable{
                 case "Weight":
                     unitsLabel.setText("kgs");
                     break;
+
                 case "Frequency":
                     unitsLabel.setText("activities");
                     break;
+
                 case "Distance":
                     unitsLabel.setText("metres");
                     break;
+
                 case "BMI":
                     unitsLabel.setText("BMI");
                     break;
+
                 case "Time":
                     unitsLabel.setText("minutes");
                     break;

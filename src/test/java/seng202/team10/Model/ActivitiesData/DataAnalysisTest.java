@@ -1,7 +1,8 @@
-package seng202.team10.Control;
+package seng202.team10.Model.ActivitiesData;
 
 import org.junit.Before;
 import org.junit.Test;
+import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DataAnalysis;
 import seng202.team10.Model.ActivitiesData.DateTime;
