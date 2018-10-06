@@ -2,24 +2,19 @@ package seng202.team10.Visual;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.LinearGradient;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import seng202.team10.Control.GUIController;
+import seng202.team10.Control.MainController;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.Goals.Goal;
-import seng202.team10.Model.Goals.Goals;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -42,7 +37,7 @@ public class CalendarPaneController {
     private VBox view;
     private Label calendarTitle;
     private YearMonth currentYearMonth;
-    private GUIController app;
+    private MainController app;
     private ProfileController profileController;
     private ObservableList<String> months;
     private ObservableList<String> years;
@@ -51,12 +46,21 @@ public class CalendarPaneController {
 
 
     /**
+<<<<<<< HEAD
      * Setter method to set the GUI controller for this Scene
      * @param app GUIController
      */
     public void setApp(GUIController app)
     {
         this.app = app;
+=======
+     * Setter method to pass the MainController into this controller.
+     * @param mainController <b>MainController:</b> The main controller.
+     */
+    public void setApp(MainController mainController)
+    {
+        this.app = mainController;
+>>>>>>> 86ffe4b1... Refactored GUIController to be called MainController
     }
 
 
@@ -95,15 +99,19 @@ public class CalendarPaneController {
     /**
      * Method to create a calendar view
      * @param yearMonth year month to create the calendar of
-     * @param app  The GUIController that controls the controllers.
+     * @param app  The MainController that controls the controllers.
      * @param profileController  The profile controller that controls the profile screen
      *
      */
+<<<<<<< HEAD
 <<<<<<< HEAD:src/main/java/seng202/team10/Visual/CalenderPaneController.java
     public CalenderPaneController(YearMonth yearMonth, GUIController app, ProfileController profileController)
 =======
     CalendarPaneController(YearMonth yearMonth, GUIController app, ProfileController profileController)
 >>>>>>> 7dae5bcb... changed miss spelt calendar:src/main/java/seng202/team10/Visual/CalendarPaneController.java
+=======
+    CalendarPaneController(YearMonth yearMonth, MainController app, ProfileController profileController)
+>>>>>>> 86ffe4b1... Refactored GUIController to be called MainController
     {
         setApp(app);
         setProfileController(profileController);

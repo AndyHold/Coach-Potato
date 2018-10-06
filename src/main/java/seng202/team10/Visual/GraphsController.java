@@ -1,15 +1,12 @@
 package seng202.team10.Visual;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
-import javafx.scene.layout.VBox;
 import seng202.team10.Model.ActivitiesData.DataAnalysis;
-import seng202.team10.Control.GUIController;
+import seng202.team10.Control.MainController;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.Entry;
 
@@ -24,7 +21,7 @@ import java.util.ResourceBundle;
  */
 public class GraphsController implements Controllable, Initializable{
 
-    private GUIController app;
+    private MainController app;
     private Activity activity;
     private DataAnalysis dataAnalysis;
     private int currentIndex;
@@ -48,13 +45,18 @@ public class GraphsController implements Controllable, Initializable{
 
 
     /**
+<<<<<<< HEAD
      * Method to pass the guiController into this class.
      * @param guiController  The main controller class that contains most information
+=======
+     * Setter method to pass the MainController into this controller.
+     * @param mainController <b>MainController:</b> The main controller.
+>>>>>>> 86ffe4b1... Refactored GUIController to be called MainController
      */
     @Override
-    public void setApp(GUIController guiController)
+    public void setApp(MainController mainController)
     {
-        this.app = guiController;
+        this.app = mainController;
     }
 
     /**

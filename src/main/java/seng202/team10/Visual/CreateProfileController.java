@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import javafx.scene.layout.HBox;
 <<<<<<< HEAD
@@ -35,12 +36,14 @@ import org.apache.commons.lang3.StringUtils;
 =======
 >>>>>>> b3cd6623... last minute changes
 import seng202.team10.Control.GUIController;
+=======
+import seng202.team10.Control.MainController;
+>>>>>>> 86ffe4b1... Refactored GUIController to be called MainController
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.Exceptions.*;
 import seng202.team10.Model.UserProfile;
 
 import java.time.LocalDateTime;
-import java.util.Calendar;
 
 /**
 <<<<<<< HEAD
@@ -55,8 +58,13 @@ import java.util.Calendar;
 public class CreateProfileController implements Controllable
 {
 
+<<<<<<< HEAD
     private GUIController app;
     ToggleGroup toggleGroup;
+=======
+    private MainController app;
+    private ToggleGroup toggleGroup;
+>>>>>>> 86ffe4b1... Refactored GUIController to be called MainController
 
 <<<<<<< HEAD
 
@@ -84,6 +92,7 @@ public class CreateProfileController implements Controllable
 
 
     /**
+<<<<<<< HEAD
      * Setter method to set the GUI controller for this Scene
      * @param app GUIController
      */
@@ -99,6 +108,14 @@ public class CreateProfileController implements Controllable
     public void setApp(GUIController app)
     {
         this.app = app;
+=======
+     * Setter method to pass the MainController into this controller.
+     * @param mainController <b>MainController:</b> The main controller.
+     */
+    public void setApp(MainController mainController)
+    {
+        this.app = mainController;
+>>>>>>> 86ffe4b1... Refactored GUIController to be called MainController
     }
 
 

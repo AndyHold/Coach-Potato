@@ -105,7 +105,7 @@ import java.util.concurrent.TimeUnit;
  * Class that acts as the main controller for the application. Creates and launches scenes,
  * stores all data needed and functions. Passes itself into controllers so they can access any information they need.
  */
-public class GUIController extends Application {
+public class MainController extends Application {
 
     private Scene titleBarScene;
     private TitleBarController titleBarController;

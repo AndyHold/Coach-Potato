@@ -13,7 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
-import seng202.team10.Control.GUIController;
+import seng202.team10.Control.MainController;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.Route;
 import seng202.team10.Model.UserProfile;
@@ -34,7 +34,7 @@ import java.io.IOException;
 public class TitleBarController {
 
 
-    private GUIController app;
+    private MainController app;
     private Pane createProfilePane;
     private Pane loginPane;
     private Pane profilePane;
@@ -65,12 +65,21 @@ public class TitleBarController {
 
 
     /**
+<<<<<<< HEAD
      * Setter Method for the GUIController
      * @param app GUIController
      */
     public void setApp(GUIController app)
     {
         this.app = app;
+=======
+     * Setter method to pass the MainController into this controller.
+     * @param mainController <b>MainController:</b> The main controller.
+     */
+    public void setApp(MainController mainController)
+    {
+        this.app = mainController;
+>>>>>>> 86ffe4b1... Refactored GUIController to be called MainController
     }
 
 

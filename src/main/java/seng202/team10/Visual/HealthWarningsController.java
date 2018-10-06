@@ -10,18 +10,15 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebHistory;
 import javafx.scene.web.WebView;
 import javafx.util.Duration;
-import seng202.team10.Control.GUIController;
+import seng202.team10.Control.MainController;
 import seng202.team10.Model.ActivitiesData.HealthWarning;
 import seng202.team10.Model.ActivitiesData.HealthWarningType;
 
-import javax.swing.text.html.ListView;
 import java.util.ArrayList;
 
 <<<<<<< HEAD
@@ -35,7 +32,7 @@ import java.util.ArrayList;
 public class HealthWarningsController implements Controllable {
 
 
-    private GUIController app;
+    private MainController app;
     private ObservableList<HealthWarning> tachycardiaWarnings;
     private ObservableList<HealthWarning> bradycardiaWarnings;
 <<<<<<< HEAD
@@ -78,9 +75,19 @@ public class HealthWarningsController implements Controllable {
     private WebEngine engine;
 
 
+<<<<<<< HEAD
     public void setApp(GUIController app)
     {
         this.app = app;
+=======
+    /**
+     * Setter method to pass the MainController into this controller.
+     * @param mainController <b>MainController:</b> The main controller.
+     */
+    public void setApp(MainController mainController)
+    {
+        this.app = mainController;
+>>>>>>> 86ffe4b1... Refactored GUIController to be called MainController
     }
 
 
@@ -307,10 +314,10 @@ public class HealthWarningsController implements Controllable {
 
 
     /**
-     * Getter method for the <b>GUIController</b>
-     * @return the <b>GUIController</b>
+     * Getter method for the <b>MainController</b>
+     * @return the <b>MainController</b>
      */
-    public GUIController getApp()
+    public MainController getApp()
     {
         return this.app;
     }

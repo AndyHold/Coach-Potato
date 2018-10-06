@@ -1,22 +1,16 @@
 package seng202.team10.Visual;
 
-import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.VBox;
-import javafx.util.Duration;
-import seng202.team10.Control.GUIController;
+import seng202.team10.Control.MainController;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
-import seng202.team10.Model.ActivitiesData.HealthWarning;
 
-import javax.swing.text.html.ImageView;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 <<<<<<< HEAD
 =======
@@ -28,7 +22,7 @@ import java.util.Date;
 >>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
 public class ActivityViewerController {
 
-    private GUIController app;
+    private MainController app;
     private ObservableList<String> types;
     private ObservableList<Activity> activities;
 
@@ -422,11 +416,20 @@ public class ActivityViewerController {
 >>>>>>> c3af2f13... Implemented button to delete an activity on the activity viewer
 
     /**
+<<<<<<< HEAD
      * Setter method to set the GUI controller for this Scene
      * @param app GUIController
      */
     public void setApp(GUIController app)
     {
         this.app = app;
+=======
+     * Setter method to pass the MainController into this controller.
+     * @param mainController <b>MainController:</b> The main controller.
+     */
+    public void setApp(MainController mainController)
+    {
+        this.app = mainController;
+>>>>>>> 86ffe4b1... Refactored GUIController to be called MainController
     }
 }

@@ -4,8 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import org.apache.commons.lang3.ObjectUtils;
-import seng202.team10.Control.GUIController;
+import seng202.team10.Control.MainController;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.Exceptions.BadGoalNameException;
 import seng202.team10.Model.Exceptions.InvalidGoalDateException;
@@ -28,7 +27,7 @@ public class GoalController implements Controllable{
 >>>>>>> ef5ea113... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
 
 
-    private GUIController app;
+    private MainController app;
     private String existingHelpText;
     private String pastHelpText;
 
@@ -60,11 +59,20 @@ public class GoalController implements Controllable{
 
 
     /**
+<<<<<<< HEAD
      * sets this scene to be the active one
      * @param app
      */
     public void setApp(GUIController app){
         this.app = app;
+=======
+     * Setter method to pass the MainController into this controller.
+     * @param mainController <b>MainController:</b> The main controller.
+     */
+    public void setApp(MainController mainController)
+    {
+        this.app = mainController;
+>>>>>>> 86ffe4b1... Refactored GUIController to be called MainController
     }
 
 

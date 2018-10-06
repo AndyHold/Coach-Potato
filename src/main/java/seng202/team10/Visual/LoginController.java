@@ -1,8 +1,6 @@
 package seng202.team10.Visual;
 
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 <<<<<<< HEAD
 import javafx.scene.control.Alert;
@@ -13,11 +11,9 @@ import javafx.scene.control.*;
 >>>>>>> 0701339c... Added Help Button functionality to Login screen
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import seng202.team10.Control.GUIController;
-import seng202.team10.Model.UserProfile;
+import seng202.team10.Control.MainController;
 
 import java.io.IOException;
-import java.io.InvalidClassException;
 import java.util.ArrayList;
 
 
@@ -32,7 +28,7 @@ import java.util.ArrayList;
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public class LoginController implements Controllable{
-    private GUIController app;
+    private MainController app;
 
 
     @FXML private ImageView userOneImage;
@@ -62,10 +58,15 @@ public class LoginController implements Controllable{
 
 
     /**
+<<<<<<< HEAD
      * Setter method for the GUIController
      * @param app GUIController
+=======
+     * Setter method to pass the MainController into this controller.
+     * @param app <b>MainController:</b> The main controller.
+>>>>>>> 86ffe4b1... Refactored GUIController to be called MainController
      */
-    public void setApp(GUIController app)
+    public void setApp(MainController app)
     {
         this.app = app;
     }

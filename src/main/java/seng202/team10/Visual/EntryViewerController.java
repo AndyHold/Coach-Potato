@@ -6,9 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import seng202.team10.Control.GUIController;
+import seng202.team10.Control.MainController;
 import seng202.team10.Model.ActivitiesData.Activity;
-import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.ActivitiesData.Entry;
 import seng202.team10.Model.Exceptions.EntryOutOfSequenceException;
 
@@ -26,7 +25,7 @@ import java.util.ArrayList;
  */
 public class EntryViewerController {
 
-    private GUIController app;
+    private MainController app;
     private Activity loadedActivity;
 
     @FXML private Label activityNameLabel;
@@ -155,12 +154,21 @@ public class EntryViewerController {
 
 
     /**
+<<<<<<< HEAD
      * Setter method to set the GUI controller for this Scene
      * @param app GUIController
      */
     public void setApp(GUIController app)
     {
         this.app = app;
+=======
+     * Setter method to pass the MainController into this controller.
+     * @param mainController <b>MainController:</b> The main controller.
+     */
+    public void setApp(MainController mainController)
+    {
+        this.app = mainController;
+>>>>>>> 86ffe4b1... Refactored GUIController to be called MainController
     }
 
 

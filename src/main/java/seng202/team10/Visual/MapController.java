@@ -12,7 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-import seng202.team10.Control.GUIController;
+import seng202.team10.Control.MainController;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.Entry;
 import seng202.team10.Model.ActivitiesData.Route;
@@ -31,7 +31,11 @@ import java.util.ResourceBundle;
 >>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
 public class MapController implements Controllable, Initializable{
 
+<<<<<<< HEAD
     private GUIController guiController;
+=======
+    private MainController app;
+>>>>>>> 86ffe4b1... Refactored GUIController to be called MainController
     private WebEngine webEngine;
     private boolean firstLoad = true;
     private boolean firstMapView = false;
@@ -48,6 +52,7 @@ public class MapController implements Controllable, Initializable{
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * sets this scene to be the currently active one
      * @param guiController
 =======
@@ -59,6 +64,14 @@ public class MapController implements Controllable, Initializable{
     public void setApp(GUIController guiController)
     {
         this.guiController = guiController;
+=======
+     * Setter method to pass the MainController into this controller.
+     * @param mainController <b>MainController:</b> The main controller.
+     */
+    public void setApp(MainController mainController)
+    {
+        this.app = mainController;
+>>>>>>> 86ffe4b1... Refactored GUIController to be called MainController
     }
 
 

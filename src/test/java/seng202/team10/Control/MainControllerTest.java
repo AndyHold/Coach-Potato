@@ -11,9 +11,9 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
-public class GUIControllerTest {
+public class MainControllerTest {
 //
-//    private GUIController testGuiController;
+//    private MainController testMainController;
 //    private UserProfile testUser;
 //    private DateTime testDOB;
 //    private ArrayList<UserProfile> testUsers;
@@ -24,7 +24,7 @@ public class GUIControllerTest {
 //    public void setUp() throws Exception
 //    {
 //        testUsers = new ArrayList<>();
-//        testGuiController = new GUIController();
+//        testMainController = new MainController();
 //        testUser = new UserProfile();
 //        testUser.setName("Test User");
 //        testUser.setWeight(80.0);
@@ -34,7 +34,7 @@ public class GUIControllerTest {
 //        testUser.setBirthDate(testDOB);
 //        testUser.setMaxHeartRate(200);
 //        badTestUser = new UserProfile();
-//        testGuiController.setUsers(testUsers);
+//        testMainController.setUsers(testUsers);
 //        for (int i = 0; i < 2; i++) {
 //            UserProfile testUser1 = new UserProfile();
 //            testUser1.setName("testUsernum" + String.valueOf(i));
@@ -44,7 +44,7 @@ public class GUIControllerTest {
 //            testDOB = new DateTime(1990, 1, 1, 0,0,0);
 //            testUser1.setBirthDate(testDOB);
 //            testUser1.setMaxHeartRate(200);
-//            testGuiController.createUser(testUser1);
+//            testMainController.createUser(testUser1);
 //        }
 //    }
 //
@@ -53,7 +53,7 @@ public class GUIControllerTest {
 //    @Test
 //    public void uploadDataToUser() throws Exception
 //    {
-//        testGuiController.uploadDataToUser(testUser, "FilesToLoad/testdata.csv");
+//        testMainController.uploadDataToUser(testUser, "FilesToLoad/testdata.csv");
 //        assertEquals(12, testUser.getActivities().size());
 //    }
 //
@@ -62,7 +62,7 @@ public class GUIControllerTest {
 //    {
 //        String message = "Failed Test";
 //        try {
-//            testGuiController.checkUniqueName("testUsernum0");
+//            testMainController.checkUniqueName("testUsernum0");
 //        } catch (UniqueNameException e) {
 //            message = "Passed Test";
 //        }
@@ -73,9 +73,9 @@ public class GUIControllerTest {
 //    public void createUserPass() throws InvalidUserException
 //    {
 //        String message = "Failed Test";
-//        testGuiController.createUser(testUser);
+//        testMainController.createUser(testUser);
 //        try {
-//            testGuiController.checkUniqueName("Test User");
+//            testMainController.checkUniqueName("Test User");
 //        } catch (UniqueNameException e) {
 //            message = "Passed Test";
 //        }
@@ -91,7 +91,7 @@ public class GUIControllerTest {
 //        badTestUser.setBirthDate(testDOB);
 //        badTestUser.setGender("Male");
 //        try {
-//            testGuiController.createUser(badTestUser);
+//            testMainController.createUser(badTestUser);
 //        } catch (InvalidUserException e) {
 //            message = "Passed Test";
 //        }
@@ -107,7 +107,7 @@ public class GUIControllerTest {
 //        badTestUser.setBirthDate(testDOB);
 //        badTestUser.setGender("Male");
 //        try {
-//            testGuiController.createUser(badTestUser);
+//            testMainController.createUser(badTestUser);
 //        } catch (InvalidUserException e) {
 //            message = "Passed Test";
 //        }
@@ -123,7 +123,7 @@ public class GUIControllerTest {
 //        badTestUser.setBirthDate(testDOB);
 //        badTestUser.setGender("Male");
 //        try {
-//            testGuiController.createUser(badTestUser);
+//            testMainController.createUser(badTestUser);
 //        } catch (InvalidUserException e) {
 //            message = "Passed Test";
 //        }
@@ -139,7 +139,7 @@ public class GUIControllerTest {
 //        badTestUser.setMaxHeartRate(200);
 //        badTestUser.setGender("Male");
 //        try {
-//            testGuiController.createUser(badTestUser);
+//            testMainController.createUser(badTestUser);
 //        } catch (InvalidUserException e) {
 //            message = "Passed Test";
 //        }
@@ -155,7 +155,7 @@ public class GUIControllerTest {
 //        badTestUser.setBirthDate(testDOB);
 //        badTestUser.setMaxHeartRate(200);
 //        try {
-//            testGuiController.createUser(badTestUser);
+//            testMainController.createUser(badTestUser);
 //        } catch (InvalidUserException e) {
 //            message = "Passed Test";
 //        }
@@ -171,7 +171,7 @@ public class GUIControllerTest {
 //        badTestUser.setBirthDate(testDOB);
 //        badTestUser.setGender("Male");
 //        try {
-//            testGuiController.createUser(badTestUser);
+//            testMainController.createUser(badTestUser);
 //        } catch (InvalidUserException e) {
 //            message = "Passed Test";
 //        }
@@ -183,7 +183,7 @@ public class GUIControllerTest {
 //    {
 //        testUsers = null;
 //        testUser = null;
-//        testGuiController = null;
+//        testMainController = null;
 //        testDOB = null;
 //        badTestUser = null;
 //    }

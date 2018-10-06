@@ -1,6 +1,5 @@
 package seng202.team10.Visual;
 
-import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,8 +10,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
-import javafx.util.Duration;
-import seng202.team10.Control.GUIController;
+import seng202.team10.Control.MainController;
 import seng202.team10.Model.ActivitiesData.*;
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -49,7 +47,7 @@ import java.util.ArrayList;
 >>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
 public class UploadDataController {
 
-    private GUIController app;
+    private MainController app;
     private Parser parser = new Parser();
     private boolean firstTime = true;
 
@@ -84,12 +82,21 @@ public class UploadDataController {
     @FXML private Rectangle loadingCover;
 
     /**
+<<<<<<< HEAD
      * Setter method to set the GUI controller for this Scene
      * @param app GUIController
      */
     public void setApp(GUIController app)
     {
         this.app = app;
+=======
+     * Setter method to pass the MainController into this controller.
+     * @param mainController <b>MainController:</b> The main controller.
+     */
+    public void setApp(MainController mainController)
+    {
+        this.app = mainController;
+>>>>>>> 86ffe4b1... Refactored GUIController to be called MainController
     }
 
 

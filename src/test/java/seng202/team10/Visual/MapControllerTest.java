@@ -1,7 +1,7 @@
 package seng202.team10.Visual;
 
 import org.junit.Test;
-import seng202.team10.Control.GUIController;
+import seng202.team10.Control.MainController;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.ActivitiesData.Position;
@@ -14,14 +14,14 @@ public class MapControllerTest {
 
     @Test
     public void makeRoute() throws Exception {
-        GUIController guiController = new GUIController();
+        MainController mainController = new MainController();
         UserProfile user = new UserProfile();
         user.setHeight(80);
         user.setWeight(80);
         user.setGender("Male");
         DateTime birthday = new DateTime(1996, 12, 04, 0, 0, 0);
         user.setBirthDate(birthday);
-        guiController.uploadDataToUser(user, "./FilesToLoad/testdata.csv");
+        mainController.uploadDataToUser(user, "./FilesToLoad/testdata.csv");
         Activity activity = user.getActivities().get(1);
         Route actualRoute = new Route();
         MapController mapController = new MapController();

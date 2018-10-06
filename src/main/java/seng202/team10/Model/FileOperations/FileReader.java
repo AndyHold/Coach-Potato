@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 =======
 /**
- * File Reader Class for Coach Potato
+ * Class that contains methods for reading from files and some validation of data. This class is used by
  */
 >>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
 public class FileReader {

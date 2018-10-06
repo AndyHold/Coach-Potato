@@ -1,6 +1,6 @@
 package seng202.team10.Visual;
 
-import seng202.team10.Control.GUIController;
+import seng202.team10.Control.MainController;
 
 /**
 <<<<<<< HEAD
@@ -15,10 +15,15 @@ import seng202.team10.Control.GUIController;
 public interface Controllable {
 
     /**
+<<<<<<< HEAD
      * method to set the currently active scene to this one
      * @param guiController The main controller
+=======
+     * Setter method to pass the MainController into this controller.
+     * @param mainController <b>MainController:</b> The main controller.
+>>>>>>> 86ffe4b1... Refactored GUIController to be called MainController
      */
-    public void setApp(GUIController guiController);
+    public void setApp(MainController mainController);
 
     /**
      * method to run the initial setup of the scene

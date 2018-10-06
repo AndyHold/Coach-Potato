@@ -7,7 +7,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import seng202.team10.Control.GUIController;
+import seng202.team10.Control.MainController;
 import seng202.team10.Model.ActivitiesData.DateTime;
 <<<<<<< HEAD
 import seng202.team10.Model.Exceptions.InvalidHeightException;
@@ -35,8 +35,12 @@ import java.util.List;
 >>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
 public class ProfileController {
 
+<<<<<<< HEAD
     private GUIController app;
     private DataAnalysis dataAnalysis = new DataAnalysis();
+=======
+    private MainController app;
+>>>>>>> 86ffe4b1... Refactored GUIController to be called MainController
     private List<String> quotes;
     private UserProfile currentUser;
 
@@ -79,6 +83,7 @@ public class ProfileController {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * List of Motivational quotes.
      */
     private void setQuotes()
@@ -117,6 +122,14 @@ public class ProfileController {
     public void setApp(GUIController app)
     {
         this.app = app;
+=======
+     * Setter method to pass the MainController into this controller.
+     * @param mainController <b>MainController:</b> The main controller.
+     */
+    public void setApp(MainController mainController)
+    {
+        this.app = mainController;
+>>>>>>> 86ffe4b1... Refactored GUIController to be called MainController
     }
 
 

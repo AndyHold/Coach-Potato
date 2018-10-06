@@ -2,10 +2,7 @@ package seng202.team10.Model.ActivitiesData;
 
 import org.junit.Before;
 import org.junit.Test;
-import seng202.team10.Control.GUIController;
-import seng202.team10.Model.ActivitiesData.Activity;
-import seng202.team10.Model.ActivitiesData.DataAnalysis;
-import seng202.team10.Model.ActivitiesData.DateTime;
+import seng202.team10.Control.MainController;
 import seng202.team10.Model.UserProfile;
 
 import java.util.ArrayList;
@@ -16,7 +13,7 @@ import static org.junit.Assert.assertTrue;
 
 public class DataAnalysisTest {
 
-    private GUIController guiController;
+    private MainController mainController;
     private DataAnalysis dataAnalysis;
     private UserProfile user;
     private ArrayList<Activity> activities;
@@ -26,14 +23,14 @@ public class DataAnalysisTest {
     public void setUp() throws Exception {
 
         dataAnalysis = new DataAnalysis();
-        guiController = new GUIController();
+        mainController = new MainController();
         user = new UserProfile();
         user.setHeight(80);
         user.setWeight(80);
         user.setGender("Male");
         DateTime birthday = new DateTime(1996, 12, 4, 0, 0, 0);
         user.setBirthDate(birthday);
-        guiController.uploadDataToUser(user, "./FilesToLoad/testdata.csv");
+        mainController.uploadDataToUser(user, "./FilesToLoad/testdata.csv");
         activities = user.getActivities();
 
     }
