@@ -212,10 +212,17 @@ public class ActivityViewerController {
      */
     private void setUpStatLabels(Activity selectedActivity)
     {
-        distanceLabel.setText(selectedActivity.getDistanceKM().toString());
-        durationLabel.setText(String.valueOf(selectedActivity.getDurationMins()));
-        speedLabel.setText(selectedActivity.getSpeedKMH().toString());
-        heartRateLabel.setText(String.valueOf(selectedActivity.getAverageHeartRate()));
+        if(selectedActivity != null) {
+            distanceLabel.setText(selectedActivity.getDistanceKM().toString());
+            durationLabel.setText(String.valueOf(selectedActivity.getDurationMins()));
+            speedLabel.setText(selectedActivity.getSpeedKMH().toString());
+            heartRateLabel.setText(String.valueOf(selectedActivity.getAverageHeartRate()));
+        } else {
+            distanceLabel.setText("0");
+            durationLabel.setText("0");
+            speedLabel.setText("0");
+            heartRateLabel.setText("0");
+        }
     }
 
 
