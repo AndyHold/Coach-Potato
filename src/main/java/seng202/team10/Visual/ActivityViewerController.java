@@ -125,7 +125,7 @@ public class ActivityViewerController {
                              "\t  activity to filter.\n" +
                              "\t- Click the Apply Filters button and the activities in\n" +
                              "\t  the table will be updated.\n" +
-                             "\t- If you wish to return to viewing al activities\n" +
+                             "\t- If you wish to return to viewing all activities\n" +
                              "\t  simply click the Clear Filters button.\n" +
                              "- To delete an activity:\n" +
                              "\t- Select the activity you wish to delete from the\n" +
