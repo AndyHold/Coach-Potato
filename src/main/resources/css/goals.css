@@ -3,7 +3,7 @@
     -fx-font-size: 15px;
 }
 
-#currentGoalsLabel, #createANewGoalLabel, #futureGoalsLabel, #AcheivedGoalsLabel, #AcheivedGoalsLabel
+#currentGoalsLabel, #createANewGoalLabel, #futureGoalsLabel, #AcheivedGoalsLabel, #FailedGoalsLabel
 {
     -fx-font-size: 20px;
 }
