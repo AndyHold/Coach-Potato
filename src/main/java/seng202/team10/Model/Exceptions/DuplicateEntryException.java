@@ -3,7 +3,7 @@ package seng202.team10.Model.Exceptions;
 
 
 /**
- * DuplicateEntryException Class for Coach Potato
+ * Exception thrown when a duplicate entry is added to an activity.
  *
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */

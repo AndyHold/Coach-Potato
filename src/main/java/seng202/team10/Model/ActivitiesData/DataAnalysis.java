@@ -11,9 +11,13 @@ import java.util.Calendar;
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * Class that contains methods for processing activities for data analysis, mostly used by the DataAnalysisController class.
 =======
  * Class that contains methods for processing activities for data analysis, mostly used by the graphsController class.
+=======
+ * Class that contains methods for processing activities for data analysis, mostly used by the GraphsController class.
+>>>>>>> c852e962... Exceptions Javadoc, changed class descriptions.
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
 >>>>>>> 662d506f... Renamed the data analysis screen to the graphs screen
  */

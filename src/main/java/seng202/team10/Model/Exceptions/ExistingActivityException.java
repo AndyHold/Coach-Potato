@@ -3,8 +3,8 @@ package seng202.team10.Model.Exceptions;
 
 
 /**
- * ExistingActivityException Class for Coach Potato
- *
+ * Exception thrown when an existing activity is added to a user.
+
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public class ExistingActivityException extends Exception {

@@ -3,7 +3,7 @@ package seng202.team10.Model.Exceptions;
 
 
 /**
- * BadActivityException Class for Coach Potato
+ * Exception thrown when the date is invalid.
  *
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */

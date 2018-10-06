@@ -3,7 +3,7 @@ package seng202.team10.Model.Exceptions;
 
 
 /**
- * NoDataFoundException Class for Coach Potato
+ * Exception thrown when no data is found.
  *
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */

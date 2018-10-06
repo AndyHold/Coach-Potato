@@ -3,7 +3,7 @@ package seng202.team10.Model.Exceptions;
 
 
 /**
- * ExistingElementException Class for Coach Potato
+ * Exception thrown when an element already exists.
  *
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
