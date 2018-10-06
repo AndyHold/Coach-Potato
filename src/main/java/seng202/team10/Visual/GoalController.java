@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import org.apache.commons.lang3.ObjectUtils;
 import seng202.team10.Control.GUIController;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.Exceptions.BadGoalNameException;
@@ -487,6 +488,11 @@ public class GoalController implements Controllable{
                     }
                     addGoalsToTable();
                 }
+<<<<<<< HEAD
+=======
+                addGoalsToTable();
+                app.getDataWriter().saveProfile(app.getTitleBar().getCurrentProfile());
+>>>>>>> ade3c4f0... Fixed bug with Goal Creation where no type selected error was never thrown. Also any null value caused an uncaught error.
             }
         }
     }
@@ -524,7 +530,7 @@ public class GoalController implements Controllable{
             futureGoalsListView.setItems(futureGoalNames);
 
         }
-        ObservableList<String> goalTypes = FXCollections.observableArrayList("Weight", "Distance", "Frequency", "BMI", "Time");
+        ObservableList<GoalType> goalTypes = FXCollections.observableArrayList(GoalType.WEIGHT, GoalType.DISTANCE, GoalType.FREQUENCY, GoalType.BMI, GoalType.TIME);
         goalTypeCombo.setItems(goalTypes);
         goalTypeCombo.setVisibleRowCount(5);
     }
@@ -560,39 +566,40 @@ public class GoalController implements Controllable{
     @FXML
     public void createGoal()
     {
-        Goals goalsInstance = app.getTitleBar().getCurrentProfile().getGoals();
-
-        String type = goalTypeCombo.getValue().toString();
-        String name = goalNameEntry.getText();
-        int target;
-        double doubleTarget;
-        int startYear = startDatePicker.getValue().getYear();
-        int startMonth = startDatePicker.getValue().getMonthValue();
-        int startDay = startDatePicker.getValue().getDayOfMonth();
-        DateTime startDate = new DateTime(startYear, startMonth, startDay, 0, 0,0);
-        int targetYear = targetDatePicker.getValue().getYear();
-        int targetMonth = targetDatePicker.getValue().getMonthValue();
-        int targetDay = targetDatePicker.getValue().getDayOfMonth();
-        DateTime targetDate = new DateTime(targetYear, targetMonth, targetDay, 0, 0,0);
         try {
+            Goals goalsInstance = app.getTitleBar().getCurrentProfile().getGoals();
+
+            GoalType type = (GoalType) goalTypeCombo.getValue();
+            String name = goalNameEntry.getText();
+            int target;
+            double doubleTarget;
+            int startYear = startDatePicker.getValue().getYear();
+            int startMonth = startDatePicker.getValue().getMonthValue();
+            int startDay = startDatePicker.getValue().getDayOfMonth();
+            DateTime startDate = new DateTime(startYear, startMonth, startDay, 0, 0,0);
+            int targetYear = targetDatePicker.getValue().getYear();
+            int targetMonth = targetDatePicker.getValue().getMonthValue();
+            int targetDay = targetDatePicker.getValue().getDayOfMonth();
+            DateTime targetDate = new DateTime(targetYear, targetMonth, targetDay, 0, 0,0);
+
             String target1 = targetValueEntry.getText();
             doubleTarget = Double.valueOf(target1);
             switch (type) {
-                case "Weight":
-                    goalsInstance.createGoal(name, startDate, targetDate, type, doubleTarget, app.getTitleBar().getCurrentProfile());
+                case WEIGHT:
+                    goalsInstance.createGoal(name, startDate, targetDate, type.toString(), doubleTarget, app.getTitleBar().getCurrentProfile());
                     break;
-                case "Frequency":
+                case FREQUENCY:
                     target = Integer.parseInt(target1);
-                    goalsInstance.createGoal(name, startDate, targetDate, target, type);
+                    goalsInstance.createGoal(name, startDate, targetDate, target, type.toString());
                     break;
-                case "Distance":
-                    goalsInstance.createGoal(name, startDate, targetDate, type, doubleTarget, app.getTitleBar().getCurrentProfile());
+                case DISTANCE:
+                    goalsInstance.createGoal(name, startDate, targetDate, type.toString(), doubleTarget, app.getTitleBar().getCurrentProfile());
                     break;
-                case "BMI":
-                    goalsInstance.createGoal(name, startDate, targetDate, type, doubleTarget, app.getTitleBar().getCurrentProfile());
+                case BMI:
+                    goalsInstance.createGoal(name, startDate, targetDate, type.toString(), doubleTarget, app.getTitleBar().getCurrentProfile());
                     break;
-                default:  //goal must be of type Time
-                    goalsInstance.createGoal(name, startDate, targetDate, type, doubleTarget, app.getTitleBar().getCurrentProfile());
+                case TIME:  //goal must be of type Time
+                    goalsInstance.createGoal(name, startDate, targetDate, type.toString(), doubleTarget, app.getTitleBar().getCurrentProfile());
                     break;
             }
             app.createPopUp(Alert.AlertType.INFORMATION, "Information", "Goal successfully created!");
@@ -607,6 +614,7 @@ public class GoalController implements Controllable{
             goalTypeCombo.getSelectionModel().select(null);
             this.addGoalsToTable();
             app.getDataWriter().saveProfile(app.getTitleBar().getCurrentProfile());
+<<<<<<< HEAD
 >>>>>>> f070a7b8... Fixed a bug with the current goals not being displayed properly.
         } catch (InvalidGoalDateException | BadGoalNameException | InvalidGoalTargetException | NoTypeSelectedException exception) {
             app.createPopUp(Alert.AlertType.ERROR, "Error", exception.getMessage());
@@ -615,6 +623,14 @@ public class GoalController implements Controllable{
 =======
             this.addGoalsToTable();
 >>>>>>> 24bc09d6... Refactored Goals screen to make it look nicer, and to use up free real estate
+=======
+        } catch (InvalidGoalDateException | BadGoalNameException | InvalidGoalTargetException exception) {
+            app.createPopUp(Alert.AlertType.ERROR, "Error", exception.getMessage());
+        } catch (NumberFormatException exception) {
+            app.createPopUp(Alert.AlertType.ERROR, "Error", "Please enter a valid number for target value.");
+        } catch (NullPointerException exception) {
+            app.createPopUp(Alert.AlertType.ERROR, "Error", "One or more fields has been left empty.");
+>>>>>>> ade3c4f0... Fixed bug with Goal Creation where no type selected error was never thrown. Also any null value caused an uncaught error.
         }
 
     }

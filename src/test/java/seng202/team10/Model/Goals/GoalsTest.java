@@ -59,7 +59,7 @@ public class GoalsTest {
 
 
     @Test
-    public void createCurrentWeightGoal() throws InvalidGoalDateException, NoTypeSelectedException, InvalidGoalTargetException, BadGoalNameException
+    public void createCurrentWeightGoal() throws InvalidGoalDateException, InvalidGoalTargetException, BadGoalNameException
     {
         LocalDateTime now = LocalDateTime.now();
         int year = now.getYear();
@@ -78,7 +78,7 @@ public class GoalsTest {
 
 
     @Test
-    public void createFutureWeightGoal() throws InvalidGoalDateException, NoTypeSelectedException, InvalidGoalTargetException, BadGoalNameException
+    public void createFutureWeightGoal() throws InvalidGoalDateException, InvalidGoalTargetException, BadGoalNameException
     {
         LocalDateTime now = LocalDateTime.now();
         int year = now.getYear();
@@ -94,7 +94,7 @@ public class GoalsTest {
     }
 
     @Test
-    public void createCurrentDistanceGoal() throws InvalidGoalDateException, NoTypeSelectedException, InvalidGoalTargetException, BadGoalNameException
+    public void createCurrentDistanceGoal() throws InvalidGoalDateException, InvalidGoalTargetException, BadGoalNameException
     {
         LocalDateTime now = LocalDateTime.now();
         int year = now.getYear();
@@ -113,7 +113,7 @@ public class GoalsTest {
 
 
     @Test
-    public void createFutureDistanceGoal() throws InvalidGoalDateException, NoTypeSelectedException, InvalidGoalTargetException, BadGoalNameException
+    public void createFutureDistanceGoal() throws InvalidGoalDateException, InvalidGoalTargetException, BadGoalNameException
     {
         LocalDateTime now = LocalDateTime.now();
         int year = now.getYear();
@@ -129,7 +129,7 @@ public class GoalsTest {
     }
 
     @Test
-    public void createCurrentTimeGoal() throws InvalidGoalDateException, NoTypeSelectedException, InvalidGoalTargetException, BadGoalNameException
+    public void createCurrentTimeGoal() throws InvalidGoalDateException, InvalidGoalTargetException, BadGoalNameException
     {
         LocalDateTime now = LocalDateTime.now();
         int year = now.getYear();
@@ -148,7 +148,7 @@ public class GoalsTest {
 
 
     @Test
-    public void createFutureTimeGoal() throws InvalidGoalDateException, NoTypeSelectedException, InvalidGoalTargetException, BadGoalNameException
+    public void createFutureTimeGoal() throws InvalidGoalDateException, InvalidGoalTargetException, BadGoalNameException
     {
         LocalDateTime now = LocalDateTime.now();
         int year = now.getYear();
@@ -164,7 +164,7 @@ public class GoalsTest {
     }
 
     @Test
-    public void createCurrentBmiGoal() throws InvalidGoalDateException, NoTypeSelectedException, InvalidGoalTargetException, BadGoalNameException
+    public void createCurrentBmiGoal() throws InvalidGoalDateException, InvalidGoalTargetException, BadGoalNameException
     {
         LocalDateTime now = LocalDateTime.now();
         int year = now.getYear();
@@ -183,7 +183,7 @@ public class GoalsTest {
 
 
     @Test
-    public void createFutureBmiGoal() throws InvalidGoalDateException, NoTypeSelectedException, InvalidGoalTargetException, BadGoalNameException
+    public void createFutureBmiGoal() throws InvalidGoalDateException, InvalidGoalTargetException, BadGoalNameException
     {
         LocalDateTime now = LocalDateTime.now();
         int year = now.getYear();
@@ -199,7 +199,7 @@ public class GoalsTest {
     }
 
     @Test
-    public void createCurrentFrequencyGoal() throws InvalidGoalDateException, NoTypeSelectedException, InvalidGoalTargetException, BadGoalNameException
+    public void createCurrentFrequencyGoal() throws InvalidGoalDateException, InvalidGoalTargetException, BadGoalNameException
     {
         LocalDateTime now = LocalDateTime.now();
         int year = now.getYear();
@@ -218,7 +218,7 @@ public class GoalsTest {
 
 
     @Test
-    public void createFutureFrequencyGoal() throws InvalidGoalDateException, NoTypeSelectedException, InvalidGoalTargetException, BadGoalNameException
+    public void createFutureFrequencyGoal() throws InvalidGoalDateException, InvalidGoalTargetException, BadGoalNameException
     {
         LocalDateTime now = LocalDateTime.now();
         int year = now.getYear();

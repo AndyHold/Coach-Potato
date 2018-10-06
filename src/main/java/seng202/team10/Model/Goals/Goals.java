@@ -5,7 +5,6 @@ import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.Exceptions.BadGoalNameException;
 import seng202.team10.Model.Exceptions.InvalidGoalDateException;
 import seng202.team10.Model.Exceptions.InvalidGoalTargetException;
-import seng202.team10.Model.Exceptions.NoTypeSelectedException;
 import seng202.team10.Model.UserProfile;
 
 import java.io.Serializable;
@@ -73,13 +72,10 @@ public class Goals implements Serializable {
      * @throws InvalidGoalDateException When invalid dates are entered.
      * @throws BadGoalNameException When invalid name is entered.
      * @throws InvalidGoalTargetException When invalid target is entered.
-     * @throws NoTypeSelectedException When type is null.
      */
-    public void createGoal(String name, DateTime startDate, DateTime targetDate, String type, Double value, UserProfile user) throws InvalidGoalDateException, InvalidGoalTargetException, BadGoalNameException, NoTypeSelectedException
+    public void createGoal(String name, DateTime startDate, DateTime targetDate, String type, Double value, UserProfile user) throws InvalidGoalDateException, InvalidGoalTargetException, BadGoalNameException
     {
-        if (type.length() == 0) {
-            throw new NoTypeSelectedException();
-        } else if (getCreatedGoalNames().contains(name)) {
+        if (getCreatedGoalNames().contains(name)) {
             throw new BadGoalNameException();
         } else {
             GoalType goalType = GoalType.getTypeFromString(type);
@@ -122,12 +118,9 @@ public class Goals implements Serializable {
      * @throws InvalidGoalDateException When invalid dates are entered.
      * @throws BadGoalNameException When invalid name is entered.
      * @throws InvalidGoalTargetException When invalid target is entered.
-     * @throws NoTypeSelectedException When type has not been chosen.
      */
-    public void createGoal(String name, DateTime startDate, DateTime targetDate, int freq, String type) throws InvalidGoalDateException, BadGoalNameException, InvalidGoalTargetException, NoTypeSelectedException {
-        if (type.length() == 0) {
-            throw new NoTypeSelectedException();
-        } else if (getCreatedGoalNames().contains(name)) {
+    public void createGoal(String name, DateTime startDate, DateTime targetDate, int freq, String type) throws InvalidGoalDateException, BadGoalNameException, InvalidGoalTargetException {
+        if (getCreatedGoalNames().contains(name)) {
             throw new BadGoalNameException();
         } else {
             LocalDateTime now = LocalDateTime.now();
