@@ -9,7 +9,7 @@
     -fx-font-size: 14px;
     -fx-background-radius: 1em;
     -fx-border-radius: 1em;
-    -fx-background-color: #4DD0E1;
+    -fx-background-color: linear-gradient(#0097A7 0%, #4DD0E1 100%);
     -fx-border-color: #0097A7;
     -fx-border-width: 2px;
     -fx-text-fill: #00001a;
@@ -32,21 +32,21 @@
 {
     -fx-background-radius: 1em;
     -fx-border-color: #0097A7;
-    -fx-background-color: #4DD0E1;
+    -fx-background-color: linear-gradient(#0097A7 0%, #4DD0E1 100%);
     -fx-border-radius: 1em;
     -fx-border-width: 2px;
 }
 
 .list-view .list-cell:filled
 {
-    -fx-background-color: #4DD0E1;
+    -fx-background-color: linear-gradient(#0097A7 0%, #4DD0E1 100%);
     -fx-text-fill: black;
 }
 
 .list-view .list-cell:selected
 {
     -fx-text-fill: white;
-    -fx-background-color: #4DD0E1;
+    -fx-background-color: linear-gradient(#0097A7 0%, #4DD0E1 100%);
     -fx-border-color: white;
 }
 
@@ -54,7 +54,7 @@
 {
     -fx-background-radius: 7px;
     -fx-border-color: #0097A7;
-    -fx-background-color: #4DD0E1;
+    -fx-background-color: linear-gradient(#0097A7 0%, #4DD0E1 100%);
     -fx-border-radius: 7px;
     -fx-border-width: 1px;
 }
@@ -65,7 +65,7 @@
     -fx-background-radius: 1em;
     -fx-border-radius: 1em;
     -fx-border-width: 2px;
-    -fx-background-color: #4DD0E1;
+    -fx-background-color: linear-gradient(#0097A7 0%, #4DD0E1 100%);
     -fx-border-color: #0097A7;
     -fx-text-fill: white;
 }
@@ -122,7 +122,7 @@
 {
     -fx-background-radius: 0 1em 0 0;
     -fx-border-radius: 0 1em 0 0;
-    -fx-background-color: linear-gradient(#8080ff 0%, #b3b3ff 100%);
+    -fx-background-color: linear-gradient(#0097A7 0%, #4DD0E1 100%);
     -fx-min-width: 150;
     -fx-max-width: 150;
     -fx-min-height: 115;
@@ -133,7 +133,7 @@
 {
     -fx-background-radius: 0;
     -fx-border-radius: 0;
-    -fx-background-color:  linear-gradient(#8080ff 0%, #b3b3ff 100%);
+    -fx-background-color:  linear-gradient(#0097A7 0%, #4DD0E1 100%);
     -fx-border-color: #0097A7;
     -fx-border-width: 2px;
     -fx-text-fill: white;
@@ -147,7 +147,7 @@
 {
     -fx-background-radius: 0 0 1em 0;
     -fx-border-radius: 0 0 1em 0;
-    -fx-background-color:  linear-gradient(#8080ff 0%, #b3b3ff 100%);
+    -fx-background-color:  linear-gradient(#0097A7 0%, #4DD0E1 100%);
     -fx-border-color: #0097A7;
     -fx-border-width: 2px;
     -fx-text-fill: white;
@@ -164,7 +164,7 @@
 
 #viewProfileButton:focused, #uploadDataButton:focused, #viewActivitiesButton:focused, #goalsButton:focused, #healthWarningsButton:focused, #logOutButton:focused, #graphsButton:focused
 {
-    -fx-background-color: green;
+    -fx-background-color: #00796B;
 }
 
 #viewProfileButton:focused .label, #uploadDataButton:focused .label, #viewActivitiesButton:focused .label,
@@ -198,7 +198,7 @@
 .table-view
 {
     -fx-background-radius: 1em;
-    -fx-background-color: #4DD0E1;
+    -fx-background-color: linear-gradient(#0097A7 0%, #4DD0E1 100%);
     -fx-border-radius: 1em;
     -fx-border-color: #0097A7;
 }
@@ -210,14 +210,14 @@
 
 .table-row-cell
 {
-    -fx-background-color: #4DD0E1;
+    -fx-background-color: linear-gradient(#0097A7 0%, #4DD0E1 100%);
     -fx-border-color: #0097A7;
     -fx-text-background-color: #00001a;
 }
 
 .table-row-cell:selected
 {
-    -fx-background-color: #4DD0E1;
+    -fx-background-color: linear-gradient(#0097A7 0%, #4DD0E1 100%);
     -fx-border-color: white;
     -fx-text-background-color: white;
 }
@@ -225,7 +225,7 @@
 .table-view .column-header-background
 {
     -fx-background-radius: 1em 1em 0 0;
-    -fx-background-color: #8080ff;
+    -fx-background-color: linear-gradient(#0097A7 0%, #4DD0E1 100%);
 }
 
 .table-view .column-header-background .label
@@ -257,7 +257,7 @@
 /* The main scrollbar **thumb** CSS class which we drag every time (movable) */
 .table-view .scroll-bar:horizontal .thumb,
 .table-view .scroll-bar:vertical .thumb {
-    -fx-background-color: #4DD0E1;
+    -fx-background-color: linear-gradient(#0097A7 0%, #4DD0E1 100%);
     -fx-background-insets: 2, 0, 0;
     -fx-background-radius: 2em;
 }
