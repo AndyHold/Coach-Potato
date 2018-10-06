@@ -108,7 +108,6 @@ public class CalendarPaneController {
         setApp(app);
         setProfileController(profileController);
         currentYearMonth = yearMonth;
-        //DateTime date = new DateTime(2010,1,1,1,1,1);
 
         // Create the calendar grid pane
         GridPane calendar = new GridPane();

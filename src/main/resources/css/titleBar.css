@@ -9,8 +9,8 @@
     -fx-font-size: 14px;
     -fx-background-radius: 1em;
     -fx-border-radius: 1em;
-    -fx-background-color:  #b3b3ff;
-    -fx-border-color: blue;
+    -fx-background-color: #4DD0E1;
+    -fx-border-color: #0097A7;
     -fx-border-width: 2px;
     -fx-text-fill: #00001a;
 }
@@ -22,39 +22,39 @@
 
 .button:focused
 {
-    -fx-text-fill: #b3b3ff;
-    -fx-background-color: blue;
-    -fx-border-color: #b3b3ff;
+    -fx-text-fill: white;
+    -fx-background-color: #0097A7;
+    -fx-border-color: #4DD0E1;
     -fx-border-width: 4px;
 }
 
 .list-view
 {
     -fx-background-radius: 1em;
-    -fx-border-color: blue;
-    -fx-background-color: #b3b3ff;
+    -fx-border-color: #0097A7;
+    -fx-background-color: #4DD0E1;
     -fx-border-radius: 1em;
     -fx-border-width: 2px;
 }
 
 .list-view .list-cell:filled
 {
-    -fx-background-color: #b3b3ff;
+    -fx-background-color: #4DD0E1;
     -fx-text-fill: black;
 }
 
 .list-view .list-cell:selected
 {
     -fx-text-fill: white;
-    -fx-background-color: blue;
+    -fx-background-color: #4DD0E1;
     -fx-border-color: white;
 }
 
 .list-view .list-cell
 {
     -fx-background-radius: 7px;
-    -fx-border-color: blue;
-    -fx-background-color: #b3b3ff;
+    -fx-border-color: #0097A7;
+    -fx-background-color: #4DD0E1;
     -fx-border-radius: 7px;
     -fx-border-width: 1px;
 }
@@ -65,9 +65,9 @@
     -fx-background-radius: 1em;
     -fx-border-radius: 1em;
     -fx-border-width: 2px;
-    -fx-background-color:  #b3b3ff;
-    -fx-border-color: blue;
-    -fx-text-fill: blue;
+    -fx-background-color: #4DD0E1;
+    -fx-border-color: #0097A7;
+    -fx-text-fill: white;
 }
 
 .label
@@ -105,7 +105,7 @@
 {
     -fx-background-color: f0f0f0;
     -fx-background-radius: 2em;
-    -fx-border-color: blue;
+    -fx-border-color: #0097A7;
     -fx-border-width: 2px;
     -fx-border-radius: 2em;
 }
@@ -134,9 +134,9 @@
     -fx-background-radius: 0;
     -fx-border-radius: 0;
     -fx-background-color:  linear-gradient(#8080ff 0%, #b3b3ff 100%);
-    -fx-border-color: blue;
+    -fx-border-color: #0097A7;
     -fx-border-width: 2px;
-    -fx-text-fill: blue;
+    -fx-text-fill: white;
     -fx-min-width: 150;
     -fx-max-width: 150;
     -fx-min-height: 115;
@@ -148,9 +148,9 @@
     -fx-background-radius: 0 0 1em 0;
     -fx-border-radius: 0 0 1em 0;
     -fx-background-color:  linear-gradient(#8080ff 0%, #b3b3ff 100%);
-    -fx-border-color: blue;
+    -fx-border-color: #0097A7;
     -fx-border-width: 2px;
-    -fx-text-fill: blue;
+    -fx-text-fill: white;
     -fx-min-width: 150;
     -fx-max-width: 150;
     -fx-min-height: 115;
@@ -171,7 +171,7 @@
 #goalsButton:focused .label, #healthWarningsButton:focused .label, #logOutButton:focused .label,
 #graphsButton:focused .label
 {
-    -fx-text-fill: blue;
+    -fx-text-fill: white;
 }
 
 #closeButton
@@ -198,9 +198,9 @@
 .table-view
 {
     -fx-background-radius: 1em;
-    -fx-background-color: #b3b3ff;
+    -fx-background-color: #4DD0E1;
     -fx-border-radius: 1em;
-    -fx-border-color: blue;
+    -fx-border-color: #0097A7;
 }
 
 .column-header
@@ -210,14 +210,14 @@
 
 .table-row-cell
 {
-    -fx-background-color: #b3b3ff;
-    -fx-border-color: blue;
+    -fx-background-color: #4DD0E1;
+    -fx-border-color: #0097A7;
     -fx-text-background-color: #00001a;
 }
 
 .table-row-cell:selected
 {
-    -fx-background-color: blue;
+    -fx-background-color: #4DD0E1;
     -fx-border-color: white;
     -fx-text-background-color: white;
 }
@@ -232,7 +232,7 @@
 {
     -fx-background-radius: 1em 1em 0 0;
     -fx-background-color: transparent;
-    -fx-text-fill: blue;
+    -fx-text-fill: white;
 }
 
 
@@ -249,7 +249,7 @@
 .table-view .scroll-bar:horizontal .track,
 .table-view .scroll-bar:vertical .track{
     -fx-background-color: transparent;
-    -fx-border-color: blue;
+    -fx-border-color: #0097A7;
     -fx-background-radius: 2em;
     -fx-border-radius:2em;
 }
@@ -257,7 +257,7 @@
 /* The main scrollbar **thumb** CSS class which we drag every time (movable) */
 .table-view .scroll-bar:horizontal .thumb,
 .table-view .scroll-bar:vertical .thumb {
-    -fx-background-color: blue;
+    -fx-background-color: #4DD0E1;
     -fx-background-insets: 2, 0, 0;
     -fx-background-radius: 2em;
 }
