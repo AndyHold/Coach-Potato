@@ -1,6 +1,6 @@
 package seng202.team10.Visual;
 
-import com.sun.istack.internal.NotNull;
+
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -18,11 +18,14 @@ import javafx.util.Duration;
 import seng202.team10.Control.MainController;
 import seng202.team10.Model.ActivitiesData.HealthWarning;
 import seng202.team10.Model.ActivitiesData.HealthWarningType;
-
 import java.util.ArrayList;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+
+>>>>>>> 6757ee04... Removed bad import to fix the pipeline
 /**
  * Health Warnings Controller class for Coach Potato
  *
