@@ -134,7 +134,7 @@ public class UserProfileTest {
         assertEquals("Obese", bmicat);
     }
     @Test
-    public void obeseBMI() throws InvalidWeightException, InvalidHeightException
+    public void extremelyObeseBMI() throws InvalidWeightException, InvalidHeightException
     {
 <<<<<<< HEAD
         testProfile.setWeight(250);
@@ -148,6 +148,6 @@ public class UserProfileTest {
 >>>>>>> ff79906... 1) Changed getHeartString so it displays an int. 2) Added getActivitiesSpeed method to UserProfile. 3) Updated the way recent activities are displayed on profile screen. 4) Fixed the failing tests so that the pipeline works.
 >>>>>>> 9bd0c9a0... 1) Changed getHeartString so it displays an int. 2) Added getActivitiesSpeed method to UserProfile. 3) Updated the way recent activities are displayed on profile screen. 4) Fixed the failing tests so that the pipeline works.
         String bmicat = testProfile.getBmiCategory();
-        assertEquals("Obese", bmicat);
+        assertEquals("Extremely obese", bmicat);
     }
 }
