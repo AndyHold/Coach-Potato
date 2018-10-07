@@ -344,6 +344,10 @@ public class ProfileController {
         calendarPane.getChildren().add(new CalendarPaneController(YearMonth.now(), mainController , this).getView());
 >>>>>>> be0346c6... Refactored "app" to "mainController"
 
+        activity1HBox.setVisible(false);
+        activity2HBox.setVisible(false);
+        activity3HBox.setVisible(false);
+
         // Sets up the calendar and other stats if the user has already uploaded the data to the app else all values are 0 initially.
         if (currentUser.getActivities().size() > 0) {
 

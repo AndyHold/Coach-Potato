@@ -98,7 +98,7 @@
             <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="375.0">
                <children>
                   <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="100.0" text="User Name: " />
-                  <TextField fx:id="usernameTA" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="0.0" style="-fx-background-color: transparent; -fx-text-fill: black;" text="User name">
+                  <TextField fx:id="usernameTA" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="265.0" style="-fx-background-color: transparent; -fx-text-fill: black;" text="User name">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -243,10 +243,14 @@
             </HBox>
          </children>
       </VBox>
-      <VBox layoutX="980.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="280.0" spacing="30.0">
+      <VBox layoutX="980.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="280.0">
          <children>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <Label fx:id="dailyStatsLabel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="380.0" text="Daily Statistics:">
+=======
+            <Label fx:id="dailyStatsLabel" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="280.0" text="Daily Statistics">
+>>>>>>> d196885b... Created labels on profile screen to display instructions for goals, activities stats and changed the design.
                <font>
                   <Font name="System Bold Italic" size="18.0" />
                </font>
@@ -254,6 +258,7 @@
                   <Insets left="10.0" />
                </padding>
             </Label>
+<<<<<<< HEAD
             <HBox fx:id="activity1HBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="380.0">
 =======
       <Pane fx:id="calendarPane" layoutX="455.0" layoutY="155.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="490.0" />
@@ -345,15 +350,10 @@
 =======
             <VBox fx:id="dailyStatsVBox" maxHeight="200.0" maxWidth="280.0" minHeight="200.0" minWidth="280.0" prefHeight="200.0" prefWidth="280.0" spacing="5.0">
 >>>>>>> f432724d... Refactored and improved the GUI for the profile screen by a lot.
+=======
+            <VBox fx:id="dailyStatsVBox" maxHeight="150.0" maxWidth="280.0" minHeight="150.0" minWidth="280.0" prefHeight="150.0" prefWidth="280.0">
+>>>>>>> d196885b... Created labels on profile screen to display instructions for goals, activities stats and changed the design.
                <children>
-                  <Label fx:id="dailyStatsLabel" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="280.0" text="Daily Statistics">
-                     <font>
-                        <Font name="System Bold Italic" size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
                   <HBox fx:id="activity1HBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="280.0">
                      <children>
                         <Text fx:id="activity1Text" strokeType="OUTSIDE" strokeWidth="0.0" text="Distance covered: 0.00 km" wrappingWidth="270.0">
@@ -392,14 +392,17 @@
                   </HBox>
                </children>
             </VBox>
-            <VBox fx:id="goalVBox" maxHeight="200.0" maxWidth="280.0" minHeight="200.0" minWidth="280.0" prefHeight="200.0" prefWidth="280.0">
+            <Label fx:id="goalDescriptionLabel" alignment="CENTER" maxHeight="50.0" maxWidth="280.0" minHeight="50.0" minWidth="280.0" prefHeight="50.0" prefWidth="280.0" text="Goal Statistics">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Label>
+            <VBox fx:id="goalVBox" maxHeight="150.0" maxWidth="280.0" minHeight="150.0" minWidth="280.0" prefHeight="150.0" prefWidth="280.0">
                <children>
-                  <Label fx:id="goalDescriptionLabel" alignment="CENTER" maxHeight="50.0" maxWidth="280.0" minHeight="50.0" minWidth="280.0" prefHeight="50.0" prefWidth="280.0" text="Goal Statistics">
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <HBox maxHeight="50.0" maxWidth="280.0" minHeight="50.0" minWidth="280.0" prefHeight="50.0" prefWidth="280.0">
+                  <HBox fx:id="goalStats1HBox" maxHeight="50.0" maxWidth="280.0" minHeight="50.0" minWidth="280.0" prefHeight="50.0" prefWidth="280.0">
                      <children>
                         <Text fx:id="goalNameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Goal Name: " wrappingWidth="270.0">
                            <font>
@@ -411,7 +414,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </HBox>
-                  <HBox layoutX="10.0" layoutY="60.0" maxHeight="50.0" maxWidth="280.0" minHeight="50.0" minWidth="280.0" prefHeight="50.0" prefWidth="280.0">
+                  <HBox fx:id="goalStats2HBox" layoutX="10.0" layoutY="60.0" maxHeight="50.0" maxWidth="280.0" minHeight="50.0" minWidth="280.0" prefHeight="50.0" prefWidth="280.0">
                      <children>
                         <Text fx:id="goalStatusText" strokeType="OUTSIDE" strokeWidth="0.0" text="Goal Status: " wrappingWidth="270.0">
                            <font>
@@ -426,7 +429,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </HBox>
-                  <HBox layoutX="10.0" layoutY="110.0" maxHeight="50.0" maxWidth="280.0" minHeight="50.0" minWidth="280.0" prefHeight="50.0" prefWidth="280.0">
+                  <HBox fx:id="goalStats3HBox" layoutX="10.0" layoutY="110.0" maxHeight="50.0" maxWidth="280.0" minHeight="50.0" minWidth="280.0" prefHeight="50.0" prefWidth="280.0">
                      <children>
                         <Text fx:id="goalTypeText" strokeType="OUTSIDE" strokeWidth="0.0" text="Goal Type: " wrappingWidth="270.0">
                            <font>
@@ -440,14 +443,17 @@
                   </HBox>
                </children>
             </VBox>
-            <VBox fx:id="activityVBox" maxHeight="200.0" maxWidth="280.0" minHeight="200.0" minWidth="280.0" prefHeight="200.0" prefWidth="280.0" style="-fx-background-color: linear-gradient(#0097A7 0%, #4DD0E1 100%); -fx-border-color: #0097A7; -fx-border-width: 2px;">
+            <Label fx:id="activityDescriptionLabel" alignment="CENTER" maxHeight="50.0" maxWidth="280.0" minHeight="50.0" minWidth="280.0" prefHeight="50.0" prefWidth="280.0" text="Activity Statistics">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Label>
+            <VBox fx:id="activityVBox" maxHeight="150.0" maxWidth="280.0" minHeight="150.0" minWidth="280.0" prefHeight="150.0" prefWidth="280.0" style="-fx-background-color: linear-gradient(#0097A7 0%, #4DD0E1 100%); -fx-border-color: #0097A7; -fx-border-width: 2px;">
                <children>
-                  <Label fx:id="activityDescriptionLabel" alignment="CENTER" maxHeight="50.0" maxWidth="280.0" minHeight="50.0" minWidth="280.0" prefHeight="50.0" prefWidth="280.0" text="Activity Statistics">
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <HBox maxHeight="50.0" maxWidth="280.0" minHeight="50.0" minWidth="280.0" prefHeight="50.0" prefWidth="280.0">
+                  <HBox fx:id="activityStats1HBox" maxHeight="50.0" maxWidth="280.0" minHeight="50.0" minWidth="280.0" prefHeight="50.0" prefWidth="280.0">
                      <children>
                         <Text fx:id="activityNameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Activity Name: " wrappingWidth="270.0">
                            <font>
@@ -539,6 +545,9 @@
       </VBox>
       <Label fx:id="activitiesLabel" alignment="BASELINE_CENTER" layoutX="480.0" layoutY="600.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="180.0" text="Click on a date to get more details" textAlignment="CENTER" wrapText="true" />
       <Label fx:id="goalsListLabel" alignment="BASELINE_CENTER" layoutX="730.0" layoutY="600.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="180.0" text="Click on a date to get more details" textAlignment="CENTER" wrapText="true" />
-      <TextArea fx:id="helpTextArea" editable="false" layoutX="832.0" layoutY="45.0" prefHeight="490.0" prefWidth="400.0" />
+      <TextArea fx:id="helpTextArea" editable="false" layoutX="472.0" layoutY="45.0" prefHeight="490.0" prefWidth="400.0" />
+      <Label fx:id="activitiesLabel" alignment="BASELINE_CENTER" layoutX="1030.0" layoutY="150.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="180.0" text="Click on a date to get more details" textAlignment="CENTER" wrapText="true" />
+      <Label fx:id="activitiesLabel" alignment="BASELINE_CENTER" layoutX="1030.0" layoutY="380.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="180.0" text="Click on a goal to get more details" textAlignment="CENTER" wrapText="true" />
+      <Label fx:id="activitiesLabel" alignment="BASELINE_CENTER" layoutX="1030.0" layoutY="610.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="180.0" text="Click on an activity to get more details" textAlignment="CENTER" wrapText="true" />
    </children>
 </Pane>
