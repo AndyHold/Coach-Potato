@@ -13,7 +13,7 @@
 .label
 {
     -fx-font-size: 19px;
-    -fx-text-fill: blue;
+    -fx-text-fill: #00796B;
 }
 
 #helpButton

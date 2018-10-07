@@ -242,8 +242,8 @@ public class CalendarPaneController {
         monthsComboBox.setItems(months);
         yearsComboBox.setItems(years);
 
-        monthsComboBox.setStyle("-fx-border-color: #0097A7; " +
-                                "-fx-background-color: #4DD0E1; " +
+        monthsComboBox.setStyle("-fx-border-color: #4DD0E1; " +
+                                "-fx-background-color: #0097A7; " +
                                 "-fx-background-radius: 1em 0 0 0; " +
                                 "-fx-border-radius: 1em 0 0 0;");
         monthsComboBox.setVisibleRowCount(12);
@@ -252,8 +252,8 @@ public class CalendarPaneController {
         monthsComboBox.setPrefSize(120, 30);
         monthsComboBox.setValue(currentYearMonth.getMonth());
 
-        yearsComboBox.setStyle("-fx-border-color: #0097A7; " +
-                               "-fx-background-color: #4DD0E1; " +
+        yearsComboBox.setStyle("-fx-border-color: #4DD0E1; " +
+                               "-fx-background-color: #0097A7; " +
                                "-fx-background-radius: 0 1em 0 0; " +
                                "-fx-border-radius: 0 1em 0 0;");
         yearsComboBox.setVisibleRowCount(12);
@@ -333,7 +333,7 @@ public class CalendarPaneController {
             }
             String style = null;
             Text txt = new Text(String.valueOf(calendarDate.getDayOfMonth()));
-            txt.setFill(Color.BLACK);
+            txt.setFill(Color.WHITE);
             txt.setTextAlignment(TextAlignment.CENTER);
             ap.setDate(calendarDate);
             ap.setCurrentUser (currentUser);
@@ -355,7 +355,7 @@ public class CalendarPaneController {
                 }
                 if (count != 0) {
                     txt.setText(txt.getText() + String.format("\n %d A", count));
-                    style = "-fx-background-color: blue;";
+                    style = "-fx-background-color: #01579B;";
                 }
                 ap.setActivities(todayActivities);
             }
@@ -374,14 +374,14 @@ public class CalendarPaneController {
                 if (countGoals != 0) {
                     txt.setText(txt.getText() + String.format("\n %d G", countGoals));
                     if (style != null) {
-                        style = "-fx-background-color: linear-gradient(blue 0%, green 100%);";
-                    } else style = "-fx-background-color: green;";
+                        style = "-fx-background-color: linear-gradient(#01579B 0%, #00695C 100%);";
+                    } else style = "-fx-background-color: #00695C;";
                 }
                 ap.setTodayGoals(todayGoals);
             }
 
             if (calendarDate.getMonth() == yearMonth.getMonth()) {
-                txt.setFill(Color.WHITE);
+                txt.setFill(Color.BLACK);
                 ap.getChildren().add(txt);
                 ap.setStyle(style);
             } else {

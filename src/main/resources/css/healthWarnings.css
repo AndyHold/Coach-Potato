@@ -35,7 +35,7 @@
 #bradycardiaViewbutton:focused, #tachycardiaViewButton:focused
 {
     -fx-border-color: white;
-    -fx-background-color: #00796B;
+    -fx-background-color: #0097A7;
     -fx-text-fill: white;
 }
 
@@ -48,7 +48,7 @@
 #tachycardiaVBox, #bradycardiaVBox, #cardiovascularMortalityVBox
 {
     -fx-background-radius: 1em;
-    -fx-background-color: linear-gradient(#0097A7 0%, #4DD0E1 100%);
+    -fx-background-color: linear-gradient(#4DD0E1 0%, #B2EBF2 100%);
     -fx-border-radius: 1em;
     -fx-border-width: 3px;
     -fx-border-color: #0097A7;

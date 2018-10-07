@@ -14,7 +14,7 @@
 
 .tab
 {
-    -fx-background-color: linear-gradient(#0097A7 0%, #4DD0E1 100%);
+    -fx-background-color: linear-gradient(#4DD0E1 0%, #B2EBF2 100%);
     -fx-background-radius: 1em;
     -fx-border-radius: 1em
 }
@@ -28,7 +28,11 @@
 .tab-pane
 {
     -fx-background-radius: 1em;
+<<<<<<< HEAD
     -fx-background-color: #4DD0E1;
+=======
+    -fx-background-color: #B2EBF2;
+>>>>>>> e9619980... Changed the colour scheme to a lighter colour and text colours as Readability is key!
     -fx-border-radius: 1em;
     -fx-border-width: 2px;
     -fx-border-color: #0097A7;
@@ -44,7 +48,7 @@
 #caloriesLabel,
 #stressLabel
 {
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 
 #helpButton

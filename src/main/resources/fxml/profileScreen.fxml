@@ -274,6 +274,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             <Label fx:id="dailyStatsLabel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="380.0" text="Daily Statistics:">
 =======
             <Label fx:id="dailyStatsLabel" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="280.0" text="Daily Statistics">
@@ -281,6 +282,9 @@
 =======
             <Label fx:id="dailyStatsLabel" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="280.0" style="-fx-background-color: #4DD0E1; -fx-border-color: #0097A7;" text="Daily Statistics">
 >>>>>>> 913f38da... Created labels on profile screen to display instructions for goals, activities, stats and changed the design.
+=======
+            <Label fx:id="dailyStatsLabel" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="280.0" style="-fx-background-color: #0097A7;" text="Daily Statistics">
+>>>>>>> e9619980... Changed the colour scheme to a lighter colour and text colours as Readability is key!
                <font>
                   <Font name="System Bold Italic" size="18.0" />
                </font>
@@ -422,7 +426,7 @@
                   </HBox>
                </children>
             </VBox>
-            <Label fx:id="goalDescriptionLabel" alignment="CENTER" maxHeight="50.0" maxWidth="280.0" minHeight="50.0" minWidth="280.0" prefHeight="50.0" prefWidth="280.0" style="-fx-background-color: #4DD0E1; -fx-border-color: #0097A7;" text="Goal Statistics">
+            <Label fx:id="goalDescriptionLabel" alignment="CENTER" maxHeight="50.0" maxWidth="280.0" minHeight="50.0" minWidth="280.0" prefHeight="50.0" prefWidth="280.0" style="-fx-background-color: #0097A7;" text="Goal Statistics">
                <padding>
                   <Insets left="10.0" />
                </padding>
@@ -473,7 +477,7 @@
                   </HBox>
                </children>
             </VBox>
-            <Label fx:id="activityDescriptionLabel" alignment="CENTER" maxHeight="50.0" maxWidth="280.0" minHeight="50.0" minWidth="280.0" prefHeight="50.0" prefWidth="280.0" style="-fx-background-color: #4DD0E1; -fx-border-color: #0097A7;" text="Activity Statistics">
+            <Label fx:id="activityDescriptionLabel" alignment="CENTER" maxHeight="50.0" maxWidth="280.0" minHeight="50.0" minWidth="280.0" prefHeight="50.0" prefWidth="280.0" style="-fx-background-color: #0097A7;" text="Activity Statistics">
                <padding>
                   <Insets left="10.0" />
                </padding>
@@ -484,7 +488,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <VBox fx:id="activityVBox" maxHeight="150.0" maxWidth="280.0" minHeight="150.0" minWidth="280.0" prefHeight="150.0" prefWidth="280.0" style="-fx-background-color: linear-gradient(#0097A7 0%, #4DD0E1 100%); -fx-border-color: #0097A7; -fx-border-width: 2px;">
+            <VBox fx:id="activityVBox" maxHeight="150.0" maxWidth="280.0" minHeight="150.0" minWidth="280.0" prefHeight="150.0" prefWidth="280.0" style="-fx-background-color: linear-gradient(#4DD0E1 0%, #B2EBF2 100%); -fx-border-color: #0097A7; -fx-border-width: 2px;">
                <children>
                   <HBox fx:id="activityStats1HBox" maxHeight="50.0" maxWidth="280.0" minHeight="50.0" minWidth="280.0" prefHeight="50.0" prefWidth="280.0">
                      <children>
@@ -567,11 +571,37 @@
             </ImageView>
          </graphic>
       </Button>
+<<<<<<< HEAD
+=======
+      <VBox layoutX="455.0" layoutY="510.0" prefHeight="200.0" prefWidth="235.0" style="-fx-border-color: #0097A7; -fx-border-width: 2px;">
+         <children>
+            <Label fx:id="activitiesListLabel" alignment="BASELINE_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="232.0" style="-fx-background-color: #0097A7;" text="Activities" />
+            <ListView fx:id="activitiesListView" onMouseClicked="#setActivityLabels" prefHeight="165.0" prefWidth="235.0" />
+         </children>
+      </VBox>
+      <VBox layoutX="710.0" layoutY="510.0" maxHeight="235.0" maxWidth="-Infinity" minHeight="195.0" minWidth="-Infinity" prefHeight="200.0" prefWidth="235.0" style="-fx-border-color: #0097A7; -fx-border-width: 2px;">
+         <children>
+            <Label fx:id="goalsListLabel" alignment="BASELINE_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="231.0" style="-fx-background-color: #0097A7;" text="Goals" />
+            <ListView fx:id="goalsListView" onMouseClicked="#setGoalLabels" prefHeight="165.0" prefWidth="235.0" />
+         </children>
+      </VBox>
+>>>>>>> e9619980... Changed the colour scheme to a lighter colour and text colours as Readability is key!
       <Label fx:id="activitiesListClickLabel" alignment="BASELINE_CENTER" layoutX="480.0" layoutY="610.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="180.0" text="Click on a date to get more details" textAlignment="CENTER" wrapText="true" />
       <Label fx:id="goalsListClickLabel" alignment="BASELINE_CENTER" layoutX="730.0" layoutY="610.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="180.0" text="Click on a date to get more details" textAlignment="CENTER" wrapText="true" />
       <Label fx:id="statsClickLabel" alignment="BASELINE_CENTER" layoutX="1030.0" layoutY="150.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="180.0" text="Click on a date to get more details" textAlignment="CENTER" wrapText="true" />
       <Label fx:id="goalsClickLabel" alignment="BASELINE_CENTER" layoutX="1030.0" layoutY="380.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="180.0" text="Click on a goal to get more details" textAlignment="CENTER" wrapText="true" />
       <Label fx:id="activitiesClickLabel" alignment="BASELINE_CENTER" layoutX="1030.0" layoutY="610.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="180.0" text="Click on an activity to get more details" textAlignment="CENTER" wrapText="true" />
+<<<<<<< HEAD
       <TextArea fx:id="helpTextArea" editable="false" layoutX="825.0" layoutY="45.0" prefHeight="490.0" prefWidth="400.0" />
+=======
+      <Label fx:id="recentActivitiesLabel" alignment="CENTER" layoutX="20.0" layoutY="510.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="400.0" style="-fx-background-color: #0097A7;" text="Statistics until today">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </Label>
+>>>>>>> e9619980... Changed the colour scheme to a lighter colour and text colours as Readability is key!
    </children>
 </Pane>

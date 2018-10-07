@@ -33,7 +33,7 @@
 .tab
 {
     -fx-background-radius: 1em 1em 0 0;
-    -fx-background-color: linear-gradient(#0097A7 0%, #4DD0E1 100%);
+    -fx-background-color: linear-gradient(#4DD0E1 0%, #B2EBF2 100%);
 }
 
 .tab:selected
@@ -45,7 +45,7 @@
 
 #createGoalVBox
 {
-    -fx-background-color: linear-gradient(#0097A7 0%, #4DD0E1 100%);
+    -fx-background-color: linear-gradient(#4DD0E1 0%, #B2EBF2 100%);
     -fx-background-radius: 1em;
     -fx-border-radius: 1em;
     -fx-border-width: 3px;

@@ -36,7 +36,7 @@
 
 #overallStatsVBox, #dailyStatsVBox, #wholeProfileVBox, #goalVBox
 {
-    -fx-background-color: linear-gradient(#0097A7 0%, #4DD0E1 100%);
+    -fx-background-color: linear-gradient(#4DD0E1 0%, #B2EBF2 100%);
     -fx-border-width: 2px;
     -fx-border-color: #0097A7;
     -fx-background-radius: 0;
@@ -45,7 +45,7 @@
 
 #distanceText, #velocityText, #heartRateText, #activity1Text, #activity2Text, #activity3Text
 {
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 
 #calendarPane .button
@@ -57,7 +57,7 @@
 .list-view
 {
     -fx-background-radius: 0;
-    -fx-background-color: linear-gradient(#0097A7 0%, #4DD0E1 100%);
+    -fx-background-color: linear-gradient(#4DD0E1 0%, #B2EBF2 100%);
     -fx-border-color: #0097A7;
     -fx-border-radius: 0;
     -fx-border-width: 2px;
@@ -65,20 +65,20 @@
 
 .list-view .list-cell:filled
 {
-    -fx-background-color: linear-gradient(#0097A7 0%, #4DD0E1 100%);
-    -fx-text-fill: white;
+    -fx-background-color: linear-gradient(#4DD0E1 0%, #B2EBF2 100%);
+    -fx-text-fill: black;
 }
 
 .list-view .list-cell:selected
 {
-    -fx-text-fill: white;
-    -fx-background-color: linear-gradient(#0097A7 0%, #4DD0E1 100%);
+    -fx-text-fill: black;
+    -fx-background-color: linear-gradient(#4DD0E1 0%, #B2EBF2 100%);
     -fx-border-color: white;
 }
 
 .list-view .list-cell {
     -fx-background-radius: 0;
-    -fx-background-color: linear-gradient(#0097A7 0%, #4DD0E1 100%);
+    -fx-background-color: linear-gradient(#4DD0E1 0%, #B2EBF2 100%);
     -fx-border-color: #0097A7;
     -fx-border-radius: 0;
     -fx-border-width: 1px;
@@ -87,13 +87,13 @@
 #calendarPane .list-cell:selected
 {
     -fx-background-color: transparent;
-    -fx-text-fill: white;
+    -fx-text-fill: black;
     -fx-border-color: white;
 }
 
 #calendarPane .list-view
 {
-    -fx-background-color: linear-gradient(#0097A7 0%, #4DD0E1 100%);
+    -fx-background-color: linear-gradient(#4DD0E1 0%, #B2EBF2 100%);
     -fx-border-color: #0097A7;
 }
 
