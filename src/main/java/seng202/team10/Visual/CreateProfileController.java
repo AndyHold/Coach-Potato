@@ -525,7 +525,7 @@ public class CreateProfileController implements Controllable
                 throw new UserNameException();
             }
             String nameString = getTextFieldString(nameEntry).substring(0,1).toUpperCase() + getTextFieldString(nameEntry).substring(1).toLowerCase();
-            this.mainController.checkUniqueName(nameString);
+            nameString = this.mainController.checkUniqueName(nameString);
             try {
                 userProfile.setName(nameString);
             } catch (UserNameException | IllegalArgumentException exception) {

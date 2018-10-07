@@ -599,6 +599,8 @@ public class UploadDataController {
         try {
             // Get name of activity
             String activityName = activityNameTextField.getText();
+            String nnameString = activityName.replaceAll("\\s+", " ");
+            nnameString = nnameString.trim();
             if (manualDataTableView.getItems().size() < 2) {
                 // If Entry list is empty send error
                 this.mainController.createPopUp(Alert.AlertType.ERROR, "Entry Error", "You have not added enough Entries to the list");
@@ -606,8 +608,8 @@ public class UploadDataController {
                 // Else get date of first Entry
                 ObservableList<Entry> currentEntries = manualDataTableView.getItems();
                 // Create Activity
-                Activity newActivity = new Activity(activityName);
-                newActivity.setType(ActivityType.determineType(activityName));
+                Activity newActivity = new Activity(nnameString);
+                newActivity.setType(ActivityType.determineType(nnameString));
                 // Iterate over Entries and add them to Activity
                 for (Entry entry: currentEntries) {
                     newActivity.addEntry(entry);
@@ -620,7 +622,7 @@ public class UploadDataController {
                 // Reserialize profile after adding data
                 mainController .getDataWriter().saveProfile (currentUser);
                 // Display a success pop up
-                this.mainController.createPopUp(Alert.AlertType.INFORMATION, "Success", "You have successfully created the activity \"" + activityName + "\"");
+                this.mainController.createPopUp(Alert.AlertType.INFORMATION, "Success", "You have successfully created the activity \"" + nnameString + "\"");
                 // Reset table, text field and ComboBox to be blank
                 clearTableView();
                 activityNameTextField.setText("");

@@ -486,9 +486,9 @@ public class ProfileController {
         String oldName = currentUser.getName();
         try {
             String nameString = usernameTA.getText();
-            mainController .checkUniqueName(nameString);
+            String newName = mainController .checkUniqueName(nameString);
             try {
-                currentUser.setName(nameString);
+                currentUser.setName(newName);
             } catch (UserNameException | IllegalArgumentException exception) {
                 mainController .createPopUp(Alert.AlertType.ERROR, "Invalid Username", "Please enter a valid username: It should be less than 50 characters and only contain alphanumeric characters." );
             }

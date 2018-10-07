@@ -34,7 +34,9 @@ public class Goal implements Serializable {
      */
     public Goal(String name, DateTime startDate, DateTime targetDate, String type) throws InvalidGoalDateException, BadGoalNameException
     {
-        setName(name);
+        String nname = name.replaceAll("\\s+", " ");
+        nname = nname.trim();
+        setName(nname);
         setDates(startDate, targetDate);
         this.goalType = type;
         goalAchievedStatus = false;

@@ -639,18 +639,28 @@ public class MainController extends Application {
      * @throws UniqueNameException When a profile already exists with that name.
 >>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
+<<<<<<< HEAD
 >>>>>>> 37d12d4e... Added a load of missing javadoc all over the place
     public void checkUniqueName(String userName) throws UniqueNameException
+=======
+    public String checkUniqueName(String userName) throws UniqueNameException
+>>>>>>> 89f438da... made it so that goal names, activity names, and profile names cannot have more than one space
     {
-        if (titleBarController.getCurrentProfile() == null || !userName.contentEquals(titleBarController.getCurrentProfile().getName())) {
+        String nnameString = userName.replaceAll("\\s+", " ");
+        nnameString = nnameString.trim();
+        if (titleBarController.getCurrentProfile() == null || !nnameString.contentEquals(titleBarController.getCurrentProfile().getName())) {
             for (String name : this.getUserNames()) {
-                if (name.equals(userName)) {
+                if (name.equals(nnameString)) {
                     throw new UniqueNameException();
                 }
             }
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+        return nnameString;
+>>>>>>> 89f438da... made it so that goal names, activity names, and profile names cannot have more than one space
     }
 
 <<<<<<< HEAD
