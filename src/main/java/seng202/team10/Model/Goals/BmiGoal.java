@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 <<<<<<< HEAD
 =======
 /**
- * BMI Goals Class for Coach Potato
+ * Class that extends the Goal superclass, represents an instance of a goal of the user to reach a certain BMI.
  */
 >>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
 public class BmiGoal extends Goal {
@@ -19,12 +19,12 @@ public class BmiGoal extends Goal {
 
 
     /**
-     * Constructor method for bmi goal
-     * @param name: String
-     * @param start: DateTime
-     * @param target: DateTime
-     * @throws InvalidGoalDateException When invalid dates are entered
-     * @throws BadGoalNameException When invalid name is entered
+     * Constructor method for bmi goal.
+     * @param name A <b>String</b> of the name of the goal.
+     * @param start The start <b>DateTime</b> of the goal.
+     * @param target The end <b>DateTime</b> of the goal.
+     * @throws InvalidGoalDateException When invalid dates are entered.
+     * @throws BadGoalNameException When an invalid goal name is entered.
      */
     public BmiGoal(String name, DateTime start, DateTime target) throws InvalidGoalDateException, BadGoalNameException
     {
@@ -49,8 +49,8 @@ public class BmiGoal extends Goal {
 
 
     /**
-     * Getter method for the goal BMI
-     * @return A <b>Double</b>
+     * Getter method for the goal BMI.
+     * @return A <b>Double</b> of the BMI.
      */
     public double getGoalBmi()
     {
@@ -59,8 +59,8 @@ public class BmiGoal extends Goal {
 
     /**
      * Method to review a BMI goal of the user. Determines whether the user has achieved, failed, or is still working towards a particular BMI goal
-     * @param currentBmi: double
-     * @return A <b>String</b>
+     * @param currentBmi A <b>Double</b> of the users' current BMI.
+     * @return A <b>String</b> of the status of the goal completion.
      */
     public String reviewBmiGoal(double currentBmi)
     {

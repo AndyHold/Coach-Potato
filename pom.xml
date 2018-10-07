@@ -21,7 +21,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>seng202.team10.Control.GUIController</mainClass>
+                            <mainClass>seng202.team10.Control.MainController</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

@@ -3,7 +3,7 @@ package seng202.team10.Model.Goals;
 
 
 /**
- * GoalType Enum for Coach Potato
+ * Enum for types of goals.
  *
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
@@ -20,6 +20,7 @@ public enum GoalType {
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Converts a type from a string to an enum
      * @param typeName
      * @return
@@ -28,6 +29,11 @@ public enum GoalType {
      * @param typeName: String
      * @return GoalType
 >>>>>>> 44795a96... Found incomplete JavaDoc in goal subclasses and ActivityType and GoalType Enums. Finshed writing these
+=======
+     * Method to convert a goal type from a string to an enum.
+     * @param typeName A <b>String</b> of the name of the type of goal.
+     * @return A <b>GoalType</b>.
+>>>>>>> 4837059d... Javadocced the goals
      */
     public static GoalType getTypeFromString(String typeName)
     {
@@ -46,12 +52,17 @@ public enum GoalType {
     }
 
     /**
+<<<<<<< HEAD
      * returns the enum goal type as a string
 <<<<<<< HEAD
      * @return
 =======
      * @return A <b>String</b>
 >>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
+=======
+     * ToString method for goaltype.
+     * @return A <b>String</b> of the name of the type of goal.
+>>>>>>> 4837059d... Javadocced the goals
      */
     @Override
     public String toString()

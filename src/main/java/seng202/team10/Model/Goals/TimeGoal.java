@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 <<<<<<< HEAD
 =======
 /**
- * Time Goal Class for Coach Potato
+ * Class that extends the Goal superclass, represents an instance of a goal of the user to reach a certain amount of time exercising.
  */
 >>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
 public class TimeGoal extends Goal {
@@ -18,14 +18,14 @@ public class TimeGoal extends Goal {
 
 
     /**
-     * Constructor method for time goal
-     * @param name: String
-     * @param start: DateTime
-     * @param target: DateTime
+     * Constructor method for time goal.
+     * @param name A <b>String</b> of the name of the goal.
+     * @param start The start <b>DateTime</b> of the goal.
+     * @param target The end <b>DateTime</b> of the goal.
      * @param time A <b>Double</b> of the target time.
      * @throws InvalidGoalDateException When invalid dates are entered.
-     * @throws BadGoalNameException When invalid name is entered.
-     * @throws InvalidGoalTargetException When invalid target is entered.
+     * @throws BadGoalNameException When an invalid goal name is entered.
+     * @throws InvalidGoalTargetException When an invalid goal target is entered.
      */
     public TimeGoal(String name, DateTime start, DateTime target, double time) throws InvalidGoalTargetException, InvalidGoalDateException, BadGoalNameException
     {
@@ -36,7 +36,7 @@ public class TimeGoal extends Goal {
 
     /**
      * Setter method for the target value of time goal.
-     * @param target: double
+     * @param target A <b>Double</b> of the target time.
      * @throws InvalidGoalTargetException When target is outside the correct values.
      * TODO can set a target with more minautes than is possible.
      */
@@ -51,8 +51,8 @@ public class TimeGoal extends Goal {
 
 
     /**
-     * Getter method for the goal time
-     * @return A <b>Double</b>
+     * Getter method for the goal time.
+     * @return A <b>Double</b> of the target time.
      */
     public double getGoalTime()
     {
@@ -61,9 +61,9 @@ public class TimeGoal extends Goal {
 
 
     /**
-     * Method to review a time goal of the user. Determines whether the user has achieved, failed, or is still working towards a particular time goal
-     * @param time: double
-     * @return A <b>String</b>
+     * Method to review a time goal of the user. Determines whether the user has achieved, failed, or is still working towards a particular time goal.
+     * @param time A <b>Double</b> of the time the user has done so far.
+     * @return A <b>String</b> of the status of the goal completion.
      */
     public String reviewTimeGoal(double time)
     {

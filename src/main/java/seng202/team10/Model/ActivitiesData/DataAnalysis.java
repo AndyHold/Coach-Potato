@@ -84,8 +84,12 @@ public class DataAnalysis {
      * @return  An ArrayList<Double> that contains distances from the first entry position.
 =======
      * @param activity The <b>Activity</b> the distance array is being calculated from.
+<<<<<<< HEAD
      * @return  An <b>ArrayList&lt;Double&gt;</b> that contains distances from the first entry position.
 >>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
+=======
+     * @return  An <b>ArrayList&lt;double&gt;</b> that contains distances from the first entry position.
+>>>>>>> 4837059d... Javadocced the goals
      */
     public ArrayList<Double> getDistanceFromActivity(Activity activity) {
 
