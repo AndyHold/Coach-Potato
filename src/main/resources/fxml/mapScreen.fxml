@@ -11,28 +11,30 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.web.WebView?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextArea" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/map.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.MapController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextArea" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/map.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.MapController">
    <children>
       <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="720.0" prefWidth="1280.0" spacing="10.0">
          <children>
             <HBox alignment="CENTER" prefHeight="35.0" prefWidth="1280.0">
                <children>
                   <Label fx:id="activityLabel" text="Activity Name" />
+                  <Button fx:id="helpButton" mnemonicParsing="false" onAction="#displayHelp" prefHeight="35.0" prefWidth="48.0" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" onMouseClicked="#displayHelp" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Images/help.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets left="1000.0" />
+                     </HBox.margin></Button>
                </children>
             </HBox>
             <WebView fx:id="mapWebView" prefHeight="620.0" prefWidth="1240.0" />
             <HBox prefHeight="35.0" prefWidth="1240.0" spacing="1092.0">
                <children>
                   <Button fx:id="backButton" mnemonicParsing="false" onAction="#openViewActivities" prefHeight="35.0" prefWidth="100.0" text="Back" />
-                  <Button fx:id="helpButton" mnemonicParsing="false" onAction="#displayHelp" prefHeight="35.0" prefWidth="48.0" style="-fx-background-color: transparent;">
-                     <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Images/help.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
                </children>
                <VBox.margin>
                   <Insets />
@@ -43,6 +45,6 @@
             <Insets bottom="10.0" />
          </padding>
       </VBox>
-      <TextArea fx:id="helpTextArea" editable="false" layoutX="817.0" layoutY="407.0" prefHeight="270.0" prefWidth="400.0" />
+      <TextArea fx:id="helpTextArea" editable="false" layoutX="817.0" layoutY="27.0" prefHeight="270.0" prefWidth="400.0" />
    </children>
 </Pane>
