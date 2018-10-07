@@ -486,14 +486,20 @@ public class ProfileController {
         try {
             String nameString = usernameTA.getText();
 <<<<<<< HEAD
+<<<<<<< HEAD
             String newName = mainController .checkUniqueName(nameString);
             try {
                 currentUser.setName(newName);
 =======
             mainController.checkUniqueName(nameString);
+=======
+            String goodName = nameString.replace("\\s+", " ");
+            goodName.trim();
+            mainController.checkUniqueName(goodName);
+>>>>>>> 21726944... Fixed the edit name on profile screen so that it allows to use the previous name.
             try {
-                if (!nameString.isEmpty()) {
-                    currentUser.setName(nameString);
+                if (!goodName.isEmpty()) {
+                    currentUser.setName(goodName);
                 } else {
                     mainController.createPopUp(Alert.AlertType.ERROR, "Invalid Username", "Please enter a non empty and valid username.");
                 }
@@ -507,6 +513,7 @@ public class ProfileController {
         String newName = currentUser.getName();
         if(!(oldName.equals(newName))) {
             mainController .getDataWriter().deleteProfile(oldName + " - " + currentUser.getGender());
+            mainController.getUserNames().remove(oldName);
             mainController .getDataWriter().saveProfile(currentUser);
         }
         // Set weight and handle exceptions
