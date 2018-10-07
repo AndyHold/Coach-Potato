@@ -17,6 +17,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextArea" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/dataAnalysis.css" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="seng202.team10.Visual.GraphsController">
 =======
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextArea" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/dataAnalysis.css" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.GraphsController">
@@ -317,6 +318,9 @@
 =======
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextArea" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/dataAnalysis.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.GraphsController">
 >>>>>>> 8037cbf1... Moving all the help buttons to the top right
+=======
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextArea" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/dataAnalysis.css" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.GraphsController">
+>>>>>>> 29c62e9c... Changed colour of goals and activities in calendar and moved help buttons to be in position.
     <children>
         <TabPane fx:id="tabPane" layoutX="20.0" layoutY="48.0" prefHeight="620.0" prefWidth="1240.0" side="LEFT" tabClosingPolicy="UNAVAILABLE">
             <tabs>
@@ -332,7 +336,6 @@
                                         <NumberAxis fx:id="yAxisDT" side="LEFT" />
                                     </yAxis>
                                 </LineChart>
-                          <TextArea fx:id="helpTextArea" editable="false" layoutX="739.0" prefHeight="160.0" prefWidth="400.0" />
                             </children></AnchorPane>
                     </content>
                     <graphic>
@@ -464,7 +467,7 @@
         <Label fx:id="activityNameLabel" layoutX="538.0" layoutY="6.0" text="Name Of Activity" />
         <Label fx:id="noActivitiesLabel" layoutX="180.0" layoutY="350.0" text="No activities found" visible="false" />
         <Button fx:id="backButton" layoutX="20.0" layoutY="672.0" mnemonicParsing="false" onAction="#openViewActivities" prefHeight="35.0" prefWidth="100.0" text="Back" />
-        <Button fx:id="helpButton" layoutX="1217.0" layoutY="6.0" mnemonicParsing="false" onAction="#displayHelp" prefHeight="35.0" prefWidth="48.0" style="-fx-background-color: transparent;">
+        <Button fx:id="helpButton" layoutX="1220.0" layoutY="10.0" mnemonicParsing="false" onAction="#displayHelp" prefHeight="35.0" prefWidth="48.0" style="-fx-background-color: transparent;">
          <graphic>
                 <ImageView fitHeight="25.0" fitWidth="25.0" onMouseClicked="#displayHelp" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -472,6 +475,7 @@
                     </image>
             </ImageView>
          </graphic></Button>
+        <TextArea fx:id="helpTextArea" editable="false" layoutX="830.0" layoutY="40.0" prefHeight="160.0" prefWidth="400.0" />
     </children>
 >>>>>>> 144baa29... Fixed a merge conflict
 </Pane>

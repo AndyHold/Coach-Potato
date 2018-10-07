@@ -557,7 +557,7 @@ public class UploadDataController {
      */
     @FXML public void uploadData()
     {
-        mainController.getTitleBar().setLoadingBarVisibility(true);
+//        mainController.getTitleBar().setLoadingBarVisibility(true);
         mainController .getPrimaryStage().getScene().setCursor(Cursor.WAIT);
         String filename = filePathTextField.getText();
         if (filename.length() == 0) {
@@ -587,7 +587,7 @@ public class UploadDataController {
                 this.mainController.createPopUp(Alert.AlertType.ERROR, "Error", exception.getMessage());
             }
         }
-        mainController.getTitleBar().setLoadingBarVisibility(false);
+//        mainController.getTitleBar().setLoadingBarVisibility(false);
         mainController .getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
     }
 
@@ -607,7 +607,7 @@ public class UploadDataController {
             nnameString = nnameString.trim();
             if (manualDataTableView.getItems().size() < 2) {
                 // If Entry list is empty send error
-                this.mainController.createPopUp(Alert.AlertType.ERROR, "Entry Error", "You have not added enough Entries to the list");
+                this.mainController.createPopUp(Alert.AlertType.ERROR, "Entry Error", "You have not added enough Entries to the list.\nA minimum of 2 is required.");
             } else {
                 // Else get date of first Entry
                 ObservableList<Entry> currentEntries = manualDataTableView.getItems();

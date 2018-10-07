@@ -41,7 +41,7 @@
    <children>
       <VBox prefHeight="720.0" prefWidth="1280.0">
          <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="200.0" spacing="30.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="200.0" spacing="33.0">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -81,18 +81,21 @@
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin></Button>
-                  <Button fx:id="helpButton" maxHeight="35.0" maxWidth="48.0" minHeight="35.0" minWidth="48.0" mnemonicParsing="false" onAction="#displayHelp" prefHeight="35.0" prefWidth="48.0">
-                     <graphic>
-                        <ImageView fx:id="helpimage" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#displayHelp" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Images/help.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Button fx:id="helpButton" maxHeight="35.0" maxWidth="48.0" minHeight="35.0" minWidth="48.0" mnemonicParsing="false" onAction="#displayHelp" prefHeight="35.0" prefWidth="48.0">
+                           <graphic>
+                              <ImageView fx:id="helpimage" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#displayHelp" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Images/help.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
                      <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </Button>
+                        <Insets top="10.0" />
+                     </HBox.margin></VBox>
                </children>
             </HBox>
 <<<<<<< HEAD
@@ -259,10 +262,10 @@
                </children></HBox>
          </children>
          <padding>
-            <Insets left="15.0" right="15.0" />
+            <Insets left="15.0" right="10.0" />
          </padding>
       </VBox>
-      <TextArea fx:id="helpTextArea" editable="false" layoutX="815.0" layoutY="55.0" prefHeight="600.0" prefWidth="400.0" visible="false" />
+      <TextArea fx:id="helpTextArea" editable="false" layoutX="830.0" layoutY="40.0" prefHeight="600.0" prefWidth="400.0" visible="false" />
    </children>
    <padding>
       <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />

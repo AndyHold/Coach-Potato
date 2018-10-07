@@ -1,8 +1,12 @@
 package seng202.team10.Visual;
 
 
+import javafx.animation.RotateTransition;
+import javafx.animation.Transition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
@@ -55,7 +59,7 @@ public class TitleBarController {
     @FXML private Button closeButton;
     @FXML private VBox menuBar;
     @FXML private ImageView profileMenuIcon;
-    @FXML private Rectangle loadingCover;
+    @FXML public Rectangle loadingCover;
     private CreateProfileController createProfileController;
     private LoginController loginController;
     private ProfileController profileController;
@@ -272,6 +276,7 @@ public class TitleBarController {
     }
 
 
+<<<<<<< HEAD
     /**
 <<<<<<< HEAD
      * Method to display the view profile screen
@@ -282,6 +287,15 @@ public class TitleBarController {
     {
         loadingCover.setVisible(visible);
     }
+=======
+//    /**
+//     * Method to set loading cover visiblility
+//     */
+//    public void setLoadingBarVisibility(boolean visible)
+//    {
+//
+//    }
+>>>>>>> 29c62e9c... Changed colour of goals and activities in calendar and moved help buttons to be in position.
 
 
     /**

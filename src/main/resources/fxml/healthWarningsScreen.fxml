@@ -15,6 +15,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideWarningsScrollPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.HealthWarningsController">
 =======
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideInfoBoxes" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/healthWarnings.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.HealthWarningsController">
@@ -22,6 +23,9 @@
 =======
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideInfoBoxes" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/healthWarnings.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.HealthWarningsController">
 >>>>>>> 8037cbf1... Moving all the help buttons to the top right
+=======
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideInfoBoxes" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/healthWarnings.css" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.HealthWarningsController">
+>>>>>>> 29c62e9c... Changed colour of goals and activities in calendar and moved help buttons to be in position.
    <children>
       <HBox prefHeight="720.0" prefWidth="1280.0" spacing="20.0">
          <padding>
@@ -34,17 +38,6 @@
             <VBox maxHeight="685.0" maxWidth="850.0" minHeight="685.0" minWidth="850.0" onMouseClicked="#hideWarningsScrollPane" prefHeight="685.0" prefWidth="850.0">
 >>>>>>> 41a3421e... Implemented navigation buttons for health warnings screen. Added some new icons for various things.
                <children>
-                  <Pane fx:id="learnMorePane" maxHeight="635.0" maxWidth="850.0" minHeight="635.0" minWidth="850.0" prefHeight="635.0" prefWidth="850.0">
-                     <children>
-                        <WebView fx:id="googleWebView" layoutX="20.0" layoutY="20.0" maxHeight="595.0" maxWidth="810.0" minHeight="595.0" minWidth="810.0" prefHeight="595.0" prefWidth="810.0" />
-                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="831.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Images/help.png" />
-                           </image>
-                        </ImageView>
-                        <Button fx:id="helpButton" layoutX="819.0" layoutY="-13.0" maxHeight="35.0" maxWidth="48.0" minHeight="35.0" minWidth="48.0" mnemonicParsing="false" onAction="#displayHelp" prefHeight="35.0" prefWidth="48.0" />
-                     </children>
-                  </Pane>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
                      <children>
                         <Button fx:id="backButton" mnemonicParsing="false" onAction="#goBack">
@@ -76,10 +69,16 @@
                         </Button>
                      </children>
                   </HBox>
+                  <Pane fx:id="learnMorePane" maxHeight="635.0" maxWidth="850.0" minHeight="635.0" minWidth="850.0" prefHeight="635.0" prefWidth="850.0">
+                     <children>
+                        <WebView fx:id="googleWebView" layoutX="20.0" layoutY="20.0" maxHeight="595.0" maxWidth="810.0" minHeight="595.0" minWidth="810.0" prefHeight="595.0" prefWidth="810.0" />
+                     </children>
+                  </Pane>
                </children>
             </VBox>
-            <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="680.0" prefWidth="360.0" spacing="10.0">
+            <VBox alignment="BOTTOM_CENTER" fillWidth="false" prefHeight="680.0" prefWidth="360.0" spacing="10.0">
                <children>
+<<<<<<< HEAD
 <<<<<<< HEAD
                   <VBox fx:id="tachycardiaVBox" alignment="TOP_CENTER" maxWidth="360.0" minWidth="360.0" prefHeight="220.0" prefWidth="360.0" spacing="20.0" >
 =======
@@ -92,37 +91,47 @@
                            </font>
                         </Label>
                         <Button fx:id="tachycardiaViewButton" mnemonicParsing="false" onAction="#showTachycardiaWarnings" >
-                           <graphic>
-                              <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="320.0" spacing="10.0">
-                                 <children>
-                                    <ImageView fx:id="tachycardiaIcon" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../Images/warning.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Label fx:id="tachycardiaActivitiesLabel" alignment="CENTER" maxHeight="107.0" maxWidth="263.0" prefHeight="107.0" prefWidth="250.0" text="You have no warnings." textAlignment="CENTER" wrapText="true">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                       <padding>
-                                          <Insets bottom="-5.0" top="-5.0" />
-                                       </padding>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                           </graphic>
-                        </Button>
-                        <Button fx:id="tachycardiaLearnMorebutton" mnemonicParsing="false" onAction="#showTachycardiaSearch"  text="Learn More" />
-                     </children>
-                  </VBox>
-<<<<<<< HEAD
-                  <VBox fx:id="bradycardiaVBox" alignment="CENTER" maxWidth="360.0" minWidth="360.0" prefHeight="220.0" prefWidth="360.0" spacing="20.0" >
 =======
+                  <VBox maxHeight="240.0" maxWidth="360.0" minHeight="240.0" minWidth="360.0" prefHeight="240.0" prefWidth="360.0">
+                     <children>
+                        <HBox alignment="CENTER_RIGHT" maxHeight="35.0" maxWidth="360.0" minHeight="35.0" minWidth="360.0" prefHeight="35.0" prefWidth="360.0" />
+                        <VBox fx:id="tachycardiaVBox" alignment="TOP_CENTER" maxHeight="205.0" maxWidth="360.0" minHeight="205.0" minWidth="360.0" prefHeight="205.0" prefWidth="360.0" spacing="20.0">
+                           <children>
+                              <Label fx:id="tachycardiaNameLabel" alignment="TOP_CENTER" text="Tachycardia" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="19.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="tachycardiaViewButton" mnemonicParsing="false" onAction="#showTachycardiaWarnings">
+                                 <graphic>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="320.0" spacing="10.0">
+                                       <children>
+                                          <ImageView fx:id="tachycardiaIcon" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../Images/warning.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label fx:id="tachycardiaActivitiesLabel" alignment="CENTER" maxHeight="107.0" maxWidth="263.0" prefHeight="107.0" prefWidth="250.0" text="You have no warnings." textAlignment="CENTER" wrapText="true">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets bottom="-5.0" top="-5.0" />
+                                             </padding>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="tachycardiaLearnMorebutton" mnemonicParsing="false" onAction="#showTachycardiaSearch" text="Learn More" />
+                           </children>
+                        </VBox>
+                     </children></VBox>
                   <VBox fx:id="bradycardiaVBox" alignment="CENTER" maxHeight="205.0" maxWidth="360.0" minHeight="205.0" minWidth="360.0" prefHeight="205.0" prefWidth="360.0" spacing="20.0">
->>>>>>> 41a3421e... Implemented navigation buttons for health warnings screen. Added some new icons for various things.
                      <children>
                         <Label fx:id="bradycardiaNameLabel" alignment="CENTER" text="Bradycardia" />
-                        <Button fx:id="bradycardiaViewbutton" mnemonicParsing="false" onAction="#showBradycardiaWarnings" >
+                        <Button fx:id="bradycardiaViewbutton" mnemonicParsing="false" onAction="#showBradycardiaWarnings">
+>>>>>>> 29c62e9c... Changed colour of goals and activities in calendar and moved help buttons to be in position.
                            <graphic>
                               <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="320.0">
                                  <children>
@@ -139,6 +148,45 @@
                               </HBox>
                            </graphic>
                         </Button>
+<<<<<<< HEAD
+                        <Button fx:id="tachycardiaLearnMorebutton" mnemonicParsing="false" onAction="#showTachycardiaSearch"  text="Learn More" />
+                     </children>
+                  </VBox>
+<<<<<<< HEAD
+                  <VBox fx:id="bradycardiaVBox" alignment="CENTER" maxWidth="360.0" minWidth="360.0" prefHeight="220.0" prefWidth="360.0" spacing="20.0" >
+=======
+                  <VBox fx:id="bradycardiaVBox" alignment="CENTER" maxHeight="205.0" maxWidth="360.0" minHeight="205.0" minWidth="360.0" prefHeight="205.0" prefWidth="360.0" spacing="20.0">
+>>>>>>> 41a3421e... Implemented navigation buttons for health warnings screen. Added some new icons for various things.
+                     <children>
+                        <Label fx:id="bradycardiaNameLabel" alignment="CENTER" text="Bradycardia" />
+                        <Button fx:id="bradycardiaViewbutton" mnemonicParsing="false" onAction="#showBradycardiaWarnings" >
+=======
+                        <Button fx:id="bradycardiaLearnMoreButton" mnemonicParsing="false" onAction="#showBradycardiaSearch" text="Learn More" />
+                     </children>
+                  </VBox>
+                   <VBox fx:id="cardiovascularMortalityVBox" alignment="CENTER" maxHeight="205.0" maxWidth="360.0" minHeight="205.0" minWidth="360.0" prefHeight="205.0" prefWidth="360.0" spacing="20.0">
+                     <children>
+                        <Label fx:id="cardiovascularMortalityNameLabel" alignment="CENTER" text="Cardiovascular Mortality" />
+                        <Button fx:id="cardiovascularMortalityViewButton" mnemonicParsing="false" onAction="#showCardiovascularMortalityWarnings" prefHeight="50.0" prefWidth="340.0">
+>>>>>>> 29c62e9c... Changed colour of goals and activities in calendar and moved help buttons to be in position.
+                           <graphic>
+                              <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="320.0">
+                                 <children>
+                                    <ImageView fx:id="cardiovascularMortalityIcon" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Images/warning.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="cardiovascularMortalityActivitiesLabel" alignment="CENTER" maxHeight="61.0" prefHeight="61.0" prefWidth="250.0" text="You have no warnings." textAlignment="CENTER" wrapText="true">
+                                       <padding>
+                                          <Insets bottom="-5.0" top="-5.0" />
+                                       </padding>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </graphic>
+                        </Button>
+<<<<<<< HEAD
                         <Button fx:id="bradycardiaLearnMoreButton" mnemonicParsing="false" onAction="#showBradycardiaSearch"  text="Learn More" />
                      </children>
                   </VBox>
@@ -208,13 +256,16 @@
 =======
                         <HBox alignment="CENTER_RIGHT" maxHeight="35.0" maxWidth="360.0" minHeight="35.0" minWidth="360.0" prefHeight="35.0" prefWidth="360.0" />
 >>>>>>> 8037cbf1... Moving all the help buttons to the top right
+=======
+                        <Button fx:id="cardiovascularMortalityLearnMoreButton" mnemonicParsing="false" onAction="#showCardiovascularSearch" text="Learn More" />
+>>>>>>> 29c62e9c... Changed colour of goals and activities in calendar and moved help buttons to be in position.
                      </children>
                   </VBox>
                </children>
             </VBox>
          </children>
       </HBox>
-      <ScrollPane fx:id="warningsScrollPane" layoutX="480.0" layoutY="20.0" prefHeight="260.0" prefWidth="400.0" visible="false">
+      <ScrollPane fx:id="warningsScrollPane" layoutX="480.0" layoutY="445.0" prefHeight="260.0" prefWidth="400.0" visible="false">
          <content>
             <Pane fx:id="warningsParentPane" maxHeight="680.0" maxWidth="380.0" minHeight="680.0" minWidth="380.0" prefHeight="680.0" prefWidth="380.0">
                <children>
@@ -230,6 +281,15 @@
             </Pane>
          </content>
       </ScrollPane>
-      <TextArea fx:id="helpTextArea" editable="false" layoutX="460.0" layoutY="30.0" prefHeight="400.0" prefWidth="400.0" visible="false" wrapText="true" />
+      <TextArea fx:id="helpTextArea" editable="false" layoutX="825.0" layoutY="40.0" prefHeight="400.0" prefWidth="400.0" visible="false" wrapText="true" />
+      <Button fx:id="helpButton" layoutX="1220.0" layoutY="10.0" maxHeight="35.0" maxWidth="48.0" minHeight="35.0" minWidth="48.0" mnemonicParsing="false" onAction="#displayHelp" prefHeight="35.0" prefWidth="48.0">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/help.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </Pane>

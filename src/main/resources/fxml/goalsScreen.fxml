@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextArea" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/goals.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.GoalController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextArea" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/goals.css" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.GoalController">
    <children>
        <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE">
          <tabs>
@@ -139,18 +139,6 @@
                                           <Insets left="50.0" />
                                        </HBox.margin>
                                     </Label>
-                                    <Button fx:id="helpButton" mnemonicParsing="false" onAction="#displayHelp" prefHeight="35.0" prefWidth="48.0">
-                                       <graphic>
-                                          <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateY="5.0">
-                                             <image>
-                                                <Image url="@../Images/help.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                       <HBox.margin>
-                                          <Insets left="800.0" />
-                                       </HBox.margin>
-                                    </Button>
                                  </children></HBox>
                               <HBox prefHeight="50.0" prefWidth="1240.0">
                                  <children>
@@ -325,6 +313,15 @@
            </Tab>
          </tabs>
        </TabPane>
-      <TextArea fx:id="helpTextArea" editable="false" layoutX="825.0" layoutY="80.0" prefHeight="400.0" prefWidth="400.0" visible="false" />
+      <Button fx:id="helpButton" layoutX="1220.0" layoutY="10.0" mnemonicParsing="false" onAction="#displayHelp" prefHeight="35.0" prefWidth="48.0">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" translateY="5.0">
+               <image>
+                  <Image url="@../Images/help.png" />
+               </image>
+            </ImageView>
+               </graphic>
+      </Button>
+      <TextArea fx:id="helpTextArea" editable="false" layoutX="825.0" layoutY="45.0" prefHeight="400.0" prefWidth="400.0" visible="false" />
    </children>
 </Pane>

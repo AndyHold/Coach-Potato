@@ -408,7 +408,7 @@ public class HealthWarningsController implements Controllable {
         if (tachycardiaWarnings.size() > 0) {
             showWarningPane(tWarningsPane);
         }
-        warningsScrollPane.setLayoutY(20);
+        warningsScrollPane.setLayoutY(70);
     }
 
 
@@ -421,7 +421,7 @@ public class HealthWarningsController implements Controllable {
         if (bradycardiaWarnings.size() > 0) {
             showWarningPane(bWarningsPane);
         }
-        warningsScrollPane.setLayoutY(250);
+        warningsScrollPane.setLayoutY(285);
     }
 
 
@@ -434,7 +434,7 @@ public class HealthWarningsController implements Controllable {
         if (cardiovascularMortalityWarnings.size() > 0) {
             showWarningPane(cWarningsPane);
         }
-        warningsScrollPane.setLayoutY(440);
+        warningsScrollPane.setLayoutY(445);
     }
 
 
