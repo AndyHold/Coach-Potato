@@ -500,8 +500,9 @@ public class GoalController implements Controllable{
             if (goal != null) {
                 String status = currentUser.getGoals().checkGoal(goal.getGoalName());
                 currentGoalTextArea.setVisible(true);
+                System.out.println(status);
                 switch (status) {
-                    case "inprogress":
+                    case "in progress":
                         printGoalsReview(goal, currentGoalTextArea, currentDescriptionLabel);
                         break;
 
