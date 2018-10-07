@@ -37,35 +37,50 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextArea" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/activityViewer.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.ActivityViewerController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextArea" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/activityViewer.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.ActivityViewerController">
    <children>
       <VBox prefHeight="720.0" prefWidth="1280.0">
          <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="200.0" spacing="80.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="200.0" spacing="30.0">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="250.0">
                      <children>
-                        <Label prefHeight="35.0" prefWidth="50.0" text="From:" />
-                        <DatePicker fx:id="startDate" prefHeight="35.0" />
+                        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="50.0" text="From:">
+                           <font>
+                              <Font name="Noto Serif Georgian" size="14.0" />
+                           </font></Label>
+                        <DatePicker fx:id="startDate" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="230.0">
                      <children>
-                        <Label prefHeight="35.0" prefWidth="33.0" text="To:" />
-                        <DatePicker fx:id="endDate" prefHeight="35.0" />
+                        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="30.0" text="To:">
+                           <font>
+                              <Font name="Noto Serif Georgian" size="14.0" />
+                           </font></Label>
+                        <DatePicker fx:id="endDate" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="190.0">
                      <children>
-                        <Label prefHeight="35.0" prefWidth="55.0" text="Type:" />
-                        <ComboBox fx:id="typeSelect" prefHeight="35.0" prefWidth="150.0" promptText="All" />
+                        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="50.0" text="Type:">
+                           <font>
+                              <Font name="Noto Serif Georgian" size="14.0" />
+                           </font></Label>
+                        <ComboBox fx:id="typeSelect" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0" promptText="All" />
                      </children>
                   </HBox>
-                  <Button fx:id="filterApplyButton" mnemonicParsing="false" onAction="#applyFilter" prefHeight="35.0" prefWidth="120.0" text="Apply Filters" />
-                  <Button fx:id="clearFiltersButton" mnemonicParsing="false" onAction="#clearFilters" prefHeight="35.0" prefWidth="120.0" text="Clear Filters" />
+                  <Button fx:id="filterApplyButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#applyFilter" prefHeight="35.0" prefWidth="150.0" text="Apply Filters">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin></Button>
+                  <Button fx:id="clearFiltersButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clearFilters" prefHeight="35.0" prefWidth="150.0" text="Clear Filters">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin></Button>
                   <Button fx:id="helpButton" maxHeight="35.0" maxWidth="48.0" minHeight="35.0" minWidth="48.0" mnemonicParsing="false" onAction="#displayHelp" prefHeight="35.0" prefWidth="48.0">
                      <graphic>
                         <ImageView fx:id="helpimage" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#displayHelp" pickOnBounds="true" preserveRatio="true">
@@ -74,6 +89,9 @@
                            </image>
                         </ImageView>
                      </graphic>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
                   </Button>
                </children>
             </HBox>
