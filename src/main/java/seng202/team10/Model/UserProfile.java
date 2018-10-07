@@ -116,7 +116,7 @@ public class UserProfile implements java.io.Serializable {
      */
     public void setName(String newName) throws UserNameException
     {
-        if (!(newName.length() > 15 || !newName.matches("[a-zA-Z0-9 ]*"))) {
+        if (!(newName.length() > 15 || newName.length() < 2 || !newName.matches("[a-zA-Z0-9 ]*"))) {
             this.name = newName;
         } else {
             throw new UserNameException();
