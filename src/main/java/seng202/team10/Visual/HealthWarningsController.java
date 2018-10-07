@@ -18,9 +18,18 @@ import javafx.util.Duration;
 import seng202.team10.Control.MainController;
 import seng202.team10.Model.ActivitiesData.HealthWarning;
 import seng202.team10.Model.ActivitiesData.HealthWarningType;
+<<<<<<< HEAD
 import seng202.team10.Model.UserProfile;
 
 import java.net.InetAddress;
+=======
+
+import java.io.IOException;
+import java.net.InetAddress;
+import seng202.team10.Model.UserProfile;
+
+import java.net.UnknownHostException;
+>>>>>>> a9f2ebdd... Fixed the exceptions when there is no internet
 import java.util.ArrayList;
 
 <<<<<<< HEAD
@@ -255,13 +264,24 @@ public class HealthWarningsController implements Controllable {
      */
     @FXML public void goHome()
     {
+        boolean reachable = false;
         try{
             InetAddress address = InetAddress.getByName("www.google.com");
+<<<<<<< HEAD
             boolean reachable = address.isReachable(10000);
         } catch (Exception e) {
             app.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, Web Search is currently available");
+=======
+            reachable = address.isReachable(600);
+        } catch (IOException e) {
+            ;
         }
-        engine.load("https://google.com");
+        if (reachable) {
+            engine.load("https://google.com");
+        } else {
+            mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, 'google.com' currently available");
+>>>>>>> a9f2ebdd... Fixed the exceptions when there is no internet
+        }
     }
 
 
@@ -497,13 +517,25 @@ public class HealthWarningsController implements Controllable {
 >>>>>>> 41a3421e... Implemented navigation buttons for health warnings screen. Added some new icons for various things.
     @FXML public void showTachycardiaSearch()
     {
+        boolean reachable = false;
         try{
             InetAddress address = InetAddress.getByName("www.google.com");
+<<<<<<< HEAD
             boolean reachable = address.isReachable(10000);
         } catch (Exception e) {
             app.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, 'Learn More' currently available");
+=======
+            reachable = address.isReachable(600);
+        } catch (IOException e) {
+            ;
         }
-        engine.load(HealthWarningType.TACHYCARDIA.getURL());
+        if (reachable) {
+            engine.load(HealthWarningType.TACHYCARDIA.getURL());
+        } else {
+            mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, 'Learn More' currently available");
+>>>>>>> a9f2ebdd... Fixed the exceptions when there is no internet
+        }
+
     }
 
 
@@ -516,13 +548,25 @@ public class HealthWarningsController implements Controllable {
 >>>>>>> aac42ab6... Javadoc'd HealthWarningsController
     @FXML public void showBradycardiaSearch()
     {
+        boolean reachable = false;
         try{
             InetAddress address = InetAddress.getByName("www.google.com");
+<<<<<<< HEAD
             boolean reachable = address.isReachable(10000);
         } catch (Exception e) {
             app.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, 'Learn More' currently available");
+=======
+            reachable = address.isReachable(600);
+        } catch (IOException e) {
+            ;
         }
-        engine.load(HealthWarningType.BRADYCARDIA.getURL());
+        if (reachable) {
+            engine.load(HealthWarningType.BRADYCARDIA.getURL());
+        } else {
+            mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, 'Learn More' currently available");
+>>>>>>> a9f2ebdd... Fixed the exceptions when there is no internet
+        }
+
     }
 
 <<<<<<< HEAD
@@ -535,13 +579,25 @@ public class HealthWarningsController implements Controllable {
 >>>>>>> aac42ab6... Javadoc'd HealthWarningsController
     @FXML public void showCardiovascularSearch()
     {
+        boolean reachable = false;
         try{
             InetAddress address = InetAddress.getByName("www.google.com");
+<<<<<<< HEAD
             boolean reachable = address.isReachable(10000);
         } catch (Exception e) {
             app.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, 'Learn More' currently available");
+=======
+            reachable = address.isReachable(600);
+        } catch (IOException e) {
+            ;
         }
-        engine.load(HealthWarningType.CARDIOVASCULAR_MORTALITY.getURL());
+        if (reachable) {
+            engine.load(HealthWarningType.CARDIOVASCULAR_MORTALITY.getURL());
+        } else {
+            mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, 'Learn More' currently available");
+>>>>>>> a9f2ebdd... Fixed the exceptions when there is no internet
+        }
+
     }
 
 }
