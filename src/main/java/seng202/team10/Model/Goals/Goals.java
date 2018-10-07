@@ -141,13 +141,28 @@ public class Goals implements Serializable {
     public void removeCurrentGoal(String goalName)
     {
         if (currentGoalNames.contains(goalName)) {
-            Goal goal = getGoalObject(goalName);
+            Goal goal = getCurrentGoalObject(goalName);
             currentGoalNames.remove(goalName);
             createdGoalNames.remove(goalName);
             currentGoals.remove(goal);
             createdGoals.remove(goal);
         }
+    }
 
+
+    /**
+     * Method to remove a future goal from the currentGoals and currentGoalNames array lists.
+     * @param goalName A <b>String</b> of the goal name.
+     */
+    public void removeFutureGoal(String goalName)
+    {
+        if (futureGoalNames.contains(goalName)) {
+            Goal goal = getFutureGoalObject(goalName);
+            futureGoalNames.remove(goalName);
+            createdGoalNames.remove(goalName);
+            futureGoals.remove(goal);
+            createdGoals.remove(goal);
+        }
     }
 
     /**
@@ -159,7 +174,7 @@ public class Goals implements Serializable {
     {
         LocalDateTime now1 = LocalDateTime.now();
         DateTime now2 = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
-        Goal goal = getGoalObject(goalName);
+        Goal goal = getCurrentGoalObject(goalName);
         String progress = "inprogress";
         if (currentGoals.contains(goal)) {
             String type = goal.getGoalType();
@@ -491,13 +506,24 @@ public class Goals implements Serializable {
 
 
     /**
-     * Getter method for the goal instance of the user.
+     * Getter method for the current goal instance of the user.
      * @return A <b>Goal</b> object.
      */
-    private Goal getGoalObject(String goalName)
+    private Goal getCurrentGoalObject(String goalName)
     {
         int index = currentGoalNames.indexOf(goalName);
         return currentGoals.get(index);
+    }
+
+
+    /**
+     * Getter method for the future goal instance of the user.
+     * @return A <b>Goal</b> object.
+     */
+    private Goal getFutureGoalObject(String goalName)
+    {
+        int index = futureGoalNames.indexOf(goalName);
+        return futureGoals.get(index);
     }
 
     /**

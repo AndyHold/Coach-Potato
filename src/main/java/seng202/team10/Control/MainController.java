@@ -93,6 +93,10 @@ import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import java.util.NoSuchElementException;
+>>>>>>> 08a2699c... Fixed error when x button chosen from pop ups.
 import java.util.Optional;
 <<<<<<< HEAD
 =======
@@ -1183,7 +1187,12 @@ public class MainController extends Application {
         errorPopUp.setContentText(message);
         errorPopUp.setHeaderText(null);
         Optional<ButtonType> buttonType = errorPopUp.showAndWait();
-        return buttonType.get().getText();
+        try {
+            return buttonType.get().getText();
+        } catch (NoSuchElementException exception) {
+            // If the close button in the top left is selected, cancel the pop up.
+            return "Cancel";
+        }
     }
 
     /**

@@ -38,12 +38,13 @@ public class TimeGoal extends Goal {
      * Setter method for the target value of time goal.
      * @param target A <b>Double</b> of the target time.
      * @throws InvalidGoalTargetException When target is outside the correct values.
-     * TODO can set a target with more minautes than is possible.
+     * TODO can set a target with more minutes than is possible.
      */
     public void setTarget(double target) throws InvalidGoalTargetException
     {
-        if (target <= 0) {
-            throw new InvalidGoalTargetException("Please enter a time of at least 1 minute");
+        int possibleMinutes = getGoalTargetDate().subtract(getGoalStartDate()) / 60;
+        if (target <= 0 || target > possibleMinutes) {
+            throw new InvalidGoalTargetException("Please enter a time of at least 1 minute and less than the time between start and finish of your goal.");
         } else {
             goalTime = target;
         }

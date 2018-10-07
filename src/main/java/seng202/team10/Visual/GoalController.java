@@ -422,7 +422,7 @@ public class GoalController implements Controllable{
      */
     @FXML public void removeCurrent()
     {
-        deleteAGoal(currentGoalsListView);
+        deleteAGoal(currentGoalsListView, false);
     }
 
 
@@ -432,14 +432,14 @@ public class GoalController implements Controllable{
      */
     @FXML public void removeFuture()
     {
-        deleteAGoal(futureGoalsListView);
+        deleteAGoal(futureGoalsListView, true);
     }
 
 
     /**
      * Method to delete a goal with a confirmation message.
      */
-    private void deleteAGoal(ListView list) {
+    private void deleteAGoal(ListView list, boolean future) {
         // If there is a goal selected
         if (list.getSelectionModel().getSelectedItem() != null) {
             // Get the name of the selected goal
@@ -448,8 +448,12 @@ public class GoalController implements Controllable{
             String option = mainController .createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + item + "\" goal?");
             // If they say yes
             if (option.equals("OK")) {
-                //delete the goal and set deletemode off again
-                currentUser.getGoals().removeCurrentGoal(item);
+                //delete the goal
+                if (future) {
+                    currentUser.getGoals().removeFutureGoal(item);
+                } else {
+                    currentUser.getGoals().removeCurrentGoal(item);
+                }
             }
             addGoalsToTable();
             resetTextFields();
@@ -488,6 +492,7 @@ public class GoalController implements Controllable{
 =======
             if (goal != null) {
                 String status = currentUser.getGoals().checkGoal(goal.getGoalName());
+                currentGoalTextArea.setVisible(true);
                 switch (status) {
                     case "inprogress":
                         printGoalsReview(goal, currentGoalTextArea, currentDescriptionLabel);
@@ -583,7 +588,6 @@ public class GoalController implements Controllable{
             failedListView.setItems(failedGoalNames);
             ObservableList<String> futureGoalNames = FXCollections.observableArrayList (currentUser.getGoals().getFutureGoalNames());
             futureGoalsListView.setItems(futureGoalNames);
-
         }
         ObservableList<GoalType> goalTypes = FXCollections.observableArrayList(GoalType.WEIGHT, GoalType.DISTANCE, GoalType.FREQUENCY, GoalType.BMI, GoalType.TIME);
         goalTypeCombo.setItems(goalTypes);
@@ -635,7 +639,7 @@ public class GoalController implements Controllable{
             int targetYear = targetDatePicker.getValue().getYear();
             int targetMonth = targetDatePicker.getValue().getMonthValue();
             int targetDay = targetDatePicker.getValue().getDayOfMonth();
-            DateTime targetDate = new DateTime(targetYear, targetMonth, targetDay, 0, 0,0);
+            DateTime targetDate = new DateTime(targetYear, targetMonth, targetDay, 23, 59,59);
 
             String target1 = targetValueEntry.getText();
             doubleTarget = Double.valueOf(target1);
