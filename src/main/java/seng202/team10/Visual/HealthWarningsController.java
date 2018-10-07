@@ -151,21 +151,26 @@ public class HealthWarningsController implements Controllable {
 
     /**
      * Set up method for the tool tips
-     * TODO finish these
+     *
      */
     private void setUpToolTips()
     {
         helpButton.setTooltip(new Tooltip("Need Help?"));
-//        googleWebView
-//        backButton
-//        homeButton
-//        forwardButton
-//        tachycardiaViewButton
-//        tachycardiaLearnMorebutton
-//        bradycardiaViewbutton
-//        bradycardiaLearnMoreButton
-//        cardiovascularMortalityViewButton
-//        cardiovascularMortalityLearnMoreButton
+        backButton.setTooltip(new Tooltip("Click here to go back one page."));
+        homeButton.setTooltip(new Tooltip("Click here to return to the Google home page."));
+        forwardButton.setTooltip(new Tooltip("Click here to go foward one page."));
+        tachycardiaViewButton.setTooltip(new Tooltip("Click here to view a list of the activities \n" +
+                "this health warning."));
+        tachycardiaLearnMorebutton.setTooltip(new Tooltip("Click here to search the web for \n" +
+                "information about this health warning."));
+        bradycardiaViewbutton.setTooltip(new Tooltip("Click here to view a list of the activities \n" +
+                "this health warning."));
+        bradycardiaLearnMoreButton.setTooltip(new Tooltip("Click here to search the web for \n" +
+                "information about this health warning."));
+        cardiovascularMortalityViewButton.setTooltip(new Tooltip("Click here to view a list of the activities \n" +
+                "this health warning."));
+        cardiovascularMortalityLearnMoreButton.setTooltip(new Tooltip("Click here to search the web for \n" +
+                "information about this health warning."));
     }
 
 

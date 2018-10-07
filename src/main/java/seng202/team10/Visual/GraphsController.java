@@ -117,6 +117,7 @@ public class GraphsController implements Controllable, Initializable{
     {
         tabPane.setTooltip(new Tooltip("Select the tab of the graph you wish to see."));
         helpButton.setTooltip(new Tooltip("Need Help?"));
+        backButton.setTooltip(new Tooltip("Click here to return to the View Activities screen."));
     }
 
 

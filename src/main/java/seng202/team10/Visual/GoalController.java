@@ -57,7 +57,12 @@ public class GoalController implements Controllable{
     @FXML private Label futureDescriptionLabel;
     @FXML private Label failedDescriptionLabel;
     @FXML private Label achievedDescriptionLabel;
+<<<<<<< HEAD
     private UserProfile currentUser;
+=======
+    @FXML private Button removeCurrentGoalButton;
+    @FXML private Button removeFutureGoalButton;
+>>>>>>> 6dc565ab... Updated a bunch of tool tips
 
 
     /**

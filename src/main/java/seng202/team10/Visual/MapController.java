@@ -165,7 +165,7 @@ public class MapController implements Controllable, Initializable{
      */
     private void setUpToolTips()
     {
-        backButton.setTooltip(new Tooltip("Click here to return to the Graphs Screen."));
+        backButton.setTooltip(new Tooltip("Click here to return to the View Activities screen."));
         helpButton.setTooltip(new Tooltip("Need Help?"));
     }
 

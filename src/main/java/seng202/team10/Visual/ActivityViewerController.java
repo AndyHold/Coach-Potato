@@ -43,6 +43,9 @@ public class ActivityViewerController {
     @FXML private TableColumn<Activity, Integer> entrynoColumn;
     @FXML private Button entryViewerButton;
     @FXML private Button helpButton;
+    @FXML private Button deleteButton;
+    @FXML private Button mapViewerButton;
+    @FXML private Button graphViewerButton;
     @FXML private TextArea helpTextArea;
     @FXML private ComboBox typeSelect;
     @FXML private Label distanceLabel;
@@ -184,6 +187,9 @@ public class ActivityViewerController {
                                                    "Please click a title to sort the activities by that value."));
         entryViewerButton.setTooltip(new Tooltip("Click here to view the Entries in the selected activity.\n" +
                                                  "Note: You must have clicked on an activity in the table for this button to be used."));
+        mapViewerButton.setTooltip(new Tooltip("Click here to view a map of the selected activity."));
+        graphViewerButton.setTooltip(new Tooltip("Click here to view graphs of the selected activities."));
+        deleteButton.setTooltip(new Tooltip("Toggles delete mode.\nOnce delete mode is activated the activity you click on will be deleted"));
     }
 
 
