@@ -199,7 +199,6 @@ public class HealthWarningsController implements Controllable {
     @FXML public void hideHelpTextArea()
     {
         helpTextArea.setVisible(false);
-        helpButton.requestFocus();
     }
 
 
