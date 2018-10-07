@@ -21,6 +21,7 @@ import seng202.team10.Model.Exceptions.NoDataFoundException;
 import seng202.team10.Model.Exceptions.DuplicateEntryException;
 import seng202.team10.Model.Exceptions.ExistingActivityException;
 import seng202.team10.Model.Exceptions.ExistingElementException;
+<<<<<<< HEAD
 =======
 import seng202.team10.Model.DuplicateEntryException;
 import seng202.team10.Model.ExistingActivityException;
@@ -32,6 +33,9 @@ import seng202.team10.Model.NoDataFoundException;
 =======
 >>>>>>> fa9df04... Added several alerts and pop up windows for different cases of parsing data
 >>>>>>> 3228303f... Added several alerts and pop up windows for different cases of parsing data
+=======
+import seng202.team10.Model.UserProfile;
+>>>>>>> 15ba377d... made UserProfile a field in every controller necessary
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -80,6 +84,7 @@ public class UploadDataController {
     @FXML private TextArea manualEntryHelpTextArea;
     @FXML private TextArea uploadFileHelpTextArea;
     @FXML private Rectangle loadingCover;
+    private UserProfile currentUser;
 
     /**
 <<<<<<< HEAD
@@ -109,6 +114,7 @@ public class UploadDataController {
      */
     public void setUpScene()
     {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -158,6 +164,9 @@ public class UploadDataController {
         manualEntryHelpTextArea.setWrapText(true);
         uploadFileHelpTextArea.setWrapText(true);
 =======
+=======
+        currentUser = mainController.getTitleBar().getCurrentProfile();
+>>>>>>> 15ba377d... made UserProfile a field in every controller necessary
         // Set up help text areas
         setUpHelpTextAreas();
 >>>>>>> 517b3e8c... Refactored Classes in the Visual, Exceptions and ActivitiesData packages to meet style guidlines and java doc specs. Also refactored some methods that were particularly large. Also dealt with some warnings and refactored a bit because of it.
@@ -557,10 +566,10 @@ public class UploadDataController {
                 ArrayList<String> fileContents = this.parser.getFileContents(filename);
                 ArrayList<ArrayList<String>> formattedFile = this.parser.formatFileContents(fileContents);
                 ArrayList<Activity> newActivities = this.parser.processFile(formattedFile);
-                mainController .getTitleBar().getCurrentProfile().addActivities(newActivities);
+                currentUser.addActivities(newActivities);
                 // Set warning flag in title bar if warnings were added.
                 mainController .getTitleBar().setUpWarningFlag();
-                mainController .getDataWriter().saveProfile (mainController. getTitleBar().getCurrentProfile()); // Reserialize profile after adding data
+                mainController .getDataWriter().saveProfile (currentUser); // Reserialize profile after adding data
                 if (this.parser.getBadActivities() > 0) {
                     String discardedMessage = String.valueOf(this.parser.getBadActivities()) + " of " + String.valueOf(newActivities.size() + this.parser.getBadActivities()) + " activities found were discarded due to being unparsable";
                     this.mainController.createPopUp(Alert.AlertType.WARNING, "Warning", discardedMessage);
@@ -607,11 +616,11 @@ public class UploadDataController {
                 }
                 newActivity.postEntriesSetUp();
                 // Add Activity to user profile.
-                mainController .getTitleBar().getCurrentProfile().addActivity(newActivity);
+                currentUser.addActivity(newActivity);
                 // Set warning flag in title bar if warnings added
                 mainController .getTitleBar().setUpWarningFlag();
                 // Reserialize profile after adding data
-                mainController .getDataWriter().saveProfile (mainController. getTitleBar().getCurrentProfile());
+                mainController .getDataWriter().saveProfile (currentUser);
                 // Display a success pop up
                 this.mainController.createPopUp(Alert.AlertType.INFORMATION, "Success", "You have successfully created the activity \"" + activityName + "\"");
                 // Reset table, text field and ComboBox to be blank

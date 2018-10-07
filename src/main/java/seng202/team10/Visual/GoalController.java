@@ -11,6 +11,7 @@ import seng202.team10.Model.Exceptions.InvalidGoalDateException;
 import seng202.team10.Model.Exceptions.InvalidGoalTargetException;
 import seng202.team10.Model.Exceptions.NoTypeSelectedException;
 import seng202.team10.Model.Goals.*;
+import seng202.team10.Model.UserProfile;
 
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -56,6 +57,7 @@ public class GoalController implements Controllable{
     @FXML private Label futureDescriptionLabel;
     @FXML private Label failedDescriptionLabel;
     @FXML private Label achievedDescriptionLabel;
+    private UserProfile currentUser;
 
 
     /**
@@ -85,6 +87,7 @@ public class GoalController implements Controllable{
      */
     public void setUpScene()
     {
+        currentUser = mainController.getTitleBar().getCurrentProfile();
         // Set tool tips
         setUpToolTips();
         // Set up help text areas
@@ -430,7 +433,7 @@ public class GoalController implements Controllable{
             // If they say yes
             if (option.equals("OK")) {
                 //delete the goal and set deletemode off again
-                mainController .getTitleBar().getCurrentProfile().getGoals().removeCurrentGoal(item);
+                currentUser.getGoals().removeCurrentGoal(item);
             }
             addGoalsToTable();
             resetTextFields();
@@ -449,7 +452,7 @@ public class GoalController implements Controllable{
         if (currentGoalsListView.getSelectionModel().getSelectedItem() != null) {
             String item = currentGoalsListView.getSelectionModel().getSelectedItem().toString();
             Goal goal = null;
-            for (Goal selectedGoal : mainController .getTitleBar().getCurrentProfile().getGoals().getCurrentGoals()) {
+            for (Goal selectedGoal : currentUser.getGoals().getCurrentGoals()) {
                 if (selectedGoal.getGoalName().equals(item)) {
                     goal = selectedGoal;
                     break;
@@ -468,7 +471,7 @@ public class GoalController implements Controllable{
                         goal = selectedGoal;
 =======
             if (goal != null) {
-                String status = mainController .getTitleBar().getCurrentProfile().getGoals().checkGoal(goal.getGoalName());
+                String status = currentUser.getGoals().checkGoal(goal.getGoalName());
                 switch (status) {
                     case "inprogress":
                         printGoalsReview(goal, currentGoalTextArea, currentDescriptionLabel);
@@ -504,11 +507,15 @@ public class GoalController implements Controllable{
 =======
                 addGoalsToTable();
 <<<<<<< HEAD
+<<<<<<< HEAD
                 app.getDataWriter().saveProfile(app.getTitleBar().getCurrentProfile());
 >>>>>>> ade3c4f0... Fixed bug with Goal Creation where no type selected error was never thrown. Also any null value caused an uncaught error.
 =======
                 mainController .getDataWriter().saveProfile (mainController. getTitleBar().getCurrentProfile());
 >>>>>>> be0346c6... Refactored "app" to "mainController"
+=======
+                mainController .getDataWriter().saveProfile (currentUser);
+>>>>>>> 15ba377d... made UserProfile a field in every controller necessary
             }
         }
     }
@@ -518,6 +525,7 @@ public class GoalController implements Controllable{
      * Method to initialise the goal tables each time the user logs in, enters goals screen or switches tabs within goals.
      */
     public void addGoalsToTable() {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         app.getCurrentProfile().getGoals().refreshGoals();
@@ -547,10 +555,17 @@ public class GoalController implements Controllable{
             currentGoalsListView.setItems(currentGoals);
             ObservableList<String> achievedGoalNames = FXCollections.observableArrayList (mainController. getTitleBar().getCurrentProfile().getGoals().getAchievedGoalNames());
 >>>>>>> be0346c6... Refactored "app" to "mainController"
+=======
+        currentUser.getGoals().refreshGoals();
+        if  (currentUser.getGoals() != null) {
+            ObservableList<String> currentGoals = FXCollections.observableArrayList (currentUser.getGoals().getCurrentGoalNames());
+            currentGoalsListView.setItems(currentGoals);
+            ObservableList<String> achievedGoalNames = FXCollections.observableArrayList (currentUser.getGoals().getAchievedGoalNames());
+>>>>>>> 15ba377d... made UserProfile a field in every controller necessary
             achievedListView.setItems(achievedGoalNames);
-            ObservableList<String> failedGoalNames = FXCollections.observableArrayList (mainController. getTitleBar().getCurrentProfile().getGoals().getFailedGoalNames());
+            ObservableList<String> failedGoalNames = FXCollections.observableArrayList (currentUser.getGoals().getFailedGoalNames());
             failedListView.setItems(failedGoalNames);
-            ObservableList<String> futureGoalNames = FXCollections.observableArrayList (mainController. getTitleBar().getCurrentProfile().getGoals().getFutureGoalNames());
+            ObservableList<String> futureGoalNames = FXCollections.observableArrayList (currentUser.getGoals().getFutureGoalNames());
             futureGoalsListView.setItems(futureGoalNames);
 
         }
@@ -638,6 +653,7 @@ public class GoalController implements Controllable{
             goalTypeCombo.getSelectionModel().select(null);
             this.addGoalsToTable();
 <<<<<<< HEAD
+<<<<<<< HEAD
             app.getDataWriter().saveProfile(app.getTitleBar().getCurrentProfile());
 <<<<<<< HEAD
 >>>>>>> f070a7b8... Fixed a bug with the current goals not being displayed properly.
@@ -652,6 +668,9 @@ public class GoalController implements Controllable{
 =======
             mainController .getDataWriter().saveProfile (mainController. getTitleBar().getCurrentProfile());
 >>>>>>> be0346c6... Refactored "app" to "mainController"
+=======
+            mainController .getDataWriter().saveProfile (currentUser);
+>>>>>>> 15ba377d... made UserProfile a field in every controller necessary
         } catch (InvalidGoalDateException | BadGoalNameException | InvalidGoalTargetException exception) {
             mainController .createPopUp(Alert.AlertType.ERROR, "Error", exception.getMessage());
         } catch (NumberFormatException exception) {

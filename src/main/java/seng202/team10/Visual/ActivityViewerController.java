@@ -8,6 +8,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import seng202.team10.Control.MainController;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
+import seng202.team10.Model.UserProfile;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -24,7 +25,12 @@ public class ActivityViewerController {
 
     private MainController mainController ;
     private ObservableList<String> types;
+<<<<<<< HEAD
     private ObservableList<Activity> activities;
+=======
+    private int currentIndex = -1;
+    private UserProfile currentUser;
+>>>>>>> 15ba377d... made UserProfile a field in every controller necessary
 
     @FXML private DatePicker startDate;
     @FXML private DatePicker endDate;
@@ -43,7 +49,6 @@ public class ActivityViewerController {
     @FXML private Label durationLabel;
     @FXML private Label speedLabel;
     @FXML private Label heartRateLabel;
-    private int currentIndex = -1;
 
 
     /**
@@ -51,6 +56,8 @@ public class ActivityViewerController {
      */
     public void setUpScene()
     {
+        // Set Current User
+        currentUser = mainController.getTitleBar().getCurrentProfile();
         // Set tool tips for all elements
         setToolTips();
         // Set up help text area
@@ -77,10 +84,14 @@ public class ActivityViewerController {
     private void setUpTableView()
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         activities = FXCollections.observableArrayList(app.getTitleBar().getCurrentProfile().getActivities());
 =======
         ObservableList<Activity> activities = FXCollections.observableArrayList (mainController. getTitleBar().getCurrentProfile().getActivities());
 >>>>>>> be0346c6... Refactored "app" to "mainController"
+=======
+        ObservableList<Activity> activities = FXCollections.observableArrayList (currentUser.getActivities());
+>>>>>>> 15ba377d... made UserProfile a field in every controller necessary
         nameColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("name"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("typeString"));
         starttimeColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("timeString"));
@@ -269,7 +280,7 @@ public class ActivityViewerController {
     @FXML public void applyFilter()
     {
         ArrayList<Activity> newActivities = new ArrayList<>();
-        for(Activity profileActivity: mainController .getTitleBar().getCurrentProfile().getActivities()) {
+        for(Activity profileActivity: currentUser.getActivities()) {
             newActivities.add(profileActivity);
         }
         LocalDate lowerDate = startDate.getValue();
@@ -360,7 +371,7 @@ public class ActivityViewerController {
      */
     @FXML public void clearFilters()
     {
-        ObservableList<Activity> activities = FXCollections.observableArrayList (mainController. getTitleBar().getCurrentProfile().getActivities());
+        ObservableList<Activity> activities = FXCollections.observableArrayList (currentUser.getActivities());
         populateTable(activities);
         typeSelect.setValue(null);
         startDate.setValue(null);
@@ -415,13 +426,13 @@ public class ActivityViewerController {
     {
         if(activitiesTableView.getSelectionModel().getSelectedItem() != null) {
             Activity toDelete = activitiesTableView.getSelectionModel().getSelectedItem();
-            mainController .getTitleBar().getCurrentProfile().deleteActivity(toDelete);
+            currentUser.deleteActivity(toDelete);
             mainController .getTitleBar().setUpWarningFlag();
-            mainController .getDataWriter().saveProfile (mainController. getTitleBar().getCurrentProfile());
+            mainController .getDataWriter().saveProfile (currentUser);
         } else {
             mainController .createPopUp(Alert.AlertType.ERROR, "Error", "Please select an Activity first");
         }
-        populateTable(FXCollections.observableArrayList (mainController. getTitleBar().getCurrentProfile().getActivities()));
+        populateTable(FXCollections.observableArrayList (currentUser.getActivities()));
     }
 
 >>>>>>> c3af2f13... Implemented button to delete an activity on the activity viewer

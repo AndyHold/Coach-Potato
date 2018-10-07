@@ -15,6 +15,7 @@ import seng202.team10.Control.MainController;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.Goals.Goal;
+import seng202.team10.Model.UserProfile;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -43,6 +44,7 @@ public class CalendarPaneController {
     private ObservableList<String> years;
     private ComboBox monthsComboBox = new ComboBox();
     private ComboBox yearsComboBox = new ComboBox();
+    private UserProfile currentUser;
 
 
     /**
@@ -123,6 +125,7 @@ public class CalendarPaneController {
     {
         setMainController(mainController);
         setProfileController(profileController);
+        currentUser = mainController.getTitleBar().getCurrentProfile();
         currentYearMonth = yearMonth;
 
         // Create the calendar grid pane
@@ -333,14 +336,14 @@ public class CalendarPaneController {
             txt.setFill(Color.BLACK);
             txt.setTextAlignment(TextAlignment.CENTER);
             ap.setDate(calendarDate);
-            ap.setCurrentUser (mainController. getTitleBar().getCurrentProfile());
+            ap.setCurrentUser (currentUser);
             ap.setProfileController(profileController);
             ap.setTopAnchor(txt, 10.0);
             ap.setLeftAnchor(txt, 10.0);
             ap.setOnMouseClicked(e -> ap.onMouseClicked());
 
-            if  (mainController. getTitleBar().getCurrentProfile().getActivities() != null) {
-                ArrayList<Activity> userActivities = mainController .getTitleBar().getCurrentProfile().getActivities();
+            if  (currentUser.getActivities() != null) {
+                ArrayList<Activity> userActivities = currentUser.getActivities();
                 ArrayList<Activity> todayActivities = new ArrayList<>();
                 int count = 0;
                 for (Activity activity: userActivities) {
@@ -357,8 +360,8 @@ public class CalendarPaneController {
                 ap.setActivities(todayActivities);
             }
 
-            if  (mainController. getTitleBar().getCurrentProfile().getGoals().getCreatedGoals() != null) {
-                ArrayList<Goal> userGoals = mainController .getTitleBar().getCurrentProfile().getGoals().getCreatedGoals();
+            if  (currentUser.getGoals().getCreatedGoals() != null) {
+                ArrayList<Goal> userGoals = currentUser.getGoals().getCreatedGoals();
                 ArrayList<Goal> todayGoals = new ArrayList<>();
                 int countGoals = 0;
                 for (Goal goal: userGoals) {

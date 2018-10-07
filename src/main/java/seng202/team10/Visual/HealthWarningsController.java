@@ -18,6 +18,8 @@ import javafx.util.Duration;
 import seng202.team10.Control.MainController;
 import seng202.team10.Model.ActivitiesData.HealthWarning;
 import seng202.team10.Model.ActivitiesData.HealthWarningType;
+import seng202.team10.Model.UserProfile;
+
 import java.util.ArrayList;
 
 <<<<<<< HEAD
@@ -35,7 +37,7 @@ import java.util.ArrayList;
 public class HealthWarningsController implements Controllable {
 
 
-    private MainController mainController ;
+    private MainController mainController;
     private ObservableList<HealthWarning> tachycardiaWarnings;
     private ObservableList<HealthWarning> bradycardiaWarnings;
 <<<<<<< HEAD
@@ -76,6 +78,7 @@ public class HealthWarningsController implements Controllable {
     @FXML private Button cardiovascularMortalityViewButton;
     @FXML private Button cardiovascularMortalityLearnMoreButton;
     private WebEngine engine;
+    private UserProfile currentUser;
 
 
 <<<<<<< HEAD
@@ -100,6 +103,7 @@ public class HealthWarningsController implements Controllable {
 
     public void setUpScene()
     {
+        currentUser = mainController.getTitleBar().getCurrentProfile();
         // Set up help and tooltips
         setUpHelpTextArea();
         setUpToolTips();
@@ -274,9 +278,9 @@ public class HealthWarningsController implements Controllable {
 
     private void getWarningLists()
     {
-        tachycardiaWarnings = FXCollections.observableArrayList (mainController. getTitleBar().getCurrentProfile().getWarnings(HealthWarningType.TACHYCARDIA));
-        bradycardiaWarnings = FXCollections.observableArrayList (mainController. getTitleBar().getCurrentProfile().getWarnings(HealthWarningType.BRADYCARDIA));
-        cardiovascularMortalityWarnings = FXCollections.observableArrayList (mainController. getTitleBar().getCurrentProfile().getWarnings(HealthWarningType.CARDIOVASCULAR_MORTALITY));
+        tachycardiaWarnings = FXCollections.observableArrayList(currentUser.getWarnings(HealthWarningType.TACHYCARDIA));
+        bradycardiaWarnings = FXCollections.observableArrayList(currentUser.getWarnings(HealthWarningType.BRADYCARDIA));
+        cardiovascularMortalityWarnings = FXCollections.observableArrayList(currentUser.getWarnings(HealthWarningType.CARDIOVASCULAR_MORTALITY));
     }
 
 
@@ -319,8 +323,8 @@ public class HealthWarningsController implements Controllable {
      */
     public void removeWarning(HealthWarning healthWarning)
     {
-        mainController .getTitleBar().getCurrentProfile().removeHealthWarning(healthWarning);
-        mainController .getDataWriter().saveProfile (mainController. getTitleBar().getCurrentProfile());
+        currentUser.removeHealthWarning(healthWarning);
+        mainController.getDataWriter().saveProfile(currentUser);
         switch(healthWarning.getType())
         {
             case TACHYCARDIA:
@@ -334,7 +338,7 @@ public class HealthWarningsController implements Controllable {
                 break;
         }
         setUpLabels();
-        mainController .getTitleBar().setUpWarningFlag();
+        mainController.getTitleBar().setUpWarningFlag();
     }
 
 
@@ -342,7 +346,7 @@ public class HealthWarningsController implements Controllable {
      * Getter method for the <b>MainController</b>
      * @return the <b>MainController</b>
      */
-    public MainController getApp()
+    public MainController getMainController()
     {
         return this.mainController;
     }
