@@ -358,6 +358,9 @@ public class ProfileController {
     }
 
 
+    /**
+     * Method to reset values of all GUI elements to default
+     */
     public void resetVisibility()
     {
         activity1HBox.setVisible(false);
