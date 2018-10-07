@@ -20,6 +20,7 @@ import seng202.team10.Model.ActivitiesData.HealthWarning;
 import seng202.team10.Model.ActivitiesData.HealthWarningType;
 import seng202.team10.Model.UserProfile;
 
+import java.net.InetAddress;
 import java.util.ArrayList;
 
 <<<<<<< HEAD
@@ -111,9 +112,15 @@ public class HealthWarningsController implements Controllable {
         // Set up the current warnings
         getWarningLists();
         setUpLabels();
+<<<<<<< HEAD
         // Set up the web view
+=======
+
+
+>>>>>>> 89478d66... added popups on health warnings when it can't connect to google
         engine = googleWebView.getEngine();
         engine.load("https://google.com");
+
         helpTextArea.focusedProperty().addListener((ov, oldV, newV) -> {
         if (!newV) {
             hideHelpTextArea();
@@ -249,7 +256,12 @@ public class HealthWarningsController implements Controllable {
      */
     @FXML public void goHome()
     {
-
+        try{
+            InetAddress address = InetAddress.getByName("www.google.com");
+            boolean reachable = address.isReachable(10000);
+        } catch (Exception e) {
+            app.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, Web Search is currently available");
+        }
         engine.load("https://google.com");
     }
 
@@ -486,6 +498,12 @@ public class HealthWarningsController implements Controllable {
 >>>>>>> 41a3421e... Implemented navigation buttons for health warnings screen. Added some new icons for various things.
     @FXML public void showTachycardiaSearch()
     {
+        try{
+            InetAddress address = InetAddress.getByName("www.google.com");
+            boolean reachable = address.isReachable(10000);
+        } catch (Exception e) {
+            app.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, 'Learn More' currently available");
+        }
         engine.load(HealthWarningType.TACHYCARDIA.getURL());
     }
 
@@ -499,6 +517,12 @@ public class HealthWarningsController implements Controllable {
 >>>>>>> aac42ab6... Javadoc'd HealthWarningsController
     @FXML public void showBradycardiaSearch()
     {
+        try{
+            InetAddress address = InetAddress.getByName("www.google.com");
+            boolean reachable = address.isReachable(10000);
+        } catch (Exception e) {
+            app.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, 'Learn More' currently available");
+        }
         engine.load(HealthWarningType.BRADYCARDIA.getURL());
     }
 
@@ -512,6 +536,12 @@ public class HealthWarningsController implements Controllable {
 >>>>>>> aac42ab6... Javadoc'd HealthWarningsController
     @FXML public void showCardiovascularSearch()
     {
+        try{
+            InetAddress address = InetAddress.getByName("www.google.com");
+            boolean reachable = address.isReachable(10000);
+        } catch (Exception e) {
+            app.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, 'Learn More' currently available");
+        }
         engine.load(HealthWarningType.CARDIOVASCULAR_MORTALITY.getURL());
     }
 
