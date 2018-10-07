@@ -329,7 +329,6 @@ public class UserProfile implements java.io.Serializable {
     /**
      * Calculates the users age based on thier date of birth.
      * @return An <b>int</b> of The users age.
-     * TODO test this
      */
     public int calculateAge()
     {

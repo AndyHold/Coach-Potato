@@ -545,5 +545,4 @@ public class HealthWarningsController implements Controllable {
         engine.load(HealthWarningType.CARDIOVASCULAR_MORTALITY.getURL());
     }
 
-
 }

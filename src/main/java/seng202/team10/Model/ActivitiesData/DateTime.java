@@ -399,7 +399,6 @@ public class DateTime implements Serializable {
      * Method to calculate the years between two DateTimes. discards any extra months or days.
      * @param otherDateTime DateTime: The date time to be compared with.
      * @return An <b>int</b>: The difference in years.
-     * TODO test this
      */
     public int subtractYearsFromDateTime(DateTime otherDateTime)
     {

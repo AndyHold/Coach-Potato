@@ -34,7 +34,7 @@ public class WeightGoalTest {
 
     }
 
-    // TODO test the constructor method properly
+
     @Test
     public void reviewWeightGoalFailLowerBound() throws BadGoalNameException, InvalidGoalDateException, InvalidGoalTargetException, InvalidWeightException, InterruptedException
     {

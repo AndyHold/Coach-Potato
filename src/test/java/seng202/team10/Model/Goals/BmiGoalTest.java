@@ -32,8 +32,6 @@ public class BmiGoalTest {
         testUser.setWeight(100);
     }
 
-    // TODO test setter methods for target value
-
 
     @Test
     public void reviewBMIGoalFailLowerBound() throws BadGoalNameException, InvalidGoalDateException, InvalidGoalTargetException, InterruptedException
