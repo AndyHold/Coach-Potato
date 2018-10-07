@@ -349,7 +349,7 @@ public class ProfileController {
     @FXML public void setQuote()
     {
         if (firstQuote && currentUser.getBirthDate().getDateAsString().substring(0, 5).equals(DateTime.now().getDateAsString().substring(0, 5))) {
-            quotesLabel.setText("!Happy Birthday From Coach Potato!");
+            quotesLabel.setText("Happy Birthday From Coach Potato!!!");
             firstQuote = false;
         } else {
             quotesLabel.setText(quotes.get((int) (Math.random() * (quotes.size()))));
@@ -538,6 +538,8 @@ public class ProfileController {
             mainController .createPopUp(Alert.AlertType.ERROR, "Invalid Date of Birth", "Please enter a valid date: It should be in DD/MM/YYYY format." );
 >>>>>>> be0346c6... Refactored "app" to "mainController"
         }
+        firstQuote = true;
+        setQuote();
 
         // Set gender and handle Exceptions
         List<String> genderList = Arrays.asList("Male", "Female", "Other");
@@ -549,6 +551,7 @@ public class ProfileController {
             mainController .createPopUp(Alert.AlertType.ERROR, "Invalid Gender", "Please enter a valid gender: It should be either \"Male\", \"Female\" or \"Other\"." );
         }
         if (!(oldGender.equals(currentUser.getGender()))) {
+            mainController.getTitleBar().setProfileImage();
             mainController .getDataWriter().deleteProfile(currentUser.getName() + " - " + oldGender);
         }
         confirmButton.setVisible(false);

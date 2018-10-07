@@ -574,8 +574,7 @@ public class UploadDataController {
                 if (this.parser.getBadActivities() > 0) {
                     String discardedMessage = String.valueOf(this.parser.getBadActivities()) + " of " + String.valueOf(newActivities.size() + this.parser.getBadActivities()) + " activities found were discarded due to being unparsable";
                     this.mainController.createPopUp(Alert.AlertType.WARNING, "Warning", discardedMessage);
-                }
-                else {
+                } else {
                     this.mainController.createPopUp(Alert.AlertType.INFORMATION, "Success", String.valueOf(newActivities.size()) +" activities have been successfully uploaded to your profile");
                 }
             } catch (FileNotFoundException exception) {

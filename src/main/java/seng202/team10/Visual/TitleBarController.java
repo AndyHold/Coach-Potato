@@ -292,11 +292,7 @@ public class TitleBarController {
     {
         profileController.setCurrentUser(currentUser);
         profileController.checkLastWeightUpdate();
-        try {
-            profileMenuIcon.setImage(new Image("Images/profile" + currentUser.getGender() + ".png"));
-        } catch (IllegalArgumentException exception) {
-            mainController .createPopUp(Alert.AlertType.ERROR, "Error", "Could not find profile icon");
-        }
+        setProfileImage();
         profileController.setUpScene();
         mainController .getDataWriter().saveProfile(currentUser);
         profileController.setUserDetails();
@@ -309,7 +305,24 @@ public class TitleBarController {
 
 
     /**
+<<<<<<< HEAD
      * Method to display the upload data screen
+=======
+     * Method to display the gender appropriate profile screen icon in the menu.
+     */
+    public void setProfileImage()
+    {
+        try {
+            profileMenuIcon.setImage(new Image("Images/profile" + currentUser.getGender() + ".png"));
+        } catch (IllegalArgumentException exception) {
+            mainController .createPopUp(Alert.AlertType.ERROR, "Error", "Could not find profile icon");
+        }
+    }
+
+
+    /**
+     * Method to display the upload data screen.
+>>>>>>> f8e3e3b7... Fixed the profile icon not updating when profile edited. Also changed happy birthday message to be displayed after editing profile also.
      */
     @FXML public void openUploadData()
     {
