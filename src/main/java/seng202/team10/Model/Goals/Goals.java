@@ -175,7 +175,7 @@ public class Goals implements Serializable {
         LocalDateTime now1 = LocalDateTime.now();
         DateTime now2 = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         Goal goal = getCurrentGoalObject(goalName);
-        String progress = "inprogress";
+        String progress = "in progress";
         if (currentGoals.contains(goal)) {
             String type = goal.getGoalType();
             switch (type) {

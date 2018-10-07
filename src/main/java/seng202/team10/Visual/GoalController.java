@@ -637,6 +637,7 @@ public class GoalController implements Controllable{
 
             GoalType type = (GoalType) goalTypeCombo.getValue();
             String name = goalNameEntry.getText();
+            //name = name.replaceAll("//s", "");
             int target;
             double doubleTarget;
             int startYear = startDatePicker.getValue().getYear();

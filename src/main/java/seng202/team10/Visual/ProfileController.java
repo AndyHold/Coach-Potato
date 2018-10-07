@@ -505,7 +505,7 @@ public class ProfileController {
         try {
             currentUser.setWeight(Double.valueOf(weightValueTA.getText()));
         }  catch (InvalidWeightException | IllegalArgumentException exception) {
-            mainController .createPopUp(Alert.AlertType.ERROR, "Invalid Weight", "Please enter a valid weight: It should be greater than 30 kg and less than 500 kg." );
+            mainController .createPopUp(Alert.AlertType.ERROR, "Invalid Weight", "Please enter a valid weight: It should be greater than 30 kg and less than 251 kg." );
         }
         double newWeight = currentUser.getWeight();
 
@@ -518,7 +518,7 @@ public class ProfileController {
         try {
             currentUser.setHeight(Double.valueOf(heightValueTA.getText()));
         } catch (InvalidHeightException | IllegalArgumentException exception) {
-            mainController .createPopUp(Alert.AlertType.ERROR, "Invalid Height", "Please enter a valid height: It should be greater than 50 cm and less than 250 cm." );
+            mainController .createPopUp(Alert.AlertType.ERROR, "Invalid Height", "Please enter a valid height: It should be greater than 50 cm and less than 261 cm." );
         }
 
         // Set Date of Birth and handle exceptions

@@ -351,8 +351,10 @@ public class UserProfile implements java.io.Serializable {
             category = "Healthy";
         } else if (this.bmi < 30){
             category = "Overweight";
-        } else {
+        } else if (this.bmi < 35){
             category = "Obese";
+        } else {
+            category = "Extremely obese";
         }
         return category;
     }
