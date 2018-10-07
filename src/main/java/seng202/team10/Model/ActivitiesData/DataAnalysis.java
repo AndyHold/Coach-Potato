@@ -149,6 +149,7 @@ public class DataAnalysis {
         ArrayList<Double> calorieArray = new ArrayList<>();
 
         int userAge = Calendar.getInstance().get(Calendar.YEAR) - user.getBirthDate().getYear();
+<<<<<<< HEAD
         if (user.getGender() == "Male") {
             for (int index = 0; index < activity.getEntries().size(); index++) {
                 Entry entry = activity.getEntries().get(index);
@@ -167,6 +168,47 @@ public class DataAnalysis {
                 double calories = ((-37.5 + (0.54 * entry.getHeartRate()) + (0.155 * user.getWeight()) + (0.138 * userAge))/4.184) * 60 * timeArray.get(index)/3600.0;
                 calorieArray.add(calories);
             }
+=======
+        double calorieSum = 0;
+        int i = 0;
+        switch (user.getGender()) {
+            case "Male":
+                while (i < activity.getEntries().size()-1) {
+                    Entry entryA = activity.getEntries().get(i);
+                    Entry entryB = activity.getEntries().get(i + 1);
+                    int timeFromLastEntry = entryB.getTime().subtract(entryA.getTime());
+                    double calories = ((-55.0969 + (0.6309 * entryB.getHeartRate()) + (0.1988 * user.getWeight()) + (0.2017 * userAge)) / 4.184) * 60 * timeFromLastEntry / 3600.0;
+                    calorieArray.add(calorieSum);
+                    calorieSum += calories;
+                    i++;
+                }
+                calorieArray.add(calorieSum);
+                break;
+            case "Female":
+                while (i < activity.getEntries().size()-1) {
+                    Entry entryA = activity.getEntries().get(i);
+                    Entry entryB = activity.getEntries().get(i + 1);
+                    int timeFromLastEntry = entryB.getTime().subtract(entryA.getTime());
+                    double calories = ((-20.4022 + (0.4472 * entryB.getHeartRate()) + (0.1263 * user.getWeight()) + (0.074 * userAge)) / 4.184) * 60 * timeFromLastEntry / 3600.0;
+                    calorieArray.add(calorieSum);
+                    calorieSum += calories;
+                    i++;
+                }
+                calorieArray.add(calorieSum);
+                break;
+            default:
+                while (i < activity.getEntries().size()-1) {
+                    Entry entryA = activity.getEntries().get(i);
+                    Entry entryB = activity.getEntries().get(i + 1);
+                    int timeFromLastEntry = entryB.getTime().subtract(entryA.getTime());
+                    double calories = ((-37.5 + (0.54 * entryB.getHeartRate()) + (0.155 * user.getWeight()) + (0.138 * userAge)) / 4.184) * 60 * timeFromLastEntry / 3600.0;
+                    calorieArray.add(calorieSum);
+                    calorieSum += calories;
+                    i++;
+                }
+                calorieArray.add(calorieSum);
+                break;
+>>>>>>> 9af5ff52... Changed the calories burned so it's accurate
         }
         //activities.setCaloriesBurned(calorieArray[-1]);
         return calorieArray;
