@@ -96,12 +96,14 @@ public class HealthWarningsController implements Controllable {
 
     public void setUpScene()
     {
+        // Set up help and tooltips
         setUpHelpTextArea();
         setUpToolTips();
         hideInfoBoxes();
+        // Set up the current warnings
         getWarningLists();
         setUpLabels();
-
+        // Set up the web view
         engine = googleWebView.getEngine();
         engine.load("https://google.com");
         helpTextArea.focusedProperty().addListener((ov, oldV, newV) -> {
@@ -109,6 +111,7 @@ public class HealthWarningsController implements Controllable {
             hideHelpTextArea();
         }});
     }
+
 
     /**
      * Set up method for the help text area
@@ -180,12 +183,17 @@ public class HealthWarningsController implements Controllable {
     }
 
 
+    /**
+     * Method to return to the previous webpage visited
+     * Called when the back button is selected
+     */
     @FXML public void goBack()
     {
+        // Get the history entries as an observable list with the current index.
         WebHistory history = engine.getHistory();
         ObservableList<WebHistory.Entry> entryList = history.getEntries();
         int index = history.getCurrentIndex();
-
+        // Create a new thread to change the page if the index is in range.
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -199,12 +207,17 @@ public class HealthWarningsController implements Controllable {
     }
 
 
+    /**
+     * Method to return to the next webpage visited if you are back in the web history
+     * Called when the forward button is selected
+     */
     @FXML public void goForward()
     {
+        // Get the history entries as an observable list with the current index.
         WebHistory history = engine.getHistory();
         ObservableList<WebHistory.Entry> entryList = history.getEntries();
         int index = history.getCurrentIndex();
-
+        // Create a new thread to change the page if the index is in range.
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -217,6 +230,10 @@ public class HealthWarningsController implements Controllable {
         });
     }
 
+
+    /**
+     * Method to return to the home webpage which is currently www.google.com
+     */
     @FXML public void goHome()
     {
 
@@ -229,21 +246,22 @@ public class HealthWarningsController implements Controllable {
      */
     public void createWarningPanes()
     {
+        // clear all warning lists
         tWarningsPane.getChildren().clear();
         bWarningsPane.getChildren().clear();
         cWarningsPane.getChildren().clear();
         tWarnings.clear();
         bWarnings.clear();
         cWarnings.clear();
-        // Tachycardia
+        // Make all Tachycardia warning panes
         for (HealthWarning healthWarning: tachycardiaWarnings) {
             tWarnings.add(new WarningPane(healthWarning, this, tWarningsPane));
         }
-        // Bradycardia
+        // Make all Bradycardia warning panes
         for (HealthWarning healthWarning: bradycardiaWarnings) {
             bWarnings.add(new WarningPane(healthWarning, this, bWarningsPane));
         }
-        // Cardiovascular Mortality
+        // Make all Cardiovascular Mortality warning panes
         for (HealthWarning healthWarning: cardiovascularMortalityWarnings) {
             cWarnings.add(new WarningPane(healthWarning, this, cWarningsPane));
         }
@@ -326,6 +344,9 @@ public class HealthWarningsController implements Controllable {
     }
 
 
+    /**
+     * Method to display the tachicardia warnings pane if it is not empty
+     */
     @FXML public void showTachycardiaWarnings()
     {
         hideWarningsScrollPane();
@@ -336,6 +357,9 @@ public class HealthWarningsController implements Controllable {
     }
 
 
+    /**
+     * Method to display the bradycardia warnings pane if it is not empty
+     */
     @FXML public void showBradycardiaWarnings()
     {
         hideWarningsScrollPane();
@@ -346,6 +370,9 @@ public class HealthWarningsController implements Controllable {
     }
 
 
+    /**
+     * Method to display the cardiovascular mortality warnings pane if it is not empty
+     */
     @FXML public void showCardiovascularMortalityWarnings()
     {
         hideWarningsScrollPane();
@@ -356,6 +383,10 @@ public class HealthWarningsController implements Controllable {
     }
 
 
+    /**
+     * Method to clear all Warnings in the visible pane.
+     * Called when the Clear All button is selected.
+     */
     @FXML public void clearAllWarnings()
     {
         if (tWarningsPane.isVisible()) {
@@ -368,11 +399,18 @@ public class HealthWarningsController implements Controllable {
     }
 
 
+    /**
+     * Method to clear all warnings of the given pane
+     * @param clearPane a <b>Pane</b> to be cleared
+     * @param warnings an <b>ArrayList&lt;WarningPane&gt;</b> of Warning Panes in the clearPane
+     */
     private void clearWarnings(Pane clearPane, ArrayList<WarningPane> warnings)
         {
+            // Create and play a Transition effect for the entire pane containing the warnings
             TranslateTransition clear = new TranslateTransition(new Duration(350), clearPane);
             clear.setToX(-380);
             clear.play();
+            // When transition finished empty the pane, clear the warnings and put it back in place.
             clear.setOnFinished(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
@@ -389,10 +427,11 @@ public class HealthWarningsController implements Controllable {
 
     /**
      * Method to show the warning Pane and stretch it to fit the values it requires.
-     * @param warningPane
+     * @param warningPane a <b>Pane</b> containing the warnings of one of the three types.
      */
     private void showWarningPane(Pane warningPane)
     {
+        // Show the panes, request focus and set the height of the pane depending on how many warnings it contains.
         warningsScrollPane.setVisible(true);
         warningPane.setVisible(true);
         warningsScrollPane.requestFocus();
@@ -426,8 +465,10 @@ public class HealthWarningsController implements Controllable {
         hideHelpTextArea();
     }
 
+
     /**
      * Method to search the web page for tachycardia.
+     * Called when the Learn More button for tachycardia is selected.
      */
 >>>>>>> 41a3421e... Implemented navigation buttons for health warnings screen. Added some new icons for various things.
     @FXML public void showTachycardiaSearch()
@@ -436,17 +477,30 @@ public class HealthWarningsController implements Controllable {
     }
 
 
+<<<<<<< HEAD
+=======
+    /**
+     * Method to search the web page for brachycardia.
+     * Called when the Learn More button for brachycardia is selected.
+     */
+>>>>>>> aac42ab6... Javadoc'd HealthWarningsController
     @FXML public void showBradycardiaSearch()
     {
         engine.load(HealthWarningType.BRADYCARDIA.getURL());
     }
 
+<<<<<<< HEAD
 
+=======
+    /**
+     * Method to search the web page for cardiovascular mortality.
+     * Called when the Learn More button for cardiovascular mortality is selected.
+     */
+>>>>>>> aac42ab6... Javadoc'd HealthWarningsController
     @FXML public void showCardiovascularSearch()
     {
         engine.load(HealthWarningType.CARDIOVASCULAR_MORTALITY.getURL());
     }
-
 
 
 }
