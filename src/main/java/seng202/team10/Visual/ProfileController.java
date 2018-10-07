@@ -486,9 +486,19 @@ public class ProfileController {
         String oldName = currentUser.getName();
         try {
             String nameString = usernameTA.getText();
+<<<<<<< HEAD
             String newName = mainController .checkUniqueName(nameString);
             try {
                 currentUser.setName(newName);
+=======
+            mainController.checkUniqueName(nameString);
+            try {
+                if (!nameString.isEmpty()) {
+                    currentUser.setName(nameString);
+                } else {
+                    mainController.createPopUp(Alert.AlertType.ERROR, "Invalid Username", "Please enter a non empty and valid username.");
+                }
+>>>>>>> 524d4b78... Fixed errors with edit profile such that it shouldn't allow empty user profile data fields when editted.
             } catch (UserNameException | IllegalArgumentException exception) {
                 mainController .createPopUp(Alert.AlertType.ERROR, "Invalid Username", "Please enter a valid username: It should be less than 50 characters and only contain alphanumeric characters." );
             }
@@ -503,7 +513,11 @@ public class ProfileController {
         // Set weight and handle exceptions
         double oldWeight = currentUser.getWeight();
         try {
-            currentUser.setWeight(Double.valueOf(weightValueTA.getText()));
+            if (!weightValueTA.getText().isEmpty()) {
+                currentUser.setWeight(Double.valueOf(weightValueTA.getText()));
+            } else {
+                mainController.createPopUp(Alert.AlertType.ERROR, "Invalid Weight", "Please enter a non empty and valid weight.");
+            }
         }  catch (InvalidWeightException | IllegalArgumentException exception) {
             mainController .createPopUp(Alert.AlertType.ERROR, "Invalid Weight", "Please enter a valid weight: It should be greater than 30 kg and less than 251 kg." );
         }
@@ -516,7 +530,12 @@ public class ProfileController {
 
         // Set height and handle Exceptions
         try {
-            currentUser.setHeight(Double.valueOf(heightValueTA.getText()));
+            if (!heightValueTA.getText().isEmpty()) {
+                currentUser.setHeight(Double.valueOf(heightValueTA.getText()));
+            } else {
+                mainController.createPopUp(Alert.AlertType.ERROR, "Invalid Height", "Please enter a non empty and valid height.");
+            }
+
         } catch (InvalidHeightException | IllegalArgumentException exception) {
             mainController .createPopUp(Alert.AlertType.ERROR, "Invalid Height", "Please enter a valid height: It should be greater than 50 cm and less than 261 cm." );
         }
@@ -524,6 +543,7 @@ public class ProfileController {
         // Set Date of Birth and handle exceptions
         try {
             String dob = dobTA.getText();
+<<<<<<< HEAD
             int yearInt = Integer.valueOf(dob.substring(6));
             int monthInt = Integer.valueOf(dob.substring(3,5));
             int dayInt = Integer.valueOf(dob.substring(0,2));
@@ -533,6 +553,17 @@ public class ProfileController {
         } catch (NullPointerException | IllegalArgumentException exception) {
 =======
             currentUser.setBirthDate(dateOfBirth);
+=======
+            if (!dob.isEmpty()) {
+                int yearInt = Integer.valueOf(dob.substring(6));
+                int monthInt = Integer.valueOf(dob.substring(3,5));
+                int dayInt = Integer.valueOf(dob.substring(0,2));
+                DateTime dateOfBirth = new DateTime(yearInt, monthInt, dayInt, 0, 0, 0);
+                currentUser.setBirthDate(dateOfBirth);
+            } else {
+                mainController.createPopUp(Alert.AlertType.ERROR, "Invalid Date of Birth", "Please enter a non empty and valid date: It should be in DD/MM/YYYY format.");
+            }
+>>>>>>> 524d4b78... Fixed errors with edit profile such that it shouldn't allow empty user profile data fields when editted.
         } catch (NullPointerException | IllegalArgumentException | InvalidDateException exception) {
 <<<<<<< HEAD
 >>>>>>> 83ff16b2... Fixed edit profile functionality
