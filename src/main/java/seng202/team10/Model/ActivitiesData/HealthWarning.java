@@ -131,7 +131,8 @@ public class HealthWarning implements java.io.Serializable {
      * Getter method for the name of the health warning.
      * @return A <b>String</b> of the name of the health warning.
      */
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
 
@@ -149,7 +150,8 @@ public class HealthWarning implements java.io.Serializable {
      * Getter method for the activity name.
      * @return A <b>String</b> of the activity name.
      */
-    public String getActivityName() {
+    public String getActivityName()
+    {
         return activityName;
     }
 
@@ -158,7 +160,9 @@ public class HealthWarning implements java.io.Serializable {
      * Getter method for the start date of the activity that caused the health warning.
      * @return A <b>DateTime</b> of the start date of an activity.
      */
-    public DateTime getActivityDate() {
+    public DateTime getActivityDate()
+    {
         return activityDate;
     }
+
 }

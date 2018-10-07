@@ -53,4 +53,5 @@ public enum HealthWarningType implements java.io.Serializable {
     {
         return name;
     }
+
 }

@@ -174,5 +174,5 @@ public class WarningPane {
         // remove the warning from the controller
         healthWarningsController.removeWarning(healthWarning);
     }
-    
+
 }
