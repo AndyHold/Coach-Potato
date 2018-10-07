@@ -279,8 +279,12 @@ public class HealthWarningsController implements Controllable {
         if (reachable) {
             engine.load("https://google.com");
         } else {
+<<<<<<< HEAD
             mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, 'google.com' currently available");
 >>>>>>> a9f2ebdd... Fixed the exceptions when there is no internet
+=======
+            mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, 'google.com' currently unavailable");
+>>>>>>> 9fbf9f08... Tried fixing the health warning but now will revert to the old one. Changed the popup label.
         }
     }
 
@@ -532,8 +536,12 @@ public class HealthWarningsController implements Controllable {
         if (reachable) {
             engine.load(HealthWarningType.TACHYCARDIA.getURL());
         } else {
+<<<<<<< HEAD
             mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, 'Learn More' currently available");
 >>>>>>> a9f2ebdd... Fixed the exceptions when there is no internet
+=======
+            mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, 'Learn More' currently unavailable");
+>>>>>>> 9fbf9f08... Tried fixing the health warning but now will revert to the old one. Changed the popup label.
         }
 
     }
@@ -563,8 +571,12 @@ public class HealthWarningsController implements Controllable {
         if (reachable) {
             engine.load(HealthWarningType.BRADYCARDIA.getURL());
         } else {
+<<<<<<< HEAD
             mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, 'Learn More' currently available");
 >>>>>>> a9f2ebdd... Fixed the exceptions when there is no internet
+=======
+            mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, 'Learn More' currently unavailable");
+>>>>>>> 9fbf9f08... Tried fixing the health warning but now will revert to the old one. Changed the popup label.
         }
 
     }
@@ -594,8 +606,12 @@ public class HealthWarningsController implements Controllable {
         if (reachable) {
             engine.load(HealthWarningType.CARDIOVASCULAR_MORTALITY.getURL());
         } else {
+<<<<<<< HEAD
             mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, 'Learn More' currently available");
 >>>>>>> a9f2ebdd... Fixed the exceptions when there is no internet
+=======
+            mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, 'Learn More' currently unavailable");
+>>>>>>> 9fbf9f08... Tried fixing the health warning but now will revert to the old one. Changed the popup label.
         }
 
     }
