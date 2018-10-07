@@ -32,10 +32,14 @@ import java.util.ResourceBundle;
 public class MapController implements Controllable, Initializable{
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     private GUIController guiController;
 =======
     private MainController app;
 >>>>>>> 86ffe4b1... Refactored GUIController to be called MainController
+=======
+    private MainController mainController ;
+>>>>>>> be0346c6... Refactored "app" to "mainController"
     private WebEngine webEngine;
     private boolean firstLoad = true;
     private boolean firstMapView = false;
@@ -68,10 +72,14 @@ public class MapController implements Controllable, Initializable{
      * Setter method to pass the MainController into this controller.
      * @param mainController <b>MainController:</b> The main controller.
      */
-    public void setApp(MainController mainController)
+    public void setMainController(MainController mainController)
     {
+<<<<<<< HEAD
         this.app = mainController;
 >>>>>>> 86ffe4b1... Refactored GUIController to be called MainController
+=======
+        this.mainController = mainController;
+>>>>>>> be0346c6... Refactored "app" to "mainController"
     }
 
 
@@ -90,7 +98,11 @@ public class MapController implements Controllable, Initializable{
                             try {
                                 webEngine.executeScript(scriptToExecute);
                             } catch (netscape.javascript.JSException exception) {
+<<<<<<< HEAD
                                 guiController.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to the internet. Please connect and try again.");
+=======
+                                mainController .createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to the internet. Please connect and try again.");
+>>>>>>> be0346c6... Refactored "app" to "mainController"
                             }
                         }
 =======
@@ -203,8 +215,12 @@ public class MapController implements Controllable, Initializable{
      * Called when the back button is pressed.
      */
     @FXML void openViewActivities() {
+<<<<<<< HEAD
         this.app.getTitleBar().openViewActivities();
 >>>>>>> 3e2b2c22... Changed the screens so that now the graphs are only accessible from view activities, same with map.
+=======
+        this.mainController.getTitleBar().openViewActivities();
+>>>>>>> be0346c6... Refactored "app" to "mainController"
     }
 
     /**

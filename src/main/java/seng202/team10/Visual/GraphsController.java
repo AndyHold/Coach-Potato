@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
  */
 public class GraphsController implements Controllable, Initializable{
 
-    private MainController app;
+    private MainController mainController ;
     private Activity activity;
     private DataAnalysis dataAnalysis;
     private int currentIndex;
@@ -54,9 +54,9 @@ public class GraphsController implements Controllable, Initializable{
 >>>>>>> 86ffe4b1... Refactored GUIController to be called MainController
      */
     @Override
-    public void setApp(MainController mainController)
+    public void setMainController(MainController mainController)
     {
-        this.app = mainController;
+        this.mainController = mainController;
     }
 
     /**
@@ -205,7 +205,7 @@ public class GraphsController implements Controllable, Initializable{
      */
     private void populateCaloriesBurnedGraph(ArrayList<Double> timeArray)
     {
-        ArrayList<Double> calorieArray = dataAnalysis.getCaloriesFromActivity(activity, app.getTitleBar().getCurrentProfile());
+        ArrayList<Double> calorieArray = dataAnalysis.getCaloriesFromActivity(activity, mainController .getTitleBar().getCurrentProfile());
         for (int i = 0; i < timeArray.size(); i++) {
             caloriesBurnedSeries.getData().add(new XYChart.Data(timeArray.get(i), calorieArray.get(i)));
         }
@@ -227,7 +227,7 @@ public class GraphsController implements Controllable, Initializable{
     {
         ArrayList<Double> stressArray = new ArrayList<>();
         for (int i = 0; i < timeArray.size(); i++) {
-            double stressPercent = (double)heartRateArray.get(i)/((double) 220 - app.getTitleBar().getCurrentProfile().calculateAge());
+            double stressPercent = (double)heartRateArray.get(i)/((double) 220 - mainController .getTitleBar().getCurrentProfile().calculateAge());
             stressArray.add(stressPercent);
             stressLevelTimeSeries.getData().add(new XYChart.Data(timeArray.get(i), stressArray.get(i)));
         }
@@ -281,7 +281,7 @@ public class GraphsController implements Controllable, Initializable{
     }
 
     @FXML public void openViewActivities() {
-        app.getTitleBar().openViewActivities();
+        mainController .getTitleBar().openViewActivities();
     }
 
 

@@ -37,7 +37,7 @@ public class CalendarPaneController {
     private VBox view;
     private Label calendarTitle;
     private YearMonth currentYearMonth;
-    private MainController app;
+    private MainController mainController ;
     private ProfileController profileController;
     private ObservableList<String> months;
     private ObservableList<String> years;
@@ -57,10 +57,14 @@ public class CalendarPaneController {
      * Setter method to pass the MainController into this controller.
      * @param mainController <b>MainController:</b> The main controller.
      */
-    public void setApp(MainController mainController)
+    public void setMainController(MainController mainController)
     {
+<<<<<<< HEAD
         this.app = mainController;
 >>>>>>> 86ffe4b1... Refactored GUIController to be called MainController
+=======
+        this.mainController = mainController;
+>>>>>>> be0346c6... Refactored "app" to "mainController"
     }
 
 
@@ -99,10 +103,11 @@ public class CalendarPaneController {
     /**
      * Method to create a calendar view
      * @param yearMonth year month to create the calendar of
-     * @param app  The MainController that controls the controllers.
+     * @param mainController  The MainController that controls the controllers.
      * @param profileController  The profile controller that controls the profile screen
      *
      */
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD:src/main/java/seng202/team10/Visual/CalenderPaneController.java
     public CalenderPaneController(YearMonth yearMonth, GUIController app, ProfileController profileController)
@@ -112,8 +117,11 @@ public class CalendarPaneController {
 =======
     CalendarPaneController(YearMonth yearMonth, MainController app, ProfileController profileController)
 >>>>>>> 86ffe4b1... Refactored GUIController to be called MainController
+=======
+    CalendarPaneController(YearMonth yearMonth, MainController mainController , ProfileController profileController)
+>>>>>>> be0346c6... Refactored "app" to "mainController"
     {
-        setApp(app);
+        setMainController(mainController);
         setProfileController(profileController);
         currentYearMonth = yearMonth;
 
@@ -325,14 +333,14 @@ public class CalendarPaneController {
             txt.setFill(Color.BLACK);
             txt.setTextAlignment(TextAlignment.CENTER);
             ap.setDate(calendarDate);
-            ap.setCurrentUser(app.getTitleBar().getCurrentProfile());
+            ap.setCurrentUser (mainController. getTitleBar().getCurrentProfile());
             ap.setProfileController(profileController);
             ap.setTopAnchor(txt, 10.0);
             ap.setLeftAnchor(txt, 10.0);
             ap.setOnMouseClicked(e -> ap.onMouseClicked());
 
-            if (app.getTitleBar().getCurrentProfile().getActivities() != null) {
-                ArrayList<Activity> userActivities = app.getTitleBar().getCurrentProfile().getActivities();
+            if  (mainController. getTitleBar().getCurrentProfile().getActivities() != null) {
+                ArrayList<Activity> userActivities = mainController .getTitleBar().getCurrentProfile().getActivities();
                 ArrayList<Activity> todayActivities = new ArrayList<>();
                 int count = 0;
                 for (Activity activity: userActivities) {
@@ -349,8 +357,8 @@ public class CalendarPaneController {
                 ap.setActivities(todayActivities);
             }
 
-            if (app.getTitleBar().getCurrentProfile().getGoals().getCreatedGoals() != null) {
-                ArrayList<Goal> userGoals = app.getTitleBar().getCurrentProfile().getGoals().getCreatedGoals();
+            if  (mainController. getTitleBar().getCurrentProfile().getGoals().getCreatedGoals() != null) {
+                ArrayList<Goal> userGoals = mainController .getTitleBar().getCurrentProfile().getGoals().getCreatedGoals();
                 ArrayList<Goal> todayGoals = new ArrayList<>();
                 int countGoals = 0;
                 for (Goal goal: userGoals) {

@@ -59,10 +59,14 @@ public class CreateProfileController implements Controllable
 {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     private GUIController app;
     ToggleGroup toggleGroup;
 =======
     private MainController app;
+=======
+    private MainController mainController ;
+>>>>>>> be0346c6... Refactored "app" to "mainController"
     private ToggleGroup toggleGroup;
 >>>>>>> 86ffe4b1... Refactored GUIController to be called MainController
 
@@ -112,10 +116,14 @@ public class CreateProfileController implements Controllable
      * Setter method to pass the MainController into this controller.
      * @param mainController <b>MainController:</b> The main controller.
      */
-    public void setApp(MainController mainController)
+    public void setMainController(MainController mainController)
     {
+<<<<<<< HEAD
         this.app = mainController;
 >>>>>>> 86ffe4b1... Refactored GUIController to be called MainController
+=======
+        this.mainController = mainController;
+>>>>>>> be0346c6... Refactored "app" to "mainController"
     }
 
 
@@ -126,7 +134,7 @@ public class CreateProfileController implements Controllable
     public void toggleBackButton()
     {
         helpButton.requestFocus();
-        if (this.app.getUserNames().size() == 0) {
+        if (this.mainController.getUserNames().size() == 0) {
             backButton.setDisable(true);
         } else {
             backButton.setDisable(false);
@@ -337,7 +345,7 @@ public class CreateProfileController implements Controllable
         // Set all Text fields etc to null
         setInputsToNull();
         // Launch login screen
-        app.getTitleBar().openLogin();
+        mainController .getTitleBar().openLogin();
     }
 
 
@@ -422,12 +430,12 @@ public class CreateProfileController implements Controllable
     private void saveUserProfile(UserProfile userProfile)
     {
         try {
-            app.createUser(userProfile);
+            mainController .createUser(userProfile);
             setErrorsInvisible();
             setInputsToNull();
-            app.getTitleBar().openLogin();
+            mainController .getTitleBar().openLogin();
         } catch (InvalidUserException exception) {
-            app.createPopUp(Alert.AlertType.ERROR, "Error", "The user information you have entered is invalid.");
+            mainController .createPopUp(Alert.AlertType.ERROR, "Error", "The user information you have entered is invalid.");
         }
     }
 
@@ -444,7 +452,7 @@ public class CreateProfileController implements Controllable
         } catch (NullPointerException exception) {
             genderErrorLabel.setVisible(true);
         } catch (IllegalArgumentException exception) {
-            this.app.createPopUp(Alert.AlertType.ERROR, "Error", "Could not find image");
+            this.mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Could not find image");
         }
     }
 
@@ -516,7 +524,7 @@ public class CreateProfileController implements Controllable
                 throw new UserNameException();
             }
             String nameString = getTextFieldString(nameEntry).substring(0,1).toUpperCase() + getTextFieldString(nameEntry).substring(1).toLowerCase();
-            this.app.checkUniqueName(nameString);
+            this.mainController.checkUniqueName(nameString);
             try {
                 userProfile.setName(nameString);
             } catch (UserNameException | IllegalArgumentException exception) {

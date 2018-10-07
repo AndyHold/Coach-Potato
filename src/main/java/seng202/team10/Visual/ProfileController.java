@@ -36,11 +36,15 @@ import java.util.List;
 public class ProfileController {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     private GUIController app;
     private DataAnalysis dataAnalysis = new DataAnalysis();
 =======
     private MainController app;
 >>>>>>> 86ffe4b1... Refactored GUIController to be called MainController
+=======
+    private MainController mainController ;
+>>>>>>> be0346c6... Refactored "app" to "mainController"
     private List<String> quotes;
     private UserProfile currentUser;
 
@@ -126,10 +130,14 @@ public class ProfileController {
      * Setter method to pass the MainController into this controller.
      * @param mainController <b>MainController:</b> The main controller.
      */
-    public void setApp(MainController mainController)
+    public void setMainController(MainController mainController)
     {
+<<<<<<< HEAD
         this.app = mainController;
 >>>>>>> 86ffe4b1... Refactored GUIController to be called MainController
+=======
+        this.mainController = mainController;
+>>>>>>> be0346c6... Refactored "app" to "mainController"
     }
 
 
@@ -326,11 +334,15 @@ public class ProfileController {
         heightValueTA.setText(df2.format((currentUser.getHeight())));
         bmiValueTA.setText(df2.format((currentUser.calcBmi())) + " - " + currentUser.getBmiCategory());
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 4f1b7d76... Fixed tests so that new format of error exceptions does not break the pipeline.
         calendarPane.getChildren().add(new CalenderPaneController(YearMonth.now(), app, this).getView());
 =======
         calendarPane.getChildren().add(new CalendarPaneController(YearMonth.now(), app, this).getView());
 >>>>>>> 7dae5bcb... changed miss spelt calendar
+=======
+        calendarPane.getChildren().add(new CalendarPaneController(YearMonth.now(), mainController , this).getView());
+>>>>>>> be0346c6... Refactored "app" to "mainController"
 
         // Sets up the calendar and other stats if the user has already uploaded the data to the app else all values are 0 initially.
         if (currentUser.getActivities().size() > 0) {
@@ -396,32 +408,32 @@ public class ProfileController {
         String oldName = currentUser.getName();
         try {
             String nameString = usernameTA.getText();
-            app.checkUniqueName(nameString);
+            mainController .checkUniqueName(nameString);
             try {
                 currentUser.setName(nameString);
             } catch (UserNameException | IllegalArgumentException exception) {
-                app.createPopUp(Alert.AlertType.ERROR, "Invalid Username", "Please enter a valid username: It should be less than 50 characters and only contain alphanumeric characters." );
+                mainController .createPopUp(Alert.AlertType.ERROR, "Invalid Username", "Please enter a valid username: It should be less than 50 characters and only contain alphanumeric characters." );
             }
         } catch (UniqueNameException | IllegalArgumentException exception) {
-            app.createPopUp(Alert.AlertType.ERROR, "Invalid Username", "Please enter a valid username: This username already exists." );
+            mainController .createPopUp(Alert.AlertType.ERROR, "Invalid Username", "Please enter a valid username: This username already exists." );
         }
         String newName = currentUser.getName();
         if(!(oldName.equals(newName))) {
-            app.getDataWriter().deleteProfile(oldName + " - " + currentUser.getGender());
-            app.getDataWriter().saveProfile(currentUser);
+            mainController .getDataWriter().deleteProfile(oldName + " - " + currentUser.getGender());
+            mainController .getDataWriter().saveProfile(currentUser);
         }
         // Set weight and handle exceptions
         try {
             currentUser.setWeight(Double.valueOf(weightValueTA.getText()));
         }  catch (InvalidWeightException | IllegalArgumentException exception) {
-            app.createPopUp(Alert.AlertType.ERROR, "Invalid Weight", "Please enter a valid weight: It should be greater than 30 kg and less than 500 kg." );
+            mainController .createPopUp(Alert.AlertType.ERROR, "Invalid Weight", "Please enter a valid weight: It should be greater than 30 kg and less than 500 kg." );
         }
 
         // Set height and handle Exceptions
         try {
             currentUser.setHeight(Double.valueOf(heightValueTA.getText()));
         } catch (InvalidHeightException | IllegalArgumentException exception) {
-            app.createPopUp(Alert.AlertType.ERROR, "Invalid Height", "Please enter a valid height: It should be greater than 50 cm and less than 250 cm." );
+            mainController .createPopUp(Alert.AlertType.ERROR, "Invalid Height", "Please enter a valid height: It should be greater than 50 cm and less than 250 cm." );
         }
 
         // Set Date of Birth and handle exceptions
@@ -437,8 +449,12 @@ public class ProfileController {
 =======
             currentUser.setBirthDate(dateOfBirth);
         } catch (NullPointerException | IllegalArgumentException | InvalidDateException exception) {
+<<<<<<< HEAD
 >>>>>>> 83ff16b2... Fixed edit profile functionality
             app.createPopUp(Alert.AlertType.ERROR, "Invalid Date of Birth", "Please enter a valid date: It should be in DD/MM/YYYY format." );
+=======
+            mainController .createPopUp(Alert.AlertType.ERROR, "Invalid Date of Birth", "Please enter a valid date: It should be in DD/MM/YYYY format." );
+>>>>>>> be0346c6... Refactored "app" to "mainController"
         }
 
         // Set gender and handle Exceptions
@@ -448,14 +464,14 @@ public class ProfileController {
         if (genderList.contains(newGender)) {
             currentUser.setGender(newGender);
         } else {
-            app.createPopUp(Alert.AlertType.ERROR, "Invalid Gender", "Please enter a valid gender: It should be either \"Male\", \"Female\" or \"Other\"." );
+            mainController .createPopUp(Alert.AlertType.ERROR, "Invalid Gender", "Please enter a valid gender: It should be either \"Male\", \"Female\" or \"Other\"." );
         }
         if (!(oldGender.equals(currentUser.getGender()))) {
-            app.getDataWriter().deleteProfile(currentUser.getName() + " - " + oldGender);
+            mainController .getDataWriter().deleteProfile(currentUser.getName() + " - " + oldGender);
         }
         confirmButton.setVisible(false);
         editProfileButton.setVisible(true);
-        app.getDataWriter().saveProfile(currentUser);
+        mainController .getDataWriter().saveProfile(currentUser);
         setUserDetails();
     }
 
@@ -475,6 +491,6 @@ public class ProfileController {
      */
     @FXML private void minimise()
     {
-        app.minimise();
+        mainController .minimise();
     }
 }

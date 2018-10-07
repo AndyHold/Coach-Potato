@@ -25,7 +25,7 @@ import java.util.ArrayList;
  */
 public class EntryViewerController {
 
-    private MainController app;
+    private MainController mainController ;
     private Activity loadedActivity;
 
     @FXML private Label activityNameLabel;
@@ -165,10 +165,14 @@ public class EntryViewerController {
      * Setter method to pass the MainController into this controller.
      * @param mainController <b>MainController:</b> The main controller.
      */
-    public void setApp(MainController mainController)
+    public void setMainController(MainController mainController)
     {
+<<<<<<< HEAD
         this.app = mainController;
 >>>>>>> 86ffe4b1... Refactored GUIController to be called MainController
+=======
+        this.mainController = mainController;
+>>>>>>> be0346c6... Refactored "app" to "mainController"
     }
 
 
@@ -180,9 +184,9 @@ public class EntryViewerController {
         ArrayList<Entry> savingEntries = new ArrayList<>(this.entries);
         loadedActivity.setEntries(savingEntries);
         loadedActivity.postEntriesSetUp();
-        loadedActivity.checkEntriesForWarnings(app.getTitleBar().getCurrentProfile());
-        app.getTitleBar().setUpWarningFlag();
-        app.getTitleBar().openViewActivities();
+        loadedActivity.checkEntriesForWarnings (mainController. getTitleBar().getCurrentProfile());
+        mainController .getTitleBar().setUpWarningFlag();
+        mainController .getTitleBar().openViewActivities();
     }
 
     /**
@@ -219,12 +223,12 @@ public class EntryViewerController {
             entrySelected.changeTime(editedCell.getNewValue().toString());
             checkContinuity(checkingEntries);
         } catch(NumberFormatException exception) {
-            this.app.createPopUp(Alert.AlertType.ERROR, "Error", "Time invalid, must be a valid number");
+            this.mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Time invalid, must be a valid number");
         } catch(IllegalArgumentException exception) {
             String message = exception.getMessage();
-            this.app.createPopUp(Alert.AlertType.ERROR, "Error", message);
+            this.mainController.createPopUp(Alert.AlertType.ERROR, "Error", message);
         } catch (EntryOutOfSequenceException exception) {
-            this.app.createPopUp(Alert.AlertType.ERROR, "Error", "Invalid time, entries not in sequence");
+            this.mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Invalid time, entries not in sequence");
             entrySelected.changeTime(oldTime);
         }
         entriesTableView.refresh();
@@ -244,12 +248,12 @@ public class EntryViewerController {
             entrySelected.changeDate(editedCell.getNewValue().toString());
             checkContinuity(checkingEntries);
         }  catch(NumberFormatException exception) {
-            this.app.createPopUp(Alert.AlertType.ERROR, "Error", "Date invalid, must be a valid number");
+            this.mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Date invalid, must be a valid number");
         } catch(IllegalArgumentException exception) {
             String message = exception.getMessage();
-            this.app.createPopUp(Alert.AlertType.ERROR, "Error", message);
+            this.mainController.createPopUp(Alert.AlertType.ERROR, "Error", message);
         } catch (EntryOutOfSequenceException exception) {
-            this.app.createPopUp(Alert.AlertType.ERROR, "Error", "Invalid date, entries not in sequence");
+            this.mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Invalid date, entries not in sequence");
             entrySelected.changeDate(oldDate);
         }
         entriesTableView.refresh();
@@ -266,10 +270,10 @@ public class EntryViewerController {
             Entry entrySelected = entriesTableView.getSelectionModel().getSelectedItem();
             entrySelected.setHeartRate(Integer.valueOf(editedCell.getNewValue().toString()));
         } catch(NumberFormatException exception) {
-            this.app.createPopUp(Alert.AlertType.ERROR, "Error", "HeartRate invalid, must be a valid number");
+            this.mainController.createPopUp(Alert.AlertType.ERROR, "Error", "HeartRate invalid, must be a valid number");
         } catch(IllegalArgumentException exception) {
             String message = exception.getMessage();
-            this.app.createPopUp(Alert.AlertType.ERROR, "Error", message);
+            this.mainController.createPopUp(Alert.AlertType.ERROR, "Error", message);
         }
         entriesTableView.refresh();
     }
@@ -285,10 +289,10 @@ public class EntryViewerController {
             Entry entrySelected = entriesTableView.getSelectionModel().getSelectedItem();
             entrySelected.setLatitude(Double.valueOf(editedCell.getNewValue().toString()));
         } catch(NumberFormatException exception) {
-            this.app.createPopUp(Alert.AlertType.ERROR, "Error", "Latitude invalid, must be a valid number");
+            this.mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Latitude invalid, must be a valid number");
         } catch(IllegalArgumentException exception) {
             String message = exception.getMessage();
-            this.app.createPopUp(Alert.AlertType.ERROR, "Error", message);
+            this.mainController.createPopUp(Alert.AlertType.ERROR, "Error", message);
         }
         entriesTableView.refresh();
 
@@ -305,10 +309,10 @@ public class EntryViewerController {
             Entry entrySelected = entriesTableView.getSelectionModel().getSelectedItem();
             entrySelected.setLongitude(Double.valueOf(editedCell.getNewValue().toString()));
         } catch(NumberFormatException exception) {
-            this.app.createPopUp(Alert.AlertType.ERROR, "Error", "Longitude invalid, must be a valid number");
+            this.mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Longitude invalid, must be a valid number");
         } catch(IllegalArgumentException exception) {
             String message = exception.getMessage();
-            this.app.createPopUp(Alert.AlertType.ERROR, "Error", message);
+            this.mainController.createPopUp(Alert.AlertType.ERROR, "Error", message);
         }
         entriesTableView.refresh();
 
@@ -325,10 +329,10 @@ public class EntryViewerController {
             Entry entrySelected = entriesTableView.getSelectionModel().getSelectedItem();
             entrySelected.setElevation(Double.valueOf(editedCell.getNewValue().toString()));
         } catch(NumberFormatException exception) {
-            this.app.createPopUp(Alert.AlertType.ERROR, "Error", "Elevation invalid, must be a valid number");
+            this.mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Elevation invalid, must be a valid number");
         } catch(IllegalArgumentException exception) {
             String message = exception.getMessage();
-            this.app.createPopUp(Alert.AlertType.ERROR, "Error", message);
+            this.mainController.createPopUp(Alert.AlertType.ERROR, "Error", message);
         }
         entriesTableView.refresh();
     }

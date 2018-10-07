@@ -22,7 +22,7 @@ import java.util.ArrayList;
 >>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
 public class ActivityViewerController {
 
-    private MainController app;
+    private MainController mainController ;
     private ObservableList<String> types;
     private ObservableList<Activity> activities;
 
@@ -76,7 +76,11 @@ public class ActivityViewerController {
      */
     private void setUpTableView()
     {
+<<<<<<< HEAD
         activities = FXCollections.observableArrayList(app.getTitleBar().getCurrentProfile().getActivities());
+=======
+        ObservableList<Activity> activities = FXCollections.observableArrayList (mainController. getTitleBar().getCurrentProfile().getActivities());
+>>>>>>> be0346c6... Refactored "app" to "mainController"
         nameColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("name"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("typeString"));
         starttimeColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("timeString"));
@@ -233,9 +237,9 @@ public class ActivityViewerController {
     @FXML private void viewGraph()
     {
         if(activitiesTableView.getSelectionModel().getSelectedItem() != null) {
-            app.getTitleBar().openGraphs(activitiesTableView.getSelectionModel().getSelectedItem());
+            mainController .getTitleBar().openGraphs(activitiesTableView.getSelectionModel().getSelectedItem());
         } else {
-            app.createPopUp(Alert.AlertType.ERROR, "Error", "Please select an Activity first");
+            mainController .createPopUp(Alert.AlertType.ERROR, "Error", "Please select an Activity first");
         }
     }
 
@@ -247,9 +251,9 @@ public class ActivityViewerController {
     @FXML private void viewMap()
     {
         if(activitiesTableView.getSelectionModel().getSelectedItem() != null) {
-            app.getTitleBar().openMap(activitiesTableView.getSelectionModel().getSelectedItem());
+            mainController .getTitleBar().openMap(activitiesTableView.getSelectionModel().getSelectedItem());
         } else {
-            app.createPopUp(Alert.AlertType.ERROR, "Error", "Please select an Activity first");
+            mainController .createPopUp(Alert.AlertType.ERROR, "Error", "Please select an Activity first");
         }
     }
 
@@ -265,7 +269,7 @@ public class ActivityViewerController {
     @FXML public void applyFilter()
     {
         ArrayList<Activity> newActivities = new ArrayList<>();
-        for(Activity profileActivity: app.getTitleBar().getCurrentProfile().getActivities()) {
+        for(Activity profileActivity: mainController .getTitleBar().getCurrentProfile().getActivities()) {
             newActivities.add(profileActivity);
         }
         LocalDate lowerDate = startDate.getValue();
@@ -276,21 +280,21 @@ public class ActivityViewerController {
         //Datetime check and creation
         if (lowerDate != null) {
             if(lowerDate.getYear() < 1900 || lowerDate.getYear() > 2100){
-                app.createPopUp(Alert.AlertType.ERROR, "Error", "Please choose a lower date between 1900 and 2100");
+                mainController .createPopUp(Alert.AlertType.ERROR, "Error", "Please choose a lower date between 1900 and 2100");
             } else {
                 lowerDateTime = new DateTime(lowerDate.getYear(), lowerDate.getMonthValue(), lowerDate.getDayOfMonth(), 0, 0, 1);
             }
         }
         if (upperDate != null) {
             if (upperDate.getYear() > 2100 || upperDate.getYear() < 1900) {
-                app.createPopUp(Alert.AlertType.ERROR, "Error", "Please choose an upper date between 1900 and 2100");
+                mainController .createPopUp(Alert.AlertType.ERROR, "Error", "Please choose an upper date between 1900 and 2100");
             } else {
                 upperDateTime = new DateTime(upperDate.getYear(), upperDate.getMonthValue(), upperDate.getDayOfMonth(), 23, 59, 59);
             }
         }
         if((lowerDateTime != null) && (upperDateTime != null)) {
             if(lowerDateTime.isAfter(upperDateTime)) {
-                app.createPopUp(Alert.AlertType.ERROR, "Error", "Please make sure your lower date is earlier than your upper date");
+                mainController .createPopUp(Alert.AlertType.ERROR, "Error", "Please make sure your lower date is earlier than your upper date");
                 lowerDateTime = null;
                 upperDateTime = null;
             }
@@ -356,7 +360,7 @@ public class ActivityViewerController {
      */
     @FXML public void clearFilters()
     {
-        ObservableList<Activity> activities = FXCollections.observableArrayList(app.getTitleBar().getCurrentProfile().getActivities());
+        ObservableList<Activity> activities = FXCollections.observableArrayList (mainController. getTitleBar().getCurrentProfile().getActivities());
         populateTable(activities);
         typeSelect.setValue(null);
         startDate.setValue(null);
@@ -371,9 +375,9 @@ public class ActivityViewerController {
     @FXML public void openEntries()
     {
         if(activitiesTableView.getSelectionModel().getSelectedItem() != null) {
-            app.getTitleBar().openEntry(activitiesTableView.getSelectionModel().getSelectedItem());
+            mainController .getTitleBar().openEntry(activitiesTableView.getSelectionModel().getSelectedItem());
         } else {
-            app.createPopUp(Alert.AlertType.ERROR, "Error", "Please select an Activity first");
+            mainController .createPopUp(Alert.AlertType.ERROR, "Error", "Please select an Activity first");
         }
     }
 
@@ -411,13 +415,13 @@ public class ActivityViewerController {
     {
         if(activitiesTableView.getSelectionModel().getSelectedItem() != null) {
             Activity toDelete = activitiesTableView.getSelectionModel().getSelectedItem();
-            app.getTitleBar().getCurrentProfile().deleteActivity(toDelete);
-            app.getTitleBar().setUpWarningFlag();
-            app.getDataWriter().saveProfile(app.getTitleBar().getCurrentProfile());
+            mainController .getTitleBar().getCurrentProfile().deleteActivity(toDelete);
+            mainController .getTitleBar().setUpWarningFlag();
+            mainController .getDataWriter().saveProfile (mainController. getTitleBar().getCurrentProfile());
         } else {
-            app.createPopUp(Alert.AlertType.ERROR, "Error", "Please select an Activity first");
+            mainController .createPopUp(Alert.AlertType.ERROR, "Error", "Please select an Activity first");
         }
-        populateTable(FXCollections.observableArrayList(app.getTitleBar().getCurrentProfile().getActivities()));
+        populateTable(FXCollections.observableArrayList (mainController. getTitleBar().getCurrentProfile().getActivities()));
     }
 
 >>>>>>> c3af2f13... Implemented button to delete an activity on the activity viewer
@@ -434,9 +438,13 @@ public class ActivityViewerController {
      * Setter method to pass the MainController into this controller.
      * @param mainController <b>MainController:</b> The main controller.
      */
-    public void setApp(MainController mainController)
+    public void setMainController(MainController mainController)
     {
+<<<<<<< HEAD
         this.app = mainController;
 >>>>>>> 86ffe4b1... Refactored GUIController to be called MainController
+=======
+        this.mainController = mainController;
+>>>>>>> be0346c6... Refactored "app" to "mainController"
     }
 }

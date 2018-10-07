@@ -23,7 +23,7 @@ public interface Controllable {
      * @param mainController <b>MainController:</b> The main controller.
 >>>>>>> 86ffe4b1... Refactored GUIController to be called MainController
      */
-    public void setApp(MainController mainController);
+    public void setMainController(MainController mainController);
 
     /**
      * method to run the initial setup of the scene

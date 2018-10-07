@@ -35,7 +35,7 @@ import java.util.ArrayList;
 public class HealthWarningsController implements Controllable {
 
 
-    private MainController app;
+    private MainController mainController ;
     private ObservableList<HealthWarning> tachycardiaWarnings;
     private ObservableList<HealthWarning> bradycardiaWarnings;
 <<<<<<< HEAD
@@ -87,10 +87,14 @@ public class HealthWarningsController implements Controllable {
      * Setter method to pass the MainController into this controller.
      * @param mainController <b>MainController:</b> The main controller.
      */
-    public void setApp(MainController mainController)
+    public void setMainController(MainController mainController)
     {
+<<<<<<< HEAD
         this.app = mainController;
 >>>>>>> 86ffe4b1... Refactored GUIController to be called MainController
+=======
+        this.mainController = mainController;
+>>>>>>> be0346c6... Refactored "app" to "mainController"
     }
 
 
@@ -270,9 +274,9 @@ public class HealthWarningsController implements Controllable {
 
     private void getWarningLists()
     {
-        tachycardiaWarnings = FXCollections.observableArrayList(app.getTitleBar().getCurrentProfile().getWarnings(HealthWarningType.TACHYCARDIA));
-        bradycardiaWarnings = FXCollections.observableArrayList(app.getTitleBar().getCurrentProfile().getWarnings(HealthWarningType.BRADYCARDIA));
-        cardiovascularMortalityWarnings = FXCollections.observableArrayList(app.getTitleBar().getCurrentProfile().getWarnings(HealthWarningType.CARDIOVASCULAR_MORTALITY));
+        tachycardiaWarnings = FXCollections.observableArrayList (mainController. getTitleBar().getCurrentProfile().getWarnings(HealthWarningType.TACHYCARDIA));
+        bradycardiaWarnings = FXCollections.observableArrayList (mainController. getTitleBar().getCurrentProfile().getWarnings(HealthWarningType.BRADYCARDIA));
+        cardiovascularMortalityWarnings = FXCollections.observableArrayList (mainController. getTitleBar().getCurrentProfile().getWarnings(HealthWarningType.CARDIOVASCULAR_MORTALITY));
     }
 
 
@@ -315,8 +319,8 @@ public class HealthWarningsController implements Controllable {
      */
     public void removeWarning(HealthWarning healthWarning)
     {
-        app.getTitleBar().getCurrentProfile().removeHealthWarning(healthWarning);
-        app.getDataWriter().saveProfile(app.getTitleBar().getCurrentProfile());
+        mainController .getTitleBar().getCurrentProfile().removeHealthWarning(healthWarning);
+        mainController .getDataWriter().saveProfile (mainController. getTitleBar().getCurrentProfile());
         switch(healthWarning.getType())
         {
             case TACHYCARDIA:
@@ -330,7 +334,7 @@ public class HealthWarningsController implements Controllable {
                 break;
         }
         setUpLabels();
-        app.getTitleBar().setUpWarningFlag();
+        mainController .getTitleBar().setUpWarningFlag();
     }
 
 
@@ -340,7 +344,7 @@ public class HealthWarningsController implements Controllable {
      */
     public MainController getApp()
     {
-        return this.app;
+        return this.mainController;
     }
 
 

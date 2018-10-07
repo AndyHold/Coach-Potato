@@ -1078,7 +1078,7 @@ public class MainController extends Application {
         FXMLLoader titleBarLoader = new FXMLLoader(getClass().getResource("/fxml/titleBar.fxml"));
         root = titleBarLoader.load();
         titleBarController = titleBarLoader.getController();
-        titleBarController.setApp(this);
+        titleBarController.setMainController(this);
         titleBarController.setUpScene();
         titleBarScene = new Scene(root, 1280, 750);
 >>>>>>> e7a69fc0... Worked extensively on the GUI. now have a working custom title bar, a new colour theme which has been implemented on login, profile, and createprofile screens.

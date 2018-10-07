@@ -28,7 +28,7 @@ import java.util.ArrayList;
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public class LoginController implements Controllable{
-    private MainController app;
+    private MainController mainController ;
 
 
     @FXML private ImageView userOneImage;
@@ -63,12 +63,16 @@ public class LoginController implements Controllable{
      * @param app GUIController
 =======
      * Setter method to pass the MainController into this controller.
+<<<<<<< HEAD
      * @param app <b>MainController:</b> The main controller.
 >>>>>>> 86ffe4b1... Refactored GUIController to be called MainController
+=======
+     * @param mainController <b>MainController:</b> The main controller.
+>>>>>>> be0346c6... Refactored "app" to "mainController"
      */
-    public void setApp(MainController app)
+    public void setMainController(MainController mainController )
     {
-        this.app = app;
+        this.mainController = mainController ;
     }
 
 
@@ -91,7 +95,7 @@ public class LoginController implements Controllable{
         // Set up user buttons
         setUpUserButtons();
         // Disable the create profile button if we have maximum users
-        if (app.getUserNames().size() == 5) {
+        if  (mainController. getUserNames().size() == 5) {
             createProfileButton.setDisable(true);
         }
         // Hide the help text field when focus is lost
@@ -189,8 +193,8 @@ public class LoginController implements Controllable{
      */
     private void setUpUserButtons()
     {
-        ArrayList<String> userNames = app.getUserNames();
-        ArrayList<String> userGenders = app.getUserGenders();
+        ArrayList<String> userNames = mainController .getUserNames();
+        ArrayList<String> userGenders = mainController .getUserGenders();
         for (int i = 0; i < userNames.size(); i++) {
             setButtonProperties(i, userNames.get(i), userGenders.get(i));
         }
@@ -289,7 +293,7 @@ public class LoginController implements Controllable{
                     break;
             }
         } catch (IllegalArgumentException exception) {
-            this.app.createPopUp(Alert.AlertType.ERROR, "Error", "Could not find image");
+            this.mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Could not find image");
         }
     }
 
@@ -336,33 +340,33 @@ public class LoginController implements Controllable{
      */
     @FXML public void userButtonOne() {
         if (deleteMode) {
-            String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + app.getUserNames().get(0) + "\"");
+            String option = mainController .createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + mainController .getUserNames().get(0) + "\"");
             if (option.equals("OK")) {
-                if (app.getUserNames().size() == 5) {
+                if  (mainController. getUserNames().size() == 5) {
                     createProfileButton.setDisable(false);
                 }
-                app.getDataWriter().deleteProfile(app.getUserNames().get(0) + " - " + app.getUserGenders().get(0));
-                app.getUserNames().remove(0);
-                app.getUserGenders().remove(0);
+                mainController .getDataWriter().deleteProfile (mainController. getUserNames().get(0) + " - " + mainController .getUserGenders().get(0));
+                mainController .getUserNames().remove(0);
+                mainController .getUserGenders().remove(0);
                 deleteProfile();
                 setUpScene();
-                if (app.getUserNames().size() == 0) {
-                    app.getTitleBar().openCreateProfile();
+                if  (mainController. getUserNames().size() == 0) {
+                    mainController .getTitleBar().openCreateProfile();
                 }
             }
         } else {
             try {
-                app.setCurrentProfile(app.getDataReader().loadExistingProfile(app.getUserNames().get(0) + " - " + app.getUserGenders().get(0)));
-                app.getTitleBar().openViewProfile();
+                mainController .setCurrentProfile (mainController. getDataReader().loadExistingProfile (mainController. getUserNames().get(0) + " - " + mainController .getUserGenders().get(0)));
+                mainController .getTitleBar().openViewProfile();
             } catch (ClassNotFoundException | IOException exception) {
-                String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Error", "Could not load profile: " + app.getUserNames().get(0) + "\nWould you like to delete it?");
+                String option = mainController .createPopUp(Alert.AlertType.CONFIRMATION, "Error", "Could not load profile: " + mainController .getUserNames().get(0) + "\nWould you like to delete it?");
                 if (option.equals("OK")) {
-                    app.getDataWriter().deleteProfile(app.getUserNames().get(0) + " - " + app.getUserGenders().get(0));
-                    app.getUserNames().remove(0);
-                    app.getUserGenders().remove(0);
+                    mainController .getDataWriter().deleteProfile (mainController. getUserNames().get(0) + " - " + mainController .getUserGenders().get(0));
+                    mainController .getUserNames().remove(0);
+                    mainController .getUserGenders().remove(0);
                     setUpScene();
-                    if (app.getUserNames().size() == 0) {
-                        app.getTitleBar().openCreateProfile();
+                    if  (mainController. getUserNames().size() == 0) {
+                        mainController .getTitleBar().openCreateProfile();
                     }
                 }
             }
@@ -378,27 +382,27 @@ public class LoginController implements Controllable{
     @FXML public void userButtonTwo()
     {
         if (deleteMode) {
-            String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + app.getUserNames().get(1) + "\"");
+            String option = mainController .createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + mainController .getUserNames().get(1) + "\"");
             if (option.length() == 2) {
-                if (app.getUserNames().size() == 5) {
+                if  (mainController. getUserNames().size() == 5) {
                     createProfileButton.setDisable(false);
                 }
-                app.getDataWriter().deleteProfile(app.getUserNames().get(1) + " - " + app.getUserGenders().get(1));
-                app.getUserNames().remove(1);
-                app.getUserGenders().remove(1);
+                mainController .getDataWriter().deleteProfile (mainController. getUserNames().get(1) + " - " + mainController .getUserGenders().get(1));
+                mainController .getUserNames().remove(1);
+                mainController .getUserGenders().remove(1);
                 deleteProfile();
                 setUpScene();
             }
         } else {
             try {
-                app.setCurrentProfile(app.getDataReader().loadExistingProfile(app.getUserNames().get(1) + " - " + app.getUserGenders().get(1)));
-                app.getTitleBar().openViewProfile();
+                mainController .setCurrentProfile (mainController. getDataReader().loadExistingProfile (mainController. getUserNames().get(1) + " - " + mainController .getUserGenders().get(1)));
+                mainController .getTitleBar().openViewProfile();
             } catch (IOException | ClassNotFoundException exception) {
-                String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Error", "Could not load profile: " + app.getUserNames().get(1) + "\nWould you like to delete it?");
+                String option = mainController .createPopUp(Alert.AlertType.CONFIRMATION, "Error", "Could not load profile: " + mainController .getUserNames().get(1) + "\nWould you like to delete it?");
                 if (option.equals("OK")) {
-                    app.getDataWriter().deleteProfile(app.getUserNames().get(1) + " - " + app.getUserGenders().get(1));
-                    app.getUserNames().remove(1);
-                    app.getUserGenders().remove(1);
+                    mainController .getDataWriter().deleteProfile (mainController. getUserNames().get(1) + " - " + mainController .getUserGenders().get(1));
+                    mainController .getUserNames().remove(1);
+                    mainController .getUserGenders().remove(1);
                     setUpScene();
                 }
             }
@@ -414,27 +418,27 @@ public class LoginController implements Controllable{
     @FXML public void userButtonThree()
     {
         if (deleteMode) {
-            String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + app.getUserNames().get(2) + "\"");
+            String option = mainController .createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + mainController .getUserNames().get(2) + "\"");
             if (option.length() == 2) {
-                if (app.getUserNames().size() == 5) {
+                if  (mainController. getUserNames().size() == 5) {
                     createProfileButton.setDisable(false);
                 }
-                app.getDataWriter().deleteProfile(app.getUserNames().get(2) + " - " + app.getUserGenders().get(2));
-                app.getUserNames().remove(2);
-                app.getUserGenders().remove(2);
+                mainController .getDataWriter().deleteProfile (mainController. getUserNames().get(2) + " - " + mainController .getUserGenders().get(2));
+                mainController .getUserNames().remove(2);
+                mainController .getUserGenders().remove(2);
                 deleteProfile();
                 setUpScene();
             }
         } else {
             try {
-                app.setCurrentProfile(app.getDataReader().loadExistingProfile(app.getUserNames().get(2) + " - " + app.getUserGenders().get(2)));
-                app.getTitleBar().openViewProfile();
+                mainController .setCurrentProfile (mainController. getDataReader().loadExistingProfile (mainController. getUserNames().get(2) + " - " + mainController .getUserGenders().get(2)));
+                mainController .getTitleBar().openViewProfile();
             } catch (IOException | ClassNotFoundException exception) {
-                String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Error", "Could not load profile: " + app.getUserNames().get(2) + "\nWould you like to delete it?");
+                String option = mainController .createPopUp(Alert.AlertType.CONFIRMATION, "Error", "Could not load profile: " + mainController .getUserNames().get(2) + "\nWould you like to delete it?");
                 if (option.equals("OK")) {
-                    app.getDataWriter().deleteProfile(app.getUserNames().get(2) + " - " + app.getUserGenders().get(2));
-                    app.getUserNames().remove(2);
-                    app.getUserGenders().remove(2);
+                    mainController .getDataWriter().deleteProfile (mainController. getUserNames().get(2) + " - " + mainController .getUserGenders().get(2));
+                    mainController .getUserNames().remove(2);
+                    mainController .getUserGenders().remove(2);
                     setUpScene();
                 }
             }
@@ -450,27 +454,27 @@ public class LoginController implements Controllable{
     @FXML public void userButtonFour()
     {
         if (deleteMode) {
-            String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + app.getUserNames().get(3) + "\"");
+            String option = mainController .createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + mainController .getUserNames().get(3) + "\"");
             if (option.length() == 2) {
-                if (app.getUserNames().size() == 5) {
+                if  (mainController. getUserNames().size() == 5) {
                     createProfileButton.setDisable(false);
                 }
-                app.getDataWriter().deleteProfile(app.getUserNames().get(3) + " - " + app.getUserGenders().get(3));
-                app.getUserNames().remove(3);
-                app.getUserGenders().remove(3);
+                mainController .getDataWriter().deleteProfile (mainController. getUserNames().get(3) + " - " + mainController .getUserGenders().get(3));
+                mainController .getUserNames().remove(3);
+                mainController .getUserGenders().remove(3);
                 deleteProfile();
                 setUpScene();
             }
         } else {
             try {
-                app.setCurrentProfile(app.getDataReader().loadExistingProfile(app.getUserNames().get(3) + " - " + app.getUserGenders().get(3)));
-                app.getTitleBar().openViewProfile();
+                mainController .setCurrentProfile (mainController. getDataReader().loadExistingProfile (mainController. getUserNames().get(3) + " - " + mainController .getUserGenders().get(3)));
+                mainController .getTitleBar().openViewProfile();
             } catch (IOException | ClassNotFoundException exception) {
-                String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Error", "Could not load profile: " + app.getUserNames().get(3) + "\nWould you like to delete it?");
+                String option = mainController .createPopUp(Alert.AlertType.CONFIRMATION, "Error", "Could not load profile: " + mainController .getUserNames().get(3) + "\nWould you like to delete it?");
                 if (option.equals("OK")) {
-                    app.getDataWriter().deleteProfile(app.getUserNames().get(3) + " - " + app.getUserGenders().get(3));
-                    app.getUserNames().remove(3);
-                    app.getUserGenders().remove(3);
+                    mainController .getDataWriter().deleteProfile (mainController. getUserNames().get(3) + " - " + mainController.getUserGenders().get(3));
+                    mainController.getUserNames().remove(3);
+                    mainController.getUserGenders().remove(3);
                     setUpScene();
                 }
             }
@@ -486,27 +490,27 @@ public class LoginController implements Controllable{
     @FXML public void userButtonFive()
     {
         if (deleteMode) {
-            String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + app.getUserNames().get(4) + "\"");
+            String option = mainController.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + mainController.getUserNames().get(4) + "\"");
             if (option.length() == 2) {
-                if (app.getUserNames().size() == 5) {
+                if  (mainController. getUserNames().size() == 5) {
                     createProfileButton.setDisable(false);
                 }
-                app.getDataWriter().deleteProfile(app.getUserNames().get(4) + " - " + app.getUserGenders().get(4));
-                app.getUserNames().remove(4);
-                app.getUserGenders().remove(4);
+                mainController.getDataWriter().deleteProfile (mainController. getUserNames().get(4) + " - " + mainController.getUserGenders().get(4));
+                mainController.getUserNames().remove(4);
+                mainController.getUserGenders().remove(4);
                 deleteProfile();
                 setUpScene();
             }
         } else {
             try {
-                app.setCurrentProfile(app.getDataReader().loadExistingProfile(app.getUserNames().get(4) + " - " + app.getUserGenders().get(4)));
-                app.getTitleBar().openViewProfile();
+                mainController.setCurrentProfile (mainController. getDataReader().loadExistingProfile (mainController. getUserNames().get(4) + " - " + mainController.getUserGenders().get(4)));
+                mainController.getTitleBar().openViewProfile();
             } catch (IOException | ClassNotFoundException exception) {
-                String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Error", "Could not load profile: " + app.getUserNames().get(4) + "\nWould you like to delete it?");
+                String option = mainController.createPopUp(Alert.AlertType.CONFIRMATION, "Error", "Could not load profile: " + mainController.getUserNames().get(4) + "\nWould you like to delete it?");
                 if (option.equals("OK")) {
-                    app.getDataWriter().deleteProfile(app.getUserNames().get(4) + " - " + app.getUserGenders().get(4));
-                    app.getUserNames().remove(4);
-                    app.getUserGenders().remove(4);
+                    mainController.getDataWriter().deleteProfile (mainController. getUserNames().get(4) + " - " + mainController.getUserGenders().get(4));
+                    mainController.getUserNames().remove(4);
+                    mainController.getUserGenders().remove(4);
                     setUpScene();
                 }
             }
@@ -522,7 +526,7 @@ public class LoginController implements Controllable{
     public void createProfile()
     {
         setUpScene();
-        app.getTitleBar().openCreateProfile();
+        mainController.getTitleBar().openCreateProfile();
     }
 
 

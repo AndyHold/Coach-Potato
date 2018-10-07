@@ -27,7 +27,7 @@ public class GoalController implements Controllable{
 >>>>>>> ef5ea113... Implemented the main Screen and merged all screens together, got the Navigation/Menu bar working properly for each slide in/out.
 
 
-    private MainController app;
+    private MainController mainController ;
     private String existingHelpText;
     private String pastHelpText;
 
@@ -69,10 +69,14 @@ public class GoalController implements Controllable{
      * Setter method to pass the MainController into this controller.
      * @param mainController <b>MainController:</b> The main controller.
      */
-    public void setApp(MainController mainController)
+    public void setMainController(MainController mainController)
     {
+<<<<<<< HEAD
         this.app = mainController;
 >>>>>>> 86ffe4b1... Refactored GUIController to be called MainController
+=======
+        this.mainController = mainController;
+>>>>>>> be0346c6... Refactored "app" to "mainController"
     }
 
 
@@ -422,16 +426,16 @@ public class GoalController implements Controllable{
             // Get the name of the selected goal
             String item = list.getSelectionModel().getSelectedItem().toString();
             // Ask the user if they are sure they want to delete the goal
-            String option = app.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + item + "\" goal?");
+            String option = mainController .createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete \"" + item + "\" goal?");
             // If they say yes
             if (option.equals("OK")) {
                 //delete the goal and set deletemode off again
-                app.getTitleBar().getCurrentProfile().getGoals().removeCurrentGoal(item);
+                mainController .getTitleBar().getCurrentProfile().getGoals().removeCurrentGoal(item);
             }
             addGoalsToTable();
             resetTextFields();
         } else {
-            app.createPopUp(Alert.AlertType.ERROR, "Error", "You have not selected a goal to remove.");
+            mainController .createPopUp(Alert.AlertType.ERROR, "Error", "You have not selected a goal to remove.");
         }
     }
 
@@ -445,7 +449,7 @@ public class GoalController implements Controllable{
         if (currentGoalsListView.getSelectionModel().getSelectedItem() != null) {
             String item = currentGoalsListView.getSelectionModel().getSelectedItem().toString();
             Goal goal = null;
-            for (Goal selectedGoal : app.getTitleBar().getCurrentProfile().getGoals().getCurrentGoals()) {
+            for (Goal selectedGoal : mainController .getTitleBar().getCurrentProfile().getGoals().getCurrentGoals()) {
                 if (selectedGoal.getGoalName().equals(item)) {
                     goal = selectedGoal;
                     break;
@@ -464,7 +468,7 @@ public class GoalController implements Controllable{
                         goal = selectedGoal;
 =======
             if (goal != null) {
-                String status = app.getTitleBar().getCurrentProfile().getGoals().checkGoal(goal.getGoalName());
+                String status = mainController .getTitleBar().getCurrentProfile().getGoals().checkGoal(goal.getGoalName());
                 switch (status) {
                     case "inprogress":
                         printGoalsReview(goal, currentGoalTextArea, currentDescriptionLabel);
@@ -499,8 +503,12 @@ public class GoalController implements Controllable{
 <<<<<<< HEAD
 =======
                 addGoalsToTable();
+<<<<<<< HEAD
                 app.getDataWriter().saveProfile(app.getTitleBar().getCurrentProfile());
 >>>>>>> ade3c4f0... Fixed bug with Goal Creation where no type selected error was never thrown. Also any null value caused an uncaught error.
+=======
+                mainController .getDataWriter().saveProfile (mainController. getTitleBar().getCurrentProfile());
+>>>>>>> be0346c6... Refactored "app" to "mainController"
             }
         }
     }
@@ -510,6 +518,7 @@ public class GoalController implements Controllable{
      * Method to initialise the goal tables each time the user logs in, enters goals screen or switches tabs within goals.
      */
     public void addGoalsToTable() {
+<<<<<<< HEAD
 <<<<<<< HEAD
         app.getCurrentProfile().getGoals().refreshGoals();
         if (app.getCurrentProfile().getGoals() != null) {
@@ -531,10 +540,17 @@ public class GoalController implements Controllable{
             currentGoalsListView.setItems(currentGoals);
 >>>>>>> 3cc29b5c... Worked even further on GUI redesign. Now all tableviews are done. Only Goal screens, Analysis screen and map screen are left.
             ObservableList<String> achievedGoalNames = FXCollections.observableArrayList(app.getTitleBar().getCurrentProfile().getGoals().getAchievedGoalNames());
+=======
+        mainController .getTitleBar().getCurrentProfile().getGoals().refreshGoals();
+        if  (mainController. getTitleBar().getCurrentProfile().getGoals() != null) {
+            ObservableList<String> currentGoals = FXCollections.observableArrayList (mainController. getTitleBar().getCurrentProfile().getGoals().getCurrentGoalNames());
+            currentGoalsListView.setItems(currentGoals);
+            ObservableList<String> achievedGoalNames = FXCollections.observableArrayList (mainController. getTitleBar().getCurrentProfile().getGoals().getAchievedGoalNames());
+>>>>>>> be0346c6... Refactored "app" to "mainController"
             achievedListView.setItems(achievedGoalNames);
-            ObservableList<String> failedGoalNames = FXCollections.observableArrayList(app.getTitleBar().getCurrentProfile().getGoals().getFailedGoalNames());
+            ObservableList<String> failedGoalNames = FXCollections.observableArrayList (mainController. getTitleBar().getCurrentProfile().getGoals().getFailedGoalNames());
             failedListView.setItems(failedGoalNames);
-            ObservableList<String> futureGoalNames = FXCollections.observableArrayList(app.getTitleBar().getCurrentProfile().getGoals().getFutureGoalNames());
+            ObservableList<String> futureGoalNames = FXCollections.observableArrayList (mainController. getTitleBar().getCurrentProfile().getGoals().getFutureGoalNames());
             futureGoalsListView.setItems(futureGoalNames);
 
         }
@@ -575,7 +591,7 @@ public class GoalController implements Controllable{
     public void createGoal()
     {
         try {
-            Goals goalsInstance = app.getTitleBar().getCurrentProfile().getGoals();
+            Goals goalsInstance = mainController .getTitleBar().getCurrentProfile().getGoals();
 
             GoalType type = (GoalType) goalTypeCombo.getValue();
             String name = goalNameEntry.getText();
@@ -594,23 +610,23 @@ public class GoalController implements Controllable{
             doubleTarget = Double.valueOf(target1);
             switch (type) {
                 case WEIGHT:
-                    goalsInstance.createGoal(name, startDate, targetDate, type.toString(), doubleTarget, app.getTitleBar().getCurrentProfile());
+                    goalsInstance.createGoal(name, startDate, targetDate, type.toString(), doubleTarget, mainController .getTitleBar().getCurrentProfile());
                     break;
                 case FREQUENCY:
                     target = Integer.parseInt(target1);
                     goalsInstance.createGoal(name, startDate, targetDate, target, type.toString());
                     break;
                 case DISTANCE:
-                    goalsInstance.createGoal(name, startDate, targetDate, type.toString(), doubleTarget, app.getTitleBar().getCurrentProfile());
+                    goalsInstance.createGoal(name, startDate, targetDate, type.toString(), doubleTarget, mainController .getTitleBar().getCurrentProfile());
                     break;
                 case BMI:
-                    goalsInstance.createGoal(name, startDate, targetDate, type.toString(), doubleTarget, app.getTitleBar().getCurrentProfile());
+                    goalsInstance.createGoal(name, startDate, targetDate, type.toString(), doubleTarget, mainController .getTitleBar().getCurrentProfile());
                     break;
                 case TIME:  //goal must be of type Time
-                    goalsInstance.createGoal(name, startDate, targetDate, type.toString(), doubleTarget, app.getTitleBar().getCurrentProfile());
+                    goalsInstance.createGoal(name, startDate, targetDate, type.toString(), doubleTarget, mainController .getTitleBar().getCurrentProfile());
                     break;
             }
-            app.createPopUp(Alert.AlertType.INFORMATION, "Information", "Goal successfully created!");
+            mainController .createPopUp(Alert.AlertType.INFORMATION, "Information", "Goal successfully created!");
             //reset the entry values, ready for a new goal to be created
             goalNameEntry.setText("");
             targetValueEntry.setText("");
@@ -621,6 +637,7 @@ public class GoalController implements Controllable{
             targetDatePicker.getEditor().clear();
             goalTypeCombo.getSelectionModel().select(null);
             this.addGoalsToTable();
+<<<<<<< HEAD
             app.getDataWriter().saveProfile(app.getTitleBar().getCurrentProfile());
 <<<<<<< HEAD
 >>>>>>> f070a7b8... Fixed a bug with the current goals not being displayed properly.
@@ -632,13 +649,20 @@ public class GoalController implements Controllable{
             this.addGoalsToTable();
 >>>>>>> 24bc09d6... Refactored Goals screen to make it look nicer, and to use up free real estate
 =======
+=======
+            mainController .getDataWriter().saveProfile (mainController. getTitleBar().getCurrentProfile());
+>>>>>>> be0346c6... Refactored "app" to "mainController"
         } catch (InvalidGoalDateException | BadGoalNameException | InvalidGoalTargetException exception) {
-            app.createPopUp(Alert.AlertType.ERROR, "Error", exception.getMessage());
+            mainController .createPopUp(Alert.AlertType.ERROR, "Error", exception.getMessage());
         } catch (NumberFormatException exception) {
-            app.createPopUp(Alert.AlertType.ERROR, "Error", "Please enter a valid number for target value.");
+            mainController .createPopUp(Alert.AlertType.ERROR, "Error", "Please enter a valid number for target value.");
         } catch (NullPointerException exception) {
+<<<<<<< HEAD
             app.createPopUp(Alert.AlertType.ERROR, "Error", "One or more fields has been left empty.");
 >>>>>>> ade3c4f0... Fixed bug with Goal Creation where no type selected error was never thrown. Also any null value caused an uncaught error.
+=======
+            mainController .createPopUp(Alert.AlertType.ERROR, "Error", "One or more fields has been left empty.");
+>>>>>>> be0346c6... Refactored "app" to "mainController"
         }
 
     }
@@ -674,10 +698,10 @@ public class GoalController implements Controllable{
 >>>>>>> 0a21ee39... Refactored Goal Screen so that all labels can be seen properly, text fields empty when required and future goals can be deleted. Got rid of delete mode and opted for list selected delete function instead. Also updated help text to reflect the new layout.
      */
     @FXML public void updateAchievedListView() {
-        if (achievedListView.getSelectionModel().getSelectedItem() != null && !app.getTitleBar().getCurrentProfile().getGoals().getAchievedGoals().isEmpty()) {
+        if (achievedListView.getSelectionModel().getSelectedItem() != null && !mainController.getTitleBar().getCurrentProfile().getGoals().getAchievedGoals().isEmpty()) {
             String item = achievedListView.getSelectionModel().getSelectedItem().toString();
             Goal goal = null;
-            for (Goal selectedGoal : app.getTitleBar().getCurrentProfile().getGoals().getAchievedGoals()) {
+            for (Goal selectedGoal : mainController .getTitleBar().getCurrentProfile().getGoals().getAchievedGoals()) {
                 if (selectedGoal.getGoalName().equals(item)) {
                     goal = selectedGoal;
                     break;
@@ -694,10 +718,10 @@ public class GoalController implements Controllable{
      * Method to update the failed goal list view
      */
     @FXML public void updateFailedListView() {
-        if (failedListView.getSelectionModel().getSelectedItem() != null && !app.getTitleBar().getCurrentProfile().getGoals().getFailedGoals().isEmpty()) {
+        if (failedListView.getSelectionModel().getSelectedItem() != null && !mainController.getTitleBar().getCurrentProfile().getGoals().getFailedGoals().isEmpty()) {
             String item = failedListView.getSelectionModel().getSelectedItem().toString();
             Goal goal = null;
-            for (Goal selectedGoal : app.getTitleBar().getCurrentProfile().getGoals().getFailedGoals()) {
+            for (Goal selectedGoal : mainController .getTitleBar().getCurrentProfile().getGoals().getFailedGoals()) {
                 if (selectedGoal.getGoalName().equals(item)) {
                     goal = selectedGoal;
                     break;
@@ -714,10 +738,10 @@ public class GoalController implements Controllable{
      * Method to update the future goal list view
      */
     @FXML public void updateFutureListView() {
-        if (futureGoalsListView.getSelectionModel().getSelectedItem() != null && !app.getTitleBar().getCurrentProfile().getGoals().getFutureGoals().isEmpty()) {
+        if (futureGoalsListView.getSelectionModel().getSelectedItem() != null && !mainController.getTitleBar().getCurrentProfile().getGoals().getFutureGoals().isEmpty()) {
             String item = futureGoalsListView.getSelectionModel().getSelectedItem().toString();
             Goal goal = null;
-            for (Goal selectedGoal : app.getTitleBar().getCurrentProfile().getGoals().getFutureGoals()) {
+            for (Goal selectedGoal : mainController .getTitleBar().getCurrentProfile().getGoals().getFutureGoals()) {
                 if (selectedGoal.getGoalName().equals(item)) {
                     goal = selectedGoal;
                     break;
