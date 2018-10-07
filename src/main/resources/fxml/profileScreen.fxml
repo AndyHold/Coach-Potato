@@ -602,6 +602,10 @@
             <Insets left="10.0" />
          </padding>
       </Label>
+<<<<<<< HEAD
 >>>>>>> e9619980... Changed the colour scheme to a lighter colour and text colours as Readability is key!
+=======
+      <TextArea fx:id="helpTextArea" editable="false" layoutX="830.0" layoutY="40.0" prefHeight="490.0" prefWidth="400.0" />
+>>>>>>> 1c492777... changed colour of goals and activities in calendar
    </children>
 </Pane>
