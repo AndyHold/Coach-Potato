@@ -50,7 +50,12 @@ public class GoalsTest {
         name = "Paddy";
         value = 100.0;
         DateTime birthDate = new DateTime(1990, 8, 8, 8, 8, 8);
-        user = new UserProfile(name, 100, 200, birthDate, "Male");
+        user = new UserProfile();
+        user.setName(name);
+        user.setWeight(100);
+        user.setHeight(200);
+        user.setBirthDate(birthDate);
+        user.setGender("Male");
         goalsInstance = user.getGoals();
         testUser = new UserProfile();
         testUser.setHeight(100);

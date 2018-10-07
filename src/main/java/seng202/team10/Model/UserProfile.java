@@ -31,6 +31,7 @@ public class UserProfile implements java.io.Serializable {
     /**
      * Empty Constructor method for UserProfile class.
      */
+<<<<<<< HEAD
     public UserProfile()
     {
     }
@@ -66,6 +67,9 @@ public class UserProfile implements java.io.Serializable {
         this.birthDate = birthDate;
         this.gender = gender;
     }
+=======
+    public UserProfile() { }
+>>>>>>> 85594242... deleted unused constructor for UserProfile.
 
 
 
