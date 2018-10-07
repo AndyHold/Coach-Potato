@@ -432,9 +432,12 @@ public class ActivityViewerController {
     {
         if(activitiesTableView.getSelectionModel().getSelectedItem() != null) {
             Activity toDelete = activitiesTableView.getSelectionModel().getSelectedItem();
-            currentUser.deleteActivity(toDelete);
-            mainController .getTitleBar().setUpWarningFlag();
-            mainController .getDataWriter().saveProfile (currentUser);
+            String option = mainController.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete the activity: " + toDelete.getName() + "?");
+            if (option.equals("OK")) {
+                currentUser.deleteActivity(toDelete);
+                mainController.getTitleBar().setUpWarningFlag();
+                mainController.getDataWriter().saveProfile(currentUser);
+            }
         } else {
             mainController .createPopUp(Alert.AlertType.ERROR, "Error", "Please select an Activity first");
         }
