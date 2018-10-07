@@ -175,14 +175,14 @@ public class UploadDataController {
         // Set up the table view
         setUpTableView();
         // Set up the listners
-        setUpListners();
+        setUpListeners();
     }
 
 
     /**
      * Set up method for the change listeners
      */
-    private void setUpListners()
+    private void setUpListeners()
     {
         // Set the focus to the browse button on entry
         filePathTextField.focusedProperty().addListener((observable,  oldValue,  newValue) -> {
@@ -577,8 +577,6 @@ public class UploadDataController {
                 else {
                     this.mainController.createPopUp(Alert.AlertType.INFORMATION, "Success", String.valueOf(newActivities.size()) +" activities have been successfully uploaded to your profile");
                 }
-                //TODO have an option to cut to Data Viewer or to upload/input another File/Activity when one is submitted.
-                //TODO this will require a custom pop up button (Low Priority).
             } catch (FileNotFoundException exception) {
                 this.mainController.createPopUp(Alert.AlertType.ERROR, "Error", "File not found, please choose a valid csv file");
             } catch (ExistingElementException | NoDataFoundException exception) {

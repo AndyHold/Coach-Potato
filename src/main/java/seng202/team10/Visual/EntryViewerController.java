@@ -10,6 +10,7 @@ import seng202.team10.Control.MainController;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.Entry;
 import seng202.team10.Model.Exceptions.EntryOutOfSequenceException;
+import seng202.team10.Model.Exceptions.ExistingActivityException;
 
 import java.util.ArrayList;
 
@@ -181,13 +182,32 @@ public class EntryViewerController {
      */
     @FXML public void returnToActivities()
     {
-        ArrayList<Entry> savingEntries = new ArrayList<>(this.entries);
-        loadedActivity.setEntries(savingEntries);
-        loadedActivity.postEntriesSetUp();
-        loadedActivity.checkEntriesForWarnings (mainController. getTitleBar().getCurrentProfile());
-        mainController .getTitleBar().setUpWarningFlag();
-        mainController .getTitleBar().openViewActivities();
+        ArrayList<Entry> oldEntries = loadedActivity.getEntries();
+        try {
+            ArrayList<Entry> savingEntries = new ArrayList<>(this.entries);
+            loadedActivity.setEntries(savingEntries);
+            loadedActivity.postEntriesSetUp();
+            loadedActivity.checkEntriesForWarnings(mainController.getTitleBar().getCurrentProfile());
+            mainController.getTitleBar().getCurrentProfile().deleteActivity(loadedActivity);
+            mainController.getTitleBar().getCurrentProfile().addActivity(loadedActivity);
+            mainController.getTitleBar().setUpWarningFlag();
+            mainController.getTitleBar().openViewActivities();
+        } catch (ExistingActivityException exception) {
+            loadedActivity.setEntries(oldEntries);
+            loadedActivity.postEntriesSetUp();
+            loadedActivity.checkEntriesForWarnings(mainController.getTitleBar().getCurrentProfile());
+            String option = mainController.createPopUp(Alert.AlertType.CONFIRMATION, "Overlaping Activity", "This activity now overlaps with an existing activity. Discard changes and return?");
+            if (option.equals("OK")) {
+                try {
+                    mainController.getTitleBar().getCurrentProfile().addActivity(loadedActivity);
+                } catch (ExistingActivityException nextException) { // Not possible to reach this section of code as activity is set back to original accepted values }
+                    mainController.getTitleBar().setUpWarningFlag();
+                    mainController.getTitleBar().openViewActivities();
+                }
+            }
+        }
     }
+
 
     /**
 <<<<<<< HEAD
