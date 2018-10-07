@@ -187,7 +187,6 @@ public class EntryViewerController {
             ArrayList<Entry> savingEntries = new ArrayList<>(this.entries);
             loadedActivity.setEntries(savingEntries);
             loadedActivity.postEntriesSetUp();
-            loadedActivity.checkEntriesForWarnings(mainController.getTitleBar().getCurrentProfile());
             mainController.getTitleBar().getCurrentProfile().deleteActivity(loadedActivity);
             mainController.getTitleBar().getCurrentProfile().addActivity(loadedActivity);
             mainController.getTitleBar().setUpWarningFlag();

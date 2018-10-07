@@ -264,6 +264,7 @@ public class Activity implements Serializable {
                 warnings.addAll(newHealthWarningTypes);
             }
         }
+        healthWarnings.clear();
         warnings.iterator().forEachRemaining(new Consumer<HealthWarningType>() {
             @Override
             public void accept(HealthWarningType healthWarningType) {

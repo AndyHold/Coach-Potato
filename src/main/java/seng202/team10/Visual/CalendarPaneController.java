@@ -355,7 +355,7 @@ public class CalendarPaneController {
                 }
                 if (count != 0) {
                     txt.setText(txt.getText() + String.format("\n %d A", count));
-                    style = "-fx-background-color: lightblue;";
+                    style = "-fx-background-color: #66a3ff;";
                 }
                 ap.setActivities(todayActivities);
             }
@@ -374,8 +374,8 @@ public class CalendarPaneController {
                 if (countGoals != 0) {
                     txt.setText(txt.getText() + String.format("\n %d G", countGoals));
                     if (style != null) {
-                        style = "-fx-background-color: linear-gradient(lightblue 0%, lightgreen 100%);";
-                    } else style = "-fx-background-color: lightgreen;";
+                        style = "-fx-background-color: linear-gradient(#66a3ff 0%, #71da71 100%);";
+                    } else style = "-fx-background-color: #71da71;";
                 }
                 ap.setTodayGoals(todayGoals);
             }
