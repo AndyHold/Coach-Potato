@@ -167,6 +167,8 @@ public class ProfileController {
         setUpToolTips();
         // Set up help text area
         setUpHelpTextArea();
+        //Reset visibility of labels, HBoxs and ListViews
+        resetVisibility();
         // Hide buttons that are hidden
         confirmButton.setVisible(false);
         wholeProfileVBox.setVisible(false);
@@ -345,6 +347,27 @@ public class ProfileController {
     }
 
 
+    public void resetVisibility()
+    {
+        activity1HBox.setVisible(false);
+        activity2HBox.setVisible(false);
+        activity3HBox.setVisible(false);
+        goalStats1HBox.setVisible(false);
+        goalStats2HBox.setVisible(false);
+        goalStats3HBox.setVisible(false);
+        activityStats1HBox.setVisible(false);
+        activityStats2HBox.setVisible(false);
+        activityStats3HBox.setVisible(false);
+        activitiesClickLabel.setVisible(true);
+        goalsClickLabel.setVisible(true);
+        statsClickLabel.setVisible(true);
+        activitiesListView.setVisible(true);
+        goalsListView.setVisible(true);
+        activitiesListLabel.setVisible(true);
+        goalsListLabel.setVisible(true);
+    }
+
+
     /**
      * Method to correctly display all user related details for the view profile scene.
      */
@@ -382,18 +405,7 @@ public class ProfileController {
         calendarPane.getChildren().add(new CalendarPaneController(YearMonth.now(), mainController , this).getView());
 >>>>>>> be0346c6... Refactored "app" to "mainController"
 
-        activity1HBox.setVisible(false);
-        activity2HBox.setVisible(false);
-        activity3HBox.setVisible(false);
-        goalStats1HBox.setVisible(false);
-        goalStats2HBox.setVisible(false);
-        goalStats3HBox.setVisible(false);
-        activityStats1HBox.setVisible(false);
-        activityStats2HBox.setVisible(false);
-        activityStats3HBox.setVisible(false);
-        activitiesClickLabel.setVisible(true);
-        goalsClickLabel.setVisible(true);
-        statsClickLabel.setVisible(true);
+        resetVisibility();
 
         // Sets up the calendar and other stats if the user has already uploaded the data to the app else all values are 0 initially.
         if (currentUser.getActivities().size() > 0) {
@@ -402,17 +414,11 @@ public class ProfileController {
             velocityText.setText("Average Speed: " + df2.format(currentUser.getActivitiesSpeed(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0))) + " km/h");
             heartRateText.setText("Average Heart Rate: " + String.valueOf(currentUser.getActivitiesHeartRate(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0))) + " bpm");
             recentActivitiesLabel.setVisible(true);
-            distanceHBox.setVisible(true);
-            velocityHBox.setVisible(true);
-            heartRateHBox.setVisible(true);
-            activitiesListView.setVisible(true);
-            goalsListView.setVisible(true);
+
         } else {
             distanceText.setText("Total Distance Covered: 0.00 km");
             velocityText.setText("Average Speed: 0.00 km/h");
             heartRateText.setText("Average Heart Rate: No Data");
-            activitiesListLabel.setVisible(true);
-            goalsListLabel.setVisible(true);
         }
     }
 
