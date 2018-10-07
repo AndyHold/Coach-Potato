@@ -29,16 +29,6 @@ public enum HealthWarningType implements java.io.Serializable {
 
 
     /**
-     * Getter method for the name of the health warning.
-     * @return A <b>String</b> name of the health warning.
-     */
-    public String getName()
-    {
-        return name;
-    }
-
-
-    /**
      * Getter method for the URL of the health warning.
      * @return A <b>String</b> URL of the health warning.
      */

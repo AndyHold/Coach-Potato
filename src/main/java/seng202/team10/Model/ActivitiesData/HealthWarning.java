@@ -25,7 +25,7 @@ public class HealthWarning implements java.io.Serializable {
      */
     HealthWarning(HealthWarningType type, String activityname, DateTime activityDate)
     {
-        this.name = type.getName();
+        this.name = type.toString();
         this.URL = type.getURL();
         this.type = type;
         this.activityName = activityname;
@@ -113,17 +113,24 @@ public class HealthWarning implements java.io.Serializable {
      */
     private static boolean checkTachycardia(int heartRate, int age)
     {
-        if (age <= 7 && heartRate > 133) {
-            return true;
-        } else if (age <= 11 && heartRate > 130) {
-            return true;
-        } else if (age <= 15 && heartRate > 119) {
-            return true;
-        } else if (age > 15 && heartRate > 100) {
-            return true;
-        } else {
-            return false;
+        if (age <= 7) {
+            if (heartRate > 133) {
+                return true;
+            }
+        } else if (age <= 11) {
+            if (heartRate > 130) {
+                return true;
+            }
+        } else if (age <= 15) {
+            if (heartRate > 119) {
+                return true;
+            }
+        } else if (age > 15) {
+            if (heartRate > 100) {
+                return true;
+            }
         }
+        return false;
     }
 
 
