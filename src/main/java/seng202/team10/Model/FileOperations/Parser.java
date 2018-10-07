@@ -36,7 +36,9 @@ public class Parser {
         if(reader.checkFileExists(filePath)) {
             try {
                 fileContents = reader.openNewFile(filePath);
-            } catch (IllegalArgumentException e) {
+            }
+            // this catch is never run but is kept here for security
+            catch (IllegalArgumentException e) {
                 throw new FileNotFoundException();
             }
         } else {

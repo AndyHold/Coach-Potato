@@ -52,7 +52,11 @@ public class UserProfile implements java.io.Serializable {
      * @throws InvalidWeightException When the weight is invalid
      * @throws InvalidHeightException When the height is invalid
      * @throws IllegalArgumentException When another value is invalid
+<<<<<<< HEAD
 >>>>>>> 033590fe... Javadocced and cleaned up all Controllers, Exceptions, UserProfile and DataAnalysis.
+=======
+     * todo delete this
+>>>>>>> 41a3421e... Implemented navigation buttons for health warnings screen. Added some new icons for various things.
      */
     public UserProfile(String name, double weight, double height, DateTime birthDate, String gender) throws UserNameException, InvalidWeightException, InvalidHeightException, IllegalArgumentException
     {
@@ -346,15 +350,6 @@ public class UserProfile implements java.io.Serializable {
     public Goals getGoals()
     {
         return goals;
-    }
-
-    /**
-     * Setter method to set user's goals.
-     * @param goals <b>Goals</b>
-     */
-    public void setGoals(Goals goals)
-    {
-        this.goals = goals;
     }
 
     /**

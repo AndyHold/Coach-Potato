@@ -113,19 +113,4 @@ public class FileReader {
         return name.substring(lastIndexOf);
     }
 
-
-
-    /** sets the local profile for the filereader to use
-     * @param activeProfile  A UserProfile being set as the local profile*/
-    public void setLocalProfile(UserProfile activeProfile) {
-        localProfile = activeProfile;
-    }
-
-    /** returns the  profile the filereader last loaded
-     * @return Userprofile the local profile*/
-    public UserProfile getLocalProfile(){
-        return localProfile;
-    }
-
-
 }

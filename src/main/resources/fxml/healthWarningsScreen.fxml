@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.web.*?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -13,22 +21,70 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.web.WebView?>
 
+<<<<<<< HEAD
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideWarningsScrollPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.HealthWarningsController">
+=======
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideInfoBoxes" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/healthWarnings.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.HealthWarningsController">
+>>>>>>> 41a3421e... Implemented navigation buttons for health warnings screen. Added some new icons for various things.
    <children>
       <HBox prefHeight="720.0" prefWidth="1280.0" spacing="20.0">
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
          <children>
+<<<<<<< HEAD
             <Pane fx:id="learnMorePane" maxHeight="680.0" minHeight="680.0" prefHeight="680.0" prefWidth="850.0" >
+=======
+            <VBox maxHeight="685.0" maxWidth="850.0" minHeight="685.0" minWidth="850.0" onMouseClicked="#hideWarningsScrollPane" prefHeight="685.0" prefWidth="850.0">
+>>>>>>> 41a3421e... Implemented navigation buttons for health warnings screen. Added some new icons for various things.
                <children>
-                  <WebView fx:id="googleWebView" layoutX="20.0" layoutY="20.0" prefHeight="640.0" prefWidth="810.0" />
-               </children></Pane>
+                  <Pane fx:id="learnMorePane" maxHeight="635.0" maxWidth="850.0" minHeight="635.0" minWidth="850.0" prefHeight="635.0" prefWidth="850.0">
+                     <children>
+                        <WebView fx:id="googleWebView" layoutX="20.0" layoutY="20.0" maxHeight="595.0" maxWidth="810.0" minHeight="595.0" minWidth="810.0" prefHeight="595.0" prefWidth="810.0" />
+                     </children>
+                  </Pane>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+                     <children>
+                        <Button fx:id="backButton" mnemonicParsing="false" onAction="#goBack">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Images/backButton.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="homeButton" mnemonicParsing="false" onAction="#goHome">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Images/homeButton.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="forwardButton" mnemonicParsing="false" onAction="#goForward">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Images/forwardButton.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
             <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="680.0" prefWidth="360.0" spacing="10.0">
                <children>
+<<<<<<< HEAD
                   <VBox fx:id="tachycardiaVBox" alignment="TOP_CENTER" maxWidth="360.0" minWidth="360.0" prefHeight="220.0" prefWidth="360.0" spacing="20.0" >
+=======
+                  <VBox fx:id="tachycardiaVBox" alignment="TOP_CENTER" maxHeight="205.0" maxWidth="360.0" minHeight="205.0" minWidth="360.0" prefHeight="205.0" prefWidth="360.0" spacing="20.0">
+>>>>>>> 41a3421e... Implemented navigation buttons for health warnings screen. Added some new icons for various things.
                      <children>
-                        <Label fx:id="tachycardiaNameLabel" alignment="CENTER" text="Tachycardia" textAlignment="CENTER">
+                        <Label fx:id="tachycardiaNameLabel" alignment="TOP_CENTER" text="Tachycardia" textAlignment="CENTER">
                            <font>
                               <Font size="19.0" />
                            </font>
@@ -57,7 +113,11 @@
                         <Button fx:id="tachycardiaLearnMorebutton" mnemonicParsing="false" onAction="#showTachycardiaSearch"  text="Learn More" />
                      </children>
                   </VBox>
+<<<<<<< HEAD
                   <VBox fx:id="bradycardiaVBox" alignment="CENTER" maxWidth="360.0" minWidth="360.0" prefHeight="220.0" prefWidth="360.0" spacing="20.0" >
+=======
+                  <VBox fx:id="bradycardiaVBox" alignment="CENTER" maxHeight="205.0" maxWidth="360.0" minHeight="205.0" minWidth="360.0" prefHeight="205.0" prefWidth="360.0" spacing="20.0">
+>>>>>>> 41a3421e... Implemented navigation buttons for health warnings screen. Added some new icons for various things.
                      <children>
                         <Label fx:id="bradycardiaNameLabel" alignment="CENTER" text="Bradycardia" />
                         <Button fx:id="bradycardiaViewbutton" mnemonicParsing="false" onAction="#showBradycardiaWarnings" >
@@ -69,7 +129,7 @@
                                           <Image url="@../Images/warning.png" />
                                        </image>
                                     </ImageView>
-                                    <Label fx:id="bradycardiaActivitiesLabel" alignment="CENTER" text="You have 12 warnings, click here to view them." textAlignment="CENTER" wrapText="true">
+                                    <Label fx:id="bradycardiaActivitiesLabel" alignment="CENTER" text="You have no warnings." textAlignment="CENTER" wrapText="true">
                                        <padding>
                                           <Insets bottom="-5.0" top="-5.0" />
                                        </padding></Label>
@@ -80,6 +140,7 @@
                         <Button fx:id="bradycardiaLearnMoreButton" mnemonicParsing="false" onAction="#showBradycardiaSearch"  text="Learn More" />
                      </children>
                   </VBox>
+<<<<<<< HEAD
                   <VBox fx:id="cardiovascularMortalityVBox" alignment="CENTER" maxWidth="360.0" minWidth="360.0" prefHeight="220.0" prefWidth="360.0" spacing="20.0" >
                      <children>
                         <Label fx:id="cardiovascularMortalityNameLabel" alignment="CENTER" text="Cardiovascular Mortality" />
@@ -88,10 +149,44 @@
                               <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="320.0">
                                  <children>
                                     <ImageView fx:id="cardiovascularMortalityIcon" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+=======
+                  <VBox maxHeight="240.0" maxWidth="360.0" minHeight="240.0" minWidth="360.0" prefHeight="240.0" prefWidth="360.0">
+                     <children>
+                        <VBox fx:id="cardiovascularMortalityVBox" alignment="CENTER" maxHeight="205.0" maxWidth="360.0" minHeight="205.0" minWidth="360.0" prefHeight="205.0" prefWidth="360.0" spacing="20.0">
+                           <children>
+                              <Label fx:id="cardiovascularMortalityNameLabel" alignment="CENTER" text="Cardiovascular Mortality" />
+                              <Button fx:id="cardiovascularMortalityViewButton" mnemonicParsing="false" onAction="#showCardiovascularMortalityWarnings" prefHeight="50.0" prefWidth="340.0">
+                                 <graphic>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="320.0">
+                                       <children>
+                                          <ImageView fx:id="cardiovascularMortalityIcon" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../Images/warning.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label fx:id="cardiovascularMortalityActivitiesLabel" alignment="CENTER" maxHeight="61.0" prefHeight="61.0" prefWidth="250.0" text="You have no warnings." textAlignment="CENTER" wrapText="true">
+                                             <padding>
+                                                <Insets bottom="-5.0" top="-5.0" />
+                                             </padding>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="cardiovascularMortalityLearnMoreButton" mnemonicParsing="false" onAction="#showCardiovascularSearch" text="Learn More" />
+                           </children>
+                        </VBox>
+                        <HBox alignment="CENTER_RIGHT" maxHeight="35.0" maxWidth="360.0" minHeight="35.0" minWidth="360.0" prefHeight="35.0" prefWidth="360.0">
+                           <children>
+                              <Button fx:id="helpButton" maxHeight="35.0" maxWidth="48.0" minHeight="35.0" minWidth="48.0" mnemonicParsing="false" onAction="#displayHelp" prefHeight="35.0" prefWidth="48.0">
+                                 <graphic>
+                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+>>>>>>> 41a3421e... Implemented navigation buttons for health warnings screen. Added some new icons for various things.
                                        <image>
-                                          <Image url="@../Images/warning.png" />
+                                          <Image url="@../Images/help.png" />
                                        </image>
                                     </ImageView>
+<<<<<<< HEAD
                                     <Label fx:id="cardiovascularMortalityActivitiesLabel" alignment="CENTER" maxHeight="61.0" prefHeight="61.0" prefWidth="250.0" text="You have 12 warnings, click here to view them." textAlignment="CENTER" wrapText="true">
                                        <padding>
                                           <Insets bottom="-5.0" top="-5.0" />
@@ -101,6 +196,12 @@
                            </graphic>
                         </Button>
                         <Button fx:id="cardiovascularMortalityLearnMoreButton" mnemonicParsing="false" onAction="#showCardiovascularSearch"  text="Learn More" />
+=======
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </HBox>
+>>>>>>> 41a3421e... Implemented navigation buttons for health warnings screen. Added some new icons for various things.
                      </children>
                   </VBox>
                </children>
@@ -123,9 +224,6 @@
             </Pane>
          </content>
       </ScrollPane>
+      <TextArea fx:id="helpTextArea" editable="false" layoutX="810.0" layoutY="260.0" prefHeight="400.0" prefWidth="400.0" visible="false" wrapText="true" />
    </children>
-   <stylesheets>
-      <URL value="@../css/healthWarnings.css" />
-      <URL value="@../css/titleBar.css" />
-   </stylesheets>
 </Pane>

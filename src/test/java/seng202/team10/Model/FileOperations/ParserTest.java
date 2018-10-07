@@ -19,23 +19,18 @@ public class ParserTest {
 
 
     @Test
-    /* this is an unofficial test for me to test the whole process */
     public void overallTest() throws FileNotFoundException, NoDataFoundException {
         ArrayList<String> fileContents = testParser.getFileContents("./FilesToLoad/testdata.csv");
         ArrayList<ArrayList<String>> formattedFile = testParser.formatFileContents(fileContents);
         ArrayList<Activity> testResults = testParser.processFile(formattedFile);
-        int activityCounter = 0;
         int entryCounter = 0;
         for (Activity temp: testResults){
-
             ArrayList<Entry> activeEntries = temp.getEntries();
-            activityCounter += 1;
             for(Entry tempEntry: activeEntries){
 
                 entryCounter+= 1;
             }
         }
-        assertEquals(12, activityCounter);
         assertEquals(1135, entryCounter);
 
         }
@@ -102,7 +97,7 @@ public class ParserTest {
     }
 
     @Test
-    public void nonexistantFile(){
+    public void nonExistentFile(){
         String message = "Test Failed";
         try {
             testParser.getFileContents("failtest");
@@ -113,7 +108,7 @@ public class ParserTest {
     }
 
 
-    /**
+    /*
      * The following tests all test that the correct number of activities are uploaded depending on the file.
      * Some files should throw exceptions when there is no data found, and these ones are caught.
      */
@@ -203,7 +198,7 @@ public class ParserTest {
 
     @Test
     public void wrongFileTypeAssertException() throws FileNotFoundException {
-        ArrayList<String> fileContents = testParser.getFileContents("FilesToLoad/TestData/emptyFile.csv");
+        ArrayList<String> fileContents = testParser.getFileContents("FilesToLoad/TestData/picture.png");
         ArrayList<ArrayList<String>> formattedFileContents = testParser.formatFileContents(fileContents);
         try {
             testParser.processFile(formattedFileContents);
@@ -237,7 +232,7 @@ public class ParserTest {
         }
     }
 
-    /**
+    /*
      * The following tests all check that the correct number of entries are uploaded for the user depending on the file
      * uploaded. The overall sum of entries for all data entered will be found and compared. The correct value is
      * found by counting the number of lines. Sometimes the correct number of "Bad activities" is checked if the file
@@ -333,7 +328,7 @@ public class ParserTest {
         DateTime dateTime = null;
         try {
             dateTime = testParser.parseDateTimeFromStrings("this is a test", "throw exception");
-            assertTrue(1 == 0);
+            assertTrue(false);
         } catch (IllegalArgumentException exception) {
             assertTrue(dateTime == null);
         }

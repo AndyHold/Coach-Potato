@@ -57,12 +57,5 @@ public class FileWriter
         return success;
     }
 
-    /** returns the last profile that was saved
-     * @return  A UserProfile, the active profile*/
-    public UserProfile getActiveProfile() {
-        return activeProfile;
-    }
-
-
 }
 

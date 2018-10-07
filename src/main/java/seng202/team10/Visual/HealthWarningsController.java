@@ -1,18 +1,20 @@
 package seng202.team10.Visual;
 
+import com.sun.istack.internal.NotNull;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebHistory;
 import javafx.scene.web.WebView;
 import javafx.util.Duration;
 import seng202.team10.Control.GUIController;
@@ -62,6 +64,17 @@ public class HealthWarningsController implements Controllable {
     @FXML private Pane cWarningsPane;
     @FXML private Pane warningsParentPane;
     @FXML private ScrollPane warningsScrollPane;
+    @FXML private TextArea helpTextArea;
+    @FXML private Button helpButton;
+    @FXML private Button backButton;
+    @FXML private Button homeButton;
+    @FXML private Button forwardButton;
+    @FXML private Button tachycardiaViewButton;
+    @FXML private Button tachycardiaLearnMorebutton;
+    @FXML private Button bradycardiaViewbutton;
+    @FXML private Button bradycardiaLearnMoreButton;
+    @FXML private Button cardiovascularMortalityViewButton;
+    @FXML private Button cardiovascularMortalityLearnMoreButton;
     private WebEngine engine;
 
 
@@ -73,16 +86,131 @@ public class HealthWarningsController implements Controllable {
 
     public void setUpScene()
     {
-        hideWarningsScrollPane();
+        setUpHelpTextArea();
+        setUpToolTips();
+        hideInfoBoxes();
         getWarningLists();
         setUpLabels();
 
         engine = googleWebView.getEngine();
         engine.load("https://google.com");
-//        warningsScrollPane.focusedProperty().addListener((ov, oldV, newV) -> {
-//        if (!newV) {
-//            hideWarningsScrollPane();
-//        }});
+        helpTextArea.focusedProperty().addListener((ov, oldV, newV) -> {
+        if (!newV) {
+            hideHelpTextArea();
+        }});
+    }
+
+    /**
+     * Set up method for the help text area
+     */
+    private void setUpHelpTextArea()
+    {
+        helpTextArea.setText("Welcome to the Health Warnings Screen!\n\n" +
+                             "On this screen you can view/clear the different health warnings you have recieved and get more information via google.\n\n" +
+                             "- To view/clear your current health warnings:\n" +
+                             "\t- Locate the desired warning type in the panes on\n" +
+                             "\t  the right.\n" +
+                             "\t- Click on the button with the warning symbol to\n" +
+                             "\t  open the warnings pane. This brings up your\n" +
+                             "\t  current warnings for the type selected including the\n" +
+                             "\t  activity the warning was detected on.\n" +
+                             "\t- Click the Clear button to remove the warning or the\n" +
+                             "\t  Clear All button to remove all warnings of that type.\n" +
+                             "- To learn more about each warning type:\n" +
+                             "\t- Click on the Learn More button for the desired type.\n" +
+                             "\t  This will bring up a google search for the warning in\n" +
+                             "\t  the google web view on the left.\n" +
+                             "\t- Use the Back, Home, and Forward buttons at the\n" +
+                             "\t  bottom of the web view to navigate as you desire.\n\n" +
+                             "Hover the mouse over each button to see a brief discription of what it does.");
+        helpTextArea.setWrapText(true);
+        helpTextArea.setVisible(false);
+    }
+
+
+    /**
+     * Set up method for the tool tips
+     * TODO finish these
+     */
+    private void setUpToolTips()
+    {
+        helpButton.setTooltip(new Tooltip("Need Help?"));
+//        googleWebView
+//        backButton
+//        homeButton
+//        forwardButton
+//        tachycardiaViewButton
+//        tachycardiaLearnMorebutton
+//        bradycardiaViewbutton
+//        bradycardiaLearnMoreButton
+//        cardiovascularMortalityViewButton
+//        cardiovascularMortalityLearnMoreButton
+    }
+
+
+    /**
+     * Method called when the help button is pushed.
+     * Displays the help text area.
+     */
+    @FXML private void displayHelp()
+    {
+        helpTextArea.setVisible(true);
+        helpTextArea.requestFocus();
+    }
+
+
+    /**
+     * Method called when focus to the help text area is lost or when the pane is clicked on.
+     * Hides the help text area.
+     */
+    @FXML public void hideHelpTextArea()
+    {
+        helpTextArea.setVisible(false);
+        helpButton.requestFocus();
+    }
+
+
+    @FXML public void goBack()
+    {
+        WebHistory history = engine.getHistory();
+        ObservableList<WebHistory.Entry> entryList = history.getEntries();
+        int index = history.getCurrentIndex();
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                if ((entryList.size() > 1) && (index > 0)) {
+                    history.go(-1);
+                } else {
+                    history.go(0);
+                }
+            }
+        });
+    }
+
+
+    @FXML public void goForward()
+    {
+        WebHistory history = engine.getHistory();
+        ObservableList<WebHistory.Entry> entryList = history.getEntries();
+        int index = history.getCurrentIndex();
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                if ((entryList.size() > 1) && (index < entryList.size() - 1)) {
+                    history.go(1);
+                } else {
+                    history.go(0);
+                }
+            }
+        });
+    }
+
+    @FXML public void goHome()
+    {
+
+        engine.load("https://google.com");
     }
 
 
@@ -253,7 +381,7 @@ public class HealthWarningsController implements Controllable {
      * Method to show the warning Pane and stretch it to fit the values it requires.
      * @param warningPane
      */
-    private void showWarningPane(Pane warningPane)
+    private void showWarningPane(@NotNull Pane warningPane)
     {
         warningsScrollPane.setVisible(true);
         warningPane.setVisible(true);
@@ -264,7 +392,10 @@ public class HealthWarningsController implements Controllable {
     }
 
 
-    @FXML public void hideWarningsScrollPane()
+    /**
+     * Method to hide the warnings scroll pane.
+     */
+    public void hideWarningsScrollPane()
     {
         warningsScrollPane.setVisible(false);
         tWarningsPane.setVisible(false);
@@ -273,6 +404,22 @@ public class HealthWarningsController implements Controllable {
     }
 
 
+<<<<<<< HEAD
+=======
+    /**
+     * Method to hide the warnings scroll box and the help text area
+     * Called when the background Pane is clicked on.
+     */
+    public void hideInfoBoxes()
+    {
+        hideWarningsScrollPane();
+        hideHelpTextArea();
+    }
+
+    /**
+     * Method to search the web page for tachycardia.
+     */
+>>>>>>> 41a3421e... Implemented navigation buttons for health warnings screen. Added some new icons for various things.
     @FXML public void showTachycardiaSearch()
     {
         engine.load(HealthWarningType.TACHYCARDIA.getURL());
