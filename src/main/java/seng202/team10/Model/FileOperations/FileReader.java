@@ -8,8 +8,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+=======
+import static org.apache.commons.lang3.ArrayUtils.contains;
+
+>>>>>>> 1991dff4... Fixed bad gender in filename issue
 /**
  * Class that contains methods for reading from files and some validation of data. This class is used by
  */
@@ -88,8 +93,10 @@ public class FileReader {
                     if (getFileExtension(listOfFile).equals(".ser")) {
                         String[] filename = listOfFile.getName().substring(0, listOfFile.getName().length() - 4).split(" - ");
                         if (filename.length == 2) {
-                            foundUsers.add(filename[0]);
-                            usersGenders.add(filename[1]);
+                            if (contains(new String[]{"Male", "Female", "Other"}, filename[1])) {
+                                foundUsers.add(filename[0]);
+                                usersGenders.add(filename[1]);
+                            }
                         }
                     }
                 }

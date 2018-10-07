@@ -281,6 +281,7 @@ public class MainController extends Application {
         }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> e7a69fc0... Worked extensively on the GUI. now have a working custom title bar, a new colour theme which has been implemented on login, profile, and createprofile screens.
 =======
 //        try {
@@ -313,6 +314,8 @@ public class MainController extends Application {
         loadAllUsers();
 =======
 //        loadAllUsers();
+=======
+>>>>>>> 1991dff4... Fixed bad gender in filename issue
         loadUserDetails();
 >>>>>>> 4f1b7d76... Fixed tests so that new format of error exceptions does not break the pipeline.
         loadTitleBar();
@@ -352,8 +355,7 @@ public class MainController extends Application {
 =======
     public void loadUserDetails()
     {
-        userNames.clear();
-        userGenders.clear();
+        // repopulate the user lists
         dataReader.getExistingUsers(userNames, userGenders);
 >>>>>>> 4f1b7d76... Fixed tests so that new format of error exceptions does not break the pipeline.
     }
