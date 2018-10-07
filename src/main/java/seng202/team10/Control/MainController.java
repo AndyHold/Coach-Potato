@@ -1116,6 +1116,7 @@ public class MainController extends Application {
      */
     public void setCurrentProfile(UserProfile userProfile) {
         this.titleBarController.setCurrentProfile(userProfile);
+        this.getTitleBar().getGoalController().setCurrentUser(userProfile);
         this.titleBarController.getGoalController().addGoalsToTable();
     }
 

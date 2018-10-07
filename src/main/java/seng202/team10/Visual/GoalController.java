@@ -92,7 +92,6 @@ public class GoalController implements Controllable{
      */
     public void setUpScene()
     {
-        currentUser = mainController.getTitleBar().getCurrentProfile();
         // Set tool tips
         setUpToolTips();
         // Set up help text areas
@@ -111,8 +110,20 @@ public class GoalController implements Controllable{
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Set up method for the tool tips
 =======
+=======
+     * Setter method for the current user logged in to the profile.
+     */
+    public void setCurrentUser(UserProfile userProfile)
+    {
+        currentUser = userProfile;
+    }
+
+
+    /**
+>>>>>>> 86a7b54b... Fixed issue with userprofile in goal controller
      * Method to set selected item to null for existing goals pane when clicked away from the list view.
      * Called when clicked on the existing goals pane.
      */
