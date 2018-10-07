@@ -38,7 +38,6 @@ public class TimeGoal extends Goal {
      * Setter method for the target value of time goal.
      * @param target A <b>Double</b> of the target time.
      * @throws InvalidGoalTargetException When target is outside the correct values.
-     * TODO can set a target with more minutes than is possible.
      */
     public void setTarget(double target) throws InvalidGoalTargetException
     {
