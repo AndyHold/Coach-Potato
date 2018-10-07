@@ -264,9 +264,9 @@ public class HealthWarningsController implements Controllable {
      */
     @FXML public void goHome()
     {
-        boolean reachable = false;
         try{
             InetAddress address = InetAddress.getByName("www.google.com");
+<<<<<<< HEAD
 <<<<<<< HEAD
             boolean reachable = address.isReachable(10000);
         } catch (Exception e) {
@@ -285,7 +285,14 @@ public class HealthWarningsController implements Controllable {
 =======
             mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, 'google.com' currently unavailable");
 >>>>>>> 9fbf9f08... Tried fixing the health warning but now will revert to the old one. Changed the popup label.
+=======
+            boolean reachable = address.isReachable(1000);
+        } catch (Exception e) {
+            mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, Web Search currently unavailable");
+>>>>>>> d8a2d61a... changing connection popup for health warnings back to actually working
         }
+        engine.load("https://google.com");
+
     }
 
 
@@ -521,9 +528,9 @@ public class HealthWarningsController implements Controllable {
 >>>>>>> 41a3421e... Implemented navigation buttons for health warnings screen. Added some new icons for various things.
     @FXML public void showTachycardiaSearch()
     {
-        boolean reachable = false;
         try{
             InetAddress address = InetAddress.getByName("www.google.com");
+<<<<<<< HEAD
 <<<<<<< HEAD
             boolean reachable = address.isReachable(10000);
         } catch (Exception e) {
@@ -540,10 +547,14 @@ public class HealthWarningsController implements Controllable {
             mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, 'Learn More' currently available");
 >>>>>>> a9f2ebdd... Fixed the exceptions when there is no internet
 =======
+=======
+            boolean reachable = address.isReachable(1000);
+        } catch (Exception e) {
+>>>>>>> d8a2d61a... changing connection popup for health warnings back to actually working
             mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, 'Learn More' currently unavailable");
 >>>>>>> 9fbf9f08... Tried fixing the health warning but now will revert to the old one. Changed the popup label.
         }
-
+        engine.load(HealthWarningType.TACHYCARDIA.getURL());
     }
 
 
@@ -556,9 +567,9 @@ public class HealthWarningsController implements Controllable {
 >>>>>>> aac42ab6... Javadoc'd HealthWarningsController
     @FXML public void showBradycardiaSearch()
     {
-        boolean reachable = false;
         try{
             InetAddress address = InetAddress.getByName("www.google.com");
+<<<<<<< HEAD
 <<<<<<< HEAD
             boolean reachable = address.isReachable(10000);
         } catch (Exception e) {
@@ -575,9 +586,14 @@ public class HealthWarningsController implements Controllable {
             mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, 'Learn More' currently available");
 >>>>>>> a9f2ebdd... Fixed the exceptions when there is no internet
 =======
+=======
+            boolean reachable = address.isReachable(1000);
+        } catch (Exception e) {
+>>>>>>> d8a2d61a... changing connection popup for health warnings back to actually working
             mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, 'Learn More' currently unavailable");
 >>>>>>> 9fbf9f08... Tried fixing the health warning but now will revert to the old one. Changed the popup label.
         }
+        engine.load(HealthWarningType.BRADYCARDIA.getURL());
 
     }
 
@@ -591,9 +607,9 @@ public class HealthWarningsController implements Controllable {
 >>>>>>> aac42ab6... Javadoc'd HealthWarningsController
     @FXML public void showCardiovascularSearch()
     {
-        boolean reachable = false;
         try{
             InetAddress address = InetAddress.getByName("www.google.com");
+<<<<<<< HEAD
 <<<<<<< HEAD
             boolean reachable = address.isReachable(10000);
         } catch (Exception e) {
@@ -610,9 +626,14 @@ public class HealthWarningsController implements Controllable {
             mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, 'Learn More' currently available");
 >>>>>>> a9f2ebdd... Fixed the exceptions when there is no internet
 =======
+=======
+            boolean reachable = address.isReachable(1000);
+        } catch (Exception e) {
+>>>>>>> d8a2d61a... changing connection popup for health warnings back to actually working
             mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, 'Learn More' currently unavailable");
 >>>>>>> 9fbf9f08... Tried fixing the health warning but now will revert to the old one. Changed the popup label.
         }
+        engine.load(HealthWarningType.CARDIOVASCULAR_MORTALITY.getURL());
 
     }
 
