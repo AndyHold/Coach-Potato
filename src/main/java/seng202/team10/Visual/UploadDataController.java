@@ -567,15 +567,19 @@ public class UploadDataController {
                 ArrayList<String> fileContents = this.parser.getFileContents(filename);
                 ArrayList<ArrayList<String>> formattedFile = this.parser.formatFileContents(fileContents);
                 ArrayList<Activity> newActivities = this.parser.processFile(formattedFile);
+                String successMessage = String.valueOf(newActivities.size()) +" activities have been successfully uploaded to your profile";
                 currentUser.addActivities(newActivities);
                 // Set warning flag in title bar if warnings were added.
                 mainController .getTitleBar().setUpWarningFlag();
                 mainController .getDataWriter().saveProfile (currentUser); // Reserialize profile after adding data
                 if (this.parser.getBadActivities() > 0) {
-                    String discardedMessage = String.valueOf(this.parser.getBadActivities()) + " of " + String.valueOf(newActivities.size() + this.parser.getBadActivities()) + " activities found were discarded due to being unparsable";
+                    String discardedMessage = String.valueOf(this.parser.getBadActivities()) + " activities were discarded due to being unparsable.";
+                    if (newActivities.size() > this.parser.getBadActivities()) {
+                        discardedMessage += " " + newActivities.size() + " other activities added.";
+                    }
                     this.mainController.createPopUp(Alert.AlertType.WARNING, "Warning", discardedMessage);
                 } else {
-                    this.mainController.createPopUp(Alert.AlertType.INFORMATION, "Success", String.valueOf(newActivities.size()) +" activities have been successfully uploaded to your profile");
+                    this.mainController.createPopUp(Alert.AlertType.INFORMATION, "Success", successMessage);
                 }
             } catch (FileNotFoundException exception) {
                 this.mainController.createPopUp(Alert.AlertType.ERROR, "Error", "File not found, please choose a valid csv file");

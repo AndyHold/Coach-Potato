@@ -6,6 +6,7 @@ import seng202.team10.Model.Exceptions.NoActivityFoundException;
 import seng202.team10.Model.Exceptions.NoDataFoundException;
 
 import java.io.FileNotFoundException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 <<<<<<< HEAD
@@ -342,6 +343,20 @@ public class Parser {
         int second = Integer.valueOf(timeArray[2]);
 
         DateTime dateTime = new DateTime(year, month, day, hour, minute, second);
+
+        LocalDateTime now = LocalDateTime.now();
+        int currentYear = now.getYear();
+        int currentMonth = now.getMonthValue();
+        int currentDay = now.getDayOfMonth();
+        int currentHour = now.getHour();
+        int currentMinute = now.getMinute();
+        int currentSecond = now.getSecond();
+        DateTime currentDateTime = new DateTime(currentYear, currentMonth, currentDay, currentHour, currentMinute, currentSecond);
+
+        if (currentDateTime.isBefore(dateTime)) {
+            throw new IllegalArgumentException();
+        }
+
         int heartRate = Integer.valueOf(currentLine.get(2));
         Position position = processPosition(currentLine);
 

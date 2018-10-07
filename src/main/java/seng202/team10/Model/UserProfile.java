@@ -211,15 +211,21 @@ public class UserProfile implements java.io.Serializable {
     public void addActivities(ArrayList<Activity> newActivities) throws ExistingElementException
     {
         int numberOfBadActivities = 0;
+        int numberNewActivities = 0;
         for(Activity newActivity: newActivities){
             try {
                 addActivity(newActivity);
+                numberNewActivities += 1;
             } catch(ExistingActivityException exception) {
                 numberOfBadActivities++;
             }
         }
         if (numberOfBadActivities > 0) {
-            throw new ExistingElementException(String.valueOf(numberOfBadActivities) + " Activities overlapped with existing activities and were not added");
+            String overlapMessage = String.valueOf(numberOfBadActivities) + " Activities overlapped with existing activities and were not added. ";
+            if (numberNewActivities > 0) {
+                overlapMessage += (numberNewActivities) + " other activities added.";
+            }
+            throw new ExistingElementException(overlapMessage);
         }
     }
 
