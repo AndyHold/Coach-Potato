@@ -268,6 +268,7 @@ public class HealthWarningsController implements Controllable {
             InetAddress address = InetAddress.getByName("www.google.com");
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             boolean reachable = address.isReachable(10000);
         } catch (Exception e) {
             app.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, Web Search is currently available");
@@ -287,6 +288,9 @@ public class HealthWarningsController implements Controllable {
 >>>>>>> 9fbf9f08... Tried fixing the health warning but now will revert to the old one. Changed the popup label.
 =======
             boolean reachable = address.isReachable(1000);
+=======
+            boolean reachable = address.isReachable(500);
+>>>>>>> d37f9268... Changed the timeout to 500 ms.
         } catch (Exception e) {
             mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, Web Search currently unavailable");
 >>>>>>> d8a2d61a... changing connection popup for health warnings back to actually working
@@ -532,6 +536,7 @@ public class HealthWarningsController implements Controllable {
             InetAddress address = InetAddress.getByName("www.google.com");
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             boolean reachable = address.isReachable(10000);
         } catch (Exception e) {
             app.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, 'Learn More' currently available");
@@ -549,6 +554,9 @@ public class HealthWarningsController implements Controllable {
 =======
 =======
             boolean reachable = address.isReachable(1000);
+=======
+            boolean reachable = address.isReachable(500);
+>>>>>>> d37f9268... Changed the timeout to 500 ms.
         } catch (Exception e) {
 >>>>>>> d8a2d61a... changing connection popup for health warnings back to actually working
             mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, 'Learn More' currently unavailable");
@@ -571,6 +579,7 @@ public class HealthWarningsController implements Controllable {
             InetAddress address = InetAddress.getByName("www.google.com");
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             boolean reachable = address.isReachable(10000);
         } catch (Exception e) {
             app.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, 'Learn More' currently available");
@@ -588,6 +597,9 @@ public class HealthWarningsController implements Controllable {
 =======
 =======
             boolean reachable = address.isReachable(1000);
+=======
+            boolean reachable = address.isReachable(500);
+>>>>>>> d37f9268... Changed the timeout to 500 ms.
         } catch (Exception e) {
 >>>>>>> d8a2d61a... changing connection popup for health warnings back to actually working
             mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, 'Learn More' currently unavailable");
@@ -611,6 +623,7 @@ public class HealthWarningsController implements Controllable {
             InetAddress address = InetAddress.getByName("www.google.com");
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             boolean reachable = address.isReachable(10000);
         } catch (Exception e) {
             app.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, 'Learn More' currently available");
@@ -628,6 +641,9 @@ public class HealthWarningsController implements Controllable {
 =======
 =======
             boolean reachable = address.isReachable(1000);
+=======
+            boolean reachable = address.isReachable(500);
+>>>>>>> d37f9268... Changed the timeout to 500 ms.
         } catch (Exception e) {
 >>>>>>> d8a2d61a... changing connection popup for health warnings back to actually working
             mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, 'Learn More' currently unavailable");
