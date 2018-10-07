@@ -44,7 +44,6 @@ public class WeightGoalTest {
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         testGoal = new WeightGoal(name, currentTime, target);
         ((WeightGoal) testGoal).setTargetValue(targetWeight, testUser);
-        Thread.sleep(1000);
         String message = ((WeightGoal) testGoal).reviewWeightGoal(101.0);
         testUser.setWeight(100);
         assertEquals("Your target for this goal was to weigh 100.0 or less by " + target + "\n" +
@@ -61,7 +60,6 @@ public class WeightGoalTest {
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() , now1.getHour(), now1.getMinute(), now1.getSecond());
         testGoal = new WeightGoal(name, currentTime, target);
         ((WeightGoal) testGoal).setTargetValue(targetWeight, testUser);
-        Thread.sleep(1000);
         String message = ((WeightGoal) testGoal).reviewWeightGoal(250);
         testUser.setWeight(100);
         assertEquals("Your target for this goal was to weigh 100.0 or less by " + target + "\n" +

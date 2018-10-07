@@ -35,7 +35,6 @@ public class DistanceGoalTest {
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         testGoal = new DistanceGoal(name, currentTime, target, targetDist);
-        Thread.sleep(1000);
         String message = ((DistanceGoal) testGoal).reviewDistanceGoal(999.9);
         assertEquals("Your target for this goal was to cover 1000.0 km in distance by " + target + "\n" +
                 "\n" +
@@ -49,7 +48,6 @@ public class DistanceGoalTest {
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() , now1.getHour(), now1.getMinute(), now1.getSecond());
         testGoal = new DistanceGoal(name, currentTime, target, targetDist);
-        Thread.sleep(1000);
         String message = ((DistanceGoal) testGoal).reviewDistanceGoal(0.0);
         assertEquals("Your target for this goal was to cover 1000.0 km in distance by " + target + "\n" +
                 "\n" +

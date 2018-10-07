@@ -1,6 +1,9 @@
 package seng202.team10.Model.ActivitiesData;
 
 import org.junit.Test;
+
+import java.time.LocalDateTime;
+
 import static org.junit.Assert.*;
 
 public class DateTimeTest {
@@ -926,6 +929,34 @@ public class DateTimeTest {
 
 
     @Test
+    public void subtractYearsFromDateSameMonthSameDay()
+    {
+        assertEquals(100, yearAfter.subtractYearsFromDateTime(yearBefore));
+    }
+
+
+    @Test
+    public void subtractYearsFromDateSameMonth()
+    {
+        assertEquals(-7, febTwentyEighth.subtractYearsFromDateTime(febTwentyNinthLeap));
+    }
+
+
+    @Test
+    public void subtractYearsFromDateDiffMonth()
+    {
+        assertEquals(-7, janFirst.subtractYearsFromDateTime(febTwentyNinthLeap));
+    }
+
+
+    @Test
+    public void subtractYearsFromDateSameDate()
+    {
+        assertEquals(0, yearAfter.subtractYearsFromDateTime(yearAfter));
+    }
+
+
+    @Test
     public void changeDateGoodDateYear()
     {
         String message = "Nothing";
@@ -1119,4 +1150,59 @@ public class DateTimeTest {
     {
         assertEquals("00:00:00", secondBefore.getTimeAsString());
     }
+
+
+    @Test
+    public void nowYear()
+    {
+        LocalDateTime nowLocal = LocalDateTime.now();
+        DateTime nowDateTime = DateTime.now();
+        assertEquals(nowLocal.getYear(), nowDateTime.getYear());
+    }
+
+
+    @Test
+    public void nowMonth()
+    {
+        LocalDateTime nowLocal = LocalDateTime.now();
+        DateTime nowDateTime = DateTime.now();
+        assertEquals(nowLocal.getMonthValue(), nowDateTime.getMonth());
+    }
+
+
+    @Test
+    public void nowDay()
+    {
+        LocalDateTime nowLocal = LocalDateTime.now();
+        DateTime nowDateTime = DateTime.now();
+        assertEquals(nowLocal.getDayOfMonth(), nowDateTime.getDay());
+    }
+
+
+    @Test
+    public void nowHour()
+    {
+        LocalDateTime nowLocal = LocalDateTime.now();
+        DateTime nowDateTime = DateTime.now();
+        assertEquals(nowLocal.getHour(), nowDateTime.getHour());
+    }
+
+
+    @Test
+    public void nowMinute()
+    {
+        LocalDateTime nowLocal = LocalDateTime.now();
+        DateTime nowDateTime = DateTime.now();
+        assertEquals(nowLocal.getMinute(), nowDateTime.getMinute());
+    }
+
+
+    @Test
+    public void nowSecond()
+    {
+        LocalDateTime nowLocal = LocalDateTime.now();
+        DateTime nowDateTime = DateTime.now();
+        assertEquals(nowLocal.getSecond(), nowDateTime.getSecond());
+    }
+
 }

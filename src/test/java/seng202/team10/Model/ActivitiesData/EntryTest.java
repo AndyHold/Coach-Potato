@@ -21,7 +21,115 @@ public class EntryTest {
         testPosition = new Position(0.0, 0.0, 0.0);
         testEntry = new Entry(testTime, 100, testPosition);
     }
+
+
     //---------------------------Tests for the constructor:----------------------------
+
+
+    @Test
+    public void setNullTime()
+    {
+        boolean caught = false;
+        try {
+            testEntry.setTime(null);
+        } catch (NullPointerException exception) {
+            caught = true;
+        }
+        assertTrue(caught);
+    }
+
+
+    @Test
+    public void setNullPosition()
+    {
+        boolean caught = false;
+        try {
+            testEntry.setPosition(null);
+        } catch (NullPointerException exception) {
+            caught = true;
+        }
+        assertTrue(caught);
+    }
+
+
+    @Test
+    public void setBadLatitude()
+    {
+        boolean caught = false;
+        try {
+            testEntry.setLatitude(91);
+        } catch (IllegalArgumentException exception) {
+            caught = true;
+        }
+        assertTrue(caught);
+    }
+
+
+    @Test
+    public void setGoodLatitude()
+    {
+        boolean caught = false;
+        try {
+            testEntry.setLatitude(0.0);
+        } catch (IllegalArgumentException exception) {
+            caught = true;
+        }
+        assertFalse(caught);
+    }
+
+
+    @Test
+    public void setBadLongitude()
+    {
+        boolean caught = false;
+        try {
+            testEntry.setLongitude(181);
+        } catch (IllegalArgumentException exception) {
+            caught = true;
+        }
+        assertTrue(caught);
+    }
+
+
+    @Test
+    public void setGoodLongitude()
+    {
+        boolean caught = false;
+        try {
+            testEntry.setLongitude(0.0);
+        } catch (IllegalArgumentException exception) {
+            caught = true;
+        }
+        assertFalse(caught);
+    }
+
+
+    @Test
+    public void setBadElevation()
+    {
+        boolean caught = false;
+        try {
+            testEntry.setElevation(9000);
+        } catch (IllegalArgumentException exception) {
+            caught = true;
+        }
+        assertTrue(caught);
+    }
+
+
+    @Test
+    public void setGoodElevation()
+    {
+        boolean caught = false;
+        try {
+            testEntry.setElevation(0.0);
+        } catch (IllegalArgumentException exception) {
+            caught = true;
+        }
+        assertFalse(caught);
+    }
+
+
     @Test
     public void badHeartRateLow()
     {
@@ -277,6 +385,19 @@ public class EntryTest {
     }
 
 
+    @Test
+    public void getHeartRateString()
+    {
+        assertEquals("100", testEntry.getHeartRateString());
+    }
+
+
+    @Test
+    public void firstEntry()
+    {
+        testEntry.setFirstEntry(false);
+        assertFalse(testEntry.isFirstEntry());
+    }
 
 
     Position position1 = new Position(30.2553368,-97.83891084,239.5);
@@ -287,16 +408,25 @@ public class EntryTest {
     DateTime time2 = new DateTime(2018,1,1, 0,1,0);
     Entry entry2 = new Entry(time2, 140, position2);
 
+
     @Test
     public void calculateDistanceTest() {
         entry2.calculateDistance(entry1);
         assertEquals(0.044, entry2.getDistance()/1000, 1e-2);
     }
 
+
     @Test
     public void calculateVelocityTest() {
         entry2.calculateDistance(entry1);
         entry2.calculateVelocity(entry1);
         assertEquals(44.0/(entry2.getTime().subtract(entry1.getTime())), entry2.getVelocity(), 1e-2);
+    }
+
+
+    @Test
+    public void toStringTest()
+    {
+        assertEquals("Entry{firstEntry=false, time=19th, September, 2018 - 20:50:00, heartRate=100, position=Latitude: 0.0, Longitude: 0.0, Elevation: 0.0, distance=0.0, velocity=0.0}", testEntry.toString());
     }
 }

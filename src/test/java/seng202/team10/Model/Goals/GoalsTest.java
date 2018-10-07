@@ -345,7 +345,6 @@ public class GoalsTest {
         goalToCheck.setTargetValue(99.0, testUser);
         currentGoals.add(goalToCheck);
         currentGoalNames.add(goalToCheck.getGoalName());
-        Thread.sleep(1000);
         String message = goalsInstance.checkGoal(goalToCheck.getGoalName());
 
         assertEquals(1, failedGoals.size());
@@ -404,7 +403,6 @@ public class GoalsTest {
         testUser.setWeight(100);
         currentGoals.add(goalToCheck);
         currentGoalNames.add(goalToCheck.getGoalName());
-        Thread.sleep(1000);
         String message = goalsInstance.checkGoal(goalToCheck.getGoalName());
 
         assertEquals(1, failedGoals.size());

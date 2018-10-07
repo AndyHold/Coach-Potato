@@ -55,7 +55,7 @@ public class Activity implements Serializable {
     public Activity(String newName)
     {
         this.setName(newName);
-        this.type = ActivityType.determineType(this.name);
+        setType(ActivityType.determineType(this.name));
     }
 
 
@@ -576,6 +576,7 @@ public class Activity implements Serializable {
     {
         return this.type.toString();
     }
+
 
     /**
      * ToString method for the activity name.

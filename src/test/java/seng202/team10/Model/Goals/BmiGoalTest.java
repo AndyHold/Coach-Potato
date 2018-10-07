@@ -36,12 +36,10 @@ public class BmiGoalTest {
     @Test
     public void reviewBMIGoalFailLowerBound() throws BadGoalNameException, InvalidGoalDateException, InvalidGoalTargetException, InterruptedException
     {
-        LocalDateTime now1 = LocalDateTime.now();
-        currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
-        target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() , now1.getHour(), now1.getMinute(), now1.getSecond());
+        currentTime = DateTime.now();
+        target = DateTime.now();
         testGoal = new BmiGoal(name, currentTime, target);
         ((BmiGoal) testGoal).setTargetValue(targetBMI, testUser);
-        Thread.sleep(1000);
         String message = ((BmiGoal) testGoal).reviewBmiGoal(20.1);
         assertEquals("Your target for this goal was to have a BMI less than or equal to 20.0 by " + target + "\n" +
                 "\n" +
@@ -56,7 +54,6 @@ public class BmiGoalTest {
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         testGoal = new BmiGoal(name, currentTime, target);
         ((BmiGoal) testGoal).setTargetValue(targetBMI, testUser);
-        Thread.sleep(1000);
         String message = ((BmiGoal) testGoal).reviewBmiGoal(2000);
         assertEquals("Your target for this goal was to have a BMI less than or equal to 20.0 by " + target + "\n" +
                 "\n" +
