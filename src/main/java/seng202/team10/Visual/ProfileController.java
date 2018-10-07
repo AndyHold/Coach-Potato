@@ -8,6 +8,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import seng202.team10.Control.MainController;
+import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
 <<<<<<< HEAD
 import seng202.team10.Model.Exceptions.InvalidHeightException;
@@ -82,10 +83,22 @@ public class ProfileController {
     @FXML private TextArea helpTextArea;
     @FXML public ListView activitiesListView;
     @FXML public ListView goalsListView;
-    @FXML public Label activitiesLabel;
+    @FXML public Label activitiesListLabel;
     @FXML public Label goalsListLabel;
-
-
+    @FXML public Label goalsListClickLabel;
+    @FXML public Label activitiesListClickLabel;
+    @FXML public Label statsClickLabel;
+    @FXML public Label activitiesClickLabel;
+    @FXML public Label goalsClickLabel;
+    @FXML public HBox goalStats1HBox;
+    @FXML public HBox goalStats2HBox;
+    @FXML public HBox goalStats3HBox;
+    @FXML public HBox activityStats1HBox;
+    @FXML public HBox activityStats2HBox;
+    @FXML public HBox activityStats3HBox;
+    @FXML public Text activityNameText;
+    @FXML public Text activityTypeText;
+    @FXML public Text activityDurationText;
     /**
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -218,9 +231,28 @@ public class ProfileController {
                 status = "Achieved!";
             } else status = "In Progress";
             goalStatusText.setText("Goal Status: " + status);
-
+            goalStats1HBox.setVisible(true);
+            goalStats2HBox.setVisible(true);
+            goalStats3HBox.setVisible(true);
+            goalsClickLabel.setVisible(false);
         }
     }
+
+
+    @FXML private void setActivityLabels()
+    {
+        if (activitiesListView.getSelectionModel().getSelectedItem() != null) {
+            Activity activity = (Activity) activitiesListView.getSelectionModel().getSelectedItem();
+            activityNameText.setText("Activity Name: " + activity.getName());
+            activityTypeText.setText("Activity Type: " + activity.getType());
+            activityDurationText.setText("Activity Duration: " + activity.getDurationMins() + " minutes");
+            activityStats1HBox.setVisible(true);
+            activityStats2HBox.setVisible(true);
+            activityStats3HBox.setVisible(true);
+            activitiesClickLabel.setVisible(false);
+        }
+    }
+
 
     /**
      * Set up method for the help text area.
@@ -353,6 +385,15 @@ public class ProfileController {
         activity1HBox.setVisible(false);
         activity2HBox.setVisible(false);
         activity3HBox.setVisible(false);
+        goalStats1HBox.setVisible(false);
+        goalStats2HBox.setVisible(false);
+        goalStats3HBox.setVisible(false);
+        activityStats1HBox.setVisible(false);
+        activityStats2HBox.setVisible(false);
+        activityStats3HBox.setVisible(false);
+        activitiesClickLabel.setVisible(true);
+        goalsClickLabel.setVisible(true);
+        statsClickLabel.setVisible(true);
 
         // Sets up the calendar and other stats if the user has already uploaded the data to the app else all values are 0 initially.
         if (currentUser.getActivities().size() > 0) {
@@ -370,7 +411,7 @@ public class ProfileController {
             distanceText.setText("Total Distance Covered: 0.00 km");
             velocityText.setText("Average Speed: 0.00 km/h");
             heartRateText.setText("Average Heart Rate: No Data");
-            activitiesLabel.setVisible(true);
+            activitiesListLabel.setVisible(true);
             goalsListLabel.setVisible(true);
         }
     }

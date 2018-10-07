@@ -116,27 +116,30 @@ public class AnchorPaneNode extends AnchorPane {
         this.profileController.activity2HBox.setVisible(true);
         this.profileController.activity3HBox.setVisible(true);
         this.profileController.dailyStatsLabel.setVisible(true);
+        this.profileController.statsClickLabel.setVisible(false);
 
         ObservableList<Goal> goalsList = FXCollections.observableArrayList();
         for (Goal todayGoal : todayGoals) {
             goalsList.add(todayGoal);
         }
+        this.profileController.goalsListView.setItems(goalsList);
         if (goalsList.size() < 1) {
-            this.profileController.goalsListLabel.setText("No goals were found for this date.");
+            this.profileController.goalsListClickLabel.setText("No goals were found for this date.");
+            this.profileController.goalsListClickLabel.setVisible(true);
         } else {
-            this.profileController.goalsListLabel.setVisible(false);
-            this.profileController.goalsListView.setItems(goalsList);
+            this.profileController.goalsListClickLabel.setVisible(false);
         }
 
-        ObservableList<Object> activitiesList = FXCollections.observableArrayList();
+        ObservableList<Activity> activitiesList = FXCollections.observableArrayList();
         for (Activity activity : activities) {
-            activitiesList.add(activity.getName() + ": " + activity.getTypeString());
+            activitiesList.add(activity);
         }
+        this.profileController.activitiesListView.setItems(activitiesList);
         if (activitiesList.size() < 1) {
-            this.profileController.activitiesLabel.setText("No activities were found for this date.");
+            this.profileController.activitiesListClickLabel.setText("No activities were found for this date.");
+            this.profileController.activitiesListClickLabel.setVisible(true);
         } else {
-            this.profileController.activitiesLabel.setVisible(false);
-            this.profileController.activitiesListView.setItems(activitiesList);
+            this.profileController.activitiesListClickLabel.setVisible(false);
         }
 
 

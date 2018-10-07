@@ -27,7 +27,7 @@
     -fx-font-size: 22px;
 }
 
-#yourProfileLabel, #measurementsLabel, #recentActivitiesLabel, #dailyStatsLabel, #goalDescriptionLabel
+#yourProfileLabel, #measurementsLabel, #recentActivitiesLabel, #dailyStatsLabel, #goalDescriptionLabel, #activityDescriptionLabel, #activitiesListLabel, #goalsListLabel
 {
     -fx-font-family: System;
     -fx-font-style: italic;

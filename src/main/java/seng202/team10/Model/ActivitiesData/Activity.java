@@ -576,4 +576,14 @@ public class Activity implements Serializable {
     {
         return this.type.toString();
     }
+
+    /**
+     * ToString method for the activity name.
+     * @return A <b>String</b> of the goal name.
+     */
+    @Override
+    public String toString()
+    {
+        return getName();
+    }
 }
