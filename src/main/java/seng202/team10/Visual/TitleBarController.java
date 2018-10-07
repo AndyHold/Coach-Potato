@@ -51,6 +51,8 @@ public class TitleBarController {
     @FXML private Pane currentScene;
     @FXML private Button menuButton;
     @FXML private Button warningButton;
+    @FXML private Button minimiseButton;
+    @FXML private Button closeButton;
     @FXML private VBox menuBar;
     @FXML private ImageView profileMenuIcon;
     @FXML private Rectangle loadingCover;
@@ -99,12 +101,24 @@ public class TitleBarController {
      */
     public void setUpScene() throws IOException
     {
+        setToolTips();
         loadAllPanes();
         if  (mainController. getUserNames().isEmpty()) {
             openCreateProfile();
         } else {
             openLogin();
         }
+    }
+
+
+    /**
+     * Method to set tool tips for the title bar buttons.
+     */
+    private void setToolTips()
+    {
+        menuButton.setTooltip(new Tooltip("Click here to toggle the menu displayed."));
+        minimiseButton.setTooltip(new Tooltip("Click here to minimise Coach Potato to the task bar."));
+        closeButton.setTooltip((new Tooltip("Click here to close Coach Potato.")));
     }
 
 

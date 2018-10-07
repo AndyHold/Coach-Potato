@@ -276,7 +276,14 @@ public class GoalController implements Controllable{
         });
 =======
                                             "If you have invalid or empty data fields a pop up will notify you what you need to fix."));
+<<<<<<< HEAD
 >>>>>>> 517b3e8c... Refactored Classes in the Visual, Exceptions and ActivitiesData packages to meet style guidlines and java doc specs. Also refactored some methods that were particularly large. Also dealt with some warnings and refactored a bit because of it.
+=======
+        removeCurrentGoalButton.setTooltip(new Tooltip("Click here to delete the selected current goal.\n" +
+                                                       "BEWARE! Once a goal is deleted it cannot be restored."));
+        removeFutureGoalButton.setTooltip(new Tooltip("Click here to delete the selected future goal.\n" +
+                                                      "BEWARE! Once a goal is deleted it cannot be restored."));
+>>>>>>> edb50d1a... Implemented remaining tool tips for new elements.
     }
 
 

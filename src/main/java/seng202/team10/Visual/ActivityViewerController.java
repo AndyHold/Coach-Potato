@@ -189,7 +189,12 @@ public class ActivityViewerController {
                                                  "Note: You must have clicked on an activity in the table for this button to be used."));
         mapViewerButton.setTooltip(new Tooltip("Click here to view a map of the selected activity."));
         graphViewerButton.setTooltip(new Tooltip("Click here to view graphs of the selected activities."));
-        deleteButton.setTooltip(new Tooltip("Toggles delete mode.\nOnce delete mode is activated the activity you click on will be deleted"));
+        deleteButton.setTooltip(new Tooltip("Click here to delete the current activity.\n" +
+                                            "BEWARE! Once an activity is deleted it cannot be restored."));
+        distanceLabel.setTooltip(new Tooltip("Here is the distance travelled for the selected activity."));
+        durationLabel.setTooltip(new Tooltip("Here is the duration the selected activity took."));
+        speedLabel.setTooltip(new Tooltip("Here is the average speed during the selected activity."));
+        heartRateLabel.setTooltip(new Tooltip("Here is the average heart rate during the selected activity."));
     }
 
 

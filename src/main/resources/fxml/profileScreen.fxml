@@ -24,8 +24,22 @@
             <Font size="22.0" />
          </font>
       </Label>
+<<<<<<< HEAD
       <Button fx:id="quoteButton" alignment="TOP_LEFT" layoutX="10.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#setQuote" prefHeight="80.0" prefWidth="450.0" />
 <<<<<<< HEAD
+=======
+      <Button fx:id="quoteButton" alignment="TOP_LEFT" layoutX="10.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#setQuote" prefHeight="110.0" prefWidth="450.0">
+         <graphic>
+            <Label fx:id="quotesLabel" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#setQuote" prefHeight="105.0" prefWidth="405.0" text="Motivational Quotes" wrapText="true">
+               <font>
+                  <Font name="System Bold Italic" size="19.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+         </graphic></Button>
+>>>>>>> edb50d1a... Implemented remaining tool tips for new elements.
       <VBox fx:id="wholeProfileVBox" layoutX="20.0" layoutY="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="335.0" prefWidth="400.0" spacing="4.0">
          <children>
             <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="375.0">
@@ -195,8 +209,16 @@
       </VBox>
 <<<<<<< HEAD
       <Pane fx:id="calendarPane" layoutX="455.0" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="490.0" />
-      <VBox fx:id="overallStatsVBox" layoutX="20.0" layoutY="560.0" maxHeight="150.0" maxWidth="400.0" minHeight="150.0" minWidth="400.0" prefHeight="150.0" prefWidth="400.0">
+      <VBox fx:id="overallStatsVBox" layoutX="20.0" layoutY="510.0" maxHeight="200.0" maxWidth="400.0" minHeight="200.0" minWidth="400.0" prefHeight="200.0" prefWidth="400.0">
          <children>
+            <Label fx:id="recentActivitiesLabel" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="395.0" style="-fx-background-color: #4DD0E1; -fx-border-color: #0097A7;" text="Statistics until today">
+               <font>
+                  <Font name="System Bold Italic" size="18.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
             <HBox fx:id="distanceHBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="400.0">
                <children>
                   <Text fx:id="distanceText" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Distance Covered: 0.00 km" wrappingWidth="380.0">
@@ -233,6 +255,18 @@
                   </Text>
                </children>
             </HBox>
+         </children>
+      </VBox>
+      <VBox fx:id="activitiesVBox" layoutX="455.0" layoutY="510.0" prefHeight="200.0" prefWidth="235.0" style="-fx-border-color: #0097A7; -fx-border-width: 2px;">
+         <children>
+            <Label fx:id="activitiesListLabel" alignment="BASELINE_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="232.0" style="-fx-background-color: #4DD0E1;" text="Activities" />
+            <ListView fx:id="activitiesListView" onMouseClicked="#setActivityLabels" prefHeight="165.0" prefWidth="235.0" />
+         </children>
+      </VBox>
+      <VBox fx:id="goalsVBox" layoutX="710.0" layoutY="510.0" maxHeight="235.0" maxWidth="-Infinity" minHeight="195.0" minWidth="-Infinity" prefHeight="200.0" prefWidth="235.0" style="-fx-border-color: #0097A7; -fx-border-width: 2px;">
+         <children>
+            <Label fx:id="goalsListLabel" alignment="BASELINE_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="232.0" style="-fx-background-color: #4DD0E1;" text="Goals" />
+            <ListView fx:id="goalsListView" onMouseClicked="#setGoalLabels" prefHeight="165.0" prefWidth="235.0" />
          </children>
       </VBox>
       <VBox layoutX="980.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="280.0">
@@ -495,6 +529,7 @@
             </VBox>
          </children>
       </VBox>
+<<<<<<< HEAD
       <Label fx:id="quotesLabel" alignment="TOP_LEFT" layoutX="20.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#setQuote" prefHeight="105.0" prefWidth="405.0" text="Motivational Quotes" wrapText="true">
 =======
       <TextArea fx:id="helpTextArea" editable="false" layoutX="190.0" layoutY="220.0" prefHeight="400.0" prefWidth="400.0" />
@@ -521,6 +556,8 @@
             <Insets left="10.0" />
          </padding>
       </Label>
+=======
+>>>>>>> edb50d1a... Implemented remaining tool tips for new elements.
       <Button fx:id="helpButton" layoutX="1225.0" layoutY="10.0" mnemonicParsing="false" onAction="#displayHelp" prefHeight="35.0" prefWidth="40.0" style="-fx-background-color: transparent;">
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
@@ -530,31 +567,11 @@
             </ImageView>
          </graphic>
       </Button>
-      <VBox layoutX="455.0" layoutY="510.0" prefHeight="200.0" prefWidth="235.0" style="-fx-border-color: #0097A7; -fx-border-width: 2px;">
-         <children>
-            <Label fx:id="activitiesListLabel" alignment="BASELINE_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="232.0" style="-fx-background-color: #4DD0E1;" text="Activities" />
-            <ListView fx:id="activitiesListView" onMouseClicked="#setActivityLabels" prefHeight="165.0" prefWidth="235.0" />
-         </children>
-      </VBox>
-      <VBox layoutX="710.0" layoutY="510.0" maxHeight="235.0" maxWidth="-Infinity" minHeight="195.0" minWidth="-Infinity" prefHeight="200.0" prefWidth="235.0" style="-fx-border-color: #0097A7; -fx-border-width: 2px;">
-         <children>
-            <Label fx:id="goalsListLabel" alignment="BASELINE_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="232.0" style="-fx-background-color: #4DD0E1;" text="Goals" />
-            <ListView fx:id="goalsListView" onMouseClicked="#setGoalLabels" prefHeight="165.0" prefWidth="235.0" />
-         </children>
-      </VBox>
       <Label fx:id="activitiesListClickLabel" alignment="BASELINE_CENTER" layoutX="480.0" layoutY="610.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="180.0" text="Click on a date to get more details" textAlignment="CENTER" wrapText="true" />
       <Label fx:id="goalsListClickLabel" alignment="BASELINE_CENTER" layoutX="730.0" layoutY="610.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="180.0" text="Click on a date to get more details" textAlignment="CENTER" wrapText="true" />
-      <TextArea fx:id="helpTextArea" editable="false" layoutX="472.0" layoutY="45.0" prefHeight="490.0" prefWidth="400.0" />
       <Label fx:id="statsClickLabel" alignment="BASELINE_CENTER" layoutX="1030.0" layoutY="150.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="180.0" text="Click on a date to get more details" textAlignment="CENTER" wrapText="true" />
       <Label fx:id="goalsClickLabel" alignment="BASELINE_CENTER" layoutX="1030.0" layoutY="380.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="180.0" text="Click on a goal to get more details" textAlignment="CENTER" wrapText="true" />
       <Label fx:id="activitiesClickLabel" alignment="BASELINE_CENTER" layoutX="1030.0" layoutY="610.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="180.0" text="Click on an activity to get more details" textAlignment="CENTER" wrapText="true" />
-      <Label fx:id="recentActivitiesLabel" alignment="CENTER" layoutX="20.0" layoutY="510.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="400.0" style="-fx-background-color: #4DD0E1; -fx-border-color: #0097A7;" text="Statistics until today">
-         <font>
-            <Font name="System Bold Italic" size="18.0" />
-         </font>
-         <padding>
-            <Insets left="10.0" />
-         </padding>
-      </Label>
+      <TextArea fx:id="helpTextArea" editable="false" layoutX="825.0" layoutY="45.0" prefHeight="490.0" prefWidth="400.0" />
    </children>
 </Pane>

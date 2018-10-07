@@ -101,6 +101,9 @@ public class ProfileController {
     @FXML public Text activityNameText;
     @FXML public Text activityTypeText;
     @FXML public Text activityDurationText;
+    @FXML private Label goalDescriptionLabel;
+    @FXML private Label activityDescriptionLabel;
+
     /**
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -310,6 +313,12 @@ public class ProfileController {
         heightValueTA.setTooltip(new Tooltip("Height is displayed here in cm's."));
         bmiValueTA.setTooltip(new Tooltip("BMI value is displayed here."));
         quoteButton.setTooltip(new Tooltip("Motivation is key!\nClick here for new quote."));
+        recentActivitiesLabel.setTooltip(new Tooltip("Here your total statistics are displayed"));
+        activitiesListLabel.setTooltip(new Tooltip("Here is a list of activities for the calendar date selected."));
+        goalsListLabel.setTooltip(new Tooltip("Here is a list of goals for the calendar date selected."));
+        dailyStatsLabel.setTooltip(new Tooltip("Here is the daily statistics for the calendar date selected."));
+        goalDescriptionLabel.setTooltip(new Tooltip("Here is the description for the goal selected."));
+        activityDescriptionLabel.setTooltip(new Tooltip("Here is the description for the activity selected."));
     }
 
 
