@@ -28,6 +28,7 @@ public class UserProfile implements java.io.Serializable {
     private ArrayList<HealthWarning> activeHealthWarnings = new ArrayList<>();
 
 
+<<<<<<< HEAD
     /**
      * Empty Constructor method for UserProfile class.
      */
@@ -72,6 +73,8 @@ public class UserProfile implements java.io.Serializable {
 >>>>>>> 85594242... deleted unused constructor for UserProfile.
 
 
+=======
+>>>>>>> 9a7e34e0... fixed tests after last delete
 
     /**
      * Getter method for the name of the user.
