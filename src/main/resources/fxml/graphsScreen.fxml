@@ -15,6 +15,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextArea" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/dataAnalysis.css" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="seng202.team10.Visual.GraphsController">
 =======
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextArea" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/dataAnalysis.css" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.GraphsController">
@@ -309,6 +310,9 @@
    </children>
 =======
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextArea" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/dataAnalysis.css" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="seng202.team10.Visual.GraphsController">
+=======
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextArea" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/dataAnalysis.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.GraphsController">
+>>>>>>> c2f16fc8... fixed loading cover not covering title bar. Changed icons for activity screen and speed icon for graph screen. changed some colours in gui
     <children>
         <TabPane fx:id="tabPane" layoutX="20.0" layoutY="48.0" prefHeight="620.0" prefWidth="1240.0" side="LEFT" tabClosingPolicy="UNAVAILABLE">
             <tabs>
@@ -442,7 +446,7 @@
                             <children>
                                 <ImageView fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../Images/speed.png" />
+                                        <Image url="@../Images/speedIcon3.png" />
                                     </image>
                                 </ImageView>
                                 <Label fx:id="speedLabe1" text="Speed" />

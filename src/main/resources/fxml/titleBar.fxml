@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <Pane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1280.0" stylesheets="@../css/titleBar.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.TitleBarController">
@@ -134,5 +135,6 @@
             </Button>
          </children>
       </VBox>
+      <Rectangle fx:id="loadingCover" arcHeight="5.0" arcWidth="5.0" fill="#464646" height="750.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" visible="false" width="1280.0" />
    </children>
 </Pane>

@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import seng202.team10.Control.MainController;
 import seng202.team10.Model.ActivitiesData.Activity;
@@ -52,6 +53,7 @@ public class TitleBarController {
     @FXML private Button warningButton;
     @FXML private VBox menuBar;
     @FXML private ImageView profileMenuIcon;
+    @FXML private Rectangle loadingCover;
     private CreateProfileController createProfileController;
     private LoginController loginController;
     private ProfileController profileController;
@@ -257,7 +259,20 @@ public class TitleBarController {
 
 
     /**
+<<<<<<< HEAD
      * Method to display the view profile screen
+=======
+     * Method to set loading cover visiblility
+     */
+    public void setLoadingBarVisibility(boolean visible)
+    {
+        loadingCover.setVisible(visible);
+    }
+
+
+    /**
+     * Method to display the view profile screen.
+>>>>>>> c2f16fc8... fixed loading cover not covering title bar. Changed icons for activity screen and speed icon for graph screen. changed some colours in gui
      */
     @FXML public void openViewProfile()
     {

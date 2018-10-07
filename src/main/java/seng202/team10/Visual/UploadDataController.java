@@ -54,6 +54,7 @@ public class UploadDataController {
     private MainController mainController ;
     private Parser parser = new Parser();
     private boolean firstTime = true;
+    private UserProfile currentUser;
 
 
     @FXML private TextField filePathTextField;
@@ -72,8 +73,11 @@ public class UploadDataController {
     @FXML private TextField latitudeTextField;
     @FXML private TextField longitudeTextField;
     @FXML private TextField elevationTextField;
+<<<<<<< HEAD
 
     @FXML private VBox drawer;
+=======
+>>>>>>> c2f16fc8... fixed loading cover not covering title bar. Changed icons for activity screen and speed icon for graph screen. changed some colours in gui
     @FXML private Button helpButtonManualActivity;
     @FXML private Button helpButtonUploadFile;
     @FXML private Button uploadButton;
@@ -83,8 +87,6 @@ public class UploadDataController {
     @FXML private Button submitDataButton;
     @FXML private TextArea manualEntryHelpTextArea;
     @FXML private TextArea uploadFileHelpTextArea;
-    @FXML private Rectangle loadingCover;
-    private UserProfile currentUser;
 
     /**
 <<<<<<< HEAD
@@ -329,7 +331,6 @@ public class UploadDataController {
     {
         manualEntryHelpTextArea.setVisible(false);
         uploadFileHelpTextArea.setVisible(false);
-        loadingCover.setVisible(false);
         manualEntryHelpTextArea.setText("Welcome to the Manual Activity Entry Section!\n\n" +
                                         "In this section, you can manually enter each entry point of an activity along with the name of the activity. " +
                                         "Each new entry will be added to the table in chronological order and prompts will be given for invalid data formats. " +
@@ -556,7 +557,7 @@ public class UploadDataController {
      */
     @FXML public void uploadData()
     {
-        loadingCover.setVisible(true);
+        mainController.getTitleBar().setLoadingBarVisibility(true);
         mainController .getPrimaryStage().getScene().setCursor(Cursor.WAIT);
         String filename = filePathTextField.getText();
         if (filename.length() == 0) {
@@ -583,7 +584,7 @@ public class UploadDataController {
                 this.mainController.createPopUp(Alert.AlertType.ERROR, "Error", exception.getMessage());
             }
         }
-        loadingCover.setVisible(false);
+        mainController.getTitleBar().setLoadingBarVisibility(false);
         mainController .getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
     }
 
