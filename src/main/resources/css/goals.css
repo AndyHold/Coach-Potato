@@ -14,6 +14,12 @@
     -fx-border-color: transparent;
 }
 
+.combo-box
+{
+    -fx-background-color: white;
+    -fx-border-color: null;
+}
+
 #startDatePicker .label, #targetDatePicker .button
 {
     -fx-text-fill: black;

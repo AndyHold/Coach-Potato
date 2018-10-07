@@ -1,6 +1,8 @@
 package seng202.team10.Visual;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
@@ -363,8 +365,15 @@ public class ProfileController {
         statsClickLabel.setVisible(true);
         activitiesListView.setVisible(true);
         goalsListView.setVisible(true);
-        activitiesListLabel.setVisible(true);
-        goalsListLabel.setVisible(true);
+        goalsListClickLabel.setVisible(true);
+        activitiesListClickLabel.setVisible(true);
+        goalsListClickLabel.setText("Click on a date to get more details");
+        activitiesListClickLabel.setText("Click on a date to get more details");
+        ObservableList<Goal> goalsList = FXCollections.observableArrayList();
+        ObservableList<Activity> activitiesList = FXCollections.observableArrayList();
+        goalsListView.setItems(goalsList);
+        activitiesListView.setItems(activitiesList);
+        dailyStatsLabel.setText("Daily Statistics");
     }
 
 

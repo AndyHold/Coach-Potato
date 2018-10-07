@@ -141,8 +141,6 @@ public class AnchorPaneNode extends AnchorPane {
         } else {
             this.profileController.activitiesListClickLabel.setVisible(false);
         }
-
-
     }
 
     /**
