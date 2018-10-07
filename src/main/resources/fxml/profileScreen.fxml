@@ -247,10 +247,14 @@
          <children>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             <Label fx:id="dailyStatsLabel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="380.0" text="Daily Statistics:">
 =======
             <Label fx:id="dailyStatsLabel" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="280.0" text="Daily Statistics">
 >>>>>>> d196885b... Created labels on profile screen to display instructions for goals, activities stats and changed the design.
+=======
+            <Label fx:id="dailyStatsLabel" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="280.0" style="-fx-background-color: #4DD0E1; -fx-border-color: #0097A7;" text="Daily Statistics">
+>>>>>>> 913f38da... Created labels on profile screen to display instructions for goals, activities, stats and changed the design.
                <font>
                   <Font name="System Bold Italic" size="18.0" />
                </font>
@@ -392,7 +396,7 @@
                   </HBox>
                </children>
             </VBox>
-            <Label fx:id="goalDescriptionLabel" alignment="CENTER" maxHeight="50.0" maxWidth="280.0" minHeight="50.0" minWidth="280.0" prefHeight="50.0" prefWidth="280.0" text="Goal Statistics">
+            <Label fx:id="goalDescriptionLabel" alignment="CENTER" maxHeight="50.0" maxWidth="280.0" minHeight="50.0" minWidth="280.0" prefHeight="50.0" prefWidth="280.0" style="-fx-background-color: #4DD0E1; -fx-border-color: #0097A7;" text="Goal Statistics">
                <padding>
                   <Insets left="10.0" />
                </padding>
@@ -443,7 +447,7 @@
                   </HBox>
                </children>
             </VBox>
-            <Label fx:id="activityDescriptionLabel" alignment="CENTER" maxHeight="50.0" maxWidth="280.0" minHeight="50.0" minWidth="280.0" prefHeight="50.0" prefWidth="280.0" text="Activity Statistics">
+            <Label fx:id="activityDescriptionLabel" alignment="CENTER" maxHeight="50.0" maxWidth="280.0" minHeight="50.0" minWidth="280.0" prefHeight="50.0" prefWidth="280.0" style="-fx-background-color: #4DD0E1; -fx-border-color: #0097A7;" text="Activity Statistics">
                <padding>
                   <Insets left="10.0" />
                </padding>
