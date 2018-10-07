@@ -341,6 +341,7 @@ public class MainController extends Application {
 
 
     /**
+<<<<<<< HEAD
      * Method to load usernames and genders from the filenames.
      */
 <<<<<<< HEAD
@@ -390,6 +391,8 @@ public class MainController extends Application {
 
 
     /**
+=======
+>>>>>>> 5a822852... Fixed the size of the tool tips font and rearranged the main controller
      * Method to set the window as draggable.
      * @param root  The <b>Parent</b> scene loader of the window.
      * @param stage  The primary <b>Stage</b> of the application.
@@ -423,6 +426,35 @@ public class MainController extends Application {
                 if (stage.getY() < 0.0) stage.setY(0.0);
             }
         });
+    }
+
+
+    /**
+     * Method to load usernames and genders from the filenames.
+     */
+    public void loadUserDetails()
+    {
+        // repopulate the user lists
+        dataReader.getExistingUsers(userNames, userGenders);
+    }
+
+
+    /**
+     * Getter method for the data reader.
+     * @return A <b>FileReader</b> for reading data from files.
+     */
+    public FileReader getDataReader()
+    {
+        return dataReader;
+    }
+
+    /**
+     * Getter method for the user genders.
+     * @return An <b>ArrayList&lt;String&gt;</b> of the genders of users.
+     */
+    public ArrayList<String> getUserGenders()
+    {
+        return userGenders;
     }
 
 

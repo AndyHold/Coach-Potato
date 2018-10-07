@@ -1,3 +1,8 @@
+.tooltip
+{
+    -fx-font-size: 14px;
+}
+
 .date-picker .button
 {
     -fx-background-color: transparent;
