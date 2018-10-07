@@ -14,7 +14,7 @@
 
 .tab
 {
-    -fx-background-color: linear-gradient(#8080ff 0%, #b3b3ff 100%);
+    -fx-background-color: linear-gradient(#0097A7 0%, #4DD0E1 100%);
     -fx-background-radius: 1em;
     -fx-border-radius: 1em
 }
@@ -22,16 +22,16 @@
 .tab:selected
 {
     -fx-border-width: 2px;
-    -fx-border-color: blue;
+    -fx-border-color: #0097A7;
 }
 
 .tab-pane
 {
     -fx-background-radius: 1em;
-    -fx-background-color: #b3b3ff;
+    -fx-background-color: linear-gradient(#0097A7 0%, #4DD0E1 100%);
     -fx-border-radius: 1em;
     -fx-border-width: 2px;
-    -fx-border-color: blue;
+    -fx-border-color: #0097A7;
 }
 
 #activityNameLabel

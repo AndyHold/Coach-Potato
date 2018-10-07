@@ -20,20 +20,20 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
          <children>
-            <Pane fx:id="learnMorePane" maxHeight="680.0" minHeight="680.0" prefHeight="680.0" prefWidth="850.0" style="-fx-border-color: #0097A7;">
+            <Pane fx:id="learnMorePane" maxHeight="680.0" minHeight="680.0" prefHeight="680.0" prefWidth="850.0" >
                <children>
                   <WebView fx:id="googleWebView" layoutX="20.0" layoutY="20.0" prefHeight="640.0" prefWidth="810.0" />
                </children></Pane>
             <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="680.0" prefWidth="360.0" spacing="10.0">
                <children>
-                  <VBox fx:id="tachycardiaVBox" alignment="TOP_CENTER" maxWidth="360.0" minWidth="360.0" prefHeight="220.0" prefWidth="360.0" spacing="20.0" style="-fx-background-color: linear-gradient(#0097A7 0%, #4DD0E1 100%); -fx-border-color: #0097A7;">
+                  <VBox fx:id="tachycardiaVBox" alignment="TOP_CENTER" maxWidth="360.0" minWidth="360.0" prefHeight="220.0" prefWidth="360.0" spacing="20.0" >
                      <children>
                         <Label fx:id="tachycardiaNameLabel" alignment="CENTER" text="Tachycardia" textAlignment="CENTER">
                            <font>
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <Button fx:id="tachycardiaViewButton" mnemonicParsing="false" onAction="#showTachycardiaWarnings" style="-fx-background-color: transparent; -fx-border-color: #0097A7;">
+                        <Button fx:id="tachycardiaViewButton" mnemonicParsing="false" onAction="#showTachycardiaWarnings" >
                            <graphic>
                               <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="320.0" spacing="10.0">
                                  <children>
@@ -54,13 +54,13 @@
                               </HBox>
                            </graphic>
                         </Button>
-                        <Button fx:id="tachycardiaLearnMorebutton" mnemonicParsing="false" onAction="#showTachycardiaSearch" style="-fx-background-color: transparent; -fx-border-color: #0097A7;" text="Learn More" />
+                        <Button fx:id="tachycardiaLearnMorebutton" mnemonicParsing="false" onAction="#showTachycardiaSearch"  text="Learn More" />
                      </children>
                   </VBox>
-                  <VBox fx:id="bradycardiaVBox" alignment="CENTER" maxWidth="360.0" minWidth="360.0" prefHeight="220.0" prefWidth="360.0" spacing="20.0" style="-fx-background-color: linear-gradient(#0097A7 0%, #4DD0E1 100%); -fx-border-color: #0097A7;">
+                  <VBox fx:id="bradycardiaVBox" alignment="CENTER" maxWidth="360.0" minWidth="360.0" prefHeight="220.0" prefWidth="360.0" spacing="20.0" >
                      <children>
                         <Label fx:id="bradycardiaNameLabel" alignment="CENTER" text="Bradycardia" />
-                        <Button fx:id="bradycardiaViewbutton" mnemonicParsing="false" onAction="#showBradycardiaWarnings" style="-fx-background-color: transparent; -fx-border-color: #0097A7;">
+                        <Button fx:id="bradycardiaViewbutton" mnemonicParsing="false" onAction="#showBradycardiaWarnings" >
                            <graphic>
                               <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="320.0">
                                  <children>
@@ -77,13 +77,13 @@
                               </HBox>
                            </graphic>
                         </Button>
-                        <Button fx:id="bradycardiaLearnMoreButton" mnemonicParsing="false" onAction="#showBradycardiaSearch" style="-fx-background-color: transparent; -fx-border-color: #0097A7;" text="Learn More" />
+                        <Button fx:id="bradycardiaLearnMoreButton" mnemonicParsing="false" onAction="#showBradycardiaSearch"  text="Learn More" />
                      </children>
                   </VBox>
-                  <VBox fx:id="cardiovascularMortalityVBox" alignment="CENTER" maxWidth="360.0" minWidth="360.0" prefHeight="220.0" prefWidth="360.0" spacing="20.0" style="-fx-background-color: linear-gradient(#0097A7 0%, #4DD0E1 100%); -fx-border-color: #0097A7;">
+                  <VBox fx:id="cardiovascularMortalityVBox" alignment="CENTER" maxWidth="360.0" minWidth="360.0" prefHeight="220.0" prefWidth="360.0" spacing="20.0" >
                      <children>
                         <Label fx:id="cardiovascularMortalityNameLabel" alignment="CENTER" text="Cardiovascular Mortality" />
-                        <Button fx:id="cardiovascularMortalityViewButton" mnemonicParsing="false" onAction="#showCardiovascularMortalityWarnings" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: transparent; -fx-border-color: #0097A7;">
+                        <Button fx:id="cardiovascularMortalityViewButton" mnemonicParsing="false" onAction="#showCardiovascularMortalityWarnings" prefHeight="50.0" prefWidth="340.0" >
                            <graphic>
                               <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="320.0">
                                  <children>
@@ -100,7 +100,7 @@
                               </HBox>
                            </graphic>
                         </Button>
-                        <Button fx:id="cardiovascularMortalityLearnMoreButton" mnemonicParsing="false" onAction="#showCardiovascularSearch" style="-fx-background-color: transparent; -fx-border-color: #0097A7;" text="Learn More" />
+                        <Button fx:id="cardiovascularMortalityLearnMoreButton" mnemonicParsing="false" onAction="#showCardiovascularSearch"  text="Learn More" />
                      </children>
                   </VBox>
                </children>
