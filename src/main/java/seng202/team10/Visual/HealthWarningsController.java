@@ -388,7 +388,7 @@ public class HealthWarningsController implements Controllable {
      * Method to show the warning Pane and stretch it to fit the values it requires.
      * @param warningPane
      */
-    private void showWarningPane(@NotNull Pane warningPane)
+    private void showWarningPane(Pane warningPane)
     {
         warningsScrollPane.setVisible(true);
         warningPane.setVisible(true);
