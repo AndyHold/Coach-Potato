@@ -87,14 +87,20 @@ public class DataAnalysisTest {
         ArrayList<Double> calories = dataAnalysis.getCaloriesFromActivity(activities.get(1), user);
         ArrayList<Double> actualcalories = new ArrayList<>();
         int userAge = Calendar.getInstance().get(Calendar.YEAR) - user.getBirthDate().getYear();
-        ArrayList<Integer> timeArray = dataAnalysis.getTimeFromActivity(activities.get(1));
-        actualcalories.add(((-55.0969 + (0.6309 * 157) + (0.1988 * user.getWeight()) + (0.2017 * userAge))/4.184) * 60 * timeArray.get(0)/3600.0);
-        actualcalories.add(((-55.0969 + (0.6309 * 156) + (0.1988 * user.getWeight()) + (0.2017 * userAge))/4.184) * 60 * timeArray.get(1)/3600.0);
-        actualcalories.add(((-55.0969 + (0.6309 * 153) + (0.1988 * user.getWeight()) + (0.2017 * userAge))/4.184) * 60 * timeArray.get(2)/3600.0);
-        actualcalories.add(((-55.0969 + (0.6309 * 149) + (0.1988 * user.getWeight()) + (0.2017 * userAge))/4.184) * 60 * timeArray.get(3)/3600.0);
-        actualcalories.add(((-55.0969 + (0.6309 * 147) + (0.1988 * user.getWeight()) + (0.2017 * userAge))/4.184) * 60 * timeArray.get(4)/3600.0);
-        actualcalories.add(((-55.0969 + (0.6309 * 143) + (0.1988 * user.getWeight()) + (0.2017 * userAge))/4.184) * 60 * timeArray.get(5)/3600.0);
-        actualcalories.add(((-55.0969 + (0.6309 * 143) + (0.1988 * user.getWeight()) + (0.2017 * userAge))/4.184) * 60 * timeArray.get(6)/3600.0);
+        double calorieSum=0;
+        actualcalories.add(calorieSum);
+        calorieSum += (((-55.0969 + (0.6309 * 156) + (0.1988 * user.getWeight()) + (0.2017 * userAge))/4.184) * 60 * 102/3600.0);
+        actualcalories.add(calorieSum);
+        calorieSum += (((-55.0969 + (0.6309 * 153) + (0.1988 * user.getWeight()) + (0.2017 * userAge))/4.184) * 60 * 64/3600.0);
+        actualcalories.add(calorieSum);
+        calorieSum += (((-55.0969 + (0.6309 * 149) + (0.1988 * user.getWeight()) + (0.2017 * userAge))/4.184) * 60 * 47/3600.0);
+        actualcalories.add(calorieSum);
+        calorieSum += (((-55.0969 + (0.6309 * 147) + (0.1988 * user.getWeight()) + (0.2017 * userAge))/4.184) * 60 * 150/3600.0);
+        actualcalories.add(calorieSum);
+        calorieSum += (((-55.0969 + (0.6309 * 143) + (0.1988 * user.getWeight()) + (0.2017 * userAge))/4.184) * 60 * 117/3600.0);
+        actualcalories.add(calorieSum);
+        calorieSum += (((-55.0969 + (0.6309 * 143) + (0.1988 * user.getWeight()) + (0.2017 * userAge))/4.184) * 60 * 59/3600.0);
+        actualcalories.add(calorieSum);
         assertEquals(actualcalories, calories);
     }
 
@@ -104,15 +110,22 @@ public class DataAnalysisTest {
         ArrayList<Double> calories = dataAnalysis.getCaloriesFromActivity(activities.get(1), user);
         ArrayList<Double> actualcalories = new ArrayList<>();
         int userAge = Calendar.getInstance().get(Calendar.YEAR) - user.getBirthDate().getYear();
-        ArrayList<Integer> timeArray = dataAnalysis.getTimeFromActivity(activities.get(1));
-        actualcalories.add(((-20.4022 + (0.4472 * 157) + (0.1263 * user.getWeight()) + (0.074 * userAge))/4.184) * 60 * timeArray.get(0)/3600.0);
-        actualcalories.add(((-20.4022 + (0.4472 * 156) + (0.1263 * user.getWeight()) + (0.074 * userAge))/4.184) * 60 * timeArray.get(1)/3600.0);
-        actualcalories.add(((-20.4022 + (0.4472 * 153) + (0.1263 * user.getWeight()) + (0.074 * userAge))/4.184) * 60 * timeArray.get(2)/3600.0);
-        actualcalories.add(((-20.4022 + (0.4472 * 149) + (0.1263 * user.getWeight()) + (0.074 * userAge))/4.184) * 60 * timeArray.get(3)/3600.0);
-        actualcalories.add(((-20.4022 + (0.4472 * 147) + (0.1263 * user.getWeight()) + (0.074 * userAge))/4.184) * 60 * timeArray.get(4)/3600.0);
-        actualcalories.add(((-20.4022 + (0.4472 * 143) + (0.1263 * user.getWeight()) + (0.074 * userAge))/4.184) * 60 * timeArray.get(5)/3600.0);
-        actualcalories.add(((-20.4022 + (0.4472 * 143) + (0.1263 * user.getWeight()) + (0.074 * userAge))/4.184) * 60 * timeArray.get(6)/3600.0);
+        double calorieSum=0;
+        actualcalories.add(calorieSum);
+        calorieSum += (((-20.4022 + (0.4472 * 156) + (0.1263 * user.getWeight()) + (0.074 * userAge))/4.184) * 60 * 102/3600.0);
+        actualcalories.add(calorieSum);
+        calorieSum += (((-20.4022 + (0.4472 * 153) + (0.1263 * user.getWeight()) + (0.074 * userAge))/4.184) * 60 * 64/3600.0);
+        actualcalories.add(calorieSum);
+        calorieSum += (((-20.4022 + (0.4472 * 149) + (0.1263 * user.getWeight()) + (0.074 * userAge))/4.184) * 60 * 47/3600.0);
+        actualcalories.add(calorieSum);
+        calorieSum += (((-20.4022 + (0.4472 * 147) + (0.1263 * user.getWeight()) + (0.074 * userAge))/4.184) * 60 * 150/3600.0);
+        actualcalories.add(calorieSum);
+        calorieSum += (((-20.4022 + (0.4472 * 143) + (0.1263 * user.getWeight()) + (0.074 * userAge))/4.184) * 60 * 117/3600.0);
+        actualcalories.add(calorieSum);
+        calorieSum += (((-20.4022 + (0.4472 * 143) + (0.1263 * user.getWeight()) + (0.074 * userAge))/4.184) * 60 * 59/3600.0);
+        actualcalories.add(calorieSum);
         assertEquals(actualcalories, calories);
+
     }
 
     @Test
@@ -121,14 +134,20 @@ public class DataAnalysisTest {
         ArrayList<Double> calories = dataAnalysis.getCaloriesFromActivity(activities.get(1), user);
         ArrayList<Double> actualcalories = new ArrayList<>();
         int userAge = Calendar.getInstance().get(Calendar.YEAR) - user.getBirthDate().getYear();
-        ArrayList<Integer> timeArray = dataAnalysis.getTimeFromActivity(activities.get(1));
-        actualcalories.add(((-37.5 + (0.54 * 157) + (0.155 * user.getWeight()) + (0.138 * userAge))/4.184) * 60 * timeArray.get(0)/3600.0);
-        actualcalories.add(((-37.5 + (0.54 * 156) + (0.155 * user.getWeight()) + (0.138 * userAge))/4.184) * 60 * timeArray.get(1)/3600.0);
-        actualcalories.add(((-37.5 + (0.54 * 153) + (0.155 * user.getWeight()) + (0.138 * userAge))/4.184) * 60 * timeArray.get(2)/3600.0);
-        actualcalories.add(((-37.5 + (0.54 * 149) + (0.155 * user.getWeight()) + (0.138 * userAge))/4.184) * 60 * timeArray.get(3)/3600.0);
-        actualcalories.add(((-37.5 + (0.54 * 147) + (0.155 * user.getWeight()) + (0.138 * userAge))/4.184) * 60 * timeArray.get(4)/3600.0);
-        actualcalories.add(((-37.5 + (0.54 * 143) + (0.155 * user.getWeight()) + (0.138 * userAge))/4.184) * 60 * timeArray.get(5)/3600.0);
-        actualcalories.add(((-37.5 + (0.54 * 143) + (0.155 * user.getWeight()) + (0.138 * userAge))/4.184) * 60 * timeArray.get(6)/3600.0);
+        double calorieSum=0;
+        actualcalories.add(calorieSum);
+        calorieSum += (((-37.5 + (0.54 * 156) + (0.155 * user.getWeight()) + (0.138 * userAge))/4.184) * 60 * 102/3600.0);
+        actualcalories.add(calorieSum);
+        calorieSum += (((-37.5 + (0.54 * 153) + (0.155 * user.getWeight()) + (0.138 * userAge))/4.184) * 60 * 64/3600.0);
+        actualcalories.add(calorieSum);
+        calorieSum += (((-37.5 + (0.54 * 149) + (0.155 * user.getWeight()) + (0.138 * userAge))/4.184) * 60 * 47/3600.0);
+        actualcalories.add(calorieSum);
+        calorieSum += (((-37.5 + (0.54 * 147) + (0.155 * user.getWeight()) + (0.138 * userAge))/4.184) * 60 * 150/3600.0);
+        actualcalories.add(calorieSum);
+        calorieSum += (((-37.5 + (0.54 * 143) + (0.155 * user.getWeight()) + (0.138 * userAge))/4.184) * 60 * 117/3600.0);
+        actualcalories.add(calorieSum);
+        calorieSum += (((-37.5 + (0.54 * 143) + (0.155 * user.getWeight()) + (0.138 * userAge))/4.184) * 60 * 59/3600.0);
+        actualcalories.add(calorieSum);
         assertEquals(actualcalories, calories);
     }
 
