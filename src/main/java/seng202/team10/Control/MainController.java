@@ -19,6 +19,7 @@ import seng202.team10.Model.ActivitiesData.Activity;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import seng202.team10.Model.ActivitiesData.DateTime;
 =======
 =======
@@ -79,6 +80,9 @@ import seng202.team10.Model.FileOperations.FileReader;
 import seng202.team10.Model.FileOperations.FileWriter;
 import seng202.team10.Model.FileOperations.Parser;
 =======
+=======
+import seng202.team10.Model.ActivitiesData.DateTime;
+>>>>>>> b123139f... Implemented Happy Birthday Message and Weight check prompt if weight hasnt been updated for more than a week. Fixed the date picker buttons.
 import seng202.team10.Model.Exceptions.*;
 import seng202.team10.Model.FileOperations.*;
 >>>>>>> fc980884... Deleted rudundant imports fro gui controller and added a dependency
@@ -86,6 +90,7 @@ import seng202.team10.Model.UserProfile;
 import seng202.team10.Visual.*;
 
 import java.io.FileNotFoundException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 <<<<<<< HEAD
 import java.util.Optional;
@@ -1102,7 +1107,7 @@ public class MainController extends Application {
                 newUser.getHeight() != 0.0 &&
                 newUser.getBirthDate() != null &&
                 newUser.getGender() != null) {
-
+            newUser.setLastWeightUpdate(DateTime.now());
             getDataWriter().saveProfile(newUser);
         } else {
             throw new InvalidUserException();

@@ -47,6 +47,7 @@ public class ProfileController {
 >>>>>>> be0346c6... Refactored "app" to "mainController"
     private List<String> quotes;
     private UserProfile currentUser;
+    private boolean firstQuote;
 
     @FXML Pane calendarPane;
     @FXML private Label welcomeProfileLabel;
@@ -146,6 +147,7 @@ public class ProfileController {
      */
     public void setUpScene()
     {
+        firstQuote = true;
         // Set quotes list
         setQuotes();
         // Set tool tips
@@ -155,8 +157,6 @@ public class ProfileController {
         // Hide buttons that are hidden
         confirmButton.setVisible(false);
         wholeProfileVBox.setVisible(false);
-        //Set quotes
-        setQuote();
         // Hide the help text field when focus is lost
         helpTextArea.focusedProperty().addListener((ov, oldV, newV) -> {
             if (!newV) {
@@ -303,7 +303,13 @@ public class ProfileController {
      */
     @FXML public void setQuote()
     {
-        quotesLabel.setText(quotes.get((int)(Math.random()*(quotes.size()))));
+        if (firstQuote && currentUser.getBirthDate().getDateAsString().substring(0, 5).equals(DateTime.now().getDateAsString().substring(0, 5))) {
+            quotesLabel.setText("!Happy Birthday From Coach Potato!");
+            firstQuote = false;
+        } else {
+            quotesLabel.setText(quotes.get((int) (Math.random() * (quotes.size()))));
+            firstQuote = false;
+        }
     }
 
 
@@ -427,10 +433,17 @@ public class ProfileController {
             mainController .getDataWriter().saveProfile(currentUser);
         }
         // Set weight and handle exceptions
+        double oldWeight = currentUser.getWeight();
         try {
             currentUser.setWeight(Double.valueOf(weightValueTA.getText()));
         }  catch (InvalidWeightException | IllegalArgumentException exception) {
             mainController .createPopUp(Alert.AlertType.ERROR, "Invalid Weight", "Please enter a valid weight: It should be greater than 30 kg and less than 500 kg." );
+        }
+        double newWeight = currentUser.getWeight();
+
+        // If weight is successfully changed update last weight change
+        if (!(String.format("%.2f", oldWeight).equals(String.format("%.2f", newWeight)))) {
+            currentUser.setLastWeightUpdate(DateTime.now());
         }
 
         // Set height and handle Exceptions
@@ -475,26 +488,22 @@ public class ProfileController {
         }
         confirmButton.setVisible(false);
         editProfileButton.setVisible(true);
-        mainController .getDataWriter().saveProfile(currentUser);
+        mainController .getDataWriter() .saveProfile(currentUser);
         setUserDetails();
     }
 
-    /**
-     * Method called when close button is selected.
-     * Exits the application.
-     */
-    @FXML private void close()
-    {
-        Platform.exit();
-    }
-
 
     /**
-     * Method called when the minimise button is selected.
-     * Minimises the application to the task bar.
+     * Method to prompt the user if they are due to update their weight
      */
-    @FXML private void minimise()
+    public void checkLastWeightUpdate()
     {
-        mainController .minimise();
+        // If it has been longer than a week since last weight update
+        if (DateTime.now().subtractDaysFromDateTime(currentUser.getLastWeightUpdate()) > 7) {
+            // Prompt user to update weight
+            mainController.createPopUp(Alert.AlertType.INFORMATION, "Weight Update Time!",
+                                       "You have not updated your weight this week.\n" +
+                                       "Please edit your proofile with your current weught.");
+        }
     }
 }

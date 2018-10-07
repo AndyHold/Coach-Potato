@@ -26,7 +26,7 @@ public class UserProfile implements java.io.Serializable {
     private double bmi;
     private Goals goals = new Goals(this);
     private ArrayList<HealthWarning> activeHealthWarnings = new ArrayList<>();
-
+    private DateTime lastWeightUpdate;
 
 <<<<<<< HEAD
     /**
@@ -86,6 +86,26 @@ public class UserProfile implements java.io.Serializable {
 
 
     /**
+     * Getter method for last weight update
+     * @return a <b>DateTime</b> object containing the date of the last time the user updated their weight.
+     */
+    public DateTime getLastWeightUpdate()
+    {
+        return lastWeightUpdate;
+    }
+
+
+    /**
+     * Setter method for the last time weight was updated.
+     * @param newWeightUpdate a <b>DateTime</b> object containing the time the weight was last updated.
+     */
+    public void setLastWeightUpdate(DateTime newWeightUpdate)
+    {
+        this.lastWeightUpdate = newWeightUpdate;
+    }
+
+
+    /**
      * Setter method for the name of the user
 <<<<<<< HEAD
      * @param newName: String
@@ -108,14 +128,20 @@ public class UserProfile implements java.io.Serializable {
      * Setter method for the gender of the user
      * @param gender <b>String:</b> "Male", "Female", or "Other"
      */
-    public void setGender(String gender) { this.gender = gender; }
+    public void setGender(String gender)
+    {
+        this.gender = gender;
+    }
 
 
     /**
      * Getter method for the gender of the user
      * @return <b>String</b>
      */
-    public String getGender() { return gender; }
+    public String getGender()
+    {
+        return gender;
+    }
 
 
     /**
@@ -135,12 +161,12 @@ public class UserProfile implements java.io.Serializable {
     }
 
 
-
     /**
      * Getter method for the activities of the user
      * @return An <b>ArrayList&lt;Activity&gt;</b>
      */
-    public ArrayList<Activity> getActivities() {
+    public ArrayList<Activity> getActivities()
+    {
         return this.activities;
     }
 

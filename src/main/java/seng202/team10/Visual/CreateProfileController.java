@@ -431,6 +431,7 @@ public class CreateProfileController implements Controllable
     {
         try {
             mainController .createUser(userProfile);
+
             setErrorsInvisible();
             setInputsToNull();
             mainController .getTitleBar().openLogin();

@@ -262,6 +262,7 @@ public class TitleBarController {
     @FXML public void openViewProfile()
     {
         profileController.setCurrentUser(currentUser);
+        profileController.checkLastWeightUpdate();
         try {
             profileMenuIcon.setImage(new Image("Images/profile" + currentUser.getGender() + ".png"));
         } catch (IllegalArgumentException exception) {
@@ -273,6 +274,7 @@ public class TitleBarController {
         slideMenu(false);
         // Set up warning flag if necessary
         setUpWarningFlag();
+        profileController.setQuote();
         setScene(profilePane);
     }
 
@@ -456,8 +458,7 @@ public class TitleBarController {
         entryViewerController.hideHelpTextArea();
         mapController.hideHelpTextArea();
         healthWarningController.hideWarningsScrollPane();
-//        healthWarningController.hideHelpTextArea();
-//        healthWarningController.ideHelpTextArea();
-
+        healthWarningController.hideHelpTextArea();
     }
+
 }

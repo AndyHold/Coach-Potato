@@ -1,3 +1,9 @@
+.date-picker .button
+{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
 .tab-pane .tab-header-area .tab-header-background
 {
     -fx-opacity: 0;
