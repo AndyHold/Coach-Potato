@@ -118,6 +118,15 @@ public class AnchorPaneNode extends AnchorPane {
         this.profileController.dailyStatsLabel.setVisible(true);
         this.profileController.statsClickLabel.setVisible(false);
 
+        this.profileController.goalStats1HBox.setVisible(false);
+        this.profileController.goalStats2HBox.setVisible(false);
+        this.profileController.goalStats3HBox.setVisible(false);
+        this.profileController.activityStats1HBox.setVisible(false);
+        this.profileController.activityStats2HBox.setVisible(false);
+        this.profileController.activityStats3HBox.setVisible(false);
+        this.profileController.activitiesClickLabel.setVisible(true);
+        this.profileController.goalsClickLabel.setVisible(true);
+
         ObservableList<Goal> goalsList = FXCollections.observableArrayList();
         for (Goal todayGoal : todayGoals) {
             goalsList.add(todayGoal);
