@@ -1,6 +1,5 @@
 package seng202.team10.Visual;
 
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -234,7 +233,7 @@ public class ProfileController {
             goalNameText.setText("Goal Name: " + goal.getGoalName());
             goalTypeText.setText("Goal Type: " + goal.getGoalType());
             String status = null;
-            if (goal.getGoalAchieved()) {
+            if (goal.isGoalAchieved()) {
                 status = "Achieved!";
             } else status = "In Progress";
             goalStatusText.setText("Goal Status: " + status);

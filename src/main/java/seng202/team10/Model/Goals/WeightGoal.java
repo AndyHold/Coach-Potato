@@ -42,7 +42,7 @@ public class WeightGoal extends Goal {
      */
     public void setTargetValue(double target, UserProfile user) throws InvalidGoalTargetException
     {
-        if (user.getWeight() <= target || target <= 30) {
+        if (user.getWeight() <= target || target < 30) {
             throw new InvalidGoalTargetException("Please enter a weight 30kg or more and not already achieved.");
         } else {
             goalWeight = target;

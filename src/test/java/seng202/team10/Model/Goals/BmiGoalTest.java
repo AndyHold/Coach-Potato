@@ -34,7 +34,29 @@ public class BmiGoalTest {
 
 
     @Test
-    public void reviewBMIGoalFailLowerBound() throws BadGoalNameException, InvalidGoalDateException, InvalidGoalTargetException, InterruptedException
+    public void setBadBMITargetLow() throws BadGoalNameException, InvalidGoalDateException
+    {
+        BmiGoal newGoal = new BmiGoal("BMI Goal", DateTime.now(), DateTime.now());
+        try {
+            newGoal.setTargetValue(9.0, testUser);
+        } catch (InvalidGoalTargetException e) { }
+        assertEquals(0.0, newGoal.getGoalBmi(), 0.1);
+    }
+
+
+    @Test
+    public void setBadBMITargetHigh() throws BadGoalNameException, InvalidGoalDateException
+    {
+        BmiGoal newGoal = new BmiGoal("BMI Goal", DateTime.now(), DateTime.now());
+        try {
+            newGoal.setTargetValue(101.0, testUser);
+        } catch (InvalidGoalTargetException e) { }
+        assertEquals(0.0, newGoal.getGoalBmi(), 0.1);
+    }
+
+
+    @Test
+    public void reviewBMIGoalFailLowerBound() throws BadGoalNameException, InvalidGoalDateException, InvalidGoalTargetException
     {
         currentTime = DateTime.now();
         target = DateTime.now();
@@ -47,7 +69,7 @@ public class BmiGoalTest {
     }
 
     @Test
-    public void reviewBMIGoalFailUpperBound() throws InvalidGoalTargetException, BadGoalNameException, InvalidGoalDateException, InterruptedException
+    public void reviewBMIGoalFailUpperBound() throws InvalidGoalTargetException, BadGoalNameException, InvalidGoalDateException
     {
         LocalDateTime now1 = LocalDateTime.now();
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());

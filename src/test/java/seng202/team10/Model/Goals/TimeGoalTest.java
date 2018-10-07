@@ -45,6 +45,28 @@ public class TimeGoalTest {
                 "\n" +
                 "You have failed to complete this goal in time. It has been removed from your current goals and added to your failed goals.", message);
     }
+
+
+    @Test
+    public void setBadTimeTargetLow() throws BadGoalNameException, InvalidGoalDateException
+    {
+        TimeGoal newGoal = null;
+        try {
+            newGoal = new TimeGoal("Time Goal", DateTime.now(), DateTime.now(), 0);
+        } catch (InvalidGoalTargetException e) { }
+        assertNull(newGoal);
+    }
+
+
+    @Test
+    public void setBadTimeTargetHigh() throws BadGoalNameException, InvalidGoalDateException
+    {
+        TimeGoal newGoal = null;
+        try {
+            newGoal = new TimeGoal("Time Goal", DateTime.now(), DateTime.now(), 1);
+        } catch (InvalidGoalTargetException e) { }
+        assertNull(newGoal);
+    }
 //
 //
 //    @Test

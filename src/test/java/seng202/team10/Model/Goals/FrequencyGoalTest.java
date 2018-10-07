@@ -28,8 +28,28 @@ public class FrequencyGoalTest {
     {
         name = "Paddy";
         targetFreq = 10;
+    }
 
 
+    @Test
+    public void setBadFrequencyTargetLow() throws BadGoalNameException, InvalidGoalDateException
+    {
+        FrequencyGoal newGoal = null;
+        try {
+            newGoal = new FrequencyGoal("Frequency Goal", DateTime.now(), DateTime.now(), 0);
+        } catch (InvalidGoalTargetException e) { }
+        assertNull(newGoal);
+    }
+
+
+    @Test
+    public void setBadFrequencyTargetHigh() throws BadGoalNameException, InvalidGoalDateException
+    {
+        FrequencyGoal newGoal = null;
+        try {
+            newGoal = new FrequencyGoal("Frequency Goal", DateTime.now(), DateTime.now(), 1001);
+        } catch (InvalidGoalTargetException e) { }
+        assertNull(newGoal);
     }
 
 

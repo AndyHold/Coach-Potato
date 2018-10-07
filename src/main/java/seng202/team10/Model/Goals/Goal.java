@@ -122,7 +122,7 @@ public class Goal implements Serializable {
      * Getter method for the achieved boolean which determines whether a goals has been achieved or not.
      * @return <b>true</b> if the goal is achieved, <b>false</b> otherwise.
      */
-    public Boolean getGoalAchieved()
+    public Boolean isGoalAchieved()
     {
         return this.goalAchievedStatus;
     }

@@ -7,6 +7,7 @@ import seng202.team10.Model.Exceptions.UserNameException;
 import seng202.team10.Model.UserProfile;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -27,6 +28,13 @@ public class FileReaderTest {
         testProfile.setGender("Male");
         testProfile.setWeight(75);
         testWriter.saveProfile(testProfile);
+    }
+
+
+    @Test
+    public void loadNullProfile() throws IOException, ClassNotFoundException
+    {
+        assertNull(testReader.loadExistingProfile("johhny - Male"));
     }
 
 

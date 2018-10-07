@@ -32,20 +32,15 @@ public class FileReader {
      * */
     public UserProfile loadExistingProfile(String profileName) throws IOException, ClassNotFoundException
     {
+        localProfile = null;
         String filename = "./profiles/" + profileName + ".ser";
         if(checkFileExists(filename)) {
-//            try {
-                FileInputStream fileIn = new FileInputStream(filename);
-                ObjectInputStream in = new ObjectInputStream(fileIn);
-                localProfile = (UserProfile) in.readObject();
-                in.close();
-                fileIn.close();
-                return localProfile;
-//            } catch (ClassNotFoundException c) {
-//                c.printStackTrace();
-//            } catch (IOException i) {
-//                i.printStackTrace();
-//            }
+            FileInputStream fileIn = new FileInputStream(filename);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            localProfile = (UserProfile) in.readObject();
+            in.close();
+            fileIn.close();
+            return localProfile;
         }
         return localProfile;
     }

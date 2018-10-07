@@ -34,9 +34,7 @@ public class FileWriter
             out.writeObject(activeProfile);
             out.close();
             fileOut.close();
-        } catch (IOException i) {
-            i.printStackTrace();
-        }
+        } catch (IOException exception) {  }
 
 
     }

@@ -45,7 +45,7 @@ public class GoalsTest {
     private UserProfile user;
 
     @Before
-    public void setUp() throws  Exception
+    public void setUp() throws Exception
     {
         name = "Paddy";
         value = 100.0;
@@ -70,8 +70,8 @@ public class GoalsTest {
         int year = now.getYear();
         int month = now.getMonthValue();
         int day = now.getDayOfMonth();
-        startDate = new DateTime(year, month, day, 0,0,0);
-        targetDate = new DateTime(year + 4, month, day, 0,0,0);
+        startDate = new DateTime(year, month, day, 0, 0, 0);
+        targetDate = new DateTime(year + 4, month, day, 0, 0, 0);
         goalsInstance.createGoal("WeightGoal1", startDate, targetDate, "Weight", 75.0, testUser);
         currentGoalNames = goalsInstance.getCurrentGoalNames();
         currentGoals = goalsInstance.getCurrentGoals();
@@ -87,8 +87,8 @@ public class GoalsTest {
     {
         LocalDateTime now = LocalDateTime.now();
         int year = now.getYear();
-        startDate = new DateTime(year + 1, 1, 1, 0,0,0);
-        targetDate = new DateTime(year + 2, 1, 1, 0,0,0);
+        startDate = new DateTime(year + 1, 1, 1, 0, 0, 0);
+        targetDate = new DateTime(year + 2, 1, 1, 0, 0, 0);
         goalsInstance.createGoal("WeightGoal1", startDate, targetDate, "Weight", 75.0, testUser);
         futureGoalNames = goalsInstance.getFutureGoalNames();
         futureGoals = goalsInstance.getFutureGoals();
@@ -105,8 +105,8 @@ public class GoalsTest {
         int year = now.getYear();
         int month = now.getMonthValue();
         int day = now.getDayOfMonth();
-        startDate = new DateTime(year, month, day, 0,0,0);
-        targetDate = new DateTime(year + 4, month, day, 0,0,0);
+        startDate = new DateTime(year, month, day, 0, 0, 0);
+        targetDate = new DateTime(year + 4, month, day, 0, 0, 0);
         goalsInstance.createGoal("DistGoal1", startDate, targetDate, "Distance", 200.0, testUser);
         currentGoalNames = goalsInstance.getCurrentGoalNames();
         currentGoals = goalsInstance.getCurrentGoals();
@@ -122,8 +122,8 @@ public class GoalsTest {
     {
         LocalDateTime now = LocalDateTime.now();
         int year = now.getYear();
-        startDate = new DateTime(year + 1, 1, 1, 0,0,0);
-        targetDate = new DateTime(year + 2, 1, 1, 0,0,0);
+        startDate = new DateTime(year + 1, 1, 1, 0, 0, 0);
+        targetDate = new DateTime(year + 2, 1, 1, 0, 0, 0);
         goalsInstance.createGoal("DistGoal1", startDate, targetDate, "Distance", 200.0, testUser);
         futureGoalNames = goalsInstance.getFutureGoalNames();
         futureGoals = goalsInstance.getFutureGoals();
@@ -140,8 +140,8 @@ public class GoalsTest {
         int year = now.getYear();
         int month = now.getMonthValue();
         int day = now.getDayOfMonth();
-        startDate = new DateTime(year, month, day, 0,0,0);
-        targetDate = new DateTime(year + 4, month, day, 0,0,0);
+        startDate = new DateTime(year, month, day, 0, 0, 0);
+        targetDate = new DateTime(year + 4, month, day, 0, 0, 0);
         goalsInstance.createGoal("TimeGoal1", startDate, targetDate, "Time", 200.0, testUser);
         currentGoalNames = goalsInstance.getCurrentGoalNames();
         currentGoals = goalsInstance.getCurrentGoals();
@@ -157,8 +157,8 @@ public class GoalsTest {
     {
         LocalDateTime now = LocalDateTime.now();
         int year = now.getYear();
-        startDate = new DateTime(year + 1, 1, 1, 0,0,0);
-        targetDate = new DateTime(year + 2, 1, 1, 0,0,0);
+        startDate = new DateTime(year + 1, 1, 1, 0, 0, 0);
+        targetDate = new DateTime(year + 2, 1, 1, 0, 0, 0);
         goalsInstance.createGoal("TimeGoal1", startDate, targetDate, "Time", 200.0, testUser);
         futureGoalNames = goalsInstance.getFutureGoalNames();
         futureGoals = goalsInstance.getFutureGoals();
@@ -175,8 +175,8 @@ public class GoalsTest {
         int year = now.getYear();
         int month = now.getMonthValue();
         int day = now.getDayOfMonth();
-        startDate = new DateTime(year, month, day, 0,0,0);
-        targetDate = new DateTime(year + 4, month, day, 0,0,0);
+        startDate = new DateTime(year, month, day, 0, 0, 0);
+        targetDate = new DateTime(year + 4, month, day, 0, 0, 0);
         goalsInstance.createGoal("BmiGoal1", startDate, targetDate, "BMI", 30.0, testUser);
         currentGoalNames = goalsInstance.getCurrentGoalNames();
         currentGoals = goalsInstance.getCurrentGoals();
@@ -192,8 +192,8 @@ public class GoalsTest {
     {
         LocalDateTime now = LocalDateTime.now();
         int year = now.getYear();
-        startDate = new DateTime(year + 1, 1, 1, 0,0,0);
-        targetDate = new DateTime(year + 2, 1, 1, 0,0,0);
+        startDate = new DateTime(year + 1, 1, 1, 0, 0, 0);
+        targetDate = new DateTime(year + 2, 1, 1, 0, 0, 0);
         goalsInstance.createGoal("BmiGoal1", startDate, targetDate, "BMI", 30.0, testUser);
         futureGoalNames = goalsInstance.getFutureGoalNames();
         futureGoals = goalsInstance.getFutureGoals();
@@ -210,8 +210,8 @@ public class GoalsTest {
         int year = now.getYear();
         int month = now.getMonthValue();
         int day = now.getDayOfMonth();
-        startDate = new DateTime(year, month, day, 0,0,0);
-        targetDate = new DateTime(year + 4, month, day, 0,0,0);
+        startDate = new DateTime(year, month, day, 0, 0, 0);
+        targetDate = new DateTime(year + 4, month, day, 0, 0, 0);
         goalsInstance.createGoal("FreqGoal1", startDate, targetDate, 10, "Frequency");
         currentGoalNames = goalsInstance.getCurrentGoalNames();
         currentGoals = goalsInstance.getCurrentGoals();
@@ -227,8 +227,8 @@ public class GoalsTest {
     {
         LocalDateTime now = LocalDateTime.now();
         int year = now.getYear();
-        startDate = new DateTime(year + 1, 1, 1, 0,0,0);
-        targetDate = new DateTime(year + 2, 1, 1, 0,0,0);
+        startDate = new DateTime(year + 1, 1, 1, 0, 0, 0);
+        targetDate = new DateTime(year + 2, 1, 1, 0, 0, 0);
         goalsInstance.createGoal("FreqGoal1", startDate, targetDate, 10, "Frequency");
         futureGoalNames = goalsInstance.getFutureGoalNames();
         futureGoals = goalsInstance.getFutureGoals();
@@ -239,7 +239,6 @@ public class GoalsTest {
     }
 
 
-
     @Test
     public void removeCurrentGoal() throws BadGoalNameException, InvalidGoalDateException
     {
@@ -247,8 +246,8 @@ public class GoalsTest {
         int year = now.getYear();
         int month = now.getMonthValue();
         int day = now.getDayOfMonth();
-        startDate = new DateTime(year, month, day, 0,0,0);
-        targetDate = new DateTime(year + 4, month, day, 0,0,0);
+        startDate = new DateTime(year, month, day, 0, 0, 0);
+        targetDate = new DateTime(year + 4, month, day, 0, 0, 0);
 
         currentGoals = goalsInstance.getCurrentGoals();
         currentGoalNames = goalsInstance.getCurrentGoalNames();
@@ -282,8 +281,8 @@ public class GoalsTest {
         int year = now.getYear();
         int month = now.getMonthValue();
         int day = now.getDayOfMonth();
-        startDate = new DateTime(year, month, day, 0,0,0);
-        targetDate = new DateTime(year + 4, month, day, 0,0,0);
+        startDate = new DateTime(year, month, day, 0, 0, 0);
+        targetDate = new DateTime(year + 4, month, day, 0, 0, 0);
 
         currentGoals = goalsInstance.getCurrentGoals();
         currentGoalNames = goalsInstance.getCurrentGoalNames();
@@ -307,6 +306,7 @@ public class GoalsTest {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 
@@ -326,15 +326,18 @@ public class GoalsTest {
 //    public void refreshGoals() {
 //    }
 =======
+=======
+
+>>>>>>> 950d69ba... Wrote more tests for All goal classes, FileReader, Parser,
     @Test
-    public void checkWeightGoalFailed() throws BadGoalNameException, InvalidGoalDateException, InvalidGoalTargetException, InterruptedException
+    public void checkWeightGoalFailed() throws BadGoalNameException, InvalidGoalDateException, InvalidGoalTargetException
     {
         LocalDateTime now = LocalDateTime.now();
         int year = now.getYear();
         int month = now.getMonthValue();
         int day = now.getDayOfMonth();
-        startDate = new DateTime(year, month, day, 0,0,0);
-        targetDate = new DateTime(year, month, day, 0,0,0);
+        startDate = new DateTime(year, month, day, 0, 0, 0);
+        targetDate = new DateTime(year, month, day, 0, 0, 0);
 
         currentGoals = goalsInstance.getCurrentGoals();
         currentGoalNames = goalsInstance.getCurrentGoalNames();
@@ -354,6 +357,7 @@ public class GoalsTest {
         assertEquals("failed", message);
     }
 
+
     @Test
     public void checkBMIGoalAchieved() throws BadGoalNameException, InvalidGoalDateException, InvalidGoalTargetException
     {
@@ -361,8 +365,8 @@ public class GoalsTest {
         int year = now.getYear();
         int month = now.getMonthValue();
         int day = now.getDayOfMonth();
-        startDate = new DateTime(year, month, day, 0,0,0);
-        targetDate = new DateTime(year + 4, month, day, 0,0,0);
+        startDate = new DateTime(year, month, day, 0, 0, 0);
+        targetDate = new DateTime(year + 4, month, day, 0, 0, 0);
 
         currentGoals = goalsInstance.getCurrentGoals();
         currentGoalNames = goalsInstance.getCurrentGoalNames();
@@ -383,15 +387,16 @@ public class GoalsTest {
         assertEquals("achieved", message);
     }
 
+
     @Test
-    public void checkBMIGoalFailed() throws BadGoalNameException, InvalidGoalDateException, InvalidGoalTargetException, InterruptedException, InvalidWeightException
+    public void checkBMIGoalFailed() throws BadGoalNameException, InvalidGoalDateException, InvalidGoalTargetException, InvalidWeightException
     {
         LocalDateTime now = LocalDateTime.now();
         int year = now.getYear();
         int month = now.getMonthValue();
         int day = now.getDayOfMonth();
-        startDate = new DateTime(year, month, day, 0,0,0);
-        targetDate = new DateTime(year, month, day, 0,0,0);
+        startDate = new DateTime(year, month, day, 0, 0, 0);
+        targetDate = new DateTime(year, month, day, 0, 0, 0);
 
         currentGoals = goalsInstance.getCurrentGoals();
         currentGoalNames = goalsInstance.getCurrentGoalNames();
@@ -412,5 +417,108 @@ public class GoalsTest {
         assertEquals("failed", message);
     }
 
+<<<<<<< HEAD
 >>>>>>> 831a7d65... Got rid of getBmi func and replaced all usages with calls to calcBmi. Wrote more tests for Goals class.
+=======
+
+    @Test
+    public void duplicateGoalNames() throws InvalidGoalTargetException, InvalidGoalDateException
+    {
+        try {
+            goalsInstance.createGoal("test", DateTime.now(), DateTime.now(), "BMI", 11.0, testUser);
+        } catch (BadGoalNameException e) {
+            e.printStackTrace();
+        }
+        try {
+            goalsInstance.createGoal("test", DateTime.now(), DateTime.now(), "BMI", 11.0, testUser);
+        } catch (BadGoalNameException e) {
+            assertTrue(true);
+        }
+    }
+
+
+    @Test
+    public void duplicateGoalNamesFrequency() throws InvalidGoalTargetException, InvalidGoalDateException
+    {
+        try {
+            goalsInstance.createGoal("test", DateTime.now(), DateTime.now(), 11, "Frequency");
+        } catch (BadGoalNameException e) {
+            e.printStackTrace();
+        }
+        try {
+            goalsInstance.createGoal("test", DateTime.now(), DateTime.now(), 11, "Frequency");
+        } catch (BadGoalNameException e) {
+            assertTrue(true);
+        }
+    }
+
+
+    @Test
+    public void removeFutureGoalSuccess() throws InvalidGoalDateException, InvalidGoalTargetException, BadGoalNameException
+    {
+        goalsInstance.createGoal("test", new DateTime(DateTime.now().getYear() + 1, 1, 1, 0, 0, 0), new DateTime(DateTime.now().getYear() + 2, 1, 1, 0, 0, 0), "Weight", 35.0, testUser);
+        int initialSize = goalsInstance.getFutureGoals().size();
+        goalsInstance.removeFutureGoal("test");
+        assertEquals(initialSize - 1, goalsInstance.getFutureGoals().size());
+    }
+
+
+    @Test
+    public void removeFutureGoalFail() throws InvalidGoalDateException, InvalidGoalTargetException, BadGoalNameException
+    {
+        goalsInstance.createGoal("test", new DateTime(DateTime.now().getYear() + 1, 1, 1, 0, 0, 0), new DateTime(DateTime.now().getYear() + 2, 1, 1, 0, 0, 0), "Weight", 35.0, testUser);
+        int initialSize = goalsInstance.getFutureGoals().size();
+        goalsInstance.removeFutureGoal("test2");
+        assertEquals(initialSize, goalsInstance.getFutureGoals().size());
+    }
+
+
+    @Test
+    public void refreshFutureToCurrent() throws InvalidGoalDateException, InvalidGoalTargetException, BadGoalNameException, InterruptedException
+    {
+        DateTime now = DateTime.now();
+        int year = now.getYear();
+        int month = now.getMonth();
+        int day = now.getDay();
+        int hour = now.getHour();
+        int minute = now.getMinute();
+        int second = now.getSecond();
+        if (second == 59) {
+            if (minute == 59) {
+                if (hour == 23) {
+                    day += 1;
+                    hour = 0;
+                    minute = 0;
+                    second = 0;
+                } else {
+                    hour += 1;
+                    minute = 0;
+                    second = 0;
+                }
+            } else {
+                minute += 1;
+                second = 0;
+            }
+        } else {
+            second += 1;
+        }
+        goalsInstance.createGoal("test", new DateTime(year, month, day, hour, minute, second), new DateTime(year + 4, month, day, hour, minute, second), "Weight", 35.0, testUser);
+        int intitialSize = goalsInstance.getFutureGoals().size();
+        Thread.sleep(2000);
+        goalsInstance.refreshGoals();
+        assertNotEquals(intitialSize, goalsInstance.getFutureGoals().size());
+    }
+
+
+    @Test
+    public void refreshFutureToFuture() throws InvalidGoalDateException, InvalidGoalTargetException, BadGoalNameException, InterruptedException
+    {
+        DateTime now = DateTime.now();
+        goalsInstance.createGoal("test", new DateTime(now.getYear() + 1, 1, 1, 0, 0, 0), new DateTime(now.getYear() + 1, 1, 1, 0, 1, 0), "Weight", 35.0, testUser);
+        int intitialSize = goalsInstance.getFutureGoals().size();
+        goalsInstance.refreshGoals();
+        assertEquals(intitialSize, goalsInstance.getFutureGoals().size());
+    }
+
+>>>>>>> 950d69ba... Wrote more tests for All goal classes, FileReader, Parser,
 }
