@@ -358,7 +358,7 @@ public class GoalController implements Controllable{
         if (existingTab.isSelected()) {
             setHelpTextArea(existingHelpText, 50, 620);
         } else if (pastTab.isSelected()) {
-            setHelpTextArea(pastHelpText,305, 365);
+            setHelpTextArea(pastHelpText,50, 365);
         }
     }
 
