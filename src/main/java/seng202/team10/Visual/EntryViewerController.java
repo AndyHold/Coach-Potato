@@ -219,7 +219,8 @@ public class EntryViewerController {
      * @throws EntryOutOfSequenceException if the entries are not in time sequence.
 >>>>>>> 030d16ee... Javadoc overhaul, fully documented the ActivitiesData and Control packages, did some work on the other packages.
      */
-    private void checkContinuity(ArrayList<Entry> checkingEntries) throws EntryOutOfSequenceException {
+    private void checkContinuity(ArrayList<Entry> checkingEntries) throws EntryOutOfSequenceException
+    {
         if (checkingEntries.size() > 1) {
             for(int i = 0; i < checkingEntries.size() - 1; i++){
                 if (checkingEntries.get(i).getTime().isAfter(checkingEntries.get(i+1).getTime())){
@@ -228,6 +229,7 @@ public class EntryViewerController {
             }
         }
     }
+
 
     /**
      * Method to change the time of an Entry when it is modified in the TableView

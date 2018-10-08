@@ -690,8 +690,16 @@ public class Entry  implements Serializable {
         int day = Integer.valueOf(dateArray[0]);
         int month = Integer.valueOf(dateArray[1]);
         int year = Integer.valueOf(dateArray[2]);
+<<<<<<< HEAD
         this.time.changeDate(year, month, day);
 >>>>>>> 04fec49c... DateTime now has 100% test coverage, refactored Activity and Entry to make them more readable and got rid of unnecessary String attributes and had them be derived when asked for in the getter method instead. This will make it easier when the values are changed. Implemented the calculateVelocity method in Entry and the calculateEntriesVelocity method in Activity properly so that the data can now be used for graphing.
+=======
+        DateTime newDateTime = new DateTime(year, month, day, time.getHour(), time.getMinute(), time.getSecond());
+        if (newDateTime.isAfter(DateTime.now())) {
+            throw new IllegalArgumentException("You cannot edit entry points to be in the future.");
+        }
+        time.changeDate(year, month, day);
+>>>>>>> 9ea6c097... Fixed issue with creating future entries in manual entry and activity edit
     }
 
 

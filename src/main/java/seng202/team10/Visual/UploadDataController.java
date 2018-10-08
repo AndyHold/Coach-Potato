@@ -521,10 +521,13 @@ public class UploadDataController {
             String date = dateTextField.getText();
             String time = timeTextField.getText();
             DateTime dateTime = mainController .getParser().parseDateTimeFromStrings(date, time);
+            if (dateTime.isAfter(DateTime.now())) {
+                throw new IllegalArgumentException("You cannot input entry points in the future.");
+            }
             int heartRate = Integer.valueOf(heartRateTextField.getText());
             double latitude = Double.valueOf(latitudeTextField.getText());
             double longitude = Double.valueOf(longitudeTextField.getText());
-            double elevation = Double.valueOf(elevationTextField.getText());boolean firstEntry = false;
+            double elevation = Double.valueOf(elevationTextField.getText());
             Entry newEntry = new Entry(dateTime, heartRate, new Position(latitude, longitude, elevation));
             if (manualDataTableView.getItems().size() == 0) {
                 newEntry.setFirstEntry(true);
@@ -557,7 +560,6 @@ public class UploadDataController {
      */
     @FXML public void uploadData()
     {
-//        mainController.getTitleBar().setLoadingBarVisibility(true);
         mainController .getPrimaryStage().getScene().setCursor(Cursor.WAIT);
         String filename = filePathTextField.getText();
         if (filename.length() == 0) {
@@ -587,7 +589,6 @@ public class UploadDataController {
                 this.mainController.createPopUp(Alert.AlertType.ERROR, "Error", exception.getMessage());
             }
         }
-//        mainController.getTitleBar().setLoadingBarVisibility(false);
         mainController .getPrimaryStage().getScene().setCursor(Cursor.DEFAULT);
     }
 
