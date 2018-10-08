@@ -273,9 +273,11 @@ public class TitleBarController {
         loginController.setUpScene();
         slideMenu(false);
         setScene(loginPane);
+        warningButton.setVisible(false);
     }
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     /**
 <<<<<<< HEAD
@@ -298,6 +300,8 @@ public class TitleBarController {
 >>>>>>> 29c62e9c... Changed colour of goals and activities in calendar and moved help buttons to be in position.
 
 
+=======
+>>>>>>> dc15829e... Fixed issue with health warning flag remaining in the title bar when logging out
     /**
      * Method to display the view profile screen.
 >>>>>>> c2f16fc8... fixed loading cover not covering title bar. Changed icons for activity screen and speed icon for graph screen. changed some colours in gui
