@@ -3,8 +3,8 @@ package seng202.team10.Model.Goals;
 
 
 /**
- * GoalType Enum for Coach Potato
- * SENG202 2018S2
+ * Enum for types of goals.
+ *
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public enum GoalType {
@@ -19,9 +19,9 @@ public enum GoalType {
     }
 
     /**
-     * Method to convert a goal type from a string to an enum
-     * @param typeName: String
-     * @return GoalType
+     * Method to convert a goal type from a string to an enum.
+     * @param typeName A <b>String</b> of the name of the type of goal.
+     * @return A <b>GoalType</b>.
      */
     public static GoalType getTypeFromString(String typeName)
     {
@@ -40,8 +40,8 @@ public enum GoalType {
     }
 
     /**
-     * returns the enum goal type as a string
-     * @return String
+     * ToString method for goaltype.
+     * @return A <b>String</b> of the name of the type of goal.
      */
     @Override
     public String toString()

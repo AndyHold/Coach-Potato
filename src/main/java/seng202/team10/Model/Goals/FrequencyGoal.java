@@ -7,21 +7,21 @@ import seng202.team10.Model.Exceptions.*;
 import java.time.LocalDateTime;
 
 /**
- * Frequency Goals Class for Coach Potato SENG202 2018S2
+ * Class that extends the Goal superclass, represents an instance of a goal of the user to do a certain number of exercises.
  */
 public class FrequencyGoal extends Goal {
     private int goalFrequency;
 
 
     /**
-     * Constructor method for frequency goal
-     * @param name: String
-     * @param start: DateTime
-     * @param target: DateTime
-     * @param frequency: int
-     * @throws InvalidGoalDateException When invalid dates are entered
-     * @throws BadGoalNameException When invalid name is entered
-     * @throws InvalidGoalTargetException When invalid target is entered
+     * Constructor method for frequency goal.
+     * @param name A <b>String</b> of the name of the goal.
+     * @param start The start <b>DateTime</b> of the goal.
+     * @param target The end <b>DateTime</b> of the goal.
+     * @param frequency An <b>int</b> of the number of exercises to do.
+     * @throws InvalidGoalDateException When invalid dates are entered.
+     * @throws BadGoalNameException When an invalid goal name is entered.
+     * @throws InvalidGoalTargetException When an invalid goal target is entered.
      */
     public FrequencyGoal(String name, DateTime start, DateTime target, int frequency) throws InvalidGoalDateException, BadGoalNameException, InvalidGoalTargetException
     {
@@ -32,7 +32,7 @@ public class FrequencyGoal extends Goal {
 
     /**
      * Setter method for the target value of frequency goal.
-     * @param target: int
+     * @param target An <b>int</b> of the target frequency.
      * @throws InvalidGoalTargetException When target is outside the correct values.
      */
     private void setTargetValue(int target) throws InvalidGoalTargetException
@@ -46,8 +46,8 @@ public class FrequencyGoal extends Goal {
 
 
     /**
-     * Getter method for the goal frequency
-     * @return int
+     * Getter method for the goal frequency.
+     * @return An <b>int</b> of the goals' frequency.
      */
     public int getGoalFrequency()
     {
@@ -55,9 +55,9 @@ public class FrequencyGoal extends Goal {
     }
 
     /**
-     * Method to review a frequency goal of the user. Determines whether the user has achieved, failed, or is still working towards a particular frequency goal
-     * @param freq: double
-     * @return String
+     * Method to review a frequency goal of the user. Determines whether the user has achieved, failed, or is still working towards a particular frequency goal.
+     * @param freq A <b>Double</b> of the users' current frequency.
+     * @return A <b>String</b> of the status of the goal completion.
      */
     public String reviewFrequencyGoal(int freq)
     {

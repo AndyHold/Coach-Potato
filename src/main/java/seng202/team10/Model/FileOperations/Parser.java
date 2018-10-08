@@ -6,10 +6,11 @@ import seng202.team10.Model.Exceptions.NoActivityFoundException;
 import seng202.team10.Model.Exceptions.NoDataFoundException;
 
 import java.io.FileNotFoundException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 /**
- * Parser Class for Coach Potato SENG202 2018S2
+ * Parser Class for Coach Potato
  */
 public class Parser {
 
@@ -33,7 +34,9 @@ public class Parser {
         if(reader.checkFileExists(filePath)) {
             try {
                 fileContents = reader.openNewFile(filePath);
-            } catch (IllegalArgumentException e) {
+            }
+            // this catch is never run but is kept here for security
+            catch (IllegalArgumentException e) {
                 throw new FileNotFoundException();
             }
         } else {
@@ -49,7 +52,7 @@ public class Parser {
      *
      * @param fileContents The unparsed contents of the file, in arraylist form with values
      *                     seperated with commas.
-     * @return formattedFile  An ArrayList&gt;ArrayList&gt;String&lt;&lt; that contains a list of lines,
+     * @return formattedFile  An ArrayList&lt;ArrayList&lt;String&lt;&gt;that contains a list of lines,
      * that are each lists that contain each value in an index.
      */
     public ArrayList<ArrayList<String>> formatFileContents(ArrayList<String> fileContents)
@@ -72,7 +75,7 @@ public class Parser {
      *Calls processActivity() in a loop.
      * @param formattedFile  The formatted file to be processed.
      * @throws NoDataFoundException when there is no data in the formatted file.
-     * @return activites  An ArrayList&gt;Activity&lt; that contains every activity in the file.
+     * @return activites  An ArrayList&lt;Activity&gt;that contains every activity in the file.
      */
     public ArrayList<Activity> processFile(ArrayList<ArrayList<String>> formattedFile) throws NoDataFoundException
     {
@@ -252,6 +255,13 @@ public class Parser {
         int second = Integer.valueOf(timeArray[2]);
 
         DateTime dateTime = new DateTime(year, month, day, hour, minute, second);
+
+        DateTime currentDateTime = DateTime.now();
+
+        if (currentDateTime.isBefore(dateTime)) {
+            throw new IllegalArgumentException();
+        }
+
         int heartRate = Integer.valueOf(currentLine.get(2));
         Position position = processPosition(currentLine);
 
@@ -279,7 +289,7 @@ public class Parser {
 
     /**
      * returns the number of activities that were not imported for various reasons
-     * @return int count of bad activities
+     * @return An <b>int</b> count of bad activities
      */
     public int getBadActivities() {
         return badActivities;

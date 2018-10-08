@@ -4,23 +4,22 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import seng202.team10.Control.GUIController;
+import seng202.team10.Control.MainController;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.Exceptions.*;
 import seng202.team10.Model.UserProfile;
 
 import java.time.LocalDateTime;
-import java.util.Calendar;
 
 /**
  * Controller for the create profile screen, where the user can create a profile.
- * SENG202 2018S2
+ *
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public class CreateProfileController implements Controllable
 {
 
-    private GUIController app;
+    private MainController mainController ;
     private ToggleGroup toggleGroup;
 
     @FXML private TextField nameEntry;
@@ -44,12 +43,12 @@ public class CreateProfileController implements Controllable
 
 
     /**
-     * Setter method to pass the GUIController into this controller.
-     * @param guiController <b>GUIController:</b> The main controller.
+     * Setter method to pass the MainController into this controller.
+     * @param mainController <b>MainController:</b> The main controller.
      */
-    public void setApp(GUIController guiController)
+    public void setMainController(MainController mainController)
     {
-        this.app = guiController;
+        this.mainController = mainController;
     }
 
 
@@ -60,7 +59,7 @@ public class CreateProfileController implements Controllable
     public void toggleBackButton()
     {
         helpButton.requestFocus();
-        if (this.app.getUserNames().size() == 0) {
+        if (this.mainController.getUserNames().size() == 0) {
             backButton.setDisable(true);
         } else {
             backButton.setDisable(false);
@@ -250,7 +249,7 @@ public class CreateProfileController implements Controllable
         // Set all Text fields etc to null
         setInputsToNull();
         // Launch login screen
-        app.getTitleBar().openLogin();
+        mainController .getTitleBar().openLogin();
     }
 
 
@@ -286,12 +285,13 @@ public class CreateProfileController implements Controllable
     private void saveUserProfile(UserProfile userProfile)
     {
         try {
-            app.createUser(userProfile);
+            mainController .createUser(userProfile);
+
             setErrorsInvisible();
             setInputsToNull();
-            app.getTitleBar().openLogin();
+            mainController .getTitleBar().openLogin();
         } catch (InvalidUserException exception) {
-            app.createPopUp(Alert.AlertType.ERROR, "Error", "The user information you have entered is invalid.");
+            mainController .createPopUp(Alert.AlertType.ERROR, "Error", "The user information you have entered is invalid.");
         }
     }
 
@@ -308,7 +308,7 @@ public class CreateProfileController implements Controllable
         } catch (NullPointerException exception) {
             genderErrorLabel.setVisible(true);
         } catch (IllegalArgumentException exception) {
-            this.app.createPopUp(Alert.AlertType.ERROR, "Error", "Could not find image");
+            this.mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Could not find image");
         }
     }
 
@@ -376,18 +376,18 @@ public class CreateProfileController implements Controllable
                 throw new UserNameException();
             }
             String nameString = getTextFieldString(nameEntry).substring(0,1).toUpperCase() + getTextFieldString(nameEntry).substring(1).toLowerCase();
-            this.app.checkUniqueName(nameString);
+            nameString = this.mainController.checkUniqueName(nameString);
             try {
                 userProfile.setName(nameString);
             } catch (UserNameException | IllegalArgumentException exception) {
-                nameErrorLabel.setText("Please enter a valid user name between 1 - 15 characters");
+                nameErrorLabel.setText("Please enter a valid user name between 2 - 15 characters");
                 nameErrorLabel.setVisible(true);
             }
         } catch (UniqueNameException | IllegalArgumentException exception) {
             nameErrorLabel.setText("This username already exists.");
             nameErrorLabel.setVisible(true);
         } catch (UserNameException e) {
-            nameErrorLabel.setText("Please enter a valid user name between 1 - 15 characters");
+            nameErrorLabel.setText("Please enter a valid user name between 2 - 15 characters");
             nameErrorLabel.setVisible(true);
         }
     }
@@ -410,7 +410,7 @@ public class CreateProfileController implements Controllable
 
     /**
      * Getter method for the selected Gender
-     * @return String
+     * @return A <b>String</b>
      */
     private String getSelectedGender() throws NullPointerException
     {

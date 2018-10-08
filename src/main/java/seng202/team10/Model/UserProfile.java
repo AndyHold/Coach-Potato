@@ -10,7 +10,7 @@ import java.util.Calendar;
 
 /**
  * UserProfile Class for Coach Potato
- * SENG202 2018S2
+ *
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public class UserProfile implements java.io.Serializable {
@@ -26,36 +26,7 @@ public class UserProfile implements java.io.Serializable {
     private double bmi;
     private Goals goals = new Goals(this);
     private ArrayList<HealthWarning> activeHealthWarnings = new ArrayList<>();
-
-
-    /**
-     * Empty Constructor method for UserProfile class.
-     */
-    public UserProfile()
-    {
-    }
-
-    /**
-     * Constructor method for UserProfile class
-     * @param name: <b>String</b>
-     * @param weight: <b>Double</b>
-     * @param birthDate: <b>DateTime</b>
-     * @param gender: <b>String</b>
-     * @param height : <b>Double</b>
-     * @throws UserNameException When the user name is invalid
-     * @throws InvalidWeightException When the weight is invalid
-     * @throws InvalidHeightException When the height is invalid
-     * @throws IllegalArgumentException When another value is invalid
-     */
-    public UserProfile(String name, double weight, double height, DateTime birthDate, String gender) throws UserNameException, InvalidWeightException, InvalidHeightException, IllegalArgumentException
-    {
-        this.setName(name);
-        this.setWeight(weight);
-        this.setHeight(height);
-        this.birthDate = birthDate;
-        this.gender = gender;
-    }
-
+    private DateTime lastWeightUpdate;
 
 
     /**
@@ -68,13 +39,33 @@ public class UserProfile implements java.io.Serializable {
 
 
     /**
+     * Getter method for last weight update
+     * @return a <b>DateTime</b> object containing the date of the last time the user updated their weight.
+     */
+    public DateTime getLastWeightUpdate()
+    {
+        return lastWeightUpdate;
+    }
+
+
+    /**
+     * Setter method for the last time weight was updated.
+     * @param newWeightUpdate a <b>DateTime</b> object containing the time the weight was last updated.
+     */
+    public void setLastWeightUpdate(DateTime newWeightUpdate)
+    {
+        this.lastWeightUpdate = newWeightUpdate;
+    }
+
+
+    /**
      * Setter method for the name of the user
      * @param newName: A <b>String</b> of the name entered for the user.
      * @throws  UserNameException when the user name is invalid
      */
     public void setName(String newName) throws UserNameException
     {
-        if (!(newName.length() > 15 || !newName.matches("[a-zA-Z0-9 ]*"))) {
+        if (!(newName.length() > 15 || newName.length() < 2 || !newName.matches("[a-zA-Z0-9 ]*"))) {
             this.name = newName;
         } else {
             throw new UserNameException();
@@ -86,20 +77,26 @@ public class UserProfile implements java.io.Serializable {
      * Setter method for the gender of the user
      * @param gender <b>String:</b> "Male", "Female", or "Other"
      */
-    public void setGender(String gender) { this.gender = gender; }
+    public void setGender(String gender)
+    {
+        this.gender = gender;
+    }
 
 
     /**
      * Getter method for the gender of the user
      * @return <b>String</b>
      */
-    public String getGender() { return gender; }
+    public String getGender()
+    {
+        return gender;
+    }
 
 
     /**
      * Gets a list of health warnings.
      * @param healthWarningType An enum for the health warning type.
-     * @return  An <b>ArrayList&gt;HealthWarning&lt;</b>
+     * @return  An <b>ArrayList&lt;HealthWarning&gt;</b>
      */
     public ArrayList<HealthWarning> getWarnings(HealthWarningType healthWarningType)
     {
@@ -113,12 +110,12 @@ public class UserProfile implements java.io.Serializable {
     }
 
 
-
     /**
      * Getter method for the activities of the user
-     * @return An <b>ArrayList&gt;Activity&lt;</b>
+     * @return An <b>ArrayList&lt;Activity&gt;</b>
      */
-    public ArrayList<Activity> getActivities() {
+    public ArrayList<Activity> getActivities()
+    {
         return this.activities;
     }
 
@@ -145,21 +142,27 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Method for adding a new list of activities (such as when a new CSV file is loaded)
-     * @param newActivities <b>ArrayList&gt;Activity&lt;</b> of activities being added to the user.
+     * @param newActivities <b>ArrayList&lt;Activity&gt;</b> of activities being added to the user.
      * @throws  ExistingElementException When the activity already exists in the application
      */
     public void addActivities(ArrayList<Activity> newActivities) throws ExistingElementException
     {
         int numberOfBadActivities = 0;
+        int numberNewActivities = 0;
         for(Activity newActivity: newActivities){
             try {
                 addActivity(newActivity);
+                numberNewActivities += 1;
             } catch(ExistingActivityException exception) {
                 numberOfBadActivities++;
             }
         }
         if (numberOfBadActivities > 0) {
-            throw new ExistingElementException(String.valueOf(numberOfBadActivities) + " Activities overlapped with existing activities and were not added");
+            String overlapMessage = String.valueOf(numberOfBadActivities) + " Activities overlapped with existing activities and were not added. ";
+            if (numberNewActivities > 0) {
+                overlapMessage += (numberNewActivities) + " other activities added.";
+            }
+            throw new ExistingElementException(overlapMessage);
         }
     }
 
@@ -264,8 +267,7 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Calculates the users age based on thier date of birth.
-     * @return int: The users age.
-     * TODO test this
+     * @return An <b>int</b> of The users age.
      */
     public int calculateAge()
     {
@@ -288,8 +290,10 @@ public class UserProfile implements java.io.Serializable {
             category = "Healthy";
         } else if (this.bmi < 30){
             category = "Overweight";
-        } else {
+        } else if (this.bmi < 35){
             category = "Obese";
+        } else {
+            category = "Extremely obese";
         }
         return category;
     }
@@ -319,15 +323,6 @@ public class UserProfile implements java.io.Serializable {
     public Goals getGoals()
     {
         return goals;
-    }
-
-    /**
-     * Setter method to set user's goals.
-     * @param goals <b>Goals</b>
-     */
-    public void setGoals(Goals goals)
-    {
-        this.goals = goals;
     }
 
     /**
@@ -425,7 +420,7 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Method to add health warnings to the list of active health warnings.
-     * @param healthWarnings An <b>ArrayList&gt;HealthWarning&lt;</b> of health
+     * @param healthWarnings An <b>ArrayList&lt;HealthWarning&gt;</b> of health
      *                           warnings in the activity.
      */
     private void addHealthWarnings(ArrayList<HealthWarning> healthWarnings)
@@ -438,7 +433,7 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Getter method for the current health warnings.
-     * @return <b>ArrayList&gt;HealthWarning&lt;</b>
+     * @return <b>ArrayList&lt;HealthWarning&gt;</b>
      */
     public ArrayList<HealthWarning> getActiveHealthWarnings()
     {
@@ -458,7 +453,7 @@ public class UserProfile implements java.io.Serializable {
 
     /**
      * Method to remove a list of health warnings from the user.
-     * @param healthWarnings an <b>ArrayList&gt;HealthWarning&lt;</b> containing the <b>HealthWarnings</b> to be deleted.
+     * @param healthWarnings an <b>ArrayList&lt;HealthWarning&gt;</b> containing the <b>HealthWarnings</b> to be deleted.
      * Called when deleting an activity from the user.
      */
     public void removeHealthWarnings(ArrayList<HealthWarning> healthWarnings)

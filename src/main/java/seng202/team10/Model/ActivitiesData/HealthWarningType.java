@@ -2,8 +2,8 @@ package seng202.team10.Model.ActivitiesData;
 
 
 /**
- * GoalType Enum for Coach Potato
- * SENG202 2018S2
+ * Enum for different types of health warnings.
+ *
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public enum HealthWarningType implements java.io.Serializable {
@@ -19,7 +19,7 @@ public enum HealthWarningType implements java.io.Serializable {
 
 
     /**
-     * Constructor method for the HealthWarning Enum
+     * Constructor method for the HealthWarning Enum.
      */
     HealthWarningType(String name, String URL)
     {
@@ -29,18 +29,8 @@ public enum HealthWarningType implements java.io.Serializable {
 
 
     /**
-     * Getter method for the name of the healthwarning
-     * @return String: name of the health warning
-     */
-    public String getName()
-    {
-        return name;
-    }
-
-
-    /**
-     * Getter method for the URL of the health warning
-     * @return String: URL of the health warning
+     * Getter method for the URL of the health warning.
+     * @return A <b>String</b> URL of the health warning.
      */
     public String getURL()
     {
@@ -53,4 +43,5 @@ public enum HealthWarningType implements java.io.Serializable {
     {
         return name;
     }
+
 }

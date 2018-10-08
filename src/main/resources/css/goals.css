@@ -1,12 +1,11 @@
-
-
-#deleteModeLabel
+#removeCurrentGoalButton, #removeFutureGoalButton, #createButton
 {
-    -fx-font-size: 14;
-    -fx-text-fill: #cc00ff;
-    -fx-border-color: #cc00ff;
-    -fx-border-radius: 1em;
-    -fx-border-width: 5px;
+    -fx-font-size: 15px;
+}
+
+#currentGoalsLabel, #createANewGoalLabel, #futureGoalsLabel, #AcheivedGoalsLabel, #FailedGoalsLabel
+{
+    -fx-font-size: 20px;
 }
 
 #helpButton
@@ -15,11 +14,12 @@
     -fx-border-color: transparent;
 }
 
-#startDatePicker .button, #targetDatePicker .button
+.combo-box
 {
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
+    -fx-background-color: white;
+    -fx-border-color: null;
 }
+
 #startDatePicker .label, #targetDatePicker .button
 {
     -fx-text-fill: black;
@@ -33,12 +33,21 @@
 .tab
 {
     -fx-background-radius: 1em 1em 0 0;
-    -fx-background-color: #b3b3ff;
+    -fx-background-color: linear-gradient(#4DD0E1 0%, #B2EBF2 100%);
 }
 
 .tab:selected
 {
     -fx-border-radius: 1em 1em 0 0;
     -fx-border-width: 2px;
-    -fx-border-color: blue;
+    -fx-border-color: #0097A7;
+}
+
+#createGoalVBox
+{
+    -fx-background-color: linear-gradient(#4DD0E1 0%, #B2EBF2 100%);
+    -fx-background-radius: 1em;
+    -fx-border-radius: 1em;
+    -fx-border-width: 3px;
+    -fx-border-color: #0097A7;
 }

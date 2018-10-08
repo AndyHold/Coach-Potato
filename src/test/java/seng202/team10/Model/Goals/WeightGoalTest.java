@@ -31,10 +31,31 @@ public class WeightGoalTest {
         testUser = new UserProfile();
         testUser.setHeight(100);
         testUser.setWeight(100);
-
     }
 
-    // TODO test the constructor method properly
+
+    @Test
+    public void setBadWeightTargetLow() throws BadGoalNameException, InvalidGoalDateException
+    {
+        WeightGoal newGoal = new WeightGoal("Weight Goal", DateTime.now(), DateTime.now());
+        try {
+            newGoal.setTargetValue(29.0, testUser);
+        } catch (InvalidGoalTargetException e) { }
+        assertEquals(0.0, newGoal.getGoalWeight(), 0.1);
+    }
+
+
+    @Test
+    public void setBadWeightTargetHigh() throws BadGoalNameException, InvalidGoalDateException
+    {
+        BmiGoal newGoal = new BmiGoal("Weight Goal", DateTime.now(), DateTime.now());
+        try {
+            newGoal.setTargetValue(100.0, testUser);
+        } catch (InvalidGoalTargetException e) { }
+        assertEquals(0.0, newGoal.getGoalBmi(), 0.1);
+    }
+
+
     @Test
     public void reviewWeightGoalFailLowerBound() throws BadGoalNameException, InvalidGoalDateException, InvalidGoalTargetException, InvalidWeightException, InterruptedException
     {
@@ -44,7 +65,6 @@ public class WeightGoalTest {
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         testGoal = new WeightGoal(name, currentTime, target);
         ((WeightGoal) testGoal).setTargetValue(targetWeight, testUser);
-        Thread.sleep(1000);
         String message = ((WeightGoal) testGoal).reviewWeightGoal(101.0);
         testUser.setWeight(100);
         assertEquals("Your target for this goal was to weigh 100.0 or less by " + target + "\n" +
@@ -61,7 +81,6 @@ public class WeightGoalTest {
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth() , now1.getHour(), now1.getMinute(), now1.getSecond());
         testGoal = new WeightGoal(name, currentTime, target);
         ((WeightGoal) testGoal).setTargetValue(targetWeight, testUser);
-        Thread.sleep(1000);
         String message = ((WeightGoal) testGoal).reviewWeightGoal(250);
         testUser.setWeight(100);
         assertEquals("Your target for this goal was to weigh 100.0 or less by " + target + "\n" +

@@ -3,3 +3,13 @@
     -fx-background-color: transparent;
     -fx-border-color: transparent;
 }
+
+#distanceTitle, #durationTitle, #speedTitle, #heartRateTitle
+{
+    -fx-font-size: 20;
+}
+
+#distanceLabel, #durationLabel, #speedLabel, #heartRateLabel
+{
+    -fx-font-size: 40;
+}

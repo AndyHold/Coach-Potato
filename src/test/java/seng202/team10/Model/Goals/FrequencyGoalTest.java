@@ -28,8 +28,28 @@ public class FrequencyGoalTest {
     {
         name = "Paddy";
         targetFreq = 10;
+    }
 
 
+    @Test
+    public void setBadFrequencyTargetLow() throws BadGoalNameException, InvalidGoalDateException
+    {
+        FrequencyGoal newGoal = null;
+        try {
+            newGoal = new FrequencyGoal("Frequency Goal", DateTime.now(), DateTime.now(), 0);
+        } catch (InvalidGoalTargetException e) { }
+        assertNull(newGoal);
+    }
+
+
+    @Test
+    public void setBadFrequencyTargetHigh() throws BadGoalNameException, InvalidGoalDateException
+    {
+        FrequencyGoal newGoal = null;
+        try {
+            newGoal = new FrequencyGoal("Frequency Goal", DateTime.now(), DateTime.now(), 1001);
+        } catch (InvalidGoalTargetException e) { }
+        assertNull(newGoal);
     }
 
 
@@ -40,7 +60,6 @@ public class FrequencyGoalTest {
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         testGoal = new FrequencyGoal(name, currentTime, target, targetFreq);
-        Thread.sleep(1000);
         String message = ((FrequencyGoal) testGoal).reviewFrequencyGoal(9);
         assertEquals("Your target for this goal was to excersize 10 times by " + target + "\n" +
                 "\n" +
@@ -53,7 +72,6 @@ public class FrequencyGoalTest {
         currentTime = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         target = new DateTime(now1.getYear(), now1.getMonthValue(), now1.getDayOfMonth(), now1.getHour(), now1.getMinute(), now1.getSecond());
         testGoal = new FrequencyGoal(name, currentTime, target, targetFreq);
-        Thread.sleep(1000);
         String message = ((FrequencyGoal) testGoal).reviewFrequencyGoal(0);
         assertEquals("Your target for this goal was to excersize 10 times by " + target + "\n" +
                 "\n" +

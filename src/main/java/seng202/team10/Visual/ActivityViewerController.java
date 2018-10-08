@@ -1,32 +1,29 @@
 package seng202.team10.Visual;
 
-import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.VBox;
-import javafx.util.Duration;
-import seng202.team10.Control.GUIController;
+import seng202.team10.Control.MainController;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
-import seng202.team10.Model.ActivitiesData.HealthWarning;
+import seng202.team10.Model.UserProfile;
 
-import javax.swing.text.html.ImageView;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Controller for the Activity Viewer Screen, which displays and filters lists of activities
- * SENG202 2018S2
+ *
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public class ActivityViewerController {
 
-    private GUIController app;
+    private MainController mainController ;
     private ObservableList<String> types;
+    private int currentIndex = -1;
+    private UserProfile currentUser;
 
     @FXML private DatePicker startDate;
     @FXML private DatePicker endDate;
@@ -39,13 +36,15 @@ public class ActivityViewerController {
     @FXML private TableColumn<Activity, Integer> entrynoColumn;
     @FXML private Button entryViewerButton;
     @FXML private Button helpButton;
+    @FXML private Button deleteButton;
+    @FXML private Button mapViewerButton;
+    @FXML private Button graphViewerButton;
     @FXML private TextArea helpTextArea;
     @FXML private ComboBox typeSelect;
     @FXML private Label distanceLabel;
     @FXML private Label durationLabel;
     @FXML private Label speedLabel;
     @FXML private Label heartRateLabel;
-    private int currentIndex = -1;
 
 
     /**
@@ -53,6 +52,8 @@ public class ActivityViewerController {
      */
     public void setUpScene()
     {
+        // Set Current User
+        currentUser = mainController.getTitleBar().getCurrentProfile();
         // Set tool tips for all elements
         setToolTips();
         // Set up help text area
@@ -70,6 +71,7 @@ public class ActivityViewerController {
             }
         });
         clearFilters();
+        updateStatLabels();
     }
 
 
@@ -78,7 +80,7 @@ public class ActivityViewerController {
      */
     private void setUpTableView()
     {
-        ObservableList<Activity> activities = FXCollections.observableArrayList(app.getTitleBar().getCurrentProfile().getActivities());
+        ObservableList<Activity> activities = FXCollections.observableArrayList (currentUser.getActivities());
         nameColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("name"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("typeString"));
         starttimeColumn.setCellValueFactory(new PropertyValueFactory<Activity, String>("timeString"));
@@ -111,27 +113,46 @@ public class ActivityViewerController {
     private void setUpHelpArea()
     {
         helpTextArea.setText("Welcome to the Activity View Screen!\n\n" +
-                             "On this screen you can sort your activities by different values, view activities between selected dates, " +
-                             "and view/edit the entries in an activity\n\n" +
+                             "On this screen you can sort your activities by different values, " +
+                             "view activities between selected dates, delete activities, " +
+                             "view/edit the entries in an activity, view a map of an activity, " +
+                             "or view graphs of an activity.\n\n" +
                              "- To sort your activities simply click on the title of the\n" +
                              "  value you wish to sort by. Hint: Try clicking multiple\n" +
                              "  times.\n" +
-                             "- To View activities between selected dates:\n" +
-                             "\t- Click the \"From\" date selector and choose the date\n" +
-                             "\t  to start from.\n" +
-                             "\t- Click the \"To\" date selector and choose the date to\n" +
-                             "\t  end on.\n" +
+                             "- To view activities between selected dates:\n" +
+                             "\t- Click the \"From\" date selector and choose the\n" +
+                             "\t  date to start from.\n" +
+                             "\t- Click the \"To\" date selector and choose the date\n" +
+                             "\t  to end on.\n" +
                              "\t- Click the \"Type\" Drop down and select a type of\n" +
                              "\t  activity to filter.\n" +
                              "\t- Click the Apply Filters button and the activities in\n" +
                              "\t  the table will be updated.\n" +
-                             "\t- If you wish to return to viewing al activities simply\n" +
-                             "\t  click the Clear Filters button.\n" +
+                             "\t- If you wish to return to viewing all activities\n" +
+                             "\t  simply click the Clear Filters button.\n" +
+                             "- To delete an activity:\n" +
+                             "\t- Select the activity you wish to delete from the\n" +
+                             "\t  list on the left.\n" +
+                             "\t- Click on the Delete Activity Button and you will\n" +
+                             "\t  receive a confirmation message.\n" +
+                             "\t- BEWARE! - If you delete an activity you cannot\n" +
+                             "\t  restore it!\n" +
                              "- To view/edit the entries in an activity:\n" +
                              "\t- Click the activity you wish to view/edit.\n" +
                              "\t- Click the View Entries button and you will be\n" +
-                             "\t  navigated to the Entry View Screen.\n\n" +
-                             "Hover the mouse over each button item to see what it is for.");
+                             "\t  navigated to the Entry View Screen.\n" +
+                             "- To view a map of an activity:\n" +
+                             "\t- Select an activity from the list of activities on the\n" +
+                             "\t  left.\n" +
+                             "\t- Click on the View Map button and you will be\n" +
+                             "\t  taken to the View Map Screen.\n" +
+                             "- To View graphs of an activity:\n" +
+                             "\t- Select an activity from the list of activities on the\n" +
+                             "\t  left.\n" +
+                             "\t- Click on the View Graphs button and you will be\n" +
+                             "\t  taken to the View Graphs Screen.\n\n" +
+                             "Hover the mouse over each item to see what it is for.");
         helpTextArea.setWrapText(true);
         helpTextArea.setVisible(false);
     }
@@ -152,12 +173,20 @@ public class ActivityViewerController {
                                                    "Please click a title to sort the activities by that value."));
         entryViewerButton.setTooltip(new Tooltip("Click here to view the Entries in the selected activity.\n" +
                                                  "Note: You must have clicked on an activity in the table for this button to be used."));
+        mapViewerButton.setTooltip(new Tooltip("Click here to view a map of the selected activity."));
+        graphViewerButton.setTooltip(new Tooltip("Click here to view graphs of the selected activities."));
+        deleteButton.setTooltip(new Tooltip("Click here to delete the current activity.\n" +
+                                            "BEWARE! Once an activity is deleted it cannot be restored."));
+        distanceLabel.setTooltip(new Tooltip("Here is the distance travelled for the selected activity."));
+        durationLabel.setTooltip(new Tooltip("Here is the duration the selected activity took."));
+        speedLabel.setTooltip(new Tooltip("Here is the average speed during the selected activity."));
+        heartRateLabel.setTooltip(new Tooltip("Here is the average heart rate during the selected activity."));
     }
 
 
     /**
      * Method to fill the table with the activities to display used by setUpScene as well as applyFilter.
-     * @param displayActivities An <b>ArrayList&gt;Activity&lt;</b> to be displayed in the table.
+     * @param displayActivities An <b>ArrayList&lt;Activity&gt;</b> to be displayed in the table.
      */
     private void populateTable(ObservableList<Activity> displayActivities)
     {
@@ -186,10 +215,17 @@ public class ActivityViewerController {
      */
     private void setUpStatLabels(Activity selectedActivity)
     {
-        distanceLabel.setText(selectedActivity.getDistanceKM().toString());
-        durationLabel.setText(String.valueOf(selectedActivity.getDurationMins()));
-        speedLabel.setText(selectedActivity.getSpeedKMH().toString());
-        heartRateLabel.setText(String.valueOf(selectedActivity.getAverageHeartRate()));
+        if(selectedActivity != null) {
+            distanceLabel.setText(selectedActivity.getDistanceKM().toString());
+            durationLabel.setText(String.valueOf(selectedActivity.getDurationMins()));
+            speedLabel.setText(selectedActivity.getSpeedKMH().toString());
+            heartRateLabel.setText(String.valueOf(selectedActivity.getAverageHeartRate()));
+        } else {
+            distanceLabel.setText("0");
+            durationLabel.setText("0");
+            speedLabel.setText("0");
+            heartRateLabel.setText("0");
+        }
     }
 
 
@@ -200,9 +236,9 @@ public class ActivityViewerController {
     @FXML private void viewGraph()
     {
         if(activitiesTableView.getSelectionModel().getSelectedItem() != null) {
-            app.getTitleBar().openGraphs(activitiesTableView.getSelectionModel().getSelectedItem());
+            mainController .getTitleBar().openGraphs(activitiesTableView.getSelectionModel().getSelectedItem());
         } else {
-            app.createPopUp(Alert.AlertType.ERROR, "Error", "Please select an Activity first");
+            mainController .createPopUp(Alert.AlertType.ERROR, "Error", "Please select an Activity first");
         }
     }
 
@@ -214,9 +250,9 @@ public class ActivityViewerController {
     @FXML private void viewMap()
     {
         if(activitiesTableView.getSelectionModel().getSelectedItem() != null) {
-            app.getTitleBar().openMap(activitiesTableView.getSelectionModel().getSelectedItem());
+            mainController .getTitleBar().openMap(activitiesTableView.getSelectionModel().getSelectedItem());
         } else {
-            app.createPopUp(Alert.AlertType.ERROR, "Error", "Please select an Activity first");
+            mainController .createPopUp(Alert.AlertType.ERROR, "Error", "Please select an Activity first");
         }
     }
 
@@ -228,7 +264,7 @@ public class ActivityViewerController {
     @FXML public void applyFilter()
     {
         ArrayList<Activity> newActivities = new ArrayList<>();
-        for(Activity profileActivity: app.getTitleBar().getCurrentProfile().getActivities()) {
+        for(Activity profileActivity: currentUser.getActivities()) {
             newActivities.add(profileActivity);
         }
         LocalDate lowerDate = startDate.getValue();
@@ -239,21 +275,21 @@ public class ActivityViewerController {
         //Datetime check and creation
         if (lowerDate != null) {
             if(lowerDate.getYear() < 1900 || lowerDate.getYear() > 2100){
-                app.createPopUp(Alert.AlertType.ERROR, "Error", "Please choose a lower date between 1900 and 2100");
+                mainController .createPopUp(Alert.AlertType.ERROR, "Error", "Please choose a lower date between 1900 and 2100");
             } else {
                 lowerDateTime = new DateTime(lowerDate.getYear(), lowerDate.getMonthValue(), lowerDate.getDayOfMonth(), 0, 0, 1);
             }
         }
         if (upperDate != null) {
             if (upperDate.getYear() > 2100 || upperDate.getYear() < 1900) {
-                app.createPopUp(Alert.AlertType.ERROR, "Error", "Please choose an upper date between 1900 and 2100");
+                mainController .createPopUp(Alert.AlertType.ERROR, "Error", "Please choose an upper date between 1900 and 2100");
             } else {
                 upperDateTime = new DateTime(upperDate.getYear(), upperDate.getMonthValue(), upperDate.getDayOfMonth(), 23, 59, 59);
             }
         }
         if((lowerDateTime != null) && (upperDateTime != null)) {
             if(lowerDateTime.isAfter(upperDateTime)) {
-                app.createPopUp(Alert.AlertType.ERROR, "Error", "Please make sure your lower date is earlier than your upper date");
+                mainController .createPopUp(Alert.AlertType.ERROR, "Error", "Please make sure your lower date is earlier than your upper date");
                 lowerDateTime = null;
                 upperDateTime = null;
             }
@@ -319,7 +355,7 @@ public class ActivityViewerController {
      */
     @FXML public void clearFilters()
     {
-        ObservableList<Activity> activities = FXCollections.observableArrayList(app.getTitleBar().getCurrentProfile().getActivities());
+        ObservableList<Activity> activities = FXCollections.observableArrayList (currentUser.getActivities());
         populateTable(activities);
         typeSelect.setValue(null);
         startDate.setValue(null);
@@ -334,9 +370,9 @@ public class ActivityViewerController {
     @FXML public void openEntries()
     {
         if(activitiesTableView.getSelectionModel().getSelectedItem() != null) {
-            app.getTitleBar().openEntry(activitiesTableView.getSelectionModel().getSelectedItem());
+            mainController .getTitleBar().openEntry(activitiesTableView.getSelectionModel().getSelectedItem());
         } else {
-            app.createPopUp(Alert.AlertType.ERROR, "Error", "Please select an Activity first");
+            mainController .createPopUp(Alert.AlertType.ERROR, "Error", "Please select an Activity first");
         }
     }
 
@@ -348,22 +384,25 @@ public class ActivityViewerController {
     {
         if(activitiesTableView.getSelectionModel().getSelectedItem() != null) {
             Activity toDelete = activitiesTableView.getSelectionModel().getSelectedItem();
-            app.getTitleBar().getCurrentProfile().deleteActivity(toDelete);
-            app.getTitleBar().setUpWarningFlag();
-            app.getDataWriter().saveProfile(app.getTitleBar().getCurrentProfile());
+            String option = mainController.createPopUp(Alert.AlertType.CONFIRMATION, "Warning", "Are you sure you want to delete the activity: " + toDelete.getName() + "?");
+            if (option.equals("OK")) {
+                currentUser.deleteActivity(toDelete);
+                mainController.getTitleBar().setUpWarningFlag();
+                mainController.getDataWriter().saveProfile(currentUser);
+            }
         } else {
-            app.createPopUp(Alert.AlertType.ERROR, "Error", "Please select an Activity first");
+            mainController .createPopUp(Alert.AlertType.ERROR, "Error", "Please select an Activity first");
         }
-        populateTable(FXCollections.observableArrayList(app.getTitleBar().getCurrentProfile().getActivities()));
+        populateTable(FXCollections.observableArrayList (currentUser.getActivities()));
     }
 
 
     /**
-     * Setter method to pass the GUIController into this controller.
-     * @param guiController <b>GUIController:</b> The main controller.
+     * Setter method to pass the MainController into this controller.
+     * @param mainController <b>MainController:</b> The main controller.
      */
-    public void setApp(GUIController guiController)
+    public void setMainController(MainController mainController)
     {
-        this.app = guiController;
+        this.mainController = mainController;
     }
 }

@@ -14,23 +14,24 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import seng202.team10.Model.ActivitiesData.Activity;
+import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.Exceptions.*;
 import seng202.team10.Model.FileOperations.*;
 import seng202.team10.Model.UserProfile;
 import seng202.team10.Visual.*;
 
 import java.io.FileNotFoundException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 
 /**
- * This is the main controller for the application. This class creates and launches scenes,
- * stores all data needed and functions as the general controller. It passes itself into
- * controllers so they can access any information they need.
+ * Class that acts as the main controller for the application. Creates and launches scenes,
+ * stores all data needed and functions. Passes itself into controllers so they can access any information they need.
  */
-public class GUIController extends Application {
-
+public class MainController extends Application {
 
     private Scene titleBarScene;
     private TitleBarController titleBarController;
@@ -45,9 +46,9 @@ public class GUIController extends Application {
 
 
     /**
-     * A lot of the initial setup when the program is launched. loads profiles and scenes to the stage
+     * Method to perform the initial setup when the program is launched. Loads profiles and scenes to the stage.
      * @param primaryStage The main stage of the application that all scenes will be set to.
-     * @throws Exception When the stage is null
+     * @throws Exception When the stage is null.
      */
     @Override
     public void start(Stage primaryStage) throws Exception
@@ -55,7 +56,6 @@ public class GUIController extends Application {
         if(!dataReader.checkFileExists("./profiles")) {
             dataWriter.createProfileFolder();
         }
-//        loadAllUsers();
         loadUserDetails();
         loadTitleBar();
         allowDrag(root, primaryStage);
@@ -70,39 +70,9 @@ public class GUIController extends Application {
 
 
     /**
-     * Method to load usernames and genders from the filenames.
-     */
-    public void loadUserDetails()
-    {
-        userNames.clear();
-        userGenders.clear();
-        dataReader.getExistingUsers(userNames, userGenders);
-    }
-
-
-    /**
-     * Getter method for the data reader
-     * @return FileReader
-     */
-    public FileReader getDataReader()
-    {
-        return dataReader;
-    }
-
-    /**
-     * Getter method for the user genders in an ArrayList of strings
-     * @return ArrayList
-     */
-    public ArrayList<String> getUserGenders()
-    {
-        return userGenders;
-    }
-
-
-    /**
      * Method to set the window as draggable.
-     * @param root Parent: the root scene loader of the window.
-     * @param stage Stage: the primary stage.
+     * @param root  The <b>Parent</b> scene loader of the window.
+     * @param stage  The primary <b>Stage</b> of the application.
      */
     private void allowDrag(Parent root, Stage stage)
     {
@@ -137,16 +107,45 @@ public class GUIController extends Application {
 
 
     /**
-     * Getter Method for the usernames arraylist
-     * @return ArrayList: User Names
+     * Method to load usernames and genders from the filenames.
+     */
+    public void loadUserDetails()
+    {
+        // repopulate the user lists
+        dataReader.getExistingUsers(userNames, userGenders);
+    }
+
+
+    /**
+     * Getter method for the data reader.
+     * @return A <b>FileReader</b> for reading data from files.
+     */
+    public FileReader getDataReader()
+    {
+        return dataReader;
+    }
+
+    /**
+     * Getter method for the user genders.
+     * @return An <b>ArrayList&lt;String&gt;</b> of the genders of users.
+     */
+    public ArrayList<String> getUserGenders()
+    {
+        return userGenders;
+    }
+
+
+    /**
+     * Getter method for the user names.
+     * @return An <b>ArrayList&lt;String&gt;</b> of user names.
      */
     public ArrayList<String> getUserNames() {
         return userNames;
     }
 
     /**
-     * Getter Method for the primary stage
-     * @return Stage: the primary stage of the application
+     * Getter method for the primary stage.
+     * @return The primary <b>Stage</b> of the application.
      */
     public Stage getPrimaryStage()
     {
@@ -164,8 +163,8 @@ public class GUIController extends Application {
 
 
     /**
-     * Getter method for the Parser
-     * @return Parser
+     * Getter method for the parser.
+     * @return A <b>Parser</b> for parsing data.
      */
     public Parser getParser()
     {
@@ -175,7 +174,7 @@ public class GUIController extends Application {
 
     /**
      * Getter method for data writer
-     * @return FileWriter
+     * @return A <b>FileWriter</b> for writing to files.
      */
     public FileWriter getDataWriter()
     {
@@ -184,12 +183,12 @@ public class GUIController extends Application {
 
 
     /**
-     * Uploads the data from a file and stores it in the specified user profile.
+     * Method to upload the data from a file and store it in the specified user profile.
      *
-     * @param user  The user profile that the data is uploaded to.
-     * @param filePath The file path the data is stored at.
-     * @throws FileNotFoundException When theres no file to be found
-     * @throws NoDataFoundException When theres no data to be found in the file
+     * @param user  The <b>UserProfile</b> that the data is uploaded to.
+     * @param filePath A <b>String</b> of the file path the data is stored at.
+     * @throws FileNotFoundException When there's no file to be found
+     * @throws NoDataFoundException When there's no data to be found in the file
      * @throws ExistingElementException When the data in the file has already been uploaded
      */
     public void uploadDataToUser(UserProfile user, String filePath) throws FileNotFoundException, NoDataFoundException, ExistingElementException
@@ -202,42 +201,44 @@ public class GUIController extends Application {
 
 
     /**
-     * checks to see if a profile already exists with a specific username
-     * @param userName the username being checked
+     * Method to check if a profile already exists with a specific username.
+     * @param userName A <b>String</b> of the username being checked.
      * @throws UniqueNameException When a profile already exists with that name.
      */
-    public void checkUniqueName(String userName) throws UniqueNameException
+    public String checkUniqueName(String userName) throws UniqueNameException
     {
-        if (titleBarController.getCurrentProfile() == null || !userName.contentEquals(titleBarController.getCurrentProfile().getName())) {
+        String nnameString = userName.replaceAll("\\s+", " ");
+        nnameString = nnameString.trim();
+        if (titleBarController.getCurrentProfile() == null || !nnameString.contentEquals(titleBarController.getCurrentProfile().getName())) {
             for (String name : this.getUserNames()) {
-                if (name.equals(userName)) {
+                if (name.equals(nnameString)) {
                     throw new UniqueNameException();
                 }
             }
         }
+        return nnameString;
     }
 
 
     /**
-     * Initalizes every loader, controller and scene for each scene. Also runs the setApp(this) and
-     * setUpScene methods for each.
-     * @throws Exception Not implemented.
+     * Method to initialize the loader, controller and scene for the title bar.
+     * @throws Exception When the resources cannot be found.
      */
-    public void loadTitleBar() throws Exception
+    private void loadTitleBar() throws Exception
     {
         FXMLLoader titleBarLoader = new FXMLLoader(getClass().getResource("/fxml/titleBar.fxml"));
         root = titleBarLoader.load();
         titleBarController = titleBarLoader.getController();
-        titleBarController.setApp(this);
+        titleBarController.setMainController(this);
         titleBarController.setUpScene();
         titleBarScene = new Scene(root, 1280, 750);
     }
 
 
     /**
-     * Creates a new profile (and adds the test data to it for now).
-     * @param newUser  The profile being created.
-     * @throws InvalidUserException when the user is invalid
+     * Method to create a new user profile.
+     * @param newUser  The <b>UserProfile</b> being created.
+     * @throws InvalidUserException When the newUser has invalid data.
      */
     public void createUser(UserProfile newUser) throws InvalidUserException
     {
@@ -246,7 +247,7 @@ public class GUIController extends Application {
                 newUser.getHeight() != 0.0 &&
                 newUser.getBirthDate() != null &&
                 newUser.getGender() != null) {
-
+            newUser.setLastWeightUpdate(DateTime.now());
             getDataWriter().saveProfile(newUser);
         } else {
             throw new InvalidUserException();
@@ -255,18 +256,19 @@ public class GUIController extends Application {
 
 
     /**
-     * Sets the current user profile.
-     * @param userProfile  The user profile that's logged in.
+     * Setter for the user profile.
+     * @param userProfile  The <b>UserProfile</b> that's logged in.
      */
     public void setCurrentProfile(UserProfile userProfile) {
         this.titleBarController.setCurrentProfile(userProfile);
+        this.getTitleBar().getGoalController().setCurrentUser(userProfile);
         this.titleBarController.getGoalController().addGoalsToTable();
     }
 
 
     /**
-     * obligatory main method. launches the program
-     * @param args Not implemented
+     * Obligatory main method. Launches the program.
+     * @param args Not used main function variable.
      */
     public static void main(String[] args)
     {
@@ -275,11 +277,11 @@ public class GUIController extends Application {
 
 
     /**
-     * Method to display a pop up window with a title a message and a type (depending on if you want an error or information etc)
-     * @param type Alert.AlertType: type of alert
-     * @param title String: Title of pop up window
-     * @param message String: Message to display to user
-     * @return  String
+     * Method to display a pop up window with a title, a message and a type of alert (error, message or warning).
+     * @param type An <b>Alert.AlertType</b> of the type of alert.
+     * @param title A <b>String</b> of the title of the pop up window.
+     * @param message A <b>String</b> of the message to display to the user.
+     * @return  A <b>String</b> of the message displayed.
      */
     public String createPopUp(Alert.AlertType type, String title, String message)
     {
@@ -288,17 +290,26 @@ public class GUIController extends Application {
         errorPopUp.setContentText(message);
         errorPopUp.setHeaderText(null);
         Optional<ButtonType> buttonType = errorPopUp.showAndWait();
-        return buttonType.get().getText();
+        try {
+            return buttonType.get().getText();
+        } catch (NoSuchElementException exception) {
+            // If the close button in the top left is selected, cancel the pop up.
+            return "Cancel";
+        }
     }
 
+    /**
+     * Getter method for the title bar controller.
+     * @return A <b>TitleBarController</b> object.
+     */
     public TitleBarController getTitleBar() {
         return titleBarController;
     }
 
 
     /**
-     * Setter Method for current user
-     * @param currentUser UserProfile: Current logged in user.
+     * Setter method for current user.
+     * @param currentUser The <b>UserProfile</b> of the currently logged in user.
      */
     public void setCurrentUser(UserProfile currentUser)
     {

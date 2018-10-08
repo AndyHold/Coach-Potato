@@ -1,15 +1,18 @@
 package seng202.team10.Visual;
 
-import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import seng202.team10.Control.GUIController;
+import seng202.team10.Control.MainController;
+import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.Exceptions.*;
+import seng202.team10.Model.Goals.Goal;
 import seng202.team10.Model.UserProfile;
 
 import java.text.DecimalFormat;
@@ -19,14 +22,15 @@ import java.util.List;
 
 /**
  * Controller class for the profile screen, where user information and activity summaries are displayed.
- * SENG202 2018S2
+ *
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public class ProfileController {
 
-    private GUIController app;
+    private MainController mainController ;
     private List<String> quotes;
     private UserProfile currentUser;
+    private boolean firstQuote;
 
     @FXML Pane calendarPane;
     @FXML private Label welcomeProfileLabel;
@@ -48,6 +52,9 @@ public class ProfileController {
     @FXML public Text activity1Text;
     @FXML public Text activity2Text;
     @FXML public Text activity3Text;
+    @FXML public Text goalNameText;
+    @FXML public Text goalStatusText;
+    @FXML public Text goalTypeText;
     @FXML private HBox distanceHBox;
     @FXML private HBox velocityHBox;
     @FXML private HBox heartRateHBox;
@@ -58,17 +65,32 @@ public class ProfileController {
     @FXML private TextArea helpTextArea;
     @FXML public ListView activitiesListView;
     @FXML public ListView goalsListView;
-    @FXML public Label activitiesLabel;
+    @FXML public Label activitiesListLabel;
     @FXML public Label goalsListLabel;
-
+    @FXML public Label goalsListClickLabel;
+    @FXML public Label activitiesListClickLabel;
+    @FXML public Label statsClickLabel;
+    @FXML public Label activitiesClickLabel;
+    @FXML public Label goalsClickLabel;
+    @FXML public HBox goalStats1HBox;
+    @FXML public HBox goalStats2HBox;
+    @FXML public HBox goalStats3HBox;
+    @FXML public HBox activityStats1HBox;
+    @FXML public HBox activityStats2HBox;
+    @FXML public HBox activityStats3HBox;
+    @FXML public Text activityNameText;
+    @FXML public Text activityTypeText;
+    @FXML public Text activityDurationText;
+    @FXML private Label goalDescriptionLabel;
+    @FXML private Label activityDescriptionLabel;
 
     /**
-     * Setter method to pass the GUIController into this controller.
-     * @param guiController <b>GUIController:</b> The main controller.
+     * Setter method to pass the MainController into this controller.
+     * @param mainController <b>MainController:</b> The main controller.
      */
-    public void setApp(GUIController guiController)
+    public void setMainController(MainController mainController)
     {
-        this.app = guiController;
+        this.mainController = mainController;
     }
 
 
@@ -77,17 +99,18 @@ public class ProfileController {
      */
     public void setUpScene()
     {
+        firstQuote = true;
         // Set quotes list
         setQuotes();
         // Set tool tips
         setUpToolTips();
         // Set up help text area
         setUpHelpTextArea();
+        //Reset visibility of labels, HBoxs and ListViews
+        resetVisibility();
         // Hide buttons that are hidden
         confirmButton.setVisible(false);
         wholeProfileVBox.setVisible(false);
-        //Set quotes
-        setQuote();
         // Hide the help text field when focus is lost
         helpTextArea.focusedProperty().addListener((ov, oldV, newV) -> {
             if (!newV) {
@@ -134,13 +157,48 @@ public class ProfileController {
         this.currentUser = currentUser;
     }
 
+
+    @FXML private void setGoalLabels()
+    {
+        if (goalsListView.getSelectionModel().getSelectedItem() != null) {
+            Goal goal = (Goal) goalsListView.getSelectionModel().getSelectedItem();
+            goalNameText.setText("Goal Name: " + goal.getGoalName());
+            goalTypeText.setText("Goal Type: " + goal.getGoalType());
+            String status = null;
+            if (goal.isGoalAchieved()) {
+                status = "Achieved!";
+            } else status = "In Progress";
+            goalStatusText.setText("Goal Status: " + status);
+            goalStats1HBox.setVisible(true);
+            goalStats2HBox.setVisible(true);
+            goalStats3HBox.setVisible(true);
+            goalsClickLabel.setVisible(false);
+        }
+    }
+
+
+    @FXML private void setActivityLabels()
+    {
+        if (activitiesListView.getSelectionModel().getSelectedItem() != null) {
+            Activity activity = (Activity) activitiesListView.getSelectionModel().getSelectedItem();
+            activityNameText.setText("Activity Name: " + activity.getName());
+            activityTypeText.setText("Activity Type: " + activity.getType());
+            activityDurationText.setText("Activity Duration: " + activity.getDurationMins() + " minutes");
+            activityStats1HBox.setVisible(true);
+            activityStats2HBox.setVisible(true);
+            activityStats3HBox.setVisible(true);
+            activitiesClickLabel.setVisible(false);
+        }
+    }
+
+
     /**
      * Set up method for the help text area.
      */
     private void setUpHelpTextArea()
     {
         helpTextArea.setText("Welcome to Profile View Screen!\n\n" +
-                             "On this screen you can edit your profile details, view brief statistics, and view activities in a calender format.\n" +
+                             "On this screen you can edit your profile details, view brief statistics, and view activities and goals in a calendar format.\n" +
                              "- To edit your profile:\n" +
                              "\t- Click on the Edit button\n" +
                              "\t- Click on the data field you wish to edit\n" +
@@ -148,17 +206,24 @@ public class ProfileController {
                              "\t- Click the Confirm Changes Button\n" +
                              "\tIf any invalid data is entered you will get a pop up\n" +
                              "\tand will need to try again.\n" +
-                             "- Your brief statistics are displayed in the two information\n" +
-                             "  boxes on the bottom of the screen.\n" +
-                             "- To view activities in the calender:\n" +
+                             "- Your total statistics are displayed in the\n" +
+                             "  information box on the bottom left of the screen.\n" +
+                             "- To view activities and goals in the calendar:\n" +
                              "\t- Navigate to the month and year of your desired\n" +
-                             "\t  activity using the controls at the top of the\n" +
-                             "\t  calender.\n" +
-                             "\t- Dates with activities in them will have an A in them.\n" +
-                             "\t- Click on the date of your activity.\n" +
-                             "\t- Your statistics for that day will now be displayed in\n" +
-                             "\t  the information box below the calender.\n\n" +
-                             "Hover the mouse over any field to see what it contains.");
+                             "\t  activity or goal using the controls at the top\n" +
+                             "\t  of the calendar.\n" +
+                             "\t- Dates with activities will have an A in them\n" +
+                             "\t  and will be highlighted blue.\n" +
+                             "\t- Dates with goals will have an G in them\n" +
+                             "\t  and will be highlighted green.\n" +
+                             "\t- Click on the date you wish to see.\n" +
+                             "\t- Your activities and goals for that day will now be\n" +
+                             "\t  displayed in the lists to the right of the calendar.\n" +
+                             "\t  Your daily statistics will be updated for that day.\n" +
+                             "\t- Click on the goal you wish to see more details\n" +
+                             "\t  about and it will be displayed in the information\n" +
+                             "\t  box below the calendar\n" +
+                             "Hover the mouse over each item to see what it does.");
         helpTextArea.setVisible(false);
         helpTextArea.setWrapText(true);
     }
@@ -178,6 +243,12 @@ public class ProfileController {
         heightValueTA.setTooltip(new Tooltip("Height is displayed here in cm's."));
         bmiValueTA.setTooltip(new Tooltip("BMI value is displayed here."));
         quoteButton.setTooltip(new Tooltip("Motivation is key!\nClick here for new quote."));
+        recentActivitiesLabel.setTooltip(new Tooltip("Here your total statistics are displayed"));
+        activitiesListLabel.setTooltip(new Tooltip("Here is a list of activities for the calendar date selected."));
+        goalsListLabel.setTooltip(new Tooltip("Here is a list of goals for the calendar date selected."));
+        dailyStatsLabel.setTooltip(new Tooltip("Here is the daily statistics for the calendar date selected."));
+        goalDescriptionLabel.setTooltip(new Tooltip("Here is the description for the goal selected."));
+        activityDescriptionLabel.setTooltip(new Tooltip("Here is the description for the activity selected."));
     }
 
 
@@ -207,7 +278,44 @@ public class ProfileController {
      */
     @FXML public void setQuote()
     {
-        quotesLabel.setText(quotes.get((int)(Math.random()*(quotes.size()))));
+        if (firstQuote && currentUser.getBirthDate().getDateAsString().substring(0, 5).equals(DateTime.now().getDateAsString().substring(0, 5))) {
+            quotesLabel.setText("Happy Birthday From Coach Potato!!!");
+            firstQuote = false;
+        } else {
+            quotesLabel.setText(quotes.get((int) (Math.random() * (quotes.size()))));
+            firstQuote = false;
+        }
+    }
+
+
+    /**
+     * Method to reset values of all GUI elements to default
+     */
+    public void resetVisibility()
+    {
+        activity1HBox.setVisible(false);
+        activity2HBox.setVisible(false);
+        activity3HBox.setVisible(false);
+        goalStats1HBox.setVisible(false);
+        goalStats2HBox.setVisible(false);
+        goalStats3HBox.setVisible(false);
+        activityStats1HBox.setVisible(false);
+        activityStats2HBox.setVisible(false);
+        activityStats3HBox.setVisible(false);
+        activitiesClickLabel.setVisible(true);
+        goalsClickLabel.setVisible(true);
+        statsClickLabel.setVisible(true);
+        activitiesListView.setVisible(true);
+        goalsListView.setVisible(true);
+        goalsListClickLabel.setVisible(true);
+        activitiesListClickLabel.setVisible(true);
+        goalsListClickLabel.setText("Click on a date to get more details");
+        activitiesListClickLabel.setText("Click on a date to get more details");
+        ObservableList<Goal> goalsList = FXCollections.observableArrayList();
+        ObservableList<Activity> activitiesList = FXCollections.observableArrayList();
+        goalsListView.setItems(goalsList);
+        activitiesListView.setItems(activitiesList);
+        dailyStatsLabel.setText("Daily Statistics");
     }
 
 
@@ -227,7 +335,9 @@ public class ProfileController {
         weightValueTA.setText(df2.format((currentUser.getWeight())));
         heightValueTA.setText(df2.format((currentUser.getHeight())));
         bmiValueTA.setText(df2.format((currentUser.calcBmi())) + " - " + currentUser.getBmiCategory());
-        calendarPane.getChildren().add(new CalenderPaneController(YearMonth.now(), app, this).getView());
+        calendarPane.getChildren().add(new CalendarPaneController(YearMonth.now(), mainController , this).getView());
+
+        resetVisibility();
 
         // Sets up the calendar and other stats if the user has already uploaded the data to the app else all values are 0 initially.
         if (currentUser.getActivities().size() > 0) {
@@ -236,18 +346,12 @@ public class ProfileController {
             velocityText.setText("Average Speed: " + df2.format(currentUser.getActivitiesSpeed(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0))) + " km/h");
             heartRateText.setText("Average Heart Rate: " + String.valueOf(currentUser.getActivitiesHeartRate(new DateTime(1900, 1,1,0,0,0), new DateTime(2019, 1,1,0,0,0))) + " bpm");
             recentActivitiesLabel.setVisible(true);
-            distanceHBox.setVisible(true);
-            velocityHBox.setVisible(true);
-            heartRateHBox.setVisible(true);
-            activitiesListView.setVisible(true);
-            goalsListView.setVisible(true);
+
         } else {
             distanceText.setText("Total Distance Covered: 0.00 km");
             velocityText.setText("Average Speed: 0.00 km/h");
             heartRateText.setText("Average Heart Rate: No Data");
         }
-        activitiesLabel.setVisible(true);
-        goalsListLabel.setVisible(true);
     }
 
 
@@ -293,45 +397,74 @@ public class ProfileController {
         String oldName = currentUser.getName();
         try {
             String nameString = usernameTA.getText();
-            app.checkUniqueName(nameString);
+            String goodName = nameString.replace("\\s+", " ");
+            goodName.trim();
+            mainController.checkUniqueName(goodName);
             try {
-                currentUser.setName(nameString);
+                if (!goodName.isEmpty()) {
+                    currentUser.setName(goodName);
+                } else {
+                    mainController.createPopUp(Alert.AlertType.ERROR, "Invalid Username", "Please enter a non empty and valid username.");
+                }
             } catch (UserNameException | IllegalArgumentException exception) {
-                app.createPopUp(Alert.AlertType.ERROR, "Invalid Username", "Please enter a valid username: It should be less than 50 characters and only contain alphanumeric characters." );
+                mainController .createPopUp(Alert.AlertType.ERROR, "Invalid Username", "Please enter a valid username: It should be less than 50 characters and only contain alphanumeric characters." );
             }
         } catch (UniqueNameException | IllegalArgumentException exception) {
-            app.createPopUp(Alert.AlertType.ERROR, "Invalid Username", "Please enter a valid username: This username already exists." );
+            mainController .createPopUp(Alert.AlertType.ERROR, "Invalid Username", "Please enter a valid username: This username already exists." );
         }
         String newName = currentUser.getName();
         if(!(oldName.equals(newName))) {
-            app.getDataWriter().deleteProfile(oldName + " - " + currentUser.getGender());
-            app.getDataWriter().saveProfile(currentUser);
+            mainController .getDataWriter().deleteProfile(oldName + " - " + currentUser.getGender());
+            mainController.getUserNames().remove(oldName);
+            mainController .getDataWriter().saveProfile(currentUser);
         }
         // Set weight and handle exceptions
+        double oldWeight = currentUser.getWeight();
         try {
-            currentUser.setWeight(Double.valueOf(weightValueTA.getText()));
+            if (!weightValueTA.getText().isEmpty()) {
+                currentUser.setWeight(Double.valueOf(weightValueTA.getText()));
+            } else {
+                mainController.createPopUp(Alert.AlertType.ERROR, "Invalid Weight", "Please enter a non empty and valid weight.");
+            }
         }  catch (InvalidWeightException | IllegalArgumentException exception) {
-            app.createPopUp(Alert.AlertType.ERROR, "Invalid Weight", "Please enter a valid weight: It should be greater than 30 kg and less than 500 kg." );
+            mainController .createPopUp(Alert.AlertType.ERROR, "Invalid Weight", "Please enter a valid weight: It should be greater than 30 kg and less than 251 kg." );
+        }
+        double newWeight = currentUser.getWeight();
+
+        // If weight is successfully changed update last weight change
+        if (!(String.format("%.2f", oldWeight).equals(String.format("%.2f", newWeight)))) {
+            currentUser.setLastWeightUpdate(DateTime.now());
         }
 
         // Set height and handle Exceptions
         try {
-            currentUser.setHeight(Double.valueOf(heightValueTA.getText()));
+            if (!heightValueTA.getText().isEmpty()) {
+                currentUser.setHeight(Double.valueOf(heightValueTA.getText()));
+            } else {
+                mainController.createPopUp(Alert.AlertType.ERROR, "Invalid Height", "Please enter a non empty and valid height.");
+            }
+
         } catch (InvalidHeightException | IllegalArgumentException exception) {
-            app.createPopUp(Alert.AlertType.ERROR, "Invalid Height", "Please enter a valid height: It should be greater than 50 cm and less than 250 cm." );
+            mainController .createPopUp(Alert.AlertType.ERROR, "Invalid Height", "Please enter a valid height: It should be greater than 50 cm and less than 261 cm." );
         }
 
         // Set Date of Birth and handle exceptions
         try {
             String dob = dobTA.getText();
-            int yearInt = Integer.valueOf(dob.substring(6));
-            int monthInt = Integer.valueOf(dob.substring(3,5));
-            int dayInt = Integer.valueOf(dob.substring(0,2));
-            DateTime dateOfBirth = new DateTime(yearInt, monthInt, dayInt, 0, 0, 0);
-            currentUser.setBirthDate(dateOfBirth);
+            if (!dob.isEmpty()) {
+                int yearInt = Integer.valueOf(dob.substring(6));
+                int monthInt = Integer.valueOf(dob.substring(3,5));
+                int dayInt = Integer.valueOf(dob.substring(0,2));
+                DateTime dateOfBirth = new DateTime(yearInt, monthInt, dayInt, 0, 0, 0);
+                currentUser.setBirthDate(dateOfBirth);
+            } else {
+                mainController.createPopUp(Alert.AlertType.ERROR, "Invalid Date of Birth", "Please enter a non empty and valid date: It should be in DD/MM/YYYY format.");
+            }
         } catch (NullPointerException | IllegalArgumentException | InvalidDateException exception) {
-            app.createPopUp(Alert.AlertType.ERROR, "Invalid Date of Birth", "Please enter a valid date: It should be in DD/MM/YYYY format." );
+            mainController .createPopUp(Alert.AlertType.ERROR, "Invalid Date of Birth", "Please enter a valid date: It should be in DD/MM/YYYY format." );
         }
+        firstQuote = true;
+        setQuote();
 
         // Set gender and handle Exceptions
         List<String> genderList = Arrays.asList("Male", "Female", "Other");
@@ -340,33 +473,30 @@ public class ProfileController {
         if (genderList.contains(newGender)) {
             currentUser.setGender(newGender);
         } else {
-            app.createPopUp(Alert.AlertType.ERROR, "Invalid Gender", "Please enter a valid gender: It should be either \"Male\", \"Female\" or \"Other\"." );
+            mainController .createPopUp(Alert.AlertType.ERROR, "Invalid Gender", "Please enter a valid gender: It should be either \"Male\", \"Female\" or \"Other\"." );
         }
         if (!(oldGender.equals(currentUser.getGender()))) {
-            app.getDataWriter().deleteProfile(currentUser.getName() + " - " + oldGender);
+            mainController.getTitleBar().setProfileImage();
+            mainController .getDataWriter().deleteProfile(currentUser.getName() + " - " + oldGender);
         }
         confirmButton.setVisible(false);
         editProfileButton.setVisible(true);
-        app.getDataWriter().saveProfile(currentUser);
+        mainController .getDataWriter() .saveProfile(currentUser);
         setUserDetails();
     }
 
-    /**
-     * Method called when close button is selected.
-     * Exits the application.
-     */
-    @FXML private void close()
-    {
-        Platform.exit();
-    }
-
 
     /**
-     * Method called when the minimise button is selected.
-     * Minimises the application to the task bar.
+     * Method to prompt the user if they are due to update their weight
      */
-    @FXML private void minimise()
+    public void checkLastWeightUpdate()
     {
-        app.minimise();
+        // If it has been longer than a week since last weight update
+        if (DateTime.now().subtractDaysFromDateTime(currentUser.getLastWeightUpdate()) > 7) {
+            // Prompt user to update weight
+            mainController.createPopUp(Alert.AlertType.INFORMATION, "Weight Update Time!",
+                                       "You have not updated your weight this week.\n" +
+                                       "Please edit your proofile with your current weught.");
+        }
     }
 }

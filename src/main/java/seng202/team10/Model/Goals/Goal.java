@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * Goal Class for Coach Potato SENG202 2018S2
+ * Class that represents an instance of a goal for the user, super class for different kinds of goal subclasses.
  */
 public class Goal implements Serializable {
 
@@ -17,25 +17,22 @@ public class Goal implements Serializable {
     private DateTime goalTargetDate;
     private String goalType;
     private Boolean goalAchievedStatus;
-    private int goalFrequency;
-    private double goalTime;
-    private double goalWeight;
-    private double goalDistance;
-    private double goalBmi;
 
 
     /**
      * Constructor method for Goal class
-     * @param name: String
-     * @param startDate: DateTime
-     * @param targetDate: Datetime
-     * @param type: String
-     * @throws InvalidGoalDateException When invalid dates are entered
-     * @throws BadGoalNameException When invalid name is entered
+     * @param name A <b>String</b> of the name of the goal.
+     * @param startDate The start <b>DateTime</b> of the goal.
+     * @param targetDate The end <b>DateTime</b> of the goal.
+     * @param type A <b>String</b> of the type of goal.
+     * @throws InvalidGoalDateException When invalid dates are entered.
+     * @throws BadGoalNameException When an invalid goal name is entered.
      */
     public Goal(String name, DateTime startDate, DateTime targetDate, String type) throws InvalidGoalDateException, BadGoalNameException
     {
-        setName(name);
+        String nname = name.replaceAll("\\s+", " ");
+        nname = nname.trim();
+        setName(nname);
         setDates(startDate, targetDate);
         this.goalType = type;
         goalAchievedStatus = false;
@@ -44,9 +41,9 @@ public class Goal implements Serializable {
 
     /**
      * Setter method for the start and target dates of the goal.
-     * @param startDate: DateTime
-     * @param targetDate: DateTime
-     * @throws InvalidGoalDateException When incorrent dates are given
+     * @param startDate The start <b>DateTime</b> of the goal.
+     * @param targetDate The end <b>DateTime</b> of the goal.
+     * @throws InvalidGoalDateException When incorrect/invalid dates are given.
      */
     private void setDates(DateTime startDate, DateTime targetDate) throws InvalidGoalDateException
     {
@@ -71,9 +68,9 @@ public class Goal implements Serializable {
 
 
     /**
-     * Setter method for the name of a goal
-     * @param name: String
-     * @throws BadGoalNameException
+     * Setter method for the name of a goal.
+     * @param name A <b>String</b> of the name of the goal.
+     * @throws BadGoalNameException when the goal name is invalid.
      */
     private void setName(String name) throws BadGoalNameException
     {
@@ -85,8 +82,8 @@ public class Goal implements Serializable {
 
 
     /**
-     * Getter method for a goal's start date
-     * @return DateTime
+     * Getter method for a goal's start date.
+     * @return The start <b>DateTime</b> of the goal.
      */
     public DateTime getGoalStartDate()
     {
@@ -94,8 +91,8 @@ public class Goal implements Serializable {
     }
 
     /**
-     * Getter method for a goal's target date
-     * @return DateTime
+     * Getter method for a goal's target date.
+     * @return The target <b>DateTime</b> of the goal.
      */
     public DateTime getGoalTargetDate()
     {
@@ -103,8 +100,8 @@ public class Goal implements Serializable {
     }
 
     /**
-     * Getter method for a goal's type
-     * @return String
+     * Getter method for a goal's type.
+     * @return A <b>String</b> of the goal type.
      */
     public String getGoalType()
     {
@@ -112,17 +109,17 @@ public class Goal implements Serializable {
     }
 
     /**
-     * Getter method for the achieved boolean which determines whether a goals has been achieved or not
-     * @return Boolean
+     * Getter method for the achieved boolean which determines whether a goals has been achieved or not.
+     * @return <b>true</b> if the goal is achieved, <b>false</b> otherwise.
      */
-    public Boolean getGoalAchieved()
+    public Boolean isGoalAchieved()
     {
         return this.goalAchievedStatus;
     }
 
     /**
-     * Setter method for the achieved boolean which determines whether a goals has been achieved or not
-     * @param goalAchievedStatus  Boolean, true when the goal is achieved, false otherwise
+     * Setter method for the achieved boolean which determines whether a goals has been achieved or not.
+     * @param goalAchievedStatus  <b>true</b> if the goal is achieved, <b>false</b> otherwise.
      */
     public void setGoalAchievedStatus(Boolean goalAchievedStatus)
     {
@@ -132,8 +129,8 @@ public class Goal implements Serializable {
 
 
     /**
-     * Getter method for the goal name
-     * @return String
+     * Getter method for the goal name.
+     * @return A <b>String</b> of the goal name.
      */
     public String getGoalName()
     {
@@ -141,4 +138,13 @@ public class Goal implements Serializable {
     }
 
 
+    /**
+     * ToString method for the goal name.
+     * @return A <b>String</b> of the goal name.
+     */
+    @Override
+    public String toString()
+    {
+        return getGoalName() + ": " + getGoalType();
+    }
 }

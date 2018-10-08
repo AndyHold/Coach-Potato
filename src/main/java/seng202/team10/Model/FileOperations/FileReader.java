@@ -7,8 +7,10 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static org.apache.commons.lang3.ArrayUtils.contains;
+
 /**
- * File Reader Class for Coach Potato SENG202 2018S2
+ * Class that contains methods for reading from files and some validation of data. This class is used by
  */
 public class FileReader {
 
@@ -16,25 +18,22 @@ public class FileReader {
 
 
     /** Method to load an already established profile from file.
-     * @param profileName UserProfile: should match what would be returned from UserProfile.getName()
+     * @param profileName UserProfile: should match what would be returned from UserProfile.getName().
+     * @throws IOException when there is a failed I/O operation.
+     * @throws ClassNotFoundException when the class cannot be found.
      * @return UserProfile
      * */
     public UserProfile loadExistingProfile(String profileName) throws IOException, ClassNotFoundException
     {
+        localProfile = null;
         String filename = "./profiles/" + profileName + ".ser";
         if(checkFileExists(filename)) {
-//            try {
-                FileInputStream fileIn = new FileInputStream(filename);
-                ObjectInputStream in = new ObjectInputStream(fileIn);
-                localProfile = (UserProfile) in.readObject();
-                in.close();
-                fileIn.close();
-                return localProfile;
-//            } catch (ClassNotFoundException c) {
-//                c.printStackTrace();
-//            } catch (IOException i) {
-//                i.printStackTrace();
-//            }
+            FileInputStream fileIn = new FileInputStream(filename);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            localProfile = (UserProfile) in.readObject();
+            in.close();
+            fileIn.close();
+            return localProfile;
         }
         return localProfile;
     }
@@ -67,6 +66,8 @@ public class FileReader {
 
     /**
      * Method to check which users are saved in the profiles folder, adding their names and genders to ArrayLists that are passed in.
+     * @param foundUsers  An empty <b>ArrayList&lt;String&gt;</b> of users.
+     * @param usersGenders An empty <b>ArrayList&lt;String&gt;</b> of the genders of users.
      */
     public void getExistingUsers(ArrayList<String> foundUsers, ArrayList<String> usersGenders)
     {
@@ -80,8 +81,10 @@ public class FileReader {
                     if (getFileExtension(listOfFile).equals(".ser")) {
                         String[] filename = listOfFile.getName().substring(0, listOfFile.getName().length() - 4).split(" - ");
                         if (filename.length == 2) {
-                            foundUsers.add(filename[0]);
-                            usersGenders.add(filename[1]);
+                            if (contains(new String[]{"Male", "Female", "Other"}, filename[1])) {
+                                foundUsers.add(filename[0]);
+                                usersGenders.add(filename[1]);
+                            }
                         }
                     }
                 }
@@ -93,7 +96,7 @@ public class FileReader {
     /**
      * helper method for getExistingUsers that checks and returns the extension of a file object
      * @param file the file being checked
-     * @return string of the . + the extension
+     * @return A <b>String</b> of the . + the extension
      */
     private String getFileExtension(File file) {
         String name = file.getName();
@@ -104,20 +107,5 @@ public class FileReader {
         //System.out.println(name.substring(lastIndexOf));
         return name.substring(lastIndexOf);
     }
-
-
-
-    /** sets the local profile for the filereader to use
-     * @param activeProfile  A UserProfile being set as the local profile*/
-    public void setLocalProfile(UserProfile activeProfile) {
-        localProfile = activeProfile;
-    }
-
-    /** returns the  profile the filereader last loaded
-     * @return Userprofile the local profile*/
-    public UserProfile getLocalProfile(){
-        return localProfile;
-    }
-
 
 }

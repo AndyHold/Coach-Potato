@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 /**
  * Subclass of an anchor pane that can store additional data.
- * SENG202 2018S2
+ *
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public class AnchorPaneNode extends AnchorPane {
@@ -27,6 +27,7 @@ public class AnchorPaneNode extends AnchorPane {
     private ProfileController profileController;
     private ArrayList<Activity> activities = new ArrayList<>();
     private ArrayList<Goal> todayGoals = new ArrayList<>();
+    private String style = null;
 
     /**
      * Setter method to set the profile controller for this Scene.
@@ -110,30 +111,40 @@ public class AnchorPaneNode extends AnchorPane {
         this.profileController.activity2HBox.setVisible(true);
         this.profileController.activity3HBox.setVisible(true);
         this.profileController.dailyStatsLabel.setVisible(true);
+        this.profileController.statsClickLabel.setVisible(false);
 
-        ObservableList<Object> goalsList = FXCollections.observableArrayList();
+        this.profileController.goalStats1HBox.setVisible(false);
+        this.profileController.goalStats2HBox.setVisible(false);
+        this.profileController.goalStats3HBox.setVisible(false);
+        this.profileController.activityStats1HBox.setVisible(false);
+        this.profileController.activityStats2HBox.setVisible(false);
+        this.profileController.activityStats3HBox.setVisible(false);
+        this.profileController.activitiesClickLabel.setVisible(true);
+        this.profileController.goalsClickLabel.setVisible(true);
+
+        ObservableList<Goal> goalsList = FXCollections.observableArrayList();
         for (Goal todayGoal : todayGoals) {
-            goalsList.add(todayGoal.getGoalName() + ": " + todayGoal.getGoalType());
+            goalsList.add(todayGoal);
         }
+        this.profileController.goalsListView.setItems(goalsList);
         if (goalsList.size() < 1) {
-            this.profileController.goalsListLabel.setText("No goals were found for this date.");
+            this.profileController.goalsListClickLabel.setText("No goals were found for this date.");
+            this.profileController.goalsListClickLabel.setVisible(true);
         } else {
-            this.profileController.goalsListLabel.setVisible(false);
-            this.profileController.goalsListView.setItems(goalsList);
+            this.profileController.goalsListClickLabel.setVisible(false);
         }
 
-        ObservableList<Object> activitiesList = FXCollections.observableArrayList();
+        ObservableList<Activity> activitiesList = FXCollections.observableArrayList();
         for (Activity activity : activities) {
-            activitiesList.add(activity.getName() + ": " + activity.getTypeString());
+            activitiesList.add(activity);
         }
+        this.profileController.activitiesListView.setItems(activitiesList);
         if (activitiesList.size() < 1) {
-            this.profileController.activitiesLabel.setText("No activities were found for this date.");
+            this.profileController.activitiesListClickLabel.setText("No activities were found for this date.");
+            this.profileController.activitiesListClickLabel.setVisible(true);
         } else {
-            this.profileController.activitiesLabel.setVisible(false);
-            this.profileController.activitiesListView.setItems(activitiesList);
+            this.profileController.activitiesListClickLabel.setVisible(false);
         }
-
-
     }
 
     /**
@@ -144,8 +155,11 @@ public class AnchorPaneNode extends AnchorPane {
     {
         super(children);
         // Add action handler for mouse clicked
-        this.setOnMouseEntered(e -> this.setStyle("-fx-background-color: #0097A7"));
-        this.setOnMouseExited(e -> this.setStyle("-fx-background-color: null"));
+        this.setOnMouseEntered(e -> {
+            style = this.getStyle();
+            this.setStyle("-fx-background-color: #0097A7");
+        });
+        this.setOnMouseExited(e -> this.setStyle(style));
     }
 
     /**
@@ -168,7 +182,7 @@ public class AnchorPaneNode extends AnchorPane {
 
     /**
      * Getter method to get the pane's activities.
-     * @return An <b>ArrayList&gt;Activity&lt;</b>
+     * @return An <b>ArrayList&lt;Activity&gt;</b>
      */
     public ArrayList<Activity> getActivities()
     {
@@ -177,7 +191,7 @@ public class AnchorPaneNode extends AnchorPane {
 
     /**
      * Setter method to set the pane's activities.
-     * @param activities An <b>ArrayList&gt;Activity&lt;</b>
+     * @param activities An <b>ArrayList&lt;Activity&gt;</b>
      */
     public void setActivities(ArrayList<Activity> activities)
     {
@@ -195,7 +209,7 @@ public class AnchorPaneNode extends AnchorPane {
 
     /**
      * Getter method to get the pane's goals.
-     * @return An <b>ArrayList&gt;Goal&lt;</b>
+     * @return An <b>ArrayList&lt;Goal&gt;</b>
      */
     public ArrayList<Goal> getTodayGoals() {
         return todayGoals;
@@ -203,7 +217,7 @@ public class AnchorPaneNode extends AnchorPane {
 
     /**
      * Setter method to set current user's goals.
-     * @param todayGoals An <b>ArrayList&gt;Goal&lt;</b>
+     * @param todayGoals An <b>ArrayList&lt;Goal&gt;</b>
      */
     protected void setTodayGoals(ArrayList<Goal> todayGoals) {
         this.todayGoals = todayGoals;

@@ -3,7 +3,7 @@ package seng202.team10.Visual;
 import com.google.common.base.Charsets;
 import com.google.common.collect.Maps;
 import com.google.common.io.Resources;
-import com.hubspot.jinjava.*;
+import com.hubspot.jinjava.Jinjava;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Worker;
@@ -12,7 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-import seng202.team10.Control.GUIController;
+import seng202.team10.Control.MainController;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.Entry;
 import seng202.team10.Model.ActivitiesData.Route;
@@ -24,12 +24,12 @@ import java.util.ResourceBundle;
 
 /**
  * Controller class for the map screen, where a map of an activity is displayed.
- * SENG202 2018S2
+ *
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public class MapController implements Controllable, Initializable{
 
-    private GUIController app;
+    private MainController mainController ;
     private WebEngine webEngine;
     private Activity activity;
     private Route route;
@@ -39,16 +39,17 @@ public class MapController implements Controllable, Initializable{
     @FXML private TextArea helpTextArea;
     @FXML private Button helpButton;
     @FXML private Button backButton;
+    @FXML private Label noInternetLabel;
     private String renderedTemplate;
 
 
     /**
-     * Setter method to pass the GUIController into this controller.
-     * @param guiController <b>GUIController:</b> The main controller.
+     * Setter method to pass the MainController into this controller.
+     * @param mainController <b>MainController:</b> The main controller.
      */
-    public void setApp(GUIController guiController)
+    public void setMainController(MainController mainController)
     {
-        this.app = guiController;
+        this.mainController = mainController;
     }
 
 
@@ -65,8 +66,8 @@ public class MapController implements Controllable, Initializable{
                             String scriptToExecute = "displayRoute(" + newRoute.toJSONArray() + ");";
                             try {
                                 webEngine.executeScript(scriptToExecute);
-                            } catch (netscape.javascript.JSException exception) {
-                                app.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to the internet. Please connect and try again.");
+                                noInternetLabel.setVisible(false);
+                            } catch (Exception exception) {
                             }
                         }
                     }
@@ -83,6 +84,7 @@ public class MapController implements Controllable, Initializable{
         setUpToolTips();
         //Set up help text area
         setUpHelpTextArea();
+        noInternetLabel.setVisible(true);
 
         webEngine = mapWebView.getEngine();
         webEngine.load(this.getClass().getResource("/map.html").toExternalForm());
@@ -108,6 +110,8 @@ public class MapController implements Controllable, Initializable{
                              "- To add satelite view or terrain view select the layers icon\n" +
                              "  in the bottom right of the map and choose the desired\n" +
                              "  view.\n" +
+                             "- To move the map simply hold down the right mouse\n" +
+                             "  button and drag the mouse in the direction you wish.\n" +
                              "- To return to the Graphs Screen select the Back button.\n\n" +
                              "The start of your activity is marked by the green pin and the end is marked by the finish flag.");
         helpTextArea.setWrapText(true);
@@ -120,7 +124,7 @@ public class MapController implements Controllable, Initializable{
      */
     private void setUpToolTips()
     {
-        backButton.setTooltip(new Tooltip("Click here to return to the Graphs Screen."));
+        backButton.setTooltip(new Tooltip("Click here to return to the View Activities screen."));
         helpButton.setTooltip(new Tooltip("Need Help?"));
     }
 
@@ -162,7 +166,7 @@ public class MapController implements Controllable, Initializable{
      * Called when the back button is pressed.
      */
     @FXML void openViewActivities() {
-        this.app.getTitleBar().openViewActivities();
+        this.mainController.getTitleBar().openViewActivities();
     }
 
     /**

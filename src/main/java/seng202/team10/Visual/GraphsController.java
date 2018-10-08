@@ -1,16 +1,14 @@
 package seng202.team10.Visual;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
-import javafx.scene.layout.VBox;
 import seng202.team10.Model.ActivitiesData.DataAnalysis;
-import seng202.team10.Control.GUIController;
+import seng202.team10.Control.MainController;
 import seng202.team10.Model.ActivitiesData.Activity;
+import seng202.team10.Model.ActivitiesData.Entry;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -18,12 +16,12 @@ import java.util.ResourceBundle;
 
 /**
  * GraphsController Class for Coach Potato
- * SENG202 2018S2
+ *
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public class GraphsController implements Controllable, Initializable{
 
-    private GUIController app;
+    private MainController mainController ;
     private Activity activity;
     private DataAnalysis dataAnalysis;
     private int currentIndex;
@@ -34,6 +32,7 @@ public class GraphsController implements Controllable, Initializable{
     @FXML private LineChart heartRateOverTime;
     @FXML private LineChart caloriesBurned;
     @FXML private LineChart stressLevelOverTime;
+    @FXML private LineChart speedOverTime;
     @FXML private TextArea helpTextArea;
     @FXML private Button helpButton;
     @FXML private Button backButton;
@@ -42,16 +41,17 @@ public class GraphsController implements Controllable, Initializable{
     private XYChart.Series heartRateSeries;
     private XYChart.Series caloriesBurnedSeries;
     private XYChart.Series stressLevelTimeSeries;
+    private XYChart.Series speedTimeSeries;
 
 
     /**
-     * Setter method to pass the GUIController into this controller.
-     * @param guiController <b>GUIController:</b> The main controller.
+     * Setter method to pass the MainController into this controller.
+     * @param mainController <b>MainController:</b> The main controller.
      */
     @Override
-    public void setApp(GUIController guiController)
+    public void setMainController(MainController mainController)
     {
-        this.app = guiController;
+        this.mainController = mainController;
     }
 
     /**
@@ -78,6 +78,7 @@ public class GraphsController implements Controllable, Initializable{
         activityNameLabel.setText(activity.getName());
         // Populate the graphs
         this.populateDistanceTimeGraph(timeArray);
+        this.populateSpeedTimeGraph(timeArray);
         this.populateHeartRateTimeGraph(timeArray, heartRateArray);
         this.populateCaloriesBurnedGraph(timeArray);
         this.populateStressTimeGraph(timeArray, heartRateArray);
@@ -96,19 +97,8 @@ public class GraphsController implements Controllable, Initializable{
     private void setUpHelpTextArea()
     {
         helpTextArea.setText("Welcome to the Graphs Screen!\n\n" +
-                             "On this screen you can view graphs of an activity or select to view a map of the route taken.\n\n" +
-                             "- To view graphs of an activity:\n" +
-                             "\t- Select the activity you wish to view by clicking on\n" +
-                             "\t  it in the list.\n" +
-                             "\t- The graph will now be updated automatically\n" +
-                             "\t  with the data from that activity.\n" +
-                             "\t- Now you can select a different graph to view by\n" +
-                             "\t  clicking on the tabs above the graph.\n" +
-                             "- To view a map:\n" +
-                             "\t- Select the activity you wish to view by clicking on\n" +
-                             "\t  it in the list.\n" +
-                             "\t- Click the View Map button to view the map.\n" +
-                             "\t- You will now be taken to the map view screen\n\n" +
+                             "On this screen you can view different graphs of an activity.\n\n" +
+                             "To change graphs, simply click on the tabs to the left of the graph.\n" +
                              "Hover the mouse over each button to see a brief discription of what it does.");
         helpTextArea.setWrapText(true);
         helpTextArea.setVisible(false);
@@ -122,6 +112,7 @@ public class GraphsController implements Controllable, Initializable{
     {
         tabPane.setTooltip(new Tooltip("Select the tab of the graph you wish to see."));
         helpButton.setTooltip(new Tooltip("Need Help?"));
+        backButton.setTooltip(new Tooltip("Click here to return to the View Activities screen."));
     }
 
 
@@ -149,7 +140,7 @@ public class GraphsController implements Controllable, Initializable{
 
     /**
      * Method to populate the distance over time graph with data.
-     * @param timeArray  An ArrayList&gt;Double&lt; that contains the total time that has passed at each point in the activity.
+     * @param timeArray  An ArrayList&lt;Double&gt;that contains the total time that has passed at each point in the activity.
      */
     private void populateDistanceTimeGraph(ArrayList<Double> timeArray)
     {
@@ -160,11 +151,27 @@ public class GraphsController implements Controllable, Initializable{
         distanceOverTime.getData().add(distanceTimeSeries);
     }
 
+    /**
+     * Method to populate the speed over time graph with data.
+     * @param timeArray  An ArrayList&gt;Double&lt; that contains the total time that has passed at each point in the activity.
+     */
+    private void populateSpeedTimeGraph(ArrayList<Double> timeArray)
+    {
+        ArrayList<Double> speedArray = new ArrayList<>();
+        for(Entry eachEntry: activity.getEntries()){
+            speedArray.add(eachEntry.getVelocity());
+        }
+        for (int i = 0; i < timeArray.size(); i++) {
+            speedTimeSeries.getData().add(new XYChart.Data(timeArray.get(i), speedArray.get(i)));
+        }
+        speedOverTime.getData().add(speedTimeSeries);
+    }
+
 
     /**
      * Method to populate the heart rate over time graph with data.
-     * @param timeArray  An ArrayList&gt;Double&lt; that contains the total time that has passed at each point in the activity.
-     * @param heartRateArray  An ArrayList&gt;Integer&lt; that contains a list of heartrates at each point in the activity.
+     * @param timeArray  An ArrayList&lt;Double&gt;that contains the total time that has passed at each point in the activity.
+     * @param heartRateArray  An ArrayList&lt;Integer&gt;that contains a list of heartrates at each point in the activity.
      */
     private void populateHeartRateTimeGraph(ArrayList<Double> timeArray, ArrayList<Integer> heartRateArray)
     {
@@ -177,11 +184,11 @@ public class GraphsController implements Controllable, Initializable{
 
     /**
      * Method to populate the calories burned over time graph with data.
-     * @param timeArray  An ArrayList&gt;Double&lt; that contains the total time that has passed at each point in the activity.
+     * @param timeArray  An ArrayList&lt;Double&gt;that contains the total time that has passed at each point in the activity.
      */
     private void populateCaloriesBurnedGraph(ArrayList<Double> timeArray)
     {
-        ArrayList<Double> calorieArray = dataAnalysis.getCaloriesFromActivity(activity, app.getTitleBar().getCurrentProfile());
+        ArrayList<Double> calorieArray = dataAnalysis.getCaloriesFromActivity(activity, mainController .getTitleBar().getCurrentProfile());
         for (int i = 0; i < timeArray.size(); i++) {
             caloriesBurnedSeries.getData().add(new XYChart.Data(timeArray.get(i), calorieArray.get(i)));
         }
@@ -191,14 +198,14 @@ public class GraphsController implements Controllable, Initializable{
 
     /**
      * Method to populate the stress level over time graph with data.
-     * @param timeArray  An ArrayList&gt;Double&lt; that contains the total time that has passed at each point in the activity.
-     * @param heartRateArray  An ArrayList&gt;Integer&lt; that contains a list of heartrates at each point in the activity.
+     * @param timeArray  An ArrayList&lt;Double&gt;that contains the total time that has passed at each point in the activity.
+     * @param heartRateArray  An ArrayList&lt;Integer&gt;that contains a list of heartrates at each point in the activity.
      */
     private void populateStressTimeGraph(ArrayList<Double> timeArray, ArrayList<Integer> heartRateArray)
     {
         ArrayList<Double> stressArray = new ArrayList<>();
         for (int i = 0; i < timeArray.size(); i++) {
-            double stressPercent = (double)heartRateArray.get(i)/((double) 220 - app.getTitleBar().getCurrentProfile().calculateAge());
+            double stressPercent = (double)heartRateArray.get(i)/((double) 220 - mainController .getTitleBar().getCurrentProfile().calculateAge());
             stressArray.add(stressPercent);
             stressLevelTimeSeries.getData().add(new XYChart.Data(timeArray.get(i), stressArray.get(i)));
         }
@@ -215,6 +222,7 @@ public class GraphsController implements Controllable, Initializable{
         heartRateSeries = new XYChart.Series();
         caloriesBurnedSeries = new XYChart.Series();
         stressLevelTimeSeries = new XYChart.Series();
+        speedTimeSeries = new XYChart.Series();
     }
 
 
@@ -227,6 +235,7 @@ public class GraphsController implements Controllable, Initializable{
         heartRateOverTime.getData().clear();
         caloriesBurned.getData().clear();
         stressLevelOverTime.getData().clear();
+        speedOverTime.getData().clear();
     }
 
     /**
@@ -237,18 +246,20 @@ public class GraphsController implements Controllable, Initializable{
         this.initializeSeries();
 
         setUpOneGraph(distanceOverTime);
+        setUpOneGraph(speedOverTime);
         setUpOneGraph(heartRateOverTime);
         setUpOneGraph(caloriesBurned);
         setUpOneGraph(stressLevelOverTime);
 
         distanceOverTime.getYAxis().setLabel("Distance (m)");
+        speedOverTime.getYAxis().setLabel("Speed (m/s)");
         heartRateOverTime.getYAxis().setLabel("Heart rate (bpm)");
         caloriesBurned.getYAxis().setLabel("Calories burned");
         stressLevelOverTime.getYAxis().setLabel("Stress level (% of max heart rate)");
     }
 
     @FXML public void openViewActivities() {
-        app.getTitleBar().openViewActivities();
+        mainController .getTitleBar().openViewActivities();
     }
 
 

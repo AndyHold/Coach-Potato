@@ -7,8 +7,7 @@ import java.util.HashMap;
 
 
 /**
- * Date Class for Coach Potato
- * SENG202 2018S2
+ * Class that contains an instance in time.
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public class DateTime implements Serializable {
@@ -26,12 +25,12 @@ public class DateTime implements Serializable {
 
     /**
      * Constructor method for Date Class
-     * @param day int: day of the month
-     * @param month int: month of the year
-     * @param year: year between 2000 and 2100
-     * @param hour: hour between 0 and 23
-     * @param minute: minute between 0 and 59
-     * @param second: second between 0 and 59
+     * @param day An <b>int</b> of the day of the month.
+     * @param month An <b>int</b> of the month of the year.
+     * @param year An <b>int</b> of the year between 2000 and 2100.
+     * @param hour An <b>int</b> of the hour between 0 and 23.
+     * @param minute An <b>int</b> of the minute between 0 and 59.
+     * @param second An <b>int</b> of the seconds between 0 and 59.
      */
     public DateTime(int year, int month, int day, int hour, int minute, int second)
     {
@@ -47,10 +46,10 @@ public class DateTime implements Serializable {
 
 
     /**
-     * Method to change the date once the DateTime has already been initiated
-     * @param year int: new year value
-     * @param month int: new month value
-     * @param day int: new month vlaue
+     * Method to change the date once the DateTime has already been initiated.
+     * @param year An <b>int</b> of the new year value.
+     * @param month An <b>int</b> of the new month value.
+     * @param day An <b>int</b> of the new month value.
      */
     public void changeDate(int year, int month, int day) throws IllegalArgumentException
     {
@@ -71,11 +70,11 @@ public class DateTime implements Serializable {
 
 
     /**
-     * Method to change the time once the DateTime has already been initiated
-     * @param hour int: new hour value
-     * @param minute int: new minute value
-     * @param second int: new second vlaue
-     * @throws IllegalArgumentException Thrown when the date entered is incorrect
+     * Method to change the time once the DateTime has already been initiated.
+     * @param hour An <b>int</b> of new hour value.
+     * @param minute An <b>int</b> of new minute value.
+     * @param second An <b>int</b> of new second value.
+     * @throws IllegalArgumentException when the date entered is invalid.
      */
     public void changeTime(int hour, int minute, int second) throws IllegalArgumentException
     {
@@ -96,8 +95,8 @@ public class DateTime implements Serializable {
 
 
     /**
-     * Setter method for year
-     * @param newYear int: year parameter for the date
+     * Setter method for year.
+     * @param newYear An <b>int</b> of the year parameter for the date.
      */
     private void setYear(int newYear)
     {
@@ -110,8 +109,8 @@ public class DateTime implements Serializable {
 
 
     /**
-     * Setter method for month
-     * @param newMonth int: month parameter for the date
+     * Setter method for month.
+     * @param newMonth An <b>int</b> of the month parameter for the date.
      */
     private void setMonth(int newMonth)
     {
@@ -124,8 +123,8 @@ public class DateTime implements Serializable {
 
 
     /**
-     * Setter method for day
-     * @param newDay int: day parameter for the date
+     * Setter method for day.
+     * @param newDay An <b>int</b> of the day parameter for the date.
      */
     private void setDay(int newDay)
     {
@@ -144,8 +143,8 @@ public class DateTime implements Serializable {
 
 
     /**
-     * Setter method for hour
-     * @param newHour int: hour in 24 hour format
+     * Setter method for hour.
+     * @param newHour An <b>int</b> of the hour in 24 hour format.
      */
     private void setHour(int newHour)
     {
@@ -158,8 +157,8 @@ public class DateTime implements Serializable {
 
 
     /**
-     * Setter method for minute
-     * @param newMinute int: minutes
+     * Setter method for minute.
+     * @param newMinute An <b>int</b> of the minutes.
      */
     private void setMinute(int newMinute)
     {
@@ -172,8 +171,8 @@ public class DateTime implements Serializable {
 
 
     /**
-     * Setter method for second
-     * @param newSecond int: seconds
+     * Setter method for second.
+     * @param newSecond An <b>int</b> of the seconds.
      */
     private void setSecond(int newSecond)
     {
@@ -186,8 +185,8 @@ public class DateTime implements Serializable {
 
 
     /**
-     * Getter method for string of the date
-     * @return String: Date
+     * Getter method for string of the date.
+     * @return A <b>String</b> of the date.
      */
     public String getDateAsString()
     {
@@ -196,8 +195,8 @@ public class DateTime implements Serializable {
 
 
     /**
-     * Getter method for string of the time
-     * @return String
+     * Getter method for string of the time.
+     * @return A <b>String</b> of the time.
      */
     public String getTimeAsString()
     {
@@ -207,7 +206,7 @@ public class DateTime implements Serializable {
 
     /**
      * Getter method for year
-     * @return int: Year
+     * @return An <b>int</b>: Year
      */
     public int getYear()
     {
@@ -217,7 +216,7 @@ public class DateTime implements Serializable {
 
     /**
      * Getter method for month
-     * @return int: Month
+     * @return An <b>int</b>: Month
      */
     public int getMonth()
     {
@@ -227,7 +226,7 @@ public class DateTime implements Serializable {
 
     /**
      * Getter method for day
-     * @return int: Day
+     * @return An <b>int</b>: Day
      */
     public int getDay()
     {
@@ -237,7 +236,7 @@ public class DateTime implements Serializable {
 
     /**
      * Getter method for hour
-     * @return int: Hour
+     * @return An <b>int</b>: Hour
      */
     public int getHour()
     {
@@ -247,7 +246,7 @@ public class DateTime implements Serializable {
 
     /**
      * Getter method for minute
-     * @return int: Minute
+     * @return An <b>int</b>: Minute
      */
     public int getMinute()
     {
@@ -257,7 +256,7 @@ public class DateTime implements Serializable {
 
     /**
      * Getter method for second
-     * @return int: Second
+     * @return An <b>int</b>: Second
      */
     public int getSecond()
     {
@@ -329,7 +328,7 @@ public class DateTime implements Serializable {
     /**
      * Method to subtract another DateTime object from this DateTime object
      * @param otherDateTime DateTime: DateTime object to subtract
-     * @return int: the difference between the two objects in seconds
+     * @return An <b>int</b>: the difference between the two objects in seconds
      */
     public int subtract(DateTime otherDateTime)
     {
@@ -346,7 +345,7 @@ public class DateTime implements Serializable {
     /**
      * Method to calculate how many days since the beginning of the year 2000
      * @param dateTime DateTime: the date to be calculated minus 2000 years
-     * @return int: The amount of days since the beginning of the year 2000
+     * @return An <b>int</b>: The amount of days since the beginning of the year 2000
      */
     private int calculateDaysFrom1900(DateTime dateTime)
     {
@@ -376,7 +375,7 @@ public class DateTime implements Serializable {
     /**
      * Method to calculate the difference in days between two DateTime objects
      * @param otherDateTime DateTime: DateTime to be subtracted from this DateTime
-     * @return int: number of days difference
+     * @return An <b>int</b>: number of days difference
      */
     public int subtractDaysFromDateTime(DateTime otherDateTime)
     {
@@ -389,8 +388,7 @@ public class DateTime implements Serializable {
     /**
      * Method to calculate the years between two DateTimes. discards any extra months or days.
      * @param otherDateTime DateTime: The date time to be compared with.
-     * @return int: The difference in years.
-     * TODO test this
+     * @return An <b>int</b>: The difference in years.
      */
     public int subtractYearsFromDateTime(DateTime otherDateTime)
     {
@@ -407,9 +405,8 @@ public class DateTime implements Serializable {
 
 
     /**
-     * Method to get the current DateTime and return it as a new DateTime method.
-     * @return DateTime: The current DateTime.
-     * TODO test this
+     * Method to get the current DateTime and return it as a new DateTime.
+     * @return A <b>DateTime</b> of the current date and time.
      */
     public static DateTime now()
     {
@@ -425,7 +422,7 @@ public class DateTime implements Serializable {
 
 
     /**
-     * Method to fill the HashMap with month names
+     * Method to fill the HashMap with month names.
      */
     private void fillMonths()
     {
@@ -447,7 +444,7 @@ public class DateTime implements Serializable {
 
 
     /**
-     * Method to fill in the HashMap daysInMonth with the amount of days in each month (excluding leap years)
+     * Method to fill in the HashMap daysInMonth with the amount of days in each month (excluding leap years).
      */
     private void fillDaysInMonth()
     {
@@ -468,8 +465,8 @@ public class DateTime implements Serializable {
     }
 
     /**
-     * string representation of date and time
-     * @return String
+     * The ToString method for the class.
+     * @return A <b>String</b> of the date and time.
      */
     @Override
     public String toString()

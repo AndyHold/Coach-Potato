@@ -1,8 +1,12 @@
 package seng202.team10.Visual;
 
 
+import javafx.animation.RotateTransition;
+import javafx.animation.Transition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
@@ -12,8 +16,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
-import seng202.team10.Control.GUIController;
+import seng202.team10.Control.MainController;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.Route;
 import seng202.team10.Model.UserProfile;
@@ -22,13 +27,13 @@ import java.io.IOException;
 
 /**
  * Controller class for the title bar, which loads and launches every major scene.
- * SENG202 2018S2
+ *
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public class TitleBarController {
 
 
-    private GUIController app;
+    private MainController mainController ;
     private Pane createProfilePane;
     private Pane loginPane;
     private Pane profilePane;
@@ -44,8 +49,11 @@ public class TitleBarController {
     @FXML private Pane currentScene;
     @FXML private Button menuButton;
     @FXML private Button warningButton;
+    @FXML private Button minimiseButton;
+    @FXML private Button closeButton;
     @FXML private VBox menuBar;
     @FXML private ImageView profileMenuIcon;
+    @FXML public Rectangle loadingCover;
     private CreateProfileController createProfileController;
     private LoginController loginController;
     private ProfileController profileController;
@@ -59,12 +67,12 @@ public class TitleBarController {
 
 
     /**
-     * Setter method to pass the GUIController into this controller.
-     * @param guiController <b>GUIController:</b> The main controller.
+     * Setter method to pass the MainController into this controller.
+     * @param mainController <b>MainController:</b> The main controller.
      */
-    public void setApp(GUIController guiController)
+    public void setMainController(MainController mainController)
     {
-        this.app = guiController;
+        this.mainController = mainController;
     }
 
 
@@ -74,12 +82,24 @@ public class TitleBarController {
      */
     public void setUpScene() throws IOException
     {
+        setToolTips();
         loadAllPanes();
-        if (app.getUserNames().isEmpty()) {
+        if  (mainController. getUserNames().isEmpty()) {
             openCreateProfile();
         } else {
             openLogin();
         }
+    }
+
+
+    /**
+     * Method to set tool tips for the title bar buttons.
+     */
+    private void setToolTips()
+    {
+        menuButton.setTooltip(new Tooltip("Click here to toggle the menu displayed."));
+        minimiseButton.setTooltip(new Tooltip("Click here to minimise Coach Potato to the task bar."));
+        closeButton.setTooltip((new Tooltip("Click here to close Coach Potato.")));
     }
 
 
@@ -122,66 +142,66 @@ public class TitleBarController {
         FXMLLoader createProfileLoader = new FXMLLoader(getClass().getResource("/fxml/createProfileScreen.fxml"));
         createProfilePane = createProfileLoader.load();
         createProfileController = createProfileLoader.getController();
-        createProfileController.setApp(this.app);
+        createProfileController.setMainController(this.mainController);
         createProfileController.setUpScene();
 
 
         FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("/fxml/loginScreen.fxml"));
         loginPane = loginLoader.load();
         loginController = loginLoader.getController();
-        loginController.setApp(this.app);
+        loginController.setMainController(this.mainController);
         loginController.setUpScene();
 
 
         FXMLLoader profileLoader = new FXMLLoader(getClass().getResource("/fxml/profileScreen.fxml"));
         profilePane = profileLoader.load();
         profileController = profileLoader.getController();
-        profileController.setApp(this.app);
+        profileController.setMainController(this.mainController);
         profileController.setUpScene();
 
 
         FXMLLoader uploadDataLoader = new FXMLLoader(getClass().getResource("/fxml/uploadDataScreen.fxml"));
         uploadDataPane = uploadDataLoader.load();
         uploadDataController = uploadDataLoader.getController();
-        uploadDataController.setApp(this.app);
+        uploadDataController.setMainController(this.mainController);
         uploadDataController.setUpScene();
 
 
         FXMLLoader activityViewerLoader = new FXMLLoader(getClass().getResource("/fxml/activityViewerScreen.fxml"));
         activityViewerPane = activityViewerLoader.load();
         activityViewerController = activityViewerLoader.getController();
-        activityViewerController.setApp(this.app);
+        activityViewerController.setMainController(this.mainController);
 
 
         FXMLLoader goalsLoader = new FXMLLoader(getClass().getResource("/fxml/goalsScreen.fxml"));
         goalPane = goalsLoader.load();
         goalsController = goalsLoader.getController();
-        goalsController.setApp(this.app);
+        goalsController.setMainController(this.mainController);
         goalsController.setUpScene();
 
 
         FXMLLoader graphsLoader = new FXMLLoader(getClass().getResource("/fxml/graphsScreen.fxml"));
         graphsPane = graphsLoader.load();
         graphsController = graphsLoader.getController();
-        graphsController.setApp(this.app);
+        graphsController.setMainController(this.mainController);
 
 
         FXMLLoader entryLoader = new FXMLLoader(getClass().getResource("/fxml/entryViewerScreen.fxml"));
         entryPane = entryLoader.load();
         entryViewerController = entryLoader.getController();
-        entryViewerController.setApp(this.app);
+        entryViewerController.setMainController(this.mainController);
 
 
         FXMLLoader mapLoader = new FXMLLoader((getClass().getResource("/fxml/mapScreen.fxml")));
         mapPane = mapLoader.load();
         mapController = mapLoader.getController();
-        mapController.setApp(this.app);
+        mapController.setMainController(this.mainController);
         
 
         FXMLLoader healthWarningLoader = new FXMLLoader((getClass().getResource("/fxml/healthWarningsScreen.fxml")));
         healthWarningPane = healthWarningLoader.load();
         healthWarningController = healthWarningLoader.getController();
-        healthWarningController.setApp(this.app);
+        healthWarningController.setMainController(this.mainController);
     }
 
 
@@ -191,7 +211,7 @@ public class TitleBarController {
      */
     @FXML public void minimise()
     {
-        app.minimise();
+        mainController .minimise();
     }
 
 
@@ -221,11 +241,12 @@ public class TitleBarController {
      */
     @FXML public void openLogin()
     {
-        app.setCurrentUser(null);
-        app.loadUserDetails();
+        mainController .setCurrentUser(null);
+        mainController .loadUserDetails();
         loginController.setUpScene();
         slideMenu(false);
         setScene(loginPane);
+        warningButton.setVisible(false);
     }
 
 
@@ -235,18 +256,29 @@ public class TitleBarController {
     @FXML public void openViewProfile()
     {
         profileController.setCurrentUser(currentUser);
-        try {
-            profileMenuIcon.setImage(new Image("Images/profile" + currentUser.getGender() + ".png"));
-        } catch (IllegalArgumentException exception) {
-            app.createPopUp(Alert.AlertType.ERROR, "Error", "Could not find profile icon");
-        }
+        profileController.checkLastWeightUpdate();
+        setProfileImage();
         profileController.setUpScene();
-        app.getDataWriter().saveProfile(currentUser);
+        mainController .getDataWriter().saveProfile(currentUser);
         profileController.setUserDetails();
         slideMenu(false);
         // Set up warning flag if necessary
         setUpWarningFlag();
+        profileController.setQuote();
         setScene(profilePane);
+    }
+
+
+    /**
+     * Method to display the gender appropriate profile screen icon in the menu.
+     */
+    public void setProfileImage()
+    {
+        try {
+            profileMenuIcon.setImage(new Image("Images/profile" + currentUser.getGender() + ".png"));
+        } catch (IllegalArgumentException exception) {
+            mainController .createPopUp(Alert.AlertType.ERROR, "Error", "Could not find profile icon");
+        }
     }
 
 
@@ -257,7 +289,7 @@ public class TitleBarController {
     {
 
         uploadDataController.setUpScene();
-        app.getDataWriter().saveProfile(currentUser);
+        mainController .getDataWriter().saveProfile(currentUser);
         slideMenu(false);
         setScene(uploadDataPane);
     }
@@ -269,7 +301,7 @@ public class TitleBarController {
     @FXML public void openViewActivities()
     {
 
-        app.getDataWriter().saveProfile(currentUser);
+        mainController .getDataWriter().saveProfile(currentUser);
         activityViewerController.setUpScene();
         slideMenu(false);
         setScene(activityViewerPane);
@@ -281,8 +313,9 @@ public class TitleBarController {
      */
     @FXML public void openGoals()
     {
-        app.getDataWriter().saveProfile(currentUser);
+        mainController .getDataWriter().saveProfile(currentUser);
         goalsController.addGoalsToTable();
+        goalsController.resetTextFields();
         slideMenu(false);
         setScene(goalPane);
     }
@@ -294,7 +327,7 @@ public class TitleBarController {
      */
     @FXML public void openGraphs(Activity activity)
     {
-        app.getDataWriter().saveProfile(currentUser);
+        mainController .getDataWriter().saveProfile(currentUser);
         graphsController.setActivity(activity);
         graphsController.setUpScene();
         slideMenu(false);
@@ -304,18 +337,20 @@ public class TitleBarController {
 
     /**
      * Method to display the entry viewer screen.
+     * @param activity  The <b>Activity</b> the entries are being viewed of.
      */
     @FXML protected  void openEntry(Activity activity)
     {
         slideMenu(false);
         entryViewerController.setUpScene(activity);
-        app.getDataWriter().saveProfile(currentUser);
+        mainController .getDataWriter().saveProfile(currentUser);
         setScene(entryPane);
     }
 
 
     /**
      * Method to display the map screen.
+     * @param activity  The <b>Activity</b> the map is being viewed of.
      */
     @FXML public void openMap(Activity activity)
     {
@@ -414,8 +449,7 @@ public class TitleBarController {
         entryViewerController.hideHelpTextArea();
         mapController.hideHelpTextArea();
         healthWarningController.hideWarningsScrollPane();
-//        healthWarningController.hideHelpTextArea();
-//        healthWarningController.ideHelpTextArea();
-
+        healthWarningController.hideHelpTextArea();
     }
+
 }

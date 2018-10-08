@@ -5,8 +5,7 @@ import java.io.Serializable;
 
 
 /**
- * ActivityIntensity Enum for Coach Potato
- * SENG202 2018S2
+ * Enum for the intensity level of an activity, measured by type of activity.
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public enum ActivityType implements Serializable {
@@ -17,8 +16,8 @@ public enum ActivityType implements Serializable {
 
 
     /**
-     * Constructor method for ActivityType Enum
-     * @param newName String: String representation of the type.
+     * Constructor method for ActivityType Enum.
+     * @param newName A <b>String</b> representation of the type.
      */
     ActivityType(String newName)
     {
@@ -27,10 +26,10 @@ public enum ActivityType implements Serializable {
 
 
     /**
-     * determines and returns the type of the activity based on the name string.
-     * possible types are walk, run, hike, cycle, swim, workout, other
-     * @param name  The name of the activity
-     * @return ActivityType
+     * Method to determine and return the type of the activity based on the name string.
+     * Possible types are walk, run, hike, cycle, swim, workout and other.
+     * @param name  A <b>String</b> of the name of the activity.
+     * @return An <b>ActivityType</b>.
      * */
     public static ActivityType determineType(String name)
     {
@@ -57,8 +56,8 @@ public enum ActivityType implements Serializable {
 
 
     /**
-     * returns the type as a string
-     * @return string
+     * Returns the type as a string.
+     * @return A <b>String</b> of the activity type.
      */
     @Override
     public String toString()

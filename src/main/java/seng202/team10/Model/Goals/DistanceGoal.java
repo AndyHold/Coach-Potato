@@ -7,7 +7,7 @@ import seng202.team10.Model.Exceptions.*;
 import java.time.LocalDateTime;
 
 /**
- * Distance Goals Class for Coach Potato SENG202 2018S2
+ * Class that extends the Goal superclass, represents an instance of a goal of the user to cover a certain amount of distance.
  */
 public class DistanceGoal extends Goal {
 
@@ -16,14 +16,14 @@ public class DistanceGoal extends Goal {
 
 
     /**
-     * Constructor method for distance goal
-     * @param name: String
-     * @param start: DateTime
-     * @param target: DateTime
-     * @param distance: double
-     * @throws InvalidGoalDateException When invalid dates are entered
-     * @throws BadGoalNameException When invalid name is entered
-     * @throws InvalidGoalTargetException When invalid target is entered
+     * Constructor method for distance goal.
+     * @param name A <b>String</b> of the name of the goal.
+     * @param start The start <b>DateTime</b> of the goal.
+     * @param target The end <b>DateTime</b> of the goal.
+     * @param distance A <b>Double</b> of the distance.
+     * @throws InvalidGoalDateException When invalid dates are entered.
+     * @throws BadGoalNameException When an invalid goal name is entered.
+     * @throws InvalidGoalTargetException When an invalid goal target is entered.
      */
     public DistanceGoal(String name, DateTime start, DateTime target, double distance) throws InvalidGoalDateException, BadGoalNameException, InvalidGoalTargetException
     {
@@ -34,7 +34,7 @@ public class DistanceGoal extends Goal {
 
     /**
      * Setter method for the target value of distance goal.
-     * @param target: double
+     * @param target A <b>Double</b> of the distance.
      * @throws InvalidGoalTargetException When target is outside the correct values.
      */
     private void setTargetValue(double target) throws InvalidGoalTargetException
@@ -48,8 +48,8 @@ public class DistanceGoal extends Goal {
 
 
     /**
-     * Getter method for the goal distance
-     * @return double
+     * Getter method for the goal distance.
+     * @return A <b>Double</b> of the distance.
      */
     public double getGoalDistance()
     {
@@ -58,9 +58,9 @@ public class DistanceGoal extends Goal {
 
 
     /**
-     * Method to review a distance goal of the user. Determines whether the user has achieved, failed, or is still working towards a particular distance goal
-     * @param dist: double
-     * @return String
+     * Method to review a distance goal of the user. Determines whether the user has achieved, failed, or is still working towards a particular distance goal.
+     * @param dist A <b>Double</b> of the distance the user has travelled so far.
+     * @return A <b>String</b> of the status of the goal completion.
      */
     public String reviewDistanceGoal(double dist)
     {

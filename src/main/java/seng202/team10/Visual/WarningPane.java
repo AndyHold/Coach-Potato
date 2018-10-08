@@ -24,17 +24,38 @@ public class WarningPane {
     private Pane mainPane;
 
 
+    /**
+     * Constructor Method for WarningPane class
+     * @param healthWarning a <b>HealthWarning</b> this pane is based on
+     * @param healthWarningsController the <b>HealthWarningsController</b> this pane is being called from.
+     * @param mainPane the <b>Pane</b> this warning is being displayed on.
+     */
     public WarningPane(HealthWarning healthWarning, HealthWarningsController healthWarningsController, Pane mainPane)
     {
+        /* Set all field values */
         this.healthWarning = healthWarning;
         this.healthWarningsController = healthWarningsController;
         this.mainPane = mainPane;
         this.container = new VBox();
+        /* Set css style for this pane and fill the container with all the elements it requires. */
         setStyle();
         fillContainer();
+        /* set the layout for the container and add it to the Pane it will be contained in. */
         container.setLayoutY(mainPane.getChildren().size() * 115);
         this.mainPane.getChildren().add(container);
+        /* Resize the pane to fit the warning pane within. */
         resizePane(this.mainPane);
+    }
+
+
+    /**
+     * Setter method for the style sheet assosciated with this pane.
+     */
+    private void setStyle()
+    {
+        String css = this.getClass().getResource("/css/warningPane.css").toExternalForm();
+        container.getStylesheets().add(css);
+        container.setPadding(new Insets(5, 5, 5, 5));
     }
 
 
@@ -44,6 +65,7 @@ public class WarningPane {
      */
     private void resizePane(Pane mainPane)
     {
+        // Resize pane to fit the number of children it has and the parent pane to be the same.
         double newHeight = mainPane.getChildren().size() * 115;
         mainPane.setStyle("-fx-min-height: " + newHeight + "; " +
                           "-fx-max-height: " + newHeight + ";");
@@ -57,6 +79,7 @@ public class WarningPane {
      */
     private void fillContainer()
     {
+        // Create and add an HBOX with an activity: label and a label with the activity name.
         HBox activityHBox = new HBox();
         Label activityLabel = new Label("Activity:");
         activityLabel.setStyle("-fx-min-width: 75;\n" +
@@ -67,6 +90,7 @@ public class WarningPane {
                           "-fx-max-width: 295;");
         activityHBox.getChildren().add(activity);
         container.getChildren().add(activityHBox);
+        // Create and add an HBox with a time: label and a label with the activity time.
         HBox timeHBox = new HBox();
         Label timeLabel = new Label("Time:");
         timeLabel.setStyle("-fx-min-width: 75;\n" +
@@ -77,11 +101,13 @@ public class WarningPane {
                       "-fx-max-width: 295;");
         timeHBox.getChildren().add(time);
         container.getChildren().add(timeHBox);
+        // Create and add an HBox with the clear button
         HBox buttonBox = new HBox();
         buttonBox.setAlignment(Pos.CENTER_RIGHT);
         this.clearButton = new Button("Clear Warning");
         buttonBox.getChildren().add(clearButton);
         container.getChildren().add(buttonBox);
+        // Set the action listener for the button
         setButtonAction();
     }
 
@@ -120,13 +146,16 @@ public class WarningPane {
      */
     public void clearWarning()
     {
+        /* Cycle through the children till this warning is found */
         int i = 0;
         while (i < mainPane.getChildren().size() && mainPane.getChildren().get(i) != container) {
             i++;
         }
+        // Create and play a transition for this warning
         TranslateTransition clear = new TranslateTransition(new Duration(350), container);
         clear.setToX(-380);
         clear.play();
+        // When finished remove the pane.
         clear.setOnFinished(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -134,6 +163,7 @@ public class WarningPane {
                 resizePane(mainPane);
             }
         });
+        /* play transitions for all the rest of the panes to move up */
         i++;
         while (i < mainPane.getChildren().size()) {
             TranslateTransition raise = new TranslateTransition(new Duration(350), mainPane.getChildren().get(i));
@@ -141,17 +171,8 @@ public class WarningPane {
             raise.play();
             i++;
         }
+        // remove the warning from the controller
         healthWarningsController.removeWarning(healthWarning);
     }
 
-
-    /**
-     * Setter method for the style sheet assosciated with this pane.
-     */
-    private void setStyle()
-    {
-        String css = this.getClass().getResource("/css/warningPane.css").toExternalForm();
-        container.getStylesheets().add(css);
-        container.setPadding(new Insets(5, 5, 5, 5));
-    }
 }

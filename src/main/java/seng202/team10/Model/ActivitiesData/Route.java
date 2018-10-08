@@ -5,25 +5,52 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by brad on 9/09/16.
+ * Class created by brad on 9/09/16.
  * route of points for mapping purposes
  * material used from provided tutorials
  */
 public class Route {
+
+
     private List<Position> route = new ArrayList<>();
 
-    public Route(Position ...points) {
+
+    /**
+     * Constructor for Route Class.
+     * @param points A collection of points.
+     */
+    public Route(Position ...points)
+    {
         Collections.addAll(route, points);
     }
-    public void addPosition(Position position) {
+
+
+    /**
+     * Method to add a position to the route class.
+     * @param position The <b>Position</b> being added.
+     */
+    public void addPosition(Position position)
+    {
         this.route.add(position);
     }
 
-    public List<Position> getRoute() {
+
+    /**
+     * Getter for the route.
+     * @return A <b>List&lt;Position&gt;</b> of the positions in the route.
+     */
+    public List<Position> getRoute()
+    {
         return route;
     }
 
-    public String toJSONArray() {
+
+    /**
+     * Converts this class to a JSON Array for use in html scripts.
+     * @return A <b>JSONArray</b>.
+     */
+    public String toJSONArray()
+    {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("[");
         route.forEach(pos -> stringBuilder.append(

@@ -6,7 +6,7 @@ import seng202.team10.Model.Exceptions.*;
 import java.time.LocalDateTime;
 
 /**
- * Time Goal Class for Coach Potato SENG202 2018S2
+ * Class that extends the Goal superclass, represents an instance of a goal of the user to reach a certain amount of time exercising.
  */
 public class TimeGoal extends Goal {
 
@@ -15,13 +15,14 @@ public class TimeGoal extends Goal {
 
 
     /**
-     * Constructor method for time goal
-     * @param name: String
-     * @param start: DateTime
-     * @param target: DateTime
-     * @throws InvalidGoalDateException When invalid dates are entered
-     * @throws BadGoalNameException When invalid name is entered
-     * @throws InvalidGoalTargetException When invalid target is entered
+     * Constructor method for time goal.
+     * @param name A <b>String</b> of the name of the goal.
+     * @param start The start <b>DateTime</b> of the goal.
+     * @param target The end <b>DateTime</b> of the goal.
+     * @param time A <b>Double</b> of the target time.
+     * @throws InvalidGoalDateException When invalid dates are entered.
+     * @throws BadGoalNameException When an invalid goal name is entered.
+     * @throws InvalidGoalTargetException When an invalid goal target is entered.
      */
     public TimeGoal(String name, DateTime start, DateTime target, double time) throws InvalidGoalTargetException, InvalidGoalDateException, BadGoalNameException
     {
@@ -32,14 +33,14 @@ public class TimeGoal extends Goal {
 
     /**
      * Setter method for the target value of time goal.
-     * @param target: double
+     * @param target A <b>Double</b> of the target time.
      * @throws InvalidGoalTargetException When target is outside the correct values.
-     * TODO can set a target with more minautes than is possible.
      */
     public void setTarget(double target) throws InvalidGoalTargetException
     {
-        if (target <= 0) {
-            throw new InvalidGoalTargetException("Please enter a time of at least 1 minute");
+        int possibleMinutes = getGoalTargetDate().subtract(getGoalStartDate()) / 60;
+        if (target <= 0 || target > possibleMinutes) {
+            throw new InvalidGoalTargetException("Please enter a time of at least 1 minute and less than the time between start and finish of your goal.");
         } else {
             goalTime = target;
         }
@@ -47,8 +48,8 @@ public class TimeGoal extends Goal {
 
 
     /**
-     * Getter method for the goal time
-     * @return double
+     * Getter method for the goal time.
+     * @return A <b>Double</b> of the target time.
      */
     public double getGoalTime()
     {
@@ -57,9 +58,9 @@ public class TimeGoal extends Goal {
 
 
     /**
-     * Method to review a time goal of the user. Determines whether the user has achieved, failed, or is still working towards a particular time goal
-     * @param time: double
-     * @return String
+     * Method to review a time goal of the user. Determines whether the user has achieved, failed, or is still working towards a particular time goal.
+     * @param time A <b>Double</b> of the time the user has done so far.
+     * @return A <b>String</b> of the status of the goal completion.
      */
     public String reviewTimeGoal(double time)
     {

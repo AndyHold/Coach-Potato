@@ -7,8 +7,8 @@ import static java.lang.Math.*;
 
 
 /**
- * Position Class for Coach Potato
- * SENG202 2018S2
+ * Class that contains information about a physical point on earth.
+ *
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public class Position  implements Serializable {
@@ -19,9 +19,9 @@ public class Position  implements Serializable {
 
 
     /** Constructor method for Position Class.
-     * @param latitude double: Latitude for this position
-     * @param longitude double: Longitude for this position
-     * @param elevation double: Elevation for this position
+     * @param latitude A <b>double</b> of the latitude for this position.
+     * @param longitude A <b>double</b> of the longitude for this position.
+     * @param elevation A <b>double</b> of the elevation for this position.
      */
     public Position(double latitude, double longitude, double elevation) throws IllegalArgumentException
     {
@@ -32,10 +32,10 @@ public class Position  implements Serializable {
 
 
     /**
-     * Setter method to set user's distance.
-     * @param latitude: double
+     * Setter method for latitude.
+     * @param latitude  A <b>double</b> of the latitude.
      */
-    protected void setLatitude(double latitude) throws IllegalArgumentException
+    public void setLatitude(double latitude) throws IllegalArgumentException
     {
         if ((-90.0 <= latitude) && (latitude <= 90.0)) {
             this.latitude = latitude;
@@ -46,10 +46,10 @@ public class Position  implements Serializable {
 
 
     /**
-     * Setter method to set user's longitude.
-     * @param longitude: double
+     * Setter method for longitude.
+     * @param longitude A <b>double</b> of the longitude.
      */
-    protected void setLongitude(double longitude) throws IllegalArgumentException
+    public void setLongitude(double longitude) throws IllegalArgumentException
     {
         if ((-180 <= longitude) && (longitude <= 180)) {
             this.longitude = longitude;
@@ -60,10 +60,10 @@ public class Position  implements Serializable {
 
 
     /**
-     * Setter method to set user's elevation.
-     * @param elevation: double
+     * Setter method for elevation.
+     * @param elevation A <b>double</b> of the elevation.
      */
-    protected void setElevation(double elevation) throws IllegalArgumentException
+    public void setElevation(double elevation) throws IllegalArgumentException
     {
         if (-430.0 <= elevation && elevation <= 8850.0) {
             this.elevation = elevation;
@@ -74,8 +74,8 @@ public class Position  implements Serializable {
 
 
     /**
-     * Getter method to get user's latitude.
-     * @return latitude: double
+     * Getter method for the latitude.
+     * @return A <b>double</b> of the latitude.
      */
     public double getLatitude()
     {
@@ -84,8 +84,8 @@ public class Position  implements Serializable {
 
 
     /**
-     * Getter method to get user's longitude.
-     * @return longitude: double
+     * Getter method for the longitude.
+     * @return A <b>double</b> of the longitude.
      */
     public double getLongitude()
     {
@@ -94,8 +94,8 @@ public class Position  implements Serializable {
 
 
     /**
-     * Getter method to get user's elevation.
-     * @return elevation: double
+     * Getter method for the elevation.
+     * @return A <b>double</b> of the elevation.
      */
     public double getElevation()
     {
@@ -104,9 +104,9 @@ public class Position  implements Serializable {
 
 
     /**
-     * Subtract method calculates the distance between two positions.
-     * @param position: double
-     * @return distance: double
+     * Method to calculate the distance between two positions.
+     * @param position The <b>Position</b> the distance is being calculated from.
+     * @return A <b>double</b> of the distance between the positions in m.
      */
     public double subtract(Position position)
     {
@@ -126,8 +126,8 @@ public class Position  implements Serializable {
 
 
     /**
-     * Method to print a Position as a string.
-     * @return string
+     * ToString method for this class
+     * @return A <b>String</b> of the position.
      */
     public String toString()
     {

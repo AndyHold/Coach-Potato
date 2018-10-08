@@ -19,40 +19,61 @@
    <children>
       <VBox prefHeight="720.0" prefWidth="1280.0">
          <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="200.0" spacing="55.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="200.0" spacing="33.0">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="250.0">
                      <children>
-                        <Label prefHeight="35.0" prefWidth="50.0" text="From:" />
-                        <DatePicker fx:id="startDate" prefHeight="35.0" />
+                        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="50.0" text="From:">
+                           <font>
+                              <Font name="Noto Serif Georgian" size="14.0" />
+                           </font></Label>
+                        <DatePicker fx:id="startDate" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="230.0">
                      <children>
-                        <Label prefHeight="35.0" prefWidth="35.0" text="To:" />
-                        <DatePicker fx:id="endDate" prefHeight="35.0" />
+                        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="30.0" text="To:">
+                           <font>
+                              <Font name="Noto Serif Georgian" size="14.0" />
+                           </font></Label>
+                        <DatePicker fx:id="endDate" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="190.0">
                      <children>
-                        <Label prefHeight="35.0" text="Type:" />
-                        <ComboBox fx:id="typeSelect" prefHeight="35.0" prefWidth="150.0" promptText="All" />
+                        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="50.0" text="Type:">
+                           <font>
+                              <Font name="Noto Serif Georgian" size="14.0" />
+                           </font></Label>
+                        <ComboBox fx:id="typeSelect" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="150.0" promptText="All" />
                      </children>
                   </HBox>
-                  <Button fx:id="filterApplyButton" mnemonicParsing="false" onAction="#applyFilter" prefHeight="35.0" prefWidth="120.0" text="Apply Filters" />
-                  <Button fx:id="clearFiltersButton" mnemonicParsing="false" onAction="#clearFilters" prefHeight="35.0" prefWidth="120.0" text="Clear Filters" />
-                  <Button fx:id="helpButton" mnemonicParsing="false" onAction="#displayHelp" prefHeight="35.0" prefWidth="48.0">
-                     <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Images/help.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
+                  <Button fx:id="filterApplyButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#applyFilter" prefHeight="35.0" prefWidth="150.0" text="Apply Filters">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin></Button>
+                  <Button fx:id="clearFiltersButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clearFilters" prefHeight="35.0" prefWidth="150.0" text="Clear Filters">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin></Button>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Button fx:id="helpButton" maxHeight="35.0" maxWidth="48.0" minHeight="35.0" minWidth="48.0" mnemonicParsing="false" onAction="#displayHelp" prefHeight="35.0" prefWidth="48.0">
+                           <graphic>
+                              <ImageView fx:id="helpimage" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#displayHelp" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Images/help.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin></VBox>
                </children>
             </HBox>
             <HBox prefHeight="563.0" prefWidth="1250.0">
@@ -68,13 +89,13 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
-                  <VBox maxHeight="550.0" prefHeight="551.0" prefWidth="550.0">
+                  <VBox fx:id="statsVBox" maxHeight="550.0" prefHeight="551.0" prefWidth="550.0">
                      <children>
                         <HBox prefHeight="275.0" prefWidth="200.0">
                            <children>
                               <VBox prefHeight="200.0" prefWidth="275.0">
                                  <children>
-                                    <Label alignment="CENTER" prefHeight="34.0" prefWidth="280.0" text="Distance (km)">
+                                    <Label fx:id="distanceTitle" alignment="CENTER" prefHeight="34.0" prefWidth="280.0" text="Distance (km)">
                                        <font>
                                           <Font size="20.0" />
                                        </font>
@@ -96,7 +117,7 @@
                               </VBox>
                               <VBox prefHeight="200.0" prefWidth="275.0">
                                  <children>
-                                    <Label alignment="CENTER" prefHeight="34.0" prefWidth="280.0" text="Duration (mins)">
+                                    <Label fx:id="durationTitle" alignment="CENTER" prefHeight="34.0" prefWidth="280.0" text="Duration (mins)">
                                        <font>
                                           <Font size="20.0" />
                                        </font>
@@ -122,7 +143,7 @@
                            <children>
                               <VBox prefHeight="200.0" prefWidth="275.0">
                                  <children>
-                                    <Label alignment="CENTER" prefHeight="34.0" prefWidth="280.0" text="Average Speed (km/h)">
+                                    <Label fx:id="speedTitle" alignment="CENTER" prefHeight="34.0" prefWidth="280.0" text="Average Speed (km/h)">
                                        <font>
                                           <Font size="20.0" />
                                        </font>
@@ -144,7 +165,7 @@
                               </VBox>
                               <VBox prefHeight="200.0" prefWidth="275.0">
                                  <children>
-                                    <Label alignment="CENTER" prefHeight="34.0" prefWidth="280.0" text="Average Heart Rate (bpm)">
+                                    <Label fx:id="heartRateTitle" alignment="CENTER" prefHeight="34.0" prefWidth="280.0" text="Average Heart Rate (bpm)">
                                        <font>
                                           <Font size="20.0" />
                                        </font>
@@ -170,19 +191,19 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER_LEFT" maxHeight="90.0" maxWidth="1250.0" minHeight="90.0" minWidth="1250.0" prefHeight="90.0" prefWidth="1250.0" spacing="150.0">
                <children>
-                  <Button fx:id="entryViewerButton" mnemonicParsing="false" onAction="#openEntries" prefHeight="35.0" prefWidth="120.0" text="View Entries" />
-                  <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteActivity" prefHeight="37.0" prefWidth="132.0" text="Delete Activity" />
-                  <Button fx:id="mapViewerButton" mnemonicParsing="false" onAction="#viewMap" prefHeight="35.0" prefWidth="120.0" text="View Map" />
-                  <Button fx:id="graphViewerButton" mnemonicParsing="false" onAction="#viewGraph" prefHeight="35.0" prefWidth="120.0" text="View Graph" />
+                  <Button fx:id="entryViewerButton" maxHeight="35.0" maxWidth="150.0" minHeight="35.0" minWidth="150.0" mnemonicParsing="false" onAction="#openEntries" prefHeight="35.0" prefWidth="150.0" text="View Entries" />
+                  <Button fx:id="deleteButton" maxHeight="35.0" maxWidth="150.0" minHeight="35.0" minWidth="150.0" mnemonicParsing="false" onAction="#deleteActivity" prefHeight="35.0" prefWidth="150.0" text="Delete Activity" />
+                  <Button fx:id="mapViewerButton" maxHeight="35.0" maxWidth="150.0" minHeight="35.0" minWidth="150.0" mnemonicParsing="false" onAction="#viewMap" prefHeight="35.0" prefWidth="150.0" text="View Map" />
+                  <Button fx:id="graphViewerButton" maxHeight="35.0" maxWidth="150.0" minHeight="35.0" minWidth="150.0" mnemonicParsing="false" onAction="#viewGraph" prefHeight="35.0" prefWidth="150.0" text="View Graph" />
                </children></HBox>
          </children>
          <padding>
-            <Insets left="15.0" right="15.0" />
+            <Insets left="15.0" right="10.0" />
          </padding>
       </VBox>
-      <TextArea fx:id="helpTextArea" editable="false" layoutX="816.0" layoutY="50.0" prefHeight="445.0" prefWidth="400.0" visible="false" />
+      <TextArea fx:id="helpTextArea" editable="false" layoutX="830.0" layoutY="40.0" prefHeight="600.0" prefWidth="400.0" visible="false" />
    </children>
    <padding>
       <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />

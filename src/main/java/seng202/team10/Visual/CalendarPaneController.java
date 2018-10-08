@@ -2,11 +2,8 @@ package seng202.team10.Visual;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -14,11 +11,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import seng202.team10.Control.GUIController;
+import seng202.team10.Control.MainController;
 import seng202.team10.Model.ActivitiesData.Activity;
 import seng202.team10.Model.ActivitiesData.DateTime;
 import seng202.team10.Model.Goals.Goal;
-import seng202.team10.Model.Goals.Goals;
+import seng202.team10.Model.UserProfile;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -27,29 +24,30 @@ import java.util.ArrayList;
 
 /**
  * Controller for the Calendar pane in the profile screen, which shows dates of activities and goals.
- * SENG202 2018S2
+ *
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
-public class CalenderPaneController {
+public class CalendarPaneController {
 
     private ArrayList<AnchorPaneNode> allCalendarDays = new ArrayList<>(42);
     private VBox view;
     private YearMonth currentYearMonth;
-    private GUIController app;
+    private MainController mainController ;
     private ProfileController profileController;
     private ObservableList<String> months;
     private ObservableList<String> years;
     private ComboBox monthsComboBox = new ComboBox();
     private ComboBox yearsComboBox = new ComboBox();
+    private UserProfile currentUser;
 
 
     /**
-     * Setter method to pass the GUIController into this controller.
-     * @param guiController <b>GUIController:</b> The main controller.
+     * Setter method to pass the MainController into this controller.
+     * @param mainController <b>MainController:</b> The main controller.
      */
-    public void setApp(GUIController guiController)
+    public void setMainController(MainController mainController)
     {
-        this.app = guiController;
+        this.mainController = mainController;
     }
 
 
@@ -88,16 +86,16 @@ public class CalenderPaneController {
     /**
      * Method to create a calendar view
      * @param yearMonth year month to create the calendar of
-     * @param app  The GUIController that controls the controllers.
+     * @param mainController  The MainController that controls the controllers.
      * @param profileController  The profile controller that controls the profile screen
      *
      */
-    CalenderPaneController(YearMonth yearMonth, GUIController app, ProfileController profileController)
+    CalendarPaneController(YearMonth yearMonth, MainController mainController , ProfileController profileController)
     {
-        setApp(app);
+        setMainController(mainController);
         setProfileController(profileController);
+        currentUser = mainController.getTitleBar().getCurrentProfile();
         currentYearMonth = yearMonth;
-        //DateTime date = new DateTime(2010,1,1,1,1,1);
 
         // Create the calendar grid pane
         GridPane calendar = new GridPane();
@@ -148,27 +146,32 @@ public class CalenderPaneController {
         monthsComboBox.setItems(months);
         yearsComboBox.setItems(years);
 
-        monthsComboBox.setStyle("-fx-border-color: #0097A7; -fx-background-color: #4DD0E1");
+        monthsComboBox.setStyle("-fx-border-color: #4DD0E1; " +
+                                "-fx-background-color: #0097A7; " +
+                                "-fx-background-radius: 1em 0 0 0; " +
+                                "-fx-border-radius: 1em 0 0 0;");
         monthsComboBox.setVisibleRowCount(12);
         monthsComboBox.setMinSize(120, 30);
         monthsComboBox.setMaxSize(120, 30);
         monthsComboBox.setPrefSize(120, 30);
         monthsComboBox.setValue(currentYearMonth.getMonth());
-        monthsComboBox.setStyle("-fx-border-color: #0097A7; -fx-background-color: #4DD0E1");
 
-        yearsComboBox.setStyle("-fx-border-color: #0097A7; -fx-background-color: #4DD0E1");
+        yearsComboBox.setStyle("-fx-border-color: #4DD0E1; " +
+                               "-fx-background-color: #0097A7; " +
+                               "-fx-background-radius: 0 1em 0 0; " +
+                               "-fx-border-radius: 0 1em 0 0;");
         yearsComboBox.setVisibleRowCount(12);
         yearsComboBox.setMinSize(80, 30);
         yearsComboBox.setMaxSize(80, 30);
         yearsComboBox.setPrefSize(80, 30);
         yearsComboBox.setValue(currentYearMonth.getYear());
+        yearsComboBox.setId("yearsComboBox");
 
         monthsComboBox.setOnAction(e -> changeMonthYear());
         yearsComboBox.setOnAction(e -> changeMonthYear());
 
         HBox comboBar = new HBox(monthsComboBox, yearsComboBox);
         comboBar.setAlignment(Pos.CENTER);
-
         // Populate calendar with the appropriate day numbers
         populateCalendar(yearMonth);
         // Create the calendar view
@@ -192,18 +195,19 @@ public class CalenderPaneController {
             if (ap.getChildren().size() != 0) {
                 ap.getChildren().remove(0);
             }
+            String style = null;
             Text txt = new Text(String.valueOf(calendarDate.getDayOfMonth()));
-            txt.setFill(Color.BLACK);
+            txt.setFill(Color.WHITE);
             txt.setTextAlignment(TextAlignment.CENTER);
             ap.setDate(calendarDate);
-            ap.setCurrentUser(app.getTitleBar().getCurrentProfile());
+            ap.setCurrentUser (currentUser);
             ap.setProfileController(profileController);
             ap.setTopAnchor(txt, 10.0);
             ap.setLeftAnchor(txt, 10.0);
             ap.setOnMouseClicked(e -> ap.onMouseClicked());
 
-            if (app.getTitleBar().getCurrentProfile().getActivities() != null) {
-                ArrayList<Activity> userActivities = app.getTitleBar().getCurrentProfile().getActivities();
+            if  (currentUser.getActivities() != null) {
+                ArrayList<Activity> userActivities = currentUser.getActivities();
                 ArrayList<Activity> todayActivities = new ArrayList<>();
                 int count = 0;
                 for (Activity activity: userActivities) {
@@ -215,12 +219,13 @@ public class CalenderPaneController {
                 }
                 if (count != 0) {
                     txt.setText(txt.getText() + String.format("\n %d A", count));
+                    style = "-fx-background-color: #66a3ff;";
                 }
                 ap.setActivities(todayActivities);
             }
 
-            if (app.getTitleBar().getCurrentProfile().getGoals().getCreatedGoals() != null) {
-                ArrayList<Goal> userGoals = app.getTitleBar().getCurrentProfile().getGoals().getCreatedGoals();
+            if  (currentUser.getGoals().getCreatedGoals() != null) {
+                ArrayList<Goal> userGoals = currentUser.getGoals().getCreatedGoals();
                 ArrayList<Goal> todayGoals = new ArrayList<>();
                 int countGoals = 0;
                 for (Goal goal: userGoals) {
@@ -232,13 +237,17 @@ public class CalenderPaneController {
                 }
                 if (countGoals != 0) {
                     txt.setText(txt.getText() + String.format("\n %d G", countGoals));
+                    if (style != null) {
+                        style = "-fx-background-color: linear-gradient(#66a3ff 0%, #71da71 100%);";
+                    } else style = "-fx-background-color: #71da71;";
                 }
                 ap.setTodayGoals(todayGoals);
             }
 
             if (calendarDate.getMonth() == yearMonth.getMonth()) {
-                txt.setFill(Color.WHITE);
+                txt.setFill(Color.BLACK);
                 ap.getChildren().add(txt);
+                ap.setStyle(style);
             } else {
                 ap.getChildren().add(txt);
             }

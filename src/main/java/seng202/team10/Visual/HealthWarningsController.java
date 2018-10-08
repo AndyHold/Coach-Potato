@@ -1,36 +1,41 @@
 package seng202.team10.Visual;
 
+
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebHistory;
 import javafx.scene.web.WebView;
 import javafx.util.Duration;
-import seng202.team10.Control.GUIController;
+import seng202.team10.Control.MainController;
 import seng202.team10.Model.ActivitiesData.HealthWarning;
 import seng202.team10.Model.ActivitiesData.HealthWarningType;
 
-import javax.swing.text.html.ListView;
+import java.io.IOException;
+import java.net.InetAddress;
+import seng202.team10.Model.UserProfile;
+
+import java.net.UnknownHostException;
 import java.util.ArrayList;
+
 
 /**
  * Health Warnings Controller class for Coach Potato
- * SENG202 2018S2
+ *
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public class HealthWarningsController implements Controllable {
 
 
-    private GUIController app;
+    private MainController mainController;
     private ObservableList<HealthWarning> tachycardiaWarnings;
     private ObservableList<HealthWarning> bradycardiaWarnings;
     private ObservableList<HealthWarning> cardiovascularMortalityWarnings;
@@ -49,16 +54,28 @@ public class HealthWarningsController implements Controllable {
     @FXML private Pane cWarningsPane;
     @FXML private Pane warningsParentPane;
     @FXML private ScrollPane warningsScrollPane;
+    @FXML private TextArea helpTextArea;
+    @FXML private Button helpButton;
+    @FXML private Button backButton;
+    @FXML private Button homeButton;
+    @FXML private Button forwardButton;
+    @FXML private Button tachycardiaViewButton;
+    @FXML private Button tachycardiaLearnMorebutton;
+    @FXML private Button bradycardiaViewbutton;
+    @FXML private Button bradycardiaLearnMoreButton;
+    @FXML private Button cardiovascularMortalityViewButton;
+    @FXML private Button cardiovascularMortalityLearnMoreButton;
     private WebEngine engine;
+    private UserProfile currentUser;
 
 
     /**
-     * Setter method to pass the GUIController into this controller.
-     * @param guiController <b>GUIController:</b> The main controller.
+     * Setter method to pass the MainController into this controller.
+     * @param mainController <b>MainController:</b> The main controller.
      */
-    public void setApp(GUIController guiController)
+    public void setMainController(MainController mainController)
     {
-        this.app = guiController;
+        this.mainController = mainController;
     }
 
 
@@ -67,16 +84,159 @@ public class HealthWarningsController implements Controllable {
      */
     public void setUpScene()
     {
-        hideWarningsScrollPane();
+        currentUser = mainController.getTitleBar().getCurrentProfile();
+        // Set up help and tooltips
+        setUpHelpTextArea();
+        setUpToolTips();
+        hideInfoBoxes();
+        // Set up the current warnings
         getWarningLists();
         setUpLabels();
-
+        // Set up the web view
         engine = googleWebView.getEngine();
         engine.load("https://google.com");
-//        warningsScrollPane.focusedProperty().addListener((ov, oldV, newV) -> {
-//        if (!newV) {
-//            hideWarningsScrollPane();
-//        }});
+        helpTextArea.focusedProperty().addListener((ov, oldV, newV) -> {
+        if (!newV) {
+            hideHelpTextArea();
+        }});
+    }
+
+
+    /**
+     * Set up method for the help text area
+     */
+    private void setUpHelpTextArea()
+    {
+        helpTextArea.setText("Welcome to the Health Warnings Screen!\n\n" +
+                             "On this screen you can view/clear the different health warnings you have recieved and get more information via google.\n\n" +
+                             "- To view/clear your current health warnings:\n" +
+                             "\t- Locate the desired warning type in the panes on\n" +
+                             "\t  the right.\n" +
+                             "\t- Click on the button with the warning symbol to\n" +
+                             "\t  open the warnings pane. This brings up your\n" +
+                             "\t  current warnings for the type selected including the\n" +
+                             "\t  activity the warning was detected on.\n" +
+                             "\t- Click the Clear button to remove the warning or the\n" +
+                             "\t  Clear All button to remove all warnings of that type.\n" +
+                             "- To learn more about each warning type:\n" +
+                             "\t- Click on the Learn More button for the desired type.\n" +
+                             "\t  This will bring up a google search for the warning in\n" +
+                             "\t  the google web view on the left.\n" +
+                             "\t- Use the Back, Home, and Forward buttons at the\n" +
+                             "\t  bottom of the web view to navigate as you desire.\n\n" +
+                             "Hover the mouse over each button to see a brief discription of what it does.");
+        helpTextArea.setWrapText(true);
+        helpTextArea.setVisible(false);
+    }
+
+
+    /**
+     * Set up method for the tool tips
+     *
+     */
+    private void setUpToolTips()
+    {
+        helpButton.setTooltip(new Tooltip("Need Help?"));
+        backButton.setTooltip(new Tooltip("Click here to go back one page."));
+        homeButton.setTooltip(new Tooltip("Click here to return to the Google home page."));
+        forwardButton.setTooltip(new Tooltip("Click here to go foward one page."));
+        tachycardiaViewButton.setTooltip(new Tooltip("Click here to view a list of the activities \n" +
+                "this health warning."));
+        tachycardiaLearnMorebutton.setTooltip(new Tooltip("Click here to search the web for \n" +
+                "information about this health warning."));
+        bradycardiaViewbutton.setTooltip(new Tooltip("Click here to view a list of the activities \n" +
+                "this health warning."));
+        bradycardiaLearnMoreButton.setTooltip(new Tooltip("Click here to search the web for \n" +
+                "information about this health warning."));
+        cardiovascularMortalityViewButton.setTooltip(new Tooltip("Click here to view a list of the activities \n" +
+                "this health warning."));
+        cardiovascularMortalityLearnMoreButton.setTooltip(new Tooltip("Click here to search the web for \n" +
+                "information about this health warning."));
+    }
+
+
+    /**
+     * Method called when the help button is pushed.
+     * Displays the help text area.
+     */
+    @FXML private void displayHelp()
+    {
+        helpTextArea.setVisible(true);
+        helpTextArea.requestFocus();
+    }
+
+
+    /**
+     * Method called when focus to the help text area is lost or when the pane is clicked on.
+     * Hides the help text area.
+     */
+    @FXML public void hideHelpTextArea()
+    {
+        helpTextArea.setVisible(false);
+    }
+
+
+    /**
+     * Method to return to the previous webpage visited
+     * Called when the back button is selected
+     */
+    @FXML public void goBack()
+    {
+        // Get the history entries as an observable list with the current index.
+        WebHistory history = engine.getHistory();
+        ObservableList<WebHistory.Entry> entryList = history.getEntries();
+        int index = history.getCurrentIndex();
+        // Create a new thread to change the page if the index is in range.
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                if ((entryList.size() > 1) && (index > 0)) {
+                    history.go(-1);
+                } else {
+                    history.go(0);
+                }
+            }
+        });
+    }
+
+
+    /**
+     * Method to return to the next webpage visited if you are back in the web history
+     * Called when the forward button is selected
+     */
+    @FXML public void goForward()
+    {
+        // Get the history entries as an observable list with the current index.
+        WebHistory history = engine.getHistory();
+        ObservableList<WebHistory.Entry> entryList = history.getEntries();
+        int index = history.getCurrentIndex();
+        // Create a new thread to change the page if the index is in range.
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                if ((entryList.size() > 1) && (index < entryList.size() - 1)) {
+                    history.go(1);
+                } else {
+                    history.go(0);
+                }
+            }
+        });
+    }
+
+
+    /**
+     * Method to return to the home webpage which is currently www.google.com
+     */
+    @FXML public void goHome()
+    {
+        try{
+            InetAddress address = InetAddress.getByName("www.google.com");
+            boolean reachable = address.isReachable(500);
+        } catch (Exception e) {
+            mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, Web Search currently unavailable");
+        }
+        engine.load("https://google.com");
+
     }
 
 
@@ -85,21 +245,22 @@ public class HealthWarningsController implements Controllable {
      */
     public void createWarningPanes()
     {
+        // clear all warning lists
         tWarningsPane.getChildren().clear();
         bWarningsPane.getChildren().clear();
         cWarningsPane.getChildren().clear();
         tWarnings.clear();
         bWarnings.clear();
         cWarnings.clear();
-        // Tachycardia
+        // Make all Tachycardia warning panes
         for (HealthWarning healthWarning: tachycardiaWarnings) {
             tWarnings.add(new WarningPane(healthWarning, this, tWarningsPane));
         }
-        // Bradycardia
+        // Make all Bradycardia warning panes
         for (HealthWarning healthWarning: bradycardiaWarnings) {
             bWarnings.add(new WarningPane(healthWarning, this, bWarningsPane));
         }
-        // Cardiovascular Mortality
+        // Make all Cardiovascular Mortality warning panes
         for (HealthWarning healthWarning: cardiovascularMortalityWarnings) {
             cWarnings.add(new WarningPane(healthWarning, this, cWarningsPane));
         }
@@ -111,9 +272,9 @@ public class HealthWarningsController implements Controllable {
      */
     private void getWarningLists()
     {
-        tachycardiaWarnings = FXCollections.observableArrayList(app.getTitleBar().getCurrentProfile().getWarnings(HealthWarningType.TACHYCARDIA));
-        bradycardiaWarnings = FXCollections.observableArrayList(app.getTitleBar().getCurrentProfile().getWarnings(HealthWarningType.BRADYCARDIA));
-        cardiovascularMortalityWarnings = FXCollections.observableArrayList(app.getTitleBar().getCurrentProfile().getWarnings(HealthWarningType.CARDIOVASCULAR_MORTALITY));
+        tachycardiaWarnings = FXCollections.observableArrayList(currentUser.getWarnings(HealthWarningType.TACHYCARDIA));
+        bradycardiaWarnings = FXCollections.observableArrayList(currentUser.getWarnings(HealthWarningType.BRADYCARDIA));
+        cardiovascularMortalityWarnings = FXCollections.observableArrayList(currentUser.getWarnings(HealthWarningType.CARDIOVASCULAR_MORTALITY));
     }
 
 
@@ -152,8 +313,8 @@ public class HealthWarningsController implements Controllable {
      */
     public void removeWarning(HealthWarning healthWarning)
     {
-        app.getTitleBar().getCurrentProfile().removeHealthWarning(healthWarning);
-        app.getDataWriter().saveProfile(app.getTitleBar().getCurrentProfile());
+        currentUser.removeHealthWarning(healthWarning);
+        mainController.getDataWriter().saveProfile(currentUser);
         switch(healthWarning.getType())
         {
             case TACHYCARDIA:
@@ -167,50 +328,63 @@ public class HealthWarningsController implements Controllable {
                 break;
         }
         setUpLabels();
-        app.getTitleBar().setUpWarningFlag();
+        mainController.getTitleBar().setUpWarningFlag();
     }
 
 
     /**
-     * Getter method for the <b>GUIController</b>
-     * @return the <b>GUIController</b>
+     * Getter method for the <b>MainController</b>
+     * @return the <b>MainController</b>
      */
-    public GUIController getApp()
+    public MainController getMainController()
     {
-        return this.app;
+        return this.mainController;
     }
 
 
+    /**
+     * Method to display the tachicardia warnings pane if it is not empty
+     */
     @FXML public void showTachycardiaWarnings()
     {
         hideWarningsScrollPane();
         if (tachycardiaWarnings.size() > 0) {
             showWarningPane(tWarningsPane);
         }
-        warningsScrollPane.setLayoutY(20);
+        warningsScrollPane.setLayoutY(70);
     }
 
 
+    /**
+     * Method to display the bradycardia warnings pane if it is not empty
+     */
     @FXML public void showBradycardiaWarnings()
     {
         hideWarningsScrollPane();
         if (bradycardiaWarnings.size() > 0) {
             showWarningPane(bWarningsPane);
         }
-        warningsScrollPane.setLayoutY(250);
+        warningsScrollPane.setLayoutY(285);
     }
 
 
+    /**
+     * Method to display the cardiovascular mortality warnings pane if it is not empty
+     */
     @FXML public void showCardiovascularMortalityWarnings()
     {
         hideWarningsScrollPane();
         if (cardiovascularMortalityWarnings.size() > 0) {
             showWarningPane(cWarningsPane);
         }
-        warningsScrollPane.setLayoutY(440);
+        warningsScrollPane.setLayoutY(445);
     }
 
 
+    /**
+     * Method to clear all Warnings in the visible pane.
+     * Called when the Clear All button is selected.
+     */
     @FXML public void clearAllWarnings()
     {
         if (tWarningsPane.isVisible()) {
@@ -223,11 +397,18 @@ public class HealthWarningsController implements Controllable {
     }
 
 
+    /**
+     * Method to clear all warnings of the given pane
+     * @param clearPane a <b>Pane</b> to be cleared
+     * @param warnings an <b>ArrayList&lt;WarningPane&gt;</b> of Warning Panes in the clearPane
+     */
     private void clearWarnings(Pane clearPane, ArrayList<WarningPane> warnings)
         {
+            // Create and play a Transition effect for the entire pane containing the warnings
             TranslateTransition clear = new TranslateTransition(new Duration(350), clearPane);
             clear.setToX(-380);
             clear.play();
+            // When transition finished empty the pane, clear the warnings and put it back in place.
             clear.setOnFinished(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
@@ -244,10 +425,11 @@ public class HealthWarningsController implements Controllable {
 
     /**
      * Method to show the warning Pane and stretch it to fit the values it requires.
-     * @param warningPane
+     * @param warningPane a <b>Pane</b> containing the warnings of one of the three types.
      */
     private void showWarningPane(Pane warningPane)
     {
+        // Show the panes, request focus and set the height of the pane depending on how many warnings it contains.
         warningsScrollPane.setVisible(true);
         warningPane.setVisible(true);
         warningsScrollPane.requestFocus();
@@ -257,7 +439,10 @@ public class HealthWarningsController implements Controllable {
     }
 
 
-    @FXML public void hideWarningsScrollPane()
+    /**
+     * Method to hide the warnings scroll pane.
+     */
+    public void hideWarningsScrollPane()
     {
         warningsScrollPane.setVisible(false);
         tWarningsPane.setVisible(false);
@@ -265,30 +450,64 @@ public class HealthWarningsController implements Controllable {
         cWarningsPane.setVisible(false);
     }
 
+
+    /**
+     * Method to hide the warnings scroll box and the help text area
+     * Called when the background Pane is clicked on.
+     */
+    public void hideInfoBoxes()
+    {
+        hideWarningsScrollPane();
+        hideHelpTextArea();
+    }
+
+
     /**
      * Method to search the web page for tachycardia.
+     * Called when the Learn More button for tachycardia is selected.
      */
     @FXML public void showTachycardiaSearch()
     {
+        try{
+            InetAddress address = InetAddress.getByName("www.google.com");
+            boolean reachable = address.isReachable(500);
+        } catch (Exception e) {
+            mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, 'Learn More' currently unavailable");
+        }
         engine.load(HealthWarningType.TACHYCARDIA.getURL());
     }
 
+
     /**
      * Method to search the web page for brachycardia.
+     * Called when the Learn More button for brachycardia is selected.
      */
     @FXML public void showBradycardiaSearch()
     {
+        try{
+            InetAddress address = InetAddress.getByName("www.google.com");
+            boolean reachable = address.isReachable(500);
+        } catch (Exception e) {
+            mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, 'Learn More' currently unavailable");
+        }
         engine.load(HealthWarningType.BRADYCARDIA.getURL());
+
     }
 
     /**
      * Method to search the web page for cardiovascular mortality.
+     * Called when the Learn More button for cardiovascular mortality is selected.
      */
     @FXML public void showCardiovascularSearch()
     {
+        try{
+            InetAddress address = InetAddress.getByName("www.google.com");
+            boolean reachable = address.isReachable(500);
+        } catch (Exception e) {
+            mainController.createPopUp(Alert.AlertType.ERROR, "Error", "Could not connect to Google, 'Learn More' currently unavailable");
+        }
         engine.load(HealthWarningType.CARDIOVASCULAR_MORTALITY.getURL());
+
     }
-
-
 
 }

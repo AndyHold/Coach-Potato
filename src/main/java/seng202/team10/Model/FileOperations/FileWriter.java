@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 /**
- * File Writer Class for Coach Potato SENG202 2018S2
+ * File Writer Class for Coach Potato
  */
 public class FileWriter
 {
@@ -31,9 +31,7 @@ public class FileWriter
             out.writeObject(activeProfile);
             out.close();
             fileOut.close();
-        } catch (IOException i) {
-            i.printStackTrace();
-        }
+        } catch (IOException exception) {  }
 
 
     }
@@ -53,13 +51,6 @@ public class FileWriter
         boolean success = profileToDelete.delete();
         return success;
     }
-
-    /** returns the last profile that was saved
-     * @return  A UserProfile, the active profile*/
-    public UserProfile getActiveProfile() {
-        return activeProfile;
-    }
-
 
 }
 

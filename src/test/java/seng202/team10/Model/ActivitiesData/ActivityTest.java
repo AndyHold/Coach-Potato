@@ -1,7 +1,10 @@
 package seng202.team10.Model.ActivitiesData;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
@@ -38,13 +41,28 @@ public class ActivityTest {
         fourthEntry.setFirstEntry(false);
         fifthEntry.setFirstEntry(false);
         sixthEntry.setFirstEntry(false);
-        activity.addEntry(firstEntry);
-        activity.addEntry(secondEntry);
-        activity.addEntry(thirdEntry);
-        activity.addEntry(fourthEntry);
-        activity.addEntry(fifthEntry);
-        activity.addEntry(sixthEntry);
+        ArrayList<Entry> entries = new ArrayList<>();
+        entries.add(firstEntry);
+        entries.add(secondEntry);
+        entries.add(thirdEntry);
+        entries.add(fourthEntry);
+        entries.add(fifthEntry);
+        entries.add(sixthEntry);
+        activity.setEntries(entries);
         activity.postEntriesSetUp();
+    }
+
+
+    @After
+    public void tearDown()
+    {
+        firstEntry = null;
+        secondEntry = null;
+        thirdEntry = null;
+        fourthEntry = null;
+        fifthEntry = null;
+        sixthEntry = null;
+        activity = null;
     }
 
 
@@ -81,21 +99,25 @@ public class ActivityTest {
         assertEquals("a", testActivity.getName());
     }
 
+
     @Test
     public void secondsToTimeAddsZeros() {
         assertEquals(activity.secondsToTime(7748), "02:09:08");
     }
+
 
     @Test
     public void secondsToTimeDoesntAddZeros() {
         assertEquals(activity.secondsToTime(38970), "10:49:30");
     }
 
+
     @Test
     public void secondsToTimeReturnsNullWhenOver23() {
         //24 hours in seconds
         assertEquals(activity.secondsToTime(86400), null);
     }
+
 
     @Test
     public void secondsToTimeReturnsNullWhenNegative() {
@@ -138,6 +160,7 @@ public class ActivityTest {
         assertEquals(50, activity.getTotalDuration());
     }
 
+
     @Test
     public void calculateAverageVelocity()
     {
@@ -147,6 +170,7 @@ public class ActivityTest {
         assertEquals(1.78, activity.getAverageVelocity(), 0.01);
     }
 
+
     @Test
     public void calculateAverageHeartRate()
     {
@@ -154,11 +178,13 @@ public class ActivityTest {
         assertEquals(85, activity.getAverageHeartRate(), 0.01);
     }
 
+
     @Test
     public void getDurationMinutes()
     {
         assertEquals(0.83, activity.getDurationMins(), 1e-20);
     }
+
 
     @Test
     public void getSpeedKMH()
@@ -166,11 +192,13 @@ public class ActivityTest {
         assertEquals(6.4, activity.getSpeedKMH(), 1e-20);
     }
 
+
     @Test
     public void getDistanceKM()
     {
         assertEquals(0.09, activity.getDistanceKM(), 1e-20);
     }
+
 
     @Test
     public void getEntryNo()
@@ -178,11 +206,13 @@ public class ActivityTest {
         assertEquals(6, activity.getEntryno(), 1e-20);
     }
 
+
     @Test
     public void getHeartString()
     {
         assertEquals("85", activity.getHeartString());
     }
+
 
     @Test
     public void getTypeString()
@@ -190,10 +220,18 @@ public class ActivityTest {
         assertEquals("Walk", activity.getTypeString());
     }
 
+
     @Test
     public void getTimeString()
     {
         assertEquals("30th, August, 2018 - 15:01:00", activity.getTimeString());
+    }
+
+
+    @Test
+    public void toStringTest()
+    {
+        assertEquals("Walk in the park", activity.toString());
     }
 
 }

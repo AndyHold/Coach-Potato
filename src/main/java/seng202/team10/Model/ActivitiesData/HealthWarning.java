@@ -1,10 +1,12 @@
 package seng202.team10.Model.ActivitiesData;
 
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Class that contains information about a health warning.
+ */
 public class HealthWarning implements java.io.Serializable {
 
 
@@ -15,9 +17,15 @@ public class HealthWarning implements java.io.Serializable {
     private DateTime activityDate;
 
 
-    public HealthWarning(HealthWarningType type, String activityname, DateTime activityDate)
+    /**
+     * Constructor for the Health Warning Class.
+     * @param type  A <b>HealthWarningType</b> enum of the type of health warning.
+     * @param activityname A <b>String</b> of the activity name.
+     * @param activityDate A <b>DateTime</b> of the activity date and time.
+     */
+    HealthWarning(HealthWarningType type, String activityname, DateTime activityDate)
     {
-        this.name = type.getName();
+        this.name = type.toString();
         this.URL = type.getURL();
         this.type = type;
         this.activityName = activityname;
@@ -27,10 +35,11 @@ public class HealthWarning implements java.io.Serializable {
 
     /**
      * Method to check a heart rate from an entry in an activity for a necessary health warning.
-     * @param type an <b>ActivityType</b>: ActivityType of the current activity.
-     * @param firstEntry a <b>boolean</b>: True if this is the first entry in the activity (resting heart rate).
-     * @param heartRate a <b>double</b>: Heart rate at the time of the entry.
-     * @param age an <b>int</b>: Age in years of the user.
+     * @param type An <b>ActivityType</b>: ActivityType of the current activity.
+     * @param firstEntry A <b>boolean</b>: True if this is the first entry in the activity (resting heart rate).
+     * @param heartRate A <b>double</b>: Heart rate at the time of the entry.
+     * @param age An <b>int</b>: Age in years of the user.
+     * @return A <b>Set&lt;HealthWarningType&gt;</b> of health warning types.
      */
     public static Set<HealthWarningType> addWarning(ActivityType type, boolean firstEntry, int heartRate, int age)
     {
@@ -74,9 +83,9 @@ public class HealthWarning implements java.io.Serializable {
 
     /**
      * Method to check if user needs a cardiovascular mortality warning because of a high heart rate during excersize.
-     * @param heartRate double: The heart rate at point in activity
-     * @param maxHeartRate int: The maximum heart rate the user should reach.
-     * @return boolean: True if the heart rate is greater than the maximum heart rate.
+     * @param heartRate An <b>int</b> of the heart rate at a point in an activity.
+     * @param maxHeartRate An <b>int</b> of the maximum heart rate the user should reach.
+     * @return <b>true</b> if the heart rate is greater than the maximum heart rate, <b>false</b> otherwise.
      */
     private static boolean checkCardiovascularMortality(int heartRate, int maxHeartRate)
     {
@@ -87,8 +96,8 @@ public class HealthWarning implements java.io.Serializable {
     /**
      * Method to check a user for a Bradycardia health warning.
      * Note: This does not check for Bradycardia in children under 15 years old as in most cases this is harmless.
-     * @param heartRate double: The heart rate of the user at a point in their activity.
-     * @return boolean: True if heart rate suggests bradycardia warning is necessary.
+     * @param heartRate A <b>double</b> of the heart rate of the user at a point in an activity.
+     * @return <b>true</b> if the heart rate suggests bradycardia warning is necessary, <b>false</b> otherwise.
      */
     private static boolean checkBradycardia(int heartRate)
     {
@@ -98,47 +107,45 @@ public class HealthWarning implements java.io.Serializable {
 
     /**
      * Method to check a user for a Tachycardia health warning.
-     * @param heartRate double: The Heart Rate of the user as they first start their activity.
-     * @param age int: The users age
-     * @return boolean: True if the warning is necessary.
+     * @param heartRate A <b>Double</b> of the heart rate of the user as they first start their activity.
+     * @param age An <b>int</b> The users' age.
+     * @return <b>true</b> if the warning is necessary, <b>false</b> otherwise.
      */
     private static boolean checkTachycardia(int heartRate, int age)
     {
-        if (age <= 7 && heartRate > 133) {
-            return true;
-        } else if (age <= 11 && heartRate > 130) {
-            return true;
-        } else if (age <= 15 && heartRate > 119) {
-            return true;
-        } else if (age > 15 && heartRate > 100) {
-            return true;
-        } else {
-            return false;
+        if (age <= 7) {
+            if (heartRate > 133) {
+                return true;
+            }
+        } else if (age <= 11) {
+            if (heartRate > 130) {
+                return true;
+            }
+        } else if (age <= 15) {
+            if (heartRate > 119) {
+                return true;
+            }
+        } else if (age > 15) {
+            if (heartRate > 100) {
+                return true;
+            }
         }
+        return false;
     }
 
 
     /**
      * Getter method for the name of the health warning.
-     * @return String
+     * @return A <b>String</b> of the name of the health warning.
      */
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
 
-
     /**
-     * Getter method for the URL of the health warning.
-     * @return String
-     */
-    public String getURL() {
-        return URL;
-    }
-
-
-    /**
-     * getter method for the health warning type
-     * @return HealthWarningType
+     * Getter method for the health warning type.
+     * @return A <b>HealthWarningType</b> an enum of the type of health warning.
      */
     public HealthWarningType getType()
     {
@@ -147,19 +154,22 @@ public class HealthWarning implements java.io.Serializable {
 
 
     /**
-     * Getter method for the activity name
-     * @return String
+     * Getter method for the activity name.
+     * @return A <b>String</b> of the activity name.
      */
-    public String getActivityName() {
+    public String getActivityName()
+    {
         return activityName;
     }
 
 
     /**
      * Getter method for the start date of the activity that caused the health warning.
-     * @return DateTime
+     * @return A <b>DateTime</b> of the start date of an activity.
      */
-    public DateTime getActivityDate() {
+    public DateTime getActivityDate()
+    {
         return activityDate;
     }
+
 }

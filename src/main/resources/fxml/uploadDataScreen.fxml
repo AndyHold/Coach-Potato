@@ -3,7 +3,6 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -15,7 +14,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#hideHelpTextAreas" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng202.team10.Visual.UploadDataController">
@@ -231,11 +229,6 @@
             <Font size="14.0" />
          </font>
       </TextArea>
-      <Rectangle fx:id="loadingCover" arcHeight="5.0" arcWidth="5.0" fill="#464646" height="720.0" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="1280.0">
-         <cursor>
-            <Cursor fx:constant="WAIT" />
-         </cursor>
-      </Rectangle>
    </children>
    <padding>
       <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />

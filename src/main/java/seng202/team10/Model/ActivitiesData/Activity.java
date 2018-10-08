@@ -11,8 +11,7 @@ import java.util.function.Consumer;
 
 
 /**
- * Activity Class for Coach Potato
- * SENG202 2018S2
+ * Class that contains lists of entries and activity details. Represents an instance of an activity, workout or exercise session.
  * @author Andrew Holden, Cam Arnold, Paddy Mitchell, Priyesh Shah, Torben Klausen
  */
 public class Activity implements Serializable {
@@ -32,13 +31,13 @@ public class Activity implements Serializable {
 
 
     /**
-     * Constructor method for Activity Class
-     * @param newName String: Name of the activity
+     * Constructor method for the Activity Class.
+     * @param newName A <b>String</b> of the name of the activity.
      */
     public Activity(String newName)
     {
         this.setName(newName);
-        this.type = ActivityType.determineType(this.name);
+        setType(ActivityType.determineType(this.name));
     }
 
 
@@ -46,7 +45,7 @@ public class Activity implements Serializable {
      * Method to convert a number of seconds to a string in the format HH:MM:SS. Returns null if the hours are greater than 23
      * or if seconds are negative.
      * @param seconds  The time in seconds to be converted.
-     * @return  A string in the format HH:MM:SS that describes the time. Null if hours &lt; 23
+     * @return  A <b>String</b> in the format HH:MM:SS that describes the time. Null if hours &gt; 23.
      */
     public String secondsToTime(int seconds) {
         if (seconds < 0) {
@@ -84,7 +83,7 @@ public class Activity implements Serializable {
 
     /**
      * Setter method for name of the activity
-     * @param newName: String
+     * @param newName A <b>String</b> of the name of the activity.
      */
     public void setName(String newName)
     {
@@ -97,7 +96,7 @@ public class Activity implements Serializable {
 
 
     /**
-     * Setter method for the date and time the activity was started on
+     * Setter method for the date and time the activity was started on.
      */
     private void setStartDateTime()
     {
@@ -106,7 +105,7 @@ public class Activity implements Serializable {
 
 
     /**
-     * Setter method for the date and time the activity was finished on
+     * Setter method for the date and time the activity was finished on.
      */
     private void setEndDateTime()
     {
@@ -115,8 +114,8 @@ public class Activity implements Serializable {
 
 
     /**
-     * Setter method for the type of the activity
-     * @param newType String: the type of activity
+     * Setter method for the type of the activity.
+     * @param newType A <b>String</b> of the type of activity.
      */
     public void setType(ActivityType newType)
     {
@@ -125,9 +124,8 @@ public class Activity implements Serializable {
 
 
     /**
-     * Setter method for a list of activities
-     * @param newEntries ArrayList&gt;Entry&lt;
-     *                   TODO speak to Cam about this, is this really the best way to do this? - Andy
+     * Setter method for a list of activities.
+     * @param newEntries An <b>ArrayList&lt;Entry&lt;</b> of entries being set.
      */
     public void setEntries(ArrayList<Entry> newEntries)
     {
@@ -136,7 +134,7 @@ public class Activity implements Serializable {
 
 
     /**
-     * method to calculate and set the total distance of the activity
+     * Method to calculate and set the total distance of the activity.
      */
     protected void calculateTotalDistance()
     {
@@ -149,7 +147,7 @@ public class Activity implements Serializable {
 
 
     /**
-     * Method to calculate and set the total time taken during the activity
+     * Method to calculate and set the total time taken during the activity.
      */
     protected void calculateTotalDuration()
     {
@@ -158,7 +156,7 @@ public class Activity implements Serializable {
 
 
     /**
-     * Method to calculate and set the average velocity during the activity
+     * Method to calculate and set the average velocity during the activity.
      */
     protected void calculateAverageVelocity()
     {
@@ -167,7 +165,7 @@ public class Activity implements Serializable {
 
 
     /**
-     * Method to calculate and set the average heart rate during the activity
+     * Method to calculate and set the average heart rate during the activity.
      */
     protected void calculateAverageHeartRate()
     {
@@ -182,8 +180,8 @@ public class Activity implements Serializable {
 
 
     /**
-     * addEntry Method to add an Entry to the arrayList entries
-     * @param newEntry: Entry to be added.
+     * Method to add an entry to the list of entries.
+     * @param newEntry The <b>Entry</b> to be added.
      */
     public void addEntry(Entry newEntry)
     {
@@ -192,7 +190,7 @@ public class Activity implements Serializable {
 
 
     /**
-     * Setter method for after Entries have been loaded to the Activity
+     * Method to calculate activity statistics after the entries have been loaded.
      */
     public void postEntriesSetUp()
     {
@@ -222,7 +220,7 @@ public class Activity implements Serializable {
 
     /**
      * Method to check for health warnings and add them if detected.
-     * @param user UserProfile: profile of the user.
+     * @param user The <b>UserProfile</b> being checked for health warnings.
      */
     public void checkEntriesForWarnings(UserProfile user)
     {
@@ -233,6 +231,7 @@ public class Activity implements Serializable {
                 warnings.addAll(newHealthWarningTypes);
             }
         }
+        healthWarnings.clear();
         warnings.iterator().forEachRemaining(new Consumer<HealthWarningType>() {
             @Override
             public void accept(HealthWarningType healthWarningType) {
@@ -244,8 +243,8 @@ public class Activity implements Serializable {
 
 
     /**
-     * Getter method for the health warnings ascociated with this activity.
-     * @return ArrayList: list of health warning types.
+     * Getter method for the health warnings associated with this activity.
+     * @return An <b>ArrayList&lt;HealthWarning&gt;</b> of health warning types.
      */
     public ArrayList<HealthWarning> getHealthWarnings()
     {
@@ -255,7 +254,7 @@ public class Activity implements Serializable {
 
     /**
      * Getter method for the name of the activity
-     * @return String
+     * @return A <b>String</b> of the name of the activity.
      */
     public String getName()
     {
@@ -264,8 +263,8 @@ public class Activity implements Serializable {
 
 
     /**
-     * Getter method for the date the activity was started on
-     * @return DateTime
+     * Getter method for the date and time the activity was started.
+     * @return A <b>DateTime</b> of the start date of the activity.
      */
     public DateTime getStartDateTime()
     {
@@ -274,8 +273,8 @@ public class Activity implements Serializable {
 
 
     /**
-     * Getter method for the end DateTime
-     * @return DateTime
+     * Getter method for the date and time the activity was ended.
+     * @return A <b>DateTime</b> of the end date of the activity.
      */
     public DateTime getEndDateTime()
     {
@@ -284,7 +283,7 @@ public class Activity implements Serializable {
 
 
     /**
-     * Setter method for the velocity at each Entry in the Activity
+     * Setter method for the velocity at each entry in the activity.
      */
     private void calculateEntriesVelocity()
     {
@@ -297,7 +296,7 @@ public class Activity implements Serializable {
 
     /**
      * Getter method for the total distance travelled in the activity
-     * @return Double
+     * @return A <b>Double</b> of the total distance.
      */
     public Double getTotalDistance()
     {
@@ -307,7 +306,7 @@ public class Activity implements Serializable {
 
     /**
      * Getter method for the total time taken during the activity in seconds
-     * @return Double
+     * @return A <b>Double</b> of the total duration.
      */
     public int getTotalDuration()
     {
@@ -317,7 +316,7 @@ public class Activity implements Serializable {
 
     /**
      * Getter method for the average velocity over the activity
-     * @return Double
+     * @return A <b>Double</b> of the average velocity.
      */
     public Double getAverageVelocity()
     {
@@ -327,7 +326,7 @@ public class Activity implements Serializable {
 
     /**
      * Getter method for the average heart rate during the activity
-     * @return Double
+     * @return A <b>Double</b> of the average heart rate.
      */
     public double getAverageHeartRate()
     {
@@ -336,8 +335,8 @@ public class Activity implements Serializable {
 
 
     /**
-     * Getter method for the ArrayList&gt;Entry&lt; entries
-     * @return ArrayList&gt;Entry&lt;
+     * Getter method for the ArrayList&lt;Entry&gt;entries
+     * @return An <b>ArrayList&lt;Entry&gt;</b> of entries.
      */
     public ArrayList<Entry> getEntries()
     {
@@ -346,8 +345,8 @@ public class Activity implements Serializable {
 
 
     /**
-     * getter method for the type of the activity
-     * @return String of the type of the activity
+     * Getter method for the type of the activity.
+     * @return A <b>String</b> of the type of activity.
      */
     public ActivityType getType()
     {
@@ -356,8 +355,8 @@ public class Activity implements Serializable {
 
 
     /**
-     * Getter method for the Time as a String
-     * @return String
+     * Getter method for the start time and date of the activity.
+     * @return A <b>String</b> of the start time/date.
      */
     public String getTimeString()
     {
@@ -366,8 +365,8 @@ public class Activity implements Serializable {
 
 
     /**
-     * Getter method for the Duration, in minutes to 2DP
-     * @return String
+     * Getter method for the duration of the activity, in minutes to 2DP.
+     * @return A <b>Double</b> of the duration of the activity.
      */
     public double getDurationMins()
     {
@@ -377,8 +376,8 @@ public class Activity implements Serializable {
 
 
     /**
-     * Getter method for the Average Speed in KM/h to 2DP
-     * @return String
+     * Getter method for the average speed of the activity in KM/h to 2DP.
+     * @return A <b>Double</b> of the average speed of the activity.
      */
     public Double getSpeedKMH()
     {
@@ -387,8 +386,8 @@ public class Activity implements Serializable {
 
 
     /**
-     * Getter method for the Distance as a String, in Km to 2DP
-     * @return String
+     * Getter method for the distance of the activity as a string, in Km to 2DP
+     * @return A <b>Double</b> of the distance of the activity.
      */
     public Double getDistanceKM()
     {
@@ -397,18 +396,18 @@ public class Activity implements Serializable {
 
 
     /**
-     * Getter method for the Average Heart Rate as a String
-     * @return String
+     * Getter method for the average heart rate of the activity as a string.
+     * @return A <b>String</b> of the average heart rate.
      */
-    protected String getHeartString()
+    public String getHeartString()
     {
         return String.valueOf(this.averageHeartRate);
     }
 
 
     /**
-     * Getter method for the Number of Entries as a String
-     * @return String
+     * Getter method for the number of entries as a string.
+     * @return A <b>String</b> of the number of entries.
      */
     public int getEntryno()
     {
@@ -417,11 +416,22 @@ public class Activity implements Serializable {
 
 
     /**
-     * Getter method for the Type as a String
-     * @return String
+     * Getter method for the type of the activity as a string.
+     * @return A <b>String</b> of the type of activity.
      */
     public String getTypeString()
     {
         return this.type.toString();
+    }
+
+
+    /**
+     * ToString method for the activity name.
+     * @return A <b>String</b> of the goal name.
+     */
+    @Override
+    public String toString()
+    {
+        return getName();
     }
 }
