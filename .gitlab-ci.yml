@@ -8,5 +8,4 @@ generate_artifacts:
     - mvn -B clean package
   artifacts:
     paths:
-      - target/s202*.jar
-
+      - target/SENG202*.jar
